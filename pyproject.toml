@@ -68,6 +68,7 @@ dependencies = [
     "openai>=1.0.0",
     "pandas>=2.1.0",
     "pyarrow",
+    "python-dotenv>=1.0.0,<2.0.0",
     "ray[default,data]>=2.56.1",
     "torch",
     "transformers",
@@ -455,6 +456,18 @@ fixable = ["ALL"]
     "PLR2004", # magic value used in comparison
     "ERA001", # allow commented-out code
 ]
+"eval/dedup/**/*.py" = [
+    "ANN401", # Arrow, NumPy, and provider payload boundaries are intentionally dynamic
+    "C401", "C901", # streaming stage builders favor auditable linear control flow
+    "EM101", "N818", "TRY300", # named validation/control-flow errors are deliberate
+    "PLR0912", "PLR0913", "PLR0915", "PLR2004", # frozen V0 constants and artifact APIs
+    "S607", # git and nvidia-smi are fixed local executables
+    "TC001", "TC003", # these imports are also used by runtime dataclass/introspection paths
+]
+"tests/eval/dedup/**/*.py" = [
+    "ANN001", "ANN202", "EM101", "TC003",
+]
+
 "benchmarking/**" = [
     "BLE001", # allow catching blind exceptions (benchmark runners need catch-all error handling)
 ]

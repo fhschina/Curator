@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "handoff_root": "/raid/vjawa/dedup_eval_10M",
+  "output_root": "/raid/hfang/dedup_eval_runs",
+  "cache_root": "/raid/hfang/dedup_eval_cache",
+  "verify_checksums": true,
+  "dataset": {
+    "dataset_version": "CC-MAIN-2025-26-dense-10m-v0",
+    "expected_rows": 10008061,
+    "expected_grouped_documents": 2021220,
+    "expected_groups": 352601,
+    "expected_removals": 1668619,
+    "expected_singletons": 7986841,
+    "expected_retained": 8339442,
+    "embedding_rows": 10008061,
+    "embedding_dimensions": 768,
+    "embedding_dtype": "float32",
+    "embedding_sha256": "d2830786a29c8e3c92b8549e031abf0dd6c302b142a448404a4fb07be951ca6a"
+  },
+  "tokenizer": {
+    "kind": "huggingface",
+    "model_id": "deepseek-ai/DeepSeek-V4-Pro",
+    "revision": "main",
+    "cache_root": "/raid/hfang/dedup_eval_cache/huggingface"
+  },
+  "judge": {
+    "backend": "nvidia_openai",
+    "base_url": "https://inference-api.nvidia.com/v1",
+    "model": "nvidia/deepseek-ai/deepseek-v4-flash",
+    "api_key_env": "NVIDIA_API_KEY",
+    "structured_output_mode": "json_object_plus_local_schema",
+    "thinking": false,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_output_tokens": 1024,
+    "concurrency": 8,
+    "requests_per_minute": 60,
+    "timeout_seconds": 180.0,
+    "max_retries": 2,
+    "max_visible_tokens": 65536,
+    "window_tokens": 8192,
+    "window_overlap_tokens": 1024,
+    "prompt_version": "dedup-judge-v0",
+    "schema_version": "dedup-judge-output-v0"
+  },
+  "retrieval": {
+    "backend": "gpu_cudf",
+    "minhash_seed": 42,
+    "char_ngram_width": 24,
+    "num_hashes": 260,
+    "feature_ngram_width": 5,
+    "lsh_grid": [[5, 1], [6, 1], [7, 1], [8, 1]],
+    "pilot_target_min": 20,
+    "pilot_target_max": 50,
+    "pilot_target_center": 35,
+    "top_k": 50,
+    "signature_chunk_rows": 16384,
+    "semantic_chunk_rows": 32768,
+    "max_candidates_per_anchor": 250000
+  },
+  "seeds": {
+    "pilot_seed": 26081200,
+    "anchor_seed": 26081201,
+    "pair_seed": 26081202,
+    "judge_order_seed": 26081203,
+    "qa_seed": 26081204
+  },
+  "canonical_pair_id_version": "cp1",
+  "profiles": {
+    "smoke": {
+      "anchor_quotas": {
+        "singleton": 10,
+        "size_2": 2,
+        "size_3_5": 2,
+        "size_6_20": 3,
+        "size_21_plus": 3
+      },
+      "removal_pair_budget": 50,
+      "cross_group_pair_budget": 50,
+      "qa_pair_budget": 100,
+      "minimum_diff_budget": 0,
+      "formal_v0": false
+    },
+    "full": {
+      "anchor_quotas": {
+        "singleton": 500,
+        "size_2": 125,
+        "size_3_5": 125,
+        "size_6_20": 125,
+        "size_21_plus": 125
+      },
+      "removal_pair_budget": 10000,
+      "cross_group_pair_budget": 10000,
+      "qa_pair_budget": 200,
+      "minimum_diff_budget": 0,
+      "formal_v0": true
+    }
+  }
+}
