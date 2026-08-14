@@ -15,8 +15,9 @@
 import json
 import os
 from pathlib import Path
+from types import SimpleNamespace
 
-from eval.dedup.cli import _load_repository_env, _probe_judge
+from eval.dedup.cli import _load_repository_env, _probe_judge, _report_export_directory
 
 
 def test_repository_env_loads_silently_without_overriding_process_env(tmp_path: Path, monkeypatch, capsys) -> None:
@@ -35,6 +36,13 @@ def test_repository_env_loads_silently_without_overriding_process_env(tmp_path: 
     captured = capsys.readouterr()
     assert captured.out == ""
     assert captured.err == ""
+
+
+def test_report_export_directory_preserves_run_hierarchy(tmp_path: Path) -> None:
+    context = SimpleNamespace(evaluation_run_id="dedup-full-fixture")
+    assert _report_export_directory(context, tmp_path) == (
+        tmp_path / "dedup-full-fixture" / "v0_run" / "reports"
+    )
 
 
 class _ProbeClient:

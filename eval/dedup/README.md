@@ -66,6 +66,11 @@ Step 10 publishes the automated report without waiting for Human QA. For an olde
 /raid/hfang/dedup_eval_env/bin/python -m eval.dedup report --run-root <v0_run>
 ```
 
+By default, derived reports are exported to
+`/home/nfs/hfang/dedup_eval/dedup_eval_runs/<evaluation_run_id>/v0_run/reports/`.
+Large run artifacts remain under the frozen run root on `/raid`. Use `--output-root`
+to select a different run-scoped report export root.
+
 For a full run, complete the frozen `data/human_qa_labels.csv` template outside the immutable bundle and import it. `qa-import` validates the labels and writes the independent `reports/human_qa_report.md` and `reports/human_qa_metrics.json`; it does not rewrite the automated report:
 
 ```bash
@@ -81,4 +86,4 @@ For a full run, complete the frozen `data/human_qa_labels.csv` template outside 
 - `run.py`: stage transactions and resume validation; domain logic remains in the packages above.
 - `report.py`: deterministic fact reporting, bounded DeepSeek recommendations, and the independent blind human-QA exchange.
 
-All generated data, including reports, is written beneath the configured external run root. The authoritative report location is `<v0_run>/reports/`; `eval/dedup/docs/` is reserved for design documents, proposals, and templates rather than run-specific results. Imports are side-effect free.
+Large generated data remains beneath the configured external run root. Derived automated and Human-QA reports are exported beneath `/home/nfs/hfang/dedup_eval/dedup_eval_runs/<evaluation_run_id>/v0_run/reports/` by default; `eval/dedup/docs/` is reserved for design documents, proposals, and templates rather than run-specific results. Imports are side-effect free.

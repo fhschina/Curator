@@ -40,6 +40,7 @@ from eval.dedup.run import create_run, load_run, run_pipeline, run_status, valid
 from eval.dedup.validation import DedupEvaluationError, require, sha256_file, write_json_atomic
 
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
+_DEFAULT_REPORT_EXPORT_ROOT = _REPOSITORY_ROOT.parent / "dedup_eval_runs"
 
 
 def _load_repository_env(dotenv_path: Path | None = None) -> None:
@@ -289,12 +290,24 @@ def _parser() -> argparse.ArgumentParser:
     import_parser = subparsers.add_parser("qa-import", help="validate and import completed human-QA labels")
     import_parser.add_argument("--run-root", type=Path, required=True)
     import_parser.add_argument("--labels", type=Path, required=True)
+    import_parser.add_argument(
+        "--output-root",
+        type=Path,
+        default=_DEFAULT_REPORT_EXPORT_ROOT,
+        help="root for run-scoped human-QA report exports",
+    )
 
     report_parser = subparsers.add_parser(
         "report",
         help="render a versioned automated report from completed immutable artifacts",
     )
     report_parser.add_argument("--run-root", type=Path, required=True)
+    report_parser.add_argument(
+        "--output-root",
+        type=Path,
+        default=_DEFAULT_REPORT_EXPORT_ROOT,
+        help="root for run-scoped report exports",
+    )
     report_parser.add_argument(
         "--output-label",
         default="automated_v2",
@@ -314,6 +327,10 @@ def _qa_export(context: Any) -> dict[str, Any]:
     run_status(context)
     counts = {"qa_pairs": sum(1 for line in packet.open(encoding="utf-8") if line.strip())}
     return {**counts, "packet": str(packet), "labels_template": str(template)}
+
+
+def _report_export_directory(context: Any, output_root: Path) -> Path:
+    return output_root.expanduser().resolve() / context.evaluation_run_id / "v0_run" / "reports"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -348,9 +365,10 @@ def main(argv: list[str] | None = None) -> int:
                 "REPORT_TOO_EARLY",
                 "Steps 1-9 must be complete before report rendering",
             )
-            report_path = context.reports / f"final_report.{args.output_label}.md"
-            recommendations_path = context.reports / f"recommendations.{args.output_label}.json"
-            manifest_path = context.reports / f"report_generation_manifest.{args.output_label}.json"
+            report_directory = _report_export_directory(context, args.output_root)
+            report_path = report_directory / f"final_report.{args.output_label}.md"
+            recommendations_path = report_directory / f"recommendations.{args.output_label}.json"
+            manifest_path = report_directory / f"report_generation_manifest.{args.output_label}.json"
             require(
                 not any(path.exists() for path in (report_path, recommendations_path, manifest_path)),
                 "REPORT_OUTPUT_EXISTS",
@@ -403,8 +421,8 @@ def main(argv: list[str] | None = None) -> int:
                 packet_path=context.data / "human_qa_packet.jsonl",
                 labels_path=qa_results,
                 judge_results_path=context.data / "judge_results.jsonl",
-                metrics_destination=context.reports / "human_qa_metrics.json",
-                report_destination=context.reports / "human_qa_report.md",
+                metrics_destination=_report_export_directory(context, args.output_root) / "human_qa_metrics.json",
+                report_destination=_report_export_directory(context, args.output_root) / "human_qa_report.md",
             )
             _print(
                 {
