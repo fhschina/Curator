@@ -7,7 +7,7 @@ The current design source is the [V0.3 operational proposal](docs/proposals/v0.3
 ## Runtime profiles
 
 - `smoke`: all 10,008,061 handoff documents, 20 anchors, 50 removal decisions, up to 50 cross-group pairs, and at most 100 judge requests. Its report is explicitly non-V0.
-- `full`: 1,000 anchors, 10,000 removal decisions, up to 10,000 cross-group pairs, and the required 200-pair human-QA gate.
+- `full`: 1,000 anchors, 10,000 removal decisions, up to 10,000 cross-group pairs, and a separate 200-pair human-QA double-check.
 
 The checked-in operational config temporarily freezes `nvidia/deepseek-ai/deepseek-v4-flash` on `https://inference-api.nvidia.com/v1` for the NON-V0 smoke run. Formal `full` run creation remains blocked unless the judge is restored to `nvidia/deepseek-ai/deepseek-v4-pro`.
 
@@ -58,9 +58,15 @@ Resume and audit an existing run:
 /raid/hfang/dedup_eval_env/bin/python -m eval.dedup validate --run-root /raid/hfang/dedup_eval_runs/<evaluation_run_id>/v0_run
 ```
 
-For a full run, complete the frozen `data/human_qa_labels.csv` template outside the immutable bundle, import it; `qa-import` validates the labels and resumes Step 10 automatically:
 Run creation also freezes the `eval/dedup` source-tree digest. `run` and `resume` stop with `RESUME_SOURCE_MISMATCH` if the implementation changes, preventing mixed-code artifacts under one evaluation run ID.
 
+Step 10 publishes the automated report without waiting for Human QA. For an older immutable run whose Step 9 artifacts are complete, render a versioned derived report without altering its stage markers:
+
+```bash
+/raid/hfang/dedup_eval_env/bin/python -m eval.dedup report --run-root <v0_run>
+```
+
+For a full run, complete the frozen `data/human_qa_labels.csv` template outside the immutable bundle and import it. `qa-import` validates the labels and writes the independent `reports/human_qa_report.md` and `reports/human_qa_metrics.json`; it does not rewrite the automated report:
 
 ```bash
 /raid/hfang/dedup_eval_env/bin/python -m eval.dedup qa-import --run-root <v0_run> --labels <completed_labels.csv>
@@ -73,6 +79,6 @@ Run creation also freezes the `eval/dedup` source-tree digest. `run` and `resume
 - `judging/`: constructs blind payloads, handles long documents, calls a provider, validates the schema, retries, and resumes.
 - `analysis/`: creates the partial graph, pair comparison, and frame-valid metrics.
 - `run.py`: stage transactions and resume validation; domain logic remains in the packages above.
-- `report.py`: blind human-QA exchange and the bounded-claim report.
+- `report.py`: deterministic fact reporting, bounded DeepSeek recommendations, and the independent blind human-QA exchange.
 
-All generated data is written beneath the configured external run root. Imports are side-effect free.
+All generated data, including reports, is written beneath the configured external run root. The authoritative report location is `<v0_run>/reports/`; `eval/dedup/docs/` is reserved for design documents, proposals, and templates rather than run-specific results. Imports are side-effect free.

@@ -23,7 +23,7 @@ import subprocess
 import sys
 import uuid
 from collections.abc import Callable
-from dataclasses import asdict, dataclass, replace
+from dataclasses import dataclass, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -44,7 +44,6 @@ from eval.dedup.pair_construction.retrieval.lexical import build_minhash_cache
 from eval.dedup.pair_construction.retrieval.selection import retrieve_and_select_cross_group_pairs
 from eval.dedup.report import export_human_qa, publish_report
 from eval.dedup.validation import (
-    HumanQAPending,
     read_json,
     require,
     sha256_file,
@@ -665,19 +664,17 @@ def _stage_9(context: RunContext, work: Path) -> StageExecution:
 
 def _stage_10(context: RunContext, work: Path) -> StageExecution:
     final_relative = "reports/final_report.md"
-    draft_relative = "reports/final_report.draft.md"
+    recommendations_relative = "reports/recommendations.json"
+    manifest_relative = "reports/report_generation_manifest.json"
     result = publish_report(
         profile=context.profile,
-        evaluation_manifest=read_json(context.manifests / "evaluation_manifest.json"),
-        metrics=read_json(context.reports / "metrics.json"),
-        graph_counts=read_json(_marker_path(context, 7))["counts"],
-        qa_packet_path=context.data / "human_qa_packet.jsonl",
-        qa_labels_path=context.data / "human_qa_results.csv",
-        judge_results_path=context.data / "judge_results.jsonl",
-        draft_destination=work / draft_relative,
+        run_root=context.run_root,
+        recommendation_judge=context.config.judge,
         final_destination=work / final_relative,
+        recommendations_destination=work / recommendations_relative,
+        manifest_destination=work / manifest_relative,
     )
-    return StageExecution((final_relative,), result)
+    return StageExecution((final_relative, recommendations_relative, manifest_relative), result)
 
 
 def _require_execution_source_contract(context: RunContext) -> None:
@@ -708,17 +705,7 @@ def run_pipeline(context: RunContext, *, through_step: int = 10) -> dict[str, An
         10: _stage_10,
     }
     for step in range(1, through_step + 1):
-        try:
-            markers.append(_execute_stage(context, step, lambda work, fn=stage_functions[step]: fn(context, work)))
-        except HumanQAPending as exc:
-            work_roots = sorted((context.run_root / ".work").glob("step_10-*"))
-            if work_roots:
-                draft_source = work_roots[-1] / "reports" / "final_report.draft.md"
-                if draft_source.exists():
-                    draft_destination = context.reports / "final_report.draft.md"
-                    if not draft_destination.exists():
-                        os.replace(draft_source, draft_destination)
-            return {"status": "human_qa_pending", "run_root": str(context.run_root), "issue": asdict(exc.issue)}
+        markers.append(_execute_stage(context, step, lambda work, fn=stage_functions[step]: fn(context, work)))
     return {"status": "complete", "run_root": str(context.run_root), "stages": markers}
 
 
@@ -746,5 +733,4 @@ def validate_run(context: RunContext) -> dict[str, Any]:
             "JUDGE_COMPLETION_BELOW_ACCEPTANCE",
             "formal V0 valid rate is below 99%",
         )
-        require((context.data / "human_qa_results.csv").is_file(), "HUMAN_QA_PENDING", "formal V0 human QA is missing")
     return {**status, "completed_steps": completed, "valid": completed == 10}

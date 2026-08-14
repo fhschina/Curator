@@ -23,7 +23,12 @@ import pyarrow.parquet as pq
 
 from eval.dedup.config import ProfileConfig
 from eval.dedup.contracts import stable_record_id
-from eval.dedup.report import HUMAN_FIELDS, export_human_qa, import_human_qa
+from eval.dedup.report import (
+    HUMAN_FIELDS,
+    export_human_qa,
+    import_human_qa,
+    publish_human_qa_report,
+)
 
 
 def test_full_human_qa_freezes_exact_100_50_50_and_imports(tmp_path: Path) -> None:
@@ -101,9 +106,46 @@ def test_full_human_qa_freezes_exact_100_50_50_and_imports(tmp_path: Path) -> No
         )
         writer.writeheader()
         writer.writerows(rows)
+    imported_labels_path = tmp_path / "human_qa_results.csv"
     imported = import_human_qa(
         packet_path=packet_path,
         labels_path=labels_path,
-        destination=tmp_path / "human_qa_results.csv",
+        destination=imported_labels_path,
     )
     assert imported == {"qa_labels": 200, "ambiguous": 0}
+
+    judge_results_path = tmp_path / "judge_results.jsonl"
+    judge_results_path.write_text(
+        "".join(
+            json.dumps(
+                {
+                    "judge_payload_hash": row["judge_payload_hash"],
+                    "same_duplicate_group": "NO",
+                    "a_can_replace_b": "NO",
+                    "b_can_replace_a": "NO",
+                    "relation_type": "UNRELATED",
+                    "material_difference": "MAJOR",
+                    "fuzzy_scope": "OUT_OF_SCOPE",
+                }
+            )
+            + "\n"
+            for row in packet
+        )
+    )
+    metrics_path = tmp_path / "human_qa_metrics.json"
+    report_path = tmp_path / "human_qa_report.md"
+    qa_result = publish_human_qa_report(
+        packet_path=packet_path,
+        labels_path=imported_labels_path,
+        judge_results_path=judge_results_path,
+        metrics_destination=metrics_path,
+        report_destination=report_path,
+    )
+    assert qa_result["status"] == "complete"
+    assert metrics_path.is_file()
+    qa_metrics = json.loads(metrics_path.read_text())
+    assert qa_metrics["fields"]["same_duplicate_group"]["exact_agreement"] == 1.0
+    assert qa_metrics["fields"]["same_duplicate_group"]["cohen_kappa"] is None
+    report = report_path.read_text()
+    assert "Human QA Double-check" in report
+    assert "Human / Judge" in report

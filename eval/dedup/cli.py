@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -34,7 +35,7 @@ from eval.dedup.handoff.manifests import register_corpus_handoff, register_sut_h
 from eval.dedup.judging.client import create_judge_client
 from eval.dedup.judging.payload import align_evidence_offsets, validate_evidence_offsets
 from eval.dedup.judging.schema import parse_judge_json, validate_judge_output
-from eval.dedup.report import import_human_qa
+from eval.dedup.report import import_human_qa, publish_human_qa_report, publish_report
 from eval.dedup.run import create_run, load_run, run_pipeline, run_status, validate_run
 from eval.dedup.validation import DedupEvaluationError, require, sha256_file, write_json_atomic
 
@@ -288,6 +289,17 @@ def _parser() -> argparse.ArgumentParser:
     import_parser = subparsers.add_parser("qa-import", help="validate and import completed human-QA labels")
     import_parser.add_argument("--run-root", type=Path, required=True)
     import_parser.add_argument("--labels", type=Path, required=True)
+
+    report_parser = subparsers.add_parser(
+        "report",
+        help="render a versioned automated report from completed immutable artifacts",
+    )
+    report_parser.add_argument("--run-root", type=Path, required=True)
+    report_parser.add_argument(
+        "--output-label",
+        default="automated_v2",
+        help="safe filename label for a derived report revision",
+    )
     return parser
 
 
@@ -323,6 +335,43 @@ def main(argv: list[str] | None = None) -> int:
             return 0 if result["valid"] else 1
         elif args.command == "qa-export":
             _print(_qa_export(load_run(args.run_root)))
+        elif args.command == "report":
+            context = load_run(args.run_root)
+            require(
+                re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_.-]{0,63}", args.output_label) is not None,
+                "REPORT_OUTPUT_LABEL_INVALID",
+                "report output label must contain only letters, numbers, dot, dash, or underscore",
+            )
+            status = run_status(context)
+            require(
+                all(item["status"] == "complete" for item in status["stages"][:9]),
+                "REPORT_TOO_EARLY",
+                "Steps 1-9 must be complete before report rendering",
+            )
+            report_path = context.reports / f"final_report.{args.output_label}.md"
+            recommendations_path = context.reports / f"recommendations.{args.output_label}.json"
+            manifest_path = context.reports / f"report_generation_manifest.{args.output_label}.json"
+            require(
+                not any(path.exists() for path in (report_path, recommendations_path, manifest_path)),
+                "REPORT_OUTPUT_EXISTS",
+                "versioned automated report output already exists",
+            )
+            result = publish_report(
+                profile=context.profile,
+                run_root=context.run_root,
+                recommendation_judge=context.config.judge,
+                final_destination=report_path,
+                recommendations_destination=recommendations_path,
+                manifest_destination=manifest_path,
+            )
+            _print(
+                {
+                    **result,
+                    "report": str(report_path),
+                    "recommendations": str(recommendations_path),
+                    "manifest": str(manifest_path),
+                }
+            )
         elif args.command == "qa-import":
             context = load_run(args.run_root)
             require(context.profile.formal_v0, "QA_IMPORT_PROFILE_INVALID", "qa-import is only valid for full V0 runs")
@@ -350,12 +399,18 @@ def main(argv: list[str] | None = None) -> int:
                     "counts": counts,
                 },
             )
-            result = run_pipeline(context)
+            qa_report = publish_human_qa_report(
+                packet_path=context.data / "human_qa_packet.jsonl",
+                labels_path=qa_results,
+                judge_results_path=context.data / "judge_results.jsonl",
+                metrics_destination=context.reports / "human_qa_metrics.json",
+                report_destination=context.reports / "human_qa_report.md",
+            )
             _print(
                 {
                     **counts,
                     "destination": str(context.data / "human_qa_results.csv"),
-                    "resume": result,
+                    "qa_report": qa_report,
                 }
             )
         return 0

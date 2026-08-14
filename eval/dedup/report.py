@@ -17,13 +17,29 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
+import os
+import re
+from collections import Counter
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from eval.dedup.config import ProfileConfig
+from eval.dedup.analysis.metrics import wilson_interval
+from eval.dedup.config import JudgeConfig, ProfileConfig
 from eval.dedup.contracts import DuplicateAnswer, FuzzyScope, MaterialDifference, RelationType, stable_record_id
-from eval.dedup.validation import HumanQAPending, require, write_text_atomic
+from eval.dedup.validation import (
+    DedupEvaluationError,
+    require,
+    sha256_file,
+    write_json_atomic,
+    write_text_atomic,
+)
+
+AUTOMATED_REPORT_VERSION = "dedup-automated-report-v2"
+HUMAN_QA_REPORT_VERSION = "dedup-human-qa-report-v1"
+RECOMMENDATION_PROMPT_VERSION = "dedup-recommendations-v1"
 
 HUMAN_FIELDS = (
     "same_duplicate_group",
@@ -176,126 +192,1174 @@ def import_human_qa(*, packet_path: Path, labels_path: Path, destination: Path) 
     return {"qa_labels": len(rows), "ambiguous": sum(row["reviewer_status"] == "AMBIGUOUS" for row in rows)}
 
 
-def _human_agreement(labels_path: Path, packet_path: Path, judge_results_path: Path) -> dict[str, Any] | None:
-    if not labels_path.exists():
-        return None
-    with labels_path.open("r", encoding="utf-8", newline="") as file:
-        labels = {row["qa_pair_id"]: row for row in csv.DictReader(file)}
-    packet = _read_jsonl(packet_path)
-    payload_to_qa = {row["judge_payload_hash"]: row["qa_pair_id"] for row in packet}
-    judge = _read_jsonl(judge_results_path)
-    counts = {field: {"agree": 0, "disagree": 0, "ambiguous": 0} for field in HUMAN_FIELDS}
-    for result in judge:
-        qa_id = payload_to_qa.get(result["judge_payload_hash"])
-        if qa_id is None:
-            continue
-        human = labels[qa_id]
-        for field in HUMAN_FIELDS:
-            if human[field] == "AMBIGUOUS":
-                counts[field]["ambiguous"] += 1
-            elif human[field] == result[field]:
-                counts[field]["agree"] += 1
+def _load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _percent(value: float | None) -> str:
+    return "N/A" if value is None else f"{value * 100:.2f}%"
+
+
+def _ci_text(low: float | None, high: float | None) -> str:
+    return "N/A" if low is None or high is None else f"{_percent(low)}-{_percent(high)}"
+
+
+def _markdown_table(headers: list[str], rows: list[list[Any]]) -> str:
+    def clean(value: Any) -> str:
+        return str(value).replace("|", "\\|").replace("\n", " ")
+
+    top = "| " + " | ".join(headers) + " |"
+    separator = "| " + " | ".join("---" for _ in headers) + " |"
+    body = ["| " + " | ".join(clean(value) for value in row) + " |" for row in rows]
+    return "\n".join([top, separator, *body])
+
+
+def _group_size_bucket(size: int) -> str:
+    if size == 1:
+        return "singleton"
+    if size == 2:
+        return "size_2"
+    if size <= 5:
+        return "size_3_5"
+    if size <= 20:
+        return "size_6_20"
+    return "size_21_plus"
+
+
+def _ratio_bucket(ratio: float) -> str:
+    if ratio < 0.25:
+        return "0-0.25"
+    if ratio < 0.5:
+        return "0.25-0.5"
+    if ratio < 0.8:
+        return "0.5-0.8"
+    return "0.8-1.0"
+
+
+def _read_comparisons(path: Path) -> list[dict[str, Any]]:
+    try:
+        import pyarrow.parquet as pq
+    except ImportError as exc:
+        msg = "pyarrow is required for automated reporting"
+        raise RuntimeError(msg) from exc
+    rows = pq.read_table(path).to_pylist()
+    for row in rows:
+        row["report_group_size_bucket"] = _group_size_bucket(int(row["predicted_group_size_low"]))
+        row["report_ratio_bucket"] = _ratio_bucket(float(row["token_length_ratio"]))
+    return rows
+
+
+def _removal_slice(rows: list[dict[str, Any]], field: str) -> list[dict[str, Any]]:
+    selected_rows = [row for row in rows if row["has_track_5a"]]
+    result = []
+    for value in sorted({str(row.get(field)) for row in selected_rows}):
+        selected = [row for row in selected_rows if str(row.get(field)) == value]
+        valid = [row for row in selected if row["judge_status"] == "valid"]
+        resolved = [row for row in valid if row["removal_outcome"] in {"safe_removal", "wrong_removal"}]
+        safe = sum(row["removal_outcome"] == "safe_removal" for row in resolved)
+        low, high = wilson_interval(safe, len(resolved))
+        result.append(
+            {
+                "value": value,
+                "selected": len(selected),
+                "valid": len(valid),
+                "resolved": len(resolved),
+                "safe": safe,
+                "wrong": len(resolved) - safe,
+                "precision": safe / len(resolved) if resolved else None,
+                "ci_low": low,
+                "ci_high": high,
+            }
+        )
+    return result
+
+
+def _cross_slice(rows: list[dict[str, Any]], field: str) -> list[dict[str, Any]]:
+    selected_rows = [row for row in rows if row["has_track_5b"]]
+    result = []
+    for value in sorted({str(row.get(field)) for row in selected_rows}):
+        selected = [row for row in selected_rows if str(row.get(field)) == value]
+        valid = [row for row in selected if row["judge_status"] == "valid"]
+        resolved = [
+            row for row in valid if row["cross_group_outcome"] in {"discovered_candidate_fn", "hard_negative"}
+        ]
+        positives = sum(row["cross_group_outcome"] == "discovered_candidate_fn" for row in resolved)
+        low, high = wilson_interval(positives, len(resolved))
+        result.append(
+            {
+                "value": value,
+                "selected": len(selected),
+                "valid": len(valid),
+                "resolved": len(resolved),
+                "duplicate_yes": positives,
+                "duplicate_no": len(resolved) - positives,
+                "yield": positives / len(resolved) if resolved else None,
+                "ci_low": low,
+                "ci_high": high,
+            }
+        )
+    return result
+
+
+def _comparison_analysis(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    removal = [row for row in rows if row["has_track_5a"]]
+    removal_valid = [row for row in removal if row["judge_status"] == "valid"]
+    removal_resolved = [
+        row for row in removal_valid if row["removal_outcome"] in {"safe_removal", "wrong_removal"}
+    ]
+    cross = [row for row in rows if row["has_track_5b"]]
+    cross_valid = [row for row in cross if row["judge_status"] == "valid"]
+    cross_resolved = [
+        row for row in cross_valid if row["cross_group_outcome"] in {"discovered_candidate_fn", "hard_negative"}
+    ]
+    return {
+        "removal_outcome": {
+            "selected": len(removal),
+            "valid": len(removal_valid),
+            "resolved": len(removal_resolved),
+            "safe": sum(row["removal_outcome"] == "safe_removal" for row in removal_resolved),
+            "wrong": sum(row["removal_outcome"] == "wrong_removal" for row in removal_resolved),
+            "unresolved": len(removal_valid) - len(removal_resolved),
+            "errors": len(removal) - len(removal_valid),
+        },
+        "cross_outcome": {
+            "selected": len(cross),
+            "valid": len(cross_valid),
+            "resolved": len(cross_resolved),
+            "duplicate_yes": sum(
+                row["cross_group_outcome"] == "discovered_candidate_fn" for row in cross_resolved
+            ),
+            "duplicate_no": sum(row["cross_group_outcome"] == "hard_negative" for row in cross_resolved),
+            "unresolved": len(cross_valid) - len(cross_resolved),
+            "errors": len(cross) - len(cross_valid),
+        },
+        "removal_slices": {
+            "predicted group size": _removal_slice(rows, "report_group_size_bucket"),
+            "document length": _removal_slice(rows, "length_bucket_low"),
+            "token length ratio": _removal_slice(rows, "report_ratio_bucket"),
+            "same hostname": _removal_slice(rows, "same_hostname"),
+            "relation type": _removal_slice(rows, "relation_type"),
+            "material difference": _removal_slice(rows, "material_difference"),
+            "fuzzy scope": _removal_slice(rows, "fuzzy_scope"),
+        },
+        "cross_slices": {
+            "retriever source": _cross_slice(rows, "retriever_category"),
+            "document length": _cross_slice(rows, "length_bucket_low"),
+            "token length ratio": _cross_slice(rows, "report_ratio_bucket"),
+            "same hostname": _cross_slice(rows, "same_hostname"),
+        },
+        "attempt_histogram": dict(sorted(Counter(int(row["judge_attempts"]) for row in rows).items())),
+        "confidence_buckets": {
+            label: sum(
+                row["judge_status"] == "valid"
+                and row["confidence"] is not None
+                and lower <= float(row["confidence"]) < upper
+                for row in rows
+            )
+            for label, lower, upper in (
+                ("0.00-0.50", 0.0, 0.5),
+                ("0.50-0.80", 0.5, 0.8),
+                ("0.80-0.95", 0.8, 0.95),
+                ("0.95-1.00", 0.95, 1.0000001),
+            )
+        },
+    }
+
+
+def _judge_diagnostics(run_root: Path) -> dict[str, Any]:
+    payload_count = 0
+    truncated = 0
+    window_count = 0
+    maximum_tokens = {"A": 0, "B": 0}
+    with (run_root / "data" / "judge_payloads.jsonl").open("r", encoding="utf-8") as file:
+        for line in file:
+            if not line.strip():
+                continue
+            payload_count += 1
+            evidence = json.loads(line)["payload"]["long_document_evidence"]
+            truncated += bool(evidence["truncated"])
+            window_count += len(evidence["windows"])
+            for side in ("A", "B"):
+                maximum_tokens[side] = max(maximum_tokens[side], int(evidence["token_counts"][side]))
+    repair_actions: Counter[str] = Counter()
+    with (run_root / "data" / "judge_results.jsonl").open("r", encoding="utf-8") as file:
+        for line in file:
+            if not line.strip():
+                continue
+            for event in json.loads(line).get("deterministic_repair_events", []):
+                repair_actions[str(event.get("action", "unknown"))] += 1
+    errors = _read_jsonl(run_root / "logs" / "judge_errors.jsonl")
+    error_types: Counter[str] = Counter()
+    for row in errors:
+        for attempt in row.get("errors", []):
+            error_types[str(attempt.get("error_type", "unknown"))] += 1
+    return {
+        "payload_count": payload_count,
+        "truncated_payloads": truncated,
+        "truncation_rate": truncated / payload_count if payload_count else None,
+        "evidence_windows": window_count,
+        "maximum_source_tokens": maximum_tokens,
+        "repair_actions": dict(sorted(repair_actions.items())),
+        "terminal_error_pairs": [row["canonical_pair_id"] for row in errors],
+        "terminal_error_attempt_types": dict(sorted(error_types.items())),
+    }
+
+
+def _duration_text(seconds: float) -> str:
+    seconds = round(seconds)
+    hours, remainder = divmod(seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    if hours:
+        return f"{hours}h {minutes}m {seconds}s"
+    if minutes:
+        return f"{minutes}m {seconds}s"
+    return f"{seconds}s"
+
+
+def _stage_rows(markers: list[dict[str, Any]]) -> list[list[Any]]:
+    result = []
+    previous = None
+    for marker in markers:
+        completed = datetime.fromisoformat(marker["completed_at_utc"])
+        duration = "N/A" if previous is None else _duration_text((completed - previous).total_seconds())
+        counts = ", ".join(
+            f"{key}={value}"
+            for key, value in marker.get("counts", {}).items()
+            if key != "minhash_cache_contract"
+        )
+        result.append([marker["step"], marker["name"], marker["status"], duration, counts])
+        previous = completed
+    return result
+
+
+def _slice_markdown(rows: list[dict[str, Any]], *, removal: bool) -> str:
+    if removal:
+        return _markdown_table(
+            ["Slice", "Selected", "Valid", "Resolved", "Safe", "Wrong", "Precision", "Wilson 95% CI"],
+            [
+                [
+                    row["value"],
+                    row["selected"],
+                    row["valid"],
+                    row["resolved"],
+                    row["safe"],
+                    row["wrong"],
+                    _percent(row["precision"]),
+                    _ci_text(row["ci_low"], row["ci_high"]),
+                ]
+                for row in rows
+            ],
+        )
+    return _markdown_table(
+        ["Slice", "Selected", "Valid", "Resolved", "Duplicate YES", "Duplicate NO", "Yield", "Wilson 95% CI"],
+        [
+            [
+                row["value"],
+                row["selected"],
+                row["valid"],
+                row["resolved"],
+                row["duplicate_yes"],
+                row["duplicate_no"],
+                _percent(row["yield"]),
+                _ci_text(row["ci_low"], row["ci_high"]),
+            ]
+            for row in rows
+        ],
+    )
+
+
+def _recommendation_schema() -> dict[str, Any]:
+    finding = {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["finding", "evidence_refs"],
+        "properties": {
+            "finding": {"type": "string"},
+            "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        },
+    }
+    recommendation = {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["priority", "action", "rationale", "evidence_refs"],
+        "properties": {
+            "priority": {"type": "string", "enum": ["HIGH", "MEDIUM", "LOW"]},
+            "action": {"type": "string"},
+            "rationale": {"type": "string"},
+            "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        },
+    }
+    return {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["key_findings", "risks", "recommended_actions"],
+        "properties": {
+            "key_findings": {"type": "array", "minItems": 1, "maxItems": 3, "items": finding},
+            "risks": {"type": "array", "minItems": 1, "maxItems": 3, "items": finding},
+            "recommended_actions": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 5,
+                "items": recommendation,
+            },
+        },
+    }
+
+
+def _validate_recommendations(value: Any, allowed_refs: set[str]) -> tuple[dict[str, Any], int]:
+    require(isinstance(value, dict), "RECOMMENDATION_SCHEMA_INVALID", "recommendations must be an object")
+    require(
+        set(value) == {"key_findings", "risks", "recommended_actions"},
+        "RECOMMENDATION_SCHEMA_INVALID",
+        "recommendation fields differ",
+    )
+    filtered: dict[str, list[dict[str, Any]]] = {}
+    dropped = 0
+    for collection in ("key_findings", "risks", "recommended_actions"):
+        require(isinstance(value[collection], list), "RECOMMENDATION_SCHEMA_INVALID", "collection must be a list")
+        lower, upper = (1, 5) if collection == "recommended_actions" else (1, 3)
+        require(
+            lower <= len(value[collection]) <= upper,
+            "RECOMMENDATION_SCHEMA_INVALID",
+            "recommendation collection length is outside the contract",
+            collection=collection,
+        )
+        accepted = []
+        for item in value[collection]:
+            require(isinstance(item, dict), "RECOMMENDATION_SCHEMA_INVALID", "item must be an object")
+            expected = (
+                {"priority", "action", "rationale", "evidence_refs"}
+                if collection == "recommended_actions"
+                else {"finding", "evidence_refs"}
+            )
+            require(
+                set(item) == expected,
+                "RECOMMENDATION_SCHEMA_INVALID",
+                "recommendation item fields differ",
+                collection=collection,
+            )
+            for field in expected - {"evidence_refs"}:
+                require(
+                    isinstance(item[field], str) and item[field].strip(),
+                    "RECOMMENDATION_SCHEMA_INVALID",
+                    "recommendation text must be non-empty",
+                    collection=collection,
+                    field=field,
+                )
+            refs = item.get("evidence_refs")
+            require(
+                isinstance(refs, list)
+                and refs
+                and all(isinstance(ref, str) and ref in allowed_refs for ref in refs),
+                "RECOMMENDATION_REFERENCE_INVALID",
+                "recommendation contains an unknown evidence reference",
+            )
+            text = " ".join(str(item[field]) for field in expected - {"evidence_refs"}).lower()
+            unsafe_patterns = (
+                r"\b(?:boost|improve|increase|low|poor)\w*.{0,40}\brecall\b",
+                r"\bmiss(?:es|ing|ed)?\b.{0,80}\b(?:duplicate|match)",
+                r"\bretained documents?\b",
+                r"\bjudge (?:assigns|precision)\b",
+                r"\bzero conflicts\b.{0,80}\bconsisten",
+            )
+            if any(re.search(pattern, text) for pattern in unsafe_patterns):
+                dropped += 1
             else:
-                counts[field]["disagree"] += 1
-    for field_counts in counts.values():
-        denominator = field_counts["agree"] + field_counts["disagree"]
-        field_counts["agreement_rate"] = field_counts["agree"] / denominator if denominator else None
-    return counts
+                accepted.append(item)
+        require(
+            accepted,
+            "RECOMMENDATION_COLLECTION_EMPTY_AFTER_SCOPE_GUARD",
+            "all recommendation items in a required collection exceeded the evaluation scope",
+            collection=collection,
+        )
+        filtered[collection] = accepted
+    return filtered, dropped
+
+
+def _parse_recommendation_json(content: str) -> Any:
+    candidate = content.strip()
+    if candidate.startswith("```") and candidate.endswith("```"):
+        lines = candidate.splitlines()
+        require(len(lines) >= 3, "RECOMMENDATION_SCHEMA_INVALID", "invalid fenced JSON response")
+        candidate = "\n".join(lines[1:-1]).strip()
+        if candidate.startswith("json"):
+            candidate = candidate[4:].lstrip()
+    return json.loads(candidate)
+
+
+def _generate_recommendations(
+    judge: JudgeConfig,
+    *,
+    deterministic_report: str,
+    evidence: dict[str, Any],
+) -> dict[str, Any]:
+    if judge.backend != "nvidia_openai":
+        return {
+            "schema_version": "dedup-recommendations-v1",
+            "status": "skipped",
+            "reason": "recommendations require the production NVIDIA OpenAI-compatible backend",
+        }
+    allowed_refs = set(evidence)
+    system_prompt = (
+        "You are writing a bounded interpretation and action plan for an audited deduplication evaluation. "
+        "Read the supplied deterministic report for context, but use only the allowed evidence map for factual claims. "
+        "Do not recompute or alter metrics. "
+        "Never claim corpus recall, complete cluster quality, or ground truth. Every factual finding, risk, and "
+        "recommendation must cite one or more exact evidence_refs from the allowed evidence map. Return one compact "
+        "JSON object only, with 1-3 key findings, 1-3 risks, and 1-5 recommended actions. "
+        "Interpret wrong-removal rate only for sampled removed documents, never retained documents. A low Step 5b "
+        "candidate-pool yield means a low positive rate or inefficient selected pool; it does not show missed "
+        "duplicates, recall, coverage, or completeness. Recommend improving candidate precision/efficiency or creating "
+        "a separate recall benchmark, never boosting recall based on this result. Zero conflicts means only that no "
+        "conflicts were detected in the partial judged graph. Slice precision is SUT removal precision within a "
+        "Judge-defined slice; never call it Judge precision. Cite the exact slice or audit evidence_ref for every "
+        "slice-specific number or provenance statement."
+    )
+    user_payload = json.dumps(
+        {
+            "report_version": AUTOMATED_REPORT_VERSION,
+            "deterministic_report": deterministic_report,
+            "allowed_evidence": evidence,
+        },
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    prompt_sha = hashlib.sha256(system_prompt.encode("utf-8")).hexdigest()
+    payload_sha = hashlib.sha256(user_payload.encode("utf-8")).hexdigest()
+    errors = []
+    finish_reasons = []
+    try:
+        from openai import OpenAI
+    except ImportError as exc:
+        return {
+            "schema_version": "dedup-recommendations-v1",
+            "status": "unavailable",
+            "error_type": exc.__class__.__name__,
+        }
+    credential = os.environ.get(judge.api_key_env, "").strip()
+    if not credential:
+        return {
+            "schema_version": "dedup-recommendations-v1",
+            "status": "unavailable",
+            "error_type": "MissingCredential",
+        }
+    client = OpenAI(base_url=judge.base_url, api_key=credential, timeout=judge.timeout_seconds)
+    for attempt in range(judge.max_retries + 1):
+        try:
+            request_system_prompt = system_prompt
+            if attempt:
+                request_system_prompt += (
+                    "\nYour previous response failed local JSON or schema validation. Return a shorter compact JSON "
+                    "object satisfying the contract; do not include Markdown or prose outside the object."
+                )
+            if judge.structured_output_mode == "json_schema":
+                response_format = {
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": "dedup_recommendations_v1",
+                        "strict": True,
+                        "schema": _recommendation_schema(),
+                    },
+                }
+            else:
+                response_format = {"type": "json_object"}
+                request_system_prompt += (
+                    "\nThe required JSON Schema is: "
+                    + json.dumps(_recommendation_schema(), ensure_ascii=True, separators=(",", ":"))
+                )
+            response = client.chat.completions.create(
+                model=judge.model,
+                messages=[
+                    {"role": "system", "content": request_system_prompt},
+                    {"role": "user", "content": user_payload},
+                ],
+                temperature=0,
+                top_p=1,
+                max_tokens=max(judge.max_output_tokens, 2048),
+                response_format=response_format,
+                extra_body={"chat_template_kwargs": {"thinking": False}},
+                stream=False,
+            )
+            finish_reasons.append(response.choices[0].finish_reason)
+            content = response.choices[0].message.content
+            require(isinstance(content, str) and content, "EMPTY_RECOMMENDATION_RESPONSE", "empty response")
+            value, dropped = _validate_recommendations(_parse_recommendation_json(content), allowed_refs)
+            return {
+                "schema_version": "dedup-recommendations-v1",
+                "status": "complete",
+                "model": judge.model,
+                "prompt_version": RECOMMENDATION_PROMPT_VERSION,
+                "prompt_sha256": prompt_sha,
+                "input_sha256": payload_sha,
+                "response_sha256": hashlib.sha256(content.encode("utf-8")).hexdigest(),
+                "attempts": attempt + 1,
+                "scope_guard_dropped_items": dropped,
+                "generated_at_utc": datetime.now(UTC).isoformat(),
+                **value,
+            }
+        except Exception as exc:  # noqa: BLE001 - advisory generation must not block factual reporting
+            errors.append(exc.issue.code if isinstance(exc, DedupEvaluationError) else exc.__class__.__name__)
+    return {
+        "schema_version": "dedup-recommendations-v1",
+        "status": "unavailable",
+        "model": judge.model,
+        "prompt_version": RECOMMENDATION_PROMPT_VERSION,
+        "prompt_sha256": prompt_sha,
+        "input_sha256": payload_sha,
+        "attempts": judge.max_retries + 1,
+        "error_types": errors,
+        "finish_reasons": finish_reasons,
+    }
+
+
+def _recommendation_markdown(recommendations: dict[str, Any]) -> str:
+    if recommendations["status"] != "complete":
+        return (
+            "AI-generated recommendations were unavailable. This does not affect any automated metric or "
+            "the completion status of this report."
+        )
+    sections = []
+    for heading, key, text_key in (
+        ("Key findings", "key_findings", "finding"),
+        ("Risks", "risks", "finding"),
+        ("Recommended actions", "recommended_actions", "action"),
+    ):
+        sections.append(f"### {heading}")
+        items = recommendations[key]
+        if not items:
+            sections.append("- None returned.")
+            continue
+        for item in items:
+            prefix = f"**{item['priority']} —** " if "priority" in item else ""
+            rationale = f" {item['rationale']}" if "rationale" in item else ""
+            refs = ", ".join(item["evidence_refs"])
+            sections.append(f"- {prefix}{item[text_key]}{rationale} Evidence: {refs}.")
+    return "\n\n".join(sections)
+
+
+def _render_deterministic_report(
+    *,
+    profile: ProfileConfig,
+    evaluation_manifest: dict[str, Any],
+    metrics: dict[str, Any],
+    markers: list[dict[str, Any]],
+    analysis: dict[str, Any],
+) -> str:
+    removal = metrics["track_5a_removal_frame"]
+    cross = metrics["track_5b_candidate_pool"]
+    judge = metrics["judge"]
+    outcome = analysis["removal_outcome"]
+    cross_outcome = analysis["cross_outcome"]
+    banner = (
+        "**NON-V0 SMOKE — operational validation only**"
+        if not profile.formal_v0
+        else "**FORMAL V0 — AUTOMATED JUDGE RESULTS**"
+    )
+    stage_table = _markdown_table(
+        ["Step", "Stage", "Status", "Elapsed since prior stage", "Accounting"],
+        _stage_rows(markers),
+    )
+    removal_matrix = _markdown_table(
+        ["SUT decision", "Judge safe", "Judge wrong", "Unresolved", "Error", "Total"],
+        [["REMOVE", outcome["safe"], outcome["wrong"], outcome["unresolved"], outcome["errors"], outcome["selected"]]],
+    )
+    cross_matrix = _slice_markdown(analysis["cross_slices"]["retriever source"], removal=False)
+    limitations = [
+        "The LLM Judge is the automated reference for these metrics; it is not human ground truth.",
+        (
+            "Step 5a contains only sampled SUT removals, so removal precision is identifiable but recall, specificity, "
+            "and a full SUT confusion matrix are not."
+        ),
+        (
+            "Step 5b is a selected cross-group candidate pool with zero inclusion probability for unseen pairs. "
+            "Its positive yield is not corpus recall."
+        ),
+        (
+            "The partial judged constraint graph is not complete ground truth and cannot support corpus-level cluster "
+            "precision, recall, or F1."
+        ),
+        "Track 5a and Track 5b have different sampling frames and are never pooled into one confusion matrix.",
+        (
+            "Upstream provenance is conditionally reproducible because resolved config and several retrieval attestations "
+            "were not delivered."
+        ),
+    ]
+    limitations_markdown = "".join(f"- {item}\n" for item in limitations)
+    headline = _markdown_table(
+        ["Headline metric", "Value", "Numerator / denominator", "Authorized scope"],
+        [
+            [
+                "Judge completion",
+                _percent(judge["completion_rate"]),
+                f"{judge['schema_valid']:,} / {judge['requested']:,}",
+                "All selected pairs",
+            ],
+            [
+                "Removal precision",
+                _percent(removal["removal_precision"]),
+                f"{removal['safe']:,} / {removal['resolved']:,}",
+                "Uniform Step 5a removal frame",
+            ],
+            [
+                "Wrong-removal rate",
+                _percent(removal["wrong_removal_rate"]),
+                f"{removal['wrong']:,} / {removal['resolved']:,}",
+                "Uniform Step 5a removal frame",
+            ],
+            [
+                "Candidate-pool positive yield",
+                _percent(cross["positive_yield"]),
+                f"{cross['judged_duplicate_yes']:,} / {cross['resolved']:,}",
+                "Selected Step 5b candidate pool",
+            ],
+            [
+                "Terminal Judge errors",
+                judge["errors"],
+                f"{judge['errors']:,} / {judge['requested']:,}",
+                "Operational accounting",
+            ],
+            [
+                "Unresolved valid results",
+                judge["unresolved"],
+                f"{judge['unresolved']:,} / {judge['schema_valid']:,}",
+                "Operational accounting",
+            ],
+        ],
+    )
+    return f"""# NeMo Curator Dedup Evaluation V0
+
+{banner}
+
+Report version: **{AUTOMATED_REPORT_VERSION}**
+
+## 1. Executive Summary
+
+The automated pipeline completed {judge["requested"]:,} pair evaluations with a schema-valid completion rate of
+**{_percent(judge["completion_rate"])}** ({judge["schema_valid"]:,}/{judge["requested"]:,}). The sampled removal
+frame produced **{_percent(removal["removal_precision"])} removal precision** with a Wilson 95% confidence interval
+of **{_ci_text(*removal["wilson_95_ci"])}**. The complementary wrong-removal rate was
+**{_percent(removal["wrong_removal_rate"])}**.
+
+The selected Step 5b cross-group candidate pool produced **{_percent(cross["positive_yield"])} positive yield**
+({cross["judged_duplicate_yes"]:,}/{cross["resolved"]:,} resolved candidates). This is candidate-pool yield, not
+corpus recall.
+
+{headline}
+
+Human QA is an independent double-check and does not block, replace, calibrate, or rewrite these automated metrics.
+
+## 2. Evaluation Scope and Authorized Claims
+
+- Evaluation run: **{evaluation_manifest["evaluation_run_id"]}**
+- Dataset: **{evaluation_manifest["dataset_version"]}**, {evaluation_manifest["dataset_row_count"]:,} documents.
+- SUT run: **{evaluation_manifest["sut_run_id"]}**
+- Judge: **{evaluation_manifest["judge_model"]}**, prompt **{evaluation_manifest["prompt_version"]}**
+- Exact deduplication was an upstream precondition and was not rerun.
+- Step 5a supports claims about the sampled removal-decision frame.
+- Step 5b supports claims about the selected retriever candidate pool only.
+- Prohibited claims: {", ".join(metrics["prohibited_claims"])}.
+
+## 3. Pipeline Accounting
+
+<pre>
+{evaluation_manifest["dataset_row_count"]:,} corpus documents
+├── {markers[2]["counts"]["singletons"]:,} singleton documents
+└── {markers[1]["counts"]["grouped_documents"]:,} grouped documents
+    ├── {markers[1]["counts"]["groups"]:,} logical group keepers
+    └── {markers[1]["counts"]["removals"]:,} removals
+
+{markers[3]["counts"]["rows"]:,} anchors
+├── {markers[4]["counts"]["removal_rows"]:,} Step 5a removal pairs
+└── {markers[4]["counts"]["cross_unique_selected_pairs"]:,} Step 5b cross-group pairs
+
+{judge["requested"]:,} Judge pairs
+├── {judge["schema_valid"]:,} schema-valid
+│   ├── {judge["resolved"]:,} resolved
+│   └── {judge["unresolved"]:,} unresolved
+└── {judge["errors"]:,} terminal errors
+</pre>
+
+{stage_table}
+
+## 4. Removal Decision Quality
+
+Removal precision is safe resolved removals divided by all resolved sampled removals. The selection was uniform from
+a frame of {removal["sampling_frame_size"]:,} removals with inclusion probability
+{removal["inclusion_probability"]:.8f}.
+
+{removal_matrix}
+
+There is no SUT-negative sampling frame, so this table is an outcome matrix rather than a full confusion matrix.
+Removal recall, specificity, and F1 are not identifiable in V0.
+
+### By predicted group size
+
+{_slice_markdown(analysis["removal_slices"]["predicted group size"], removal=True)}
+
+### By document length
+
+{_slice_markdown(analysis["removal_slices"]["document length"], removal=True)}
+
+### By token length ratio
+
+{_slice_markdown(analysis["removal_slices"]["token length ratio"], removal=True)}
+
+### By hostname relationship
+
+{_slice_markdown(analysis["removal_slices"]["same hostname"], removal=True)}
+
+### By judged relation type
+
+{_slice_markdown(analysis["removal_slices"]["relation type"], removal=True)}
+
+### By material difference
+
+{_slice_markdown(analysis["removal_slices"]["material difference"], removal=True)}
+
+### By fuzzy scope
+
+{_slice_markdown(analysis["removal_slices"]["fuzzy scope"], removal=True)}
+
+## 5. Cross-group Retrieval Analysis
+
+The pool contained {cross_outcome["selected"]:,} selected candidates, of which {cross_outcome["resolved"]:,} were
+resolved. Positive yield is Judge duplicate-YES divided by resolved selected candidates.
+
+{cross_matrix}
+
+### By document length
+
+{_slice_markdown(analysis["cross_slices"]["document length"], removal=False)}
+
+### By token length ratio
+
+{_slice_markdown(analysis["cross_slices"]["token length ratio"], removal=False)}
+
+### By hostname relationship
+
+{_slice_markdown(analysis["cross_slices"]["same hostname"], removal=False)}
+
+## 6. Methodological Limitations
+
+{limitations_markdown}
+"""
+
+
+def _audit_appendices(
+    *,
+    run_root: Path,
+    evaluation_manifest: dict[str, Any],
+    metrics: dict[str, Any],
+    markers: list[dict[str, Any]],
+    analysis: dict[str, Any],
+    graph: dict[str, Any],
+    diagnostics: dict[str, Any],
+    judge_config: dict[str, Any],
+    retrieval_config: dict[str, Any],
+    sut_manifest: dict[str, Any],
+) -> str:
+    artifacts = [
+        [marker["step"], artifact["path"], artifact["size_bytes"], artifact["sha256"]]
+        for marker in markers
+        for artifact in marker.get("artifacts", [])
+    ]
+    error_rows = [[pair_id] for pair_id in diagnostics["terminal_error_pairs"]] or [["None"]]
+    judge_table = _markdown_table(
+        ["Property", "Value"],
+        [
+            ["Model", judge_config["model"]],
+            ["Structured output", judge_config["structured_output_mode"]],
+            ["Completion rate", _percent(metrics["judge"]["completion_rate"])],
+            ["Resolution rate among valid", _percent(metrics["judge"]["resolution_rate"])],
+            ["Attempt histogram", json.dumps(analysis["attempt_histogram"], sort_keys=True)],
+            ["Confidence buckets", json.dumps(analysis["confidence_buckets"], sort_keys=True)],
+            [
+                "Payload truncation",
+                (
+                    f"{diagnostics['truncated_payloads']:,}/{diagnostics['payload_count']:,} "
+                    f"({_percent(diagnostics['truncation_rate'])})"
+                ),
+            ],
+            ["Evidence windows", f"{diagnostics['evidence_windows']:,}"],
+            ["Maximum source tokens", json.dumps(diagnostics["maximum_source_tokens"], sort_keys=True)],
+            ["Evidence-only repair actions", json.dumps(diagnostics["repair_actions"], sort_keys=True)],
+            [
+                "Terminal attempt error types",
+                json.dumps(diagnostics["terminal_error_attempt_types"], sort_keys=True),
+            ],
+        ],
+    )
+    graph_table = _markdown_table(
+        ["Graph metric", "Count"],
+        [[key, value] for key, value in sorted(graph.items())],
+    )
+    audit_table = _markdown_table(
+        ["Audit field", "Frozen value"],
+        [
+            ["Evaluation code revision", evaluation_manifest["evaluation_code_revision"]],
+            ["Evaluation source digest", evaluation_manifest["evaluation_source_tree_sha256"]],
+            ["Worktree dirty at creation", evaluation_manifest["evaluation_code_worktree_dirty"]],
+            ["Upstream reproducibility", evaluation_manifest["upstream_reproducibility_status"]],
+            ["SUT repository revision", sut_manifest["repository_revision"]],
+            ["Judge contract digest", judge_config["judge_contract_digest"]],
+            ["Judge prompt SHA-256", judge_config["prompt_sha256"]],
+            ["Tokenizer revision", evaluation_manifest["tokenizer"]["resolved_revision"]],
+            ["Embedding SHA-256", evaluation_manifest["embedding_artifact_sha256"]],
+            ["MinHash contract digest", retrieval_config["minhash_contract_digest"]],
+            ["Selected LSH", json.dumps(retrieval_config["selected_lsh"], sort_keys=True)],
+            ["Semantic cosine P90 cutoff", retrieval_config["semantic_cosine_p90"]],
+            ["Semantic Jaccard median cutoff", retrieval_config["semantic_jaccard_median"]],
+        ],
+    )
+    missing = ", ".join(
+        key
+        for key, available in evaluation_manifest["upstream_provenance_availability"].items()
+        if not available
+    )
+    artifact_table = _markdown_table(["Step", "Artifact", "Bytes", "SHA-256"], artifacts)
+    error_table = _markdown_table(["Canonical pair ID"], error_rows)
+    return f"""## Appendix A — Judge Reliability and Operations
+
+{judge_table}
+
+Deterministic repairs only realign or drop evidence offsets against visible text. They do not change duplicate,
+replaceability, relation, material-difference, fuzzy-scope, confidence, or reason-code decisions.
+
+Terminal error pair IDs:
+
+{error_table}
+
+## Appendix B — Partial Constraint Graph
+
+{graph_table}
+
+This is a partial judged graph. Conflicting cannot-links are not force-unioned, and the graph is not a complete
+corpus reference clustering.
+
+## Appendix C — Reproducibility and Audit
+
+{audit_table}
+
+Missing upstream provenance: {missing}.
+
+## Appendix D — Metric Definitions
+
+- Removal precision = safe resolved Step 5a removals / all resolved Step 5a removals.
+- Wrong-removal rate = wrong resolved Step 5a removals / all resolved Step 5a removals.
+- Candidate-pool positive yield = Judge duplicate-YES / resolved selected Step 5b candidates.
+- Judge completion = schema-valid terminal results / requested pairs.
+- Judge resolution = YES-or-NO duplicate decisions / schema-valid results.
+- Wilson intervals use a two-sided 95% normal quantile.
+- Corpus recall and complete cluster precision/recall/F1 are not defined by this evaluation.
+
+## Appendix E — Artifact Inventory
+
+Run root: {run_root}
+
+{artifact_table}
+"""
+
+
+def _recommendation_evidence(
+    metrics: dict[str, Any],
+    graph: dict[str, Any],
+    analysis: dict[str, Any],
+    evaluation_manifest: dict[str, Any],
+) -> dict[str, Any]:
+    removal = metrics["track_5a_removal_frame"]
+    cross = metrics["track_5b_candidate_pool"]
+    judge = metrics["judge"]
+    upstream = evaluation_manifest.get("upstream_provenance", {})
+    evidence = {
+        "judge.completion_rate": judge["completion_rate"],
+        "judge.errors": judge["errors"],
+        "judge.unresolved": judge["unresolved"],
+        "track_5a.removal_precision": removal["removal_precision"],
+        "track_5a.wrong_removal_rate": removal["wrong_removal_rate"],
+        "track_5a.wilson_95_ci": removal["wilson_95_ci"],
+        "track_5b.positive_yield": cross["positive_yield"],
+        "track_5b.duplicate_yes": cross["judged_duplicate_yes"],
+        "graph.must_links": graph["must_links"],
+        "graph.cannot_links": graph["cannot_links"],
+        "graph.conflicts": graph["conflicts"],
+        "audit.upstream_reproducibility": upstream.get("reproducibility_status", "not_recorded"),
+        "audit.missing_upstream_provenance": upstream.get("missing", []),
+    }
+    for slice_name, rows in analysis["cross_slices"].items():
+        slice_key = slice_name.replace(" ", "_")
+        for row in rows:
+            evidence[f"track_5b.slice.{slice_key}.{row['value']}"] = row
+    for slice_name, rows in analysis["removal_slices"].items():
+        slice_key = slice_name.replace(" ", "_")
+        for row in rows:
+            evidence[f"track_5a.slice.{slice_key}.{row['value']}"] = row
+    return evidence
 
 
 def publish_report(
     *,
     profile: ProfileConfig,
-    evaluation_manifest: dict[str, Any],
-    metrics: dict[str, Any],
-    graph_counts: dict[str, int],
-    qa_packet_path: Path,
-    qa_labels_path: Path,
-    judge_results_path: Path,
-    draft_destination: Path,
+    run_root: Path,
+    recommendation_judge: JudgeConfig,
     final_destination: Path,
+    recommendations_destination: Path,
+    manifest_destination: Path,
 ) -> dict[str, Any]:
-    """Render a bounded-claim report and enforce the formal human-QA gate."""
+    """Publish authoritative automated metrics; human QA is an independent diagnostic."""
 
+    metrics_path = run_root / "reports" / "metrics.json"
+    evaluation_manifest_path = run_root / "manifests" / "evaluation_manifest.json"
+    metrics = _load_json(metrics_path)
+    evaluation_manifest = _load_json(evaluation_manifest_path)
     if profile.formal_v0:
         require(
             metrics["judge"]["completion_rate"] is not None and metrics["judge"]["completion_rate"] >= 0.99,
             "JUDGE_COMPLETION_BELOW_ACCEPTANCE",
-            "formal V0 report requires at least 99% schema-valid judge results",
+            "formal V0 automated report requires at least 99% schema-valid judge results",
         )
-    agreement = _human_agreement(qa_labels_path, qa_packet_path, judge_results_path)
-    title = "NeMo Curator Dedup Evaluation V0"
-    banner = "**NON-V0 SMOKE — operational validation only**" if not profile.formal_v0 else "**FORMAL V0**"
-    status = "complete" if not profile.formal_v0 or agreement is not None else "human_qa_pending"
-    upstream_status = evaluation_manifest["upstream_reproducibility_status"]
-    report = f"""# {title}
-
-{banner}
-
-## Executive summary
-
-- Evaluation run: `{evaluation_manifest["evaluation_run_id"]}`
-- Profile: `{profile.name}`
-- Status: `{status}`
-- This run optimizes pipeline completion and auditability rather than score quality.
-
-## Scope and frozen configuration
-
-- Dataset: `{evaluation_manifest["dataset_version"]}` with {evaluation_manifest["dataset_row_count"]:,} documents.
-- Upstream SUT: `{evaluation_manifest["sut_run_id"]}`; reproducibility is `{upstream_status}`.
-- Judge: `{evaluation_manifest["judge_model"]}` using prompt `{evaluation_manifest["prompt_version"]}`.
-- Exact deduplication was an upstream precondition and was not rerun here.
-
-## Track 5a — sampled removal-decision frame
-
-```json
-{json.dumps(metrics["track_5a_removal_frame"], indent=2, sort_keys=True)}
-```
-
-## Track 5b — sampled candidate pool
-
-```json
-{json.dumps(metrics["track_5b_candidate_pool"], indent=2, sort_keys=True)}
-```
-
-The Step 5b positive yield is not corpus recall.
-
-## Judge operations
-
-```json
-{json.dumps(metrics["judge"], indent=2, sort_keys=True)}
-```
-
-## Partial judged constraint graph
-
-```json
-{json.dumps(graph_counts, indent=2, sort_keys=True)}
-```
-
-## Human QA
-
-{json.dumps(agreement, indent=2, sort_keys=True) if agreement is not None else "Human QA labels are pending."}
-
-## Limitations
-
-- The evaluated handoff is approximately 0.419% of the expected full corpus.
-- Cross-group retrieval has shared blind spots and zero inclusion probability for unseen pairs.
-- The partial judged graph is not complete ground truth and cannot support corpus cluster metrics.
-- Model judgments may be uncertain or order-sensitive; unresolved and failed requests remain accounted for.
-- Track 5a and Track 5b are separate sampling frames and are never pooled into a headline confusion matrix.
-
-## Next-version backlog
-
-- Minimum-diff removal challenge slice.
-- Additional containment, substring, sparse lexical, SimHash, URL/time, and alternative-parser retrieval channels.
-- Judge calibration and graph-risk sampling after the frozen V0 run.
-"""
-    if profile.formal_v0 and agreement is None:
-        write_text_atomic(draft_destination, report)
-        raise HumanQAPending(
-            "HUMAN_QA_PENDING",
-            "formal V0 report remains draft until the frozen QA labels are imported",
-            draft_path=str(draft_destination),
-        )
+    markers = [
+        _load_json(run_root / "logs" / "stages" / f"step_{step:02d}.json")
+        for step in range(1, 10)
+    ]
+    graph = markers[6]["counts"]
+    analysis = _comparison_analysis(_read_comparisons(run_root / "data" / "pair_comparisons.parquet"))
+    diagnostics = _judge_diagnostics(run_root)
+    judge_config = _load_json(run_root / "manifests" / "judge_config.json")
+    retrieval_config = _load_json(run_root / "manifests" / "retrieval_config.json")
+    sut_manifest = _load_json(run_root / "manifests" / "sut_run_manifest.json")
+    deterministic_report = _render_deterministic_report(
+        profile=profile,
+        evaluation_manifest=evaluation_manifest,
+        metrics=metrics,
+        markers=markers,
+        analysis=analysis,
+    )
+    evidence = _recommendation_evidence(metrics, graph, analysis, evaluation_manifest)
+    recommendations = _generate_recommendations(
+        recommendation_judge,
+        deterministic_report=deterministic_report,
+        evidence=evidence,
+    )
+    write_json_atomic(recommendations_destination, recommendations)
+    appendices = _audit_appendices(
+        run_root=run_root,
+        evaluation_manifest=evaluation_manifest,
+        metrics=metrics,
+        markers=markers,
+        analysis=analysis,
+        graph=graph,
+        diagnostics=diagnostics,
+        judge_config=judge_config,
+        retrieval_config=retrieval_config,
+        sut_manifest=sut_manifest,
+    )
+    report = (
+        deterministic_report
+        + "\n## 7. AI-generated Interpretation and Recommended Actions\n\n"
+        + "**Advisory only. This section is not part of the evaluation metrics and cannot modify them.**\n\n"
+        + _recommendation_markdown(recommendations)
+        + "\n\n"
+        + appendices
+    )
     write_text_atomic(final_destination, report)
-    return {"status": status, "human_qa_available": agreement is not None}
+    manifest = {
+        "schema_version": "dedup-report-generation-v2",
+        "report_version": AUTOMATED_REPORT_VERSION,
+        "evaluation_run_id": evaluation_manifest["evaluation_run_id"],
+        "generated_at_utc": datetime.now(UTC).isoformat(),
+        "human_qa_dependency": "none",
+        "recommendations_status": recommendations["status"],
+        "renderer_sha256": sha256_file(Path(__file__)),
+        "inputs": {
+            "metrics_sha256": sha256_file(metrics_path),
+            "evaluation_manifest_sha256": sha256_file(evaluation_manifest_path),
+            "pair_comparisons_sha256": sha256_file(run_root / "data" / "pair_comparisons.parquet"),
+            "judge_results_sha256": sha256_file(run_root / "data" / "judge_results.jsonl"),
+            "judge_errors_sha256": sha256_file(run_root / "logs" / "judge_errors.jsonl"),
+        },
+        "outputs": {
+            "report_path": str(final_destination),
+            "report_sha256": sha256_file(final_destination),
+            "recommendations_path": str(recommendations_destination),
+            "recommendations_sha256": sha256_file(recommendations_destination),
+        },
+    }
+    write_json_atomic(manifest_destination, manifest)
+    return {
+        "status": "automated_complete",
+        "report_version": AUTOMATED_REPORT_VERSION,
+        "human_qa_available": (run_root / "data" / "human_qa_results.csv").is_file(),
+        "recommendations_status": recommendations["status"],
+    }
+
+
+def _cohen_kappa(matrix: dict[str, dict[str, int]], labels: list[str]) -> float | None:
+    total = sum(matrix[human][judge] for human in labels for judge in labels)
+    if total == 0:
+        return None
+    observed = sum(matrix[label][label] for label in labels) / total
+    expected = sum(
+        sum(matrix[label][judge] for judge in labels)
+        * sum(matrix[human][label] for human in labels)
+        for label in labels
+    ) / (total * total)
+    return (observed - expected) / (1 - expected) if expected < 1 else None
+
+
+def _field_agreement(rows: list[tuple[str, str]], labels: list[str]) -> dict[str, Any]:
+    matrix = {human: dict.fromkeys(labels, 0) for human in labels}
+    for human, judge in rows:
+        if human in matrix and judge in matrix[human]:
+            matrix[human][judge] += 1
+    total = sum(matrix[human][judge] for human in labels for judge in labels)
+    agreement = sum(matrix[label][label] for label in labels)
+    per_class = {}
+    for label in labels:
+        tp = matrix[label][label]
+        fp = sum(matrix[human][label] for human in labels if human != label)
+        fn = sum(matrix[label][judge] for judge in labels if judge != label)
+        precision = tp / (tp + fp) if tp + fp else None
+        recall = tp / (tp + fn) if tp + fn else None
+        per_class[label] = {
+            "support": sum(matrix[label].values()),
+            "precision": precision,
+            "recall": recall,
+            "f1": (
+                2 * precision * recall / (precision + recall)
+                if precision is not None and recall is not None and precision + recall
+                else None
+            ),
+        }
+    f1_values = [item["f1"] for item in per_class.values() if item["f1"] is not None]
+    return {
+        "labels": labels,
+        "confusion_matrix": matrix,
+        "evaluated": total,
+        "exact_agreement": agreement / total if total else None,
+        "cohen_kappa": _cohen_kappa(matrix, labels),
+        "macro_f1": sum(f1_values) / len(f1_values) if f1_values else None,
+        "per_class": per_class,
+    }
+
+
+def build_human_qa_metrics(
+    *,
+    packet_path: Path,
+    labels_path: Path,
+    judge_results_path: Path,
+) -> dict[str, Any]:
+    with labels_path.open("r", encoding="utf-8", newline="") as file:
+        human_labels = {row["qa_pair_id"]: row for row in csv.DictReader(file)}
+    packet = _read_jsonl(packet_path)
+    payload_to_qa = {row["judge_payload_hash"]: row["qa_pair_id"] for row in packet}
+    judge_by_qa = {
+        payload_to_qa[row["judge_payload_hash"]]: row
+        for row in _read_jsonl(judge_results_path)
+        if row["judge_payload_hash"] in payload_to_qa
+    }
+    field_labels = {
+        "same_duplicate_group": list(DuplicateAnswer),
+        "a_can_replace_b": list(DuplicateAnswer),
+        "b_can_replace_a": list(DuplicateAnswer),
+        "relation_type": list(RelationType),
+        "material_difference": list(MaterialDifference),
+        "fuzzy_scope": list(FuzzyScope),
+    }
+    fields = {}
+    for field in HUMAN_FIELDS:
+        pairs = [
+            (human[field], judge_by_qa[qa_id][field])
+            for qa_id, human in human_labels.items()
+            if human[field] != "AMBIGUOUS" and qa_id in judge_by_qa
+        ]
+        fields[field] = _field_agreement(pairs, field_labels[field])
+    return {
+        "schema_version": HUMAN_QA_REPORT_VERSION,
+        "packet_pairs": len(packet),
+        "judge_results_available": len(judge_by_qa),
+        "ambiguous_reviews": sum(row["reviewer_status"] == "AMBIGUOUS" for row in human_labels.values()),
+        "scope": "frozen QA packet only; not corpus-level Judge accuracy",
+        "fields": fields,
+    }
+
+
+def publish_human_qa_report(
+    *,
+    packet_path: Path,
+    labels_path: Path,
+    judge_results_path: Path,
+    metrics_destination: Path,
+    report_destination: Path,
+) -> dict[str, Any]:
+    metrics = build_human_qa_metrics(
+        packet_path=packet_path,
+        labels_path=labels_path,
+        judge_results_path=judge_results_path,
+    )
+    write_json_atomic(metrics_destination, metrics)
+    sections = [
+        "# Human QA Double-check",
+        "",
+        f"Report version: **{HUMAN_QA_REPORT_VERSION}**",
+        "",
+        (
+            "This report is independent from the automated metrics. It does not rewrite or calibrate the canonical "
+            "automated report."
+        ),
+        "",
+        _markdown_table(
+            ["QA accounting", "Count"],
+            [
+                ["Frozen packet pairs", metrics["packet_pairs"]],
+                ["Judge results available", metrics["judge_results_available"]],
+                ["Ambiguous human reviews", metrics["ambiguous_reviews"]],
+            ],
+        ),
+    ]
+    for field, result in metrics["fields"].items():
+        labels = result["labels"]
+        sections.extend(
+            [
+                "",
+                f"## {field}",
+                "",
+                _markdown_table(
+                    ["Metric", "Value"],
+                    [
+                        ["Evaluated", result["evaluated"]],
+                        ["Exact agreement", _percent(result["exact_agreement"])],
+                        ["Cohen kappa", result["cohen_kappa"]],
+                        ["Macro F1", result["macro_f1"]],
+                    ],
+                ),
+                "",
+                _markdown_table(
+                    ["Human / Judge", *labels],
+                    [
+                        [human, *[result["confusion_matrix"][human][judge] for judge in labels]]
+                        for human in labels
+                    ],
+                ),
+                "",
+                _markdown_table(
+                    ["Class", "Support", "Precision", "Recall", "F1"],
+                    [
+                        [
+                            label,
+                            result["per_class"][label]["support"],
+                            _percent(result["per_class"][label]["precision"]),
+                            _percent(result["per_class"][label]["recall"]),
+                            _percent(result["per_class"][label]["f1"]),
+                        ]
+                        for label in labels
+                    ],
+                ),
+            ]
+        )
+    write_text_atomic(report_destination, "\n".join(sections) + "\n")
+    return {
+        "status": "complete",
+        "qa_pairs": metrics["packet_pairs"],
+        "report": str(report_destination),
+        "metrics": str(metrics_destination),
+    }
