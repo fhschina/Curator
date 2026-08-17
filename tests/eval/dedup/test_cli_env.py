@@ -17,7 +17,7 @@ import os
 from pathlib import Path
 from types import SimpleNamespace
 
-from eval.dedup.cli import _load_repository_env, _probe_judge, _report_export_directory
+from eval.dedup.cli import _load_repository_env, _parser, _probe_judge, _report_export_directory
 
 
 def test_repository_env_loads_silently_without_overriding_process_env(tmp_path: Path, monkeypatch, capsys) -> None:
@@ -40,9 +40,12 @@ def test_repository_env_loads_silently_without_overriding_process_env(tmp_path: 
 
 def test_report_export_directory_preserves_run_hierarchy(tmp_path: Path) -> None:
     context = SimpleNamespace(evaluation_run_id="dedup-full-fixture")
-    assert _report_export_directory(context, tmp_path) == (
-        tmp_path / "dedup-full-fixture" / "v0_run" / "reports"
-    )
+    assert _report_export_directory(context, tmp_path) == (tmp_path / "dedup-full-fixture" / "v0_run" / "reports")
+
+
+def test_report_command_defaults_to_v3_output_label(tmp_path: Path) -> None:
+    args = _parser().parse_args(["report", "--run-root", str(tmp_path / "fixture-run")])
+    assert args.output_label == "automated_v3"
 
 
 class _ProbeClient:

@@ -228,7 +228,7 @@ def _write_fixture_config(root: Path, handoff: Path, embedding_path: Path) -> Pa
     return path
 
 
-def test_fixture_pipeline_runs_all_ten_steps(tmp_path: Path, monkeypatch) -> None:
+def test_fixture_pipeline_runs_all_ten_steps(tmp_path: Path, monkeypatch) -> None:  # noqa: PLR0915
     monkeypatch.setenv("CUDA_VISIBLE_DEVICES", "")
     handoff, embedding_path, _ = _build_fixture_handoff(tmp_path)
     config_path = _write_fixture_config(tmp_path, handoff, embedding_path)
@@ -290,6 +290,11 @@ def test_fixture_pipeline_runs_all_ten_steps(tmp_path: Path, monkeypatch) -> Non
     report = (context.reports / "final_report.md").read_text()
     assert "NON-V0 SMOKE" in report
     assert "not corpus recall" in report
+    assert "Representative SUT-Judge removal examples" in report
+    assert "pair_explorer.html" in report
+    pair_explorer = context.reports / "pair_explorer.html"
+    assert pair_explorer.is_file()
+    assert "Dedup Pair Explorer" in pair_explorer.read_text()
 
 
 def test_run_execution_rejects_changed_source_tree(tmp_path: Path, monkeypatch) -> None:

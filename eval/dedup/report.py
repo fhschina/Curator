@@ -18,17 +18,27 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import html
 import json
 import os
 import re
 from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
+from statistics import median
 from typing import Any
 
 from eval.dedup.analysis.metrics import wilson_interval
 from eval.dedup.config import JudgeConfig, ProfileConfig
 from eval.dedup.contracts import DuplicateAnswer, FuzzyScope, MaterialDifference, RelationType, stable_record_id
+from eval.dedup.dashboard import (
+    PAIR_EXPLORER_VERSION,
+    attach_group_context,
+    build_pair_explorer_records,
+    pair_explorer_destination,
+    pair_explorer_html,
+    pair_explorer_review_queue,
+)
 from eval.dedup.validation import (
     DedupEvaluationError,
     require,
@@ -37,7 +47,7 @@ from eval.dedup.validation import (
     write_text_atomic,
 )
 
-AUTOMATED_REPORT_VERSION = "dedup-automated-report-v2"
+AUTOMATED_REPORT_VERSION = "dedup-automated-report-v3"
 HUMAN_QA_REPORT_VERSION = "dedup-human-qa-report-v1"
 RECOMMENDATION_PROMPT_VERSION = "dedup-recommendations-v1"
 
@@ -249,6 +259,130 @@ def _read_comparisons(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def _representative_record(
+    records: list[dict[str, Any]],
+    *,
+    used: set[str],
+    predicate: Any,
+) -> dict[str, Any] | None:
+    candidates = [row for row in records if row["pair_id"] not in used and predicate(row)]
+    if not candidates:
+        return None
+    center = median(float(row["token_length_ratio"]) for row in candidates)
+    selected = min(
+        candidates,
+        key=lambda row: (
+            abs(float(row["token_length_ratio"]) - center),
+            -len(row["evidence"]),
+            -float(row["confidence"] or 0.0),
+            row["pair_id"],
+        ),
+    )
+    used.add(selected["pair_id"])
+    return selected
+
+
+def _select_report_examples(records: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
+    def wrong(row: dict[str, Any]) -> bool:
+        return bool(row["has_5a"] and "wrong_removal" in row["outcomes"])
+
+    def positive(row: dict[str, Any]) -> bool:
+        return bool(row["has_5b"] and "discovered_candidate_fn" in row["outcomes"])
+
+    specifications = {
+        "removal": [
+            ("Large-group wrong removal", lambda row: wrong(row) and row["group_size_bucket"] == "size_21_plus"),
+            (
+                "Length-mismatch wrong removal",
+                lambda row: wrong(row) and 0.5 <= float(row["token_length_ratio"]) < 0.8,
+            ),
+            ("Same-hostname wrong removal", lambda row: wrong(row) and row["same_hostname"]),
+            ("Containment wrong removal", lambda row: wrong(row) and row["relation_type"] == "CONTAINMENT"),
+            (
+                "Version-related wrong removal",
+                lambda row: wrong(row) and row["relation_type"] == "VERSION_RELATED",
+            ),
+            ("In-scope wrong removal", lambda row: wrong(row) and row["fuzzy_scope"] == "IN_SCOPE"),
+            (
+                "Safe-removal control",
+                lambda row: (
+                    row["has_5a"]
+                    and "safe_removal" in row["outcomes"]
+                    and row["relation_type"] in {"NEAR_SURFACE", "CONTAINMENT", "VERSION_RELATED"}
+                ),
+            ),
+        ],
+        "cross": [
+            (
+                "Lexical-only discovered duplicate",
+                lambda row: positive(row) and row["retriever_category"] == "lexical_only",
+            ),
+            (
+                "Semantic-only discovered duplicate",
+                lambda row: positive(row) and row["retriever_category"] == "semantic_only",
+            ),
+            (
+                "Retriever-overlap discovered duplicate",
+                lambda row: positive(row) and row["retriever_category"] == "both_or_overlap",
+            ),
+        ],
+    }
+    used: set[str] = set()
+    selected: dict[str, list[dict[str, Any]]] = {"removal": [], "cross": []}
+    for group, specs in specifications.items():
+        for label, predicate in specs:
+            record = _representative_record(records, used=used, predicate=predicate)
+            if record is not None:
+                selected[group].append({**record, "example_label": label})
+    return selected
+
+
+def _short_excerpt(value: str, limit: int = 280) -> str:
+    normalized = re.sub(r"\s+", " ", value).strip()
+    return normalized if len(normalized) <= limit else normalized[: limit - 1].rstrip() + "…"
+
+
+def _examples_markdown(examples: list[dict[str, Any]], *, dashboard_name: str) -> str:
+    if not examples:
+        return "No resolved examples were available for this track."
+    sections = [
+        (
+            "Examples are selected deterministically within predeclared slices by median token-length ratio, then "
+            "evidence count, Judge confidence, and canonical pair ID. They are automated Judge comparisons, not "
+            "human ground truth."
+        )
+    ]
+    for index, record in enumerate(examples, start=1):
+        signals = (
+            f"group={record['group_size_bucket']}, token ratio={record['token_length_ratio']:.3f}, "
+            f"same hostname={record['same_hostname']}"
+        )
+        if record["retriever_category"]:
+            signals += f", retriever={record['retriever_category']}"
+        judge = (
+            f"relation={record['relation_type']}, material difference={record['material_difference']}, "
+            f"fuzzy scope={record['fuzzy_scope']}, confidence={record['confidence']}"
+        )
+        reasons = ", ".join(record["reason_codes"]) or "None"
+        left = html.escape(_short_excerpt(record["left"]["excerpt"]))
+        right = html.escape(_short_excerpt(record["right"]["excerpt"]))
+        pair_link = f"{dashboard_name}#pair={record['pair_id']}"
+        sections.append(
+            f"""<details>
+<summary>{index}. {html.escape(record["example_label"])} — {record["pair_id"]}</summary>
+
+- Outcome: `{", ".join(record["outcomes"])}`
+- Signals: {signals}
+- Judge: {judge}
+- Reason codes: {reasons}
+- [{record["left_role"]} {record["left"]["doc_id"]} vs. {record["right_role"]} {record["right"]["doc_id"]}]({pair_link})
+
+<pre><strong>{record["left_role"]}</strong>\n{left}\n\n<strong>{record["right_role"]}</strong>\n{right}</pre>
+</details>"""
+        )
+    return "\n\n".join(sections)
+
+
 def _removal_slice(rows: list[dict[str, Any]], field: str) -> list[dict[str, Any]]:
     selected_rows = [row for row in rows if row["has_track_5a"]]
     result = []
@@ -280,9 +414,7 @@ def _cross_slice(rows: list[dict[str, Any]], field: str) -> list[dict[str, Any]]
     for value in sorted({str(row.get(field)) for row in selected_rows}):
         selected = [row for row in selected_rows if str(row.get(field)) == value]
         valid = [row for row in selected if row["judge_status"] == "valid"]
-        resolved = [
-            row for row in valid if row["cross_group_outcome"] in {"discovered_candidate_fn", "hard_negative"}
-        ]
+        resolved = [row for row in valid if row["cross_group_outcome"] in {"discovered_candidate_fn", "hard_negative"}]
         positives = sum(row["cross_group_outcome"] == "discovered_candidate_fn" for row in resolved)
         low, high = wilson_interval(positives, len(resolved))
         result.append(
@@ -304,9 +436,7 @@ def _cross_slice(rows: list[dict[str, Any]], field: str) -> list[dict[str, Any]]
 def _comparison_analysis(rows: list[dict[str, Any]]) -> dict[str, Any]:
     removal = [row for row in rows if row["has_track_5a"]]
     removal_valid = [row for row in removal if row["judge_status"] == "valid"]
-    removal_resolved = [
-        row for row in removal_valid if row["removal_outcome"] in {"safe_removal", "wrong_removal"}
-    ]
+    removal_resolved = [row for row in removal_valid if row["removal_outcome"] in {"safe_removal", "wrong_removal"}]
     cross = [row for row in rows if row["has_track_5b"]]
     cross_valid = [row for row in cross if row["judge_status"] == "valid"]
     cross_resolved = [
@@ -326,9 +456,7 @@ def _comparison_analysis(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "selected": len(cross),
             "valid": len(cross_valid),
             "resolved": len(cross_resolved),
-            "duplicate_yes": sum(
-                row["cross_group_outcome"] == "discovered_candidate_fn" for row in cross_resolved
-            ),
+            "duplicate_yes": sum(row["cross_group_outcome"] == "discovered_candidate_fn" for row in cross_resolved),
             "duplicate_no": sum(row["cross_group_outcome"] == "hard_negative" for row in cross_resolved),
             "unresolved": len(cross_valid) - len(cross_resolved),
             "errors": len(cross) - len(cross_valid),
@@ -423,9 +551,7 @@ def _stage_rows(markers: list[dict[str, Any]]) -> list[list[Any]]:
         completed = datetime.fromisoformat(marker["completed_at_utc"])
         duration = "N/A" if previous is None else _duration_text((completed - previous).total_seconds())
         counts = ", ".join(
-            f"{key}={value}"
-            for key, value in marker.get("counts", {}).items()
-            if key != "minhash_cache_contract"
+            f"{key}={value}" for key, value in marker.get("counts", {}).items() if key != "minhash_cache_contract"
         )
         result.append([marker["step"], marker["name"], marker["status"], duration, counts])
         previous = completed
@@ -548,9 +674,7 @@ def _validate_recommendations(value: Any, allowed_refs: set[str]) -> tuple[dict[
                 )
             refs = item.get("evidence_refs")
             require(
-                isinstance(refs, list)
-                and refs
-                and all(isinstance(ref, str) and ref in allowed_refs for ref in refs),
+                isinstance(refs, list) and refs and all(isinstance(ref, str) and ref in allowed_refs for ref in refs),
                 "RECOMMENDATION_REFERENCE_INVALID",
                 "recommendation contains an unknown evidence reference",
             )
@@ -663,9 +787,8 @@ def _generate_recommendations(
                 }
             else:
                 response_format = {"type": "json_object"}
-                request_system_prompt += (
-                    "\nThe required JSON Schema is: "
-                    + json.dumps(_recommendation_schema(), ensure_ascii=True, separators=(",", ":"))
+                request_system_prompt += "\nThe required JSON Schema is: " + json.dumps(
+                    _recommendation_schema(), ensure_ascii=True, separators=(",", ":")
                 )
             response = client.chat.completions.create(
                 model=judge.model,
@@ -744,6 +867,8 @@ def _render_deterministic_report(
     metrics: dict[str, Any],
     markers: list[dict[str, Any]],
     analysis: dict[str, Any],
+    examples: dict[str, list[dict[str, Any]]],
+    dashboard_name: str,
 ) -> str:
     removal = metrics["track_5a_removal_frame"]
     cross = metrics["track_5b_candidate_pool"]
@@ -848,6 +973,10 @@ corpus recall.
 
 Human QA is an independent double-check and does not block, replace, calibrate, or rewrite these automated metrics.
 
+The [interactive Pair Explorer]({dashboard_name}) contains a filterable review queue of wrong removals, discovered
+cross-group positives, unresolved/errors, and report control examples. It uses Judge-visible excerpts and evidence;
+its labels remain automated Judge results rather than human ground truth.
+
 ## 2. Evaluation Scope and Authorized Claims
 
 - Evaluation run: **{evaluation_manifest["evaluation_run_id"]}**
@@ -920,6 +1049,12 @@ Removal recall, specificity, and F1 are not identifiable in V0.
 
 {_slice_markdown(analysis["removal_slices"]["fuzzy scope"], removal=True)}
 
+### Representative SUT-Judge removal examples
+
+{_examples_markdown(examples["removal"], dashboard_name=dashboard_name)}
+
+[Open the removal review queue in the interactive Pair Explorer]({dashboard_name}?track=5a).
+
 ## 5. Cross-group Retrieval Analysis
 
 The pool contained {cross_outcome["selected"]:,} selected candidates, of which {cross_outcome["resolved"]:,} were
@@ -938,6 +1073,12 @@ resolved. Positive yield is Judge duplicate-YES divided by resolved selected can
 ### By hostname relationship
 
 {_slice_markdown(analysis["cross_slices"]["same hostname"], removal=False)}
+
+### Representative discovered cross-group duplicates
+
+{_examples_markdown(examples["cross"], dashboard_name=dashboard_name)}
+
+[Open the cross-group positive review queue in the interactive Pair Explorer]({dashboard_name}?track=5b).
 
 ## 6. Methodological Limitations
 
@@ -1012,9 +1153,7 @@ def _audit_appendices(
         ],
     )
     missing = ", ".join(
-        key
-        for key, available in evaluation_manifest["upstream_provenance_availability"].items()
-        if not available
+        key for key, available in evaluation_manifest["upstream_provenance_availability"].items() if not available
     )
     artifact_table = _markdown_table(["Step", "Artifact", "Bytes", "SHA-256"], artifacts)
     error_table = _markdown_table(["Canonical pair ID"], error_rows)
@@ -1117,12 +1256,23 @@ def publish_report(
             "JUDGE_COMPLETION_BELOW_ACCEPTANCE",
             "formal V0 automated report requires at least 99% schema-valid judge results",
         )
-    markers = [
-        _load_json(run_root / "logs" / "stages" / f"step_{step:02d}.json")
-        for step in range(1, 10)
-    ]
+    markers = [_load_json(run_root / "logs" / "stages" / f"step_{step:02d}.json") for step in range(1, 10)]
     graph = markers[6]["counts"]
-    analysis = _comparison_analysis(_read_comparisons(run_root / "data" / "pair_comparisons.parquet"))
+    comparison_rows = _read_comparisons(run_root / "data" / "pair_comparisons.parquet")
+    analysis = _comparison_analysis(comparison_rows)
+    explorer_records = build_pair_explorer_records(run_root, comparison_rows)
+    examples = _select_report_examples(explorer_records)
+    dashboard_records = pair_explorer_review_queue(explorer_records, examples)
+    group_contexts = attach_group_context(run_root, dashboard_records)
+    dashboard_destination = pair_explorer_destination(final_destination)
+    write_text_atomic(
+        dashboard_destination,
+        pair_explorer_html(
+            evaluation_run_id=evaluation_manifest["evaluation_run_id"],
+            records=dashboard_records,
+            group_contexts=group_contexts,
+        ),
+    )
     diagnostics = _judge_diagnostics(run_root)
     judge_config = _load_json(run_root / "manifests" / "judge_config.json")
     retrieval_config = _load_json(run_root / "manifests" / "retrieval_config.json")
@@ -1133,6 +1283,8 @@ def publish_report(
         metrics=metrics,
         markers=markers,
         analysis=analysis,
+        examples=examples,
+        dashboard_name=dashboard_destination.name,
     )
     evidence = _recommendation_evidence(metrics, graph, analysis, evaluation_manifest)
     recommendations = _generate_recommendations(
@@ -1163,25 +1315,38 @@ def publish_report(
     )
     write_text_atomic(final_destination, report)
     manifest = {
-        "schema_version": "dedup-report-generation-v2",
+        "schema_version": "dedup-report-generation-v3",
         "report_version": AUTOMATED_REPORT_VERSION,
+        "pair_explorer_version": PAIR_EXPLORER_VERSION,
         "evaluation_run_id": evaluation_manifest["evaluation_run_id"],
         "generated_at_utc": datetime.now(UTC).isoformat(),
         "human_qa_dependency": "none",
         "recommendations_status": recommendations["status"],
         "renderer_sha256": sha256_file(Path(__file__)),
+        "dashboard_renderer_sha256": sha256_file(Path(pair_explorer_html.__code__.co_filename)),
         "inputs": {
             "metrics_sha256": sha256_file(metrics_path),
             "evaluation_manifest_sha256": sha256_file(evaluation_manifest_path),
             "pair_comparisons_sha256": sha256_file(run_root / "data" / "pair_comparisons.parquet"),
             "judge_results_sha256": sha256_file(run_root / "data" / "judge_results.jsonl"),
             "judge_errors_sha256": sha256_file(run_root / "logs" / "judge_errors.jsonl"),
+            "judge_payloads_sha256": sha256_file(run_root / "data" / "judge_payloads.jsonl"),
+            "document_outcomes_sha256": sha256_file(run_root / "data" / "document_outcomes.parquet"),
+            "pair_provenance_sha256": sha256_file(run_root / "data" / "pair_provenance.parquet"),
+            "sut_run_manifest_sha256": sha256_file(run_root / "manifests" / "sut_run_manifest.json"),
         },
         "outputs": {
             "report_path": str(final_destination),
             "report_sha256": sha256_file(final_destination),
             "recommendations_path": str(recommendations_destination),
             "recommendations_sha256": sha256_file(recommendations_destination),
+            "pair_explorer_path": str(dashboard_destination),
+            "pair_explorer_sha256": sha256_file(dashboard_destination),
+            "pair_explorer_pairs": len(dashboard_records),
+            "pair_explorer_source_pairs": len(explorer_records),
+            "pair_explorer_group_contexts": len(group_contexts),
+            "pair_explorer_scope": "wrong removals, cross-group positives, unresolved/errors, and report controls",
+            "example_pair_ids": [row["pair_id"] for group in ("removal", "cross") for row in examples[group]],
         },
     }
     write_json_atomic(manifest_destination, manifest)
@@ -1190,6 +1355,7 @@ def publish_report(
         "report_version": AUTOMATED_REPORT_VERSION,
         "human_qa_available": (run_root / "data" / "human_qa_results.csv").is_file(),
         "recommendations_status": recommendations["status"],
+        "pair_explorer": str(dashboard_destination),
     }
 
 
@@ -1199,8 +1365,7 @@ def _cohen_kappa(matrix: dict[str, dict[str, int]], labels: list[str]) -> float 
         return None
     observed = sum(matrix[label][label] for label in labels) / total
     expected = sum(
-        sum(matrix[label][judge] for judge in labels)
-        * sum(matrix[human][label] for human in labels)
+        sum(matrix[label][judge] for judge in labels) * sum(matrix[human][label] for human in labels)
         for label in labels
     ) / (total * total)
     return (observed - expected) / (1 - expected) if expected < 1 else None
@@ -1335,10 +1500,7 @@ def publish_human_qa_report(
                 "",
                 _markdown_table(
                     ["Human / Judge", *labels],
-                    [
-                        [human, *[result["confusion_matrix"][human][judge] for judge in labels]]
-                        for human in labels
-                    ],
+                    [[human, *[result["confusion_matrix"][human][judge] for judge in labels]] for human in labels],
                 ),
                 "",
                 _markdown_table(

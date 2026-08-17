@@ -71,6 +71,14 @@ By default, derived reports are exported to
 Large run artifacts remain under the frozen run root on `/raid`. Use `--output-root`
 to select a different run-scoped report export root.
 
+Every automated render also writes a matching self-contained `pair_explorer[.<output-label>].html`. The report embeds
+deterministically selected removal-disagreement and cross-group-positive examples, links each example to a focused review queue,
+and records the dashboard checksum plus selected pair IDs in `report_generation_manifest[.<output-label>].json`. The Pair
+Explorer separates the observed SUT grouping/action, the Judge group and directional-replacement verdicts, and the derived
+evaluation outcome. It also includes endpoint group/action context, Judge evidence-repair coverage, 5b evaluation-retrieval
+scores, bounded deterministic group-member summaries, and explicit SUT-provenance availability. Human review annotations are
+stored in browser `localStorage` and can be imported or exported as CSV/JSON; they do not modify frozen run artifacts.
+
 For a full run, complete the frozen `data/human_qa_labels.csv` template outside the immutable bundle and import it. `qa-import` validates the labels and writes the independent `reports/human_qa_report.md` and `reports/human_qa_metrics.json`; it does not rewrite the automated report:
 
 ```bash
@@ -84,6 +92,8 @@ For a full run, complete the frozen `data/human_qa_labels.csv` template outside 
 - `judging/`: constructs blind payloads, handles long documents, calls a provider, validates the schema, retries, and resumes.
 - `analysis/`: creates the partial graph, pair comparison, and frame-valid metrics.
 - `run.py`: stage transactions and resume validation; domain logic remains in the packages above.
-- `report.py`: deterministic fact reporting, bounded DeepSeek recommendations, and the independent blind human-QA exchange.
+- `report.py`: deterministic fact reporting and example selection, bounded DeepSeek recommendations, report publication,
+  and the independent blind human-QA exchange.
+- `dashboard.py`: Pair Explorer data joins, bounded group context, static HTML rendering, and local human-review tooling.
 
 Large generated data remains beneath the configured external run root. Derived automated and Human-QA reports are exported beneath `/home/nfs/hfang/dedup_eval/dedup_eval_runs/<evaluation_run_id>/v0_run/reports/` by default; `eval/dedup/docs/` is reserved for design documents, proposals, and templates rather than run-specific results. Imports are side-effect free.

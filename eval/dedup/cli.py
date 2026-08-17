@@ -35,7 +35,12 @@ from eval.dedup.handoff.manifests import register_corpus_handoff, register_sut_h
 from eval.dedup.judging.client import create_judge_client
 from eval.dedup.judging.payload import align_evidence_offsets, validate_evidence_offsets
 from eval.dedup.judging.schema import parse_judge_json, validate_judge_output
-from eval.dedup.report import import_human_qa, publish_human_qa_report, publish_report
+from eval.dedup.report import (
+    import_human_qa,
+    pair_explorer_destination,
+    publish_human_qa_report,
+    publish_report,
+)
 from eval.dedup.run import create_run, load_run, run_pipeline, run_status, validate_run
 from eval.dedup.validation import DedupEvaluationError, require, sha256_file, write_json_atomic
 
@@ -310,7 +315,7 @@ def _parser() -> argparse.ArgumentParser:
     )
     report_parser.add_argument(
         "--output-label",
-        default="automated_v2",
+        default="automated_v3",
         help="safe filename label for a derived report revision",
     )
     return parser
@@ -369,8 +374,9 @@ def main(argv: list[str] | None = None) -> int:
             report_path = report_directory / f"final_report.{args.output_label}.md"
             recommendations_path = report_directory / f"recommendations.{args.output_label}.json"
             manifest_path = report_directory / f"report_generation_manifest.{args.output_label}.json"
+            dashboard_path = pair_explorer_destination(report_path)
             require(
-                not any(path.exists() for path in (report_path, recommendations_path, manifest_path)),
+                not any(path.exists() for path in (report_path, recommendations_path, manifest_path, dashboard_path)),
                 "REPORT_OUTPUT_EXISTS",
                 "versioned automated report output already exists",
             )
@@ -388,6 +394,7 @@ def main(argv: list[str] | None = None) -> int:
                     "report": str(report_path),
                     "recommendations": str(recommendations_path),
                     "manifest": str(manifest_path),
+                    "pair_explorer": str(dashboard_path),
                 }
             )
         elif args.command == "qa-import":

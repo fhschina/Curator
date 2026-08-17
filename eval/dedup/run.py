@@ -42,7 +42,7 @@ from eval.dedup.pair_construction.outcomes import build_document_outcomes
 from eval.dedup.pair_construction.removal_pairs import sample_removal_pairs
 from eval.dedup.pair_construction.retrieval.lexical import build_minhash_cache
 from eval.dedup.pair_construction.retrieval.selection import retrieve_and_select_cross_group_pairs
-from eval.dedup.report import export_human_qa, publish_report
+from eval.dedup.report import export_human_qa, pair_explorer_destination, publish_report
 from eval.dedup.validation import (
     read_json,
     require,
@@ -666,6 +666,7 @@ def _stage_10(context: RunContext, work: Path) -> StageExecution:
     final_relative = "reports/final_report.md"
     recommendations_relative = "reports/recommendations.json"
     manifest_relative = "reports/report_generation_manifest.json"
+    dashboard_relative = str(pair_explorer_destination(Path(final_relative)))
     result = publish_report(
         profile=context.profile,
         run_root=context.run_root,
@@ -674,7 +675,10 @@ def _stage_10(context: RunContext, work: Path) -> StageExecution:
         recommendations_destination=work / recommendations_relative,
         manifest_destination=work / manifest_relative,
     )
-    return StageExecution((final_relative, recommendations_relative, manifest_relative), result)
+    return StageExecution(
+        (final_relative, recommendations_relative, manifest_relative, dashboard_relative),
+        {**result, "pair_explorer": dashboard_relative},
+    )
 
 
 def _require_execution_source_contract(context: RunContext) -> None:
