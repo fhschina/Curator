@@ -860,6 +860,105 @@ def _recommendation_markdown(recommendations: dict[str, Any]) -> str:
     return "\n\n".join(sections)
 
 
+def _pipeline_accounting_tree(
+    *,
+    evaluation_manifest: dict[str, Any],
+    markers: list[dict[str, Any]],
+    judge: dict[str, Any],
+) -> str:
+    outcomes = markers[2]["counts"]
+    sut = markers[1]["counts"]
+    anchors = markers[3]["counts"]
+    pairs = markers[4]["counts"]
+    return f"""{evaluation_manifest["dataset_row_count"]:,} corpus documents
+├── {outcomes["singletons"]:,} singleton documents
+└── {sut["grouped_documents"]:,} grouped documents
+    ├── {sut["groups"]:,} logical group keepers
+    └── {sut["removals"]:,} removals
+
+{pairs["removal_frame_size"]:,} SUT removal decisions
+└── {pairs["removal_rows"]:,} uniformly sampled Step 5a keeper-to-removed pairs
+
+{anchors["rows"]:,} Step 4 anchors (Step 5b only)
+├── {pairs["cross_lexical_candidates"]:,} relaxed-lexical anchor-candidate records
+├── {pairs["cross_semantic_candidates"]:,} semantic anchor-candidate records
+└── {pairs["cross_union_candidates"]:,} cross-channel union records
+    └── {pairs["cross_unique_selected_pairs"]:,} selected Step 5b cross-group pairs
+
+{judge["requested"]:,} Judge pairs
+├── {judge["schema_valid"]:,} schema-valid
+│   ├── {judge["resolved"]:,} resolved
+│   └── {judge["unresolved"]:,} unresolved
+└── {judge["errors"]:,} terminal errors"""
+
+
+def _step_5b_generation_markdown(
+    *,
+    evaluation_manifest: dict[str, Any],
+    markers: list[dict[str, Any]],
+    cross_outcome: dict[str, Any],
+    retrieval_config: dict[str, Any],
+) -> str:
+    anchors = markers[3]["counts"]["rows"]
+    pairs = markers[4]["counts"]
+    selected_lsh = retrieval_config["selected_lsh"]
+    selected_trial = next(
+        trial
+        for trial in retrieval_config["lexical_trials"]
+        if trial["bands"] == selected_lsh["bands"] and trial["rows_per_band"] == selected_lsh["rows_per_band"]
+    )
+    target = retrieval_config["pilot_candidate_count_target"]
+    funnel = _markdown_table(
+        ["Step 5b stage", "Count", "Interpretation"],
+        [
+            ["Step 4 anchors", anchors, "Queries used by Track 5b only"],
+            [
+                "Relaxed lexical candidates",
+                pairs["cross_lexical_candidates"],
+                "Cross-group MinHash/LSH results, ranked by exact lexical features",
+            ],
+            [
+                "Semantic candidates",
+                pairs["cross_semantic_candidates"],
+                f"Cross-group embedding neighbors with top-k={retrieval_config['top_k']}",
+            ],
+            [
+                "Cross-channel union",
+                pairs["cross_union_candidates"],
+                "Anchor-candidate records after merging lexical and semantic membership",
+            ],
+            [
+                "Selected unique pairs",
+                pairs["cross_unique_selected_pairs"],
+                "Per-anchor source quotas, deterministic refill, and global pair deduplication",
+            ],
+            ["Resolved Judge results", cross_outcome["resolved"], "Denominator for candidate-pool positive yield"],
+        ],
+    )
+    missing_resolved_config = not evaluation_manifest.get("upstream_provenance_availability", {}).get(
+        "resolved_config", False
+    )
+    sut_comparison = (
+        " The upstream SUT resolved configuration was unavailable, so this report does not claim a numeric "
+        "SUT-to-evaluation threshold change such as 0.8 to 0.7."
+        if missing_resolved_config
+        else ""
+    )
+    return f"""Track 5b starts from the Step 4 anchors and uses two parallel retrieval channels: a more-permissive
+lexical MinHash/LSH configuration and semantic embedding top-k retrieval. The lexical channel was tuned by candidate
+volume rather than by changing one scalar similarity threshold: the pilot selected {selected_lsh["bands"]} bands x
+{selected_lsh["rows_per_band"]} row per band, producing a median of
+{selected_trial["median_cross_group_candidates"]:g} cross-group candidates per pilot anchor against the frozen target
+range of {target["minimum"]}-{target["maximum"]}.{sut_comparison}
+
+{funnel}
+
+The selected source counts below are shaped by the frozen per-anchor quotas (up to four lexical-only, four
+semantic-only, and two both-channel candidates, followed by deterministic refill). They describe the selected
+candidate pool; they are not natural corpus prevalence, channel recall, or an unqualified head-to-head retriever
+comparison."""
+
+
 def _render_deterministic_report(
     *,
     profile: ProfileConfig,
@@ -869,6 +968,7 @@ def _render_deterministic_report(
     analysis: dict[str, Any],
     examples: dict[str, list[dict[str, Any]]],
     dashboard_name: str,
+    retrieval_config: dict[str, Any],
 ) -> str:
     removal = metrics["track_5a_removal_frame"]
     cross = metrics["track_5b_candidate_pool"]
@@ -889,6 +989,17 @@ def _render_deterministic_report(
         [["REMOVE", outcome["safe"], outcome["wrong"], outcome["unresolved"], outcome["errors"], outcome["selected"]]],
     )
     cross_matrix = _slice_markdown(analysis["cross_slices"]["retriever source"], removal=False)
+    pipeline_accounting_tree = _pipeline_accounting_tree(
+        evaluation_manifest=evaluation_manifest,
+        markers=markers,
+        judge=judge,
+    )
+    step_5b_generation = _step_5b_generation_markdown(
+        evaluation_manifest=evaluation_manifest,
+        markers=markers,
+        cross_outcome=cross_outcome,
+        retrieval_config=retrieval_config,
+    )
     limitations = [
         "The LLM Judge is the automated reference for these metrics; it is not human ground truth.",
         (
@@ -991,29 +1102,16 @@ its labels remain automated Judge results rather than human ground truth.
 ## 3. Pipeline Accounting
 
 <pre>
-{evaluation_manifest["dataset_row_count"]:,} corpus documents
-├── {markers[2]["counts"]["singletons"]:,} singleton documents
-└── {markers[1]["counts"]["grouped_documents"]:,} grouped documents
-    ├── {markers[1]["counts"]["groups"]:,} logical group keepers
-    └── {markers[1]["counts"]["removals"]:,} removals
-
-{markers[3]["counts"]["rows"]:,} anchors
-├── {markers[4]["counts"]["removal_rows"]:,} Step 5a removal pairs
-└── {markers[4]["counts"]["cross_unique_selected_pairs"]:,} Step 5b cross-group pairs
-
-{judge["requested"]:,} Judge pairs
-├── {judge["schema_valid"]:,} schema-valid
-│   ├── {judge["resolved"]:,} resolved
-│   └── {judge["unresolved"]:,} unresolved
-└── {judge["errors"]:,} terminal errors
+{pipeline_accounting_tree}
 </pre>
 
 {stage_table}
 
-## 4. Removal Decision Quality
+## 4. Step 5a — Removal Decision Quality
 
-Removal precision is safe resolved removals divided by all resolved sampled removals. The selection was uniform from
-a frame of {removal["sampling_frame_size"]:,} removals with inclusion probability
+This section reports Track 5a only: the safety of actual SUT keeper-to-removed decisions sampled from the removal
+frame. Removal precision is safe resolved removals divided by all resolved sampled removals. The selection was
+uniform from a frame of {removal["sampling_frame_size"]:,} removals with inclusion probability
 {removal["inclusion_probability"]:.8f}.
 
 {removal_matrix}
@@ -1055,7 +1153,16 @@ Removal recall, specificity, and F1 are not identifiable in V0.
 
 [Open the removal review queue in the interactive Pair Explorer]({dashboard_name}?track=5a).
 
-## 5. Cross-group Retrieval Analysis
+## 5. Step 5b — Cross-group Retrieval Analysis
+
+This section reports Track 5b only: missed-duplicate discovery within the selected anchor-based cross-group candidate
+pool. It does not estimate corpus recall.
+
+### Candidate generation and selection
+
+{step_5b_generation}
+
+### Positive yield by selected retrieval source
 
 The pool contained {cross_outcome["selected"]:,} selected candidates, of which {cross_outcome["resolved"]:,} were
 resolved. Positive yield is Judge duplicate-YES divided by resolved selected candidates.
@@ -1285,6 +1392,7 @@ def publish_report(
         analysis=analysis,
         examples=examples,
         dashboard_name=dashboard_destination.name,
+        retrieval_config=retrieval_config,
     )
     evidence = _recommendation_evidence(metrics, graph, analysis, evaluation_manifest)
     recommendations = _generate_recommendations(

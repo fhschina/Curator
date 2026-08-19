@@ -25,7 +25,12 @@ from eval.dedup.dashboard import (
     pair_explorer_html,
     pair_explorer_review_queue,
 )
-from eval.dedup.report import _representative_record, _validate_recommendations
+from eval.dedup.report import (
+    _pipeline_accounting_tree,
+    _representative_record,
+    _step_5b_generation_markdown,
+    _validate_recommendations,
+)
 from eval.dedup.validation import DedupEvaluationError
 
 
@@ -99,6 +104,19 @@ def test_pair_explorer_contains_decision_review_and_context_sections() -> None:
     assert "group:fixture:7" in dashboard
 
 
+def test_pair_explorer_contains_language_filter_and_reason_code_chart() -> None:
+    dashboard = pair_explorer_html(evaluation_run_id="fixture", records=[])
+
+    assert 'id="language"' in dashboard
+    assert "Any language · either document" in dashboard
+    assert "Same-language pairs" in dashboard
+    assert "Cross-language pairs" in dashboard
+    assert "r.left.language===lv||r.right.language===lv" in dashboard
+    assert "Reason code distribution" in dashboard
+    assert "new Set(r.reason_codes)" in dashboard
+    assert "multi-label counts" in dashboard
+
+
 def test_evidence_status_reports_partial_repair_coverage() -> None:
     status = _evidence_status(
         {
@@ -113,6 +131,74 @@ def test_evidence_status_reports_partial_repair_coverage() -> None:
     )
 
     assert status == {"returned": 3, "retained": 1, "realigned": 1, "dropped": 2, "coverage": "PARTIAL"}
+
+
+def test_pipeline_accounting_separates_step_5a_from_step_5b_anchors() -> None:
+    markers = [
+        {},
+        {"counts": {"grouped_documents": 2_021_220, "groups": 352_601, "removals": 1_668_619}},
+        {"counts": {"singletons": 7_986_841}},
+        {"counts": {"rows": 1_000}},
+        {
+            "counts": {
+                "removal_frame_size": 1_668_619,
+                "removal_rows": 10_000,
+                "cross_lexical_candidates": 27_463,
+                "cross_semantic_candidates": 50_000,
+                "cross_union_candidates": 73_363,
+                "cross_unique_selected_pairs": 10_000,
+            }
+        },
+    ]
+
+    tree = _pipeline_accounting_tree(
+        evaluation_manifest={"dataset_row_count": 10_008_061},
+        markers=markers,
+        judge={"requested": 20_000, "schema_valid": 19_994, "resolved": 19_990, "unresolved": 4, "errors": 6},
+    )
+
+    assert "1,668,619 SUT removal decisions\n└── 10,000 uniformly sampled Step 5a" in tree
+    assert "1,000 Step 4 anchors (Step 5b only)" in tree
+    assert "73,363 cross-channel union records\n    └── 10,000 selected Step 5b" in tree
+    assert "anchors\n├── 10,000 Step 5a" not in tree
+
+
+def test_step_5b_generation_explains_channels_funnel_and_quota_scope() -> None:
+    markers = [
+        {},
+        {},
+        {},
+        {"counts": {"rows": 1_000}},
+        {
+            "counts": {
+                "cross_lexical_candidates": 27_463,
+                "cross_semantic_candidates": 50_000,
+                "cross_union_candidates": 73_363,
+                "cross_unique_selected_pairs": 10_000,
+            }
+        },
+    ]
+    retrieval_config = {
+        "selected_lsh": {"bands": 7, "rows_per_band": 1},
+        "lexical_trials": [{"bands": 7, "rows_per_band": 1, "median_cross_group_candidates": 31.0}],
+        "pilot_candidate_count_target": {"minimum": 20, "maximum": 50},
+        "top_k": 50,
+    }
+
+    rendered = _step_5b_generation_markdown(
+        evaluation_manifest={"upstream_provenance_availability": {"resolved_config": False}},
+        markers=markers,
+        cross_outcome={"resolved": 9_997},
+        retrieval_config=retrieval_config,
+    )
+
+    assert "two parallel retrieval channels" in rendered
+    assert "7 bands x\n1 row per band" in rendered
+    assert "median of\n31 cross-group candidates" in rendered
+    assert "does not claim a numeric SUT-to-evaluation threshold change such as 0.8 to 0.7" in rendered
+    assert "| Cross-channel union | 73363 |" in rendered
+    assert "| Selected unique pairs | 10000 |" in rendered
+    assert "not natural corpus prevalence, channel recall" in rendered
 
 
 def _recommendations() -> dict:
