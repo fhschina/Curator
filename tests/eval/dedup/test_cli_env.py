@@ -43,9 +43,9 @@ def test_report_export_directory_preserves_run_hierarchy(tmp_path: Path) -> None
     assert _report_export_directory(context, tmp_path) == (tmp_path / "dedup-full-fixture" / "v0_run" / "reports")
 
 
-def test_report_command_defaults_to_v3_output_label(tmp_path: Path) -> None:
+def test_report_command_defaults_to_v9_output_label(tmp_path: Path) -> None:
     args = _parser().parse_args(["report", "--run-root", str(tmp_path / "fixture-run")])
-    assert args.output_label == "automated_v3"
+    assert args.output_label == "automated_v9"
 
 
 class _ProbeClient:

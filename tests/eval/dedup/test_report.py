@@ -27,6 +27,9 @@ from eval.dedup.dashboard import (
 )
 from eval.dedup.report import (
     _pipeline_accounting_tree,
+    _publish_results_snapshot,
+    _qa_packet_inventory,
+    _report_without_appendices,
     _representative_record,
     _step_5b_generation_markdown,
     _validate_recommendations,
@@ -39,6 +42,42 @@ def test_pair_explorer_destination_tracks_report_label() -> None:
     assert pair_explorer_destination(Path("reports/final_report.review-v3.md")) == Path(
         "reports/pair_explorer.review-v3.html"
     )
+
+
+def test_results_snapshot_replaces_existing_file_with_pre_appendix_report_body(tmp_path: Path) -> None:
+    destination = tmp_path / "RESULTS.md"
+    destination.write_text("old summary\n", encoding="utf-8")
+    report = "# Fixture report\n\nDetailed body.\n\n## Appendix A — Operations\n\nInternal details.\n"
+
+    _publish_results_snapshot(report=report, destination=destination)
+
+    assert destination.read_text(encoding="utf-8") == "# Fixture report\n\nDetailed body.\n"
+
+
+def test_report_without_appendices_requires_boundary() -> None:
+    with pytest.raises(DedupEvaluationError, match="REPORT_APPENDIX_MISSING"):
+        _report_without_appendices("# No appendices\n")
+
+
+def test_qa_packet_inventory_finds_diagnostic_packet_in_derived_export(tmp_path: Path) -> None:
+    run_root = tmp_path / "frozen" / "v0_run"
+    blind = run_root / "data" / "human_qa_packet.jsonl"
+    blind.parent.mkdir(parents=True)
+    blind.write_text('{"pair": 1}\n{"pair": 2}\n', encoding="utf-8")
+    report_destination = tmp_path / "derived" / "v0_run" / "reports" / "final_report.md"
+    diagnostic = report_destination.parent.parent / "data" / "human_qa_diagnostic_packet.jsonl"
+    diagnostic.parent.mkdir(parents=True)
+    diagnostic.write_text('{"pair": 3}\n', encoding="utf-8")
+
+    inventory = _qa_packet_inventory(
+        run_root=run_root,
+        report_destination=report_destination,
+    )
+
+    assert inventory["blind"]["rows"] == 2
+    assert inventory["blind"]["path"] == str(blind)
+    assert inventory["diagnostic"]["rows"] == 1
+    assert inventory["diagnostic"]["path"] == str(diagnostic)
 
 
 def test_representative_record_uses_slice_median_then_stable_tiebreakers() -> None:

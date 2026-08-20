@@ -305,8 +305,11 @@ def test_fixture_pipeline_runs_all_ten_steps(tmp_path: Path, monkeypatch) -> Non
     report = (context.reports / "final_report.md").read_text()
     assert "NON-V0 SMOKE" in report
     assert "not corpus recall" in report
-    assert "Representative SUT-Judge removal examples" in report
-    assert "pair_explorer.html" in report
+    assert "### By predicted group size" in report
+    assert "## 7. How to Inspect the Results" in report
+    assert "Representative SUT-Judge removal examples" not in report
+    assert "AI-generated Interpretation" not in report
+    assert "## Appendix A — Pipeline and Judge Operations" in report
     pair_explorer = context.reports / "pair_explorer.html"
     assert pair_explorer.is_file()
     assert "Dedup Pair Explorer" in pair_explorer.read_text()

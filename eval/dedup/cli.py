@@ -46,6 +46,7 @@ from eval.dedup.validation import DedupEvaluationError, require, sha256_file, wr
 
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 _DEFAULT_REPORT_EXPORT_ROOT = _REPOSITORY_ROOT.parent / "dedup_eval_runs"
+_PUBLISHED_RESULTS_PATH = _REPOSITORY_ROOT / "eval" / "dedup" / "RESULTS.md"
 
 
 def _load_repository_env(dotenv_path: Path | None = None) -> None:
@@ -315,7 +316,7 @@ def _parser() -> argparse.ArgumentParser:
     )
     report_parser.add_argument(
         "--output-label",
-        default="automated_v3",
+        default="automated_v9",
         help="safe filename label for a derived report revision",
     )
     return parser
@@ -372,27 +373,24 @@ def main(argv: list[str] | None = None) -> int:
             )
             report_directory = _report_export_directory(context, args.output_root)
             report_path = report_directory / f"final_report.{args.output_label}.md"
-            recommendations_path = report_directory / f"recommendations.{args.output_label}.json"
             manifest_path = report_directory / f"report_generation_manifest.{args.output_label}.json"
             dashboard_path = pair_explorer_destination(report_path)
             require(
-                not any(path.exists() for path in (report_path, recommendations_path, manifest_path, dashboard_path)),
+                not any(path.exists() for path in (report_path, manifest_path, dashboard_path)),
                 "REPORT_OUTPUT_EXISTS",
                 "versioned automated report output already exists",
             )
             result = publish_report(
                 profile=context.profile,
                 run_root=context.run_root,
-                recommendation_judge=context.config.judge,
                 final_destination=report_path,
-                recommendations_destination=recommendations_path,
                 manifest_destination=manifest_path,
+                published_results_destination=_PUBLISHED_RESULTS_PATH,
             )
             _print(
                 {
                     **result,
                     "report": str(report_path),
-                    "recommendations": str(recommendations_path),
                     "manifest": str(manifest_path),
                     "pair_explorer": str(dashboard_path),
                 }

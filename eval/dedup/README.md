@@ -139,13 +139,19 @@ By default, derived reports are exported to
 Large run artifacts remain under the frozen run root on `/raid`. Use `--output-root`
 to select a different run-scoped report export root.
 
-Every automated render also writes a matching self-contained `pair_explorer[.<output-label>].html`. The report embeds
-deterministically selected removal-disagreement and cross-group-positive examples, links each example to a focused review queue,
-and records the dashboard checksum plus selected pair IDs in `report_generation_manifest[.<output-label>].json`. The Pair
-Explorer separates the observed SUT grouping/action, the Judge group and directional-replacement verdicts, and the derived
-evaluation outcome. It also includes endpoint group/action context, Judge evidence-repair coverage, 5b evaluation-retrieval
-scores, bounded deterministic group-member summaries, and explicit SUT-provenance availability. Human review annotations are
-stored in browser `localStorage` and can be imported or exported as CSV/JSON; they do not modify frozen run artifacts.
+Derived renders default to the `automated_v9` output label and also write a matching self-contained
+`pair_explorer[.<output-label>].html` plus `report_generation_manifest[.<output-label>].json`. The report retains the detailed
+headline, accounting, and `By ...` slice tables, but routes pair-level examples, document excerpts, and identifiers to the Pair
+Explorer instead of embedding them in the report body. Stage-level operations, reproducibility data, machine paths, and the
+artifact inventory remain in the appendices.
+
+After a derived report is written, the renderer copies everything before the first appendix verbatim to
+`eval/dedup/RESULTS.md`. This keeps the repository-visible results synchronized without recomputing or separately summarizing
+the metrics. The Pair Explorer separates the observed SUT grouping/action, the Judge group and directional-replacement verdicts,
+and the derived evaluation outcome. It also includes endpoint group/action context, Judge evidence-repair coverage, 5b
+evaluation-retrieval scores, bounded deterministic group-member summaries, and explicit SUT-provenance availability. Human
+review annotations are stored in browser `localStorage` and can be imported or exported as CSV/JSON; they do not modify frozen
+run artifacts.
 
 ### 6. Complete and import Human QA
 

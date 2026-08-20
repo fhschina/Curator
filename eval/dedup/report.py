@@ -22,6 +22,7 @@ import html
 import json
 import os
 import re
+import tempfile
 from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
@@ -54,9 +55,13 @@ from eval.dedup.validation import (
     write_text_atomic,
 )
 
-AUTOMATED_REPORT_VERSION = "dedup-automated-report-v3"
+AUTOMATED_REPORT_VERSION = "dedup-automated-report-v4"
 HUMAN_QA_REPORT_VERSION = "dedup-human-qa-report-v1"
 RECOMMENDATION_PROMPT_VERSION = "dedup-recommendations-v1"
+PAIR_EXPLORER_URL = "http://umb-b200-218.cl1u1.colossus.nvidia.com:18743/dedup-dashboard/"
+HUMAN_QA_DASHBOARD_URL = f"{PAIR_EXPLORER_URL}human-qa/"
+EVALUATION_README_URL = "https://github.com/fhschina/Curator/blob/dedup-eval/eval/dedup/README.md"
+APPENDIX_MARKER = "\n## Appendix "
 
 HUMAN_FIELDS = (
     "same_duplicate_group",
@@ -359,6 +364,65 @@ def import_human_qa(*, packet_path: Path, labels_path: Path, destination: Path) 
 
 def _load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _report_without_appendices(report: str) -> str:
+    appendix_start = report.find(APPENDIX_MARKER)
+    require(
+        appendix_start >= 0,
+        "REPORT_APPENDIX_MISSING",
+        "published results require a report with an appendix boundary",
+    )
+    return report[:appendix_start].rstrip() + "\n"
+
+
+def _replace_text_atomic(path: Path, value: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    mode = path.stat().st_mode & 0o777 if path.exists() else 0o644
+    with tempfile.NamedTemporaryFile(prefix=f".{path.name}.", dir=path.parent, delete=False) as file:
+        temporary = Path(file.name)
+        file.write(value.encode("utf-8"))
+        file.flush()
+        os.fsync(file.fileno())
+    try:
+        os.chmod(temporary, mode)
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _publish_results_snapshot(*, report: str, destination: Path) -> None:
+    _replace_text_atomic(destination, _report_without_appendices(report))
+
+
+def _qa_packet_inventory(*, run_root: Path, report_destination: Path) -> dict[str, dict[str, Any]]:
+    derived_data = report_destination.parent.parent / "data"
+    candidates = {
+        "blind": [run_root / "data" / "human_qa_packet.jsonl"],
+        "diagnostic": [
+            run_root / "data" / "human_qa_diagnostic_packet.jsonl",
+            derived_data / "human_qa_diagnostic_packet.jsonl",
+        ],
+    }
+    inventory: dict[str, dict[str, Any]] = {}
+    for packet_type, paths in candidates.items():
+        packet_path = next((path for path in paths if path.is_file()), None)
+        if packet_path is None:
+            continue
+        with packet_path.open(encoding="utf-8") as file:
+            rows = sum(1 for line in file if line.strip())
+        inventory[packet_type] = {
+            "path": str(packet_path),
+            "rows": rows,
+            "size_bytes": packet_path.stat().st_size,
+            "sha256": sha256_file(packet_path),
+        }
+    return inventory
+
+
+def _qa_packet_rows(inventory: dict[str, dict[str, Any]], packet_type: str) -> int:
+    packet = inventory.get(packet_type)
+    return 0 if packet is None else int(packet["rows"])
 
 
 def _percent(value: float | None) -> str:
@@ -1121,9 +1185,8 @@ def _render_deterministic_report(
     metrics: dict[str, Any],
     markers: list[dict[str, Any]],
     analysis: dict[str, Any],
-    examples: dict[str, list[dict[str, Any]]],
-    dashboard_name: str,
     retrieval_config: dict[str, Any],
+    qa_packet_inventory: dict[str, dict[str, Any]],
 ) -> str:
     removal = metrics["track_5a_removal_frame"]
     cross = metrics["track_5b_candidate_pool"]
@@ -1135,10 +1198,8 @@ def _render_deterministic_report(
         if not profile.formal_v0
         else "**FORMAL V0 — AUTOMATED JUDGE RESULTS**"
     )
-    stage_table = _markdown_table(
-        ["Step", "Stage", "Status", "Elapsed since prior stage", "Accounting"],
-        _stage_rows(markers),
-    )
+    blind_qa_pairs = _qa_packet_rows(qa_packet_inventory, "blind")
+    diagnostic_qa_pairs = _qa_packet_rows(qa_packet_inventory, "diagnostic")
     removal_matrix = _markdown_table(
         ["SUT decision", "Judge safe", "Judge wrong", "Unresolved", "Error", "Total"],
         [["REMOVE", outcome["safe"], outcome["wrong"], outcome["unresolved"], outcome["errors"], outcome["selected"]]],
@@ -1239,13 +1300,13 @@ corpus recall.
 {headline}
 
 Human QA is an independent double-check and does not block, replace, calibrate, or rewrite these automated metrics.
-The exports include a Judge-independent blind packet of {markers[5]["counts"]["qa_pairs"]:,} pairs and a separate
-disagreement-enriched diagnostic packet of {markers[7]["counts"].get("diagnostic_qa_pairs", 0):,} pairs. Both expose
+The exports include a Judge-independent blind packet of {blind_qa_pairs:,} pairs and a separate
+disagreement-enriched diagnostic packet of {diagnostic_qa_pairs:,} pairs. Both expose
 only the Judge-visible document payload to reviewers. The diagnostic packet excludes pairs already present in the
 blind packet and must not be used to estimate overall prevalence or pooled with the blind packet for unweighted
 accuracy metrics.
 
-The [interactive Pair Explorer]({dashboard_name}) contains a filterable review queue of wrong removals, discovered
+The [interactive Pair Explorer]({PAIR_EXPLORER_URL}) contains a filterable review queue of wrong removals, discovered
 cross-group positives, unresolved/errors, and report control examples. It uses Judge-visible excerpts and evidence;
 its labels remain automated Judge results rather than human ground truth.
 
@@ -1266,7 +1327,8 @@ its labels remain automated Judge results rather than human ground truth.
 {pipeline_accounting_tree}
 </pre>
 
-{stage_table}
+Detailed stage-level timing, execution accounting, and Judge operational diagnostics are retained in the full report
+appendices.
 
 ## 4. Step 5a — Removal Decision Quality
 
@@ -1308,11 +1370,10 @@ Removal recall, specificity, and F1 are not identifiable in V0.
 
 {_slice_markdown(analysis["removal_slices"]["fuzzy scope"], removal=True)}
 
-### Representative SUT-Judge removal examples
+### Inspect removal decisions
 
-{_examples_markdown(examples["removal"], dashboard_name=dashboard_name)}
-
-[Open the removal review queue in the interactive Pair Explorer]({dashboard_name}?track=5a).
+Use the [Track 5a removal review queue]({PAIR_EXPLORER_URL}?track=5a) to inspect wrong removals and filter by document
+length, token-length ratio, hostname relationship, group size, relation type, material difference, or reason code.
 
 ## 5. Step 5b — Cross-group Retrieval Analysis
 
@@ -1342,15 +1403,26 @@ resolved. Positive yield is Judge duplicate-YES divided by resolved selected can
 
 {_slice_markdown(analysis["cross_slices"]["same hostname"], removal=False)}
 
-### Representative discovered cross-group duplicates
+### Inspect cross-group candidates
 
-{_examples_markdown(examples["cross"], dashboard_name=dashboard_name)}
-
-[Open the cross-group positive review queue in the interactive Pair Explorer]({dashboard_name}?track=5b).
+Use the [Track 5b cross-group review queue]({PAIR_EXPLORER_URL}?track=5b) to inspect discovered positives and compare
+retrieval sources, Judge evidence, document context, and available SUT provenance.
 
 ## 6. Methodological Limitations
 
 {limitations_markdown}
+
+## 7. How to Inspect the Results
+
+- Use the [Pair Explorer]({PAIR_EXPLORER_URL}) to inspect automated wrong removals, discovered cross-group positives,
+  Judge evidence, provenance availability, and group context.
+- Use the [Human QA Dashboard]({HUMAN_QA_DASHBOARD_URL}) to review the blind and diagnostic samples. These dashboards
+  require access to the NVIDIA internal network.
+- See the [evaluation README]({EVALUATION_README_URL}) for the methodology, runtime profiles, evaluation contract,
+  commands, and artifact map.
+
+The report body intentionally excludes document excerpts and pair identifiers. Use the Pair Explorer for pair-level
+review.
 """
 
 
@@ -1366,12 +1438,21 @@ def _audit_appendices(
     judge_config: dict[str, Any],
     retrieval_config: dict[str, Any],
     sut_manifest: dict[str, Any],
+    qa_packet_inventory: dict[str, dict[str, Any]],
 ) -> str:
     artifacts = [
         [marker["step"], artifact["path"], artifact["size_bytes"], artifact["sha256"]]
         for marker in markers
         for artifact in marker.get("artifacts", [])
     ]
+    artifacts.extend(
+        ["QA", packet["path"], packet["size_bytes"], packet["sha256"]]
+        for packet in qa_packet_inventory.values()
+    )
+    stage_table = _markdown_table(
+        ["Step", "Stage", "Status", "Elapsed since prior stage", "Accounting"],
+        _stage_rows(markers),
+    )
     error_rows = [[pair_id] for pair_id in diagnostics["terminal_error_pairs"]] or [["None"]]
     judge_table = _markdown_table(
         ["Property", "Value"],
@@ -1425,7 +1506,13 @@ def _audit_appendices(
     )
     artifact_table = _markdown_table(["Step", "Artifact", "Bytes", "SHA-256"], artifacts)
     error_table = _markdown_table(["Canonical pair ID"], error_rows)
-    return f"""## Appendix A — Judge Reliability and Operations
+    return f"""## Appendix A — Pipeline and Judge Operations
+
+### Stage accounting
+
+{stage_table}
+
+### Judge reliability
 
 {judge_table}
 
@@ -1507,13 +1594,19 @@ def publish_report(
     *,
     profile: ProfileConfig,
     run_root: Path,
-    recommendation_judge: JudgeConfig,
     final_destination: Path,
-    recommendations_destination: Path,
     manifest_destination: Path,
+    recommendation_judge: JudgeConfig | None = None,
+    recommendations_destination: Path | None = None,
+    published_results_destination: Path | None = None,
 ) -> dict[str, Any]:
     """Publish authoritative automated metrics; human QA is an independent diagnostic."""
 
+    require(
+        (recommendation_judge is None) == (recommendations_destination is None),
+        "RECOMMENDATION_OUTPUT_MISMATCH",
+        "recommendation Judge and destination must either both be provided or both be omitted",
+    )
     metrics_path = run_root / "reports" / "metrics.json"
     evaluation_manifest_path = run_root / "manifests" / "evaluation_manifest.json"
     metrics = _load_json(metrics_path)
@@ -1545,23 +1638,29 @@ def publish_report(
     judge_config = _load_json(run_root / "manifests" / "judge_config.json")
     retrieval_config = _load_json(run_root / "manifests" / "retrieval_config.json")
     sut_manifest = _load_json(run_root / "manifests" / "sut_run_manifest.json")
+    qa_packet_inventory = _qa_packet_inventory(
+        run_root=run_root,
+        report_destination=final_destination,
+    )
     deterministic_report = _render_deterministic_report(
         profile=profile,
         evaluation_manifest=evaluation_manifest,
         metrics=metrics,
         markers=markers,
         analysis=analysis,
-        examples=examples,
-        dashboard_name=dashboard_destination.name,
         retrieval_config=retrieval_config,
+        qa_packet_inventory=qa_packet_inventory,
     )
-    evidence = _recommendation_evidence(metrics, graph, analysis, evaluation_manifest)
-    recommendations = _generate_recommendations(
-        recommendation_judge,
-        deterministic_report=deterministic_report,
-        evidence=evidence,
-    )
-    write_json_atomic(recommendations_destination, recommendations)
+    recommendations_status = "not_generated"
+    if recommendation_judge is not None and recommendations_destination is not None:
+        evidence = _recommendation_evidence(metrics, graph, analysis, evaluation_manifest)
+        recommendations = _generate_recommendations(
+            recommendation_judge,
+            deterministic_report=deterministic_report,
+            evidence=evidence,
+        )
+        write_json_atomic(recommendations_destination, recommendations)
+        recommendations_status = recommendations["status"]
     appendices = _audit_appendices(
         run_root=run_root,
         evaluation_manifest=evaluation_manifest,
@@ -1573,24 +1672,46 @@ def publish_report(
         judge_config=judge_config,
         retrieval_config=retrieval_config,
         sut_manifest=sut_manifest,
+        qa_packet_inventory=qa_packet_inventory,
     )
-    report = (
-        deterministic_report
-        + "\n## 7. AI-generated Interpretation and Recommended Actions\n\n"
-        + "**Advisory only. This section is not part of the evaluation metrics and cannot modify them.**\n\n"
-        + _recommendation_markdown(recommendations)
-        + "\n\n"
-        + appendices
-    )
+    report = deterministic_report + "\n" + appendices
     write_text_atomic(final_destination, report)
+    if published_results_destination is not None:
+        _publish_results_snapshot(report=report, destination=published_results_destination)
+
+    outputs = {
+        "report_path": str(final_destination),
+        "report_sha256": sha256_file(final_destination),
+        "pair_explorer_path": str(dashboard_destination),
+        "pair_explorer_sha256": sha256_file(dashboard_destination),
+        "pair_explorer_pairs": len(dashboard_records),
+        "pair_explorer_source_pairs": len(explorer_records),
+        "pair_explorer_group_contexts": len(group_contexts),
+        "pair_explorer_scope": "wrong removals, cross-group positives, unresolved/errors, and report controls",
+        "example_pair_ids": [row["pair_id"] for group in ("removal", "cross") for row in examples[group]],
+    }
+    if recommendations_destination is not None:
+        outputs.update(
+            {
+                "recommendations_path": str(recommendations_destination),
+                "recommendations_sha256": sha256_file(recommendations_destination),
+            }
+        )
+    if published_results_destination is not None:
+        outputs.update(
+            {
+                "published_results_path": str(published_results_destination),
+                "published_results_sha256": sha256_file(published_results_destination),
+            }
+        )
     manifest = {
-        "schema_version": "dedup-report-generation-v3",
+        "schema_version": "dedup-report-generation-v4",
         "report_version": AUTOMATED_REPORT_VERSION,
         "pair_explorer_version": PAIR_EXPLORER_VERSION,
         "evaluation_run_id": evaluation_manifest["evaluation_run_id"],
         "generated_at_utc": datetime.now(UTC).isoformat(),
-        "human_qa_dependency": "none",
-        "recommendations_status": recommendations["status"],
+        "human_qa_dependency": "packet metadata only; no human labels",
+        "recommendations_status": recommendations_status,
         "renderer_sha256": sha256_file(Path(__file__)),
         "dashboard_renderer_sha256": sha256_file(Path(pair_explorer_html.__code__.co_filename)),
         "inputs": {
@@ -1603,28 +1724,18 @@ def publish_report(
             "document_outcomes_sha256": sha256_file(run_root / "data" / "document_outcomes.parquet"),
             "pair_provenance_sha256": sha256_file(run_root / "data" / "pair_provenance.parquet"),
             "sut_run_manifest_sha256": sha256_file(run_root / "manifests" / "sut_run_manifest.json"),
+            "human_qa_packets": qa_packet_inventory,
         },
-        "outputs": {
-            "report_path": str(final_destination),
-            "report_sha256": sha256_file(final_destination),
-            "recommendations_path": str(recommendations_destination),
-            "recommendations_sha256": sha256_file(recommendations_destination),
-            "pair_explorer_path": str(dashboard_destination),
-            "pair_explorer_sha256": sha256_file(dashboard_destination),
-            "pair_explorer_pairs": len(dashboard_records),
-            "pair_explorer_source_pairs": len(explorer_records),
-            "pair_explorer_group_contexts": len(group_contexts),
-            "pair_explorer_scope": "wrong removals, cross-group positives, unresolved/errors, and report controls",
-            "example_pair_ids": [row["pair_id"] for group in ("removal", "cross") for row in examples[group]],
-        },
+        "outputs": outputs,
     }
     write_json_atomic(manifest_destination, manifest)
     return {
         "status": "automated_complete",
         "report_version": AUTOMATED_REPORT_VERSION,
         "human_qa_available": (run_root / "data" / "human_qa_results.csv").is_file(),
-        "recommendations_status": recommendations["status"],
+        "recommendations_status": recommendations_status,
         "pair_explorer": str(dashboard_destination),
+        "published_results": str(published_results_destination) if published_results_destination is not None else None,
     }
 
 
