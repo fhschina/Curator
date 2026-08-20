@@ -35,6 +35,7 @@ from eval.dedup.config import EvaluationConfig, ProfileConfig, load_config
 from eval.dedup.contracts import ARTIFACT_SCHEMA_VERSION, EVALUATION_MANIFEST_SCHEMA_VERSION
 from eval.dedup.handoff.corpus import TokenCounter
 from eval.dedup.handoff.manifests import register_corpus_handoff, register_sut_handoff
+from eval.dedup.human_qa_dashboard import publish_human_qa_dashboard
 from eval.dedup.judging.run import run_judging
 from eval.dedup.pair_construction.anchors import sample_anchors
 from eval.dedup.pair_construction.canonicalize import canonicalize_selected_pairs
@@ -652,8 +653,17 @@ def _stage_8(context: RunContext, work: Path) -> StageExecution:
         packet_destination=work / diagnostic_packet_relative,
         labels_destination=work / diagnostic_labels_relative,
     )
+    qa_dashboard_relative = "reports/human_qa_dashboard.html"
+    publish_human_qa_dashboard(
+        packet_paths={
+            "human_qa_blind": context.data / "human_qa_packet.jsonl",
+            "human_qa_diagnostic": work / diagnostic_packet_relative,
+        },
+        destination=work / qa_dashboard_relative,
+        evaluation_run_id=context.evaluation_run_id,
+    )
     return StageExecution(
-        (relative, diagnostic_packet_relative, diagnostic_labels_relative),
+        (relative, diagnostic_packet_relative, diagnostic_labels_relative, qa_dashboard_relative),
         {**counts, **diagnostic_counts},
     )
 

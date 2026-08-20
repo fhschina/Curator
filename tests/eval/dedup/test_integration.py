@@ -291,6 +291,14 @@ def test_fixture_pipeline_runs_all_ten_steps(tmp_path: Path, monkeypatch) -> Non
     diagnostic_labels = context.data / "human_qa_diagnostic_labels.csv"
     assert diagnostic_packet.is_file()
     assert diagnostic_labels.is_file()
+    qa_dashboard = context.reports / "human_qa_dashboard.html"
+    diagnostic_dashboard = context.reports / "human_qa_diagnostic_dashboard.html"
+    assert qa_dashboard.is_file()
+    assert not diagnostic_dashboard.exists()
+    dashboard = qa_dashboard.read_text()
+    assert "Human QA Review" in dashboard
+    assert "Blind sample" in dashboard
+    assert "Diagnostic set" in dashboard
     diagnostic_rows = [json.loads(line) for line in diagnostic_packet.read_text().splitlines()]
     assert len(diagnostic_rows) <= context.profile.qa_pair_budget
     assert all(set(row) == {"qa_pair_id", "judge_payload_hash", "visible_payload"} for row in diagnostic_rows)

@@ -85,6 +85,19 @@ For a full run, complete the frozen `data/human_qa_labels.csv` template outside 
 /raid/hfang/dedup_eval_env/bin/python -m eval.dedup qa-import --run-root <v0_run> --labels <completed_labels.csv>
 ```
 
+Step 8 also writes the self-contained reviewer interface `reports/human_qa_dashboard.html`. A selector switches between the
+blind sample and diagnostic set while keeping their progress and CSV exports separate. The dashboard is reviewer-blind: it
+includes the visible document payloads but omits Judge verdicts, payload hashes, SUT outcomes, and sampling strata. Reviews are
+saved in browser `localStorage`; export the complete labels CSV before moving browsers or clearing site data. Only
+`same_duplicate_group`, `a_can_replace_b`, and `b_can_replace_a` are required. The exported CSV also supports the three optional
+categorical fields, a JSON-array `reason_codes` column using the Judge schema's exact vocabulary, reviewer status, and notes.
+`qa-import` accepts this schema and remains backward compatible with the earlier template that omitted `reason_codes`.
+
+For a stable shared URL, `dashboard_server.py` discovers dashboards beneath the configured runs root. It only considers a Human
+QA dashboard after Step 8 has a complete stage marker, selects the artifact with the latest stage completion time, and falls
+back to an explicitly configured original file when no completed run contains one. The server reads run-scoped immutable
+artifacts directly; it does not copy, overwrite, or delete current or historical dashboards.
+
 ## Module and artifact map
 
 - `handoff/`: validates and wraps Steps 1–2 artifacts.
@@ -95,5 +108,7 @@ For a full run, complete the frozen `data/human_qa_labels.csv` template outside 
 - `report.py`: deterministic fact reporting and example selection, bounded DeepSeek recommendations, report publication,
   and the independent blind human-QA exchange.
 - `dashboard.py`: Pair Explorer data joins, bounded group context, static HTML rendering, and local human-review tooling.
+- `human_qa_dashboard.py`: reviewer-blind QA packet rendering, browser-local progress, and contract-compatible CSV export.
+- `dashboard_server.py`: stable internal URLs for Pair Explorer and the latest completed, immutable Human QA dashboard.
 
 Large generated data remains beneath the configured external run root. Derived automated and Human-QA reports are exported beneath `/home/nfs/hfang/dedup_eval/dedup_eval_runs/<evaluation_run_id>/v0_run/reports/` by default; `eval/dedup/docs/` is reserved for design documents, proposals, and templates rather than run-specific results. Imports are side-effect free.

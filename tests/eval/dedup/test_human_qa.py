@@ -24,12 +24,45 @@ import pyarrow.parquet as pq
 from eval.dedup.config import ProfileConfig
 from eval.dedup.contracts import stable_record_id
 from eval.dedup.report import (
-    HUMAN_FIELDS,
+    HUMAN_LABEL_FIELDS,
+    LEGACY_HUMAN_LABEL_FIELDS,
     export_human_qa,
     export_human_qa_diagnostic,
     import_human_qa,
     publish_human_qa_report,
 )
+
+
+def test_human_qa_import_accepts_the_legacy_reasonless_schema(tmp_path: Path) -> None:
+    packet_path = tmp_path / "packet.jsonl"
+    packet_path.write_text(json.dumps({"qa_pair_id": "qa-1"}) + "\n")
+    labels_path = tmp_path / "legacy.csv"
+    with labels_path.open("w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=LEGACY_HUMAN_LABEL_FIELDS)
+        writer.writeheader()
+        writer.writerow(
+            {
+                "qa_pair_id": "qa-1",
+                "same_duplicate_group": "YES",
+                "a_can_replace_b": "YES",
+                "b_can_replace_a": "YES",
+                "relation_type": "EXACT",
+                "material_difference": "NONE",
+                "fuzzy_scope": "IN_SCOPE",
+                "reviewer_status": "LABELED",
+                "notes": "",
+            }
+        )
+
+    destination = tmp_path / "imported.csv"
+    assert import_human_qa(packet_path=packet_path, labels_path=labels_path, destination=destination) == {
+        "qa_labels": 1,
+        "ambiguous": 0,
+    }
+    with destination.open(newline="") as file:
+        imported = next(csv.DictReader(file))
+    assert tuple(imported) == HUMAN_LABEL_FIELDS
+    assert imported["reason_codes"] == ""
 
 
 def test_full_human_qa_freezes_exact_100_50_50_and_imports(tmp_path: Path) -> None:
@@ -93,9 +126,10 @@ def test_full_human_qa_freezes_exact_100_50_50_and_imports(tmp_path: Path) -> No
                 "same_duplicate_group": "NO",
                 "a_can_replace_b": "NO",
                 "b_can_replace_a": "NO",
-                "relation_type": "UNRELATED",
-                "material_difference": "MAJOR",
-                "fuzzy_scope": "OUT_OF_SCOPE",
+                "relation_type": "",
+                "material_difference": "",
+                "fuzzy_scope": "",
+                "reason_codes": '["TOPIC_ONLY"]',
                 "reviewer_status": "LABELED",
                 "notes": "",
             }
@@ -103,7 +137,7 @@ def test_full_human_qa_freezes_exact_100_50_50_and_imports(tmp_path: Path) -> No
     with labels_path.open("w", newline="") as file:
         writer = csv.DictWriter(
             file,
-            fieldnames=["qa_pair_id", *HUMAN_FIELDS, "reviewer_status", "notes"],
+            fieldnames=HUMAN_LABEL_FIELDS,
         )
         writer.writeheader()
         writer.writerows(rows)
@@ -114,6 +148,12 @@ def test_full_human_qa_freezes_exact_100_50_50_and_imports(tmp_path: Path) -> No
         destination=imported_labels_path,
     )
     assert imported == {"qa_labels": 200, "ambiguous": 0}
+    with imported_labels_path.open(newline="") as file:
+        imported_rows = list(csv.DictReader(file))
+    assert imported_rows[0]["reason_codes"] == '["TOPIC_ONLY"]'
+    assert imported_rows[0]["relation_type"] == ""
+    assert imported_rows[0]["material_difference"] == ""
+    assert imported_rows[0]["fuzzy_scope"] == ""
 
     judge_results_path = tmp_path / "judge_results.jsonl"
     judge_results_path.write_text(
@@ -234,4 +274,5 @@ def test_diagnostic_human_qa_balances_disagreements_and_excludes_blind_sample(tm
     with labels_path.open(newline="") as file:
         labels = list(csv.DictReader(file))
     assert len(labels) == 200
+    assert tuple(labels[0]) == HUMAN_LABEL_FIELDS
     assert {row["reviewer_status"] for row in labels} == {"PENDING"}

@@ -30,7 +30,14 @@ from typing import Any
 
 from eval.dedup.analysis.metrics import wilson_interval
 from eval.dedup.config import JudgeConfig, ProfileConfig
-from eval.dedup.contracts import DuplicateAnswer, FuzzyScope, MaterialDifference, RelationType, stable_record_id
+from eval.dedup.contracts import (
+    REASON_CODES,
+    DuplicateAnswer,
+    FuzzyScope,
+    MaterialDifference,
+    RelationType,
+    stable_record_id,
+)
 from eval.dedup.dashboard import (
     PAIR_EXPLORER_VERSION,
     attach_group_context,
@@ -59,6 +66,10 @@ HUMAN_FIELDS = (
     "material_difference",
     "fuzzy_scope",
 )
+HUMAN_REQUIRED_FIELDS = HUMAN_FIELDS[:3]
+HUMAN_OPTIONAL_FIELDS = HUMAN_FIELDS[3:]
+HUMAN_LABEL_FIELDS = ("qa_pair_id", *HUMAN_FIELDS, "reason_codes", "reviewer_status", "notes")
+LEGACY_HUMAN_LABEL_FIELDS = ("qa_pair_id", *HUMAN_FIELDS, "reviewer_status", "notes")
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -99,8 +110,7 @@ def _write_human_qa_export(
     )
     labels_destination.parent.mkdir(parents=True, exist_ok=True)
     with labels_destination.open("x", encoding="utf-8", newline="") as file:
-        fields = ["qa_pair_id", *HUMAN_FIELDS, "reviewer_status", "notes"]
-        writer = csv.DictWriter(file, fieldnames=fields)
+        writer = csv.DictWriter(file, fieldnames=HUMAN_LABEL_FIELDS)
         writer.writeheader()
         for row in packet_rows:
             writer.writerow({"qa_pair_id": row["qa_pair_id"], "reviewer_status": "PENDING"})
@@ -286,10 +296,13 @@ def export_human_qa_diagnostic(
 def import_human_qa(*, packet_path: Path, labels_path: Path, destination: Path) -> dict[str, int]:
     packet_ids = {row["qa_pair_id"] for row in _read_jsonl(packet_path)}
     require(packet_ids, "QA_PACKET_EMPTY", "frozen QA packet is empty")
-    expected_fields = ["qa_pair_id", *HUMAN_FIELDS, "reviewer_status", "notes"]
     with labels_path.open("r", encoding="utf-8", newline="") as file:
         reader = csv.DictReader(file)
-        require(reader.fieldnames == expected_fields, "QA_SCHEMA_MISMATCH", "human label CSV fields or order differ")
+        require(
+            tuple(reader.fieldnames or ()) in {HUMAN_LABEL_FIELDS, LEGACY_HUMAN_LABEL_FIELDS},
+            "QA_SCHEMA_MISMATCH",
+            "human label CSV fields or order differ",
+        )
         rows = list(reader)
     require(len(rows) == len(packet_ids), "QA_ROW_COUNT_MISMATCH", "human labels must contain one row per QA pair")
     require(
@@ -306,14 +319,39 @@ def import_human_qa(*, packet_path: Path, labels_path: Path, destination: Path) 
         "fuzzy_scope": set(FuzzyScope) | {"AMBIGUOUS"},
     }
     for row in rows:
+        row.setdefault("reason_codes", "")
         require(
             row["reviewer_status"] in {"LABELED", "AMBIGUOUS"}, "QA_LABEL_INCOMPLETE", "reviewer status is incomplete"
         )
-        for field in HUMAN_FIELDS:
+        for field in HUMAN_REQUIRED_FIELDS:
             require(row[field] in allowed[field], "QA_LABEL_INVALID", "human label value is invalid", field=field)
+        for field in HUMAN_OPTIONAL_FIELDS:
+            require(
+                row[field] == "" or row[field] in allowed[field],
+                "QA_LABEL_INVALID",
+                "optional human label value is invalid",
+                field=field,
+            )
+        try:
+            reasons = json.loads(row["reason_codes"]) if row["reason_codes"] else []
+        except json.JSONDecodeError as exc:
+            raise DedupEvaluationError(
+                "QA_LABEL_INVALID",
+                "human reason_codes must be a JSON array",
+                field="reason_codes",
+            ) from exc
+        require(
+            isinstance(reasons, list)
+            and all(isinstance(reason, str) and reason in REASON_CODES for reason in reasons)
+            and len(reasons) == len(set(reasons)),
+            "QA_LABEL_INVALID",
+            "human reason_codes contains an invalid or duplicate code",
+            field="reason_codes",
+        )
+        row["reason_codes"] = json.dumps(reasons, ensure_ascii=True, separators=(",", ":")) if reasons else ""
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("x", encoding="utf-8", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=rows[0].keys())
+        writer = csv.DictWriter(file, fieldnames=HUMAN_LABEL_FIELDS)
         writer.writeheader()
         writer.writerows(rows)
     return {"qa_labels": len(rows), "ambiguous": sum(row["reviewer_status"] == "AMBIGUOUS" for row in rows)}
@@ -1666,7 +1704,7 @@ def build_human_qa_metrics(
         pairs = [
             (human[field], judge_by_qa[qa_id][field])
             for qa_id, human in human_labels.items()
-            if human[field] != "AMBIGUOUS" and qa_id in judge_by_qa
+            if human[field] not in {"", "AMBIGUOUS"} and qa_id in judge_by_qa
         ]
         fields[field] = _field_agreement(pairs, field_labels[field])
     return {
