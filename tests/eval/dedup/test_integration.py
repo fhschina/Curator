@@ -287,6 +287,13 @@ def test_fixture_pipeline_runs_all_ten_steps(tmp_path: Path, monkeypatch) -> Non
     assert all(
         row["retriever_category"] in {"lexical_only", "semantic_only", "both_or_overlap"} for row in cross_comparisons
     )
+    diagnostic_packet = context.data / "human_qa_diagnostic_packet.jsonl"
+    diagnostic_labels = context.data / "human_qa_diagnostic_labels.csv"
+    assert diagnostic_packet.is_file()
+    assert diagnostic_labels.is_file()
+    diagnostic_rows = [json.loads(line) for line in diagnostic_packet.read_text().splitlines()]
+    assert len(diagnostic_rows) <= context.profile.qa_pair_budget
+    assert all(set(row) == {"qa_pair_id", "judge_payload_hash", "visible_payload"} for row in diagnostic_rows)
     report = (context.reports / "final_report.md").read_text()
     assert "NON-V0 SMOKE" in report
     assert "not corpus recall" in report

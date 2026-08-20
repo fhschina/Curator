@@ -68,6 +68,45 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
         return [json.loads(line) for line in file if line.strip()]
 
 
+def _write_human_qa_export(
+    *,
+    selected_pair_ids: list[str],
+    payloads: dict[str, dict[str, Any]],
+    qa_seed: int,
+    id_namespace: str,
+    packet_destination: Path,
+    labels_destination: Path,
+) -> int:
+    packet_rows = []
+    for pair_id in selected_pair_ids:
+        require(
+            pair_id in payloads,
+            "QA_PAYLOAD_MISSING",
+            "selected QA pair has no Judge-visible payload",
+            canonical_pair_id=pair_id,
+        )
+        payload = payloads[pair_id]
+        packet_rows.append(
+            {
+                "qa_pair_id": stable_record_id(id_namespace, qa_seed, pair_id),
+                "judge_payload_hash": payload["judge_payload_hash"],
+                "visible_payload": payload["payload"],
+            }
+        )
+    write_text_atomic(
+        packet_destination,
+        "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in packet_rows),
+    )
+    labels_destination.parent.mkdir(parents=True, exist_ok=True)
+    with labels_destination.open("x", encoding="utf-8", newline="") as file:
+        fields = ["qa_pair_id", *HUMAN_FIELDS, "reviewer_status", "notes"]
+        writer = csv.DictWriter(file, fieldnames=fields)
+        writer.writeheader()
+        for row in packet_rows:
+            writer.writerow({"qa_pair_id": row["qa_pair_id"], "reviewer_status": "PENDING"})
+    return len(packet_rows)
+
+
 def export_human_qa(
     *,
     profile: ProfileConfig,
@@ -142,28 +181,106 @@ def export_human_qa(
         "QA_SAMPLE_INCOMPLETE",
         "QA sample could not be filled",
     )
-    packet_rows = []
-    for pair_id in selected:
-        payload = payloads[pair_id]
-        packet_rows.append(
-            {
-                "qa_pair_id": stable_record_id("human-qa-v1", qa_seed, pair_id),
-                "judge_payload_hash": payload["judge_payload_hash"],
-                "visible_payload": payload["payload"],
-            }
-        )
-    write_text_atomic(
-        packet_destination,
-        "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in packet_rows),
+    qa_pairs = _write_human_qa_export(
+        selected_pair_ids=selected,
+        payloads=payloads,
+        qa_seed=qa_seed,
+        id_namespace="human-qa-v1",
+        packet_destination=packet_destination,
+        labels_destination=labels_destination,
     )
-    labels_destination.parent.mkdir(parents=True, exist_ok=True)
-    with labels_destination.open("x", encoding="utf-8", newline="") as file:
-        fields = ["qa_pair_id", *HUMAN_FIELDS, "reviewer_status", "notes"]
-        writer = csv.DictWriter(file, fieldnames=fields)
-        writer.writeheader()
-        for row in packet_rows:
-            writer.writerow({"qa_pair_id": row["qa_pair_id"], "reviewer_status": "PENDING"})
-    return {"qa_pairs": len(packet_rows)}
+    return {"qa_pairs": qa_pairs}
+
+
+def export_human_qa_diagnostic(
+    *,
+    profile: ProfileConfig,
+    qa_seed: int,
+    payloads_path: Path,
+    comparisons_path: Path,
+    blind_packet_path: Path,
+    packet_destination: Path,
+    labels_destination: Path,
+) -> dict[str, int]:
+    """Freeze a reviewer-blind sample enriched for SUT/Judge disagreements."""
+
+    try:
+        import numpy as np
+        import pyarrow.parquet as pq
+    except ImportError as exc:
+        msg = "numpy and pyarrow are required for diagnostic QA export"
+        raise RuntimeError(msg) from exc
+    payloads = {row["canonical_pair_id"]: row for row in _read_jsonl(payloads_path)}
+    comparisons = pq.read_table(
+        comparisons_path,
+        columns=[
+            "canonical_pair_id",
+            "judge_payload_hash",
+            "judge_status",
+            "has_track_5a",
+            "has_track_5b",
+            "removal_outcome",
+            "cross_group_outcome",
+        ],
+    ).to_pylist()
+    blind_hashes = {row["judge_payload_hash"] for row in _read_jsonl(blind_packet_path)}
+    disagreements = [
+        row
+        for row in comparisons
+        if row["judge_status"] == "valid"
+        and (row["removal_outcome"] == "wrong_removal" or row["cross_group_outcome"] == "discovered_candidate_fn")
+    ]
+    eligible = [row for row in disagreements if row["judge_payload_hash"] not in blind_hashes]
+    wrong_removal_pool = sorted(
+        {
+            row["canonical_pair_id"]
+            for row in eligible
+            if row["has_track_5a"] and row["removal_outcome"] == "wrong_removal"
+        }
+    )
+    wrong_removal_ids = set(wrong_removal_pool)
+    cross_group_pool = sorted(
+        {
+            row["canonical_pair_id"]
+            for row in eligible
+            if row["has_track_5b"]
+            and row["cross_group_outcome"] == "discovered_candidate_fn"
+            and row["canonical_pair_id"] not in wrong_removal_ids
+        }
+    )
+    target_size = min(profile.qa_pair_budget, len(wrong_removal_pool) + len(cross_group_pool))
+    rng = np.random.default_rng(qa_seed)
+
+    def sample(pool: list[str], size: int) -> list[str]:
+        if not pool or size == 0:
+            return []
+        return rng.choice(pool, size=min(size, len(pool)), replace=False).tolist()
+
+    wrong_removal_target = min(len(wrong_removal_pool), target_size // 2)
+    selected_wrong_removals = sample(wrong_removal_pool, wrong_removal_target)
+    cross_group_target = min(len(cross_group_pool), target_size - len(selected_wrong_removals))
+    selected_cross_group = sample(cross_group_pool, cross_group_target)
+    selected = selected_wrong_removals + selected_cross_group
+    if len(selected) < target_size:
+        selected_set = set(selected)
+        remaining = [pair_id for pair_id in [*wrong_removal_pool, *cross_group_pool] if pair_id not in selected_set]
+        selected += sample(remaining, target_size - len(selected))
+    selected_wrong_removal_count = sum(pair_id in wrong_removal_ids for pair_id in selected)
+    qa_pairs = _write_human_qa_export(
+        selected_pair_ids=selected,
+        payloads=payloads,
+        qa_seed=qa_seed,
+        id_namespace="human-qa-diagnostic-v1",
+        packet_destination=packet_destination,
+        labels_destination=labels_destination,
+    )
+    return {
+        "diagnostic_qa_pairs": qa_pairs,
+        "diagnostic_wrong_removals": selected_wrong_removal_count,
+        "diagnostic_cross_group_duplicates": qa_pairs - selected_wrong_removal_count,
+        "diagnostic_disagreements_available": len(disagreements),
+        "diagnostic_blind_overlap_excluded": len(disagreements) - len(eligible),
+    }
 
 
 def import_human_qa(*, packet_path: Path, labels_path: Path, destination: Path) -> dict[str, int]:
@@ -1015,6 +1132,7 @@ def _render_deterministic_report(
             "precision, recall, or F1."
         ),
         "Track 5a and Track 5b have different sampling frames and are never pooled into one confusion matrix.",
+        "The disagreement-enriched human QA diagnostic packet is not a prevalence sample and is never pooled with the blind QA packet.",
         (
             "Upstream provenance is conditionally reproducible because resolved config and several retrieval attestations "
             "were not delivered."
@@ -1083,6 +1201,11 @@ corpus recall.
 {headline}
 
 Human QA is an independent double-check and does not block, replace, calibrate, or rewrite these automated metrics.
+The exports include a Judge-independent blind packet of {markers[5]["counts"]["qa_pairs"]:,} pairs and a separate
+disagreement-enriched diagnostic packet of {markers[7]["counts"].get("diagnostic_qa_pairs", 0):,} pairs. Both expose
+only the Judge-visible document payload to reviewers. The diagnostic packet excludes pairs already present in the
+blind packet and must not be used to estimate overall prevalence or pooled with the blind packet for unweighted
+accuracy metrics.
 
 The [interactive Pair Explorer]({dashboard_name}) contains a filterable review queue of wrong removals, discovered
 cross-group positives, unresolved/errors, and report control examples. It uses Judge-visible excerpts and evidence;

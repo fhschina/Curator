@@ -26,6 +26,7 @@ from eval.dedup.contracts import stable_record_id
 from eval.dedup.report import (
     HUMAN_FIELDS,
     export_human_qa,
+    export_human_qa_diagnostic,
     import_human_qa,
     publish_human_qa_report,
 )
@@ -149,3 +150,88 @@ def test_full_human_qa_freezes_exact_100_50_50_and_imports(tmp_path: Path) -> No
     report = report_path.read_text()
     assert "Human QA Double-check" in report
     assert "Human / Judge" in report
+
+
+def test_diagnostic_human_qa_balances_disagreements_and_excludes_blind_sample(tmp_path: Path) -> None:
+    qa_seed = 26081204
+    pair_ids = [f"pair-{index:03d}" for index in range(240)]
+    payloads_path = tmp_path / "payloads.jsonl"
+    payloads_path.write_text(
+        "".join(
+            json.dumps(
+                {
+                    "canonical_pair_id": pair_id,
+                    "judge_payload_hash": f"hash-{pair_id}",
+                    "payload": {"document_a": {"text": "a"}, "document_b": {"text": "b"}},
+                }
+            )
+            + "\n"
+            for pair_id in pair_ids
+        )
+    )
+    comparisons_path = tmp_path / "comparisons.parquet"
+    pq.write_table(
+        pa.Table.from_pylist(
+            [
+                {
+                    "canonical_pair_id": pair_id,
+                    "judge_payload_hash": f"hash-{pair_id}",
+                    "judge_status": "valid",
+                    "has_track_5a": index < 120,
+                    "has_track_5b": index >= 120,
+                    "removal_outcome": "wrong_removal" if index < 120 else None,
+                    "cross_group_outcome": "discovered_candidate_fn" if index >= 120 else None,
+                }
+                for index, pair_id in enumerate(pair_ids)
+            ]
+        ),
+        comparisons_path,
+    )
+    blind_pair_ids = [*pair_ids[:5], *pair_ids[120:125]]
+    blind_packet_path = tmp_path / "blind_packet.jsonl"
+    blind_packet_path.write_text(
+        "".join(
+            json.dumps({"qa_pair_id": pair_id, "judge_payload_hash": f"hash-{pair_id}"}) + "\n"
+            for pair_id in blind_pair_ids
+        )
+    )
+    profile = ProfileConfig(
+        name="full",
+        anchor_quotas={"singleton": 500, "size_2": 125, "size_3_5": 125, "size_6_20": 125, "size_21_plus": 125},
+        removal_pair_budget=10_000,
+        cross_group_pair_budget=10_000,
+        qa_pair_budget=200,
+        minimum_diff_budget=0,
+        formal_v0=True,
+    )
+    packet_path = tmp_path / "diagnostic_packet.jsonl"
+    labels_path = tmp_path / "diagnostic_labels.csv"
+    counts = export_human_qa_diagnostic(
+        profile=profile,
+        qa_seed=qa_seed,
+        payloads_path=payloads_path,
+        comparisons_path=comparisons_path,
+        blind_packet_path=blind_packet_path,
+        packet_destination=packet_path,
+        labels_destination=labels_path,
+    )
+
+    assert counts == {
+        "diagnostic_qa_pairs": 200,
+        "diagnostic_wrong_removals": 100,
+        "diagnostic_cross_group_duplicates": 100,
+        "diagnostic_disagreements_available": 240,
+        "diagnostic_blind_overlap_excluded": 10,
+    }
+    packet = [json.loads(line) for line in packet_path.read_text().splitlines()]
+    selected_hashes = {row["judge_payload_hash"] for row in packet}
+    assert len(packet) == len(selected_hashes) == 200
+    assert selected_hashes.isdisjoint({f"hash-{pair_id}" for pair_id in blind_pair_ids})
+    assert all(set(row) == {"qa_pair_id", "judge_payload_hash", "visible_payload"} for row in packet)
+    selected_indexes = {int(item.removeprefix("hash-pair-")) for item in selected_hashes}
+    assert sum(index < 120 for index in selected_indexes) == 100
+    assert sum(index >= 120 for index in selected_indexes) == 100
+    with labels_path.open(newline="") as file:
+        labels = list(csv.DictReader(file))
+    assert len(labels) == 200
+    assert {row["reviewer_status"] for row in labels} == {"PENDING"}

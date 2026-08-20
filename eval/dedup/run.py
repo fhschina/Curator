@@ -42,7 +42,12 @@ from eval.dedup.pair_construction.outcomes import build_document_outcomes
 from eval.dedup.pair_construction.removal_pairs import sample_removal_pairs
 from eval.dedup.pair_construction.retrieval.lexical import build_minhash_cache
 from eval.dedup.pair_construction.retrieval.selection import retrieve_and_select_cross_group_pairs
-from eval.dedup.report import export_human_qa, pair_explorer_destination, publish_report
+from eval.dedup.report import (
+    export_human_qa,
+    export_human_qa_diagnostic,
+    pair_explorer_destination,
+    publish_report,
+)
 from eval.dedup.validation import (
     read_json,
     require,
@@ -636,7 +641,21 @@ def _stage_8(context: RunContext, work: Path) -> StageExecution:
         judge_errors_path=context.logs / "judge_errors.jsonl",
         destination=work / relative,
     )
-    return StageExecution((relative,), counts)
+    diagnostic_packet_relative = "data/human_qa_diagnostic_packet.jsonl"
+    diagnostic_labels_relative = "data/human_qa_diagnostic_labels.csv"
+    diagnostic_counts = export_human_qa_diagnostic(
+        profile=context.profile,
+        qa_seed=context.config.seeds["qa_seed"],
+        payloads_path=context.data / "judge_payloads.jsonl",
+        comparisons_path=work / relative,
+        blind_packet_path=context.data / "human_qa_packet.jsonl",
+        packet_destination=work / diagnostic_packet_relative,
+        labels_destination=work / diagnostic_labels_relative,
+    )
+    return StageExecution(
+        (relative, diagnostic_packet_relative, diagnostic_labels_relative),
+        {**counts, **diagnostic_counts},
+    )
 
 
 def _stage_9(context: RunContext, work: Path) -> StageExecution:
