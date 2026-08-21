@@ -75,6 +75,12 @@ HUMAN_REQUIRED_FIELDS = HUMAN_FIELDS[:3]
 HUMAN_OPTIONAL_FIELDS = HUMAN_FIELDS[3:]
 HUMAN_LABEL_FIELDS = ("qa_pair_id", *HUMAN_FIELDS, "reason_codes", "reviewer_status", "notes")
 LEGACY_HUMAN_LABEL_FIELDS = ("qa_pair_id", *HUMAN_FIELDS, "reviewer_status", "notes")
+HUMAN_DOCUMENT_FIELDS = tuple(
+    f"document_{side}_{field}"
+    for side in ("a", "b")
+    for field in ("url", "crawl_timestamp", "language", "character_count", "text")
+)
+HUMAN_EXPORT_FIELDS = (*HUMAN_LABEL_FIELDS, *HUMAN_DOCUMENT_FIELDS)
 
 
 def _read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -304,11 +310,11 @@ def import_human_qa(*, packet_path: Path, labels_path: Path, destination: Path) 
     with labels_path.open("r", encoding="utf-8", newline="") as file:
         reader = csv.DictReader(file)
         require(
-            tuple(reader.fieldnames or ()) in {HUMAN_LABEL_FIELDS, LEGACY_HUMAN_LABEL_FIELDS},
+            tuple(reader.fieldnames or ()) in {HUMAN_LABEL_FIELDS, LEGACY_HUMAN_LABEL_FIELDS, HUMAN_EXPORT_FIELDS},
             "QA_SCHEMA_MISMATCH",
             "human label CSV fields or order differ",
         )
-        rows = list(reader)
+        rows = [{field: row.get(field, "") for field in HUMAN_LABEL_FIELDS} for row in reader]
     require(len(rows) == len(packet_ids), "QA_ROW_COUNT_MISMATCH", "human labels must contain one row per QA pair")
     require(
         {row["qa_pair_id"] for row in rows} == packet_ids,

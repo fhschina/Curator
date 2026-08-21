@@ -82,6 +82,14 @@ def test_dashboard_is_reviewer_blind_and_exports_the_human_qa_contract(tmp_path:
     assert "reason_codes" in dashboard
     assert "BOILERPLATE" in dashboard
     assert "Export labels CSV" in dashboard
+    assert "Export packet JSON" in dashboard
+    assert "CSV_FIELDS=LABEL_FIELDS" in dashboard
+    assert 'schema_version:"dedup-human-qa-share-v1"' in dashboard
+    assert "review.reason_codes=review.reason_codes?JSON.parse(review.reason_codes):[]" in dashboard
+    assert "document_a:pair.document_a" in dashboard
+    assert "document_b:pair.document_b" in dashboard
+    assert "_review_packet.json" in dashboard
+    assert "meta.crawl_timestamp" in dashboard
     assert "secret-judge-hash" not in dashboard
     assert "fuzzy-dedup outcome" in dashboard
     assert "</script><script>alert(1)</script>" not in dashboard

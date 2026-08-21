@@ -24,6 +24,7 @@ import pyarrow.parquet as pq
 from eval.dedup.config import ProfileConfig
 from eval.dedup.contracts import stable_record_id
 from eval.dedup.report import (
+    HUMAN_EXPORT_FIELDS,
     HUMAN_LABEL_FIELDS,
     LEGACY_HUMAN_LABEL_FIELDS,
     export_human_qa,
@@ -31,6 +32,49 @@ from eval.dedup.report import (
     import_human_qa,
     publish_human_qa_report,
 )
+
+
+def test_human_qa_import_accepts_enriched_dashboard_export(tmp_path: Path) -> None:
+    packet_path = tmp_path / "packet.jsonl"
+    packet_path.write_text(json.dumps({"qa_pair_id": "qa-1"}) + "\n")
+    labels_path = tmp_path / "enriched.csv"
+    with labels_path.open("w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=HUMAN_EXPORT_FIELDS)
+        writer.writeheader()
+        writer.writerow(
+            {
+                "qa_pair_id": "qa-1",
+                "same_duplicate_group": "YES",
+                "a_can_replace_b": "YES",
+                "b_can_replace_a": "YES",
+                "relation_type": "EXACT",
+                "material_difference": "NONE",
+                "fuzzy_scope": "IN_SCOPE",
+                "reason_codes": "",
+                "reviewer_status": "LABELED",
+                "notes": "",
+                "document_a_url": "https://example.com/a",
+                "document_a_crawl_timestamp": "2026-08-21T00:00:00Z",
+                "document_a_language": "ENGLISH",
+                "document_a_character_count": "12",
+                "document_a_text": "Document A\ntext",
+                "document_b_url": "https://example.com/b",
+                "document_b_crawl_timestamp": "2026-08-21T00:00:01Z",
+                "document_b_language": "ENGLISH",
+                "document_b_character_count": "10",
+                "document_b_text": "Document B",
+            }
+        )
+
+    destination = tmp_path / "imported.csv"
+    assert import_human_qa(packet_path=packet_path, labels_path=labels_path, destination=destination) == {
+        "qa_labels": 1,
+        "ambiguous": 0,
+    }
+    with destination.open(newline="") as file:
+        imported = next(csv.DictReader(file))
+    assert tuple(imported) == HUMAN_LABEL_FIELDS
+    assert not set(HUMAN_EXPORT_FIELDS[len(HUMAN_LABEL_FIELDS) :]) & set(imported)
 
 
 def test_human_qa_import_accepts_the_legacy_reasonless_schema(tmp_path: Path) -> None:

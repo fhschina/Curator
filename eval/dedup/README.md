@@ -157,7 +157,8 @@ run artifacts.
 
 Step 8 writes the self-contained `reports/human_qa_dashboard.html`. Its selector switches between the blind sample and
 diagnostic set while keeping their progress and CSV exports separate. The reviewer-blind UI omits Judge decisions, payload
-hashes, SUT outcomes, and sampling strata.
+hashes, SUT outcomes, and sampling strata. The labels CSV stays compact and directly importable by `qa-import`; the packet JSON
+is the self-contained sharing artifact, with each review next to its two documents and their nested neutral metadata.
 
 Only three decisions are required:
 
