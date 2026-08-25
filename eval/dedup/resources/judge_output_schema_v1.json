@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "a_can_replace_b",
+    "b_can_replace_a",
+    "confidence",
+    "evidence",
+    "fuzzy_scope",
+    "material_difference",
+    "reason_codes",
+    "relation_type",
+    "same_duplicate_group"
+  ],
+  "properties": {
+    "same_duplicate_group": {
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO",
+        "UNRESOLVED"
+      ]
+    },
+    "a_can_replace_b": {
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO",
+        "UNRESOLVED"
+      ]
+    },
+    "b_can_replace_a": {
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO",
+        "UNRESOLVED"
+      ]
+    },
+    "relation_type": {
+      "type": "string",
+      "enum": [
+        "EXACT",
+        "CANONICAL_EXACT",
+        "TRANSLATION_EQUIVALENT",
+        "NEAR_SURFACE",
+        "SEMANTIC_PARAPHRASE",
+        "CONTAINMENT",
+        "VERSION_RELATED",
+        "TEMPLATE_SIBLINGS",
+        "RELATED_NON_DUPLICATE",
+        "UNRELATED",
+        "UNRESOLVED"
+      ]
+    },
+    "material_difference": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "MINOR",
+        "MAJOR",
+        "UNRESOLVED"
+      ]
+    },
+    "fuzzy_scope": {
+      "type": "string",
+      "enum": [
+        "IN_SCOPE",
+        "BORDERLINE",
+        "OUT_OF_SCOPE",
+        "UNRESOLVED"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "reason_codes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "material_differences",
+        "overlap_sources",
+        "primary_risk_factor",
+        "secondary_risk_factors",
+        "evidence_quality"
+      ],
+      "properties": {
+        "material_differences": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "CODE_LITERAL_CHANGE",
+              "CODE_OUTPUT_CHANGE",
+              "DATE_TIME_CHANGE",
+              "DOCUMENT_IDENTITY_CHANGE",
+              "ENTITY_SLOT_CHANGE",
+              "LEGAL_CONTEXT_CHANGE",
+              "MAIN_CONTENT_ADDITION_DELETION",
+              "NEGATION_CHANGE",
+              "NUMBER_CHANGE",
+              "OTHER_MATERIAL",
+              "PAGE_ROLE_CHANGE",
+              "PRODUCT_VERSION_CHANGE",
+              "RESULT_SET_CHANGE"
+            ]
+          }
+        },
+        "overlap_sources": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "COOKIE_CONSENT",
+              "ERROR_AUTH_PAYWALL",
+              "LEGAL_POLICY_TEMPLATE",
+              "LOCAL_PASSAGE",
+              "MAIN_CONTENT",
+              "PARSER_ARTIFACT",
+              "SHARED_PAGE_TEMPLATE",
+              "SITE_CHROME",
+              "TRANSLATED_MAIN_CONTENT"
+            ]
+          }
+        },
+        "primary_risk_factor": {
+          "type": "string",
+          "enum": [
+            "BOILERPLATE_DOMINATED_SIMILARITY",
+            "CONTAINMENT_ASYMMETRY",
+            "EXTRACTION_OR_PAYLOAD_LIMIT",
+            "IDENTIFIER_UNDERWEIGHTING",
+            "LEGAL_CONTEXT_COLLISION",
+            "LIST_SNAPSHOT_COLLISION",
+            "LONG_DOCUMENT_LOCAL_OVERLAP",
+            "NONE",
+            "OTHER",
+            "PAGE_ROLE_COLLISION",
+            "PARAPHRASE_EQUIVALENCE",
+            "PARSER_ARTIFACT_DOMINANCE",
+            "TEMPLATE_SLOT_COLLISION",
+            "TOPIC_ONLY_SIMILARITY",
+            "TRANSLATION_EQUIVALENCE"
+          ]
+        },
+        "secondary_risk_factors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "BOILERPLATE_DOMINATED_SIMILARITY",
+              "CONTAINMENT_ASYMMETRY",
+              "EXTRACTION_OR_PAYLOAD_LIMIT",
+              "IDENTIFIER_UNDERWEIGHTING",
+              "LEGAL_CONTEXT_COLLISION",
+              "LIST_SNAPSHOT_COLLISION",
+              "LONG_DOCUMENT_LOCAL_OVERLAP",
+              "OTHER",
+              "PAGE_ROLE_COLLISION",
+              "PARAPHRASE_EQUIVALENCE",
+              "PARSER_ARTIFACT_DOMINANCE",
+              "TEMPLATE_SLOT_COLLISION",
+              "TOPIC_ONLY_SIMILARITY",
+              "TRANSLATION_EQUIVALENCE"
+            ]
+          }
+        },
+        "evidence_quality": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "issues"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "INSUFFICIENT",
+                "SUFFICIENT"
+              ]
+            },
+            "issues": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "INSUFFICIENT_VISIBLE_EVIDENCE",
+                  "MAIN_CONTENT_MISSING",
+                  "PARSER_NOISE",
+                  "TRUNCATED_PAYLOAD"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "side",
+          "start_char",
+          "end_char",
+          "quote"
+        ],
+        "properties": {
+          "side": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B"
+            ]
+          },
+          "start_char": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end_char": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "quote": {
+            "type": "string",
+            "maxLength": 240
+          }
+        }
+      }
+    }
+  }
+}

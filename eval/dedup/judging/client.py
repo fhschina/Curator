@@ -24,7 +24,12 @@ from typing import Any, Protocol
 
 from eval.dedup.config import JudgeConfig
 from eval.dedup.contracts import DuplicateAnswer, FuzzyScope, MaterialDifference, RelationType
-from eval.dedup.judging.schema import judge_output_schema, validate_judge_output
+from eval.dedup.judging.schema import (
+    JUDGE_SCHEMA_V0,
+    JUDGE_SCHEMA_V1,
+    judge_output_schema,
+    validate_judge_output,
+)
 from eval.dedup.validation import DedupEvaluationError, require
 
 
@@ -47,15 +52,15 @@ class RateLimiter:
             time.sleep(delay)
 
 
-def _json_mode_system_prompt(system_prompt: str) -> str:
-    schema = json.dumps(judge_output_schema(), ensure_ascii=True, separators=(",", ":"), sort_keys=True)
+def _json_mode_system_prompt(system_prompt: str, schema_version: str = JUDGE_SCHEMA_V0) -> str:
+    schema = json.dumps(judge_output_schema(schema_version), ensure_ascii=True, separators=(",", ":"), sort_keys=True)
     return (
         f"{system_prompt}\n\nOUTPUT CONTRACT (non-negotiable): emit only one compact JSON object. "
         "Use exactly these keys once: same_duplicate_group, a_can_replace_b, b_can_replace_a, "
         "relation_type, material_difference, fuzzy_scope, confidence, reason_codes, evidence. "
         "Never emit prose, Markdown, duplicate keys, or text before or after the JSON object. "
-        "Use only enum values from the supplied schema. If uncertain, use UNRESOLVED values and "
-        "INSUFFICIENT_EVIDENCE. Set evidence to [] unless every quote and character offset is exact "
+        "Use only enum values from the supplied schema. Follow the prompt's UNRESOLVED contract. "
+        "Set evidence to [] unless every quote and character offset is exact "
         "in the visible text. Return exactly one JSON object satisfying this JSON Schema. "
         f"Use each required key exactly once:\n{schema}"
     )
@@ -64,10 +69,15 @@ def _json_mode_system_prompt(system_prompt: str) -> str:
 class StubJudgeClient:
     """Deterministic fixture backend that exercises the complete judge contract."""
 
+    def __init__(self, schema_version: str = JUDGE_SCHEMA_V0) -> None:
+        self.schema_version = schema_version
+
     def judge(self, *, system_prompt: str, payload: dict[str, Any]) -> str:
         del system_prompt
         text_a = payload["document_a"]["text"]
         text_b = payload["document_b"]["text"]
+        if self.schema_version == JUDGE_SCHEMA_V1:
+            return self._judge_v1(text_a, text_b)
         if text_a is None or text_b is None:
             answer = {
                 "same_duplicate_group": DuplicateAnswer.UNRESOLVED,
@@ -100,7 +110,93 @@ class StubJudgeClient:
                 "reason_codes": [] if same else ["INSERTION_DELETION"] if containment else ["TOPIC_ONLY"],
                 "evidence": [],
             }
-        validate_judge_output(answer)
+        validate_judge_output(answer, self.schema_version)
+        return json.dumps(answer, separators=(",", ":"))
+
+    def _judge_v1(self, text_a: str | None, text_b: str | None) -> str:
+        if text_a is None or text_b is None:
+            answer = {
+                "same_duplicate_group": "UNRESOLVED",
+                "a_can_replace_b": "UNRESOLVED",
+                "b_can_replace_a": "UNRESOLVED",
+                "relation_type": "UNRESOLVED",
+                "material_difference": "UNRESOLVED",
+                "fuzzy_scope": "UNRESOLVED",
+                "confidence": 0.2,
+                "reason_codes": {
+                    "material_differences": [],
+                    "overlap_sources": [],
+                    "primary_risk_factor": "EXTRACTION_OR_PAYLOAD_LIMIT",
+                    "secondary_risk_factors": [],
+                    "evidence_quality": {
+                        "status": "INSUFFICIENT",
+                        "issues": ["TRUNCATED_PAYLOAD", "INSUFFICIENT_VISIBLE_EVIDENCE"],
+                    },
+                },
+                "evidence": [],
+            }
+        else:
+            normalized_a = " ".join(text_a.split())
+            normalized_b = " ".join(text_b.split())
+            same = normalized_a == normalized_b
+            a_contains_b = normalized_b in normalized_a
+            b_contains_a = normalized_a in normalized_b
+            containment = not same and (a_contains_b or b_contains_a)
+            if same:
+                answer = {
+                    "same_duplicate_group": "YES",
+                    "a_can_replace_b": "YES",
+                    "b_can_replace_a": "YES",
+                    "relation_type": "EXACT",
+                    "material_difference": "NONE",
+                    "fuzzy_scope": "IN_SCOPE",
+                    "confidence": 0.99,
+                    "reason_codes": {
+                        "material_differences": [],
+                        "overlap_sources": ["MAIN_CONTENT"],
+                        "primary_risk_factor": "NONE",
+                        "secondary_risk_factors": [],
+                        "evidence_quality": {"status": "SUFFICIENT", "issues": []},
+                    },
+                    "evidence": [],
+                }
+            elif containment:
+                answer = {
+                    "same_duplicate_group": "YES",
+                    "a_can_replace_b": "YES" if a_contains_b else "NO",
+                    "b_can_replace_a": "YES" if b_contains_a else "NO",
+                    "relation_type": "CONTAINMENT",
+                    "material_difference": "MAJOR",
+                    "fuzzy_scope": "IN_SCOPE",
+                    "confidence": 0.99,
+                    "reason_codes": {
+                        "material_differences": ["MAIN_CONTENT_ADDITION_DELETION"],
+                        "overlap_sources": ["MAIN_CONTENT"],
+                        "primary_risk_factor": "CONTAINMENT_ASYMMETRY",
+                        "secondary_risk_factors": [],
+                        "evidence_quality": {"status": "SUFFICIENT", "issues": []},
+                    },
+                    "evidence": [],
+                }
+            else:
+                answer = {
+                    "same_duplicate_group": "NO",
+                    "a_can_replace_b": "NO",
+                    "b_can_replace_a": "NO",
+                    "relation_type": "UNRELATED",
+                    "material_difference": "MAJOR",
+                    "fuzzy_scope": "OUT_OF_SCOPE",
+                    "confidence": 0.99,
+                    "reason_codes": {
+                        "material_differences": ["OTHER_MATERIAL"],
+                        "overlap_sources": [],
+                        "primary_risk_factor": "NONE",
+                        "secondary_risk_factors": [],
+                        "evidence_quality": {"status": "SUFFICIENT", "issues": []},
+                    },
+                    "evidence": [],
+                }
+        validate_judge_output(answer, self.schema_version)
         return json.dumps(answer, separators=(",", ":"))
 
 
@@ -129,11 +225,15 @@ class NvidiaOpenAIJudgeClient:
         if self.config.structured_output_mode == "json_schema":
             response_format = {
                 "type": "json_schema",
-                "json_schema": {"name": "dedup_evaluation_v0", "strict": True, "schema": judge_output_schema()},
+                "json_schema": {
+                    "name": f"dedup_evaluation_{self.config.schema_version.rsplit('-', 1)[-1]}",
+                    "strict": True,
+                    "schema": judge_output_schema(self.config.schema_version),
+                },
             }
         elif self.config.structured_output_mode == "json_object_plus_local_schema":
             response_format = {"type": "json_object"}
-            request_system_prompt = _json_mode_system_prompt(system_prompt)
+            request_system_prompt = _json_mode_system_prompt(system_prompt, self.config.schema_version)
         else:
             raise DedupEvaluationError(
                 "UNSUPPORTED_STRUCTURED_OUTPUT_MODE",
@@ -160,7 +260,7 @@ class NvidiaOpenAIJudgeClient:
 
 def create_judge_client(config: JudgeConfig) -> JudgeClient:
     if config.backend == "stub":
-        return StubJudgeClient()
+        return StubJudgeClient(config.schema_version)
     if config.backend == "nvidia_openai":
         return NvidiaOpenAIJudgeClient(config)
     raise DedupEvaluationError("UNSUPPORTED_JUDGE_BACKEND", "judge backend is not supported", backend=config.backend)

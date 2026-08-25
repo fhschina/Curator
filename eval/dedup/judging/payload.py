@@ -23,8 +23,11 @@ from eval.dedup.config import JudgeConfig
 from eval.dedup.contracts import canonical_json_bytes
 from eval.dedup.handoff.corpus import TokenCounter
 from eval.dedup.judging.long_document import prepare_long_document_evidence
+from eval.dedup.judging.schema import JUDGE_SCHEMA_V0, JUDGE_SCHEMA_V1
 
 EVIDENCE_ALIGNMENT_VERSION = "visible-evidence-align-v1"
+VISIBLE_PAYLOAD_V0 = "judge-visible-payload-v1"
+VISIBLE_PAYLOAD_V1 = "judge-visible-payload-v2"
 
 
 def _neutral_metadata(document: dict[str, Any], text: str) -> dict[str, Any]:
@@ -49,22 +52,36 @@ def build_visible_payload(
         counter=counter,
         config=config,
     )
-    payload = {
-        "payload_schema_version": "judge-visible-payload-v1",
-        "document_a": {
-            "metadata": _neutral_metadata(document_a, document_a["text"]),
-            "text": evidence["text_a"],
-        },
-        "document_b": {
-            "metadata": _neutral_metadata(document_b, document_b["text"]),
-            "text": evidence["text_b"],
-        },
-        "long_document_evidence": {
-            "truncated": evidence["truncated"],
-            "token_counts": evidence["token_counts"],
-            "windows": evidence["windows"],
-        },
-    }
+    if config.schema_version == JUDGE_SCHEMA_V0:
+        payload = {
+            "payload_schema_version": VISIBLE_PAYLOAD_V0,
+            "document_a": {
+                "metadata": _neutral_metadata(document_a, document_a["text"]),
+                "text": evidence["text_a"],
+            },
+            "document_b": {
+                "metadata": _neutral_metadata(document_b, document_b["text"]),
+                "text": evidence["text_b"],
+            },
+            "long_document_evidence": {
+                "truncated": evidence["truncated"],
+                "token_counts": evidence["token_counts"],
+                "windows": evidence["windows"],
+            },
+        }
+    elif config.schema_version == JUDGE_SCHEMA_V1:
+        payload = {
+            "payload_schema_version": VISIBLE_PAYLOAD_V1,
+            "document_a": {"text": evidence["text_a"]},
+            "document_b": {"text": evidence["text_b"]},
+            "long_document_evidence": {
+                "truncated": evidence["truncated"],
+                "windows": evidence["windows"],
+            },
+        }
+    else:
+        msg = f"unsupported judge schema version: {config.schema_version}"
+        raise ValueError(msg)
     return payload, hashlib.sha256(canonical_json_bytes(payload)).hexdigest()
 
 
@@ -205,3 +222,14 @@ def assert_blind_payload(payload: dict[str, Any]) -> None:
                 visit(item)
 
     visit(payload)
+
+    if payload.get("payload_schema_version") == VISIBLE_PAYLOAD_V1:
+        for side in ("document_a", "document_b"):
+            document = payload.get(side)
+            if not isinstance(document, dict) or set(document) != {"text"}:
+                msg = f"{VISIBLE_PAYLOAD_V1} permits only text in {side}"
+                raise ValueError(msg)
+        long_evidence = payload.get("long_document_evidence")
+        if not isinstance(long_evidence, dict) or set(long_evidence) != {"truncated", "windows"}:
+            msg = f"{VISIBLE_PAYLOAD_V1} leaked non-evidence fields"
+            raise ValueError(msg)

@@ -77,7 +77,7 @@ def _judge_contract_digest(config: EvaluationConfig) -> str:
             "contract_version": JUDGE_CONTRACT_VERSION,
             "deterministic_evidence_alignment_version": EVIDENCE_ALIGNMENT_VERSION,
             "judge_config": asdict(config.judge),
-            "judge_output_schema": judge_output_schema(),
+            "judge_output_schema": judge_output_schema(config.judge.schema_version),
             "retry_feedback_version": RETRY_FEEDBACK_VERSION,
         }
     )
@@ -152,7 +152,7 @@ def _judge_one(
             raw = client.judge(system_prompt=request_prompt, payload=payload)
             provider_response_sha256 = hashlib.sha256(raw.encode("utf-8")).hexdigest()
             aligned, repair_events = align_evidence_offsets(parse_judge_json(raw), payload)
-            parsed = validate_judge_output(aligned)
+            parsed = validate_judge_output(aligned, config.judge.schema_version)
             validate_evidence_offsets(parsed, payload)
             return {
                 "record_type": "result",
@@ -243,7 +243,9 @@ def run_judging(
     )
     documents = load_documents_by_ids(corpus_manifest, endpoint_ids, columns=("text", "url", "timestamp", "language"))
     resource_root = Path(__file__).resolve().parents[1] / "resources"
-    prompt_path = resource_root / "judge_prompt_v0.txt"
+    prompt_suffix = config.judge.prompt_version.rsplit("-", 1)[-1]
+    prompt_path = resource_root / f"judge_prompt_{prompt_suffix}.txt"
+    require(prompt_path.is_file(), "JUDGE_PROMPT_NOT_FOUND", "configured judge prompt file is missing")
     prompt = prompt_path.read_text(encoding="utf-8")
     payload_rows = []
     prepared: dict[str, dict[str, Any]] = {}
@@ -300,6 +302,7 @@ def run_judging(
             "max_retries": config.judge.max_retries,
             "prompt_version": config.judge.prompt_version,
             "prompt_sha256": sha256_file(prompt_path),
+            "visible_payload_schema_version": payload_rows[0]["payload"]["payload_schema_version"],
             "judge_schema_version": config.judge.schema_version,
             "judge_order_seed": config.seeds["judge_order_seed"],
         },

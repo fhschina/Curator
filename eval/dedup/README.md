@@ -49,6 +49,24 @@ The relaxed lexical grid is frozen as `(5,1), (6,1), (7,1), (8,1)` after real-co
 
 JSON-mode results are parsed strictly and validated locally. Evidence quotes may be deterministically realigned only by exact search in judge-visible text; unalignable evidence is dropped without changing the decision fields. Results record the provider-response SHA-256 and versioned repair events. Validation failures receive up to the frozen retry budget with safe structured feedback, including missing and extra field names but never raw provider responses or document text.
 
+
+### Judge contract versions
+
+- `dedup-judge-v0` with `dedup-judge-output-v0` preserves the original prompt, flat reason-code array, and
+  `judge-visible-payload-v1` neutral document metadata.
+- `dedup-judge-v1` with `dedup-judge-output-v1` uses the polished multilingual policy, structured V2 reasons, stronger
+  cross-field consistency validation, and `judge-visible-payload-v2`. The v2 payload exposes only cleaned text plus explicit
+  long-document truncation windows; it excludes URL, hostname, timestamps, language tags, character/token counts, and all SUT
+  provenance.
+
+Select v1 by changing both version fields together:
+
+```json
+{"prompt_version":"dedup-judge-v1","schema_version":"dedup-judge-output-v1"}
+```
+
+The blind Judge records observable dedup risk factors, not hidden SUT error direction. Reporting may combine those factors with
+the SUT result later to derive overmerge or undermatch categories without leaking the SUT decision into the Judge prompt.
 ## How to run the evaluation
 
 Run every command below from the repository root.
@@ -158,7 +176,8 @@ run artifacts.
 Step 8 writes the self-contained `reports/human_qa_dashboard.html`. Its selector switches between the blind sample and
 diagnostic set while keeping their progress and CSV exports separate. The reviewer-blind UI omits Judge decisions, payload
 hashes, SUT outcomes, and sampling strata. The labels CSV stays compact and directly importable by `qa-import`; the packet JSON
-is the self-contained sharing artifact, with each review next to its two documents and their nested neutral metadata.
+is the self-contained sharing artifact, with each review next to its two Judge-visible documents. V0 packets include neutral
+metadata; v1 packets intentionally contain only the cleaned text and any explicit long-document evidence windows.
 
 Only three decisions are required:
 
@@ -166,8 +185,9 @@ Only three decisions are required:
 - `a_can_replace_b`
 - `b_can_replace_a`
 
-Relation type, material difference, fuzzy scope, reason codes, and notes are optional. Reviews live in browser `localStorage`,
-so export the CSV before changing browsers or clearing site data.
+Relation type, material difference, fuzzy scope, reason codes, and notes are optional. For CSV compatibility, optional Human QA
+reason labels retain the legacy flat taxonomy and are independent of the automated Judge's versioned reason structure. Reviews
+live in browser `localStorage`, so export the CSV before changing browsers or clearing site data.
 
 For a full run, export the completed **blind-sample** CSV and import it. `qa-import` validates IDs, fields, enums, and reason codes:
 

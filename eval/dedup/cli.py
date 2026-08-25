@@ -33,8 +33,13 @@ from eval.dedup.config import EvaluationConfig, load_config
 from eval.dedup.handoff.corpus import TokenCounter
 from eval.dedup.handoff.manifests import register_corpus_handoff, register_sut_handoff
 from eval.dedup.judging.client import create_judge_client
-from eval.dedup.judging.payload import align_evidence_offsets, validate_evidence_offsets
-from eval.dedup.judging.schema import parse_judge_json, validate_judge_output
+from eval.dedup.judging.payload import (
+    align_evidence_offsets,
+    assert_blind_payload,
+    build_visible_payload,
+    validate_evidence_offsets,
+)
+from eval.dedup.judging.schema import JUDGE_SCHEMA_V0, parse_judge_json, validate_judge_output
 from eval.dedup.report import (
     import_human_qa,
     pair_explorer_destination,
@@ -67,6 +72,7 @@ def _probe_judge(
     prompt: str,
     payload: dict[str, Any],
     max_retries: int,
+    schema_version: str = JUDGE_SCHEMA_V0,
 ) -> int:
     """Apply the frozen judge retry budget to the provider capability probe."""
 
@@ -76,7 +82,7 @@ def _probe_judge(
         try:
             raw = client.judge(system_prompt=request_prompt, payload=payload)
             aligned, _ = align_evidence_offsets(parse_judge_json(raw), payload)
-            result = validate_judge_output(aligned)
+            result = validate_judge_output(aligned, schema_version)
             validate_evidence_offsets(result, payload)
             return attempt + 1
         except Exception as exc:  # noqa: BLE001 - provider and schema failures share one retry policy
@@ -197,25 +203,25 @@ def preflight(config: EvaluationConfig, profile_name: str) -> dict[str, Any]:
             cache_free_bytes=cache_free,
         )
         client = create_judge_client(config.judge)
-        fixture_payload = {
-            "payload_schema_version": "judge-visible-payload-v1",
-            "document_a": {
-                "metadata": {"url": None, "crawl_timestamp": None, "language": "en", "character_count": 5},
-                "text": "alpha",
-            },
-            "document_b": {
-                "metadata": {"url": None, "crawl_timestamp": None, "language": "en", "character_count": 5},
-                "text": "alpha",
-            },
-            "long_document_evidence": {"truncated": False, "token_counts": {"A": 1, "B": 1}, "windows": []},
-        }
-        prompt = (Path(__file__).resolve().parent / "resources" / "judge_prompt_v0.txt").read_text(encoding="utf-8")
+        fixture_document = {"url": None, "timestamp": None, "language": "en", "text": "alpha"}
+        fixture_payload, _ = build_visible_payload(
+            fixture_document,
+            fixture_document,
+            counter=tokenizer,
+            config=config.judge,
+        )
+        assert_blind_payload(fixture_payload)
+        prompt_suffix = config.judge.prompt_version.rsplit("-", 1)[-1]
+        prompt_path = Path(__file__).resolve().parent / "resources" / f"judge_prompt_{prompt_suffix}.txt"
+        require(prompt_path.is_file(), "JUDGE_PROMPT_NOT_FOUND", "configured judge prompt file is missing")
+        prompt = prompt_path.read_text(encoding="utf-8")
         try:
             probe_attempts = _probe_judge(
                 client,
                 prompt=prompt,
                 payload=fixture_payload,
                 max_retries=config.judge.max_retries,
+                schema_version=config.judge.schema_version,
             )
         except Exception as primary_error:
             if config.judge.structured_output_mode != "json_schema":
@@ -233,6 +239,7 @@ def preflight(config: EvaluationConfig, profile_name: str) -> dict[str, Any]:
                     prompt=prompt,
                     payload=fixture_payload,
                     max_retries=config.judge.max_retries,
+                    schema_version=config.judge.schema_version,
                 )
             except Exception as fallback_error:
                 raise DedupEvaluationError(

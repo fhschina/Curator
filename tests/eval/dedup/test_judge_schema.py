@@ -15,11 +15,18 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
 from eval.dedup.judging.client import _json_mode_system_prompt
-from eval.dedup.judging.schema import judge_output_schema, validate_judge_output
+from eval.dedup.judging.schema import (
+    JUDGE_SCHEMA_V1,
+    judge_output_schema,
+    flatten_reason_codes,
+    unresolved_judge_output,
+    validate_judge_output,
+)
 from eval.dedup.validation import DedupEvaluationError
 
 
@@ -73,3 +80,78 @@ def test_json_mode_prompt_embeds_frozen_schema() -> None:
     prompt = _json_mode_system_prompt("base prompt")
 
     assert json.loads(prompt.split(marker, 1)[1]) == judge_output_schema()
+
+
+def valid_v1_output() -> dict:
+    return {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "YES",
+        "b_can_replace_a": "YES",
+        "relation_type": "EXACT",
+        "material_difference": "NONE",
+        "fuzzy_scope": "IN_SCOPE",
+        "confidence": 0.99,
+        "reason_codes": {
+            "material_differences": [],
+            "overlap_sources": ["MAIN_CONTENT"],
+            "primary_risk_factor": "NONE",
+            "secondary_risk_factors": [],
+            "evidence_quality": {"status": "SUFFICIENT", "issues": []},
+        },
+        "evidence": [],
+    }
+
+
+def test_v1_static_schema_matches_generated_contract() -> None:
+    path = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "judge_output_schema_v1.json"
+
+    assert json.loads(path.read_text()) == judge_output_schema(JUDGE_SCHEMA_V1)
+
+
+def test_v1_accepts_translation_equivalence() -> None:
+    value = valid_v1_output()
+    value["relation_type"] = "TRANSLATION_EQUIVALENT"
+    value["fuzzy_scope"] = "OUT_OF_SCOPE"
+    value["reason_codes"]["overlap_sources"] = ["TRANSLATED_MAIN_CONTENT"]
+    value["reason_codes"]["primary_risk_factor"] = "TRANSLATION_EQUIVALENCE"
+
+    assert validate_judge_output(value, JUDGE_SCHEMA_V1)["same_duplicate_group"] == "YES"
+
+
+def test_v1_rejects_duplicate_group_without_safe_replacement() -> None:
+    value = valid_v1_output()
+    value["a_can_replace_b"] = "NO"
+    value["b_can_replace_a"] = "NO"
+
+    with pytest.raises(DedupEvaluationError) as error:
+        validate_judge_output(value, JUDGE_SCHEMA_V1)
+
+    assert error.value.issue.code == "JUDGE_CONSISTENCY_INVALID"
+
+
+def test_v1_unresolved_contract_is_internally_consistent() -> None:
+    value = unresolved_judge_output(schema_version=JUDGE_SCHEMA_V1)
+
+    assert validate_judge_output(value, JUDGE_SCHEMA_V1) == value
+    assert value["reason_codes"]["evidence_quality"]["status"] == "INSUFFICIENT"
+
+
+def test_v1_json_mode_prompt_embeds_selected_schema() -> None:
+    marker = "Use each required key exactly once:\n"
+
+    prompt = _json_mode_system_prompt("base prompt", JUDGE_SCHEMA_V1)
+
+    assert json.loads(prompt.split(marker, 1)[1]) == judge_output_schema(JUDGE_SCHEMA_V1)
+
+
+def test_v1_reason_codes_flatten_to_namespaced_dashboard_labels() -> None:
+    reasons = valid_v1_output()["reason_codes"]
+    reasons["material_differences"] = ["NUMBER_CHANGE"]
+    reasons["primary_risk_factor"] = "IDENTIFIER_UNDERWEIGHTING"
+
+    assert flatten_reason_codes(reasons) == [
+        "MATERIAL_DELTA:NUMBER_CHANGE",
+        "OVERLAP_SOURCE:MAIN_CONTENT",
+        "PRIMARY_RISK:IDENTIFIER_UNDERWEIGHTING",
+        "EVIDENCE_STATUS:SUFFICIENT",
+    ]

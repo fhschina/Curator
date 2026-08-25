@@ -23,6 +23,7 @@ from pathlib import Path
 from statistics import median
 from typing import Any
 
+from eval.dedup.judging.schema import flatten_reason_codes
 from eval.dedup.validation import require
 
 PAIR_EXPLORER_VERSION = "dedup-pair-explorer-v3"
@@ -314,7 +315,7 @@ def build_pair_explorer_records(run_root: Path, rows: list[dict[str, Any]]) -> l
                 else "NOT_APPLICABLE"
             ),
             "confidence": result.get("confidence") if result else row.get("confidence"),
-            "reason_codes": list(result.get("reason_codes", [])),
+            "reason_codes": flatten_reason_codes(result.get("reason_codes", [])),
             "evidence": [],
             "judge_evidence_status": _evidence_status(result, judge_status=judge_status),
             "error_types": error_types,
@@ -542,7 +543,15 @@ def attach_group_context(
                 "value": (
                     "POSSIBLE"
                     if maximum_group_size >= 21
-                    and (not record["same_hostname"] or "BOILERPLATE" in record["reason_codes"])
+                    and (
+                        not record["same_hostname"]
+                        or any(
+                            code == "BOILERPLATE"
+                            or code == "PRIMARY_RISK:BOILERPLATE_DOMINATED_SIMILARITY"
+                            or code == "PRIMARY_RISK:TEMPLATE_SLOT_COLLISION"
+                            for code in record["reason_codes"]
+                        )
+                    )
                     else "NO_SIGNAL"
                 ),
                 "note": "Heuristic only; SUT candidate edges were not preserved.",

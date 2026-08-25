@@ -173,7 +173,18 @@ def _load_judge(value: dict[str, Any]) -> JudgeConfig:
     fields = set(JudgeConfig.__dataclass_fields__)
     assert_exact_keys(value, fields, context="judge")
     config = JudgeConfig(**value)
-    require(config.max_retries == 2, "INVALID_JUDGE_CONFIG", "V0 retry count must be exactly two")
+    supported_contracts = {
+        ("dedup-judge-v0", "dedup-judge-output-v0"),
+        ("dedup-judge-v1", "dedup-judge-output-v1"),
+    }
+    require(
+        (config.prompt_version, config.schema_version) in supported_contracts,
+        "INVALID_JUDGE_CONTRACT",
+        "judge prompt and output schema versions must be a supported matching pair",
+        prompt_version=config.prompt_version,
+        schema_version=config.schema_version,
+    )
+    require(config.max_retries == 2, "INVALID_JUDGE_CONFIG", "judge retry count must be exactly two")
     require(
         config.window_overlap_tokens < config.window_tokens, "INVALID_JUDGE_CONFIG", "window overlap must be smaller"
     )

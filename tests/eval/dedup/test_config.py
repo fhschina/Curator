@@ -75,3 +75,29 @@ def test_production_config_rejects_changed_frozen_seed(tmp_path: Path) -> None:
     with pytest.raises(DedupEvaluationError) as error:
         load_config(path)
     assert error.value.issue.code == "V0_SEED_MISMATCH"
+
+
+def test_config_rejects_mismatched_judge_prompt_and_schema(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["prompt_version"] = "dedup-judge-v1"
+    path = tmp_path / "mismatched-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    with pytest.raises(DedupEvaluationError) as error:
+        load_config(path)
+
+    assert error.value.issue.code == "INVALID_JUDGE_CONTRACT"
+
+def test_config_accepts_matching_v1_judge_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["prompt_version"] = "dedup-judge-v1"
+    value["judge"]["schema_version"] = "dedup-judge-output-v1"
+    path = tmp_path / "v1-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == "dedup-judge-v1"
+    assert config.judge.schema_version == "dedup-judge-output-v1"

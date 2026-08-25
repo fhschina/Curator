@@ -166,7 +166,7 @@ def _write_fixture_config(root: Path, handoff: Path, embedding_path: Path) -> Pa
             "max_visible_tokens": 128,
             "window_tokens": 32,
             "window_overlap_tokens": 4,
-            "prompt_version": "fixture-prompt",
+            "prompt_version": "dedup-judge-v0",
             "schema_version": "dedup-judge-output-v0",
         },
         "retrieval": {
