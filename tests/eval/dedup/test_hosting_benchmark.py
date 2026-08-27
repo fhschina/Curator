@@ -9,7 +9,11 @@ import urllib.request
 from collections import Counter
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
-from typing import Any, Self
+from types import SimpleNamespace
+from typing import TYPE_CHECKING, Any, Self
+
+if TYPE_CHECKING:
+    import pytest
 
 from eval.dedup.hosting_benchmark.artifacts import complete_marker, next_attempt_root
 from eval.dedup.hosting_benchmark.config import load_config
@@ -22,7 +26,7 @@ from eval.dedup.hosting_benchmark.relay import (
     canonical_request_hash,
 )
 from eval.dedup.hosting_benchmark.runner import _persist_idempotent_report
-from eval.dedup.hosting_benchmark.workload import allocate_blocks
+from eval.dedup.hosting_benchmark.workload import allocate_blocks, provision_model_checkpoint
 
 
 def _workload_rows() -> list[dict[str, Any]]:
@@ -134,6 +138,33 @@ def test_idempotent_report_ignores_only_declared_volatile_fields(tmp_path: Path)
         )
         == first
     )
+
+
+def test_model_provision_reuses_a_matching_marker(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    model_path = tmp_path / "model"
+    model_path.mkdir()
+    existing = {
+        "schema_version": "hosting-model-provision-v1",
+        "model_id": "model-id",
+        "revision": "revision",
+        "resolved_path": str(model_path),
+        "provisioned_at_utc": "first",
+    }
+    (model_path / ".hosting-benchmark-revision.json").write_text(
+        json.dumps(existing) + "\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr("huggingface_hub.snapshot_download", lambda **_kwargs: str(model_path))
+    config = SimpleNamespace(
+        model=SimpleNamespace(
+            local_model_path=model_path,
+            local_model_id="model-id",
+            local_model_revision="revision",
+        ),
+        payload=SimpleNamespace(tokenizer_cache_root=tmp_path / "cache"),
+    )
+
+    assert provision_model_checkpoint(config) == existing
 
 
 def test_endpoint_metrics_include_goodput_retries_and_token_rates(tmp_path: Path) -> None:

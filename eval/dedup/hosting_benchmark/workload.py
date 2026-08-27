@@ -22,6 +22,7 @@ from eval.dedup.handoff.corpus import TokenCounter, load_documents_by_ids
 from eval.dedup.judging.payload import assert_blind_payload, build_visible_payload
 from eval.dedup.validation import require, sha256_file, sha256_json, write_json_atomic, write_text_atomic
 
+from .artifacts import read_json
 from .config import HostingBenchmarkConfig
 
 TRACKS = ("5a", "5b")
@@ -187,7 +188,17 @@ def provision_model_checkpoint(config: HostingBenchmarkConfig) -> dict[str, Any]
         "resolved_path": str(Path(resolved_path).resolve()),
         "provisioned_at_utc": datetime.now(UTC).isoformat(),
     }
-    write_json_atomic(config.model.local_model_path / ".hosting-benchmark-revision.json", marker)
+    marker_path = config.model.local_model_path / ".hosting-benchmark-revision.json"
+    if marker_path.is_file():
+        existing = read_json(marker_path)
+        require(
+            {key: value for key, value in existing.items() if key != "provisioned_at_utc"}
+            == {key: value for key, value in marker.items() if key != "provisioned_at_utc"},
+            "HOSTING_MODEL_REVISION_MISMATCH",
+            "existing checkpoint provision marker differs from the frozen model",
+        )
+        return existing
+    write_json_atomic(marker_path, marker)
     return marker
 
 
