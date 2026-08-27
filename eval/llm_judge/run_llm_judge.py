@@ -254,28 +254,34 @@ def _build_language_filter_stage(
     ).with_(name="fasttext_language_filter")
 
 
-def build_config_builder(
+def build_config_builder(  # noqa: PLR0913
     config_path: str | Path,
     *,
     endpoint: str,
     models: list[dict[str, object]],
     judges: list[dict[str, object]],
+    provider_api_key: str = "unused",  # pragma: allowlist secret
+    inference_parameter_overrides: dict[str, dict[str, object]] | None = None,
 ) -> tuple[dd.DataDesignerConfigBuilder, list[dd.ModelProvider]]:
     """Build one NDD configuration for a selected group of judge columns."""
     config_path = Path(config_path)
     provider_name = "local-judge"
-    config_builder = dd.DataDesignerConfigBuilder(
-        model_configs=[
+    model_configs = []
+    for model in models:
+        alias = str(model["alias"])
+        inference_parameters = dict(model.get("inference_parameters", {}))
+        if inference_parameter_overrides and alias in inference_parameter_overrides:
+            inference_parameters.update(inference_parameter_overrides[alias])
+        model_configs.append(
             dd.ModelConfig(
-                alias=str(model["alias"]),
+                alias=alias,
                 model=str(model.get("served_model_name", model["model"])),
                 provider=provider_name,
                 skip_health_check=bool(model.get("skip_health_check", True)),
-                inference_parameters=dd.ChatCompletionInferenceParams(**model.get("inference_parameters", {})),
+                inference_parameters=dd.ChatCompletionInferenceParams(**inference_parameters),
             )
-            for model in models
-        ]
-    )
+        )
+    config_builder = dd.DataDesignerConfigBuilder(model_configs=model_configs)
 
     for judge in judges:
         judge_name = str(judge["name"])
@@ -305,7 +311,7 @@ def build_config_builder(
         dd.ModelProvider(
             name=provider_name,
             endpoint=endpoint,
-            api_key="unused",  # pragma: allowlist secret
+            api_key=provider_api_key,
         )
     ]
     return config_builder, model_providers
@@ -398,20 +404,18 @@ def build_pipeline(  # noqa: PLR0913
     )
 
 
-class LocalJudgeRuntime:
-    """Reusable Ray + Dynamo/NDD runtime for one judge configuration.
-
-    The CLI historically owned the full lifecycle. Keeping it here lets
-    callers run retry batches without reloading model weights while retaining
-    the command-line behavior.
-    """
+class JudgePipelineRuntime:
+    """Reusable Ray/Data Designer runtime targeting an OpenAI-compatible endpoint."""
 
     def __init__(  # noqa: PLR0913
         self,
         config_path: str | Path,
         *,
+        endpoint: str | None,
+        provider_api_key: str = "unused",  # pragma: allowlist secret
         execution_mode: Literal["single_stage", "multi_stage"] = "single_stage",
         model_overrides: dict[str, str] | None = None,
+        served_model_overrides: dict[str, str] | None = None,
         ray_temp_dir: str = "/tmp/ray",  # noqa: S108
         num_cpus: int | None = None,
         num_gpus: int | None = None,
@@ -419,12 +423,16 @@ class LocalJudgeRuntime:
         self.config_path = Path(config_path).resolve()
         _validate_ray_temp_dir(ray_temp_dir)
         self.execution_mode = execution_mode
+        self.provider_api_key = provider_api_key
+        self._endpoint = endpoint
         self.config = copy.deepcopy(_load_yaml(self.config_path))
         self.models: list[dict[str, object]] = self.config["models"]  # type: ignore[assignment]
         for model in self.models:
             alias = str(model["alias"])
             if model_overrides and alias in model_overrides:
                 model["model"] = model_overrides[alias]
+            if served_model_overrides and alias in served_model_overrides:
+                model["served_model_name"] = served_model_overrides[alias]
         self.execution: dict[str, object] = self.config["execution"]  # type: ignore[assignment]
         self.data_designer_run_config = _get_data_designer_run_config(self.execution)
         self.configured_stages: list[dict[str, object]] = self.execution["stages"]  # type: ignore[assignment]
@@ -440,33 +448,26 @@ class LocalJudgeRuntime:
             include_dashboard=False,
             ray_temp_dir=ray_temp_dir,
         )
-        self.inference_server: InferenceServer | None = None
 
     @property
     def endpoint(self) -> str:
-        if self.inference_server is None:
-            msg = "LocalJudgeRuntime must be started before it can run a pipeline."
+        if self._endpoint is None:
+            msg = "JudgePipelineRuntime requires an endpoint before it can run a pipeline."
             raise RuntimeError(msg)
-        return self.inference_server.endpoint
+        return self._endpoint
+
+    def set_endpoint(self, endpoint: str) -> None:
+        if not endpoint:
+            msg = "judge endpoint must be non-empty"
+            raise ValueError(msg)
+        self._endpoint = endpoint
 
     def start(self) -> Self:
         _ensure_pip_for_ray_uv_runtime()
         self.client.start()
-        try:
-            self.inference_server = _start_inference_server(
-                self.config,
-                self.models,
-                config_path=self.config_path,
-            )
-        except Exception:
-            self.client.stop()
-            raise
         return self
 
     def stop(self) -> None:
-        if self.inference_server is not None:
-            self.inference_server.stop()
-            self.inference_server = None
         self.client.stop()
 
     def __enter__(self) -> Self:
@@ -493,8 +494,9 @@ class LocalJudgeRuntime:
         fasttext_langid_model_path: str | None = None,
         min_langid_score: float = 0.3,
         language_text_field: str = "raw_text",
+        inference_parameter_overrides: dict[str, dict[str, object]] | None = None,
     ) -> list[Task] | None:
-        """Run one batch while reusing the already-loaded model server."""
+        """Run one batch through the configured endpoint without owning model deployment."""
 
         language_filter_stage = _build_language_filter_stage(
             language=language,
@@ -509,6 +511,8 @@ class LocalJudgeRuntime:
                 endpoint=self.endpoint,
                 models=self.models,
                 judges=judges,
+                provider_api_key=self.provider_api_key,
+                inference_parameter_overrides=inference_parameter_overrides,
             )
             judge_stages = [
                 (
@@ -529,6 +533,8 @@ class LocalJudgeRuntime:
                     endpoint=self.endpoint,
                     models=self.models,
                     judges=stage["judges"],
+                    provider_api_key=self.provider_api_key,
+                    inference_parameter_overrides=inference_parameter_overrides,
                 )
                 judge_stages.append(
                     (
@@ -551,6 +557,98 @@ class LocalJudgeRuntime:
             files_per_partition=files_per_partition,
         )
         return pipeline.run(executor=RayDataExecutor(), checkpoint_path=checkpoint_path)
+
+
+class ExternalJudgeRuntime(JudgePipelineRuntime):
+    """Ray/Data Designer runtime for an already-running external endpoint."""
+
+    def __init__(  # noqa: PLR0913
+        self,
+        config_path: str | Path,
+        *,
+        endpoint: str,
+        provider_api_key: str,
+        execution_mode: Literal["single_stage", "multi_stage"] = "single_stage",
+        model_overrides: dict[str, str] | None = None,
+        served_model_overrides: dict[str, str] | None = None,
+        ray_temp_dir: str = "/tmp/ray",  # noqa: S108
+        num_cpus: int | None = None,
+    ) -> None:
+        super().__init__(
+            config_path,
+            endpoint=endpoint,
+            provider_api_key=provider_api_key,
+            execution_mode=execution_mode,
+            model_overrides=model_overrides,
+            served_model_overrides=served_model_overrides,
+            ray_temp_dir=ray_temp_dir,
+            num_cpus=num_cpus,
+            num_gpus=0,
+        )
+
+
+class LocalJudgeRuntime(JudgePipelineRuntime):
+    """Reusable Ray + Dynamo/NDD runtime for one judge configuration.
+
+    The CLI historically owned the full lifecycle. Keeping it here lets
+    callers run retry batches without reloading model weights while retaining
+    the command-line behavior.
+    """
+
+    def __init__(  # noqa: PLR0913
+        self,
+        config_path: str | Path,
+        *,
+        execution_mode: Literal["single_stage", "multi_stage"] = "single_stage",
+        model_overrides: dict[str, str] | None = None,
+        served_model_overrides: dict[str, str] | None = None,
+        provider_endpoint: str | None = None,
+        provider_api_key: str = "unused",  # pragma: allowlist secret
+        ray_temp_dir: str = "/tmp/ray",  # noqa: S108
+        num_cpus: int | None = None,
+        num_gpus: int | None = None,
+    ) -> None:
+        super().__init__(
+            config_path,
+            endpoint=provider_endpoint,
+            provider_api_key=provider_api_key,
+            execution_mode=execution_mode,
+            model_overrides=model_overrides,
+            served_model_overrides=served_model_overrides,
+            ray_temp_dir=ray_temp_dir,
+            num_cpus=num_cpus,
+            num_gpus=num_gpus,
+        )
+        self._provider_endpoint_is_explicit = provider_endpoint is not None
+        self.inference_server: InferenceServer | None = None
+
+    @property
+    def inference_endpoint(self) -> str:
+        if self.inference_server is None:
+            msg = "LocalJudgeRuntime must be started before it can run a pipeline."
+            raise RuntimeError(msg)
+        return self.inference_server.endpoint
+
+    def start(self) -> Self:
+        super().start()
+        try:
+            self.inference_server = _start_inference_server(
+                self.config,
+                self.models,
+                config_path=self.config_path,
+            )
+        except Exception:
+            super().stop()
+            raise
+        if not self._provider_endpoint_is_explicit:
+            self.set_endpoint(self.inference_endpoint)
+        return self
+
+    def stop(self) -> None:
+        if self.inference_server is not None:
+            self.inference_server.stop()
+            self.inference_server = None
+        super().stop()
 
 
 def _parse_args() -> argparse.Namespace:

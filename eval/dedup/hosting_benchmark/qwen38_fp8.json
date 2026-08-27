@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "source_run_root": "/raid/hfang/dedup_eval_runs/dedup-full-20260813T220949Z-d4c37bb483/v0_run",
+  "runs_root": "/raid/hfang/ihb/runs",
+  "ray_temp_dir": "/raid/hfang/ihb/ray",
+  "checkpoint_root": "/raid/hfang/ihb/checkpoints",
+  "runner_config": "../resources/local_ndd/sarah_minhash_qwen.yaml",
+  "model": {
+    "logical_model": "Qwen/Qwen3.8-27B-FP8",
+    "local_model_id": "Qwen/Qwen3.8-27B-FP8",
+    "local_model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "local_model_path": "/raid/hfang/hf_cache/Qwen3.8-27B-FP8",
+    "hub_base_url": "https://inference-api.nvidia.com/v1",
+    "hub_model": "nvidia/qwen/qwen3.8-27b",
+    "api_key_env": "NVIDIA_API_KEY",
+    "max_model_len": 32768,
+    "max_output_tokens": 4096
+  },
+  "payload": {
+    "tokenizer_model_id": "Qwen/Qwen3.8-27B-FP8",
+    "tokenizer_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "tokenizer_cache_root": "/raid/hfang/dedup_eval_cache/huggingface",
+    "max_visible_tokens": 20000,
+    "window_tokens": 4096,
+    "window_overlap_tokens": 512
+  },
+  "workload": {
+    "seed": 26082701,
+    "concurrencies": [1, 2, 4, 8],
+    "repeats": 3,
+    "pairs_per_block": 500,
+    "warmup_pairs": 100
+  },
+  "generation": {
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "timeout_seconds": 600.0,
+    "max_retries": 2
+  }
+}
