@@ -68,6 +68,13 @@ with LocalJudgeRuntime(
 
 The existing `run_llm_judge.py` CLI arguments and single-run lifecycle remain compatible.
 
+`JudgePipelineRuntime` owns only Ray and the Data Designer pipeline for an OpenAI-compatible endpoint. `ExternalJudgeRuntime`
+is its zero-GPU convenience wrapper for an already-running service. `LocalJudgeRuntime` retains its original API and composes
+that endpoint-neutral pipeline with a Dynamo/vLLM `InferenceServer`. Callers may provide `provider_endpoint` to route the
+pipeline through an audited relay while the runtime still owns the local model server; `inference_endpoint` exposes the latter.
+This separation is used by the [Qwen hosting benchmark](../dedup/hosting_benchmark/README.md) so both endpoints receive the
+same Data Designer request path.
+
 Judge YAML may also set `execution.data_designer_run` with supported `data_designer.config.RunConfig` fields. The runner applies
 that configuration to every Data Designer stage and reapplies it after Ray deserialization; configs that omit the block keep
 Data Designer's defaults.
