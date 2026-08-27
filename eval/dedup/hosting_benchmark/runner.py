@@ -91,10 +91,11 @@ def static_preflight(run_root: str | Path) -> dict[str, Any]:
     require(host.split(".")[0] == "umb-b200-218", "HOSTING_WRONG_HOST", "benchmark is on the wrong host", host=host)
     expected_environment = Path("/raid/hfang/llm_judge_env_pr2324_latest")
     require(
-        expected_environment in Path(sys.executable).resolve().parents,
+        Path(sys.prefix).resolve() == expected_environment.resolve(),
         "HOSTING_ENVIRONMENT_MISMATCH",
         "benchmark must use the existing locked llm_judge environment",
         executable=sys.executable,
+        environment_prefix=sys.prefix,
     )
     for executable in ("etcd", "nats-server"):
         require(

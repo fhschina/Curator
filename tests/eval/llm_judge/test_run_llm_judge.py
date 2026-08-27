@@ -151,6 +151,7 @@ def test_endpoint_neutral_runtime_owns_ray_without_starting_a_model(
     monkeypatch.setattr(subject, "_load_yaml", lambda _path: config)
     monkeypatch.setattr(subject, "RayClient", FakeClient)
     monkeypatch.setattr(subject, "_ensure_pip_for_ray_uv_runtime", lambda: None)
+    monkeypatch.setattr(subject, "_validate_ray_temp_dir", lambda _path: None)
     runtime = subject.JudgePipelineRuntime(
         tmp_path / "judge.yaml",
         endpoint="http://relay.invalid/v1",
@@ -191,6 +192,7 @@ def test_local_runtime_can_route_pipeline_requests_through_an_explicit_relay(
     monkeypatch.setattr(subject, "_load_yaml", lambda _path: config)
     monkeypatch.setattr(subject, "RayClient", FakeClient)
     monkeypatch.setattr(subject, "_ensure_pip_for_ray_uv_runtime", lambda: None)
+    monkeypatch.setattr(subject, "_validate_ray_temp_dir", lambda _path: None)
     monkeypatch.setattr(subject, "_start_inference_server", lambda *_args, **_kwargs: FakeServer())
     runtime = subject.LocalJudgeRuntime(
         tmp_path / "judge.yaml",
