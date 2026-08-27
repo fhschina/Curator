@@ -129,6 +129,80 @@ def test_sarah_config_builds_with_data_designer_score_types() -> None:
     assert run_config.max_conversation_correction_steps == 2
 
 
+def test_endpoint_neutral_runtime_owns_ray_without_starting_a_model(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    lifecycle: list[str] = []
+    config = {
+        "models": [{"alias": "judge", "model": "logical-model"}],
+        "execution": {"stages": [{"name": "judge", "judges": []}]},
+    }
+
+    class FakeClient:
+        def __init__(self, **_kwargs: object) -> None:
+            pass
+
+        def start(self) -> None:
+            lifecycle.append("start")
+
+        def stop(self) -> None:
+            lifecycle.append("stop")
+
+    monkeypatch.setattr(subject, "_load_yaml", lambda _path: config)
+    monkeypatch.setattr(subject, "RayClient", FakeClient)
+    monkeypatch.setattr(subject, "_ensure_pip_for_ray_uv_runtime", lambda: None)
+    runtime = subject.JudgePipelineRuntime(
+        tmp_path / "judge.yaml",
+        endpoint="http://relay.invalid/v1",
+        provider_api_key="unused",  # pragma: allowlist secret
+        ray_temp_dir=str(tmp_path / "ray"),
+    )
+
+    with runtime:
+        assert runtime.endpoint == "http://relay.invalid/v1"
+
+    assert lifecycle == ["start", "stop"]
+
+
+def test_local_runtime_can_route_pipeline_requests_through_an_explicit_relay(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    config = {
+        "models": [{"alias": "judge", "model": "logical-model"}],
+        "execution": {"stages": [{"name": "judge", "judges": []}]},
+    }
+
+    class FakeClient:
+        def __init__(self, **_kwargs: object) -> None:
+            pass
+
+        def start(self) -> None:
+            pass
+
+        def stop(self) -> None:
+            pass
+
+    class FakeServer:
+        endpoint = "http://local-model.invalid/v1"
+
+        def stop(self) -> None:
+            pass
+
+    monkeypatch.setattr(subject, "_load_yaml", lambda _path: config)
+    monkeypatch.setattr(subject, "RayClient", FakeClient)
+    monkeypatch.setattr(subject, "_ensure_pip_for_ray_uv_runtime", lambda: None)
+    monkeypatch.setattr(subject, "_start_inference_server", lambda *_args, **_kwargs: FakeServer())
+    runtime = subject.LocalJudgeRuntime(
+        tmp_path / "judge.yaml",
+        provider_endpoint="http://relay.invalid/v1",
+        ray_temp_dir=str(tmp_path / "ray"),
+    )
+
+    with runtime:
+        assert runtime.endpoint == "http://relay.invalid/v1"
+        assert runtime.inference_endpoint == "http://local-model.invalid/v1"
+
+
 def test_data_designer_run_config_rejects_non_mapping() -> None:
     with pytest.raises(TypeError, match="data_designer_run must be a mapping"):
         subject._get_data_designer_run_config({"data_designer_run": []})
