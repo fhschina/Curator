@@ -38,8 +38,13 @@ immutable HTML file, so automatic updates do not overwrite historical results. T
 - `smoke`: all 10,008,061 handoff documents, 20 anchors, 50 removal decisions, up to 50 cross-group pairs, and at most 100 judge requests. Its report is explicitly non-V0.
 - `full`: 1,000 anchors, 10,000 removal decisions, up to 10,000 cross-group pairs, a 200-pair blind Human QA sample, and a separate 200-pair diagnostic set.
 
-The smoke config freezes `nvidia/deepseek-ai/deepseek-v4-flash` on `https://inference-api.nvidia.com/v1`. The full config freezes
-`nvidia/deepseek-ai/deepseek-v4-pro`, which is required for formal V0 run creation.
+The default smoke and full configs now use Sarah's MinHash/surface-overlap NDD Judge contract,
+`dedup-judge-sarah-minhash-v1`, with the local `Qwen/Qwen3.8-27B` model on one B200. Both Sarah-backed profiles are
+explicitly non-formal-V0.
+
+The original NVIDIA API setup is unchanged in
+`v0_config.legacy_nvidia.example.json` and `v0_config.legacy_nvidia.full.json`. The legacy full profile freezes
+`nvidia/deepseek-ai/deepseek-v4-pro` and remains the formal V0 configuration.
 
 The first V0 implementation deliberately uses the proposal's allowed path of skipping the optional minimum-diff challenge slice. The full 10,000 Step 5a budget is a uniform sample of actual keeper-to-removed decisions.
 
@@ -47,11 +52,26 @@ The first V0 implementation deliberately uses the proposal's allowed path of ski
 
 The relaxed lexical grid is frozen as `(5,1), (6,1), (7,1), (8,1)` after real-corpus calibration. The pilot still applies the proposal's hard rule: select a configuration with median cross-group candidates in `[20,50]` closest to 35, or fail. The per-anchor safety limit is 250,000 and every trial is written to `retrieval_config.json`.
 
-JSON-mode results are parsed strictly and validated locally. Evidence quotes may be deterministically realigned only by exact search in judge-visible text; unalignable evidence is dropped without changing the decision fields. Results record the provider-response SHA-256 and versioned repair events. Validation failures receive up to the frozen retry budget with safe structured feedback, including missing and extra field names but never raw provider responses or document text.
+All backends are validated locally. The legacy JSON-mode path retains its evidence realignment policy. The Sarah path runs one
+Ray/Dynamo/vLLM/Qwen service across the initial batch and at most two failed-subset retries. Missing rows, duplicate rows,
+malformed rubrics, invalid enums, and cross-field inconsistencies are retried with safe structured validation feedback only.
+Every pair ends with either a schema-valid result or an explicit terminal error; valid records are fsynced individually to the
+existing Judge cache so an interrupted run submits only pending pairs on resume.
 
+The tracked Sarah YAML disables Data Designer's batch-level early shutdown, sets deterministic conversation restarts to zero,
+and allows two parser-correction turns per row. This prevents a handful of malformed fenced-JSON replies from abandoning the
+rest of a blind batch; at temperature zero, correction feedback is useful while a fresh restart would repeat the same reply.
+The correction trace and NDD reasoning remain runtime-only and are never written to formal dedup artifacts.
+
+The Sarah YAML, Jinja prompts, and compatibility shim are content-hashed into the Judge contract, run manifest, and cache key.
+Changing any of them creates a different execution contract.
 
 ### Judge contract versions
 
+- `dedup-judge-sarah-minhash-v1` uses Sarah's NDD surface-overlap policy and `judge-visible-payload-v2`, but adapts the
+  output to the existing `dedup-judge-output-v0` artifact schema. NDD enums are uppercased, boolean reason rubrics become the
+  existing flat reason-code array, confidence uses a discrete rubric, and `evidence=[]`. NDD reasoning is not stored; only a
+  canonical response SHA-256 is retained.
 - `dedup-judge-v0` with `dedup-judge-output-v0` preserves the original prompt, flat reason-code array, and
   `judge-visible-payload-v1` neutral document metadata.
 - `dedup-judge-v1` with `dedup-judge-output-v1` uses the polished multilingual policy, structured V2 reasons, stronger
@@ -67,40 +87,59 @@ Select v1 by changing both version fields together:
 
 The blind Judge records observable dedup risk factors, not hidden SUT error direction. Reporting may combine those factors with
 the SUT result later to derive overmerge or undermatch categories without leaking the SUT decision into the Judge prompt.
+
 ## How to run the evaluation
 
 Run every command below from the repository root.
 
 ### 1. Prepare the environment
 
-You need Linux with CUDA 12 support, access to the frozen 10M corpus/SUT handoff, sufficient `/raid` space, and an NVIDIA API
-key for the live Judge backend.
+You need Linux with CUDA 12, access to the frozen 10M handoff, the local model at
+`/raid/hfang/hf_cache/Qwen3.8-27B`, and sufficient `/raid` space. The project requires uv `>=0.12.0`; the validated
+installation used uv 0.12.3 and Python 3.11.
 
-Create the CUDA dedup environment while keeping both the environment and cache on `/raid`:
+Keep the Sarah-capable environment separate from the existing dedup environment:
 
 ```bash
-export UV_PROJECT_ENVIRONMENT=/raid/hfang/dedup_eval_env
+export UV_PROJECT_ENVIRONMENT=/raid/hfang/llm_judge_env_pr2324_latest
 export UV_CACHE_DIR=/raid/hfang/dedup_eval_cache/uv
 export HF_HOME=/raid/hfang/dedup_eval_cache/huggingface
-/raid/hfang/dedup_eval_tools/uv sync --frozen --extra deduplication_cuda12
+export PATH=/raid/hfang/llm_judge_tools/bin:$PATH
+/raid/hfang/dedup_eval_tools/uv sync --locked --python 3.11 \
+  --extra deduplication_cuda12 --extra text_cuda12 --extra sdg_cuda12
 ```
+
+`text_cuda12` supplies the text/runner stack, `sdg_cuda12` supplies Data Designer and Dynamo, and
+`deduplication_cuda12` supplies the RAPIDS retrieval path. The lock fixes `data-designer==0.9.1` and applies
+`pyarrow>=19,<24` because RAPIDS/cuDF does not accept Data Designer's upstream `pyarrow>=24` requirement; the validated
+environment resolves PyArrow 23.0.1. Do not replace the locked install with an unconstrained `uv pip install`. Because uv
+environments normally omit pip but Ray 2.57's uv actor bootstrap needs it, the local Judge runner seeds pip from Python's
+bundled `ensurepip` wheel before Ray starts when necessary.
+
+The local YAML expects `etcd` and `nats-server` on `PATH`, writes Ray/uv/checkpoint state under
+`/raid/hfang/dedup_eval_cache`, allows 1800 seconds for runtime setup, and explicitly loads
+`local_ndd/cutlass_compat/sitecustomize.py` for the verified CUTLASS compatibility aliases. Gemma is not started by the
+default dedup backend. Keep `ray_temp_dir` short because Ray's dashboard Unix socket has a 107-byte path limit after its
+session suffix is added; `preflight` and `LocalJudgeRuntime` reject paths that exceed the conservative budget.
 
 ### 2. Configure data and credentials
 
-Review the absolute `handoff_root`, `output_root`, and `cache_root` paths before running:
+Review the absolute handoff, output, cache, model, Ray, and checkpoint paths before running:
 
-- Smoke: `eval/dedup/resources/v0_config.example.json`
-- Full: `eval/dedup/resources/v0_config.full.json`
+- Sarah/Qwen default smoke: `eval/dedup/resources/v0_config.example.json`
+- Sarah/Qwen default full: `eval/dedup/resources/v0_config.full.json`
+- Legacy NVIDIA smoke: `eval/dedup/resources/v0_config.legacy_nvidia.example.json`
+- Legacy NVIDIA formal V0 full: `eval/dedup/resources/v0_config.legacy_nvidia.full.json`
 
-Both configs contain machine-specific paths and may need local edits for another host.
-
-Put `NVIDIA_API_KEY` in a repository-root `.env` file for the live backend:
+Sarah's local backend needs no API key. Only the legacy NVIDIA configs read `NVIDIA_API_KEY`; place it in a repository-root
+`.env` or export it before invoking the CLI:
 
 ```dotenv
 NVIDIA_API_KEY=replace_with_your_nvidia_api_key
 ```
 
-The CLI does not override an already exported value. `.env` is Git-ignored, and the key is never written to run artifacts.
+
+The CLI does not override an exported value. `.env` is Git-ignored, and credentials are never written to run artifacts.
 
 ### 3. Run preflight, then the evaluation
 
@@ -109,11 +148,11 @@ Preflight validates the handoff, storage, tokenizer, GPU retrieval prerequisites
 Smoke:
 
 ```bash
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup preflight \
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup preflight \
   --config eval/dedup/resources/v0_config.example.json \
   --profile smoke
 
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup run \
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup run \
   --config eval/dedup/resources/v0_config.example.json \
   --profile smoke
 ```
@@ -121,35 +160,51 @@ Smoke:
 Full:
 
 ```bash
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup preflight \
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup preflight \
   --config eval/dedup/resources/v0_config.full.json \
   --profile full
 
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup run \
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup run \
   --config eval/dedup/resources/v0_config.full.json \
   --profile full
 ```
 
-If the provider rejects `json_schema` but passes JSON mode, preflight stops with `STRUCTURED_OUTPUT_FALLBACK_REQUIRED`; update the config to `json_object_plus_local_schema` and rerun so the fallback is explicit and frozen.
+Legacy formal V0:
+
+```bash
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup preflight \
+  --config eval/dedup/resources/v0_config.legacy_nvidia.full.json \
+  --profile full
+
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup run \
+  --config eval/dedup/resources/v0_config.legacy_nvidia.full.json \
+  --profile full
+```
+
+The `STRUCTURED_OUTPUT_FALLBACK_REQUIRED` preflight error and `json_object_plus_local_schema` fallback apply only to the
+legacy NVIDIA API backend.
 
 Each `run` command prints the immutable `run_root` used by all later commands.
 
 ### 4. Resume, inspect, and validate
 
 ```bash
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup resume --run-root /raid/hfang/dedup_eval_runs/<evaluation_run_id>/v0_run
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup status --run-root /raid/hfang/dedup_eval_runs/<evaluation_run_id>/v0_run
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup validate --run-root /raid/hfang/dedup_eval_runs/<evaluation_run_id>/v0_run
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup resume --run-root /raid/hfang/dedup_eval_runs/<evaluation_run_id>/v0_run
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup status --run-root /raid/hfang/dedup_eval_runs/<evaluation_run_id>/v0_run
+
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup validate --run-root /raid/hfang/dedup_eval_runs/<evaluation_run_id>/v0_run
 ```
 
-Run creation also freezes the `eval/dedup` source-tree digest. `run` and `resume` stop with `RESUME_SOURCE_MISMATCH` if the implementation changes, preventing mixed-code artifacts under one evaluation run ID.
+Run creation freezes the `eval/dedup` Python, YAML, and Jinja source digest. `run` and `resume` stop with
+`RESUME_SOURCE_MISMATCH` if the implementation changes. Resume an older run only with the source revision that created it;
+start a new immutable run after changing Judge code or resources.
 
 ### 5. Read or regenerate the automated report
 
 Step 10 publishes the automated report without waiting for Human QA. For an older immutable run whose Step 9 artifacts are complete, render a versioned derived report without altering its stage markers:
 
 ```bash
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup report --run-root <v0_run>
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup report --run-root <v0_run>
 ```
 
 By default, derived reports are exported to
@@ -176,8 +231,13 @@ run artifacts.
 Step 8 writes the self-contained `reports/human_qa_dashboard.html`. Its selector switches between the blind sample and
 diagnostic set while keeping their progress and CSV exports separate. The reviewer-blind UI omits Judge decisions, payload
 hashes, SUT outcomes, and sampling strata. The labels CSV stays compact and directly importable by `qa-import`; the packet JSON
-is the self-contained sharing artifact, with each review next to its two Judge-visible documents. V0 packets include neutral
-metadata; v1 packets intentionally contain only the cleaned text and any explicit long-document evidence windows.
+is the self-contained sharing artifact, with each review next to its two Judge-visible documents. The Sarah default and Judge
+v1 packets contain only cleaned text and explicit long-document windows. Legacy Judge v0 packets retain their neutral metadata
+contract.
+
+When the blind Human QA budget exhausts the candidate population (as it can in the smoke profile), the independent diagnostic
+set is empty by construction. Step 8 still writes its empty packet and labels artifacts and records zero counts; the dashboard
+then exposes only the non-empty blind sample, and the remaining stages continue normally.
 
 Only three decisions are required:
 
@@ -192,7 +252,7 @@ live in browser `localStorage`, so export the CSV before changing browsers or cl
 For a full run, export the completed **blind-sample** CSV and import it. `qa-import` validates IDs, fields, enums, and reason codes:
 
 ```bash
-/raid/hfang/dedup_eval_env/bin/python -m eval.dedup qa-import \
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup qa-import \
   --run-root /raid/hfang/dedup_eval_runs/<evaluation_run_id>/v0_run \
   --labels /path/to/completed_blind_labels.csv
 ```

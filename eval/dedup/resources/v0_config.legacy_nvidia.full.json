@@ -24,21 +24,24 @@
     "cache_root": "/raid/hfang/dedup_eval_cache/huggingface"
   },
   "judge": {
-    "backend": "local_ndd",
-    "model": "Qwen/Qwen3.8-27B",
-    "model_path": "/raid/hfang/hf_cache/Qwen3.8-27B",
-    "runner_config": "local_ndd/sarah_minhash_qwen.yaml",
-    "ray_temp_dir": "/raid/hfang/dedup_eval_cache/ray",
-    "checkpoint_root": "/raid/hfang/dedup_eval_cache/local_ndd_checkpoints",
-    "num_cpus": null,
-    "num_gpus": 1,
+    "backend": "nvidia_openai",
+    "base_url": "https://inference-api.nvidia.com/v1",
+    "model": "nvidia/deepseek-ai/deepseek-v4-pro",
+    "api_key_env": "NVIDIA_API_KEY",
+    "structured_output_mode": "json_schema",
+    "thinking": false,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_output_tokens": 1024,
+    "concurrency": 8,
+    "requests_per_minute": 60,
+    "timeout_seconds": 180.0,
     "max_retries": 2,
     "max_visible_tokens": 65536,
     "window_tokens": 8192,
     "window_overlap_tokens": 1024,
-    "prompt_version": "dedup-judge-sarah-minhash-v1",
-    "schema_version": "dedup-judge-output-v0",
-    "visible_payload_version": "judge-visible-payload-v2"
+    "prompt_version": "dedup-judge-v0",
+    "schema_version": "dedup-judge-output-v0"
   },
   "retrieval": {
     "backend": "gpu_cudf",
@@ -90,7 +93,7 @@
       "cross_group_pair_budget": 10000,
       "qa_pair_budget": 200,
       "minimum_diff_budget": 0,
-      "formal_v0": false
+      "formal_v0": true
     }
   }
 }

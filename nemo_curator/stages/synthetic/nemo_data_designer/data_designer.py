@@ -42,11 +42,16 @@ class DataDesignerStage(ProcessingStage[DocumentBatch, DocumentBatch]):
     Optional ``model_providers``: pass a list of :class:`data_designer.config.models.ModelProvider`
     to use custom or test endpoints (e.g. a mock LLM server). If None, the default DataDesigner
     providers are used.
+
+    Optional ``run_config``: pass a :class:`data_designer.config.run_config.RunConfig`
+    to control Data Designer execution behavior. The configuration is reapplied when
+    Ray deserializes the stage and recreates its process-local Data Designer client.
     """
 
     config_builder: dd.DataDesignerConfigBuilder | None = None
     data_designer_config_file: str | None = None
     model_providers: list | None = None
+    run_config: dd.RunConfig | None = None
     verbose: bool = False
     data_designer: DataDesigner = field(init=False)
 
@@ -93,6 +98,8 @@ class DataDesignerStage(ProcessingStage[DocumentBatch, DocumentBatch]):
             self.data_designer = DataDesigner(model_providers=self.model_providers)
         else:
             self.data_designer = DataDesigner()
+        if self.run_config is not None:
+            self.data_designer.set_run_config(self.run_config)
 
     def inputs(self) -> tuple[list[str], list[str]]:
         return ["data"], []

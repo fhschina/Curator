@@ -14,6 +14,7 @@
 
 from __future__ import annotations
 
+import json
 from types import SimpleNamespace
 
 import pytest
@@ -98,13 +99,16 @@ class _WhitespaceCounter:
         return [len(text.split()) for text in texts]
 
 
-def _payload_config(schema_version: str) -> SimpleNamespace:
-    return SimpleNamespace(
-        schema_version=schema_version,
-        max_visible_tokens=128,
-        window_tokens=32,
-        window_overlap_tokens=4,
-    )
+def _payload_config(schema_version: str, *, visible_payload_version: str | None = None) -> SimpleNamespace:
+    values: dict[str, object] = {
+        "schema_version": schema_version,
+        "max_visible_tokens": 128,
+        "window_tokens": 32,
+        "window_overlap_tokens": 4,
+    }
+    if visible_payload_version is not None:
+        values["visible_payload_version"] = visible_payload_version
+    return SimpleNamespace(**values)
 
 
 def test_v1_visible_payload_removes_all_document_metadata() -> None:
@@ -132,6 +136,43 @@ def test_v1_visible_payload_removes_all_document_metadata() -> None:
     assert payload["document_a"] == {"text": "same visible body"}
     assert payload["document_b"] == {"text": "same visible body"}
     assert payload["long_document_evidence"] == {"truncated": False, "windows": []}
+    assert_blind_payload(payload)
+
+
+def test_sarah_v0_adapter_uses_metadata_free_visible_payload() -> None:
+    document_a = {
+        "text": "same visible body",
+        "url": "https://metadata-a.invalid/private",
+        "timestamp": "2026-08-24T00:00:00Z",
+        "language": "secret-a",
+        "predicted_group_id": "sut-group-a",
+        "action": "REMOVE",
+        "retrieval_score": 0.999,
+    }
+    document_b = {
+        "text": "same visible body",
+        "url": "https://metadata-b.invalid/private",
+        "timestamp": "2025-01-01T00:00:00Z",
+        "language": "secret-b",
+        "predicted_group_id": "sut-group-b",
+        "action": "KEEP",
+        "retrieval_score": 0.001,
+    }
+
+    payload, _ = build_visible_payload(
+        document_a,
+        document_b,
+        counter=_WhitespaceCounter(),
+        config=_payload_config(JUDGE_SCHEMA_V0, visible_payload_version=VISIBLE_PAYLOAD_V1),
+    )
+
+    assert payload["payload_schema_version"] == VISIBLE_PAYLOAD_V1
+    assert payload["document_a"] == {"text": "same visible body"}
+    assert payload["document_b"] == {"text": "same visible body"}
+    serialized = json.dumps(payload)
+    assert all(
+        hidden not in serialized for hidden in ("metadata-", "secret-", "sut-group-", "retrieval_score", "action")
+    )
     assert_blind_payload(payload)
 
 

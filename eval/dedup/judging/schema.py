@@ -49,6 +49,12 @@ JUDGE_FIELDS: Final = {
 }
 
 
+def _is_enum_value(value: Any, enum_type: type) -> bool:
+    """Return whether *value* is a string value of an enum on Python 3.11+."""
+
+    return isinstance(value, str) and any(value == member.value for member in enum_type)
+
+
 def judge_output_schema(schema_version: str = JUDGE_SCHEMA_V0) -> dict[str, Any]:
     if schema_version == JUDGE_SCHEMA_V1:
         return judge_output_schema_v1()
@@ -111,23 +117,23 @@ def validate_judge_output(value: Any, schema_version: str = JUDGE_SCHEMA_V0) -> 
     )
     for field in ("same_duplicate_group", "a_can_replace_b", "b_can_replace_a"):
         require(
-            isinstance(value[field], str) and value[field] in DuplicateAnswer,
+            _is_enum_value(value[field], DuplicateAnswer),
             "JUDGE_SCHEMA_INVALID",
             "invalid ternary answer",
             field=field,
         )
     require(
-        isinstance(value["relation_type"], str) and value["relation_type"] in RelationType,
+        _is_enum_value(value["relation_type"], RelationType),
         "JUDGE_SCHEMA_INVALID",
         "invalid relation_type",
     )
     require(
-        isinstance(value["material_difference"], str) and value["material_difference"] in MaterialDifference,
+        _is_enum_value(value["material_difference"], MaterialDifference),
         "JUDGE_SCHEMA_INVALID",
         "invalid material_difference",
     )
     require(
-        isinstance(value["fuzzy_scope"], str) and value["fuzzy_scope"] in FuzzyScope,
+        _is_enum_value(value["fuzzy_scope"], FuzzyScope),
         "JUDGE_SCHEMA_INVALID",
         "invalid fuzzy_scope",
     )

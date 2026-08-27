@@ -1,0 +1,150 @@
+models:
+  - alias: judge
+    model: /model/path/overridden/by/dedup/config
+    served_model_name: Qwen/Qwen3.8-27B
+    dynamo_model:
+      num_replicas: 1
+      mode: aggregated
+      runtime_env:
+        env_vars:
+          UV_CACHE_DIR: /raid/hfang/dedup_eval_cache/uv
+        config:
+          setup_timeout_seconds: 1800
+      engine_kwargs:
+        tensor_parallel_size: 1
+        max_model_len: 32768
+        max_num_seqs: 8
+        gpu_memory_utilization: 0.8
+        enforce_eager: true
+    inference_parameters:
+      temperature: 0.0
+      extra_body:
+        chat_template_kwargs:
+          enable_thinking: false
+      max_tokens: 4096
+      timeout: 600
+      max_parallel_requests: 8
+
+dynamo_server:
+  subprocess_env:
+    DYN_SYSTEM_PORT: "0"
+    PYTHONPATH: cutlass_compat
+
+inference_server:
+  health_check_timeout_s: 1800
+
+execution:
+  num_workers: 1
+  data_designer_run:
+    # A malformed structured reply is a row-level failure that dedup retries;
+    # never abandon the rest of a blind batch because a few rows fail parsing.
+    disable_early_shutdown: true
+    # At temperature 0 a fresh restart repeats the same malformed response.
+    # Correction turns include Data Designer's parser feedback and are useful.
+    max_conversation_restarts: 0
+    max_conversation_correction_steps: 2
+  stages:
+    - name: qwen_minhash_fuzzy_dedup
+      judges:
+        - name: qwen_minhash_fuzzy_dedup_judge
+          model_alias: judge
+          system_prompt_path: sarah_minhash_system.jinja
+          prompt_path: sarah_minhash_pair.jinja
+          extract_reasoning_content: false
+          scores:
+            - name: same_duplicate_group
+              description: Should a reasonable MinHash-style fuzzy deduper group these texts based on visible surface overlap?
+              options:
+                "yes": The texts have enough exact or near-exact surface overlap to group.
+                "no": The texts lack enough surface overlap to group.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: a_can_replace_b
+              description: Can Document A replace Document B without losing substantive unique non-template text?
+              options:
+                "yes": A preserves all substantive retained text from B.
+                "no": B contains substantive unique text not preserved by A.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: b_can_replace_a
+              description: Can Document B replace Document A without losing substantive unique non-template text?
+              options:
+                "yes": B preserves all substantive retained text from A.
+                "no": A contains substantive unique text not preserved by B.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: relation_type
+              description: Classify the visible surface-text relationship, not semantic similarity.
+              options:
+                exact: Same text apart from insignificant formatting or whitespace.
+                canonical_exact: Same substantive text with canonicalization differences.
+                near_surface: Substantial near-identical wording with small surface edits.
+                containment: One text substantially contains the other at the surface level.
+                version_related: Same text family but a materially different version or update.
+                related_non_duplicate: Similar topic or meaning but insufficient shared wording.
+                unrelated: Different texts without meaningful surface overlap.
+                unresolved: Insufficient visible evidence to classify.
+            - name: material_difference
+              description: How consequential is unique non-template text for whole-record removal?
+              options:
+                none: No meaningful unique difference is visible.
+                minor: Differences do not materially change retained training value.
+                major: Differences materially change retained information or scope.
+                unresolved: Insufficient visible evidence to assess materiality.
+            - name: fuzzy_scope
+              description: Should conventional MinHash fuzzy deduplication reasonably catch this pair?
+              options:
+                in_scope: It should be grouped by surface-similarity fuzzy deduplication.
+                borderline: Literal overlap is real but may be near a reasonable threshold.
+                out_of_scope: It should not be grouped by surface-similarity fuzzy deduplication.
+                unresolved: Insufficient visible evidence to assess scope.
+            - name: confidence
+              description: Confidence in the complete structured decision using only visible evidence.
+              options:
+                "0.2": Evidence is insufficient; the core decision should be unresolved.
+                "0.5": The decision is highly uncertain or truncated evidence is weak.
+                "0.75": The decision is more likely than not but has a real boundary concern.
+                "0.9": The visible surface evidence strongly supports the decision.
+                "0.98": The decision is direct and unambiguous from the visible text.
+            - name: reason_number_change
+              description: Does a changed number make the non-overlapping residue materially different?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_date_time_change
+              description: Does a changed date or time make the residue materially different?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_product_version_change
+              description: Does a product or version change make overlapping text materially different?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_url_change
+              description: Is a visible URL-text difference material rather than canonicalization?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_named_entity_change
+              description: Does an entity change make the residue materially different?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_negation_change
+              description: Does negation reverse or materially change retained text?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_code_literal_change
+              description: Do source-code literals or commands differ materially?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_code_output_change
+              description: Do code outputs or execution results differ materially?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_insertion_deletion
+              description: Does one text add or remove meaningful non-template content?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_boilerplate
+              description: Does repeated boilerplate or template text drive the visible overlap?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_parser_noise
+              description: Do surface differences appear to result from extraction or parser noise?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_language_mismatch
+              description: Do different languages prevent substantial surface overlap?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_topic_only
+              description: Do texts share a topic or meaning but lack enough literal overlap?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_insufficient_evidence
+              description: Is visible evidence insufficient to decide safely?
+              options: {"yes": Applies, "no": Does not apply}
+            - name: reason_other_material
+              description: Is another material non-template difference present?
+              options: {"yes": Applies, "no": Does not apply}

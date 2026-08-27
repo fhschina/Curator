@@ -94,3 +94,37 @@ def test_dashboard_is_reviewer_blind_and_exports_the_human_qa_contract(tmp_path:
     assert "fuzzy-dedup outcome" in dashboard
     assert "</script><script>alert(1)</script>" not in dashboard
     assert "\\u003c/script\\u003e" in dashboard
+
+
+def test_dashboard_accepts_blind_packet_without_optional_diagnostic(tmp_path: Path) -> None:
+    packet = tmp_path / "packet.jsonl"
+    packet.write_text(
+        json.dumps(
+            {
+                "qa_pair_id": "qa-pair-1",
+                "visible_payload": {
+                    "document_a": {"metadata": {}, "text": "Document A"},
+                    "document_b": {"metadata": {}, "text": "Document B"},
+                    "long_document_evidence": {"truncated": False},
+                },
+            }
+        )
+        + "\n"
+    )
+    destination = tmp_path / "dashboard.html"
+
+    result = publish_human_qa_dashboard(
+        packet_paths={"human_qa_blind": packet},
+        destination=destination,
+        evaluation_run_id="run-1",
+    )
+
+    assert result == {
+        "dashboard_version": HUMAN_QA_DASHBOARD_VERSION,
+        "qa_pairs": 1,
+        "packets": {"human_qa_blind": 1},
+        "destination": str(destination),
+    }
+    dashboard = destination.read_text()
+    assert "Blind sample" in dashboard
+    assert "Diagnostic set" not in dashboard

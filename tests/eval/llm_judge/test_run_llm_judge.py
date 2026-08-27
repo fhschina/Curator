@@ -24,6 +24,7 @@ from jinja2 import Environment, StrictUndefined
 from eval.llm_judge import run_llm_judge as subject
 
 EXAMPLE_DIR = Path(__file__).parents[3] / "eval" / "llm_judge" / "cc_extract_example"
+SARAH_CONFIG = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "local_ndd" / "sarah_minhash_qwen.yaml"
 
 
 def _config_with_filters() -> tuple[dict[str, object], list[dict[str, object]]]:
@@ -47,6 +48,36 @@ def test_load_yaml_rejects_a_non_mapping_document(tmp_path: Path) -> None:
 
     with pytest.raises(TypeError, match="must contain a mapping"):
         subject._load_yaml(config_path)
+
+
+def test_ray_uv_bootstrap_is_a_noop_when_pip_is_installed(monkeypatch: pytest.MonkeyPatch) -> None:
+    bootstrap_calls: list[bool] = []
+    monkeypatch.setattr(subject.importlib.util, "find_spec", lambda _name: object())
+    monkeypatch.setattr(subject.ensurepip, "bootstrap", lambda *, upgrade: bootstrap_calls.append(upgrade))
+
+    subject._ensure_pip_for_ray_uv_runtime()
+
+    assert bootstrap_calls == []
+
+
+def test_ray_uv_bootstrap_seeds_missing_pip(monkeypatch: pytest.MonkeyPatch) -> None:
+    found = iter([None, object()])
+    bootstrap_calls: list[bool] = []
+    monkeypatch.setattr(subject.importlib.util, "find_spec", lambda _name: next(found))
+    monkeypatch.setattr(subject.importlib, "invalidate_caches", lambda: None)
+    monkeypatch.setattr(subject.ensurepip, "bootstrap", lambda *, upgrade: bootstrap_calls.append(upgrade))
+
+    subject._ensure_pip_for_ray_uv_runtime()
+
+    assert bootstrap_calls == [True]
+
+
+def test_ray_temp_dir_enforces_dashboard_socket_budget() -> None:
+    subject._validate_ray_temp_dir("/raid/hfang/dedup_eval_cache/ray")
+
+    too_long = Path.cwd() / ("long-ray-root-" * 8)
+    with pytest.raises(ValueError, match="too long for its dashboard Unix socket"):
+        subject._validate_ray_temp_dir(too_long)
 
 
 @pytest.mark.parametrize(
@@ -79,6 +110,28 @@ def test_example_configs_and_templates_are_valid(filename: str, models: int, sta
             assert environment.from_string(system_prompt).render(
                 raw_text=None, justext_text="clean text", trafilatura_text=None
             )
+
+
+def test_sarah_config_builds_with_data_designer_score_types() -> None:
+    config = subject._load_yaml(SARAH_CONFIG)
+    configured_stage = config["execution"]["stages"][0]
+
+    subject.build_config_builder(
+        SARAH_CONFIG,
+        endpoint="http://local-judge.invalid/v1",
+        models=config["models"],
+        judges=configured_stage["judges"],
+    )
+
+    run_config = subject._get_data_designer_run_config(config["execution"])
+    assert run_config.disable_early_shutdown is True
+    assert run_config.max_conversation_restarts == 0
+    assert run_config.max_conversation_correction_steps == 2
+
+
+def test_data_designer_run_config_rejects_non_mapping() -> None:
+    with pytest.raises(TypeError, match="data_designer_run must be a mapping"):
+        subject._get_data_designer_run_config({"data_designer_run": []})
 
 
 def test_place_filters_after_their_producing_stage() -> None:
@@ -187,9 +240,10 @@ def test_build_pipeline_orders_reader_judges_filters_and_writer(monkeypatch: pyt
             [],
             {"env": "one"},
             1,
+            subject.dd.RunConfig(disable_early_shutdown=True),
             [{"judge": "quality", "score": "score", "operator": "eq", "value": 1}],
         ),
-        ("safety", object(), [], {"env": "two"}, 2, []),
+        ("safety", object(), [], {"env": "two"}, 2, subject.dd.RunConfig(), []),
     ]
 
     pipeline = subject.build_pipeline(
@@ -215,6 +269,7 @@ def test_build_pipeline_orders_reader_judges_filters_and_writer(monkeypatch: pyt
     ndd_stages = [stage for stage in pipeline.stages if stage.name.startswith("ndd_")]
     assert [stage.runtime_env for stage in ndd_stages] == [{"env": "one"}, {"env": "two"}]
     assert [stage.num_workers() for stage in ndd_stages] == [1, 2]
+    assert ndd_stages[0].run_config.disable_early_shutdown is True
 
 
 def _main_args(execution_mode: str) -> SimpleNamespace:
@@ -241,7 +296,7 @@ def test_main_builds_one_combined_stage_in_single_stage_mode(monkeypatch: pytest
     captured = _run_main_with_fakes(monkeypatch, "single_stage")
 
     assert captured["builder_judges"] == [["quality_judge", "safety_judge"]]
-    assert [(stage[0], stage[4], [item["judge"] for item in stage[5]]) for stage in captured["judge_stages"]] == [
+    assert [(stage[0], stage[4], [item["judge"] for item in stage[6]]) for stage in captured["judge_stages"]] == [
         ("all_judges", 3, ["quality_judge", "safety_judge"])
     ]
 
@@ -251,7 +306,7 @@ def test_main_builds_one_stage_per_group_in_multi_stage_mode(monkeypatch: pytest
 
     assert captured["builder_judges"] == [["quality_judge"], ["safety_judge"]]
     stage_details = [
-        (stage[0], stage[3], stage[4], [item["judge"] for item in stage[5]]) for stage in captured["judge_stages"]
+        (stage[0], stage[3], stage[4], [item["judge"] for item in stage[6]]) for stage in captured["judge_stages"]
     ]
     assert stage_details == [
         ("quality", {"env": "quality"}, 1, ["quality_judge"]),

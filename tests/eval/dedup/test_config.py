@@ -29,14 +29,17 @@ def test_example_config_loads() -> None:
     config = load_config(path)
     assert config.profile("smoke").anchor_count == 20
     assert config.profile("full").removal_pair_budget == 10_000
+    assert config.profile("full").formal_v0 is False
     assert config.judge.max_retries == 2
-    assert config.judge.model == "nvidia/deepseek-ai/deepseek-v4-flash"
+    assert config.judge.backend == "local_ndd"
+    assert config.judge.model == "Qwen/Qwen3.8-27B"
+    assert config.judge.visible_payload_version == "judge-visible-payload-v2"
     assert config.retrieval.lsh_grid == ((5, 1), (6, 1), (7, 1), (8, 1))
     assert config.retrieval.max_candidates_per_anchor == 250_000
 
 
 def test_full_config_freezes_pro_and_immutable_tokenizer_revision() -> None:
-    path = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.full.json"
+    path = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.legacy_nvidia.full.json"
     config = load_config(path)
 
     assert config.profile("full").formal_v0 is True
@@ -47,7 +50,7 @@ def test_full_config_freezes_pro_and_immutable_tokenizer_revision() -> None:
 
 
 def test_flash_config_cannot_create_formal_full_run() -> None:
-    path = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    path = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.legacy_nvidia.example.json"
 
     with pytest.raises(DedupEvaluationError) as error:
         create_run(load_config(path), "full", evaluation_run_id="must-not-be-created")
@@ -78,7 +81,7 @@ def test_production_config_rejects_changed_frozen_seed(tmp_path: Path) -> None:
 
 
 def test_config_rejects_mismatched_judge_prompt_and_schema(tmp_path: Path) -> None:
-    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.legacy_nvidia.example.json"
     value = json.loads(source.read_text())
     value["judge"]["prompt_version"] = "dedup-judge-v1"
     path = tmp_path / "mismatched-judge-contract.json"
@@ -89,8 +92,9 @@ def test_config_rejects_mismatched_judge_prompt_and_schema(tmp_path: Path) -> No
 
     assert error.value.issue.code == "INVALID_JUDGE_CONTRACT"
 
+
 def test_config_accepts_matching_v1_judge_contract(tmp_path: Path) -> None:
-    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.legacy_nvidia.example.json"
     value = json.loads(source.read_text())
     value["judge"]["prompt_version"] = "dedup-judge-v1"
     value["judge"]["schema_version"] = "dedup-judge-output-v1"

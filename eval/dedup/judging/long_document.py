@@ -19,12 +19,12 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from eval.dedup.config import JudgeConfig
+from eval.dedup.config import AnyJudgeConfig
 from eval.dedup.handoff.corpus import TokenCounter
 from eval.dedup.pair_construction.retrieval.lexical import char_shingles
 
 
-def _windows(text: str, counter: TokenCounter, config: JudgeConfig) -> list[dict[str, Any]]:
+def _windows(text: str, counter: TokenCounter, config: AnyJudgeConfig) -> list[dict[str, Any]]:
     token_ids, offsets = counter.encode_with_offsets(text)
     if not token_ids:
         return [{"start_token": 0, "end_token": 0, "start_char": 0, "end_char": 0, "text": ""}]
@@ -58,7 +58,7 @@ def prepare_long_document_evidence(
     text_b: str,
     *,
     counter: TokenCounter,
-    config: JudgeConfig,
+    config: AnyJudgeConfig,
 ) -> dict[str, Any]:
     """Return full texts when they fit, otherwise deterministic aligned windows."""
 

@@ -83,6 +83,16 @@ class TestBaseDataDesignerStage:
         assert stage_with_providers.model_providers == [custom_provider]
         assert isinstance(stage_with_providers.data_designer, DataDesigner)
 
+        run_config = dd.RunConfig(
+            disable_early_shutdown=True,
+            max_conversation_restarts=0,
+            max_conversation_correction_steps=2,
+        )
+        stage_with_run_config = DataDesignerStage(config_builder=real_builder, run_config=run_config)
+        assert stage_with_run_config.data_designer.run_config.disable_early_shutdown is True
+        assert stage_with_run_config.data_designer.run_config.max_conversation_restarts == 0
+        assert stage_with_run_config.data_designer.run_config.max_conversation_correction_steps == 2
+
         # When only data_designer_config_file is set, __post_init__ calls from_config();
         # patch it so we don't need a real file, and assert the path is stored and builder set.
         with patch.object(dd.DataDesignerConfigBuilder, "from_config", return_value=real_builder) as mock_from_config:

@@ -116,7 +116,9 @@ def _evaluation_source_digest() -> str:
     root = Path(__file__).resolve().parent
     digest = hashlib.sha256()
     for path in sorted(
-        item for item in root.rglob("*") if item.is_file() and item.suffix in {".py", ".json", ".txt", ".md"}
+        item
+        for item in root.rglob("*")
+        if item.is_file() and item.suffix in {".jinja", ".json", ".md", ".py", ".txt", ".yaml"}
     ):
         relative = str(path.relative_to(root)).encode("utf-8")
         digest.update(len(relative).to_bytes(8, "big"))
@@ -654,11 +656,13 @@ def _stage_8(context: RunContext, work: Path) -> StageExecution:
         labels_destination=work / diagnostic_labels_relative,
     )
     qa_dashboard_relative = "reports/human_qa_dashboard.html"
+    dashboard_packet_paths = {
+        "human_qa_blind": context.data / "human_qa_packet.jsonl",
+    }
+    if diagnostic_counts["diagnostic_qa_pairs"]:
+        dashboard_packet_paths["human_qa_diagnostic"] = work / diagnostic_packet_relative
     publish_human_qa_dashboard(
-        packet_paths={
-            "human_qa_blind": context.data / "human_qa_packet.jsonl",
-            "human_qa_diagnostic": work / diagnostic_packet_relative,
-        },
+        packet_paths=dashboard_packet_paths,
         destination=work / qa_dashboard_relative,
         evaluation_run_id=context.evaluation_run_id,
     )

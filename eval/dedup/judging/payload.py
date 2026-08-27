@@ -19,11 +19,11 @@ from __future__ import annotations
 import hashlib
 from typing import Any
 
-from eval.dedup.config import JudgeConfig
+from eval.dedup.config import AnyJudgeConfig
 from eval.dedup.contracts import canonical_json_bytes
 from eval.dedup.handoff.corpus import TokenCounter
 from eval.dedup.judging.long_document import prepare_long_document_evidence
-from eval.dedup.judging.schema import JUDGE_SCHEMA_V0, JUDGE_SCHEMA_V1
+from eval.dedup.judging.schema import JUDGE_SCHEMA_V0
 
 EVIDENCE_ALIGNMENT_VERSION = "visible-evidence-align-v1"
 VISIBLE_PAYLOAD_V0 = "judge-visible-payload-v1"
@@ -44,7 +44,7 @@ def build_visible_payload(
     document_b: dict[str, Any],
     *,
     counter: TokenCounter,
-    config: JudgeConfig,
+    config: AnyJudgeConfig,
 ) -> tuple[dict[str, Any], str]:
     evidence = prepare_long_document_evidence(
         document_a["text"],
@@ -52,7 +52,12 @@ def build_visible_payload(
         counter=counter,
         config=config,
     )
-    if config.schema_version == JUDGE_SCHEMA_V0:
+    payload_version = getattr(
+        config,
+        "visible_payload_version",
+        VISIBLE_PAYLOAD_V0 if config.schema_version == JUDGE_SCHEMA_V0 else VISIBLE_PAYLOAD_V1,
+    )
+    if payload_version == VISIBLE_PAYLOAD_V0:
         payload = {
             "payload_schema_version": VISIBLE_PAYLOAD_V0,
             "document_a": {
@@ -69,7 +74,7 @@ def build_visible_payload(
                 "windows": evidence["windows"],
             },
         }
-    elif config.schema_version == JUDGE_SCHEMA_V1:
+    elif payload_version == VISIBLE_PAYLOAD_V1:
         payload = {
             "payload_schema_version": VISIBLE_PAYLOAD_V1,
             "document_a": {"text": evidence["text_a"]},
@@ -80,7 +85,7 @@ def build_visible_payload(
             },
         }
     else:
-        msg = f"unsupported judge schema version: {config.schema_version}"
+        msg = f"unsupported visible payload version: {payload_version}"
         raise ValueError(msg)
     return payload, hashlib.sha256(canonical_json_bytes(payload)).hexdigest()
 

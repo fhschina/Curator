@@ -70,6 +70,28 @@ class JudgeConfig:
 
 
 @dataclass(frozen=True, slots=True)
+class LocalNddJudgeConfig:
+    backend: str
+    model: str
+    model_path: Path
+    runner_config: Path
+    ray_temp_dir: Path
+    checkpoint_root: Path
+    num_cpus: int | None
+    num_gpus: int
+    max_retries: int
+    max_visible_tokens: int
+    window_tokens: int
+    window_overlap_tokens: int
+    prompt_version: str
+    schema_version: str
+    visible_payload_version: str
+
+
+AnyJudgeConfig = JudgeConfig | LocalNddJudgeConfig
+
+
+@dataclass(frozen=True, slots=True)
 class RetrievalConfig:
     backend: str
     minhash_seed: int
@@ -110,7 +132,7 @@ class EvaluationConfig:
     verify_checksums: bool
     dataset: DatasetConfig
     tokenizer: TokenizerConfig
-    judge: JudgeConfig
+    judge: AnyJudgeConfig
     retrieval: RetrievalConfig
     seeds: dict[str, int]
     canonical_pair_id_version: str
@@ -169,13 +191,39 @@ def _load_tokenizer(value: dict[str, Any], base: Path) -> TokenizerConfig:
     )
 
 
-def _load_judge(value: dict[str, Any]) -> JudgeConfig:
-    fields = set(JudgeConfig.__dataclass_fields__)
-    assert_exact_keys(value, fields, context="judge")
-    config = JudgeConfig(**value)
+def _load_judge(value: dict[str, Any], base: Path) -> AnyJudgeConfig:
+    if value.get("backend") == "local_ndd":
+        fields = set(LocalNddJudgeConfig.__dataclass_fields__)
+        assert_exact_keys(value, fields, context="judge")
+        config = LocalNddJudgeConfig(
+            **{
+                **value,
+                "model_path": _resolve_path(value["model_path"], base),
+                "runner_config": _resolve_path(value["runner_config"], base),
+                "ray_temp_dir": _resolve_path(value["ray_temp_dir"], base),
+                "checkpoint_root": _resolve_path(value["checkpoint_root"], base),
+            }
+        )
+        require(
+            (config.prompt_version, config.schema_version)
+            == ("dedup-judge-sarah-minhash-v1", "dedup-judge-output-v0"),
+            "INVALID_JUDGE_CONTRACT",
+            "local_ndd requires the Sarah MinHash prompt and v0-compatible output contract",
+        )
+        require(
+            config.visible_payload_version == "judge-visible-payload-v2",
+            "INVALID_JUDGE_CONFIG",
+            "local_ndd must use the metadata-free v2 visible payload",
+        )
+        require(config.num_gpus == 1, "INVALID_JUDGE_CONFIG", "the default local_ndd contract uses one GPU")
+    else:
+        fields = set(JudgeConfig.__dataclass_fields__)
+        assert_exact_keys(value, fields, context="judge")
+        config = JudgeConfig(**value)
     supported_contracts = {
         ("dedup-judge-v0", "dedup-judge-output-v0"),
         ("dedup-judge-v1", "dedup-judge-output-v1"),
+        ("dedup-judge-sarah-minhash-v1", "dedup-judge-output-v0"),
     }
     require(
         (config.prompt_version, config.schema_version) in supported_contracts,
@@ -185,6 +233,7 @@ def _load_judge(value: dict[str, Any]) -> JudgeConfig:
         schema_version=config.schema_version,
     )
     require(config.max_retries == 2, "INVALID_JUDGE_CONFIG", "judge retry count must be exactly two")
+    require(config.backend in {"stub", "nvidia_openai", "local_ndd"}, "INVALID_JUDGE_CONFIG", "unknown judge backend")
     require(
         config.window_overlap_tokens < config.window_tokens, "INVALID_JUDGE_CONFIG", "window overlap must be smaller"
     )
@@ -258,7 +307,7 @@ def load_config(path: str | Path, *, path_base: Path | None = None) -> Evaluatio
         verify_checksums=bool(raw["verify_checksums"]),
         dataset=_load_dataset(_object(raw["dataset"], "dataset")),
         tokenizer=_load_tokenizer(_object(raw["tokenizer"], "tokenizer"), base),
-        judge=_load_judge(_object(raw["judge"], "judge")),
+        judge=_load_judge(_object(raw["judge"], "judge"), base),
         retrieval=_load_retrieval(_object(raw["retrieval"], "retrieval")),
         seeds={key: int(value) for key, value in seeds.items()},
         canonical_pair_id_version=str(raw["canonical_pair_id_version"]),
@@ -281,10 +330,10 @@ def load_config(path: str | Path, *, path_base: Path | None = None) -> Evaluatio
         require(
             config.dataset.dataset_version.startswith("fixture-")
             and config.dataset.expected_rows <= 10_000
-            and config.judge.backend == "stub"
+            and config.judge.backend in {"local_ndd", "stub"}
             and config.tokenizer.kind == "whitespace",
             "FIXTURE_BACKEND_SCOPE_INVALID",
-            "fixture_cpu is restricted to small stub-judge test corpora",
+            "fixture_cpu is restricted to small stub/local_ndd judge test corpora",
         )
     if config.retrieval.backend != "fixture_cpu":
         require(
@@ -321,7 +370,7 @@ def load_config(path: str | Path, *, path_base: Path | None = None) -> Evaluatio
                 10_000,
                 10_000,
                 200,
-                True,
+                config.judge.backend == "nvidia_openai",
             ),
         }
         for name, (quotas, removal, cross_group, qa, formal) in expected_profiles.items():
@@ -369,32 +418,47 @@ def load_config(path: str | Path, *, path_base: Path | None = None) -> Evaluatio
             "V0_TOKENIZER_MISMATCH",
             "production V0 requires the official DeepSeek V4 Pro tokenizer",
         )
-        require(
-            config.judge.backend == "nvidia_openai"
-            and config.judge.base_url == "https://inference-api.nvidia.com/v1"
-            and config.judge.model
-            in {
-                "nvidia/deepseek-ai/deepseek-v4-pro",
-                "nvidia/deepseek-ai/deepseek-v4-flash",
-            }
-            and config.judge.api_key_env == "NVIDIA_API_KEY",
-            "V0_JUDGE_MISMATCH",
-            "production judge provider contract is not an approved DeepSeek V4 configuration",
-        )
-        require(
-            config.judge.structured_output_mode in {"json_schema", "json_object_plus_local_schema"}
-            and not config.judge.thinking
-            and config.judge.temperature == 0
-            and config.judge.max_output_tokens == 1024
-            and config.judge.concurrency == 8
-            and config.judge.requests_per_minute == 60
-            and config.judge.timeout_seconds == 180
-            and config.judge.max_visible_tokens == 65_536
-            and config.judge.window_tokens == 8_192
-            and config.judge.window_overlap_tokens == 1_024,
-            "V0_JUDGE_MISMATCH",
-            "production V0 judge execution parameters are frozen",
-        )
+        if isinstance(config.judge, JudgeConfig):
+            require(
+                config.judge.backend == "nvidia_openai"
+                and config.judge.base_url == "https://inference-api.nvidia.com/v1"
+                and config.judge.model
+                in {
+                    "nvidia/deepseek-ai/deepseek-v4-pro",
+                    "nvidia/deepseek-ai/deepseek-v4-flash",
+                }
+                and config.judge.api_key_env == "NVIDIA_API_KEY",
+                "V0_JUDGE_MISMATCH",
+                "production judge provider contract is not an approved DeepSeek V4 configuration",
+            )
+            require(
+                config.judge.structured_output_mode in {"json_schema", "json_object_plus_local_schema"}
+                and not config.judge.thinking
+                and config.judge.temperature == 0
+                and config.judge.max_output_tokens == 1024
+                and config.judge.concurrency == 8
+                and config.judge.requests_per_minute == 60
+                and config.judge.timeout_seconds == 180
+                and config.judge.max_visible_tokens == 65_536
+                and config.judge.window_tokens == 8_192
+                and config.judge.window_overlap_tokens == 1_024,
+                "V0_JUDGE_MISMATCH",
+                "production V0 judge execution parameters are frozen",
+            )
+        else:
+            require(
+                config.judge.backend == "local_ndd"
+                and config.judge.model == "Qwen/Qwen3.8-27B"
+                and config.judge.runner_config.is_file()
+                and str(config.judge.model_path).startswith("/raid/hfang/")
+                and str(config.judge.ray_temp_dir).startswith("/raid/hfang/")
+                and str(config.judge.checkpoint_root).startswith("/raid/hfang/")
+                and config.judge.max_visible_tokens == 65_536
+                and config.judge.window_tokens == 8_192
+                and config.judge.window_overlap_tokens == 1_024,
+                "LOCAL_NDD_JUDGE_MISMATCH",
+                "production local_ndd configuration differs from the approved Sarah/Qwen contract",
+            )
         require(
             config.retrieval.backend == "gpu_cudf"
             and config.retrieval.minhash_seed == 42

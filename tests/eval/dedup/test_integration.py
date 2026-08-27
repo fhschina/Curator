@@ -18,12 +18,14 @@ import hashlib
 import json
 import os
 from pathlib import Path
+from typing import ClassVar, Self
 
 import numpy as np
 import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
+import eval.dedup.judging.local_ndd as local_ndd_module
 import eval.dedup.run as run_module
 from eval.dedup.cli import preflight
 from eval.dedup.config import load_config
@@ -123,7 +125,7 @@ def _build_fixture_handoff(root: Path) -> tuple[Path, Path, Path]:
     return handoff, embedding_path, text_path
 
 
-def _write_fixture_config(root: Path, handoff: Path, embedding_path: Path) -> Path:
+def _write_fixture_config(root: Path, handoff: Path, embedding_path: Path, *, judge_backend: str = "stub") -> Path:
     value = {
         "schema_version": 1,
         "handoff_root": str(handoff),
@@ -223,6 +225,34 @@ def _write_fixture_config(root: Path, handoff: Path, embedding_path: Path) -> Pa
             },
         },
     }
+    if judge_backend == "local_ndd":
+        resources_root = root / "local_ndd_resources"
+        resources_root.mkdir()
+        runner_config = resources_root / "fixture.yaml"
+        runner_config.write_text("models: []\nexecution: {stages: []}\n")
+        model_path = root / "qwen-fixture"
+        model_path.mkdir()
+        value["judge"] = {
+            "backend": "local_ndd",
+            "model": "Qwen/Qwen3.8-27B",
+            "model_path": str(model_path),
+            "runner_config": str(runner_config),
+            "ray_temp_dir": str(root / "ray"),
+            "checkpoint_root": str(root / "checkpoints"),
+            "num_cpus": 2,
+            "num_gpus": 1,
+            "max_retries": 2,
+            "max_visible_tokens": 128,
+            "window_tokens": 32,
+            "window_overlap_tokens": 4,
+            "prompt_version": "dedup-judge-sarah-minhash-v1",
+            "schema_version": "dedup-judge-output-v0",
+            "visible_payload_version": "judge-visible-payload-v2",
+        }
+        value["profiles"]["full"]["formal_v0"] = False
+    elif judge_backend != "stub":
+        raise ValueError(judge_backend)
+
     path = root / "fixture_config.json"
     path.write_text(json.dumps(value))
     return path
@@ -313,6 +343,107 @@ def test_fixture_pipeline_runs_all_ten_steps(tmp_path: Path, monkeypatch) -> Non
     pair_explorer = context.reports / "pair_explorer.html"
     assert pair_explorer.is_file()
     assert "Dedup Pair Explorer" in pair_explorer.read_text()
+
+
+def _fixture_ndd_rubric() -> dict[str, dict[str, object]]:
+    scores: dict[str, object] = {
+        "same_duplicate_group": "yes",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "relation_type": "exact",
+        "material_difference": "none",
+        "fuzzy_scope": "in_scope",
+        "confidence": 0.98,
+    }
+    for field in (
+        "reason_number_change",
+        "reason_date_time_change",
+        "reason_product_version_change",
+        "reason_url_change",
+        "reason_named_entity_change",
+        "reason_negation_change",
+        "reason_code_literal_change",
+        "reason_code_output_change",
+        "reason_insertion_deletion",
+        "reason_boilerplate",
+        "reason_parser_noise",
+        "reason_language_mismatch",
+        "reason_topic_only",
+        "reason_insufficient_evidence",
+        "reason_other_material",
+    ):
+        scores[field] = "no"
+    return {name: {"score": score, "reasoning": f"private-{name}"} for name, score in scores.items()}
+
+
+def test_fixture_local_ndd_runs_ten_steps_and_resumes_from_judge_cache(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setenv("CUDA_VISIBLE_DEVICES", "")
+    handoff, embedding_path, _ = _build_fixture_handoff(tmp_path)
+    config_path = _write_fixture_config(tmp_path, handoff, embedding_path, judge_backend="local_ndd")
+    context = create_run(load_config(config_path), "smoke", evaluation_run_id="fixture-local-ndd")
+
+    class FakeRuntime:
+        starts = 0
+        stops = 0
+        batches: ClassVar[list[list[str]]] = []
+
+        def __init__(self, *args: object, **kwargs: object) -> None:
+            del args, kwargs
+
+        def __enter__(self) -> Self:
+            type(self).starts += 1
+            return self
+
+        def __exit__(self, *args: object) -> None:
+            del args
+            type(self).stops += 1
+
+        def run(self, **kwargs: object) -> None:
+            input_rows = [json.loads(line) for line in Path(str(kwargs["input_path"])).read_text().splitlines()]
+            type(self).batches.append([row["canonical_pair_id"] for row in input_rows])
+            output_path = Path(str(kwargs["output_path"]))
+            output_path.mkdir(parents=True, exist_ok=True)
+            output_rows = [{**row, local_ndd_module.JUDGE_COLUMN: _fixture_ndd_rubric()} for row in input_rows]
+            (output_path / "part.jsonl").write_text(
+                "".join(json.dumps(row) + "\n" for row in output_rows),
+                encoding="utf-8",
+            )
+
+    monkeypatch.setattr(local_ndd_module, "_runtime_factory", lambda: FakeRuntime)
+    run_pipeline(context, through_step=5)
+    original_publish = run_module._publish_stage
+
+    def interrupt_after_judge(run_context, step, work_root, execution):
+        if step == 6:
+            raise RuntimeError("simulated interruption after judge cache fsync")
+        return original_publish(run_context, step, work_root, execution)
+
+    monkeypatch.setattr(run_module, "_publish_stage", interrupt_after_judge)
+    with pytest.raises(RuntimeError, match="after judge cache fsync"):
+        run_pipeline(context, through_step=6)
+    assert FakeRuntime.starts == FakeRuntime.stops == 1
+    first_batch = FakeRuntime.batches[0]
+    assert first_batch
+
+    monkeypatch.setattr(run_module, "_publish_stage", original_publish)
+    result = run_pipeline(context)
+
+    assert result["status"] == "complete"
+    assert FakeRuntime.starts == FakeRuntime.stops == 1
+    assert validate_run(context)["valid"]
+    payload_rows = [json.loads(line) for line in (context.data / "judge_payloads.jsonl").read_text().splitlines()]
+    assert payload_rows
+    assert all(row["payload"]["payload_schema_version"] == "judge-visible-payload-v2" for row in payload_rows)
+    assert all(set(row["payload"]["document_a"]) == {"text"} for row in payload_rows)
+    assert all(set(row["payload"]["document_b"]) == {"text"} for row in payload_rows)
+    assert all("metadata" not in json.dumps(row["payload"]) for row in payload_rows)
+    judge_rows = [json.loads(line) for line in (context.data / "judge_results.jsonl").read_text().splitlines()]
+    assert len(judge_rows) == len(first_batch)
+    assert all(row["schema_version"] == "dedup-judge-output-v0" for row in judge_rows)
+    assert all("private-" not in json.dumps(row) for row in judge_rows)
+    assert (context.data / "pair_comparisons.parquet").is_file()
+    assert (context.reports / "final_report.md").is_file()
+    assert (context.reports / "pair_explorer.html").is_file()
 
 
 def test_run_execution_rejects_changed_source_tree(tmp_path: Path, monkeypatch) -> None:

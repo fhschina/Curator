@@ -4,6 +4,90 @@ Use this example to add LLM-based evaluations to JSONL or Parquet records. The Y
 
 The included example compares jusText and Trafilatura web-text extractions. The same runner can judge parser output, extraction quality, or any task whose inputs can be rendered into a Jinja prompt.
 
+## Environment
+
+The repository requires uv `>=0.12.0`; this integration was validated with uv 0.12.3 and Python 3.11. For the standalone
+runner, install both text and synthetic-data-generation CUDA extras from the checked-in lock:
+
+```bash
+export UV_PROJECT_ENVIRONMENT=/raid/hfang/llm_judge_env_pr2324_latest
+export UV_CACHE_DIR=/raid/hfang/dedup_eval_cache/uv
+export HF_HOME=/raid/hfang/dedup_eval_cache/huggingface
+export PATH=/raid/hfang/llm_judge_tools/bin:$PATH
+/raid/hfang/dedup_eval_tools/uv sync --locked --python 3.11 \
+  --extra text_cuda12 --extra sdg_cuda12
+```
+
+Add `--extra deduplication_cuda12` when this environment also runs the complete dedup evaluation. Keep this environment
+separate from an existing dedup-only environment. uv-created environments normally omit pip; before starting Ray, the
+runner automatically seeds the standard-library pip wheel with `ensurepip` because Ray 2.57's uv runtime plugin needs pip to
+bootstrap uv in its cloned actor environment.
+
+The lock pins `data-designer==0.9.1`. Its upstream PyArrow requirement conflicts with the RAPIDS/cuDF range, so
+`pyproject.toml` deliberately overrides it with `pyarrow>=19,<24`; the validated environment uses PyArrow 23.0.1. The validated
+runtime versions are Ray 2.57.0, vLLM 0.22.0, and `ai-dynamo` 1.3.1. Use `uv sync --locked` so these constraints are not
+re-resolved independently.
+
+Dynamo needs `etcd` and `nats-server` on `PATH`. The dedup Sarah/Qwen config expects them under
+`/raid/hfang/llm_judge_tools/bin`, the model under `/raid/hfang/hf_cache/Qwen3.8-27B`, and Ray/uv/checkpoint state under
+`/raid/hfang/dedup_eval_cache`. Keep `ray_temp_dir` short: Ray's dashboard Unix socket has a 107-byte path limit, and the
+session-name suffix consumes most of that budget. The runner and dedup preflight reject an unsafe path before startup. Its
+runtime setup timeout is 1800 seconds. The tracked dedup YAML also loads
+`eval/dedup/resources/local_ndd/cutlass_compat/sitecustomize.py`, the verified compatibility shim for the installed CUTLASS
+bindings.
+
+## Reusing one local runtime
+
+`LocalJudgeRuntime` owns Ray and the Dynamo/vLLM model server. Enter it once and call `run` for multiple batches to avoid
+reloading model weights between an initial request and failed-subset retries:
+
+```python
+from eval.llm_judge.run_llm_judge import LocalJudgeRuntime
+
+with LocalJudgeRuntime(
+    "eval/dedup/resources/local_ndd/sarah_minhash_qwen.yaml",
+    model_overrides={"judge": "/raid/hfang/hf_cache/Qwen3.8-27B"},
+    ray_temp_dir="/raid/hfang/dedup_eval_cache/ray",
+    num_gpus=1,
+) as runtime:
+    runtime.run(
+        input_path="batch-1.jsonl",
+        input_format="jsonl",
+        output_path="output/batch-1",
+        checkpoint_path="/raid/hfang/dedup_eval_cache/checkpoints/batch-1",
+        files_per_partition=1,
+    )
+    runtime.run(
+        input_path="retry-only.jsonl",
+        input_format="jsonl",
+        output_path="output/retry-only",
+        checkpoint_path="/raid/hfang/dedup_eval_cache/checkpoints/retry-only",
+        files_per_partition=1,
+    )
+```
+
+The existing `run_llm_judge.py` CLI arguments and single-run lifecycle remain compatible.
+
+Judge YAML may also set `execution.data_designer_run` with supported `data_designer.config.RunConfig` fields. The runner applies
+that configuration to every Data Designer stage and reapplies it after Ray deserialization; configs that omit the block keep
+Data Designer's defaults.
+
+## Dedup Sarah/MinHash backend
+
+The dedup pipeline uses `eval/dedup/resources/local_ndd/sarah_minhash_qwen.yaml` as its default one-model, one-B200 Judge.
+Gemma is not part of the default decision or agreement logic. Stage 6 keeps canonical pair IDs and payload hashes for joining,
+but its Jinja prompt exposes only cleaned text and explicit long-document windows—never URL, language, SUT group/action, or
+retrieval scores.
+
+The dedup wrapper adapts Sarah's rubric into `dedup-judge-output-v0`, stores no NDD reasoning, retries only missing or invalid
+rows inside the same server lifetime, and writes an explicit terminal error after the third failed attempt. Valid rows are
+fsynced to the existing Judge cache. The standalone generic runner still writes NDD's native nested score objects; these
+dedup-specific adaptation, retry, and accounting guarantees apply only when `judge.backend = "local_ndd"` is invoked through
+`python -m eval.dedup`.
+
+See [the dedup evaluation README](../dedup/README.md) for default Sarah commands and the separately named legacy NVIDIA/formal
+V0 configs.
+
 ## Quick start
 
 Start by copying and editing the files in `cc_extract_example/`. The YAML refers to adjacent Jinja files by relative path, so keep them together.

@@ -25,10 +25,11 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
-from eval.dedup.config import EvaluationConfig
+from eval.dedup.config import EvaluationConfig, LocalNddJudgeConfig
 from eval.dedup.contracts import stable_record_id
 from eval.dedup.handoff.corpus import TokenCounter, load_documents_by_ids
 from eval.dedup.judging.client import JudgeClient, create_judge_client
+from eval.dedup.judging.local_ndd import run_local_ndd_pending
 from eval.dedup.judging.payload import (
     EVIDENCE_ALIGNMENT_VERSION,
     align_evidence_offsets,
@@ -71,13 +72,32 @@ def _parquet() -> Any:
     return pq
 
 
+def _jsonable(value: Any) -> Any:
+    if isinstance(value, Path):
+        return str(value)
+    if isinstance(value, dict):
+        return {key: _jsonable(item) for key, item in value.items()}
+    if isinstance(value, list | tuple):
+        return [_jsonable(item) for item in value]
+    return value
+
+
+def _local_resource_hashes(config: EvaluationConfig) -> dict[str, str]:
+    if not isinstance(config.judge, LocalNddJudgeConfig):
+        return {}
+    root = config.judge.runner_config.parent
+    resources = [item for item in root.rglob("*") if item.is_file() and item.suffix in {".yaml", ".jinja", ".py"}]
+    return {str(path.relative_to(root)): sha256_file(path) for path in sorted(resources)}
+
+
 def _judge_contract_digest(config: EvaluationConfig) -> str:
     return sha256_json(
         {
             "contract_version": JUDGE_CONTRACT_VERSION,
             "deterministic_evidence_alignment_version": EVIDENCE_ALIGNMENT_VERSION,
-            "judge_config": asdict(config.judge),
+            "judge_config": _jsonable(asdict(config.judge)),
             "judge_output_schema": judge_output_schema(config.judge.schema_version),
+            "local_ndd_resources": _local_resource_hashes(config),
             "retry_feedback_version": RETRY_FEEDBACK_VERSION,
         }
     )
@@ -242,11 +262,15 @@ def run_judging(
         | {int(row["presented_doc_b"]) for row in candidate_rows}
     )
     documents = load_documents_by_ids(corpus_manifest, endpoint_ids, columns=("text", "url", "timestamp", "language"))
-    resource_root = Path(__file__).resolve().parents[1] / "resources"
-    prompt_suffix = config.judge.prompt_version.rsplit("-", 1)[-1]
-    prompt_path = resource_root / f"judge_prompt_{prompt_suffix}.txt"
-    require(prompt_path.is_file(), "JUDGE_PROMPT_NOT_FOUND", "configured judge prompt file is missing")
-    prompt = prompt_path.read_text(encoding="utf-8")
+    if isinstance(config.judge, LocalNddJudgeConfig):
+        prompt_path = config.judge.runner_config
+        prompt = ""
+    else:
+        resource_root = Path(__file__).resolve().parents[1] / "resources"
+        prompt_suffix = config.judge.prompt_version.rsplit("-", 1)[-1]
+        prompt_path = resource_root / f"judge_prompt_{prompt_suffix}.txt"
+        require(prompt_path.is_file(), "JUDGE_PROMPT_NOT_FOUND", "configured judge prompt file is missing")
+        prompt = prompt_path.read_text(encoding="utf-8")
     payload_rows = []
     prepared: dict[str, dict[str, Any]] = {}
     for row in candidate_rows:
@@ -274,39 +298,57 @@ def run_judging(
         payloads_destination,
         "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in payload_rows),
     )
-    write_json_atomic(
-        judge_config_destination,
-        {
-            "schema_version": "judge-config-v1",
-            "backend": config.judge.backend,
-            "base_url": config.judge.base_url,
-            "model": config.judge.model,
-            "judge_contract_digest": _judge_contract_digest(config),
-            "judge_contract_version": JUDGE_CONTRACT_VERSION,
-            "credential_source": {"kind": "environment", "name": config.judge.api_key_env, "value_stored": False},
-            "structured_output_mode": config.judge.structured_output_mode,
-            "provider_response_storage": "sha256_only",
-            "deterministic_evidence_alignment": {
-                "version": EVIDENCE_ALIGNMENT_VERSION,
-                "scope": "evidence_only",
-                "unalignable_evidence": "drop",
-            },
-            "retry_feedback_version": RETRY_FEEDBACK_VERSION,
-            "thinking": config.judge.thinking,
-            "temperature": config.judge.temperature,
-            "top_p": config.judge.top_p,
-            "max_output_tokens": config.judge.max_output_tokens,
-            "max_visible_tokens": config.judge.max_visible_tokens,
-            "window_tokens": config.judge.window_tokens,
-            "window_overlap_tokens": config.judge.window_overlap_tokens,
-            "max_retries": config.judge.max_retries,
-            "prompt_version": config.judge.prompt_version,
-            "prompt_sha256": sha256_file(prompt_path),
-            "visible_payload_schema_version": payload_rows[0]["payload"]["payload_schema_version"],
-            "judge_schema_version": config.judge.schema_version,
-            "judge_order_seed": config.seeds["judge_order_seed"],
+    judge_manifest = {
+        "schema_version": "judge-config-v1",
+        "backend": config.judge.backend,
+        "model": config.judge.model,
+        "judge_contract_digest": _judge_contract_digest(config),
+        "judge_contract_version": JUDGE_CONTRACT_VERSION,
+        "provider_response_storage": "sha256_only",
+        "deterministic_evidence_alignment": {
+            "version": EVIDENCE_ALIGNMENT_VERSION,
+            "scope": "evidence_only",
+            "unalignable_evidence": "drop",
         },
-    )
+        "retry_feedback_version": RETRY_FEEDBACK_VERSION,
+        "max_visible_tokens": config.judge.max_visible_tokens,
+        "window_tokens": config.judge.window_tokens,
+        "window_overlap_tokens": config.judge.window_overlap_tokens,
+        "max_retries": config.judge.max_retries,
+        "prompt_version": config.judge.prompt_version,
+        "prompt_sha256": sha256_file(prompt_path),
+        "visible_payload_schema_version": payload_rows[0]["payload"]["payload_schema_version"],
+        "judge_schema_version": config.judge.schema_version,
+        "judge_order_seed": config.seeds["judge_order_seed"],
+    }
+    if isinstance(config.judge, LocalNddJudgeConfig):
+        judge_manifest.update(
+            {
+                "model_path": str(config.judge.model_path),
+                "runner_config": str(config.judge.runner_config),
+                "runner_resources": _local_resource_hashes(config),
+                "ray_temp_dir": str(config.judge.ray_temp_dir),
+                "checkpoint_root": str(config.judge.checkpoint_root),
+                "num_cpus": config.judge.num_cpus,
+                "num_gpus": config.judge.num_gpus,
+                "credential_source": None,
+                "structured_output_mode": "ndd_score_rubric_plus_local_schema",
+                "evidence_policy": "empty_not_requested_from_ndd",
+            }
+        )
+    else:
+        judge_manifest.update(
+            {
+                "base_url": config.judge.base_url,
+                "credential_source": {"kind": "environment", "name": config.judge.api_key_env, "value_stored": False},
+                "structured_output_mode": config.judge.structured_output_mode,
+                "thinking": config.judge.thinking,
+                "temperature": config.judge.temperature,
+                "top_p": config.judge.top_p,
+                "max_output_tokens": config.judge.max_output_tokens,
+            }
+        )
+    write_json_atomic(judge_config_destination, judge_manifest)
     cache = _read_cache(cache_path)
     for row in cache.values():
         require(
@@ -337,7 +379,6 @@ def run_judging(
             "cached schema differs",
         )
     pending = [row for row in candidate_rows if row["canonical_pair_id"] not in cache]
-    client = create_judge_client(config.judge)
     cache_path.parent.mkdir(parents=True, exist_ok=True)
     write_lock = threading.Lock()
 
@@ -348,20 +389,32 @@ def run_judging(
             os.fsync(file.fileno())
             cache[result["canonical_pair_id"]] = result
 
-    with ThreadPoolExecutor(max_workers=config.judge.concurrency) as executor:
-        futures = {
-            executor.submit(
-                _judge_one,
-                row,
-                client=client,
-                prompt=prompt,
-                payload=prepared[row["canonical_pair_id"]],
-                config=config,
-            ): row["canonical_pair_id"]
-            for row in pending
-        }
-        for future in as_completed(futures):
-            persist(future.result())
+    if isinstance(config.judge, LocalNddJudgeConfig):
+        run_local_ndd_pending(
+            config,
+            pending=pending,
+            prepared=prepared,
+            contract_digest=_judge_contract_digest(config),
+            contract_version=JUDGE_CONTRACT_VERSION,
+            work_root=results_destination.parents[1] / "local_ndd_runtime",
+            persist=persist,
+        )
+    else:
+        client = create_judge_client(config.judge)
+        with ThreadPoolExecutor(max_workers=config.judge.concurrency) as executor:
+            futures = {
+                executor.submit(
+                    _judge_one,
+                    row,
+                    client=client,
+                    prompt=prompt,
+                    payload=prepared[row["canonical_pair_id"]],
+                    config=config,
+                ): row["canonical_pair_id"]
+                for row in pending
+            }
+            for future in as_completed(futures):
+                persist(future.result())
     require(
         len(cache) == len(candidate_rows),
         "JUDGE_ACCOUNTING_MISMATCH",

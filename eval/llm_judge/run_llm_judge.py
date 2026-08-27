@@ -29,13 +29,21 @@ Example:
 from __future__ import annotations
 
 import argparse
+import copy
+import ensurepip
+import importlib.util
+import os
 from functools import partial
 from pathlib import Path
-from typing import Literal
+from typing import TYPE_CHECKING, Literal, Self
 
 import data_designer.config as dd
 import yaml
 
+if TYPE_CHECKING:
+    from types import TracebackType
+
+    from nemo_curator.tasks import Task
 from nemo_curator.backends.ray_data import RayDataExecutor
 from nemo_curator.core.client import RayClient
 from nemo_curator.core.serve import DynamoServerConfig, DynamoVLLMModelConfig, InferenceServer
@@ -47,6 +55,37 @@ from nemo_curator.stages.text.io.writer import JsonlWriter, ParquetWriter
 
 DataFormat = Literal["jsonl", "parquet"]
 FilterOperator = Literal["eq", "ne", "gt", "gte", "lt", "lte", "in", "not_in"]
+_RAY_UNIX_SOCKET_MAX_BYTES = 107
+_RAY_SESSION_NAME_PROBE = "session_9999-12-31_23-59-59_999999_9999999999"
+
+
+def _ensure_pip_for_ray_uv_runtime() -> None:
+    """Seed pip when uv created the driver venv without it.
+
+    Ray's uv runtime-environment plugin clones the driver environment and
+    invokes ``python -m pip install uv`` inside that clone. A normal
+    ``uv sync`` environment does not include pip, so seed the bundled wheel
+    before Ray starts and clones it.
+    """
+    if importlib.util.find_spec("pip") is not None:
+        return
+    ensurepip.bootstrap(upgrade=True)
+    importlib.invalidate_caches()
+    if importlib.util.find_spec("pip") is None:
+        msg = "Ray's uv runtime environment requires pip, but ensurepip did not install it."
+        raise RuntimeError(msg)
+
+
+def _validate_ray_temp_dir(path: str | Path) -> None:
+    """Fail before startup when Ray's dashboard socket cannot fit in AF_UNIX."""
+    socket_path = Path(path).resolve() / _RAY_SESSION_NAME_PROBE / "sockets" / "dash_MetricsHead"
+    path_bytes = len(os.fsencode(socket_path))
+    if path_bytes > _RAY_UNIX_SOCKET_MAX_BYTES:
+        msg = (
+            f"Ray temp path is too long for its dashboard Unix socket ({path_bytes} > {_RAY_UNIX_SOCKET_MAX_BYTES} bytes): "
+            f"{socket_path}"
+        )
+        raise ValueError(msg)
 
 
 def _load_yaml(path: Path) -> dict[str, object]:
@@ -109,8 +148,7 @@ def _validate_filter_references(
             and producer_stage_by_judge[judge_name] > filter_stage_index
         ):
             msg = (
-                f"Stage {stages[filter_stage_index].get('name', '<unnamed>')!r} "
-                f"filter refers to judge {judge_name!r} "
+                f"Stage {stages[filter_stage_index].get('name', '<unnamed>')!r} filter refers to judge {judge_name!r} "
             )
             msg += "produced by a later stage."
             raise ValueError(msg)
@@ -125,6 +163,15 @@ def _get_num_workers(config: dict[str, object], *, owner: str) -> int | None:
         msg = f"{owner} must be a positive integer."
         raise ValueError(msg)
     return num_workers
+
+
+def _get_data_designer_run_config(execution: dict[str, object]) -> dd.RunConfig:
+    """Build the supported Data Designer runtime settings from judge YAML."""
+    value = execution.get("data_designer_run", {})
+    if not isinstance(value, dict):
+        msg = "execution.data_designer_run must be a mapping."
+        raise TypeError(msg)
+    return dd.RunConfig(**value)
 
 
 def _keep_judge_score(  # noqa: PLR0911
@@ -310,6 +357,7 @@ def build_pipeline(  # noqa: PLR0913
             list[dd.ModelProvider],
             dict[str, object] | None,
             int | None,
+            dd.RunConfig,
             list[dict[str, object]],
         ]
     ],
@@ -326,11 +374,21 @@ def build_pipeline(  # noqa: PLR0913
     )
     writer = JsonlWriter(path=output_path) if output_format == "jsonl" else ParquetWriter(path=output_path)
     processing_stages = []
-    for stage_name, config_builder, model_providers, runtime_env, num_workers, stage_filters in judge_stages:
+    for (
+        stage_name,
+        config_builder,
+        model_providers,
+        runtime_env,
+        num_workers,
+        run_config,
+        stage_filters,
+    ) in judge_stages:
         processing_stages.append(
-            DataDesignerStage(config_builder=config_builder, model_providers=model_providers).with_(
-                name=f"ndd_{stage_name}", runtime_env=runtime_env, num_workers=num_workers
-            )
+            DataDesignerStage(
+                config_builder=config_builder,
+                model_providers=model_providers,
+                run_config=run_config,
+            ).with_(name=f"ndd_{stage_name}", runtime_env=runtime_env, num_workers=num_workers)
         )
         processing_stages.extend(_build_filter_stages(stage_filters, name_prefix=f"judge_filter_{stage_name}"))
     return Pipeline(
@@ -338,6 +396,161 @@ def build_pipeline(  # noqa: PLR0913
         description="Evaluate text records with a config-driven NDD LLM judge.",
         stages=[reader, *([language_filter_stage] if language_filter_stage else []), *processing_stages, writer],
     )
+
+
+class LocalJudgeRuntime:
+    """Reusable Ray + Dynamo/NDD runtime for one judge configuration.
+
+    The CLI historically owned the full lifecycle. Keeping it here lets
+    callers run retry batches without reloading model weights while retaining
+    the command-line behavior.
+    """
+
+    def __init__(  # noqa: PLR0913
+        self,
+        config_path: str | Path,
+        *,
+        execution_mode: Literal["single_stage", "multi_stage"] = "single_stage",
+        model_overrides: dict[str, str] | None = None,
+        ray_temp_dir: str = "/tmp/ray",  # noqa: S108
+        num_cpus: int | None = None,
+        num_gpus: int | None = None,
+    ) -> None:
+        self.config_path = Path(config_path).resolve()
+        _validate_ray_temp_dir(ray_temp_dir)
+        self.execution_mode = execution_mode
+        self.config = copy.deepcopy(_load_yaml(self.config_path))
+        self.models: list[dict[str, object]] = self.config["models"]  # type: ignore[assignment]
+        for model in self.models:
+            alias = str(model["alias"])
+            if model_overrides and alias in model_overrides:
+                model["model"] = model_overrides[alias]
+        self.execution: dict[str, object] = self.config["execution"]  # type: ignore[assignment]
+        self.data_designer_run_config = _get_data_designer_run_config(self.execution)
+        self.configured_stages: list[dict[str, object]] = self.execution["stages"]  # type: ignore[assignment]
+        _validate_filter_references(
+            self.config,
+            self.configured_stages,
+            enforce_stage_order=execution_mode == "multi_stage",
+        )
+        self.stage_filters = _place_filters(self.config, self.configured_stages)
+        self.client = RayClient(
+            num_cpus=num_cpus,
+            num_gpus=num_gpus,
+            include_dashboard=False,
+            ray_temp_dir=ray_temp_dir,
+        )
+        self.inference_server: InferenceServer | None = None
+
+    @property
+    def endpoint(self) -> str:
+        if self.inference_server is None:
+            msg = "LocalJudgeRuntime must be started before it can run a pipeline."
+            raise RuntimeError(msg)
+        return self.inference_server.endpoint
+
+    def start(self) -> Self:
+        _ensure_pip_for_ray_uv_runtime()
+        self.client.start()
+        try:
+            self.inference_server = _start_inference_server(
+                self.config,
+                self.models,
+                config_path=self.config_path,
+            )
+        except Exception:
+            self.client.stop()
+            raise
+        return self
+
+    def stop(self) -> None:
+        if self.inference_server is not None:
+            self.inference_server.stop()
+            self.inference_server = None
+        self.client.stop()
+
+    def __enter__(self) -> Self:
+        return self.start()
+
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        traceback: TracebackType | None,
+    ) -> None:
+        self.stop()
+
+    def run(  # noqa: PLR0913
+        self,
+        *,
+        input_path: str,
+        input_format: DataFormat,
+        output_path: str,
+        output_format: DataFormat = "jsonl",
+        checkpoint_path: str | None = None,
+        files_per_partition: int | None = None,
+        language: str | None = None,
+        fasttext_langid_model_path: str | None = None,
+        min_langid_score: float = 0.3,
+        language_text_field: str = "raw_text",
+    ) -> list[Task] | None:
+        """Run one batch while reusing the already-loaded model server."""
+
+        language_filter_stage = _build_language_filter_stage(
+            language=language,
+            model_path=fasttext_langid_model_path,
+            min_score=min_langid_score,
+            text_field=language_text_field,
+        )
+        if self.execution_mode == "single_stage":
+            judges = [judge for stage in self.configured_stages for judge in stage["judges"]]
+            config_builder, model_providers = build_config_builder(
+                self.config_path,
+                endpoint=self.endpoint,
+                models=self.models,
+                judges=judges,
+            )
+            judge_stages = [
+                (
+                    "all_judges",
+                    config_builder,
+                    model_providers,
+                    self.execution.get("runtime_env"),
+                    _get_num_workers(self.execution, owner="execution.num_workers"),
+                    self.data_designer_run_config,
+                    [filter_config for filters in self.stage_filters for filter_config in filters],
+                )
+            ]
+        else:
+            judge_stages = []
+            for stage, filters_after_stage in zip(self.configured_stages, self.stage_filters, strict=True):
+                config_builder, model_providers = build_config_builder(
+                    self.config_path,
+                    endpoint=self.endpoint,
+                    models=self.models,
+                    judges=stage["judges"],
+                )
+                judge_stages.append(
+                    (
+                        str(stage["name"]),
+                        config_builder,
+                        model_providers,
+                        stage.get("runtime_env"),
+                        _get_num_workers(stage, owner=f"Stage {stage.get('name', '<unnamed>')!r} num_workers"),
+                        self.data_designer_run_config,
+                        filters_after_stage,
+                    )
+                )
+        pipeline = build_pipeline(
+            input_path=input_path,
+            input_format=input_format,
+            output_path=output_path,
+            output_format=output_format,
+            judge_stages=judge_stages,
+            language_filter_stage=language_filter_stage,
+            files_per_partition=files_per_partition,
+        )
+        return pipeline.run(executor=RayDataExecutor(), checkpoint_path=checkpoint_path)
 
 
 def _parse_args() -> argparse.Namespace:
@@ -410,94 +623,25 @@ def _parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = _parse_args()
-    config_path = Path(args.judge_config).resolve()
-    config = _load_yaml(config_path)
-    models = config["models"]
-    execution = config["execution"]
-    configured_stages = execution["stages"]
-    _validate_filter_references(
-        config,
-        configured_stages,
-        enforce_stage_order=args.execution_mode == "multi_stage",
-    )
-    stage_filters = _place_filters(config, configured_stages)
-    language_filter_stage = _build_language_filter_stage(
-        language=args.language,
-        model_path=args.fasttext_langid_model_path,
-        min_score=args.min_langid_score,
-        text_field=args.language_text_field,
-    )
-
-    client = RayClient(
+    with LocalJudgeRuntime(
+        args.judge_config,
+        execution_mode=args.execution_mode,
+        ray_temp_dir=args.ray_temp_dir,
         num_cpus=args.num_cpus,
         num_gpus=args.num_gpus,
-        include_dashboard=False,
-        ray_temp_dir=args.ray_temp_dir,
-    )
-    client.start()
-    inference_server: InferenceServer | None = None
-    try:
-        inference_server = _start_inference_server(config, models, config_path=config_path)
-        if args.execution_mode == "single_stage":
-            judges = [judge for stage in configured_stages for judge in stage["judges"]]
-            config_builder, model_providers = build_config_builder(
-                args.judge_config,
-                endpoint=inference_server.endpoint,
-                models=models,
-                judges=judges,
-            )
-            pipeline = build_pipeline(
-                input_path=args.input_path,
-                input_format=args.input_format,
-                output_path=args.output_path,
-                output_format=args.output_format,
-                judge_stages=[
-                    (
-                        "all_judges",
-                        config_builder,
-                        model_providers,
-                        execution.get("runtime_env"),
-                        _get_num_workers(execution, owner="execution.num_workers"),
-                        [filter_config for filters in stage_filters for filter_config in filters],
-                    )
-                ],
-                language_filter_stage=language_filter_stage,
-                files_per_partition=args.files_per_partition,
-            )
-            pipeline.run(executor=RayDataExecutor(), checkpoint_path=args.checkpoint_path)
-        else:
-            judge_stages = []
-            for stage, filters_after_stage in zip(configured_stages, stage_filters, strict=True):
-                config_builder, model_providers = build_config_builder(
-                    args.judge_config,
-                    endpoint=inference_server.endpoint,
-                    models=models,
-                    judges=stage["judges"],
-                )
-                judge_stages.append(
-                    (
-                        str(stage["name"]),
-                        config_builder,
-                        model_providers,
-                        stage.get("runtime_env"),
-                        _get_num_workers(stage, owner=f"Stage {stage.get('name', '<unnamed>')!r} num_workers"),
-                        filters_after_stage,
-                    )
-                )
-            pipeline = build_pipeline(
-                input_path=args.input_path,
-                input_format=args.input_format,
-                output_path=args.output_path,
-                output_format=args.output_format,
-                judge_stages=judge_stages,
-                language_filter_stage=language_filter_stage,
-                files_per_partition=args.files_per_partition,
-            )
-            pipeline.run(executor=RayDataExecutor(), checkpoint_path=args.checkpoint_path)
-    finally:
-        if inference_server is not None:
-            inference_server.stop()
-        client.stop()
+    ) as runtime:
+        runtime.run(
+            input_path=args.input_path,
+            input_format=args.input_format,
+            output_path=args.output_path,
+            output_format=args.output_format,
+            files_per_partition=args.files_per_partition,
+            language=args.language,
+            fasttext_langid_model_path=args.fasttext_langid_model_path,
+            min_langid_score=args.min_langid_score,
+            language_text_field=args.language_text_field,
+            checkpoint_path=args.checkpoint_path,
+        )
 
 
 if __name__ == "__main__":

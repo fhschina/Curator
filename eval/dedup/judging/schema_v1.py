@@ -34,6 +34,13 @@ JUDGE_FIELDS_V1: Final = {
     "evidence",
 }
 
+
+def _is_enum_value(value: Any, enum_type: type) -> bool:
+    """Return whether *value* is a string value of an enum on Python 3.11+."""
+
+    return isinstance(value, str) and any(value == member.value for member in enum_type)
+
+
 V1_RELATION_TYPES: Final = (
     "EXACT",
     "CANONICAL_EXACT",
@@ -427,11 +434,7 @@ def _validate_consistency(value: dict[str, Any]) -> None:
     else:
         require(bool(deltas), "JUDGE_CONSISTENCY_INVALID", "MINOR or MAJOR difference requires a delta code")
     require(
-        not (
-            material == MaterialDifference.MAJOR
-            and a_to_b == DuplicateAnswer.YES
-            and b_to_a == DuplicateAnswer.YES
-        ),
+        not (material == MaterialDifference.MAJOR and a_to_b == DuplicateAnswer.YES and b_to_a == DuplicateAnswer.YES),
         "JUDGE_CONSISTENCY_INVALID",
         "MAJOR difference cannot be bidirectionally replaceable",
     )
@@ -451,7 +454,7 @@ def validate_judge_output_v1(value: Any) -> dict[str, Any]:
     )
     for field in ("same_duplicate_group", "a_can_replace_b", "b_can_replace_a"):
         require(
-            isinstance(value[field], str) and value[field] in DuplicateAnswer,
+            _is_enum_value(value[field], DuplicateAnswer),
             "JUDGE_SCHEMA_INVALID",
             "invalid ternary answer",
             field=field,
@@ -462,12 +465,12 @@ def validate_judge_output_v1(value: Any) -> dict[str, Any]:
         "invalid relation_type",
     )
     require(
-        isinstance(value["material_difference"], str) and value["material_difference"] in MaterialDifference,
+        _is_enum_value(value["material_difference"], MaterialDifference),
         "JUDGE_SCHEMA_INVALID",
         "invalid material_difference",
     )
     require(
-        isinstance(value["fuzzy_scope"], str) and value["fuzzy_scope"] in FuzzyScope,
+        _is_enum_value(value["fuzzy_scope"], FuzzyScope),
         "JUDGE_SCHEMA_INVALID",
         "invalid fuzzy_scope",
     )

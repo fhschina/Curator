@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.metadata as package_metadata
 import json
 import os
 import re
@@ -29,7 +30,7 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-from eval.dedup.config import EvaluationConfig, load_config
+from eval.dedup.config import EvaluationConfig, LocalNddJudgeConfig, load_config
 from eval.dedup.handoff.corpus import TokenCounter
 from eval.dedup.handoff.manifests import register_corpus_handoff, register_sut_handoff
 from eval.dedup.judging.client import create_judge_client
@@ -52,6 +53,8 @@ from eval.dedup.validation import DedupEvaluationError, require, sha256_file, wr
 _REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 _DEFAULT_REPORT_EXPORT_ROOT = _REPOSITORY_ROOT.parent / "dedup_eval_runs"
 _PUBLISHED_RESULTS_PATH = _REPOSITORY_ROOT / "eval" / "dedup" / "RESULTS.md"
+_RAY_UNIX_SOCKET_MAX_BYTES = 107
+_RAY_SESSION_NAME_PROBE = "session_9999-12-31_23-59-59_999999_9999999999"
 
 
 def _load_repository_env(dotenv_path: Path | None = None) -> None:
@@ -185,8 +188,56 @@ def preflight(config: EvaluationConfig, profile_name: str) -> dict[str, Any]:
             "production V0 requires exactly eight visible NVIDIA B200 GPUs",
             visible_gpus=gpus,
         )
-    judge_probe = {"backend": config.judge.backend, "structured_output_mode": config.judge.structured_output_mode}
-    if config.judge.backend != "stub":
+    judge_probe = {
+        "backend": config.judge.backend,
+        "structured_output_mode": getattr(
+            config.judge, "structured_output_mode", "ndd_score_rubric_plus_local_schema"
+        ),
+    }
+    if isinstance(config.judge, LocalNddJudgeConfig):
+        require(config.judge.model_path.is_dir(), "LOCAL_MODEL_NOT_FOUND", "local Judge model directory is missing")
+        require(
+            config.judge.runner_config.is_file(),
+            "LOCAL_NDD_CONFIG_NOT_FOUND",
+            "local NDD runner configuration is missing",
+        )
+        socket_path = config.judge.ray_temp_dir / _RAY_SESSION_NAME_PROBE / "sockets" / "dash_MetricsHead"
+        socket_path_bytes = len(os.fsencode(socket_path))
+        require(
+            socket_path_bytes <= _RAY_UNIX_SOCKET_MAX_BYTES,
+            "LOCAL_NDD_RAY_TEMP_PATH_TOO_LONG",
+            "Ray temp directory is too long for its dashboard Unix socket",
+            socket_path=str(socket_path),
+            socket_path_bytes=socket_path_bytes,
+        )
+        missing_tools = [name for name in ("etcd", "nats-server") if shutil.which(name) is None]
+        require(
+            not missing_tools,
+            "LOCAL_NDD_TOOL_NOT_FOUND",
+            "Dynamo requires etcd and nats-server on PATH",
+            missing_tools=missing_tools,
+        )
+        try:
+            versions = {
+                "data_designer": package_metadata.version("data-designer"),
+                "pyarrow": package_metadata.version("pyarrow"),
+                "ai_dynamo": package_metadata.version("ai-dynamo"),
+                "vllm": package_metadata.version("vllm"),
+            }
+        except (ImportError, package_metadata.PackageNotFoundError) as exc:
+            raise DedupEvaluationError(
+                "LOCAL_NDD_DEPENDENCY_MISSING", "local NDD runtime dependencies are unavailable", error=str(exc)
+            ) from exc
+        require(versions["data_designer"] == "0.9.1", "LOCAL_NDD_VERSION_MISMATCH", "data-designer must be 0.9.1")
+        judge_probe.update(
+            {
+                "probe": "local_dependencies_passed",
+                "model_path": str(config.judge.model_path),
+                "ray_socket_path_bytes": socket_path_bytes,
+                "versions": versions,
+            }
+        )
+    elif config.judge.backend != "stub":
         require(
             os.environ.get(config.judge.api_key_env, "").strip(),
             "MISSING_API_KEY",

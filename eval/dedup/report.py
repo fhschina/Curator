@@ -719,21 +719,53 @@ def _comparison_analysis(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _candidate_presented_token_counts(run_root: Path) -> dict[str, dict[str, int]]:
+    candidate_path = run_root / "data" / "candidate_pairs.parquet"
+    if not candidate_path.is_file():
+        return {}
+    try:
+        import pyarrow.parquet as pq
+    except ImportError:
+        return {}
+    rows = pq.read_table(
+        candidate_path,
+        columns=[
+            "canonical_pair_id",
+            "doc_id_low",
+            "presented_doc_a",
+            "token_count_low",
+            "token_count_high",
+        ],
+    ).to_pylist()
+    result = {}
+    for row in rows:
+        a_is_low = int(row["presented_doc_a"]) == int(row["doc_id_low"])
+        result[str(row["canonical_pair_id"])] = {
+            "A": int(row["token_count_low"] if a_is_low else row["token_count_high"]),
+            "B": int(row["token_count_high"] if a_is_low else row["token_count_low"]),
+        }
+    return result
+
+
 def _judge_diagnostics(run_root: Path) -> dict[str, Any]:
     payload_count = 0
     truncated = 0
     window_count = 0
     maximum_tokens = {"A": 0, "B": 0}
+    candidate_token_counts = _candidate_presented_token_counts(run_root)
     with (run_root / "data" / "judge_payloads.jsonl").open("r", encoding="utf-8") as file:
         for line in file:
             if not line.strip():
                 continue
             payload_count += 1
-            evidence = json.loads(line)["payload"]["long_document_evidence"]
+            row = json.loads(line)
+            evidence = row["payload"]["long_document_evidence"]
+            token_counts = evidence.get("token_counts") or candidate_token_counts.get(row["canonical_pair_id"])
             truncated += bool(evidence["truncated"])
             window_count += len(evidence["windows"])
-            for side in ("A", "B"):
-                maximum_tokens[side] = max(maximum_tokens[side], int(evidence["token_counts"][side]))
+            if token_counts is not None:
+                for side in ("A", "B"):
+                    maximum_tokens[side] = max(maximum_tokens[side], int(token_counts[side]))
     repair_actions: Counter[str] = Counter()
     with (run_root / "data" / "judge_results.jsonl").open("r", encoding="utf-8") as file:
         for line in file:
@@ -1452,8 +1484,7 @@ def _audit_appendices(
         for artifact in marker.get("artifacts", [])
     ]
     artifacts.extend(
-        ["QA", packet["path"], packet["size_bytes"], packet["sha256"]]
-        for packet in qa_packet_inventory.values()
+        ["QA", packet["path"], packet["size_bytes"], packet["sha256"]] for packet in qa_packet_inventory.values()
     )
     stage_table = _markdown_table(
         ["Step", "Stage", "Status", "Elapsed since prior stage", "Accounting"],
