@@ -32,6 +32,27 @@ from .config import HostingBenchmarkConfig
 from .relay import RelayContext, RelayTarget, RequestRelay
 
 
+def _persist_idempotent_report(
+    path: Path,
+    report: dict[str, Any],
+    *,
+    volatile_fields: frozenset[str] = frozenset(),
+) -> dict[str, Any]:
+    if not path.is_file():
+        write_json_atomic(path, report)
+        return report
+    existing = read_json(path)
+    stable_existing = {key: value for key, value in existing.items() if key not in volatile_fields}
+    stable_report = {key: value for key, value in report.items() if key not in volatile_fields}
+    require(
+        stable_existing == stable_report,
+        "HOSTING_REPORT_CHANGED",
+        "an existing benchmark report differs from the current validated state",
+        path=str(path),
+    )
+    return existing
+
+
 def _visible_cuda_device() -> str:
     visible = os.environ.get("CUDA_VISIBLE_DEVICES", "")
     devices = [device.strip() for device in visible.split(",") if device.strip()]
@@ -248,8 +269,11 @@ def static_preflight(run_root: str | Path) -> dict[str, Any]:
         "model": _verify_model(config),
         "status": "pass",
     }
-    write_json_atomic(root / "static_preflight.json", report)
-    return report
+    return _persist_idempotent_report(
+        root / "static_preflight.json",
+        report,
+        volatile_fields=frozenset({"checked_at_utc", "storage_free_bytes"}),
+    )
 
 
 def _benchmark_evaluation_config(config: HostingBenchmarkConfig) -> SimpleNamespace:
@@ -442,7 +466,8 @@ def run_endpoint_block(
         "status": "quota_limited" if status_counts[429] else "complete",
         "attempt_root": str(attempt_root.relative_to(run_root)),
     }
-    write_json_atomic(attempt_root / "complete.json", marker)
+    marker_name = "quota_limited.json" if status_counts[429] else "complete.json"
+    write_json_atomic(attempt_root / marker_name, marker)
     return marker
 
 
@@ -563,6 +588,11 @@ def _prompt_counter(tokenizer: TokenCounter) -> Any:
 
 def run_benchmark(run_root: str | Path) -> dict[str, Any]:
     root, manifest, config = load_run(run_root)
+    completion_path = root / "run_complete.json"
+    if completion_path.is_file():
+        completion = read_json(completion_path)
+        require(completion.get("status") == "complete", "HOSTING_RUN_INCOMPLETE", "run completion is not valid")
+        return completion
     preflight_path = root / "static_preflight.json"
     require(preflight_path.is_file(), "HOSTING_PREFLIGHT_MISSING", "run static preflight first")
     require(read_json(preflight_path).get("status") == "pass", "HOSTING_PREFLIGHT_FAILED", "preflight did not pass")
@@ -656,7 +686,7 @@ def run_benchmark(run_root: str | Path) -> dict[str, Any]:
                     endpoint=endpoint,
                 )
             assert_paired_requests(root, warmup_markers["local"], warmup_markers["hub"])
-            write_json_atomic(
+            _persist_idempotent_report(
                 root / "dynamic_preflight.json",
                 {
                     "schema_version": "hosting-dynamic-preflight-v1",
@@ -705,7 +735,7 @@ def run_benchmark(run_root: str | Path) -> dict[str, Any]:
             "measured": measured_markers,
             "status": "complete",
         }
-        write_json_atomic(root / "run_complete.json", completion)
+        write_json_atomic(completion_path, completion)
         return completion
     finally:
         if runtime_started:

@@ -21,6 +21,7 @@ from eval.dedup.hosting_benchmark.relay import (
     RequestRelay,
     canonical_request_hash,
 )
+from eval.dedup.hosting_benchmark.runner import _persist_idempotent_report
 from eval.dedup.hosting_benchmark.workload import allocate_blocks
 
 
@@ -99,6 +100,40 @@ def test_incomplete_block_uses_a_new_attempt_directory(tmp_path: Path) -> None:
     assert first.name == "attempt-01"
     assert second.name == "attempt-02"
     assert complete_marker(tmp_path) == second / "complete.json"
+
+
+def test_quota_limited_attempt_is_not_a_complete_marker(tmp_path: Path) -> None:
+    first = next_attempt_root(tmp_path)
+    (first / "quota_limited.json").write_text('{"status":"quota_limited"}\n', encoding="utf-8")
+
+    assert complete_marker(tmp_path) is None
+    second = next_attempt_root(tmp_path)
+    (second / "complete.json").write_text('{"status":"complete"}\n', encoding="utf-8")
+
+    assert complete_marker(tmp_path) == second / "complete.json"
+
+
+def test_idempotent_report_ignores_only_declared_volatile_fields(tmp_path: Path) -> None:
+    path = tmp_path / "preflight.json"
+    first = {"checked_at_utc": "first", "storage_free_bytes": 100, "status": "pass"}
+    second = {"checked_at_utc": "second", "storage_free_bytes": 90, "status": "pass"}
+
+    assert (
+        _persist_idempotent_report(
+            path,
+            first,
+            volatile_fields=frozenset({"checked_at_utc", "storage_free_bytes"}),
+        )
+        == first
+    )
+    assert (
+        _persist_idempotent_report(
+            path,
+            second,
+            volatile_fields=frozenset({"checked_at_utc", "storage_free_bytes"}),
+        )
+        == first
+    )
 
 
 def test_endpoint_metrics_include_goodput_retries_and_token_rates(tmp_path: Path) -> None:
