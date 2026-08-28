@@ -14,6 +14,7 @@ from typing import Any
 from eval.dedup.validation import require, sha256_file, sha256_json, write_json_atomic, write_text_atomic
 
 from .artifacts import load_run, read_json, read_jsonl
+from .relay import audit_paired_request_events
 
 CORE_FIELDS = (
     "same_duplicate_group",
@@ -96,31 +97,9 @@ def _initial_request_events(run_root: Path, marker: dict[str, Any]) -> list[dict
     return initial
 
 
-def _verify_paired_requests(run_root: Path, local: dict[str, Any], hub: dict[str, Any]) -> None:
-    local_events = _initial_request_events(run_root, local)
-    hub_events = _initial_request_events(run_root, hub)
-    require(
-        Counter(event["request_hash"] for event in local_events)
-        == Counter(event["request_hash"] for event in hub_events),
-        "HOSTING_REQUEST_CONTRACT_MISMATCH",
-        "paired endpoints received different initial requests",
-    )
-    prompt_usage: dict[str, dict[str, list[int]]] = defaultdict(lambda: defaultdict(list))
-    for endpoint, events in (("local", local_events), ("hub", hub_events)):
-        for event in events:
-            prompt_tokens = event.get("usage", {}).get("prompt_tokens")
-            require(
-                isinstance(prompt_tokens, int),
-                "HOSTING_PROMPT_USAGE_MISSING",
-                "provider omitted prompt token usage",
-                endpoint=endpoint,
-            )
-            prompt_usage[endpoint][event["request_hash"]].append(prompt_tokens)
-    require(
-        {request_hash: sorted(values) for request_hash, values in prompt_usage["local"].items()}
-        == {request_hash: sorted(values) for request_hash, values in prompt_usage["hub"].items()},
-        "HOSTING_PROMPT_TOKEN_MISMATCH",
-        "paired endpoints reported different prompt token counts",
+def _verify_paired_requests(run_root: Path, local: dict[str, Any], hub: dict[str, Any]) -> dict[str, Any]:
+    return audit_paired_request_events(
+        "local", _initial_request_events(run_root, local), "hub", _initial_request_events(run_root, hub)
     )
 
 
@@ -142,8 +121,17 @@ def _endpoint_concurrency_summary(
         "HOSTING_ACCOUNTING_MISMATCH",
         "endpoint/concurrency records contain duplicate pair IDs",
     )
+    for event in events:
+        require(
+            isinstance(event.get("prompt_tokens_local"), int)
+            and not isinstance(event.get("prompt_tokens_local"), bool),
+            "HOSTING_CANONICAL_PROMPT_USAGE_MISSING",
+            "relay omitted the pinned-tokenizer prompt count",
+            endpoint=endpoint,
+        )
     usage_rows = [row["usage"] for row in events if isinstance(row.get("usage"), dict)]
-    prompt_tokens = sum(int(row.get("prompt_tokens", 0)) for row in usage_rows)
+    prompt_tokens = sum(int(row["prompt_tokens_local"]) for row in events)
+    provider_prompt_tokens = sum(int(row.get("prompt_tokens", 0)) for row in usage_rows)
     completion_tokens = sum(int(row.get("completion_tokens", 0)) for row in usage_rows)
     completion_lengths = [float(row["completion_tokens"]) for row in usage_rows if "completion_tokens" in row]
     total_wall_seconds = sum(durations)
@@ -176,6 +164,9 @@ def _endpoint_concurrency_summary(
         "terminal_errors": len(terminals) - valid,
         "max_observed_outstanding": max(int(row.get("outstanding_at_submit", 0)) for row in events),
         "prompt_tokens": prompt_tokens,
+        "prompt_token_count_source": "pinned_client_tokenizer",
+        "provider_reported_prompt_tokens": provider_prompt_tokens,
+        "provider_reported_prompt_token_delta": provider_prompt_tokens - prompt_tokens,
         "completion_tokens": completion_tokens,
         "total_tokens": prompt_tokens + completion_tokens,
         "prompt_tokens_per_wall_second": prompt_tokens / total_wall_seconds,
@@ -272,13 +263,19 @@ def summarize(run_root: str | Path) -> dict[str, Any]:
             "block contract differs from the completed run contract",
         )
         _verify_marker_artifacts(root, marker)
-    _verify_paired_requests(root, completion["warmup"]["local"], completion["warmup"]["hub"])
+    warmup_audit = _verify_paired_requests(root, completion["warmup"]["local"], completion["warmup"]["hub"])
     paired_markers: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
     for marker in markers:
         paired_markers[marker["block_id"]][marker["endpoint"]] = marker
+    measured_audits = []
     for pair in paired_markers.values():
         require(set(pair) == {"local", "hub"}, "HOSTING_ACCOUNTING_MISMATCH", "paired block is incomplete")
-        _verify_paired_requests(root, pair["local"], pair["hub"])
+        measured_audits.append(_verify_paired_requests(root, pair["local"], pair["hub"]))
+    measured_provider_drift = Counter()
+    for audit in measured_audits:
+        measured_provider_drift.update(
+            {int(delta): int(count) for delta, count in audit["provider_prompt_token_usage_delta_counts"].items()}
+        )
     rows = [
         _endpoint_concurrency_summary(root, endpoint, concurrency, markers)
         for concurrency in config.workload.concurrencies
@@ -323,13 +320,24 @@ def summarize(run_root: str | Path) -> dict[str, Any]:
             float(pair["hub"]["goodput_pairs_per_second"]) / float(pair["local"]["goodput_pairs_per_second"])
         )
     summary = {
-        "schema_version": "hosting-benchmark-summary-v1",
+        "schema_version": "hosting-benchmark-summary-v2",
         "run_id": manifest["run_id"],
         "status": "pass",
-        "comparison_scope": "advertised model/precision matched black-box hosting comparison",
+        "comparison_scope": "same canonical chat request, advertised model/precision matched black-box comparison",
         "cold_start_seconds": completion["cold_start_seconds"],
         "endpoint_totals": endpoint_totals,
         "by_concurrency": rows,
+        "prompt_accounting": {
+            "basis": "pinned_client_tokenizer",
+            "canonical_request_and_prompt_token_equality": True,
+            "warmup": warmup_audit,
+            "measured_paired_requests": sum(int(audit["request_count"]) for audit in measured_audits),
+            "measured_provider_prompt_token_usage_equality": not measured_provider_drift,
+            "measured_provider_prompt_token_usage_mismatched_requests": sum(measured_provider_drift.values()),
+            "measured_provider_prompt_token_usage_delta_counts": {
+                str(delta): count for delta, count in sorted(measured_provider_drift.items())
+            },
+        },
         "agreement": _agreement(root, markers),
         "local_gpu": _gpu_summary(root / "gpu_samples.csv", markers),
         "blocks": [
@@ -382,11 +390,11 @@ def summarize(run_root: str | Path) -> dict[str, Any]:
 
 Status: **PASS**
 
-This is an advertised model/precision matched black-box hosting comparison. NVIDIA Inference Hub does not disclose the remote checkpoint revision or serving hardware.
+This is a same-canonical-chat-request, advertised model/precision matched black-box hosting comparison. The pinned client tokenizer is the common prompt-token accounting basis. NVIDIA Inference Hub does not disclose the remote checkpoint revision, tokenizer revision, or serving hardware.
 
 At concurrency 8, Hub/Local achieved {headline["hub_valid_pairs_per_second"]:.4f}/{headline["local_valid_pairs_per_second"]:.4f} schema-valid pairs/s, a median {headline["hub_over_local_goodput_ratio_median"]:.4f}x Hub/Local throughput ratio across three paired blocks (range {headline["hub_over_local_goodput_ratio_min"]:.4f}-{headline["hub_over_local_goodput_ratio_max"]:.4f}). Local p50/p95 request latency was {headline["local_latency_p50_seconds"]:.4f}/{headline["local_latency_p95_seconds"]:.4f}s; Hub p50/p95 was {headline["hub_latency_p50_seconds"]:.4f}/{headline["hub_latency_p95_seconds"]:.4f}s.
 
-All {expected:,} measured unique pairs per endpoint passed request-contract, quota, context, accounting, and >=99% schema-valid completion gates.
+All {expected:,} measured unique pairs per endpoint passed canonical-request, pinned-tokenizer, quota, context, accounting, and >=99% schema-valid completion gates. Provider-reported prompt usage differed on {summary["prompt_accounting"]["measured_provider_prompt_token_usage_mismatched_requests"]:,} paired initial requests; this drift is reported as black-box service telemetry and is not used for comparable prompt-token throughput.
 """
     write_text_atomic(root / "RESULTS.md", report)
     return summary

@@ -13,12 +13,15 @@ import threading
 import time
 import urllib.error
 import urllib.request
+from collections import Counter, defaultdict
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Self
+
+from eval.dedup.validation import require
 
 
 class LoopbackThreadingHTTPServer(ThreadingHTTPServer):
@@ -36,6 +39,74 @@ def canonical_request_hash(body: dict[str, Any]) -> str:
 
     encoded = json.dumps(body, ensure_ascii=False, separators=(",", ":"), sort_keys=True).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
+
+
+def audit_paired_request_events(
+    left_endpoint: str,
+    left_events: list[dict[str, Any]],
+    right_endpoint: str,
+    right_events: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Validate client-observable prompt identity and report provider usage drift."""
+
+    require(left_endpoint != right_endpoint, "HOSTING_ENDPOINT_INVALID", "paired endpoint labels must differ")
+    require(
+        Counter(event["request_hash"] for event in left_events)
+        == Counter(event["request_hash"] for event in right_events),
+        "HOSTING_REQUEST_CONTRACT_MISMATCH",
+        "paired endpoints received different initial requests",
+    )
+    canonical: dict[str, dict[str, list[int]]] = defaultdict(lambda: defaultdict(list))
+    provider: dict[str, dict[str, list[int]]] = defaultdict(lambda: defaultdict(list))
+    for endpoint, events in ((left_endpoint, left_events), (right_endpoint, right_events)):
+        for event in events:
+            prompt_tokens_local = event.get("prompt_tokens_local")
+            require(
+                isinstance(prompt_tokens_local, int) and not isinstance(prompt_tokens_local, bool),
+                "HOSTING_CANONICAL_PROMPT_USAGE_MISSING",
+                "relay omitted the pinned-tokenizer prompt count",
+                endpoint=endpoint,
+            )
+            prompt_tokens_provider = event.get("usage", {}).get("prompt_tokens")
+            require(
+                isinstance(prompt_tokens_provider, int) and not isinstance(prompt_tokens_provider, bool),
+                "HOSTING_PROMPT_USAGE_MISSING",
+                "provider omitted prompt token usage",
+                endpoint=endpoint,
+            )
+            request_hash = str(event["request_hash"])
+            canonical[endpoint][request_hash].append(prompt_tokens_local)
+            provider[endpoint][request_hash].append(prompt_tokens_provider)
+
+    canonical_left = {request_hash: sorted(values) for request_hash, values in canonical[left_endpoint].items()}
+    canonical_right = {request_hash: sorted(values) for request_hash, values in canonical[right_endpoint].items()}
+    require(
+        canonical_left == canonical_right,
+        "HOSTING_CANONICAL_PROMPT_TOKEN_MISMATCH",
+        "paired endpoints produced different pinned-tokenizer prompt counts",
+    )
+    drift = Counter()
+    mismatches = 0
+    for request_hash, left_values in provider[left_endpoint].items():
+        right_values = provider[right_endpoint][request_hash]
+        require(
+            len(left_values) == len(right_values),
+            "HOSTING_REQUEST_ACCOUNTING_MISMATCH",
+            "paired provider usage counts have different multiplicity",
+        )
+        for left_value, right_value in zip(sorted(left_values), sorted(right_values), strict=True):
+            if left_value != right_value:
+                mismatches += 1
+                drift[right_value - left_value] += 1
+    return {
+        "request_count": len(left_events),
+        "request_hash_equality": True,
+        "canonical_prompt_token_equality": True,
+        "prompt_token_count_source": "pinned_client_tokenizer",
+        "provider_prompt_token_usage_equality": mismatches == 0,
+        "provider_prompt_token_usage_mismatched_requests": mismatches,
+        "provider_prompt_token_usage_delta_counts": {str(delta): count for delta, count in sorted(drift.items())},
+    }
 
 
 @dataclass(frozen=True, slots=True)

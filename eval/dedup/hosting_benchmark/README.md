@@ -1,6 +1,6 @@
 # Qwen3.8 hosting benchmark
 
-This package runs a paired, endpoint-neutral comparison of Sarah's dedup LLM Judge on one local B200 and NVIDIA Inference Hub. It answers one question: under the same logical model, rendered request, output contract, input workload, and closed-loop concurrency, which warm endpoint produces more schema-valid unique pairs per second?
+This package runs a paired, endpoint-neutral comparison of Sarah's dedup LLM Judge on one local B200 and NVIDIA Inference Hub. It answers one question: under the same logical model, canonical chat request, output contract, input workload, and closed-loop concurrency, which warm endpoint produces more schema-valid unique pairs per second?
 
 The comparison is an advertised model/precision matched black-box hosting benchmark. The local side is pinned to `Qwen/Qwen3.8-27B-FP8` revision `017b9c7af6b5689d5dd426a76e0bc077eb5ca20a`; the Hub service does not disclose its checkpoint revision or serving hardware.
 
@@ -10,6 +10,7 @@ The comparison is an advertised model/precision matched black-box hosting benchm
 - Data Designer always addresses the logical model `Qwen/Qwen3.8-27B-FP8`. A loopback relay hashes the canonical request before it rewrites only the target model name and adds Hub authentication.
 - There is no client RPM limiter. Each block uses the same closed-loop `max_parallel_requests` value: 1, 2, 4, or 8.
 - The relay rejects prompts whose locally counted Qwen tokens plus 4,096 output tokens exceed 32,768. It records hashes, timings, status, safe numeric usage fields, and concurrency—not prompts, documents, responses, or credentials.
+- The pinned client tokenizer is the common prompt-token accounting basis. Provider-reported prompt usage is retained as black-box telemetry; any Local/Hub drift is counted and disclosed rather than silently treated as comparable token throughput.
 - The 100-pair warm-up is also the no-cap Hub quota probe. Any 429 stops the run before measured results can support a speed conclusion.
 - The main block duration begins at the first measured request submission and ends when the final unique pair reaches a schema-valid or terminal-error result after validation. Retry time is included.
 
@@ -46,7 +47,7 @@ $BENCH_PYTHON -m eval.dedup.hosting_benchmark run --run-root /raid/hfang/ihb/run
 $BENCH_PYTHON -m eval.dedup.hosting_benchmark summarize --run-root /raid/hfang/ihb/runs/<run_id>
 ```
 
-`preflight` performs static host, GPU, credential-presence, checkpoint, resource-digest, workload-digest, and local-engine checks. To avoid loading the local model twice, `run` starts it once and performs the dynamic smoke/quota/request-equality checks during the unmeasured warm-up. It writes `dynamic_preflight.json` before any measured block.
+`preflight` performs static host, GPU, credential-presence, checkpoint, resource-digest, workload-digest, and local-engine checks. To avoid loading the local model twice, `run` starts it once and performs the dynamic smoke/quota/canonical-request and pinned-tokenizer-equality checks during the unmeasured warm-up. It writes `dynamic_preflight.json` before any measured block.
 
 The fixed schedule contains three 500-pair blocks per concurrency. Every block has 250 removal-track and 250 cross-group-track pairs, with 50 rows from each track/length quintile. Endpoint order alternates globally, yielding six Local-first and six Hub-first blocks.
 
@@ -54,7 +55,7 @@ An interrupted block has no completion marker. Re-running `run` creates a new at
 
 ## Acceptance and artifacts
 
-`summarize` produces the headline only if both endpoints have 6,000 terminal unique-pair records, zero 429s, zero context overflows, and at least 99% schema-valid completions. It reports per-concurrency goodput, paired C=8 ratios, request latency, raw request rate, token rate, retries, terminal errors, completion length, label agreement, local GPU telemetry, and cold-start time.
+`summarize` produces the headline only if both endpoints have 6,000 terminal unique-pair records, identical canonical initial requests and pinned-tokenizer counts, zero 429s, zero context overflows, and at least 99% schema-valid completions. It reports provider prompt-usage drift separately, plus per-concurrency goodput, paired C=8 ratios, request latency, raw request rate, client-counted prompt token rate, retries, terminal errors, completion length, label agreement, local GPU telemetry, and cold-start time.
 
 The private run directory contains source-derived payloads, terminal records, request events, checkpoints, and GPU samples. It is created with mode 0700 under `/raid/hfang/ihb/runs`; never copy those raw artifacts into Git. Only the aggregate `RESULTS.md`, `summary_by_concurrency.csv`, `summary_by_block.csv`, and `summary.json` are safe result candidates after checking that they contain no document text or credential material.
 

@@ -10,10 +10,9 @@ from collections import Counter
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 from types import SimpleNamespace
-from typing import TYPE_CHECKING, Any, Self
+from typing import Any, Self
 
-if TYPE_CHECKING:
-    import pytest
+import pytest
 
 from eval.dedup.hosting_benchmark.artifacts import complete_marker, next_attempt_root
 from eval.dedup.hosting_benchmark.config import load_config
@@ -23,10 +22,12 @@ from eval.dedup.hosting_benchmark.relay import (
     RelayContext,
     RelayTarget,
     RequestRelay,
+    audit_paired_request_events,
     canonical_request_hash,
 )
-from eval.dedup.hosting_benchmark.runner import _persist_idempotent_report
+from eval.dedup.hosting_benchmark.runner import _persist_dynamic_preflight_report, _persist_idempotent_report
 from eval.dedup.hosting_benchmark.workload import allocate_blocks, provision_model_checkpoint
+from eval.dedup.validation import DedupEvaluationError
 
 
 def _workload_rows() -> list[dict[str, Any]]:
@@ -140,6 +141,36 @@ def test_idempotent_report_ignores_only_declared_volatile_fields(tmp_path: Path)
     )
 
 
+def test_dynamic_preflight_report_is_restart_safe(tmp_path: Path) -> None:
+    first = {"checked_at_utc": "first", "status": "pass"}
+    second = {"checked_at_utc": "second", "status": "pass"}
+
+    assert _persist_dynamic_preflight_report(tmp_path, first) == first
+    assert _persist_dynamic_preflight_report(tmp_path, second) == first
+
+
+def test_paired_request_audit_uses_pinned_tokens_and_reports_provider_drift() -> None:
+    local = [
+        {"request_hash": "a", "prompt_tokens_local": 10, "usage": {"prompt_tokens": 10}},
+        {"request_hash": "b", "prompt_tokens_local": 20, "usage": {"prompt_tokens": 20}},
+    ]
+    hub = [
+        {"request_hash": "a", "prompt_tokens_local": 10, "usage": {"prompt_tokens": 11}},
+        {"request_hash": "b", "prompt_tokens_local": 20, "usage": {"prompt_tokens": 20}},
+    ]
+
+    audit = audit_paired_request_events("local", local, "hub", hub)
+
+    assert audit["canonical_prompt_token_equality"] is True
+    assert audit["provider_prompt_token_usage_equality"] is False
+    assert audit["provider_prompt_token_usage_mismatched_requests"] == 1
+    assert audit["provider_prompt_token_usage_delta_counts"] == {"1": 1}
+
+    hub[0]["prompt_tokens_local"] = 12
+    with pytest.raises(DedupEvaluationError, match="HOSTING_CANONICAL_PROMPT_TOKEN_MISMATCH"):
+        audit_paired_request_events("local", local, "hub", hub)
+
+
 def test_model_provision_reuses_a_matching_marker(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     model_path = tmp_path / "model"
     model_path.mkdir()
@@ -182,6 +213,7 @@ def test_endpoint_metrics_include_goodput_retries_and_token_rates(tmp_path: Path
                 "http_status": 200,
                 "error_type": None,
                 "outstanding_at_submit": 1,
+                "prompt_tokens_local": 10,
                 "usage": {"prompt_tokens": 10, "completion_tokens": 2},
             },
             {
@@ -189,6 +221,7 @@ def test_endpoint_metrics_include_goodput_retries_and_token_rates(tmp_path: Path
                 "http_status": 200,
                 "error_type": None,
                 "outstanding_at_submit": 2,
+                "prompt_tokens_local": 12,
                 "usage": {"prompt_tokens": 12, "completion_tokens": 4},
             },
         ]
@@ -217,6 +250,8 @@ def test_endpoint_metrics_include_goodput_retries_and_token_rates(tmp_path: Path
     assert summary["pair_attempts"] == 9
     assert summary["retried_pairs"] == 3
     assert summary["raw_requests_per_wall_second"] == 1.0
+    assert summary["prompt_token_count_source"] == "pinned_client_tokenizer"  # noqa: S105
+    assert summary["provider_reported_prompt_tokens"] == 66
     assert summary["total_tokens_per_wall_second"] == 14.0
     assert summary["completion_tokens_p50"] == 3.0
 

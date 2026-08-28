@@ -12,7 +12,7 @@ import subprocess
 import sys
 import threading
 import time
-from collections import Counter, defaultdict
+from collections import Counter
 from contextlib import AbstractContextManager
 from datetime import UTC, datetime
 from pathlib import Path
@@ -29,7 +29,7 @@ from eval.llm_judge.run_llm_judge import LocalJudgeRuntime
 
 from .artifacts import complete_marker, load_run, next_attempt_root, read_json, read_jsonl
 from .config import HostingBenchmarkConfig
-from .relay import RelayContext, RelayTarget, RequestRelay
+from .relay import RelayContext, RelayTarget, RequestRelay, audit_paired_request_events
 
 
 def _persist_idempotent_report(
@@ -51,6 +51,14 @@ def _persist_idempotent_report(
         path=str(path),
     )
     return existing
+
+
+def _persist_dynamic_preflight_report(root: Path, report: dict[str, Any]) -> dict[str, Any]:
+    return _persist_idempotent_report(
+        root / "dynamic_preflight.json",
+        report,
+        volatile_fields=frozenset({"checked_at_utc"}),
+    )
 
 
 def _visible_cuda_device() -> str:
@@ -480,7 +488,7 @@ def _initial_events(run_root: Path, marker: dict[str, Any]) -> list[dict[str, An
     return [row for row in first_attempt if int(row["message_count"]) == minimum_messages]
 
 
-def assert_paired_requests(run_root: Path, left: dict[str, Any], right: dict[str, Any]) -> None:
+def assert_paired_requests(run_root: Path, left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:
     left_events = _initial_events(run_root, left)
     right_events = _initial_events(run_root, right)
     require(
@@ -489,13 +497,6 @@ def assert_paired_requests(run_root: Path, left: dict[str, Any], right: dict[str
         "initial request count differs from the paired workload",
         block_id=left["block_id"],
     )
-    require(
-        Counter(row["request_hash"] for row in left_events) == Counter(row["request_hash"] for row in right_events),
-        "HOSTING_REQUEST_CONTRACT_MISMATCH",
-        "paired endpoints received different initial requests",
-        block_id=left["block_id"],
-    )
-    prompt_usage: dict[str, dict[str, list[int]]] = defaultdict(lambda: defaultdict(list))
     for endpoint, events in ((left["endpoint"], left_events), (right["endpoint"], right_events)):
         for event in events:
             require(
@@ -510,23 +511,7 @@ def assert_paired_requests(run_root: Path, left: dict[str, Any], right: dict[str
                 "provider returned visible reasoning despite thinking-disabled request",
                 endpoint=endpoint,
             )
-            usage = event.get("usage", {})
-            require(
-                isinstance(usage.get("prompt_tokens"), int),
-                "HOSTING_PROMPT_USAGE_MISSING",
-                "provider omitted prompt token usage",
-                endpoint=endpoint,
-            )
-            prompt_usage[endpoint][event["request_hash"]].append(int(usage["prompt_tokens"]))
-    left_endpoint = left["endpoint"]
-    right_endpoint = right["endpoint"]
-    for request_hash in prompt_usage[left_endpoint]:
-        require(
-            sorted(prompt_usage[left_endpoint][request_hash]) == sorted(prompt_usage[right_endpoint][request_hash]),
-            "HOSTING_PROMPT_TOKEN_MISMATCH",
-            "paired endpoints reported different prompt token counts",
-            request_hash=request_hash,
-        )
+    return audit_paired_request_events(left["endpoint"], left_events, right["endpoint"], right_events)
 
 
 class _GpuMonitor(AbstractContextManager["_GpuMonitor"]):
@@ -685,14 +670,13 @@ def run_benchmark(run_root: str | Path) -> dict[str, Any]:
                     "endpoint did not produce schema-valid results for the full warm-up",
                     endpoint=endpoint,
                 )
-            assert_paired_requests(root, warmup_markers["local"], warmup_markers["hub"])
-            _persist_idempotent_report(
-                root / "dynamic_preflight.json",
+            warmup_audit = assert_paired_requests(root, warmup_markers["local"], warmup_markers["hub"])
+            _persist_dynamic_preflight_report(
+                root,
                 {
-                    "schema_version": "hosting-dynamic-preflight-v1",
+                    "schema_version": "hosting-dynamic-preflight-v2",
                     "checked_at_utc": datetime.now(UTC).isoformat(),
-                    "request_hash_equality": True,
-                    "prompt_token_usage_equality": True,
+                    **warmup_audit,
                     "thinking_disabled_accepted": True,
                     "hub_quota_probe_requests": config.workload.warmup_pairs,
                     "hub_http_429": 0,
