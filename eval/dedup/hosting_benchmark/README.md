@@ -14,6 +14,8 @@ The comparison is an advertised model/precision matched black-box hosting benchm
 - The 100-pair warm-up is also the no-cap Hub quota probe. Any 429 stops the run before measured results can support a speed conclusion.
 - The main block duration begins at the first measured request submission and ends when the final unique pair reaches a schema-valid or terminal-error result after validation. Retry time is included.
 - Paired identity checks use the successful initial HTTP responses. Failed transport attempts remain in block wall time, request latency, raw-attempt, and HTTP-status telemetry, but they do not create extra paired workload rows.
+- A context overflow prevents the endpoint marker from completing, so the whole paired block is replayed in a new immutable attempt. Recovery runs use a new run ID, import only a contiguous prefix of clean paired blocks, and record artifact hashes plus old/new request-execution provenance.
+- After a recovered formal run passes, `validate-c8` creates a fresh run that imports only the non-headline blocks and replays the exact same three frozen C=8 blocks end to end.
 
 ## Host and checkout
 

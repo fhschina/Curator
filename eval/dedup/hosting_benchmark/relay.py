@@ -74,6 +74,15 @@ def select_successful_initial_request_events(
     return successful
 
 
+def require_no_context_overflow(events: list[dict[str, Any]], *, block_id: str) -> None:
+    require(
+        not any(event.get("error_type") == "context_overflow" for event in events),
+        "HOSTING_CONTEXT_OVERFLOW",
+        "block contains a context overflow and must be replayed in full",
+        block_id=block_id,
+    )
+
+
 def audit_paired_request_events(
     left_endpoint: str,
     left_events: list[dict[str, Any]],

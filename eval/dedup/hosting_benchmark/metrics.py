@@ -14,7 +14,8 @@ from typing import Any
 from eval.dedup.validation import require, sha256_file, sha256_json, write_json_atomic, write_text_atomic
 
 from .artifacts import load_run, read_json, read_jsonl
-from .relay import audit_paired_request_events, select_successful_initial_request_events
+from .recovery import marker_contract_is_accepted, validate_recovery_run
+from .relay import audit_paired_request_events, require_no_context_overflow, select_successful_initial_request_events
 
 CORE_FIELDS = (
     "same_duplicate_group",
@@ -77,11 +78,7 @@ def _verify_marker_artifacts(run_root: Path, marker: dict[str, Any]) -> None:
         "HOSTING_HUB_QUOTA_LIMITED",
         "completed block contains a 429 response",
     )
-    require(
-        not any(event.get("error_type") == "context_overflow" for event in events),
-        "HOSTING_CONTEXT_OVERFLOW",
-        "completed block contains a context overflow",
-    )
+    require_no_context_overflow(events, block_id=str(marker["block_id"]))
 
 
 def _initial_request_events(run_root: Path, marker: dict[str, Any]) -> list[dict[str, Any]]:
@@ -251,9 +248,14 @@ def summarize(run_root: str | Path) -> dict[str, Any]:
     completion = read_json(root / "run_complete.json")
     require(completion["status"] == "complete", "HOSTING_RUN_INCOMPLETE", "benchmark run is incomplete")
     markers = completion["measured"]
+    recovery = validate_recovery_run(root, manifest)
     for marker in [*completion["warmup"].values(), *markers]:
         require(
-            marker["contract_digest"] == completion["contract_digest"],
+            marker_contract_is_accepted(
+                marker,
+                active_contract=completion["contract_digest"],
+                recovery=recovery,
+            ),
             "HOSTING_CONTRACT_CHANGED",
             "block contract differs from the completed run contract",
         )
@@ -321,6 +323,7 @@ def summarize(run_root: str | Path) -> dict[str, Any]:
         "comparison_scope": "same canonical chat request, advertised model/precision matched black-box comparison",
         "cold_start_seconds": completion["cold_start_seconds"],
         "endpoint_totals": endpoint_totals,
+        "recovery": recovery,
         "by_concurrency": rows,
         "prompt_accounting": {
             "basis": "pinned_client_tokenizer",
@@ -381,11 +384,19 @@ def summarize(run_root: str | Path) -> dict[str, Any]:
         writer.writeheader()
         writer.writerows(summary["blocks"])
     headline = summary["headline"]
+    recovery_note = ""
+    if recovery is not None:
+        recovery_note = (
+            f"\nRecovery mode `{recovery['mode']}` imported {len(recovery['imported_block_ids'])} immutable paired "
+            f"blocks and replayed {len(recovery['replayed_block_ids'])}; artifact and request-execution provenance "
+            "is recorded in `recovery_manifest.json`.\n"
+        )
     report = f"""# Qwen3.8-27B-FP8 Hosting Benchmark
 
 Status: **PASS**
 
 This is a same-canonical-chat-request, advertised model/precision matched black-box hosting comparison. The pinned client tokenizer is the common prompt-token accounting basis. NVIDIA Inference Hub does not disclose the remote checkpoint revision, tokenizer revision, or serving hardware.
+{recovery_note}
 
 At concurrency 8, Hub/Local achieved {headline["hub_valid_pairs_per_second"]:.4f}/{headline["local_valid_pairs_per_second"]:.4f} schema-valid pairs/s, a median {headline["hub_over_local_goodput_ratio_median"]:.4f}x Hub/Local throughput ratio across three paired blocks (range {headline["hub_over_local_goodput_ratio_min"]:.4f}-{headline["hub_over_local_goodput_ratio_max"]:.4f}). Local p50/p95 request latency was {headline["local_latency_p50_seconds"]:.4f}/{headline["local_latency_p95_seconds"]:.4f}s; Hub p50/p95 was {headline["hub_latency_p50_seconds"]:.4f}/{headline["hub_latency_p95_seconds"]:.4f}s.
 

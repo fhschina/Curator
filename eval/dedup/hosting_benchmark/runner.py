@@ -29,11 +29,14 @@ from eval.llm_judge.run_llm_judge import LocalJudgeRuntime
 
 from .artifacts import complete_marker, load_run, next_attempt_root, read_json, read_jsonl
 from .config import HostingBenchmarkConfig
+from .contracts import execution_contract_digest
+from .recovery import validate_recovery_run
 from .relay import (
     RelayContext,
     RelayTarget,
     RequestRelay,
     audit_paired_request_events,
+    require_no_context_overflow,
     select_successful_initial_request_events,
 )
 
@@ -445,6 +448,7 @@ def run_endpoint_block(
         "HOSTING_THINKING_NOT_DISABLED",
         "provider returned visible reasoning despite thinking-disabled request",
     )
+    require_no_context_overflow(events, block_id=block_id)
     first_submitted = min(datetime.fromisoformat(row["submitted_at_utc"]) for row in events)
     last_validated = max(datetime.fromisoformat(row["validation_completed_at_utc"]) for row in persisted)
     measured_duration = (last_validated - first_submitted).total_seconds()
@@ -593,14 +597,8 @@ def run_benchmark(run_root: str | Path) -> dict[str, Any]:
     )
     require(tokenizer.contract() == manifest["tokenizer"], "HOSTING_TOKENIZER_CHANGED", "tokenizer contract changed")
     credential = os.environ[config.model.api_key_env]
-    contract_digest = sha256_json(
-        {
-            "config_digest": config.digest,
-            "judge_resources": manifest["judge_resources"],
-            "tokenizer": tokenizer.contract(),
-            "git_commit": manifest["git_commit"],
-        }
-    )
+    contract_digest = execution_contract_digest(manifest)
+    recovery = validate_recovery_run(root, manifest)
     relay = RequestRelay(
         logical_model=config.model.logical_model,
         max_model_len=config.model.max_model_len,
@@ -716,6 +714,7 @@ def run_benchmark(run_root: str | Path) -> dict[str, Any]:
             "completed_at_utc": datetime.now(UTC).isoformat(),
             "cold_start_seconds": cold_start,
             "contract_digest": contract_digest,
+            "recovery": recovery,
             "warmup": warmup_markers,
             "measured": measured_markers,
             "status": "complete",

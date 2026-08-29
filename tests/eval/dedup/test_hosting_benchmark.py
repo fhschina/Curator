@@ -24,6 +24,7 @@ from eval.dedup.hosting_benchmark.relay import (
     RequestRelay,
     audit_paired_request_events,
     canonical_request_hash,
+    require_no_context_overflow,
     select_successful_initial_request_events,
 )
 from eval.dedup.hosting_benchmark.runner import _persist_dynamic_preflight_report, _persist_idempotent_report
@@ -217,6 +218,13 @@ def test_initial_request_selection_requires_full_successful_workload() -> None:
 
     with pytest.raises(DedupEvaluationError, match="HOSTING_REQUEST_ACCOUNTING_MISMATCH"):
         select_successful_initial_request_events(events, expected_count=1, block_id="block")
+
+
+def test_context_overflow_requires_full_block_replay() -> None:
+    with pytest.raises(DedupEvaluationError, match="HOSTING_CONTEXT_OVERFLOW"):
+        require_no_context_overflow([{"error_type": "context_overflow"}], block_id="block")
+
+    require_no_context_overflow([{"error_type": None}], block_id="block")
 
 
 def test_model_provision_reuses_a_matching_marker(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
