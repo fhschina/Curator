@@ -13,6 +13,7 @@ The comparison is an advertised model/precision matched black-box hosting benchm
 - The pinned client tokenizer is the common prompt-token accounting basis. Provider-reported prompt usage is retained as black-box telemetry; any Local/Hub drift is counted and disclosed rather than silently treated as comparable token throughput.
 - The 100-pair warm-up is also the no-cap Hub quota probe. Any 429 stops the run before measured results can support a speed conclusion.
 - The main block duration begins at the first measured request submission and ends when the final unique pair reaches a schema-valid or terminal-error result after validation. Retry time is included.
+- Paired identity checks use the successful initial HTTP responses. Failed transport attempts remain in block wall time, request latency, raw-attempt, and HTTP-status telemetry, but they do not create extra paired workload rows.
 
 ## Host and checkout
 

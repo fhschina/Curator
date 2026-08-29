@@ -14,7 +14,7 @@ from typing import Any
 from eval.dedup.validation import require, sha256_file, sha256_json, write_json_atomic, write_text_atomic
 
 from .artifacts import load_run, read_json, read_jsonl
-from .relay import audit_paired_request_events
+from .relay import audit_paired_request_events, select_successful_initial_request_events
 
 CORE_FIELDS = (
     "same_duplicate_group",
@@ -85,16 +85,11 @@ def _verify_marker_artifacts(run_root: Path, marker: dict[str, Any]) -> None:
 
 
 def _initial_request_events(run_root: Path, marker: dict[str, Any]) -> list[dict[str, Any]]:
-    events = [event for event in _event_rows(run_root, marker) if int(event["outer_attempt"]) == 1]
-    require(events, "HOSTING_REQUEST_EVENTS_MISSING", "block has no initial request events")
-    message_count = min(int(event["message_count"]) for event in events if event["message_count"] is not None)
-    initial = [event for event in events if int(event["message_count"]) == message_count]
-    require(
-        len(initial) == int(marker["pairs"]),
-        "HOSTING_REQUEST_ACCOUNTING_MISMATCH",
-        "initial request count differs from the immutable block",
+    return select_successful_initial_request_events(
+        _event_rows(run_root, marker),
+        expected_count=int(marker["pairs"]),
+        block_id=str(marker["block_id"]),
     )
-    return initial
 
 
 def _verify_paired_requests(run_root: Path, local: dict[str, Any], hub: dict[str, Any]) -> dict[str, Any]:

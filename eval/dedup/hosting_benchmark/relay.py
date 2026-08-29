@@ -41,6 +41,39 @@ def canonical_request_hash(body: dict[str, Any]) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def select_successful_initial_request_events(
+    events: list[dict[str, Any]],
+    *,
+    expected_count: int,
+    block_id: str,
+) -> list[dict[str, Any]]:
+    """Select successful initial requests while retaining failed attempts as telemetry."""
+
+    first_attempt = [event for event in events if int(event["outer_attempt"]) == 1]
+    require(first_attempt, "HOSTING_REQUEST_EVENTS_MISSING", "block has no initial request events", block_id=block_id)
+    message_counts = [int(event["message_count"]) for event in first_attempt if event.get("message_count") is not None]
+    require(
+        message_counts,
+        "HOSTING_REQUEST_EVENTS_MISSING",
+        "block has no request events with message counts",
+        block_id=block_id,
+    )
+    minimum_messages = min(message_counts)
+    initial_attempts = [event for event in first_attempt if int(event["message_count"]) == minimum_messages]
+    successful = [event for event in initial_attempts if 200 <= int(event["http_status"]) < 300]
+    require(
+        len(successful) == expected_count,
+        "HOSTING_REQUEST_ACCOUNTING_MISMATCH",
+        "successful initial request count differs from the paired workload",
+        block_id=block_id,
+        expected=expected_count,
+        initial_attempts=len(initial_attempts),
+        successful_initial_requests=len(successful),
+        unsuccessful_initial_attempts=len(initial_attempts) - len(successful),
+    )
+    return successful
+
+
 def audit_paired_request_events(
     left_endpoint: str,
     left_events: list[dict[str, Any]],

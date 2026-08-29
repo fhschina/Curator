@@ -29,7 +29,13 @@ from eval.llm_judge.run_llm_judge import LocalJudgeRuntime
 
 from .artifacts import complete_marker, load_run, next_attempt_root, read_json, read_jsonl
 from .config import HostingBenchmarkConfig
-from .relay import RelayContext, RelayTarget, RequestRelay, audit_paired_request_events
+from .relay import (
+    RelayContext,
+    RelayTarget,
+    RequestRelay,
+    audit_paired_request_events,
+    select_successful_initial_request_events,
+)
 
 
 def _persist_idempotent_report(
@@ -482,21 +488,16 @@ def run_endpoint_block(
 def _initial_events(run_root: Path, marker: dict[str, Any]) -> list[dict[str, Any]]:
     attempt_root = run_root / marker["attempt_root"]
     events = [row for path in sorted((attempt_root / "events").glob("*.jsonl")) for row in read_jsonl(path)]
-    first_attempt = [row for row in events if int(row["outer_attempt"]) == 1]
-    require(first_attempt, "HOSTING_REQUEST_EVENTS_MISSING", "block has no initial request events")
-    minimum_messages = min(int(row["message_count"]) for row in first_attempt if row["message_count"] is not None)
-    return [row for row in first_attempt if int(row["message_count"]) == minimum_messages]
+    return select_successful_initial_request_events(
+        events,
+        expected_count=int(marker["pairs"]),
+        block_id=str(marker["block_id"]),
+    )
 
 
 def assert_paired_requests(run_root: Path, left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:
     left_events = _initial_events(run_root, left)
     right_events = _initial_events(run_root, right)
-    require(
-        len(left_events) == int(left["pairs"]) and len(right_events) == int(right["pairs"]),
-        "HOSTING_REQUEST_ACCOUNTING_MISMATCH",
-        "initial request count differs from the paired workload",
-        block_id=left["block_id"],
-    )
     for endpoint, events in ((left["endpoint"], left_events), (right["endpoint"], right_events)):
         for event in events:
             require(
