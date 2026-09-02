@@ -68,6 +68,36 @@ with LocalJudgeRuntime(
 
 The existing `run_llm_judge.py` CLI arguments and single-run lifecycle remain compatible.
 
+`JudgePipelineRuntime` owns only Ray and the Data Designer pipeline for an OpenAI-compatible endpoint. `ExternalJudgeRuntime`
+is its zero-GPU convenience wrapper for an already-running service. `LocalJudgeRuntime` retains its original API and composes
+the endpoint-neutral pipeline with a Dynamo/vLLM `InferenceServer`.
+
+For example, Sarah's dedup judge configuration can run against NVIDIA Inference Hub without starting a local model server:
+
+```python
+import os
+
+from eval.llm_judge.run_llm_judge import ExternalJudgeRuntime
+
+with ExternalJudgeRuntime(
+    "eval/dedup/resources/local_ndd/sarah_minhash_qwen.yaml",
+    endpoint="https://inference-api.nvidia.com/v1",
+    provider_api_key=os.environ["NVIDIA_API_KEY"],
+    served_model_overrides={"judge": "nvidia/qwen/qwen3.8-27b"},
+    ray_temp_dir="/tmp/ray",
+) as runtime:
+    runtime.run(
+        input_path="pairs.jsonl",
+        input_format="jsonl",
+        output_path="output/judged",
+        checkpoint_path="output/judge_checkpoint",
+        files_per_partition=1,
+    )
+```
+
+This path reuses the same Data Designer stages, Sarah prompts, and score contract as the local runtime while leaving model
+deployment to the external service.
+
 Judge YAML may also set `execution.data_designer_run` with supported `data_designer.config.RunConfig` fields. The runner applies
 that configuration to every Data Designer stage and reapplies it after Ray deserialization; configs that omit the block keep
 Data Designer's defaults.

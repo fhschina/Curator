@@ -129,6 +129,44 @@ def test_sarah_config_builds_with_data_designer_score_types() -> None:
     assert run_config.max_conversation_correction_steps == 2
 
 
+def test_external_runtime_owns_ray_without_starting_a_model(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    lifecycle: list[str] = []
+    client_kwargs: dict[str, object] = {}
+    config = {
+        "models": [{"alias": "judge", "model": "logical-model"}],
+        "execution": {"stages": [{"name": "judge", "judges": []}]},
+    }
+
+    class FakeClient:
+        def __init__(self, **kwargs: object) -> None:
+            client_kwargs.update(kwargs)
+
+        def start(self) -> None:
+            lifecycle.append("start")
+
+        def stop(self) -> None:
+            lifecycle.append("stop")
+
+    monkeypatch.setattr(subject, "_load_yaml", lambda _path: config)
+    monkeypatch.setattr(subject, "RayClient", FakeClient)
+    monkeypatch.setattr(subject, "_ensure_pip_for_ray_uv_runtime", lambda: None)
+    monkeypatch.setattr(subject, "_validate_ray_temp_dir", lambda _path: None)
+    runtime = subject.ExternalJudgeRuntime(
+        tmp_path / "judge.yaml",
+        endpoint="https://inference-api.nvidia.com/v1",
+        provider_api_key="api-key",  # pragma: allowlist secret
+        served_model_overrides={"judge": "nvidia/qwen/qwen3.8-27b"},
+        ray_temp_dir=str(tmp_path / "ray"),
+    )
+
+    with runtime:
+        assert runtime.endpoint == "https://inference-api.nvidia.com/v1"
+
+    assert runtime.models[0]["served_model_name"] == "nvidia/qwen/qwen3.8-27b"
+    assert client_kwargs["num_gpus"] == 0
+    assert lifecycle == ["start", "stop"]
+
+
 def test_data_designer_run_config_rejects_non_mapping() -> None:
     with pytest.raises(TypeError, match="data_designer_run must be a mapping"):
         subject._get_data_designer_run_config({"data_designer_run": []})
