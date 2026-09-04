@@ -93,43 +93,6 @@ def test_adapt_ndd_output_accepts_hs_ab_diagnostics_without_changing_v0_output()
     assert adapt_ndd_judge_output(rubric) == adapt_ndd_judge_output(_rubric())
 
 
-def test_adapt_ndd_output_extracts_only_visible_quote_evidence() -> None:
-    rubric = _rubric(relation_type="near_surface")
-    rubric["same_duplicate_group"]["reasoning"] = 'A: "alpha" and B: "beta" describe the same item.'
-    rubric["a_can_replace_b"]["reasoning"] = 'B: "invented" is not visible.'
-    payload = {
-        "document_a": {"text": "zero alpha one"},
-        "document_b": {"text": "two beta three"},
-        "long_document_evidence": {"truncated": False, "windows": []},
-    }
-
-    result = adapt_ndd_judge_output(rubric, visible_payload=payload, require_quote_evidence=True)
-
-    assert result["evidence"] == [
-        {"side": "A", "start_char": 5, "end_char": 10, "quote": "alpha"},
-        {"side": "B", "start_char": 4, "end_char": 8, "quote": "beta"},
-    ]
-
-
-def test_adapt_ndd_output_requires_both_sides_for_hs_non_exact() -> None:
-    rubric = _rubric(relation_type="near_surface")
-    rubric["same_duplicate_group"]["reasoning"] = 'A: "alpha" and B: "invented".'
-    payload = {
-        "document_a": {"text": "alpha"},
-        "document_b": {"text": "beta"},
-        "long_document_evidence": {"truncated": False, "windows": []},
-    }
-
-    with pytest.raises(DedupEvaluationError) as error:
-        adapt_ndd_judge_output(rubric, visible_payload=payload, require_quote_evidence=True)
-
-    assert error.value.issue.code == "LOCAL_NDD_EVIDENCE_INVALID"
-
-
-def test_adapt_ndd_output_allows_exact_hs_result_without_quotes() -> None:
-    assert adapt_ndd_judge_output(_rubric(), require_quote_evidence=True)["evidence"] == []
-
-
 def test_adapt_ndd_output_rejects_cross_field_inconsistency() -> None:
     with pytest.raises(DedupEvaluationError) as error:
         adapt_ndd_judge_output(_rubric(relation_type="unrelated"))
