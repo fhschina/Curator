@@ -1,0 +1,181 @@
+models:
+  - alias: judge
+    model: /model/path/overridden/by/dedup/config
+    served_model_name: Qwen/Qwen3.8-27B
+    dynamo_model:
+      num_replicas: 1
+      mode: aggregated
+      runtime_env:
+        env_vars:
+          UV_CACHE_DIR: /raid/hfang/dedup_eval_cache/uv
+        config:
+          setup_timeout_seconds: 1800
+      engine_kwargs:
+        tensor_parallel_size: 1
+        max_model_len: 32768
+        max_num_seqs: 8
+        gpu_memory_utilization: 0.8
+        enforce_eager: true
+    inference_parameters:
+      temperature: 0.0
+      extra_body:
+        chat_template_kwargs:
+          enable_thinking: false
+      max_tokens: 4096
+      timeout: 600
+      max_parallel_requests: 8
+
+dynamo_server:
+  subprocess_env:
+    DYN_SYSTEM_PORT: "0"
+    PYTHONPATH: cutlass_compat
+
+inference_server:
+  health_check_timeout_s: 1800
+
+execution:
+  num_workers: 1
+  data_designer_run:
+    disable_early_shutdown: true
+    max_conversation_restarts: 0
+    max_conversation_correction_steps: 2
+  stages:
+    - name: hs_minhash_fuzzy_dedup
+      judges:
+        # This column name is part of the existing local_ndd adapter contract.
+        - name: qwen_minhash_fuzzy_dedup_judge
+          model_alias: judge
+          system_prompt_path: hs_system.jinja
+          prompt_path: hs_pair.jinja
+          extract_reasoning_content: false
+          scores:
+            - name: same_duplicate_group
+              description: Do these documents contain the same retainable substantive content, with at least one safe replacement direction? Decide after the identity/state and directional-coverage gates, not from similarity or anticipated MinHash behavior. Except for exact, quote decisive A/B text in the reasoning.
+              options:
+                "yes": They represent the same retainable content and at least one replacement direction is safe.
+                "no": They contain distinct substantive content or record identity and must remain separate.
+                unresolved: Visible evidence is insufficient to decide every core field safely.
+            - name: a_can_replace_b
+              description: Can Document A replace Document B while preserving every material fact, record identity, factual state, and page role present in B? For no, quote material B text A fails to preserve; for containment yes, quote preserved content.
+              options:
+                "yes": A preserves all materially relevant content and identity from B.
+                "no": B contains material content or identity not preserved by A.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: b_can_replace_a
+              description: Can Document B replace Document A while preserving every material fact, record identity, factual state, and page role present in A? For no, quote material A text B fails to preserve; for containment yes, quote preserved content.
+              options:
+                "yes": B preserves all materially relevant content and identity from A.
+                "no": A contains material content or identity not preserved by B.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: relation_type
+              description: Classify the whole visible main-content relationship after excluding incidental template overlap.
+              options:
+                exact: The visible cleaned texts are identical.
+                canonical_exact: Differences are only normalization, whitespace, punctuation, encoding, or equivalent formatting.
+                near_surface: The same substantive content is bidirectionally replaceable after small surface edits; also use for a faithful full translation under this rubric.
+                containment: Exactly one document preserves every material element, identity, state, and page role of the other and adds meaningful non-template content; length alone never proves containment.
+                version_related: The same evolving record has a material state or version difference.
+                related_non_duplicate: Main content is related or uses the same template, but the records are not safely interchangeable.
+                unrelated: There is no meaningful main-content relationship.
+                unresolved: Visible evidence is insufficient to classify every core field.
+            - name: material_difference
+              description: How consequential is the unique main content or record-defining identity for safe whole-record removal?
+              options:
+                none: No materially relevant information or record identity differs.
+                minor: A real non-core difference exists but does not change identity, central facts, or training value.
+                major: Identity, central facts, result set, legal meaning, page role, or substantial content differs.
+                unresolved: Visible evidence is insufficient to assess materiality.
+            - name: fuzzy_scope
+              description: Separately from content equivalence, should conventional MinHash fuzzy deduplication make the correct grouping decision from whole-document surface evidence?
+              options:
+                in_scope: Whole-document surface evidence should support the correct grouping decision.
+                borderline: Correct handling needs unusually fine structural, slot, list, or long-document reasoning.
+                out_of_scope: Correctness mainly requires capabilities beyond surface-similarity fuzzy deduplication, including faithful translation with low literal overlap.
+                unresolved: Visible evidence is insufficient to assess scope.
+            - name: dominant_overlap_source
+              description: What single source contributes most of the visible similarity? This describes overlap, not the final verdict or risk.
+              options:
+                main_content: Shared substantive main content dominates.
+                shared_page_template: A reusable page template dominates.
+                site_chrome: Navigation, headers, footers, or platform chrome dominates.
+                cookie_consent: Cookie or consent text dominates.
+                legal_policy_template: Generic legal or policy wording dominates.
+                error_auth_paywall: Error, authentication, login, or paywall text dominates.
+                local_passage: A matching local passage is not representative of the whole documents.
+                parser_artifact: Extraction or parser artifacts dominate.
+                none: No meaningful overlap source is visible.
+                unresolved: Visible evidence is insufficient to identify the source.
+            - name: primary_risk_factor
+              description: Select the single most specific observable reason a fuzzy deduper may confuse this pair. Boilerplate is normally an overlap source, not the primary risk; prefer identity, slot, list/state, page-role, local-overlap, or containment risks when applicable.
+              options:
+                none: No distinct deduplication trap is visible.
+                boilerplate_dominated_similarity: Non-main-content text dominates the apparent similarity.
+                template_slot_collision: A shared template masks different meaningful slots or records.
+                identifier_underweighting: A small identifier or record-defining value decides identity.
+                topic_only_similarity: Related topic or meaning could be mistaken for interchangeable content.
+                list_snapshot_collision: Similar list shells contain different members, rankings, or snapshots.
+                page_role_collision: Similar wording appears in pages with different functions.
+                legal_context_collision: Generic legal text masks a different controller, obligation, or jurisdiction.
+                long_document_local_overlap: A local match is not representative of the whole documents.
+                containment_asymmetry: One-way preservation could be mistaken for bidirectional equivalence.
+                extraction_or_payload_limit: Missing or truncated content prevents a reliable decision.
+                parser_artifact_dominance: Parser artifacts dominate the apparent relationship.
+                other: A distinct risk exists and none of the listed factors fits.
+            - name: evidence_quality
+              description: Is visible text sufficient for every core decision and for the required verbatim quote evidence? If decisive quotes are unavailable, use insufficient and the fully unresolved contract.
+              options:
+                sufficient: Visible evidence supports every resolved core decision.
+                insufficient: Missing, truncated, or uninterpretable evidence requires the fully unresolved contract.
+            - name: confidence
+              description: Confidence in the complete structured decision after checking main content, identity slots, directionality, and visible-evidence sufficiency.
+              options:
+                "0.2": Evidence is plainly insufficient and every core field is unresolved.
+                "0.5": Evidence is insufficient or seriously ambiguous and every core field is unresolved.
+                "0.75": A resolved decision has a meaningful template, identity, containment, or threshold boundary concern.
+                "0.9": Complete visible evidence strongly supports a resolved non-trivial decision.
+                "0.98": Reserve for complete, direct, unambiguous exact or canonical-exact evidence without truncation or identity concerns.
+            - name: reason_number_change
+              description: Does a changed number materially alter record identity, central facts, obligations, or results? Formatting-only changes do not apply.
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_date_time_change
+              description: Does a changed date or time materially alter factual state, applicability, identity, or results?
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_product_version_change
+              description: Does a product or version change materially alter the record or retained information?
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_url_change
+              description: Does a URL visible inside document text materially distinguish identity or retained content? Never infer hidden URL metadata.
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_named_entity_change
+              description: Does a person, organization, product, service, or location change materially alter page identity or retained facts?
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_negation_change
+              description: Does negation reverse or materially change retained meaning?
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_code_literal_change
+              description: Do source-code literals, commands, identifiers, or parameters differ materially?
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_code_output_change
+              description: Do code outputs or execution results differ materially?
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_insertion_deletion
+              description: Does one document add or remove meaningful non-template content? Ignore page chrome, formatting, and incidental boilerplate.
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_boilerplate
+              description: Is boilerplate-dominated similarity itself the single best primary risk? Mere template, cookie, legal, navigation, or chrome overlap is only an overlap source and must be no when a more specific risk applies. Must agree with primary_risk_factor.
+              options: {"yes": "It is the primary risk", "no": "It is absent, incidental, or another risk is primary"}
+            - name: reason_parser_noise
+              description: Do extraction or parser artifacts materially dominate the apparent relationship or prevent a reliable decision?
+              options: {"yes": Applies materially, "no": Does not apply materially}
+            - name: reason_language_mismatch
+              description: Does a cross-language or script difference materially affect surface matching or prevent reliable comparison? It may be yes for faithful translation without making the content non-duplicate.
+              options: {"yes": It affects surface matching or prevents reliable comparison, "no": No decision-relevant language mismatch is present}
+            - name: reason_topic_only
+              description: Do the documents share topic or meaning but lack sufficient whole-document equivalence and literal overlap? Such a pair is not duplicate content here.
+              options: {"yes": Topic-only similarity is the primary issue, "no": Does not apply}
+            - name: reason_insufficient_evidence
+              description: Is visible evidence insufficient, requiring all six core categorical fields to be unresolved and confidence at most 0.5?
+              options: {"yes": The full result is unresolved, "no": The complete decision is supported}
+            - name: reason_other_material
+              description: Is another material difference present only after every more specific material-difference reason has been ruled out?
+              options: {"yes": A material unlisted difference applies, "no": No such fallback difference applies}

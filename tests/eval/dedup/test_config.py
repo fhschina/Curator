@@ -19,7 +19,7 @@ from pathlib import Path
 
 import pytest
 
-from eval.dedup.config import load_config
+from eval.dedup.config import HS_MINHASH_PROMPT_VERSION, load_config
 from eval.dedup.run import create_run
 from eval.dedup.validation import DedupEvaluationError
 
@@ -105,3 +105,33 @@ def test_config_accepts_matching_v1_judge_contract(tmp_path: Path) -> None:
 
     assert config.judge.prompt_version == "dedup-judge-v1"
     assert config.judge.schema_version == "dedup-judge-output-v1"
+
+
+def test_config_accepts_hs_minimal_ab_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_qwen.yaml")
+    value["judge"]["prompt_version"] = HS_MINHASH_PROMPT_VERSION
+    path = tmp_path / "hs-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_MINHASH_PROMPT_VERSION
+    assert config.judge.schema_version == "dedup-judge-output-v0"
+    assert config.judge.runner_config.name == "hs_qwen.yaml"
+
+
+def test_config_rejects_builtin_runner_prompt_mismatch(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "sarah_minhash_qwen.yaml")
+    value["judge"]["prompt_version"] = HS_MINHASH_PROMPT_VERSION
+    path = tmp_path / "mismatched-local-ndd-contract.json"
+    path.write_text(json.dumps(value))
+
+    with pytest.raises(DedupEvaluationError) as error:
+        load_config(path)
+
+    assert error.value.issue.code == "INVALID_JUDGE_CONTRACT"
+    assert error.value.issue.details["expected_prompt_version"] == "dedup-judge-sarah-minhash-v1"

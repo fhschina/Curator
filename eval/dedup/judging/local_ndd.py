@@ -18,14 +18,16 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from collections import defaultdict
 from collections.abc import Callable
 from contextlib import AbstractContextManager
 from pathlib import Path
 from typing import Any
 
-from eval.dedup.config import EvaluationConfig, LocalNddJudgeConfig
+from eval.dedup.config import HS_MINHASH_PROMPT_VERSION, EvaluationConfig, LocalNddJudgeConfig
 from eval.dedup.contracts import canonical_json_bytes, stable_record_id
+from eval.dedup.judging.payload import align_evidence_offsets
 from eval.dedup.judging.schema import validate_judge_output
 from eval.dedup.validation import DedupEvaluationError, require, sha256_json, write_text_atomic
 
@@ -65,6 +67,18 @@ _CONFIDENCE_VALUES = {
     "0.98": 0.98,
 }
 
+_EVIDENCE_REASONING_FIELDS = (
+    "same_duplicate_group",
+    "a_can_replace_b",
+    "b_can_replace_a",
+    "relation_type",
+)
+_QUOTED_EVIDENCE_PATTERN = re.compile(
+    r"(?:\bdocument\s+)?(?P<side>[AB])\s*:\s*"
+    r'(?:"(?P<straight>[^"\n]{1,240})"|\u201c(?P<curly>[^\u201d\n]{1,240})\u201d)',
+    re.IGNORECASE,
+)
+
 
 def _score(judge: dict[str, Any], name: str) -> Any:
     value = judge.get(name)
@@ -77,7 +91,49 @@ def _score(judge: dict[str, Any], name: str) -> Any:
     return value["score"]
 
 
-def adapt_ndd_judge_output(value: Any) -> dict[str, Any]:
+def _quoted_evidence(
+    judge: dict[str, Any],
+    visible_payload: dict[str, Any] | None,
+) -> list[dict[str, Any]]:
+    if visible_payload is None:
+        return []
+    evidence: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for field in _EVIDENCE_REASONING_FIELDS:
+        rubric = judge.get(field)
+        reasoning = rubric.get("reasoning") if isinstance(rubric, dict) else None
+        if not isinstance(reasoning, str):
+            continue
+        for match in _QUOTED_EVIDENCE_PATTERN.finditer(reasoning):
+            side = match.group("side").upper()
+            quote = (match.group("straight") or match.group("curly")).strip()
+            key = (side, quote)
+            if not quote or key in seen:
+                continue
+            aligned, _ = align_evidence_offsets(
+                {"evidence": [{"side": side, "start_char": 0, "end_char": 0, "quote": quote}]},
+                visible_payload,
+            )
+            if not aligned["evidence"]:
+                continue
+            evidence.append(aligned["evidence"][0])
+            seen.add(key)
+
+    selected: list[dict[str, Any]] = []
+    for side in ("A", "B"):
+        first = next((item for item in evidence if item["side"] == side), None)
+        if first is not None:
+            selected.append(first)
+    selected.extend(item for item in evidence if item not in selected)
+    return selected[:4]
+
+
+def adapt_ndd_judge_output(
+    value: Any,
+    *,
+    visible_payload: dict[str, Any] | None = None,
+    require_quote_evidence: bool = False,
+) -> dict[str, Any]:
     """Convert Sarah's NDD score objects to the existing v0 judge contract."""
 
     require(isinstance(value, dict), "LOCAL_NDD_OUTPUT_INVALID", "NDD judge result must be an object")
@@ -98,7 +154,14 @@ def adapt_ndd_judge_output(value: Any) -> dict[str, Any]:
     parsed["reason_codes"] = [
         reason for field, reason in _REASON_FIELDS.items() if str(_score(value, field)).lower() == "yes"
     ]
-    parsed["evidence"] = []
+    parsed["evidence"] = _quoted_evidence(value, visible_payload)
+    if require_quote_evidence and parsed["relation_type"] not in {"EXACT", "UNRESOLVED"}:
+        require(
+            {item["side"] for item in parsed["evidence"]} == {"A", "B"},
+            "LOCAL_NDD_EVIDENCE_INVALID",
+            "HS non-exact judgment requires exact visible quotes from both documents",
+            field="same_duplicate_group",
+        )
     return validate_judge_output(parsed, "dedup-judge-output-v0")
 
 
@@ -333,7 +396,11 @@ def run_local_ndd_pending(
                         "NDD output belongs to a different blind payload",
                     )
                     raw_judge = output_row.get(JUDGE_COLUMN)
-                    parsed = adapt_ndd_judge_output(raw_judge)
+                    parsed = adapt_ndd_judge_output(
+                        raw_judge,
+                        visible_payload=prepared[pair_id],
+                        require_quote_evidence=config.judge.prompt_version == HS_MINHASH_PROMPT_VERSION,
+                    )
                     persist(
                         _result_record(
                             row=by_id[pair_id],

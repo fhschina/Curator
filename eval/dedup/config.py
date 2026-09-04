@@ -90,6 +90,19 @@ class LocalNddJudgeConfig:
 
 AnyJudgeConfig = JudgeConfig | LocalNddJudgeConfig
 
+SARAH_MINHASH_PROMPT_VERSION = "dedup-judge-sarah-minhash-v1"
+HS_MINHASH_PROMPT_VERSION = "dedup-judge-hs-minhash-v1"
+LOCAL_NDD_JUDGE_CONTRACTS = frozenset(
+    {
+        (SARAH_MINHASH_PROMPT_VERSION, "dedup-judge-output-v0"),
+        (HS_MINHASH_PROMPT_VERSION, "dedup-judge-output-v0"),
+    }
+)
+_BUILTIN_LOCAL_NDD_RUNNER_PROMPTS = {
+    "sarah_minhash_qwen.yaml": SARAH_MINHASH_PROMPT_VERSION,
+    "hs_qwen.yaml": HS_MINHASH_PROMPT_VERSION,
+}
+
 
 @dataclass(frozen=True, slots=True)
 class RetrievalConfig:
@@ -205,10 +218,18 @@ def _load_judge(value: dict[str, Any], base: Path) -> AnyJudgeConfig:
             }
         )
         require(
-            (config.prompt_version, config.schema_version)
-            == ("dedup-judge-sarah-minhash-v1", "dedup-judge-output-v0"),
+            (config.prompt_version, config.schema_version) in LOCAL_NDD_JUDGE_CONTRACTS,
             "INVALID_JUDGE_CONTRACT",
-            "local_ndd requires the Sarah MinHash prompt and v0-compatible output contract",
+            "local_ndd requires a supported MinHash prompt and the v0-compatible output contract",
+        )
+        builtin_prompt = _BUILTIN_LOCAL_NDD_RUNNER_PROMPTS.get(config.runner_config.name)
+        require(
+            builtin_prompt is None or config.prompt_version == builtin_prompt,
+            "INVALID_JUDGE_CONTRACT",
+            "built-in local_ndd runner does not match the configured prompt version",
+            runner_config=config.runner_config.name,
+            prompt_version=config.prompt_version,
+            expected_prompt_version=builtin_prompt,
         )
         require(
             config.visible_payload_version == "judge-visible-payload-v2",
@@ -223,7 +244,7 @@ def _load_judge(value: dict[str, Any], base: Path) -> AnyJudgeConfig:
     supported_contracts = {
         ("dedup-judge-v0", "dedup-judge-output-v0"),
         ("dedup-judge-v1", "dedup-judge-output-v1"),
-        ("dedup-judge-sarah-minhash-v1", "dedup-judge-output-v0"),
+        *LOCAL_NDD_JUDGE_CONTRACTS,
     }
     require(
         (config.prompt_version, config.schema_version) in supported_contracts,
@@ -457,7 +478,7 @@ def load_config(path: str | Path, *, path_base: Path | None = None) -> Evaluatio
                 and config.judge.window_tokens == 8_192
                 and config.judge.window_overlap_tokens == 1_024,
                 "LOCAL_NDD_JUDGE_MISMATCH",
-                "production local_ndd configuration differs from the approved Sarah/Qwen contract",
+                "production local_ndd configuration differs from an approved Qwen MinHash contract",
             )
         require(
             config.retrieval.backend == "gpu_cudf"

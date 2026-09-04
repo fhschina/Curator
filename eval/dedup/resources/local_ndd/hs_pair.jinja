@@ -1,0 +1,43 @@
+Compare the following two blind cleaned documents using the mandatory decision
+order: page role and main content, identity/state gate, material content,
+directional coverage, strict containment, then fuzzy scope. Similar length or
+shared boilerplate is not evidence of duplication. For every non-exact resolved
+result, include the required short verbatim A/B quote evidence in the rubric
+reasonings; use no metadata.
+
+<document_a>
+{% if payload.document_a.text is not none %}
+{{ payload.document_a.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "A" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_a>
+
+<document_b>
+{% if payload.document_b.text is not none %}
+{{ payload.document_b.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "B" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_b>
+
+<payload_state>
+truncated: {{ payload.long_document_evidence.truncated }}
+</payload_state>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local schema validation. Return a fresh judgment
+that addresses this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}
