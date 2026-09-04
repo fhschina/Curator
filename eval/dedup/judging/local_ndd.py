@@ -159,7 +159,7 @@ def adapt_ndd_judge_output(
         require(
             {item["side"] for item in parsed["evidence"]} == {"A", "B"},
             "LOCAL_NDD_EVIDENCE_INVALID",
-            "HS non-exact judgment requires exact visible quotes from both documents",
+            'HS non-exact judgment requires exact visible quotes from both documents using A: "..." and B: "..."',
             field="same_duplicate_group",
         )
     return validate_judge_output(parsed, "dedup-judge-output-v0")
