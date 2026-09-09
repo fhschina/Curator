@@ -1,0 +1,2 @@
+review_id,same_duplicate_group,a_can_replace_b,b_can_replace_a,relation_type,material_difference,reason_code,confidence_tier,reviewer_notes,review_protocol
+H0878,YES,YES,NO,CONTAINMENT,MAJOR,SAME_RECORD_CONTENT_EXTENSION,HIGH,"Both sides are the same Polish phpBB FAQ; A alone adds one concrete login-troubleshooting instruction, while the remaining side-only tokens are orthographic variants. Absence of that instruction is not a conflicting state or version.",DIAGNOSTIC_REVIEW_V062_OVER_CONTAINMENT

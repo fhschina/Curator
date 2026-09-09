@@ -61,6 +61,23 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def _confidence_sort_key(row: dict[str, Any]) -> tuple[int, float]:
+    """Rank legacy numeric confidence and V3 ordinal tiers without conflating tiers with probabilities."""
+
+    if row.get("confidence") is not None:
+        return 2, float(row["confidence"])
+    return 1, float({"LOW": 0, "MEDIUM": 1, "HIGH": 2}.get(row.get("confidence_tier"), -1))
+
+
+def _passes_confidence_gate(row: dict[str, Any], threshold: float) -> bool:
+    if row.get("confidence") is not None:
+        return float(row["confidence"]) >= threshold
+    tier = row.get("confidence_tier")
+    if threshold > 0.5:
+        return tier == "HIGH"
+    return tier in {"MEDIUM", "HIGH"}
+
+
 def build_constraint_graph(
     judge_results_path: Path,
     candidate_pairs_path: Path,
@@ -79,7 +96,7 @@ def build_constraint_graph(
         raise RuntimeError(msg) from exc
     candidates = {row["canonical_pair_id"]: row for row in pq.read_table(candidate_pairs_path).to_pylist()}
     results = _read_jsonl(judge_results_path)
-    committed = [row for row in results if float(row["confidence"]) >= confidence_threshold]
+    committed = [row for row in results if _passes_confidence_gate(row, confidence_threshold)]
     must_rows = []
     cannot_rows = []
     nodes: set[int] = set()
@@ -94,7 +111,8 @@ def build_constraint_graph(
             "doc_id_high": right,
             "judge_result_id": result["judge_result_id"],
             "judge_payload_hash": result["judge_payload_hash"],
-            "confidence": result["confidence"],
+            "confidence": result.get("confidence"),
+            "confidence_tier": result.get("confidence_tier"),
         }
         if result["same_duplicate_group"] == DuplicateAnswer.YES:
             must_rows.append(edge)
@@ -104,7 +122,14 @@ def build_constraint_graph(
     union_find = UnionFind(nodes)
     conflicts = []
     accepted_must = []
-    for edge in sorted(must_rows, key=lambda row: (-row["confidence"], row["canonical_pair_id"])):
+    for edge in sorted(
+        must_rows,
+        key=lambda row: (
+            -_confidence_sort_key(row)[0],
+            -_confidence_sort_key(row)[1],
+            row["canonical_pair_id"],
+        ),
+    ):
         root_left = union_find.find(edge["doc_id_low"])
         root_right = union_find.find(edge["doc_id_high"])
         cross_conflicts = []
@@ -149,6 +174,7 @@ def build_constraint_graph(
             ("judge_result_id", pa.string()),
             ("judge_payload_hash", pa.string()),
             ("confidence", pa.float64()),
+            ("confidence_tier", pa.string()),
         ]
     )
     write(accepted_must, must_links_destination, edge_schema)

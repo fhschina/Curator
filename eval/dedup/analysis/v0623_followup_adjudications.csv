@@ -1,0 +1,21 @@
+review_id,same_duplicate_group,a_can_replace_b,b_can_replace_a,relation_type,material_difference,reason_code,confidence_tier,reviewer_notes,review_protocol
+H0030,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,B adds analytics and additional-cookie categories absent from A; non-main containment is not permitted,DIAGNOSTIC_V062_POLICY
+H0716,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_ERROR_STATE_ADDITION,HIGH,B adds the material blocked-by-regulator-or-hosting-rules state to the shared owner-support message,DIAGNOSTIC_V062_POLICY
+H0718,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,B adds analytics and additional-cookie categories absent from A; non-main containment is not permitted,DIAGNOSTIC_V062_POLICY
+H0815,NO,NO,NO,VERSION_RELATED,MAJOR,TRANSLATION_FACT_CONFLICT,HIGH,Same keyboard and mouse family but visible specifications conflict at more than 12 million keystrokes versus more than 10 million clicks and B adds distinct claims,DIAGNOSTIC_V062_POLICY
+H0104,NO,NO,NO,VERSION_RELATED,MAJOR,TRANSLATION_FACT_CONFLICT,HIGH,The translated service claim conflicts at more than 40 million versus more than 8 million students and the visible site identity also differs,DIAGNOSTIC_V062_POLICY
+H0900,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,PARTIAL_TRANSLATION_TWO_SIDED_CONTENT,HIGH,Both describe EvoWorld but each contains different gameplay claims and page sections; B is not a complete translation of A,DIAGNOSTIC_V062_POLICY
+H0397,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_CONTROLLER_AND_CONTACT_CONFLICT,HIGH,A names BOLMERC and brands@bolmerc.com while B retains a company placeholder and names malik@umenzy.com plus a discount offer,DIAGNOSTIC_V062_POLICY
+H0073,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,B adds the consent proposition and functional-cookie state; the complete non-main messages do not agree,DIAGNOSTIC_V062_POLICY
+H0835,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,PAGE_STATE_ADDITION,HIGH,B adds the requirement to be registered and logged in to view profiles to the generic registration message,DIAGNOSTIC_V062_POLICY
+H0662,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,B adds analytics and additional-cookie categories absent from A; non-main containment is not permitted,DIAGNOSTIC_V062_POLICY
+H0848,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,B adds personalized advertising and use of interest data to improve ranking and the shop,DIAGNOSTIC_V062_POLICY
+H0983,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,A adds third-party Google Analytics collection absent from B,DIAGNOSTIC_V062_POLICY
+H0145,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,B adds analytics and additional-cookie categories absent from A; non-main containment is not permitted,DIAGNOSTIC_V062_POLICY
+H0920,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,TRANSLATION_PAGE_SLOT_CONFLICT,HIGH,A identifies freight search in Poland and a 1995 company claim while B identifies cargo 66000 Kyiv and distance calculation,DIAGNOSTIC_V062_POLICY
+H0572,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,B adds accept-reject controls and necessary versus non-necessary cookie propositions absent from A,DIAGNOSTIC_V062_POLICY
+H0053,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LIST_MEMBERSHIP_CONFLICT,HIGH,B adds an attachment-transfer permission and who-is-online section to a different visible permission set,DIAGNOSTIC_V062_POLICY
+H0276,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,MATERIAL_NON_MAIN_MESSAGE,HIGH,B adds a consent proposition and functional-cookie state plus page headings absent from A,DIAGNOSTIC_V062_POLICY
+H0373,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_OPTION_CONFLICT,HIGH,B explicitly offers denial of all or some cookies and different acceptance mechanics absent from A,DIAGNOSTIC_V062_POLICY
+H0345,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_PROPOSITION_ADDITION,HIGH,B adds a listing-accuracy disclaimer and additional trademark propositions absent from A,DIAGNOSTIC_V062_POLICY
+H0721,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_TARGET_ADDITION,HIGH,A adds a distinct DAAD map activation and OpenStreetMap data-transfer consent proposition,DIAGNOSTIC_V062_POLICY

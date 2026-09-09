@@ -1,0 +1,27 @@
+Independently return non_main_delta_subtype, translation_delta_direction and
+record_binding_verdict. Give each score its own exact evidence IDs.
+Compare complete policy meanings, not boilerplate volume. Align A### and B###
+semantically across languages, then find any owning-side extra fact.
+CHROME_OR_REDUNDANCY_ONLY must cite every unique span; explain why none adds a
+retained fact. Do not use that verdict for a small but real instruction.
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment addressing
+this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

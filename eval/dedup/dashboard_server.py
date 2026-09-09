@@ -149,10 +149,10 @@ class DashboardHandler(BaseHTTPRequestHandler):
             with dashboard.open("rb") as file:
                 shutil.copyfileobj(file, self.wfile, length=1024 * 1024)
 
-    def do_GET(self) -> None:  # noqa: N802 - stdlib handler API
+    def do_GET(self) -> None:
         self._serve_dashboard(send_body=True)
 
-    def do_HEAD(self) -> None:  # noqa: N802 - stdlib handler API
+    def do_HEAD(self) -> None:
         self._serve_dashboard(send_body=False)
 
     def log_message(self, message: str, *args: object) -> None:

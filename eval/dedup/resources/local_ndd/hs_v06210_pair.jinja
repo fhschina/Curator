@@ -1,0 +1,31 @@
+Compare the two blind cleaned documents using the deterministic span ledger.
+Inspect all unique spans, cite only supplied stable IDs, and let the ledger—not
+raw length or boilerplate volume—determine the replacement directions.
+Before returning the ledger:
+1. Separate a redundant non-main wrapper from new policy propositions,
+   permissions, cookie inventory, or page-specific identity.
+2. Map translated facts across A### and B### before assigning either delta.
+   A short extra fact/instruction still determines containment direction.
+3. Check every unique span before calling it UI: a navigation teaser may be
+   chrome; new services, troubleshooting, or application instructions are not.
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment addressing
+this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

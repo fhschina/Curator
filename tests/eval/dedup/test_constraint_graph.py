@@ -60,3 +60,44 @@ def test_cannot_link_blocks_transitive_union(tmp_path: Path) -> None:
     )
     assert counts["must_links"] == 1
     assert counts["conflicts"] == 1
+
+
+def test_v3_confidence_tier_commits_high_but_not_medium_at_default_gate(tmp_path: Path) -> None:
+    pairs = [(1, 2, "HIGH"), (3, 4, "MEDIUM")]
+    candidate_rows = []
+    result_rows = []
+    for index, (left, right, tier) in enumerate(pairs):
+        pair = cp1_pair(left, right)
+        candidate_rows.append(
+            {
+                "canonical_pair_id": pair.canonical_pair_id,
+                "doc_id_low": int(pair.doc_id_low),
+                "doc_id_high": int(pair.doc_id_high),
+            }
+        )
+        result_rows.append(
+            {
+                "canonical_pair_id": pair.canonical_pair_id,
+                "judge_result_id": f"result-{index}",
+                "judge_payload_hash": f"payload-{index}",
+                "same_duplicate_group": "YES",
+                "confidence_tier": tier,
+            }
+        )
+    candidates = tmp_path / "candidate.parquet"
+    results = tmp_path / "results.jsonl"
+    pq.write_table(pa.Table.from_pylist(candidate_rows), candidates)
+    results.write_text("".join(json.dumps(row) + "\n" for row in result_rows))
+
+    counts = build_constraint_graph(
+        results,
+        candidates,
+        must_links_destination=tmp_path / "must.parquet",
+        cannot_links_destination=tmp_path / "cannot.parquet",
+        components_destination=tmp_path / "components.parquet",
+        conflicts_destination=tmp_path / "conflicts.parquet",
+    )
+
+    assert counts["must_links"] == 1
+    assert counts["uncommitted_results"] == 1
+    assert pq.read_table(tmp_path / "must.parquet").to_pylist()[0]["confidence_tier"] == "HIGH"

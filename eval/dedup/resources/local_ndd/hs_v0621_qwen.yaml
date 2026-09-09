@@ -1,0 +1,146 @@
+models:
+  - alias: judge
+    model: /model/path/overridden/by/dedup/config
+    served_model_name: Qwen/Qwen3.8-27B
+    dynamo_model:
+      num_replicas: 1
+      mode: aggregated
+      runtime_env:
+        env_vars:
+          UV_CACHE_DIR: /raid/hfang/dedup_eval_cache/uv
+        config:
+          setup_timeout_seconds: 1800
+      engine_kwargs:
+        tensor_parallel_size: 1
+        max_model_len: 32768
+        max_num_seqs: 8
+        gpu_memory_utilization: 0.8
+        enforce_eager: true
+    inference_parameters:
+      temperature: 0.0
+      extra_body:
+        chat_template_kwargs:
+          enable_thinking: false
+      max_tokens: 4096
+      timeout: 600
+      max_parallel_requests: 8
+
+dynamo_server:
+  subprocess_env:
+    DYN_SYSTEM_PORT: "0"
+    PYTHONPATH: cutlass_compat
+
+inference_server:
+  health_check_timeout_s: 1800
+
+execution:
+  num_workers: 1
+  data_designer_run:
+    disable_early_shutdown: true
+    max_conversation_restarts: 0
+    max_conversation_correction_steps: 2
+  stages:
+    - name: hs_v0621_dedup_semantic_retention
+      judges:
+        - name: qwen_dedup_semantic_judge
+          model_alias: judge
+          system_prompt_path: hs_v0621_system.jinja
+          prompt_path: hs_v0621_pair.jinja
+          extract_reasoning_content: false
+          scores:
+            - name: a_can_replace_b
+              description: Can retaining A preserve every material fact, identity, state, and page role in B? Apply the identity/state/role conflict veto before overlap; shared boilerplate never supplies coverage. For no, quote decisive B text.
+              options:
+                "yes": A preserves every material element of B through equivalence or valid non-empty substantive containment.
+                "no": B has conflicting or uncovered material content, identity, state, or page role.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: b_can_replace_a
+              description: Can retaining B preserve every material fact, identity, state, and page role in A? Apply the identity/state/role conflict veto before overlap; shared boilerplate never supplies coverage. For no, quote decisive A text.
+              options:
+                "yes": B preserves every material element of A through equivalence or valid non-empty substantive containment.
+                "no": A has conflicting or uncovered material content, identity, state, or page role.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: relation_type
+              description: Classify after content profiles, the conflict veto, and the shared-substantive-anchor gate. A shared cookie/legal/auth/error/template family never proves equivalence when a site, slot, state, or role differs.
+              options:
+                exact: Complete visible cleaned texts are identical.
+                canonical_exact: Differences are only normalization, whitespace, punctuation, encoding, or formatting.
+                near_surface: The same substantive record, or the same complete non-main-only message without an identity conflict, is bidirectionally replaceable after benign surface changes.
+                containment: Exactly one side preserves a non-empty shared substantive anchor and adds meaningful main content without any conflicting slot.
+                version_related: The same evolving record has a conflicting material state or version and is not interchangeable.
+                related_non_duplicate: Main content is related or template-sibling content but record identity, state, or role requires separation.
+                unrelated: No meaningful main-content relationship exists.
+                unresolved: Visible evidence is insufficient to classify safely.
+            - name: material_difference
+              description: Score unique retainable main content or record identity after the veto. Containment and no/no relations are major; faithful translation is none; only genuine chrome-only differences are minor.
+              options:
+                none: No materially relevant information or record identity differs.
+                minor: A real non-core difference does not change identity, central facts, state, role, or training value.
+                major: Identity, state, main content, result set, legal meaning, page role, or a substantive addition differs.
+                unresolved: Visible evidence is insufficient to assess materiality.
+            - name: primary_material_difference
+              description: Select the single decisive retained-content difference. Prefer a specific identity/state/result/page-role/legal option over other_material. Containment must use main_content_addition_deletion; use none exactly with material_difference none.
+              options:
+                none: No material difference exists.
+                main_content_addition_deletion: Meaningful non-template main content is present on only one side of the same substantive record.
+                entity_slot_change: A person, organization, product, service, site, brand, controller, or location value conflicts.
+                document_identity_change: A title, SKU, record identifier, volume, chapter, page, image ID, or document identity conflicts.
+                number_change: A material number, price, quantity, or measurement conflicts.
+                date_time_change: A material date or time conflicts.
+                product_version_change: A product or version conflicts materially.
+                result_set_change: List members, rankings, search results, or outcomes differ.
+                page_role_change: The documents serve materially different functions such as cart, search, register, login, index, or detail.
+                legal_context_change: A controller, obligation, jurisdiction, or legal meaning differs.
+                negation_change: Negation reverses or materially changes meaning.
+                code_literal_change: Source-code literals, commands, identifiers, or parameters differ materially.
+                code_output_change: Code outputs or execution results differ materially.
+                other_material: A difference exists and no specific option fits; use only for a benign minor delta when no identity/state/role option applies.
+                unresolved: Visible evidence is insufficient to diagnose the difference.
+            - name: dominant_overlap_source
+              description: What single source contributes most visible similarity? It is descriptive and cannot satisfy the substantive-anchor gate.
+              options:
+                main_content: Shared substantive main content dominates.
+                shared_page_template: A reusable page template dominates.
+                site_chrome: Navigation, headers, footers, or platform chrome dominates.
+                cookie_consent: Cookie or consent text dominates.
+                legal_policy_template: Generic legal or policy wording dominates.
+                error_auth_paywall: Error, authentication, login, or paywall text dominates.
+                local_passage: A matching local passage is not representative of the whole documents.
+                parser_artifact: Extraction or parser artifacts dominate.
+                none: No meaningful overlap source is visible.
+                unresolved: Visible evidence is insufficient to identify the source.
+            - name: primary_risk_factor
+              description: Select the most specific observable semantic-deduplication trap; use slot, identifier, list, page-role, legal-context, or local-overlap risks before generic boilerplate.
+              options:
+                none: No distinct deduplication trap is visible.
+                boilerplate_dominated_similarity: Non-main text dominates apparent similarity.
+                template_slot_collision: A shared template masks different meaningful slots or records.
+                identifier_underweighting: A small identifier or defining value decides identity.
+                topic_only_similarity: Related topic or meaning could be mistaken for interchangeable content.
+                list_snapshot_collision: Similar list shells contain different members, rankings, or snapshots.
+                page_role_collision: Similar wording appears in pages with different functions.
+                legal_context_collision: Generic legal text masks a different controller, obligation, or jurisdiction.
+                long_document_local_overlap: A local match is not representative of the whole documents.
+                translation_equivalence: Equivalent meaning is expressed in another language.
+                paraphrase_equivalence: Equivalent meaning has low literal overlap.
+                containment_asymmetry: Valid one-way preservation could be mistaken for equivalence or non-duplication.
+                extraction_or_payload_limit: Missing or truncated content prevents a reliable decision.
+                parser_artifact_dominance: Parser artifacts dominate the apparent relationship.
+                other: A distinct risk exists and no listed factor fits.
+            - name: confidence_tier
+              description: Confidence in the complete semantic decision. Containment, translation, template/boilerplate dominance, parser boundaries, and truncation cannot be high; every unresolved result must be low.
+              options:
+                high: Direct complete evidence makes every decision unambiguous and no boundary rule is involved.
+                medium: Resolved, but containment, translation, template, boilerplate, parser, or another boundary requires judgment.
+                low: A resolved boundary remains materially uncertain, or evidence is insufficient and the result is fully unresolved.
+            - name: quote_evidence
+              description: >-
+                Every resolved non-exact result needs the smallest decisive exact visible quotes from both documents,
+                separately labeled A and B and copied character-for-character, at most 240 characters each. For no/no,
+                quote the conflicting value or role on both sides. For yes/yes or containment, quote the shared
+                substantive anchor on both sides; shared boilerplate is not supporting evidence unless both pages are
+                equivalent non-main-only messages. Never normalize, paraphrase, omit quotation marks, or use ellipses.
+              options:
+                provided: Exact visible quotes from both A and B appear in this reasoning.
+                not_required: Use only when relation_type is exact.
+                insufficient: Exact bilateral visible evidence is unavailable and the full result is unresolved.

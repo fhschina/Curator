@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import json
+import re
 from types import SimpleNamespace
 
 import pytest
@@ -22,6 +23,7 @@ import pytest
 from eval.dedup.judging.payload import (
     VISIBLE_PAYLOAD_V0,
     VISIBLE_PAYLOAD_V1,
+    VISIBLE_PAYLOAD_V2,
     align_evidence_offsets,
     assert_blind_payload,
     build_visible_payload,
@@ -97,6 +99,10 @@ def test_unalignable_evidence_is_dropped_without_changing_decision() -> None:
 class _WhitespaceCounter:
     def count_many(self, texts: list[str]) -> list[int]:
         return [len(text.split()) for text in texts]
+
+    def encode_with_offsets(self, text: str) -> tuple[list[int], list[tuple[int, int]]]:
+        matches = list(re.finditer(r"\S+", text))
+        return list(range(len(matches))), [(match.start(), match.end()) for match in matches]
 
 
 def _payload_config(schema_version: str, *, visible_payload_version: str | None = None) -> SimpleNamespace:
@@ -207,3 +213,68 @@ def test_v1_blind_payload_guard_rejects_metadata_reintroduction() -> None:
 
     with pytest.raises(ValueError, match="permits only text"):
         assert_blind_payload(payload)
+
+
+def test_v2_visible_payload_adds_stable_exact_diff_spans() -> None:
+    config = _payload_config(JUDGE_SCHEMA_V1, visible_payload_version=VISIBLE_PAYLOAD_V2)
+    document_a = {"text": "shared record alpha addition", "url": "https://hidden-a.invalid"}
+    document_b = {"text": "shared record beta", "url": "https://hidden-b.invalid"}
+
+    payload, digest = build_visible_payload(
+        document_a,
+        document_b,
+        counter=_WhitespaceCounter(),
+        config=config,
+    )
+    repeated_payload, repeated_digest = build_visible_payload(
+        document_a,
+        document_b,
+        counter=_WhitespaceCounter(),
+        config=config,
+    )
+
+    packet = payload["semantic_diff_evidence"]
+    assert payload["payload_schema_version"] == VISIBLE_PAYLOAD_V2
+    assert packet["status"] == "COMPLETE"
+    assert packet["span_counts"] == {"SHARED": 1, "A_ONLY": 1, "B_ONLY": 1}
+    assert [span["span_id"] for span in packet["spans"]] == ["S001", "A001", "B001"]
+    assert packet["spans"][0] == {
+        "span_id": "S001",
+        "kind": "SHARED",
+        "a_start_char": 0,
+        "a_end_char": 13,
+        "a_text": "shared record",
+        "b_start_char": 0,
+        "b_end_char": 13,
+        "b_text": "shared record",
+    }
+    assert packet["spans"][1]["text"] == "alpha addition"
+    assert packet["spans"][2]["text"] == "beta"
+    assert payload == repeated_payload
+    assert digest == repeated_digest
+    assert "hidden-a" not in json.dumps(payload)
+    assert_blind_payload(payload)
+
+
+def test_v2_visible_payload_marks_truncated_diff_unavailable() -> None:
+    config = _payload_config(JUDGE_SCHEMA_V1, visible_payload_version=VISIBLE_PAYLOAD_V2)
+    config.max_visible_tokens = 4
+    config.window_tokens = 2
+    config.window_overlap_tokens = 1
+
+    payload, _ = build_visible_payload(
+        {"text": "alpha beta gamma delta"},
+        {"text": "alpha beta gamma epsilon"},
+        counter=_WhitespaceCounter(),
+        config=config,
+    )
+
+    assert payload["long_document_evidence"]["truncated"] is True
+    assert payload["semantic_diff_evidence"] == {
+        "contract_version": "visible-semantic-diff-v1",
+        "status": "UNAVAILABLE_TRUNCATED",
+        "tokenization": "nfkc-casefold-visible-token-v1",
+        "span_counts": {"SHARED": 0, "A_ONLY": 0, "B_ONLY": 0},
+        "spans": [],
+    }
+    assert_blind_payload(payload)

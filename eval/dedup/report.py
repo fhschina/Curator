@@ -494,12 +494,14 @@ def _representative_record(
     if not candidates:
         return None
     center = median(float(row["token_length_ratio"]) for row in candidates)
+    tier_rank = {"LOW": 0, "MEDIUM": 1, "HIGH": 2}
     selected = min(
         candidates,
         key=lambda row: (
             abs(float(row["token_length_ratio"]) - center),
             -len(row["evidence"]),
-            -float(row["confidence"] or 0.0),
+            -tier_rank.get(row.get("confidence_tier"), -1),
+            -float(row.get("confidence") or 0.0),
             row["pair_id"],
         ),
     )
@@ -573,7 +575,7 @@ def _examples_markdown(examples: list[dict[str, Any]], *, dashboard_name: str) -
     sections = [
         (
             "Examples are selected deterministically within predeclared slices by median token-length ratio, then "
-            "evidence count, Judge confidence, and canonical pair ID. They are automated Judge comparisons, not "
+            "evidence count, Judge confidence tier, and canonical pair ID. They are automated Judge comparisons, not "
             "human ground truth."
         )
     ]
@@ -584,9 +586,10 @@ def _examples_markdown(examples: list[dict[str, Any]], *, dashboard_name: str) -
         )
         if record["retriever_category"]:
             signals += f", retriever={record['retriever_category']}"
+        confidence = record.get("confidence_tier") or record.get("confidence")
         judge = (
             f"relation={record['relation_type']}, material difference={record['material_difference']}, "
-            f"fuzzy scope={record['fuzzy_scope']}, confidence={record['confidence']}"
+            f"fuzzy scope={record['fuzzy_scope']}, confidence={confidence}"
         )
         reasons = ", ".join(record["reason_codes"]) or "None"
         left = html.escape(_short_excerpt(record["left"]["excerpt"]))
@@ -716,6 +719,9 @@ def _comparison_analysis(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 ("0.95-1.00", 0.95, 1.0000001),
             )
         },
+        "confidence_tiers": dict(
+            sorted(Counter(row.get("confidence_tier") for row in rows if row.get("confidence_tier")).items())
+        ),
     }
 
 
@@ -1500,6 +1506,7 @@ def _audit_appendices(
             ["Resolution rate among valid", _percent(metrics["judge"]["resolution_rate"])],
             ["Attempt histogram", json.dumps(analysis["attempt_histogram"], sort_keys=True)],
             ["Confidence buckets", json.dumps(analysis["confidence_buckets"], sort_keys=True)],
+            ["Confidence tiers", json.dumps(analysis["confidence_tiers"], sort_keys=True)],
             [
                 "Payload truncation",
                 (
@@ -1553,8 +1560,8 @@ def _audit_appendices(
 
 {judge_table}
 
-Deterministic repairs only realign or drop evidence offsets against visible text. They do not change duplicate,
-replaceability, relation, material-difference, fuzzy-scope, confidence, or reason-code decisions.
+Deterministic repairs only derive documented fields and align or drop evidence offsets against visible text. They do
+not change replacement, relation, material-difference, overlap-source, risk-factor, or confidence-tier decisions.
 
 Terminal error pair IDs:
 

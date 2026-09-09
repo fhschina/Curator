@@ -1,0 +1,78 @@
+{
+  "baseline": {
+    "containment_over_group": 22,
+    "over_group": 46,
+    "under_group": 5
+  },
+  "candidate": {
+    "containment_over_group": 0,
+    "diagnostic_negatives_preserved": 21,
+    "diagnostic_negatives_requested": 23,
+    "errors": 1,
+    "group_outcomes": {
+      "NO": 81,
+      "UNRESOLVED": 1,
+      "YES": 45
+    },
+    "over_group": 25,
+    "protected_duplicates_retained": 2,
+    "protected_duplicates_requested": 5,
+    "requested": 127,
+    "retried": 7,
+    "retry_rate": 0.05511811023622047,
+    "schema_completion_rate": 0.9921259842519685,
+    "terminal_error_ids": [
+      "H0278"
+    ],
+    "under_group": 21,
+    "unweighted": {
+      "duplicate_precision": 0.4444444444444444,
+      "duplicate_recall": 0.4878048780487805,
+      "primary_decision_exact": 0.49606299212598426,
+      "taxonomy_exact": 0.2992125984251969
+    },
+    "valid": 126,
+    "weighted": {
+      "duplicate_precision": 0.4485522514463637,
+      "duplicate_recall": 0.4867177747827,
+      "primary_decision_exact": 0.5004323800769225,
+      "taxonomy_exact": 0.30029929473426586
+    }
+  },
+  "checks": {
+    "containment_over_group": true,
+    "diagnostic_negatives": false,
+    "over_group": true,
+    "protected_duplicates": false,
+    "retry_rate": false,
+    "schema_completion": false,
+    "terminal_errors": false,
+    "under_group": false
+  },
+  "diagnostics": {
+    "diagnostic_negative_violations": [
+      "H0276",
+      "H0983"
+    ],
+    "formal_http_200_events": 162,
+    "formal_http_500_events": 14,
+    "protected_duplicates_retained": [
+      "H0679",
+      "H0748"
+    ],
+    "protected_duplicates_rejected": [
+      "H0038",
+      "H0347",
+      "H0453"
+    ],
+    "valid_attempt_distribution": {
+      "1": 120,
+      "2": 2,
+      "3": 4
+    }
+  },
+  "passed": false,
+  "prompt_version": "dedup-judge-hs-v0.6.2.4",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.4-residual-smoke",
+  "schema_version": "dedup-v0624-residual-smoke-summary-v1"
+}

@@ -1,0 +1,1107 @@
+{
+  "schema_version": "dedup-v06211-fixed-output-ablation-v1",
+  "eligible_for_promotion": false,
+  "source_run_root": "/raid/hfang/ihb/runs/v0.6.2.11-residual-smoke",
+  "source_results_sha256": "b16eb57e1ea4fa64ec5dd91f3008ffca56179165ae2a1da9e7c042644257522c",
+  "raw_source_digests": {
+    "/raid/hfang/ihb/runs/v0.6.2.11-residual-smoke/runtime/block-0001/run-001/attempt_01/output/9c320ef3e995.jsonl": "cf99a673c325b56f00a4af9d29028dfb9ef4279612bd2bf1524b5bb34b9a4e12"
+  },
+  "adapter_digests": {
+    "eval/dedup/judging/local_ndd.py": "3180bfab2c8452dad381d0ad432d6a5df6f062c82a29c1a604da660def5ec201",
+    "eval/dedup/judging/scoped_critic.py": "1d53ee366055f1326087947cf3494906f8aae4c3ccadbc563b74fdaa73e10bf3"
+  },
+  "policy_meanings": {
+    "v5": "exact replay of final live V0.6.2.11",
+    "v5-policy": "same raw outputs, translation supplement disabled",
+    "v3": "same raw outputs, original V0.6.2.9 arbitration; both supplements disabled"
+  },
+  "metrics": {
+    "v5": {
+      "unweighted": {
+        "rows": 127,
+        "weight_total": 127,
+        "primary_decision_exact": 0.7086614173228346,
+        "taxonomy_exact": 0.5039370078740157,
+        "duplicate_precision": 0.3333333333333333,
+        "duplicate_recall": 0.42857142857142855,
+        "duplicate_f1": 0.375,
+        "true_positive": 9,
+        "false_positive": 18,
+        "false_negative": 12,
+        "true_negative": 83,
+        "unresolved": 7
+      },
+      "weighted": {
+        "rows": 127,
+        "weight_total": 1202.4419373776902,
+        "primary_decision_exact": 0.7175987992341025,
+        "taxonomy_exact": 0.5230823258013625,
+        "duplicate_precision": 0.3137222893624268,
+        "duplicate_recall": 0.4270018033213487,
+        "duplicate_f1": 0.36170008407448256,
+        "true_positive": 80.06945205479452,
+        "false_positive": 175.154530332681,
+        "false_negative": 107.44603718199608,
+        "true_negative": 796.7348532289624,
+        "unresolved": 57.41563600782779
+      },
+      "over_group": 18,
+      "containment_over_group": 4,
+      "under_group": 12,
+      "containment_under_group": 2,
+      "cohorts": {
+        "boilerplate_only": {
+          "rows": 13,
+          "primary_decision_exact": 0.7692307692307693,
+          "weighted_primary_decision_exact": 0.7622928112165163,
+          "over_group": 3,
+          "under_group": 0
+        },
+        "chrome_only": {
+          "rows": 7,
+          "primary_decision_exact": 0.42857142857142855,
+          "weighted_primary_decision_exact": 0.48563803558443425,
+          "over_group": 0,
+          "under_group": 2
+        },
+        "factual_state": {
+          "rows": 15,
+          "primary_decision_exact": 0.6666666666666666,
+          "weighted_primary_decision_exact": 0.6627593467175542,
+          "over_group": 3,
+          "under_group": 0
+        },
+        "identity_slot": {
+          "rows": 7,
+          "primary_decision_exact": 0.2857142857142857,
+          "weighted_primary_decision_exact": 0.3157817961192205,
+          "over_group": 5,
+          "under_group": 0
+        },
+        "list_membership": {
+          "rows": 2,
+          "primary_decision_exact": 0.5,
+          "weighted_primary_decision_exact": 0.5396622718090058,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "material_content": {
+          "rows": 10,
+          "primary_decision_exact": 0.9,
+          "weighted_primary_decision_exact": 0.9140306884034104,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "meaningful_addition": {
+          "rows": 49,
+          "primary_decision_exact": 0.7755102040816326,
+          "weighted_primary_decision_exact": 0.7825114070695088,
+          "over_group": 2,
+          "under_group": 7
+        },
+        "page_role": {
+          "rows": 16,
+          "primary_decision_exact": 0.75,
+          "weighted_primary_decision_exact": 0.7530388002619969,
+          "over_group": 4,
+          "under_group": 0
+        },
+        "parser_noise": {
+          "rows": 1,
+          "primary_decision_exact": 0,
+          "weighted_primary_decision_exact": 0,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "translation": {
+          "rows": 7,
+          "primary_decision_exact": 0.7142857142857143,
+          "weighted_primary_decision_exact": 0.6751758858839476,
+          "over_group": 0,
+          "under_group": 2
+        }
+      },
+      "confidence_tiers": {
+        "LOW": {
+          "rows": 7,
+          "primary_decision_accuracy": 0.14285714285714285,
+          "weighted_primary_decision_accuracy": 0.2307484920443131,
+          "duplicate_group_accuracy": 0.14285714285714285,
+          "weighted_duplicate_group_accuracy": 0.2307484920443131
+        },
+        "MEDIUM": {
+          "rows": 120,
+          "primary_decision_accuracy": 0.7416666666666667,
+          "weighted_primary_decision_accuracy": 0.7420111817221436,
+          "duplicate_group_accuracy": 0.7666666666666667,
+          "weighted_duplicate_group_accuracy": 0.7657503624456348
+        }
+      },
+      "semantic_ledger": {},
+      "relation_matrix": {
+        "CONTAINMENT": {
+          "CONTAINMENT": 2,
+          "UNRESOLVED": 2
+        },
+        "NEAR_SURFACE": {
+          "CONTAINMENT": 3,
+          "NEAR_SURFACE": 4,
+          "RELATED_NON_DUPLICATE": 9,
+          "VERSION_RELATED": 1
+        },
+        "RELATED_NON_DUPLICATE": {
+          "CONTAINMENT": 2,
+          "NEAR_SURFACE": 9,
+          "RELATED_NON_DUPLICATE": 53,
+          "UNRESOLVED": 2
+        },
+        "UNRELATED": {
+          "CONTAINMENT": 2,
+          "NEAR_SURFACE": 1,
+          "RELATED_NON_DUPLICATE": 15,
+          "UNRELATED": 2
+        },
+        "UNRESOLVED": {
+          "UNRESOLVED": 1
+        },
+        "VERSION_RELATED": {
+          "NEAR_SURFACE": 4,
+          "RELATED_NON_DUPLICATE": 9,
+          "UNRESOLVED": 2,
+          "VERSION_RELATED": 4
+        }
+      }
+    },
+    "v5-policy": {
+      "unweighted": {
+        "rows": 127,
+        "weight_total": 127,
+        "primary_decision_exact": 0.7322834645669292,
+        "taxonomy_exact": 0.5196850393700787,
+        "duplicate_precision": 0.3793103448275862,
+        "duplicate_recall": 0.5238095238095238,
+        "duplicate_f1": 0.44,
+        "true_positive": 11,
+        "false_positive": 18,
+        "false_negative": 10,
+        "true_negative": 84,
+        "unresolved": 4
+      },
+      "weighted": {
+        "rows": 127,
+        "weight_total": 1202.4419373776902,
+        "primary_decision_exact": 0.730496362888937,
+        "taxonomy_exact": 0.5350401351405215,
+        "duplicate_precision": 0.3503231781246738,
+        "duplicate_recall": 0.5036811831800144,
+        "duplicate_f1": 0.4132325333412791,
+        "true_positive": 94.44802348336594,
+        "false_positive": 175.154530332681,
+        "false_negative": 93.06746575342466,
+        "true_negative": 797.8648532289624,
+        "unresolved": 41.90706457925636
+      },
+      "over_group": 18,
+      "containment_over_group": 4,
+      "under_group": 10,
+      "containment_under_group": 0,
+      "cohorts": {
+        "boilerplate_only": {
+          "rows": 13,
+          "primary_decision_exact": 0.7692307692307693,
+          "weighted_primary_decision_exact": 0.7622928112165163,
+          "over_group": 3,
+          "under_group": 0
+        },
+        "chrome_only": {
+          "rows": 7,
+          "primary_decision_exact": 0.42857142857142855,
+          "weighted_primary_decision_exact": 0.48563803558443425,
+          "over_group": 0,
+          "under_group": 2
+        },
+        "factual_state": {
+          "rows": 15,
+          "primary_decision_exact": 0.7333333333333333,
+          "weighted_primary_decision_exact": 0.6730922367415186,
+          "over_group": 3,
+          "under_group": 0
+        },
+        "identity_slot": {
+          "rows": 7,
+          "primary_decision_exact": 0.2857142857142857,
+          "weighted_primary_decision_exact": 0.3157817961192205,
+          "over_group": 5,
+          "under_group": 0
+        },
+        "list_membership": {
+          "rows": 2,
+          "primary_decision_exact": 0.5,
+          "weighted_primary_decision_exact": 0.5396622718090058,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "material_content": {
+          "rows": 10,
+          "primary_decision_exact": 0.9,
+          "weighted_primary_decision_exact": 0.9140306884034104,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "meaningful_addition": {
+          "rows": 49,
+          "primary_decision_exact": 0.7755102040816326,
+          "weighted_primary_decision_exact": 0.7825114070695088,
+          "over_group": 2,
+          "under_group": 7
+        },
+        "page_role": {
+          "rows": 16,
+          "primary_decision_exact": 0.75,
+          "weighted_primary_decision_exact": 0.7530388002619969,
+          "over_group": 4,
+          "under_group": 0
+        },
+        "parser_noise": {
+          "rows": 1,
+          "primary_decision_exact": 0,
+          "weighted_primary_decision_exact": 0,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "translation": {
+          "rows": 7,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        }
+      },
+      "confidence_tiers": {
+        "LOW": {
+          "rows": 4,
+          "primary_decision_accuracy": 0.25,
+          "weighted_primary_decision_accuracy": 0.31614171886258435,
+          "duplicate_group_accuracy": 0.25,
+          "weighted_duplicate_group_accuracy": 0.31614171886258435
+        },
+        "MEDIUM": {
+          "rows": 123,
+          "primary_decision_accuracy": 0.7479674796747967,
+          "weighted_primary_decision_accuracy": 0.7454587627555225,
+          "duplicate_group_accuracy": 0.7723577235772358,
+          "weighted_duplicate_group_accuracy": 0.7688807097719228
+        }
+      },
+      "semantic_ledger": {},
+      "relation_matrix": {
+        "CONTAINMENT": {
+          "CONTAINMENT": 4
+        },
+        "NEAR_SURFACE": {
+          "CONTAINMENT": 3,
+          "NEAR_SURFACE": 4,
+          "RELATED_NON_DUPLICATE": 9,
+          "VERSION_RELATED": 1
+        },
+        "RELATED_NON_DUPLICATE": {
+          "CONTAINMENT": 2,
+          "NEAR_SURFACE": 9,
+          "RELATED_NON_DUPLICATE": 53,
+          "UNRESOLVED": 2
+        },
+        "UNRELATED": {
+          "CONTAINMENT": 2,
+          "NEAR_SURFACE": 1,
+          "RELATED_NON_DUPLICATE": 15,
+          "UNRELATED": 2
+        },
+        "UNRESOLVED": {
+          "UNRESOLVED": 1
+        },
+        "VERSION_RELATED": {
+          "NEAR_SURFACE": 4,
+          "RELATED_NON_DUPLICATE": 10,
+          "UNRESOLVED": 1,
+          "VERSION_RELATED": 4
+        }
+      }
+    },
+    "v3": {
+      "unweighted": {
+        "rows": 127,
+        "weight_total": 127,
+        "primary_decision_exact": 0.7637795275590551,
+        "taxonomy_exact": 0.5590551181102362,
+        "duplicate_precision": 0.43902439024390244,
+        "duplicate_recall": 0.8571428571428571,
+        "duplicate_f1": 0.5806451612903225,
+        "true_positive": 18,
+        "false_positive": 23,
+        "false_negative": 3,
+        "true_negative": 81,
+        "unresolved": 2
+      },
+      "weighted": {
+        "rows": 127,
+        "weight_total": 1202.4419373776902,
+        "primary_decision_exact": 0.7590000033037791,
+        "taxonomy_exact": 0.5718976092730284,
+        "duplicate_precision": 0.41343543667413973,
+        "duplicate_recall": 0.8471673285906766,
+        "duplicate_f1": 0.5556849533935039,
+        "true_positive": 158.85699608610565,
+        "false_positive": 225.37953033268093,
+        "false_negative": 28.658493150684933,
+        "true_negative": 767.7298532289626,
+        "unresolved": 21.81706457925636
+      },
+      "over_group": 23,
+      "containment_over_group": 4,
+      "under_group": 3,
+      "containment_under_group": 0,
+      "cohorts": {
+        "boilerplate_only": {
+          "rows": 13,
+          "primary_decision_exact": 0.7692307692307693,
+          "weighted_primary_decision_exact": 0.7622928112165163,
+          "over_group": 3,
+          "under_group": 0
+        },
+        "chrome_only": {
+          "rows": 7,
+          "primary_decision_exact": 0.7142857142857143,
+          "weighted_primary_decision_exact": 0.7526302635178926,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "factual_state": {
+          "rows": 15,
+          "primary_decision_exact": 0.7333333333333333,
+          "weighted_primary_decision_exact": 0.6730922367415186,
+          "over_group": 3,
+          "under_group": 0
+        },
+        "identity_slot": {
+          "rows": 7,
+          "primary_decision_exact": 0.2857142857142857,
+          "weighted_primary_decision_exact": 0.3157817961192205,
+          "over_group": 5,
+          "under_group": 0
+        },
+        "list_membership": {
+          "rows": 2,
+          "primary_decision_exact": 0,
+          "weighted_primary_decision_exact": 0,
+          "over_group": 2,
+          "under_group": 0
+        },
+        "material_content": {
+          "rows": 10,
+          "primary_decision_exact": 0.9,
+          "weighted_primary_decision_exact": 0.9140306884034104,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "meaningful_addition": {
+          "rows": 49,
+          "primary_decision_exact": 0.8571428571428571,
+          "weighted_primary_decision_exact": 0.8537827647471614,
+          "over_group": 5,
+          "under_group": 2
+        },
+        "page_role": {
+          "rows": 16,
+          "primary_decision_exact": 0.6875,
+          "weighted_primary_decision_exact": 0.691298500327496,
+          "over_group": 5,
+          "under_group": 0
+        },
+        "parser_noise": {
+          "rows": 1,
+          "primary_decision_exact": 0,
+          "weighted_primary_decision_exact": 0,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "translation": {
+          "rows": 7,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        }
+      },
+      "confidence_tiers": {
+        "LOW": {
+          "rows": 2,
+          "primary_decision_accuracy": 0.5,
+          "weighted_primary_decision_accuracy": 0.6072572861689265,
+          "duplicate_group_accuracy": 0.5,
+          "weighted_duplicate_group_accuracy": 0.6072572861689265
+        },
+        "MEDIUM": {
+          "rows": 125,
+          "primary_decision_accuracy": 0.768,
+          "weighted_primary_decision_accuracy": 0.7618040952176788,
+          "duplicate_group_accuracy": 0.792,
+          "weighted_duplicate_group_accuracy": 0.7848274847189861
+        }
+      },
+      "semantic_ledger": {},
+      "relation_matrix": {
+        "CONTAINMENT": {
+          "CONTAINMENT": 4
+        },
+        "NEAR_SURFACE": {
+          "CONTAINMENT": 3,
+          "NEAR_SURFACE": 11,
+          "RELATED_NON_DUPLICATE": 2,
+          "VERSION_RELATED": 1
+        },
+        "RELATED_NON_DUPLICATE": {
+          "CONTAINMENT": 2,
+          "NEAR_SURFACE": 13,
+          "RELATED_NON_DUPLICATE": 51
+        },
+        "UNRELATED": {
+          "CONTAINMENT": 2,
+          "NEAR_SURFACE": 1,
+          "RELATED_NON_DUPLICATE": 15,
+          "UNRELATED": 2
+        },
+        "UNRESOLVED": {
+          "UNRESOLVED": 1
+        },
+        "VERSION_RELATED": {
+          "NEAR_SURFACE": 5,
+          "RELATED_NON_DUPLICATE": 9,
+          "UNRESOLVED": 1,
+          "VERSION_RELATED": 4
+        }
+      }
+    }
+  },
+  "changed_primary_tuples": {
+    "v5-policy": [
+      {
+        "review_id": "H0017",
+        "final": {
+          "same_duplicate_group": "UNRESOLVED",
+          "a_can_replace_b": "UNRESOLVED",
+          "b_can_replace_a": "UNRESOLVED"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0221",
+        "final": {
+          "same_duplicate_group": "UNRESOLVED",
+          "a_can_replace_b": "UNRESOLVED",
+          "b_can_replace_a": "UNRESOLVED"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        }
+      },
+      {
+        "review_id": "H0653",
+        "final": {
+          "same_duplicate_group": "UNRESOLVED",
+          "a_can_replace_b": "UNRESOLVED",
+          "b_can_replace_a": "UNRESOLVED"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "YES"
+        }
+      }
+    ],
+    "v3": [
+      {
+        "review_id": "H0214",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0347",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0453",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0017",
+        "final": {
+          "same_duplicate_group": "UNRESOLVED",
+          "a_can_replace_b": "UNRESOLVED",
+          "b_can_replace_a": "UNRESOLVED"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0221",
+        "final": {
+          "same_duplicate_group": "UNRESOLVED",
+          "a_can_replace_b": "UNRESOLVED",
+          "b_can_replace_a": "UNRESOLVED"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        }
+      },
+      {
+        "review_id": "H0882",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0226",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0604",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0792",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0260",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0612",
+        "final": {
+          "same_duplicate_group": "UNRESOLVED",
+          "a_can_replace_b": "UNRESOLVED",
+          "b_can_replace_a": "UNRESOLVED"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        }
+      },
+      {
+        "review_id": "H1000",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0089",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0005",
+        "final": {
+          "same_duplicate_group": "NO",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "NO"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0653",
+        "final": {
+          "same_duplicate_group": "UNRESOLVED",
+          "a_can_replace_b": "UNRESOLVED",
+          "b_can_replace_a": "UNRESOLVED"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "NO",
+          "b_can_replace_a": "YES"
+        }
+      },
+      {
+        "review_id": "H0688",
+        "final": {
+          "same_duplicate_group": "UNRESOLVED",
+          "a_can_replace_b": "UNRESOLVED",
+          "b_can_replace_a": "UNRESOLVED"
+        },
+        "counterfactual": {
+          "same_duplicate_group": "YES",
+          "a_can_replace_b": "YES",
+          "b_can_replace_a": "YES"
+        }
+      }
+    ]
+  },
+  "examples": {
+    "H0347": {
+      "main": {
+        "span_content_profile_a": {
+          "reasoning": "The visible text in A consists entirely of a standard Italian cookie consent message (S001, S002, S003, S004) and minor UI fragments (A001, A002, A003). There is no page-specific substantive content.",
+          "score": "non_main_only"
+        },
+        "span_content_profile_b": {
+          "reasoning": "The visible text in B consists of a standard Italian cookie consent message (S001, S002, S003, S004) and additional UI elements like 'Liste dei Desideri' (B001) and 'Accetta' (B004). There is no page-specific substantive content.",
+          "score": "non_main_only"
+        },
+        "span_shared_basis": {
+          "reasoning": "Spans S001, S002, S003, and S004 establish that both documents contain the same core cookie consent message regarding the use of cookies and the reference to the cookie policy. This constitutes a verified equivalent non-main message.",
+          "score": "verified_equivalent_non_main_message"
+        },
+        "span_a_delta": {
+          "reasoning": "A001 ('Continuando a consultare questo'), A002 (','), and A003 ('’') are fragments of the standard 'By continuing to browse...' phrasing often found in cookie banners. These are harmless universal UI/parser noise or redundant repetitions of the consent mechanism already implied by the shared text.",
+          "score": "universal_ui_or_repetition"
+        },
+        "span_b_delta": {
+          "reasoning": "B001 ('Liste dei Desideri') is a navigation/UI element (Wishlist). B002 ('Se vuoi saperne di più...') is a standard explanatory clause for cookie policies. B003 (''') is a parser artifact. B004 ('Accetta') is a standard button label. All are harmless universal UI or boilerplate elements without page-specific record identity.",
+          "score": "universal_ui_or_repetition"
+        },
+        "span_hard_conflict": {
+          "reasoning": "There are no conflicting values, identities, or states between the two sides. The differences are purely additive UI elements or phrasing variations in the boilerplate.",
+          "score": "none"
+        },
+        "span_translation_status": {
+          "reasoning": "Both documents are in the same language (Italian). Translation is not the relationship.",
+          "score": "not_translation"
+        }
+      },
+      "critic": {
+        "record_binding_verdict": {
+          "reasoning": "The shared spans (S001-S004) constitute a standard cookie consent banner. The unique content on both sides relates to the mechanics of this consent. Side A (A001-A003) includes the phrase 'Continuando a consultare questo' (Continuing to browse this), which implies a 'consent by action' or 'implied consent' mechanism. Side B (B001-B004) includes 'Liste dei Desideri' (Wishlists), 'Se vuoi saperne di più consulta la cookie policy' (If you want to know more consult the cookie policy), and 'Accetta' (Accept). The presence of an explicit 'Accetta' button in B versus the implied consent language in A represents a material difference in the consent state/mechanism. Furthermore, B introduces a specific page context ('Liste dei Desideri') not present in A. Since the entire record is a non-main policy/consent widget, and the state/mechanism differs materially between the two versions, this is a non-main policy or state change.",
+          "score": "non_main_policy_or_state_change"
+        },
+        "non_main_delta_subtype": {
+          "reasoning": "The pair consists entirely of cookie consent messaging. Side A (A001) suggests consent through continued browsing ('Continuando a consultare...'). Side B (B004) provides an explicit 'Accetta' (Accept) action and B002 provides a link to the policy. This difference in how consent is obtained (implied vs. explicit action) constitutes a consent or legal state change. Additionally, B001 adds a page-specific identity ('Liste dei Desideri'), but the primary material difference in the non-main policy context is the consent mechanism.",
+          "score": "consent_or_legal_state_change"
+        },
+        "translation_delta_direction": {
+          "reasoning": "Both sides are in Italian. There is no cross-language comparison involved.",
+          "score": "not_translation"
+        }
+      },
+      "final_rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+SCOPED_POLICY_VETO_CONSENT_OR_LEGAL_STATE_CHANGE"
+      ]
+    },
+    "H0723": {
+      "main": {
+        "span_content_profile_a": {
+          "reasoning": "Document A contains the full ESO Cookies Policy, including specific cookie tables (csrftoken, user_privacy, _grecaptcha, preferred_language, Matomo cookies, sessionid) and policy details. This is retainable page-specific substantive content.",
+          "score": "substantive_main"
+        },
+        "span_content_profile_b": {
+          "reasoning": "Document B contains the same ESO Cookies Policy text but lacks the specific 'sessionid' cookie entry and the 'Fulldome Preview' header found in A. It is also retainable page-specific substantive content.",
+          "score": "substantive_main"
+        },
+        "span_shared_basis": {
+          "reasoning": "Spans S001 through S031 establish that both documents are the same ESO Cookies Policy record. They share the title, introduction, cookie categories, specific cookie definitions (csrftoken, user_privacy, etc.), and contact information.",
+          "score": "verified_substantive_record"
+        },
+        "span_a_delta": {
+          "reasoning": "A001 ('Fulldome Preview'), A002 ('ON | OFF sessionid...'), and A003 ('Stored 2 weeks') are unique to A. A002 and A003 add a specific cookie entry ('sessionid') to the list of cookies described in the policy. A001 appears to be a UI element or header. The addition of the 'sessionid' cookie is a content extension to the same record.",
+          "score": "same_record_content_extension"
+        },
+        "span_b_delta": {
+          "reasoning": "There are no B-only spans (B_ONLY count is 0).",
+          "score": "none"
+        },
+        "span_hard_conflict": {
+          "reasoning": "There are no conflicting values. A contains all of B's content plus additional items. Absence of the 'sessionid' cookie in B is not a conflict, but an omission relative to A.",
+          "score": "none"
+        },
+        "span_translation_status": {
+          "reasoning": "Both documents are in English and are not translations of each other.",
+          "score": "not_translation"
+        }
+      },
+      "critic": {
+        "record_binding_verdict": {
+          "reasoning": "The shared spans (S001-S031) establish the atomic record as the ESO Cookies Policy. The unique content in A (A001-A003) adds a new cookie entry ('sessionid') to the inventory, describing its purpose (ESO Shop session) and duration (2 weeks). According to the calibration rules, a shared cookie policy plus an added cookie entry is a non-main policy/state change, not a benign extension or separate record. The addition materially changes the policy's scope and inventory.",
+          "score": "non_main_policy_or_state_change"
+        },
+        "non_main_delta_subtype": {
+          "reasoning": "The bilateral context is the ESO Cookies Policy (S001-S031). The unique spans A001-A003 introduce a new cookie entry 'sessionid' with specific details (1st party, Stored, 2 weeks, ESO Shop purpose). This constitutes a change in the cookie inventory (membership and purpose), which is explicitly defined as a cookie_inventory_change and never containment.",
+          "score": "cookie_inventory_change"
+        },
+        "translation_delta_direction": {
+          "reasoning": "Both sides are in English. There is no cross-language comparison of retained same-record content. The difference is an additive inventory item in the same language.",
+          "score": "not_translation"
+        }
+      },
+      "final_rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+SCOPED_POLICY_VETO_COOKIE_INVENTORY_CHANGE"
+      ]
+    },
+    "H0453": {
+      "main": {
+        "span_content_profile_a": {
+          "reasoning": "The visible text in A consists entirely of a standard Italian cookie consent message (S001, S002, S003, S004) and minor UI fragments (A001, A002, A003). There is no page-specific substantive content.",
+          "score": "non_main_only"
+        },
+        "span_content_profile_b": {
+          "reasoning": "The visible text in B consists of the same standard Italian cookie consent message (S001, S002, S003, S004) plus additional UI elements like 'Liste dei Desideri' (B001) and 'Accetta' (B004). There is no page-specific substantive content.",
+          "score": "non_main_only"
+        },
+        "span_shared_basis": {
+          "reasoning": "Spans S001, S002, S003, and S004 establish that both documents contain the same core cookie consent message regarding the use of cookies and the reference to the cookie policy. This constitutes a verified equivalent non-main message.",
+          "score": "verified_equivalent_non_main_message"
+        },
+        "span_a_delta": {
+          "reasoning": "A001 ('Continuando a consultare questo'), A002 (','), and A003 ('’') are fragments of the standard cookie consent phrasing ('Continuing to browse this site...'). These are harmless universal UI/boilerplate repetitions or parser noise associated with the cookie banner, not unique substantive content.",
+          "score": "universal_ui_or_repetition"
+        },
+        "span_b_delta": {
+          "reasoning": "B001 ('Liste dei Desideri') is a navigation/UI label. B002 ('Se vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del') is a variation of the cookie consent text. B003 (''') is a punctuation artifact. B004 ('Accetta') is a standard button label. All are harmless universal UI or boilerplate variations.",
+          "score": "universal_ui_or_repetition"
+        },
+        "span_hard_conflict": {
+          "reasoning": "There are no conflicting values, identities, or states. The differences are merely in the specific wording of the boilerplate and the presence of extra UI labels in B.",
+          "score": "none"
+        },
+        "span_translation_status": {
+          "reasoning": "Both documents are in Italian. This is not a translation relationship.",
+          "score": "not_translation"
+        }
+      },
+      "critic": {
+        "record_binding_verdict": {
+          "reasoning": "The shared spans (S001-S004) constitute a standard Italian cookie consent banner. The unique content on both sides relates to the mechanics and UI of this consent. Side A (A001-A003) contains the phrase 'Continuando a consultare questo' (Continuing to browse this), which implies a 'consent by browsing' mechanism. Side B (B001-B004) contains 'Liste dei Desideri' (Wishlists), 'Se vuoi saperne di più consulta la cookie policy' (If you want to know more consult the cookie policy), and 'Accetta' (Accept). The presence of an explicit 'Accetta' button in B versus the implied consent-by-browsing text in A represents a material difference in the consent state/mechanism. Furthermore, 'Liste dei Desideri' is a page-specific identity or feature reference not present in A. Since the entire record is a non-main policy/consent widget, and the state/mechanism differs materially between the two versions, this is a non-main policy or state change.",
+          "score": "non_main_policy_or_state_change"
+        },
+        "non_main_delta_subtype": {
+          "reasoning": "The bilateral context is the cookie consent banner (S001-S004). The unique spans reveal a difference in the consent mechanism. A001 ('Continuando a consultare questo') suggests implicit consent through continued browsing. B004 ('Accetta') provides an explicit acceptance action, and B002 provides a link to the policy. This difference in how consent is obtained (implicit vs explicit action) constitutes a consent or legal state change.",
+          "score": "consent_or_legal_state_change"
+        },
+        "translation_delta_direction": {
+          "reasoning": "Both sides are in Italian. There is no cross-language comparison of retained same-record content.",
+          "score": "not_translation"
+        }
+      },
+      "final_rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+SCOPED_POLICY_VETO_CONSENT_OR_LEGAL_STATE_CHANGE"
+      ]
+    },
+    "H0017": {
+      "main": {
+        "span_content_profile_a": {
+          "reasoning": "Document A contains specific factual information about a Syrian media organization (EB), including its founding year, services, and publication details. This is retainable page-specific substantive content.",
+          "score": "substantive_main"
+        },
+        "span_content_profile_b": {
+          "reasoning": "Document B contains the same factual information about the Syrian media organization in Arabic, including founding year, services, and additional details about social media accounts. This is retainable page-specific substantive content.",
+          "score": "substantive_main"
+        },
+        "span_shared_basis": {
+          "reasoning": "The shared spans S001 ('2011') and S002/S003 (punctuation) are minimal. However, the unique spans A001-A003 (English) and B001-B003 (Arabic) describe the exact same entity: an independent Syrian media organization founded in 2011, offering 24-hour news coverage, multilingual websites, and a weekly newspaper. The semantic identity is established by the correspondence between A001/A002 and B001/B002.",
+          "score": "verified_substantive_record"
+        },
+        "span_a_delta": {
+          "reasoning": "Spans A001, A002, A003, and A004 contain the English description of the organization. A003 is a repetition of A001+A002. The core content (founding, 24h coverage, weekly newspaper) is present in B. However, A does not contain the specific mention of 'active social media accounts' and 'other services' found in B003. Thus, A's unique content is largely covered by B, but A lacks the extension found in B. Since we are classifying A's delta relative to B, and A's content is a subset of B's content (B has the extra social media info), A's unique spans are semantically covered by B's more complete description, except for the fact that A is in English. Wait, the definition of 'semantically_covered' is 'faithful paraphrase or translation already preserved by the other side'. A001-A003 are the English version of B001-B002. B003 adds extra info. So A's content is preserved in B. Therefore, A's delta is semantically covered by B.",
+          "score": "semantically_covered"
+        },
+        "span_b_delta": {
+          "reasoning": "Spans B001, B002, and B003 contain the Arabic description. B001 and B002 correspond to A001 and A002. However, B003 adds 'in addition to a set of active accounts on social media sites, and a number of other services'. This information is not present in A. Therefore, B adds retainable content to the verified same substantive record.",
+          "score": "same_record_content_extension"
+        },
+        "span_hard_conflict": {
+          "reasoning": "There are no conflicting values. The dates, entity names, and descriptions are consistent between the two sides.",
+          "score": "none"
+        },
+        "span_translation_status": {
+          "reasoning": "The documents are translations of each other, but B contains additional information (B003) that is not in A. Therefore, it is not a complete faithful translation of the *same* record in the sense of identical content, but rather a partial translation with additions. However, the core record is translated. The status 'partial_or_additive' fits because B adds content not in A.",
+          "score": "partial_or_additive"
+        }
+      },
+      "critic": {
+        "record_binding_verdict": {
+          "reasoning": "The shared spans (S001, S002, S003) and the unique spans on both sides (A001-A004, B001-B003) describe the same atomic record: the independent Syrian media organization 'EB' (Enab Baladi). Side A provides the English description, while Side B provides the Arabic description. Side B (B003) includes an additional fact about 'active social media accounts and other services' which is not present in Side A. This constitutes a one-sided extension of the same record.",
+          "score": "atomic_same_record_extension"
+        },
+        "non_main_delta_subtype": {
+          "reasoning": "The differences are in the main content of the organization's profile (language and specific service details), not in non-main policy, cookie, or legal state.",
+          "score": "not_applicable"
+        },
+        "translation_delta_direction": {
+          "reasoning": "The content is a cross-language comparison of the same record (English in A, Arabic in B). Side B (B003) adds information about social media accounts and other services that is not present in Side A, making it an additive translation.",
+          "score": "b_adds"
+        }
+      },
+      "final_rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+SCOPED_TRANSLATION_EVIDENCE_INVALID",
+        "BOUNDARY_CRITIC_ISSUE:translation_delta_direction:MISSING_BILATERAL_BASIS",
+        "BOUNDARY_CRITIC_ISSUE:translation_delta_direction:MISSING_TRANSLATION_SIDE"
+      ]
+    },
+    "H0748": {
+      "main": {
+        "span_content_profile_a": {
+          "reasoning": "The text in A (S001, S002) describes the 'Polka Dot Wedding' platform, its features, and its community of professionals and couples. This is specific, retainable page content describing a service/brand, not generic boilerplate.",
+          "score": "substantive_main"
+        },
+        "span_content_profile_b": {
+          "reasoning": "The text in B contains the same substantive description as A (S001, S002) plus an additional specific reference to a story and author ('Stories...Casey-Lee Lyons' in B001). This is specific, retainable page content.",
+          "score": "substantive_main"
+        },
+        "span_shared_basis": {
+          "reasoning": "Spans S001 and S002 are identical in both A and B. They establish the same specific record regarding the 'Polka Dot Wedding' platform description.",
+          "score": "verified_substantive_record"
+        },
+        "span_a_delta": {
+          "reasoning": "There are no A-only spans (A_ONLY count is 0).",
+          "score": "none"
+        },
+        "span_b_delta": {
+          "reasoning": "Span B001 ('Stories...Casey-Lee Lyons') is unique to B. It adds specific content (a story title/author) to the record. It is not a conflict, but an extension of the content present in the shared basis.",
+          "score": "same_record_content_extension"
+        },
+        "span_hard_conflict": {
+          "reasoning": "There are no conflicting values. B simply adds content that A lacks.",
+          "score": "none"
+        },
+        "span_translation_status": {
+          "reasoning": "The texts are in the same language (English).",
+          "score": "not_translation"
+        }
+      },
+      "critic": {
+        "record_binding_verdict": {
+          "reasoning": "The shared spans S001 and S002 establish the main content as a promotional description for the 'Polka Dot Wedding' platform. The unique span B001 ('Stories...Casey-Lee Lyons') is a short trailing story teaser. According to the calibrated boundaries, a short trailing story teaser after a complete shared platform description is considered navigation/teaser chrome and is benign. It does not constitute a new atomic record or a material extension of the main record.",
+          "score": "benign_non_record_delta"
+        },
+        "non_main_delta_subtype": {
+          "reasoning": "The difference between the two sides is a navigation/teaser element (B001), which is part of the main content structure rather than a non-main policy, cookie, or legal state change. Therefore, the non-main policy axis does not participate in deciding the pair.",
+          "score": "not_applicable"
+        },
+        "translation_delta_direction": {
+          "reasoning": "Both sides contain text in English. There is no cross-language comparison of retained same-record content. The unique content in B is a same-language teaser.",
+          "score": "not_translation"
+        }
+      },
+      "final_rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+ASYMMETRIC_CRITIC_BENIGN_DID_NOT_OVERRIDE_EXTENSION"
+      ]
+    },
+    "H0132": {
+      "main": {
+        "span_content_profile_a": {
+          "reasoning": "Document A contains specific product descriptions, technical details about LED fixtures, and company value propositions (S001, S002, S003, A001, A002). This is retainable page-specific substantive content.",
+          "score": "substantive_main"
+        },
+        "span_content_profile_b": {
+          "reasoning": "Document B contains the same introductory and value proposition text as A (S001, S002, S003). It is retainable page-specific substantive content, though shorter than A.",
+          "score": "substantive_main"
+        },
+        "span_shared_basis": {
+          "reasoning": "Spans S001, S002, and S003 are identical in both documents. They establish the same page-specific record regarding Unimar's services and certifications.",
+          "score": "verified_substantive_record"
+        },
+        "span_a_delta": {
+          "reasoning": "Spans A001 and A002 appear only in A. They provide specific details about 'LED Obstruction Lighting For Utilities' and the benefits of LED fixtures (energy consumption, safety, maintenance costs). This is retainable content that extends the verified substantive record found in the shared spans.",
+          "score": "same_record_content_extension"
+        },
+        "span_b_delta": {
+          "reasoning": "There are no B-only spans. B contains only the shared spans S001, S002, and S003.",
+          "score": "none"
+        },
+        "span_hard_conflict": {
+          "reasoning": "There are no conflicting values or roles. B is a subset of A's content.",
+          "score": "none"
+        },
+        "span_translation_status": {
+          "reasoning": "The documents are in the same language and are not translations of each other.",
+          "score": "not_translation"
+        }
+      },
+      "critic": {
+        "record_binding_verdict": {
+          "reasoning": "The shared spans (S001-S003) establish the atomic record as the 'Why Choose Unimar' page, which describes the company's general capabilities in obstruction lighting and FAA certification. The unique content in A (A001-A002) adds specific details about 'LED Obstruction Lighting For Utilities,' describing the replacement of traditional fixtures and energy benefits. This is a specific section or fact set about the same subject (Unimar's lighting solutions) established by the shared context, rather than a separate product record or unrelated template attachment. Therefore, it constitutes an atomic extension of the shared record.",
+          "score": "atomic_same_record_extension"
+        },
+        "non_main_delta_subtype": {
+          "reasoning": "The differences are in the main content describing the company's services and products. There are no changes to cookie policies, legal states, consent mechanisms, or other non-main policy areas.",
+          "score": "not_applicable"
+        },
+        "translation_delta_direction": {
+          "reasoning": "Both sides are in English. The unique content in A is an addition in the same language, not a translation of content from B.",
+          "score": "not_translation"
+        }
+      },
+      "final_rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+ASYMMETRIC_CRITIC_CONFIRMED_ATOMIC_EXTENSION"
+      ]
+    },
+    "H0653": {
+      "main": {
+        "span_content_profile_a": {
+          "reasoning": "Document A contains specific information about Videvo's stock video offerings, licensing terms (Creative Commons 3.0), and usage rights in German. This is page-specific substantive content.",
+          "score": "substantive_main"
+        },
+        "span_content_profile_b": {
+          "reasoning": "Document B contains the same specific information about Videvo's stock video offerings, licensing terms, and usage rights in English, plus an additional contact email address. This is page-specific substantive content.",
+          "score": "substantive_main"
+        },
+        "span_shared_basis": {
+          "reasoning": "Spans S001-S009 establish the same record: Videvo's 'About' page describing free stock videos and motion graphics under Creative Commons 3.0 license. The shared spans confirm the identity of the page and the core licensing proposition.",
+          "score": "verified_substantive_record"
+        },
+        "span_a_delta": {
+          "reasoning": "Spans A001-A009 are the German translation of the core content found in B. A001 ('Über') corresponds to B001 ('About'). A002-A005 correspond to B002-B005. A006-A007 correspond to B006-B007. A008-A009 correspond to B008-B009. All A-only spans are semantically covered by the English text in B.",
+          "score": "semantically_covered"
+        },
+        "span_b_delta": {
+          "reasoning": "Spans B001-B009 are the English translation of the core content found in A. However, span B010 ('If you have any suggestions... support@videvo.net...') is unique to B and adds a contact method not present in A. This is a same_record_content_extension.",
+          "score": "same_record_content_extension"
+        },
+        "span_hard_conflict": {
+          "reasoning": "There are no conflicting values. The content is a translation of the same record, with B having an additional sentence.",
+          "score": "none"
+        },
+        "span_translation_status": {
+          "reasoning": "The core content is a translation, but B contains an additional sentence (B010) not present in A. Therefore, it is not a complete faithful translation of the entire visible text, but rather partial or additive.",
+          "score": "partial_or_additive"
+        }
+      },
+      "critic": {
+        "record_binding_verdict": {
+          "reasoning": "The shared spans (S001-S009) establish the atomic record as the 'About' page for Videvo, describing its stock video/motion graphics offerings and Creative Commons licensing. Side A (German) contains the core description of the service and licensing requirements (A001-A009). Side B (English) contains the equivalent description (B001-B009) plus an additional unique span B010 which provides a contact email address for suggestions and requests. This contact information is a specific field related to the same atomic record (the Videvo platform/about page) and is not present in Side A. Therefore, Side B extends the shared record with an additional fact/field.",
+          "score": "atomic_same_record_extension"
+        },
+        "non_main_delta_subtype": {
+          "reasoning": "The unique content in B010 is a contact instruction for the main service, not a change to cookie policy, legal consent, or other non-main state. The difference is a main-content addition (contact info) which is handled by the record binding verdict.",
+          "score": "not_applicable"
+        },
+        "translation_delta_direction": {
+          "reasoning": "The content is a cross-language comparison of the same record (Videvo About page). Side A (German) and Side B (English) cover the same core facts regarding free stock videos, motion graphics, and CC 3.0 attribution. However, Side B includes an additional fact in B010 (contact email for suggestions/requests) that is not present in Side A. Thus, B preserves A's content and adds a same-record fact.",
+          "score": "b_adds"
+        }
+      },
+      "final_rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+SCOPED_TRANSLATION_EVIDENCE_INVALID",
+        "BOUNDARY_CRITIC_ISSUE:translation_delta_direction:MISSING_BILATERAL_BASIS",
+        "BOUNDARY_CRITIC_ISSUE:translation_delta_direction:MISSING_TRANSLATION_SIDE"
+      ]
+    }
+  },
+  "verification": {
+    "schema_valid_results": 127,
+    "byte_exact_evidence_items": 477
+  },
+  "operations": {
+    "v0.6.2.11-policy-residual-smoke": {
+      "runtime_provider_completion_events": 258,
+      "pilot_provider_completion_events": 20,
+      "http_statuses": {
+        "200": 278
+      }
+    },
+    "v0.6.2.11-residual-smoke": {
+      "runtime_provider_completion_events": 258,
+      "pilot_provider_completion_events": 20,
+      "http_statuses": {
+        "200": 278
+      }
+    }
+  }
+}

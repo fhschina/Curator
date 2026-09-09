@@ -176,8 +176,20 @@ def compute_metrics(
         ("track_5b", "same_hostname"),
         ("judge", "relation_type"),
         ("judge", "material_difference"),
-        ("judge", "fuzzy_scope"),
     ]
+    for field in (
+        "fuzzy_scope",
+        "primary_material_difference",
+        "expected_minhash_action",
+        "surface_evidence_sufficiency",
+        "expected_minhash_outcome",
+        "dominant_overlap_source",
+        "primary_risk_factor",
+        "evidence_quality",
+        "confidence_tier",
+    ):
+        if any(row.get(field) is not None for row in rows):
+            slice_specs.append(("judge", field))
     for frame, field in slice_specs:
         frame_rows = [
             row

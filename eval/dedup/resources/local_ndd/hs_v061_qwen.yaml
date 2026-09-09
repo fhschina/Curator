@@ -1,0 +1,157 @@
+models:
+  - alias: judge
+    model: /model/path/overridden/by/dedup/config
+    served_model_name: Qwen/Qwen3.8-27B
+    dynamo_model:
+      num_replicas: 1
+      mode: aggregated
+      runtime_env:
+        env_vars:
+          UV_CACHE_DIR: /raid/hfang/dedup_eval_cache/uv
+        config:
+          setup_timeout_seconds: 1800
+      engine_kwargs:
+        tensor_parallel_size: 1
+        max_model_len: 32768
+        max_num_seqs: 8
+        gpu_memory_utilization: 0.8
+        enforce_eager: true
+    inference_parameters:
+      temperature: 0.0
+      extra_body:
+        chat_template_kwargs:
+          enable_thinking: false
+      max_tokens: 4096
+      timeout: 600
+      max_parallel_requests: 8
+
+dynamo_server:
+  subprocess_env:
+    DYN_SYSTEM_PORT: "0"
+    PYTHONPATH: cutlass_compat
+
+inference_server:
+  health_check_timeout_s: 1800
+
+execution:
+  num_workers: 1
+  data_designer_run:
+    disable_early_shutdown: true
+    max_conversation_restarts: 0
+    max_conversation_correction_steps: 2
+  stages:
+    - name: hs_v061_minhash_fuzzy_dedup
+      judges:
+        - name: qwen_minhash_fuzzy_dedup_judge
+          model_alias: judge
+          system_prompt_path: hs_v061_system.jinja
+          prompt_path: hs_pair.jinja
+          extract_reasoning_content: false
+          scores:
+            - name: a_can_replace_b
+              description: Can retaining A and removing B preserve every material fact, record identity, factual state, and page role in B? A faithful full translation preserves the content and must be yes even when its wording or language differs. For no, quote decisive B text that A fails to preserve.
+              options:
+                "yes": A preserves all materially relevant content and identity from B, including through a faithful full translation.
+                "no": B has material content or identity not preserved by A.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: b_can_replace_a
+              description: Can retaining B and removing A preserve every material fact, record identity, factual state, and page role in A? A faithful full translation preserves the content and must be yes even when its wording or language differs. For no, quote decisive A text that B fails to preserve.
+              options:
+                "yes": B preserves all materially relevant content and identity from A, including through a faithful full translation.
+                "no": A has material content or identity not preserved by B.
+                unresolved: Visible evidence is insufficient to decide safely.
+            - name: relation_type
+              description: Classify the whole visible main-content relationship after excluding incidental template overlap.
+              options:
+                exact: Complete visible cleaned texts are identical.
+                canonical_exact: Differences are only normalization, whitespace, punctuation, encoding, or equivalent formatting.
+                near_surface: Same substantive content is bidirectionally replaceable after small surface edits; also use for faithful full translation.
+                containment: Exactly one document preserves every material element, identity, state, and page role of the other and adds meaningful non-template content.
+                version_related: The same evolving record has a material state or version difference.
+                related_non_duplicate: Main content is related or uses the same template, but the records are not safely interchangeable.
+                unrelated: There is no meaningful main-content relationship.
+                unresolved: Visible evidence is insufficient to classify safely.
+            - name: material_difference
+              description: How consequential is the unique main content or record-defining identity for safe whole-record removal?
+              options:
+                none: No materially relevant information or record identity differs.
+                minor: A real non-core difference does not change identity, central facts, or training value.
+                major: Identity, central facts, result set, legal meaning, page role, or substantial content differs.
+                unresolved: Visible evidence is insufficient to assess materiality.
+            - name: primary_material_difference
+              description: Select the single most decisive retained-content or record-identity difference. Use none exactly when material_difference is none.
+              options:
+                none: No material difference exists.
+                main_content_addition_deletion: Meaningful non-template main content is added or omitted.
+                entity_slot_change: A person, organization, product, service, or location slot changes.
+                document_identity_change: A title, record identifier, chapter, or other document identity changes.
+                number_change: A material number, price, quantity, or measurement changes.
+                date_time_change: A material date or time changes.
+                product_version_change: A product or version changes materially.
+                result_set_change: List members, rankings, search results, or outcomes differ.
+                page_role_change: The documents serve materially different page functions.
+                legal_context_change: A controller, obligation, jurisdiction, or legal meaning differs.
+                negation_change: Negation reverses or materially changes meaning.
+                code_literal_change: Source-code literals, commands, identifiers, or parameters differ materially.
+                code_output_change: Code outputs or execution results differ materially.
+                other_material: A decisive difference exists and none of the specific options fits.
+                unresolved: Visible evidence is insufficient to diagnose the difference.
+            - name: expected_minhash_action
+              description: Independently predict what conventional whole-document MinHash is likely to do from literal and structural overlap. This is algorithm behavior, not the desired semantic verdict.
+              options:
+                group: MinHash is likely to group the pair because document-wide surface overlap is high.
+                keep_separate: MinHash is likely to keep the pair separate because document-wide surface overlap is low.
+                uncertain: Plausible thresholds or document composition could lead to either action.
+                unresolved: Visible evidence is insufficient to predict MinHash behavior.
+            - name: dominant_overlap_source
+              description: What single source contributes most of the visible similarity? This describes overlap, not the semantic verdict.
+              options:
+                main_content: Shared substantive main content dominates.
+                shared_page_template: A reusable page template dominates.
+                site_chrome: Navigation, headers, footers, or platform chrome dominates.
+                cookie_consent: Cookie or consent text dominates.
+                legal_policy_template: Generic legal or policy wording dominates.
+                error_auth_paywall: Error, authentication, login, or paywall text dominates.
+                local_passage: A matching local passage is not representative of the whole documents.
+                parser_artifact: Extraction or parser artifacts dominate.
+                none: No meaningful overlap source is visible.
+                unresolved: Visible evidence is insufficient to identify the source.
+            - name: primary_risk_factor
+              description: Select the single most specific observable reason conventional MinHash may make the wrong semantic grouping decision.
+              options:
+                none: No distinct deduplication trap is visible.
+                boilerplate_dominated_similarity: Non-main-content text dominates apparent similarity.
+                template_slot_collision: A shared template masks different meaningful slots or records.
+                identifier_underweighting: A small identifier or record-defining value decides identity.
+                topic_only_similarity: Related topic or meaning could be mistaken for interchangeable content.
+                list_snapshot_collision: Similar list shells contain different members, rankings, or snapshots.
+                page_role_collision: Similar wording appears in pages with different functions.
+                legal_context_collision: Generic legal text masks a different controller, obligation, or jurisdiction.
+                long_document_local_overlap: A local match is not representative of the whole documents.
+                translation_equivalence: Equivalent meaning has insufficient literal overlap.
+                paraphrase_equivalence: Equivalent meaning is expressed with insufficient literal overlap.
+                containment_asymmetry: One-way preservation could be mistaken for bidirectional equivalence.
+                extraction_or_payload_limit: Missing or truncated content prevents a reliable decision.
+                parser_artifact_dominance: Parser artifacts dominate the apparent relationship.
+                other: A distinct risk exists and none of the listed factors fits.
+            - name: evidence_quality
+              description: Is visible text sufficient for every semantic decision and for exact quote evidence? This does not describe MinHash suitability.
+              options:
+                sufficient: Visible evidence and exact quotes support every resolved semantic decision.
+                insufficient: Missing, truncated, or uninterpretable evidence requires the fully unresolved contract.
+            - name: quote_evidence
+              description: >-
+                For every resolved non-exact pair, put the smallest decisive exact visible quotes from both
+                documents in the reasoning, preferably as A: "..." and B: "...". Do not normalize or paraphrase.
+              options:
+                provided: Exact visible quotes from both A and B appear in this reasoning.
+                not_required: Use only when relation_type is exact.
+                insufficient: Exact visible evidence from both sides is unavailable.
+            - name: confidence
+              description: Confidence in the complete semantic decision and independent expected-MinHash-action prediction.
+              options:
+                "0.2": Evidence is plainly insufficient and all decision fields are unresolved.
+                "0.5": Evidence is insufficient or seriously ambiguous and all decision fields are unresolved.
+                "0.75": Resolved but near a template, identity, containment, or MinHash threshold boundary.
+                "0.9": Complete visible evidence strongly supports a resolved non-trivial decision.
+                "0.98": Complete, direct, unambiguous exact evidence without truncation or identity concerns.

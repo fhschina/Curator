@@ -21,6 +21,10 @@ from typing import Any, Self
 
 
 class _LoopbackServer(ThreadingHTTPServer):
+    # The Judge can open 64 requests at once; the stdlib default backlog of 5
+    # rejects bursts before handler threads can record auditable events.
+    request_queue_size = 128
+
     def server_bind(self) -> None:
         socketserver.TCPServer.server_bind(self)
         _host, port = self.server_address[:2]

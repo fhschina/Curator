@@ -1,0 +1,62 @@
+{
+  "candidate": {
+    "containment_direction_exact": 2,
+    "containment_direction_requested": 3,
+    "containment_over_group": 4,
+    "critic_outcomes": {
+      "ATOMIC_SAME_RECORD_EXTENSION": 26,
+      "BENIGN_NON_RECORD_DELTA": 19,
+      "SEPARATE_RECORD_OR_TEMPLATE_ATTACHMENT": 58,
+      "TWO_SIDED_OR_CONFLICTING": 20,
+      "UNRESOLVED": 4
+    },
+    "errors": 0,
+    "group_outcomes": {
+      "NO": 84,
+      "UNRESOLVED": 2,
+      "YES": 41
+    },
+    "over_group": 25,
+    "protected_duplicates_retained": 4,
+    "relation_outcomes": {
+      "CONTAINMENT": 7,
+      "NEAR_SURFACE": 34,
+      "RELATED_NON_DUPLICATE": 78,
+      "UNRELATED": 1,
+      "UNRESOLVED": 2,
+      "VERSION_RELATED": 5
+    },
+    "requested": 127,
+    "retried": 0,
+    "schema_completion_rate": 1.0,
+    "under_group": 5,
+    "unweighted": {
+      "duplicate_precision": 0.3902439024390244,
+      "duplicate_recall": 0.7619047619047619,
+      "primary_decision_exact": 0.7401574803149606,
+      "taxonomy_exact": 0.5590551181102362
+    },
+    "valid": 127,
+    "weighted": {
+      "duplicate_precision": 0.37586670038894643,
+      "duplicate_recall": 0.7557776179533349,
+      "primary_decision_exact": 0.7510141341047613,
+      "taxonomy_exact": 0.5805396122889714
+    }
+  },
+  "checks": {
+    "containment_direction_exact": false,
+    "containment_over_group": true,
+    "over_group": true,
+    "protected_duplicates": false,
+    "retry_rate": true,
+    "schema_completion": true,
+    "terminal_errors": true,
+    "under_group": true
+  },
+  "label_baseline": "v0626_policy_reconciled_labels_1000.csv",
+  "passed": false,
+  "prompt_version": "dedup-judge-hs-v0.6.2.7",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.7-residual-smoke",
+  "schema_version": "dedup-v0627-residual-smoke-summary-v1"
+}

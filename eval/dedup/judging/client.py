@@ -53,11 +53,12 @@ class RateLimiter:
 
 
 def _json_mode_system_prompt(system_prompt: str, schema_version: str = JUDGE_SCHEMA_V0) -> str:
-    schema = json.dumps(judge_output_schema(schema_version), ensure_ascii=True, separators=(",", ":"), sort_keys=True)
+    schema_object = judge_output_schema(schema_version)
+    schema = json.dumps(schema_object, ensure_ascii=True, separators=(",", ":"), sort_keys=True)
+    required_keys = ", ".join(schema_object["required"])
     return (
         f"{system_prompt}\n\nOUTPUT CONTRACT (non-negotiable): emit only one compact JSON object. "
-        "Use exactly these keys once: same_duplicate_group, a_can_replace_b, b_can_replace_a, "
-        "relation_type, material_difference, fuzzy_scope, confidence, reason_codes, evidence. "
+        f"Use exactly these keys once: {required_keys}. "
         "Never emit prose, Markdown, duplicate keys, or text before or after the JSON object. "
         "Use only enum values from the supplied schema. Follow the prompt's UNRESOLVED contract. "
         "Set evidence to [] unless every quote and character offset is exact "

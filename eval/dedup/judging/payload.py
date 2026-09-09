@@ -16,7 +16,10 @@
 
 from __future__ import annotations
 
+import difflib
 import hashlib
+import re
+import unicodedata
 from typing import Any
 
 from eval.dedup.config import AnyJudgeConfig
@@ -28,6 +31,115 @@ from eval.dedup.judging.schema import JUDGE_SCHEMA_V0
 EVIDENCE_ALIGNMENT_VERSION = "visible-evidence-align-v1"
 VISIBLE_PAYLOAD_V0 = "judge-visible-payload-v1"
 VISIBLE_PAYLOAD_V1 = "judge-visible-payload-v2"
+VISIBLE_PAYLOAD_V2 = "judge-visible-payload-v3"
+SEMANTIC_DIFF_VERSION = "visible-semantic-diff-v1"
+
+_DIFF_TOKEN_PATTERN = re.compile(r"\w{1,120}|[^\w\s]", re.UNICODE)
+_MAX_DIFF_SPAN_CHARS = 220
+_MAX_DIFF_SPANS_PER_KIND = 160
+
+
+def _normalized_diff_tokens(text: str) -> list[tuple[int, int, str]]:
+    return [
+        (match.start(), match.end(), unicodedata.normalize("NFKC", match.group()).casefold())
+        for match in _DIFF_TOKEN_PATTERN.finditer(text)
+    ]
+
+
+def _chunk_token_range(
+    tokens: list[tuple[int, int, str]], start: int, end: int, *, paired: list[tuple[int, int, str]] | None = None
+) -> list[tuple[int, int]]:
+    chunks = []
+    cursor = start
+    while cursor < end:
+        chunk_start = cursor
+        while cursor < end:
+            span_length = tokens[cursor][1] - tokens[chunk_start][0]
+            paired_length = 0
+            if paired is not None:
+                paired_length = paired[cursor - start][1] - paired[chunk_start - start][0]
+            if cursor > chunk_start and max(span_length, paired_length) > _MAX_DIFF_SPAN_CHARS:
+                break
+            cursor += 1
+        chunks.append((chunk_start, cursor))
+    return chunks
+
+
+def _semantic_diff_packet(text_a: str | None, text_b: str | None, *, truncated: bool) -> dict[str, Any]:
+    if truncated or text_a is None or text_b is None:
+        return {
+            "contract_version": SEMANTIC_DIFF_VERSION,
+            "status": "UNAVAILABLE_TRUNCATED",
+            "tokenization": "nfkc-casefold-visible-token-v1",
+            "span_counts": {"SHARED": 0, "A_ONLY": 0, "B_ONLY": 0},
+            "spans": [],
+        }
+
+    tokens_a = _normalized_diff_tokens(text_a)
+    tokens_b = _normalized_diff_tokens(text_b)
+    normalized_a = [token[2] for token in tokens_a]
+    normalized_b = [token[2] for token in tokens_b]
+    raw_spans: dict[str, list[dict[str, Any]]] = {"SHARED": [], "A_ONLY": [], "B_ONLY": []}
+
+    def add_side(kind: str, side: str, tokens: list[tuple[int, int, str]], start: int, end: int) -> None:
+        text = text_a if side == "A" else text_b
+        for chunk_start, chunk_end in _chunk_token_range(tokens, start, end):
+            start_char = tokens[chunk_start][0]
+            end_char = tokens[chunk_end - 1][1]
+            raw_spans[kind].append(
+                {
+                    "kind": kind,
+                    "side": side,
+                    "start_char": start_char,
+                    "end_char": end_char,
+                    "text": text[start_char:end_char],
+                }
+            )
+
+    matcher = difflib.SequenceMatcher(a=normalized_a, b=normalized_b, autojunk=False)
+    for tag, a_start, a_end, b_start, b_end in matcher.get_opcodes():
+        if tag == "equal":
+            paired_tokens = tokens_b[b_start:b_end]
+            for chunk_start, chunk_end in _chunk_token_range(
+                tokens_a, a_start, a_end, paired=paired_tokens
+            ):
+                paired_start = b_start + chunk_start - a_start
+                paired_end = paired_start + chunk_end - chunk_start
+                a_start_char = tokens_a[chunk_start][0]
+                a_end_char = tokens_a[chunk_end - 1][1]
+                b_start_char = tokens_b[paired_start][0]
+                b_end_char = tokens_b[paired_end - 1][1]
+                raw_spans["SHARED"].append(
+                    {
+                        "kind": "SHARED",
+                        "a_start_char": a_start_char,
+                        "a_end_char": a_end_char,
+                        "a_text": text_a[a_start_char:a_end_char],
+                        "b_start_char": b_start_char,
+                        "b_end_char": b_end_char,
+                        "b_text": text_b[b_start_char:b_end_char],
+                    }
+                )
+        else:
+            if tag in {"delete", "replace"}:
+                add_side("A_ONLY", "A", tokens_a, a_start, a_end)
+            if tag in {"insert", "replace"}:
+                add_side("B_ONLY", "B", tokens_b, b_start, b_end)
+
+    counts = {kind: len(items) for kind, items in raw_spans.items()}
+    complete = all(count <= _MAX_DIFF_SPANS_PER_KIND for count in counts.values())
+    spans = []
+    prefixes = {"SHARED": "S", "A_ONLY": "A", "B_ONLY": "B"}
+    for kind in ("SHARED", "A_ONLY", "B_ONLY"):
+        for index, item in enumerate(raw_spans[kind][:_MAX_DIFF_SPANS_PER_KIND], start=1):
+            spans.append({"span_id": f"{prefixes[kind]}{index:03d}", **item})
+    return {
+        "contract_version": SEMANTIC_DIFF_VERSION,
+        "status": "COMPLETE" if complete else "INCOMPLETE_LIMIT",
+        "tokenization": "nfkc-casefold-visible-token-v1",
+        "span_counts": counts,
+        "spans": spans,
+    }
 
 
 def _neutral_metadata(document: dict[str, Any], text: str) -> dict[str, Any]:
@@ -83,6 +195,19 @@ def build_visible_payload(
                 "truncated": evidence["truncated"],
                 "windows": evidence["windows"],
             },
+        }
+    elif payload_version == VISIBLE_PAYLOAD_V2:
+        payload = {
+            "payload_schema_version": VISIBLE_PAYLOAD_V2,
+            "document_a": {"text": evidence["text_a"]},
+            "document_b": {"text": evidence["text_b"]},
+            "long_document_evidence": {
+                "truncated": evidence["truncated"],
+                "windows": evidence["windows"],
+            },
+            "semantic_diff_evidence": _semantic_diff_packet(
+                evidence["text_a"], evidence["text_b"], truncated=evidence["truncated"]
+            ),
         }
     else:
         msg = f"unsupported visible payload version: {payload_version}"
@@ -228,13 +353,64 @@ def assert_blind_payload(payload: dict[str, Any]) -> None:
 
     visit(payload)
 
-    if payload.get("payload_schema_version") == VISIBLE_PAYLOAD_V1:
+    if payload.get("payload_schema_version") in {VISIBLE_PAYLOAD_V1, VISIBLE_PAYLOAD_V2}:
         for side in ("document_a", "document_b"):
             document = payload.get(side)
             if not isinstance(document, dict) or set(document) != {"text"}:
-                msg = f"{VISIBLE_PAYLOAD_V1} permits only text in {side}"
+                msg = f"{payload['payload_schema_version']} permits only text in {side}"
                 raise ValueError(msg)
         long_evidence = payload.get("long_document_evidence")
         if not isinstance(long_evidence, dict) or set(long_evidence) != {"truncated", "windows"}:
-            msg = f"{VISIBLE_PAYLOAD_V1} leaked non-evidence fields"
+            msg = f"{payload['payload_schema_version']} leaked non-evidence fields"
             raise ValueError(msg)
+    if payload.get("payload_schema_version") == VISIBLE_PAYLOAD_V2:
+        packet = payload.get("semantic_diff_evidence")
+        if (
+            not isinstance(packet, dict)
+            or set(packet) != {"contract_version", "status", "tokenization", "span_counts", "spans"}
+            or packet.get("contract_version") != SEMANTIC_DIFF_VERSION
+        ):
+            msg = f"{VISIBLE_PAYLOAD_V2} requires the deterministic semantic-diff packet"
+            raise ValueError(msg)
+        status = packet["status"]
+        spans = packet["spans"]
+        counts = packet["span_counts"]
+        if (
+            status not in {"COMPLETE", "INCOMPLETE_LIMIT", "UNAVAILABLE_TRUNCATED"}
+            or not isinstance(spans, list)
+            or not isinstance(counts, dict)
+            or set(counts) != {"SHARED", "A_ONLY", "B_ONLY"}
+        ):
+            msg = f"{VISIBLE_PAYLOAD_V2} has an invalid semantic-diff state"
+            raise ValueError(msg)
+        expected_ids = []
+        for kind, prefix in (("SHARED", "S"), ("A_ONLY", "A"), ("B_ONLY", "B")):
+            expected_ids.extend(
+                f"{prefix}{index:03d}"
+                for index in range(1, min(int(counts[kind]), _MAX_DIFF_SPANS_PER_KIND) + 1)
+            )
+        if [span.get("span_id") for span in spans if isinstance(span, dict)] != expected_ids:
+            msg = f"{VISIBLE_PAYLOAD_V2} semantic-diff IDs are not stable and contiguous"
+            raise ValueError(msg)
+        for span in spans:
+            kind = span.get("kind")
+            if kind == "SHARED":
+                for side, key in (("A", "a"), ("B", "b")):
+                    text = payload[f"document_{key}"]["text"]
+                    start = span.get(f"{key}_start_char")
+                    end = span.get(f"{key}_end_char")
+                    if not isinstance(text, str) or text[start:end] != span.get(f"{key}_text"):
+                        msg = f"{VISIBLE_PAYLOAD_V2} shared span does not match visible side {side}"
+                        raise ValueError(msg)
+            elif kind in {"A_ONLY", "B_ONLY"}:
+                side = span.get("side")
+                key = str(side).lower()
+                text = payload.get(f"document_{key}", {}).get("text")
+                start = span.get("start_char")
+                end = span.get("end_char")
+                if side not in {"A", "B"} or not isinstance(text, str) or text[start:end] != span.get("text"):
+                    msg = f"{VISIBLE_PAYLOAD_V2} side-only span does not match visible text"
+                    raise ValueError(msg)
+            else:
+                msg = f"{VISIBLE_PAYLOAD_V2} semantic-diff span kind is invalid"
+                raise ValueError(msg)

@@ -1,0 +1,70 @@
+{
+  "candidate": {
+    "containment_direction_exact": 3,
+    "containment_direction_requested": 4,
+    "containment_over_group": 1,
+    "critic_outcomes": {
+      "ATOMIC_SAME_RECORD_EXTENSION": 6,
+      "BENIGN_NON_RECORD_DELTA": 12,
+      "NON_MAIN_POLICY_OR_STATE_CHANGE": 40,
+      "NOT_APPLICABLE": 1,
+      "SEPARATE_RECORD_OR_TEMPLATE_ATTACHMENT": 49,
+      "TWO_SIDED_OR_CONFLICTING": 12,
+      "UNRESOLVED": 7
+    },
+    "diagnostic_negative_violations": [
+      "H0572"
+    ],
+    "diagnostic_negatives_preserved": 22,
+    "diagnostic_negatives_requested": 23,
+    "errors": 0,
+    "group_outcomes": {
+      "NO": 85,
+      "UNRESOLVED": 5,
+      "YES": 37
+    },
+    "over_group": 20,
+    "protected_duplicates_retained": 5,
+    "relation_outcomes": {
+      "CONTAINMENT": 7,
+      "NEAR_SURFACE": 30,
+      "RELATED_NON_DUPLICATE": 79,
+      "UNRELATED": 1,
+      "UNRESOLVED": 5,
+      "VERSION_RELATED": 5
+    },
+    "requested": 127,
+    "retried": 0,
+    "schema_completion_rate": 1.0,
+    "under_group": 4,
+    "unweighted": {
+      "duplicate_precision": 0.4594594594594595,
+      "duplicate_recall": 0.8095238095238095,
+      "primary_decision_exact": 0.7637795275590551,
+      "taxonomy_exact": 0.5196850393700787
+    },
+    "valid": 127,
+    "weighted": {
+      "duplicate_precision": 0.43697402471937363,
+      "duplicate_recall": 0.7765141175813107,
+      "primary_decision_exact": 0.7639116977595962,
+      "taxonomy_exact": 0.5336038374486571
+    }
+  },
+  "checks": {
+    "containment_direction_exact": false,
+    "containment_over_group": true,
+    "diagnostic_negatives": false,
+    "over_group": true,
+    "protected_duplicates": true,
+    "retry_rate": true,
+    "schema_completion": true,
+    "terminal_errors": true,
+    "under_group": true
+  },
+  "label_baseline": "v0628_policy_reconciled_labels_1000.csv",
+  "passed": false,
+  "prompt_version": "dedup-judge-hs-v0.6.2.9",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.9-residual-smoke",
+  "schema_version": "dedup-v0629-residual-smoke-summary-v1"
+}

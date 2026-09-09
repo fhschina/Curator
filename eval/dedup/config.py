@@ -92,15 +92,81 @@ AnyJudgeConfig = JudgeConfig | LocalNddJudgeConfig
 
 SARAH_MINHASH_PROMPT_VERSION = "dedup-judge-sarah-minhash-v1"
 HS_MINHASH_PROMPT_VERSION = "dedup-judge-hs-minhash-v1"
+HS_MINHASH_V061_PROMPT_VERSION = "dedup-judge-hs-minhash-v0.6.1"
+HS_V062_DEV_BASELINE_PROMPT_VERSION = "dedup-judge-hs-v0.6.2-dev-v061-semantic"
+HS_V062_DEV_GATE_PROMPT_VERSION = "dedup-judge-hs-v0.6.2-dev-main-anchor-gate"
+HS_V062_PROMPT_VERSION = "dedup-judge-hs-v0.6.2"
+HS_V0621_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.1"
+HS_V0622_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.2"
+HS_V0623_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.3"
+HS_V0624_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.4"
+HS_V0625_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.5"
+HS_V0626_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.6"
+HS_V0627_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.7"
+HS_V0628_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.8"
+HS_V0629_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.9"
+HS_V06210_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.10"
+HS_V06211_POLICY_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.11-dev-policy"
+HS_V06211_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.11"
+V062_RELEASE_PROMPT_VERSIONS = frozenset(
+    {
+        HS_V062_PROMPT_VERSION,
+        HS_V0621_PROMPT_VERSION,
+        HS_V0622_PROMPT_VERSION,
+        HS_V0623_PROMPT_VERSION,
+        HS_V0624_PROMPT_VERSION,
+        HS_V0625_PROMPT_VERSION,
+        HS_V0626_PROMPT_VERSION,
+        HS_V0627_PROMPT_VERSION,
+        HS_V0628_PROMPT_VERSION,
+        HS_V0629_PROMPT_VERSION,
+        HS_V06210_PROMPT_VERSION,
+        HS_V06211_POLICY_PROMPT_VERSION,
+        HS_V06211_PROMPT_VERSION,
+    }
+)
 LOCAL_NDD_JUDGE_CONTRACTS = frozenset(
     {
         (SARAH_MINHASH_PROMPT_VERSION, "dedup-judge-output-v0"),
         (HS_MINHASH_PROMPT_VERSION, "dedup-judge-output-v0"),
+        (HS_MINHASH_V061_PROMPT_VERSION, "dedup-judge-output-v2"),
+        (HS_V062_DEV_BASELINE_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V062_DEV_GATE_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V062_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0621_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0622_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0623_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0624_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0625_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0626_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0627_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0628_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V0629_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06210_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06211_POLICY_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06211_PROMPT_VERSION, "dedup-judge-output-v3"),
     }
 )
 _BUILTIN_LOCAL_NDD_RUNNER_PROMPTS = {
     "sarah_minhash_qwen.yaml": SARAH_MINHASH_PROMPT_VERSION,
     "hs_qwen.yaml": HS_MINHASH_PROMPT_VERSION,
+    "hs_v061_qwen.yaml": HS_MINHASH_V061_PROMPT_VERSION,
+    "hs_v062_dev_baseline_qwen.yaml": HS_V062_DEV_BASELINE_PROMPT_VERSION,
+    "hs_v062_dev_gate_qwen.yaml": HS_V062_DEV_GATE_PROMPT_VERSION,
+    "hs_v062_qwen.yaml": HS_V062_PROMPT_VERSION,
+    "hs_v0621_qwen.yaml": HS_V0621_PROMPT_VERSION,
+    "hs_v0621_qwen_c64.yaml": HS_V0621_PROMPT_VERSION,
+    "hs_v0622_qwen_c64.yaml": HS_V0622_PROMPT_VERSION,
+    "hs_v0623_qwen_c64.yaml": HS_V0623_PROMPT_VERSION,
+    "hs_v0624_qwen_c64.yaml": HS_V0624_PROMPT_VERSION,
+    "hs_v0625_qwen_c64.yaml": HS_V0625_PROMPT_VERSION,
+    "hs_v0626_qwen_c64.yaml": HS_V0626_PROMPT_VERSION,
+    "hs_v0627_qwen_c64.yaml": HS_V0627_PROMPT_VERSION,
+    "hs_v0628_qwen_c64.yaml": HS_V0628_PROMPT_VERSION,
+    "hs_v0629_qwen_c64.yaml": HS_V0629_PROMPT_VERSION,
+    "hs_v06210_qwen_c64.yaml": HS_V06210_PROMPT_VERSION,
+    "hs_v06211_policy_qwen_c64.yaml": HS_V06211_POLICY_PROMPT_VERSION,
+    "hs_v06211_qwen_c64.yaml": HS_V06211_PROMPT_VERSION,
 }
 
 
@@ -220,7 +286,7 @@ def _load_judge(value: dict[str, Any], base: Path) -> AnyJudgeConfig:
         require(
             (config.prompt_version, config.schema_version) in LOCAL_NDD_JUDGE_CONTRACTS,
             "INVALID_JUDGE_CONTRACT",
-            "local_ndd requires a supported MinHash prompt and the v0-compatible output contract",
+            "local_ndd requires a supported matching prompt and output contract",
         )
         builtin_prompt = _BUILTIN_LOCAL_NDD_RUNNER_PROMPTS.get(config.runner_config.name)
         require(
@@ -231,10 +297,25 @@ def _load_judge(value: dict[str, Any], base: Path) -> AnyJudgeConfig:
             prompt_version=config.prompt_version,
             expected_prompt_version=builtin_prompt,
         )
+        expected_payload_version = (
+            "judge-visible-payload-v3"
+            if config.prompt_version
+            in {
+                HS_V0626_PROMPT_VERSION,
+                HS_V0627_PROMPT_VERSION,
+                HS_V0628_PROMPT_VERSION,
+                HS_V0629_PROMPT_VERSION,
+                HS_V06210_PROMPT_VERSION,
+                HS_V06211_POLICY_PROMPT_VERSION,
+                HS_V06211_PROMPT_VERSION,
+            }
+            else "judge-visible-payload-v2"
+        )
         require(
-            config.visible_payload_version == "judge-visible-payload-v2",
+            config.visible_payload_version == expected_payload_version,
             "INVALID_JUDGE_CONFIG",
-            "local_ndd must use the metadata-free v2 visible payload",
+            "local_ndd must use the visible payload pinned to its immutable prompt contract",
+            expected_visible_payload_version=expected_payload_version,
         )
         require(config.num_gpus == 1, "INVALID_JUDGE_CONFIG", "the default local_ndd contract uses one GPU")
     else:

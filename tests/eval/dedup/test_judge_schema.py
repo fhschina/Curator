@@ -22,8 +22,10 @@ import pytest
 from eval.dedup.judging.client import _json_mode_system_prompt
 from eval.dedup.judging.schema import (
     JUDGE_SCHEMA_V1,
-    judge_output_schema,
+    JUDGE_SCHEMA_V2,
+    JUDGE_SCHEMA_V3,
     flatten_reason_codes,
+    judge_output_schema,
     unresolved_judge_output,
     validate_judge_output,
 )
@@ -155,3 +157,259 @@ def test_v1_reason_codes_flatten_to_namespaced_dashboard_labels() -> None:
         "PRIMARY_RISK:IDENTIFIER_UNDERWEIGHTING",
         "EVIDENCE_STATUS:SUFFICIENT",
     ]
+
+
+def valid_v2_output() -> dict:
+    return {
+        "same_duplicate_group": "NO",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "NO",
+        "relation_type": "UNRELATED",
+        "material_difference": "MAJOR",
+        "primary_material_difference": "DOCUMENT_IDENTITY_CHANGE",
+        "expected_minhash_action": "KEEP_SEPARATE",
+        "surface_evidence_sufficiency": "SUFFICIENT",
+        "expected_minhash_outcome": "EXPECTED_TRUE_NEGATIVE",
+        "dominant_overlap_source": "NONE",
+        "primary_risk_factor": "NONE",
+        "evidence_quality": "SUFFICIENT",
+        "confidence": 0.9,
+        "reason_codes": ["MATERIAL_DELTA:DOCUMENT_IDENTITY_CHANGE", "EVIDENCE_STATUS:SUFFICIENT"],
+        "evidence": [
+            {"side": "A", "start_char": 0, "end_char": 5, "quote": "alpha"},
+            {"side": "B", "start_char": 0, "end_char": 4, "quote": "beta"},
+        ],
+    }
+
+
+def test_v2_distinguishes_correct_negative_from_false_positive_risk() -> None:
+    correct_negative = valid_v2_output()
+    assert validate_judge_output(correct_negative, JUDGE_SCHEMA_V2)["expected_minhash_outcome"] == (
+        "EXPECTED_TRUE_NEGATIVE"
+    )
+
+    false_positive_risk = {
+        **correct_negative,
+        "expected_minhash_action": "GROUP",
+        "surface_evidence_sufficiency": "INSUFFICIENT",
+        "expected_minhash_outcome": "FALSE_POSITIVE_RISK",
+    }
+    assert validate_judge_output(false_positive_risk, JUDGE_SCHEMA_V2)["expected_minhash_outcome"] == (
+        "FALSE_POSITIVE_RISK"
+    )
+
+
+def test_v2_rejects_free_form_minhash_diagnostics() -> None:
+    value = {**valid_v2_output(), "surface_evidence_sufficiency": "OUT_OF_SCOPE"}
+
+    with pytest.raises(DedupEvaluationError) as error:
+        validate_judge_output(value, JUDGE_SCHEMA_V2)
+
+    assert error.value.issue.code == "JUDGE_SCHEMA_INVALID"
+
+
+def test_v2_requires_aligned_evidence_from_both_sides_for_non_exact_results() -> None:
+    value = valid_v2_output()
+    value["evidence"] = value["evidence"][:1]
+
+    with pytest.raises(DedupEvaluationError) as error:
+        validate_judge_output(value, JUDGE_SCHEMA_V2)
+
+    assert error.value.issue.code == "JUDGE_CONSISTENCY_INVALID"
+
+
+def test_v2_unresolved_contract_is_internally_consistent() -> None:
+    value = unresolved_judge_output(schema_version=JUDGE_SCHEMA_V2)
+
+    assert validate_judge_output(value, JUDGE_SCHEMA_V2) == value
+
+
+def valid_v3_output() -> dict:
+    return {
+        "same_duplicate_group": "NO",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "NO",
+        "relation_type": "RELATED_NON_DUPLICATE",
+        "material_difference": "MAJOR",
+        "primary_material_difference": "DOCUMENT_IDENTITY_CHANGE",
+        "dominant_overlap_source": "SHARED_PAGE_TEMPLATE",
+        "primary_risk_factor": "TEMPLATE_SLOT_COLLISION",
+        "confidence_tier": "HIGH",
+        "reason_codes": [
+            "MATERIAL_DELTA:DOCUMENT_IDENTITY_CHANGE",
+            "OVERLAP_SOURCE:SHARED_PAGE_TEMPLATE",
+            "PRIMARY_RISK:TEMPLATE_SLOT_COLLISION",
+        ],
+        "evidence": [
+            {"side": "A", "start_char": 0, "end_char": 5, "quote": "alpha"},
+            {"side": "B", "start_char": 0, "end_char": 4, "quote": "beta"},
+        ],
+    }
+
+
+def test_v3_contract_omits_llm_minhash_and_numeric_confidence() -> None:
+    schema = judge_output_schema(JUDGE_SCHEMA_V3)
+
+    assert validate_judge_output(valid_v3_output(), JUDGE_SCHEMA_V3)["confidence_tier"] == "HIGH"
+    assert "expected_minhash_action" not in schema["properties"]
+    assert "expected_minhash_outcome" not in schema["properties"]
+    assert "evidence_quality" not in schema["properties"]
+    assert "confidence" not in schema["properties"]
+
+
+def test_v3_containment_requires_one_direction_and_main_content_addition() -> None:
+    value = valid_v3_output()
+    value.update(
+        {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "primary_material_difference": "MAIN_CONTENT_ADDITION_DELETION",
+            "dominant_overlap_source": "MAIN_CONTENT",
+            "primary_risk_factor": "CONTAINMENT_ASYMMETRY",
+            "confidence_tier": "MEDIUM",
+        }
+    )
+
+    assert validate_judge_output(value, JUDGE_SCHEMA_V3)["same_duplicate_group"] == "YES"
+
+    value["b_can_replace_a"] = "YES"
+    with pytest.raises(DedupEvaluationError) as error:
+        validate_judge_output(value, JUDGE_SCHEMA_V3)
+    assert error.value.issue.code == "JUDGE_CONSISTENCY_INVALID"
+
+
+def test_v3_translation_is_bidirectional_with_no_material_difference() -> None:
+    value = valid_v3_output()
+    value.update(
+        {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "material_difference": "NONE",
+            "primary_material_difference": "NONE",
+            "dominant_overlap_source": "MAIN_CONTENT",
+            "primary_risk_factor": "TRANSLATION_EQUIVALENCE",
+            "confidence_tier": "MEDIUM",
+        }
+    )
+
+    assert validate_judge_output(value, JUDGE_SCHEMA_V3)["material_difference"] == "NONE"
+
+
+def test_v3_non_exact_requires_exact_evidence_from_both_sides() -> None:
+    value = valid_v3_output()
+    value["evidence"] = value["evidence"][:1]
+
+    with pytest.raises(DedupEvaluationError) as error:
+        validate_judge_output(value, JUDGE_SCHEMA_V3)
+    assert error.value.issue.code == "JUDGE_CONSISTENCY_INVALID"
+
+
+def test_v3_unresolved_contract_is_low_confidence_and_consistent() -> None:
+    value = unresolved_judge_output(schema_version=JUDGE_SCHEMA_V3)
+
+    assert validate_judge_output(value, JUDGE_SCHEMA_V3) == value
+    assert value["confidence_tier"] == "LOW"
+
+
+def test_v3_allows_low_confidence_for_a_resolved_boundary() -> None:
+    value = valid_v3_output()
+    value["confidence_tier"] = "LOW"
+
+    assert validate_judge_output(value, JUDGE_SCHEMA_V3)["confidence_tier"] == "LOW"
+
+
+@pytest.mark.parametrize(
+    ("relation", "material", "primary", "overlap", "risk", "same", "a_to_b", "b_to_a"),
+    [
+        (
+            "NEAR_SURFACE",
+            "MINOR",
+            "OTHER_MATERIAL",
+            "COOKIE_CONSENT",
+            "BOILERPLATE_DOMINATED_SIMILARITY",
+            "YES",
+            "YES",
+            "YES",
+        ),
+        (
+            "NEAR_SURFACE",
+            "MINOR",
+            "OTHER_MATERIAL",
+            "SITE_CHROME",
+            "NONE",
+            "YES",
+            "YES",
+            "YES",
+        ),
+        (
+            "CONTAINMENT",
+            "MAJOR",
+            "MAIN_CONTENT_ADDITION_DELETION",
+            "MAIN_CONTENT",
+            "CONTAINMENT_ASYMMETRY",
+            "YES",
+            "YES",
+            "NO",
+        ),
+        (
+            "RELATED_NON_DUPLICATE",
+            "MAJOR",
+            "ENTITY_SLOT_CHANGE",
+            "SHARED_PAGE_TEMPLATE",
+            "TEMPLATE_SLOT_COLLISION",
+            "NO",
+            "NO",
+            "NO",
+        ),
+        (
+            "RELATED_NON_DUPLICATE",
+            "MAJOR",
+            "PAGE_ROLE_CHANGE",
+            "MAIN_CONTENT",
+            "PAGE_ROLE_COLLISION",
+            "NO",
+            "NO",
+            "NO",
+        ),
+        (
+            "VERSION_RELATED",
+            "MAJOR",
+            "PRODUCT_VERSION_CHANGE",
+            "MAIN_CONTENT",
+            "IDENTIFIER_UNDERWEIGHTING",
+            "NO",
+            "NO",
+            "NO",
+        ),
+    ],
+)
+def test_v3_synthetic_boundary_regressions_are_contract_valid(  # noqa: PLR0913
+    relation: str,
+    material: str,
+    primary: str,
+    overlap: str,
+    risk: str,
+    same: str,
+    a_to_b: str,
+    b_to_a: str,
+) -> None:
+    value = valid_v3_output()
+    value.update(
+        {
+            "same_duplicate_group": same,
+            "a_can_replace_b": a_to_b,
+            "b_can_replace_a": b_to_a,
+            "relation_type": relation,
+            "material_difference": material,
+            "primary_material_difference": primary,
+            "dominant_overlap_source": overlap,
+            "primary_risk_factor": risk,
+            "confidence_tier": "MEDIUM",
+        }
+    )
+
+    assert validate_judge_output(value, JUDGE_SCHEMA_V3) == value

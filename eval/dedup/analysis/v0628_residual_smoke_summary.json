@@ -1,0 +1,65 @@
+{
+  "candidate": {
+    "containment_direction_exact": 0,
+    "containment_direction_requested": 4,
+    "containment_over_group": 1,
+    "critic_outcomes": {
+      "ATOMIC_SAME_RECORD_EXTENSION": 5,
+      "BENIGN_NON_RECORD_DELTA": 14,
+      "NON_MAIN_POLICY_OR_STATE_CHANGE": 40,
+      "NOT_APPLICABLE": 1,
+      "SEPARATE_RECORD_OR_TEMPLATE_ATTACHMENT": 47,
+      "TWO_SIDED_OR_CONFLICTING": 16,
+      "UNRESOLVED": 4
+    },
+    "errors": 0,
+    "group_outcomes": {
+      "NO": 97,
+      "UNRESOLVED": 3,
+      "YES": 27
+    },
+    "over_group": 19,
+    "protected_duplicates_retained": 3,
+    "relation_outcomes": {
+      "CONTAINMENT": 2,
+      "NEAR_SURFACE": 25,
+      "RELATED_NON_DUPLICATE": 87,
+      "UNRELATED": 1,
+      "UNRESOLVED": 3,
+      "VERSION_RELATED": 9
+    },
+    "requested": 127,
+    "retried": 0,
+    "schema_completion_rate": 1.0,
+    "under_group": 13,
+    "unweighted": {
+      "duplicate_precision": 0.2962962962962963,
+      "duplicate_recall": 0.38095238095238093,
+      "primary_decision_exact": 0.7165354330708661,
+      "taxonomy_exact": 0.5196850393700787
+    },
+    "valid": 127,
+    "weighted": {
+      "duplicate_precision": 0.28114660057903684,
+      "duplicate_recall": 0.3734328952760224,
+      "primary_decision_exact": 0.724886545697459,
+      "taxonomy_exact": 0.5436821381564645
+    }
+  },
+  "checks": {
+    "containment_direction_exact": false,
+    "containment_over_group": true,
+    "diagnostic_negatives": true,
+    "over_group": true,
+    "protected_duplicates": false,
+    "retry_rate": true,
+    "schema_completion": true,
+    "terminal_errors": true,
+    "under_group": false
+  },
+  "label_baseline": "v0628_policy_reconciled_labels_1000.csv",
+  "passed": false,
+  "prompt_version": "dedup-judge-hs-v0.6.2.8",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.8-residual-smoke",
+  "schema_version": "dedup-v0628-residual-smoke-summary-v1"
+}

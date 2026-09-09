@@ -22,6 +22,27 @@ Earlier revisions are in the [proposal archive](docs/proposals/archive/). The la
 
 ## Current results and dashboards
 
+### Experimental checkpoint through V0.6.2.11
+
+V0.6.2.9 remains the comparison baseline for the 127-pair residual experiment, **not an approved release**.
+V0.6.2.10 and both V0.6.2.11 candidates failed their frozen gates; preserving them here does not promote them.
+See the [V0.6.2.9 audit](analysis/v0629_residual_smoke.md),
+[V0.6.2.10 failure analysis](analysis/v06210_failure_analysis.md), and
+[V0.6.2.11 experiment report](analysis/v06211_experiment_report.md).
+This checkpoint does not change release approvals or authorize full-development, holdout, or 20,000-pair runs.
+
+Large historical review CSV/HTML snapshots are stored with Git LFS; run `git lfs pull` after cloning to retrieve them.
+Prompt versions, audit summaries, and diagnostic labels are preserved together. Runtime caches, credentials, model
+outputs, and run roots outside this repository are not part of the Git checkpoint. Prediction-aware diagnostic labels
+must not be treated as an independent human holdout.
+
+Checkpoint verification: all 270 dedup tests passed. The repository's pre-commit hooks were run using an existing cached
+installation. Large-file, case-conflict, YAML, private-key, trailing-whitespace, and Ruff lint checks passed; EOF and Ruff
+format checks reported existing formatting differences. Their automatic edits were reverted to preserve the frozen source,
+prompt, and artifact bytes. This checkpoint therefore does not claim a clean formatting gate or release readiness.
+
+### Existing shared dashboards
+
 These stable links require access to the NVIDIA internal network:
 
 | Result | Link | Contents |
@@ -68,6 +89,36 @@ Changing any of them creates a different execution contract.
 
 ### Judge contract versions
 
+- `dedup-judge-hs-v0.6.2.5` with `dedup-judge-output-v3` is the rejected boundary-delta experiment. It separates verified same-record
+  extensions from record/role/state changes, material non-main-message changes, two-sided changes, and genuinely harmless
+  universal UI/repetition. It uses the normal bilateral exact-evidence contract without V0.6.2.4's redundant field-specific
+  identity quotes.
+- `dedup-judge-hs-v0.6.2.4` with `dedup-judge-output-v3` is the rejected verified-identity and surface-delta experiment. It adds
+  field-specific, byte-aligned identity evidence; distinguishes document-wide overlap from copied local passages and generic
+  templates; and separates benign labels/repetition from added propositions. The adapter applies these gates before the
+  frozen V0.6.2.3 ledger resolution while preserving V0/V1/V2/V3 read compatibility.
+- `dedup-judge-hs-v0.6.2.2` with `dedup-judge-output-v3` is the semantic-ledger development candidate. It asks for
+  content profiles, shared-content basis, hard conflict, and decisive-difference location, then derives the published
+  replacement decisions in the adapter's fixed gate order. These ledger values remain diagnostic reason codes rather than
+  new output-contract fields. Its frozen 1,000-pair development run passed precision, primary-exact, over-group, schema,
+  retry, identity, and translation gates, but failed recall and meaningful-addition non-regression; it must not advance to
+  holdout.
+- `dedup-judge-hs-v0.6.2.1` with `dedup-judge-output-v3` is the second semantic-only release candidate. It preserves
+  the immutable v0.6.2 prompt while tightening the identity/state/page-role veto for boilerplate-dominated and
+  template-sibling pages. It also requires a non-empty page-specific anchor for near-surface and containment decisions.
+- `dedup-judge-hs-v0.6.2` with `dedup-judge-output-v3` is the first semantic-only release candidate. It keeps the two
+  replacement directions, derived duplicate-group decision, relation/material taxonomy, primary difference, overlap
+  source, risk factor, ordinal confidence tier, derived reason codes, and exact two-sided evidence. It removes LLM-predicted
+  MinHash behavior, `evidence_quality`, and numeric confidence. Containment requires a shared substantive anchor, exactly one
+  safe direction, a major difference, and a meaningful main-content addition. Identity, state, list-membership, and page-role
+  conflicts are always no/no; faithful full translations remain yes/yes with no semantic material difference.
+- `dedup-judge-hs-minhash-v0.6.1` with `dedup-judge-output-v2` removes the overloaded `fuzzy_scope` field. The Judge
+  independently predicts `expected_minhash_action` (`GROUP`, `KEEP_SEPARATE`, or `UNCERTAIN`); the adapter then derives
+  surface-evidence sufficiency and the expected true-positive, true-negative, false-positive-risk, false-negative-risk, or
+  ambiguous outcome. Semantic duplicate/replacement decisions are the primary score axis, relation/material labels are a
+  descriptive axis, and MinHash diagnostics never determine the version winner. Non-exact resolved decisions must retain
+  aligned quotes from both documents, while overlap source, primary material difference, and primary risk remain available
+  in result artifacts and the Pair Explorer.
 - `dedup-judge-sarah-minhash-v1` uses Sarah's NDD surface-overlap policy and `judge-visible-payload-v2`, but adapts the
   output to the existing `dedup-judge-output-v0` artifact schema. NDD enums are uppercased, boolean reason rubrics become the
   existing flat reason-code array, confidence uses a discrete rubric, and `evidence=[]`. NDD reasoning is not stored; only a
@@ -84,6 +135,218 @@ Select v1 by changing both version fields together:
 ```json
 {"prompt_version":"dedup-judge-v1","schema_version":"dedup-judge-output-v1"}
 ```
+
+Rejudge the frozen comparison population with V0.6.1 through the versioned runner:
+
+```bash
+/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v061 --run-id v0.6.1
+```
+
+Use the printed run root with the `run` and `summarize` subcommands. The summary compares the primary decision tuple and
+descriptive taxonomy separately; legacy `fuzzy_scope` agreement is intentionally omitted across incompatible contracts.
+V0.6.1 asks the Judge for the two replacement directions and deterministically derives `same_duplicate_group`, avoiding a
+third independently generated answer that could contradict containment. Exact quoted evidence is retained only when it
+aligns byte-for-byte with the visible text, including standard single-, double-, or curly-quoted spans. If a resolved side
+lacks an aligned model quote, the adapter records the repair and supplies an exact visible excerpt from that side; it never
+constructs evidence for empty visible text.
+
+The frozen v0.6.1 human-calibration and proxy-challenge findings are in
+[`analysis/v061_audit.md`](analysis/v061_audit.md). The v0.6.2 development comparison uses three immutable policies with the
+same model, decoding settings, and selected payload IDs:
+
+- `hs-v062-dev-baseline`: v0.6.1 semantic logic transplanted to output v3;
+- `hs-v062-dev-gate`: adds the shared-main-content and non-empty-containment gate;
+- `hs-v062`: adds the first complete boundary examples;
+- `hs-v0621`: preserves v0.6.2 and adds stricter template-slot/page-role examples after v0.6.2 missed its development
+  precision, over-group, meaningful-addition, primary-exact, and retry gates.
+- `hs-v0622`: adds an explicit content-profile/shared-basis/conflict/difference ledger. The adapter resolves replacement
+  directions from this fixed gate order while keeping the published `dedup-judge-output-v3` field contract unchanged.
+- `hs-v0623`: adds reviewed record-alignment, non-main-message, and translation gates. The adapter permits substantive
+  equivalence/containment only for a confirmed same record and keeps materially different non-main messages separate.
+- `hs-v0624`: adds verifiable record-identity evidence, overlap scope, and surface-delta gates. It is evaluated against the
+  cumulative reconciled development labels only after the V0.6.2.3 diagnostic follow-up and three-row review revision.
+- `hs-v0625`: adds the decisive boundary-delta class and restores verified one-sided containment while separating universal
+  UI/repetition from record/role/state and material non-main-message changes.
+- `hs-v0626`: replaces free-form evidence with a deterministic shared/A-only/B-only span packet. The model cites stable span
+  IDs and the adapter derives byte-aligned bilateral evidence and fails closed on incomplete or invalid citations.
+- `hs-v0627`: keeps the span Judge and adds an independent record-binding critic. Containment survives only when the critic
+  confirms that the unique content predicates the same atomic record rather than an attached record or reusable block.
+- `hs-v0628`: calibrates the independent critic on FAQ, field-order, page-role, policy, product/store, and collection/list
+  boundaries and allows it to veto substantive positive decisions.
+- `hs-v0629`: makes critic arbitration asymmetric: the span ledger owns non-main equivalence and additive translation,
+  while explicit substantive attachment, conflict, and policy-change verdicts retain veto authority.
+- `hs-v06210`: separates non-main policy subtypes, bilateral translation direction, and atomic-record review into three
+  independently cited critic axes. Only exhaustively cited chrome may flatten a main extension. See the frozen
+  [design and residual gates](analysis/v06210_design.md); no old judge cache is reused.
+- `hs-v06211-policy`: keeps the V0.6.2.9 main Judge and legacy record-binding rubric, then adds a scoped non-main policy
+  supplement. This is a development ablation, not a release candidate.
+- `hs-v06211`: adds an applicability-gated translation supplement to that ablation. Citation failures affect the active
+  decision branch; valid negative decisions survive unrelated issues. See [the frozen protocol](analysis/v06211_design.md).
+
+Prepare each development run with the same 1,000-pair label CSV:
+
+```bash
+python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v062-dev-baseline --pair-ids eval/dedup/analysis/hs_blind_adjudication_1000.csv
+python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v062-dev-gate --pair-ids eval/dedup/analysis/hs_blind_adjudication_1000.csv
+python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v062 --pair-ids eval/dedup/analysis/hs_blind_adjudication_1000.csv
+python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v0621 --pair-ids eval/dedup/analysis/hs_blind_adjudication_1000.csv
+python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v0622 --pair-ids eval/dedup/analysis/hs_blind_adjudication_1000.csv
+python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v0623 --pair-ids eval/dedup/analysis/v0622_policy_reconciled_labels_1000.csv
+```
+
+After running those roots, `analysis.judge_calibration` verifies equal payload/model/temperature contracts, reports weighted
+and unweighted human metrics plus true accuracy by confidence tier, and applies the frozen development gates:
+
+```bash
+python -m eval.dedup.analysis.judge_calibration \
+  --labels eval/dedup/analysis/hs_blind_adjudication_1000.csv \
+  --baseline-run-root <baseline-run-root> \
+  --candidate gate=<gate-run-root> --candidate final=<final-run-root> \
+  --output <development-comparison.json>
+```
+
+The frozen v0.6.2.2 result and gate decisions are recorded in
+[`analysis/v0622_development_audit.md`](analysis/v0622_development_audit.md) and
+[`analysis/v0622_development_comparison.json`](analysis/v0622_development_comparison.json). Generate its disagreement
+packet before changing the prompt or any development labels:
+
+```bash
+python -m eval.dedup.analysis.policy_review \
+  --labels eval/dedup/analysis/hs_blind_adjudication_1000.csv \
+  --candidate-run-root /raid/hfang/ihb/runs/v0.6.2.2-dev-final \
+  --previous-run-root /raid/hfang/ihb/runs/v0.6.2.1-dev-final \
+  --output-csv eval/dedup/analysis/v0622_policy_review_candidates.csv \
+  --summary eval/dedup/analysis/v0622_policy_review_summary.json
+```
+
+The packet is a review queue, not an automatic relabeling instruction. In particular, old containment labels that rely on a
+substantive-page/non-main-only pairing must be adjudicated against the new non-empty-containment policy before another prompt
+is tuned to the same development set.
+
+The requested 85-row policy reconciliation, its preserved-label overlay, and the resulting V0.6.2.3 design are recorded in
+[`analysis/v0622_policy_reconciliation.md`](analysis/v0622_policy_reconciliation.md) and
+[`analysis/v0623_design.md`](analysis/v0623_design.md). Use the reconciled labels only for subsequent V0.6.2.x development;
+retain the original-label comparison as historical agreement with the old taxonomy. Before a full 1,000-pair V0.6.2.3 run,
+run its immutable contract against `analysis/v0622_reconciled_residual_candidates.csv` as the targeted residual smoke set.
+
+That smoke is now complete and rejected; its measured gates and diagnosis are in
+[`analysis/v0623_residual_smoke.md`](analysis/v0623_residual_smoke.md). Do not mutate or promote V0.6.2.3, and do not run it
+on the holdout. Any follow-up prompt must use a new immutable version after the newly exposed translation and containment-label
+conflicts are adjudicated.
+
+Those 20 exposed cases and three additional review revisions are now adjudicated in separate diagnostic ledgers. The
+cumulative label baseline and the immutable V0.6.2.4 contract, deterministic gates, and staged admission thresholds are
+documented in [`analysis/v0624_design.md`](analysis/v0624_design.md). Its completed residual-smoke decision is documented in
+[`analysis/v0624_residual_smoke.md`](analysis/v0624_residual_smoke.md): it failed schema, retry, recall, protected-duplicate,
+and diagnostic-negative gates, so no full-development or holdout run is permitted merely because its prompt is registered.
+
+The immutable V0.6.2.5 contract and its frozen residual-smoke gates are documented in
+[`analysis/v0625_design.md`](analysis/v0625_design.md). Its completed gate result and architecture-level diagnosis are in
+[`analysis/v0625_residual_smoke.md`](analysis/v0625_residual_smoke.md). It failed five semantic gates, so registration does
+not authorize development or holdout evaluation.
+
+V0.6.2.6's deterministic span architecture and V0.6.2.7's independent record-binding critic are documented in
+[`analysis/v0626_residual_smoke.md`](analysis/v0626_residual_smoke.md),
+[`analysis/v0627_design.md`](analysis/v0627_design.md), and
+[`analysis/v0627_residual_smoke.md`](analysis/v0627_residual_smoke.md). V0.6.2.7 sharply reduced false containment but lost
+one protected benign duplicate and one exact containment direction, so neither version may advance to holdout or a full
+development run.
+
+The calibrated V0.6.2.8 experiment is documented in
+[`analysis/v0628_design.md`](analysis/v0628_design.md) and
+[`analysis/v0628_residual_smoke.md`](analysis/v0628_residual_smoke.md). It reduced false containment to one but over-applied
+its non-main veto, failed recall/protected-duplicate/containment-direction gates, and must also remain development-only.
+
+V0.6.2.9's asymmetric arbitration is documented in
+[`analysis/v0629_design.md`](analysis/v0629_design.md) and
+[`analysis/v0629_residual_smoke.md`](analysis/v0629_residual_smoke.md). It restored recall, all protected benign duplicates,
+and three of four true-containment directions, but reopened one diagnostic non-main negative and missed one additive
+translation. It is frozen and may not advance to the full development set or holdout.
+
+V0.6.2.10's evidence-scoped boundary review is documented in
+[`analysis/v06210_design.md`](analysis/v06210_design.md). Its [residual audit](analysis/v06210_residual_smoke.md) and
+[failure analysis](analysis/v06210_failure_analysis.md) reject progression: citation/applicability abstentions and
+site-as-record containment errors outweigh the two targeted fixes. Reproduce the audit without re-judging or reading holdout
+data (using the existing environment with NeMo Curator installed):
+
+```bash
+python -m eval.dedup.analysis.residual_audit \
+  --labels eval/dedup/analysis/v0628_policy_reconciled_labels_1000.csv \
+  --subset eval/dedup/analysis/v0622_reconciled_residual_candidates.csv \
+  --negative-review eval/dedup/analysis/v0623_followup_adjudications.csv \
+  --negative-review eval/dedup/analysis/v0624_preflight_adjudications.csv \
+  --baseline-run-root /raid/hfang/ihb/runs/v0.6.2.9-residual-smoke \
+  --candidate-run-root /raid/hfang/ihb/runs/v0.6.2.10-residual-smoke \
+  --output eval/dedup/analysis/v06210_residual_smoke_summary.json \
+  --report eval/dedup/analysis/v06210_residual_smoke.md
+```
+
+The shared calibration evaluator counts unresolved reference duplicates as recall/containment misses. The residual audit
+checks exact protected directions as well as groups, records confidence-tier accuracy, and verifies equal execution and
+result digests. These reconciled, error-enriched development references are not independent human holdout labels.
+
+For V0.6.2.11 audits, pass `--gate-profile v06211`, keep the V0.6.2.9 baseline, and select the new policy or final run root.
+The profile tightens false containment to <=1 and requires weighted metric non-regression, among the other frozen gates.
+Both candidates failed these gates; see [the experiment report](analysis/v06211_experiment_report.md) and
+[fixed-output ablation](analysis/v06211_fixed_output_ablation.json). Neither is approved for progression.
+Its [offline replay](analysis/v06211_offline_replay.json) is an adapter-only diagnostic, not a new model run or judge cache.
+Reproduce that diagnostic to a new output file with:
+
+```bash
+python -m eval.dedup.analysis.replay_boundary \
+  --source-run-root /raid/hfang/ihb/runs/v0.6.2.10-residual-smoke \
+  --labels eval/dedup/analysis/v0628_policy_reconciled_labels_1000.csv \
+  --output /path/to/new-v06211-offline-replay.json
+```
+
+Only a candidate that passes every development gate may build the new 400-pair holdout with
+`analysis.select_v062_holdout`. The private manifest retains split and review-load
+assignments; the reviewer packet contains only opaque QA IDs and blind visible payloads. Exactly 50 representative and 50
+difficult pairs receive double-independent review, with third-reviewer adjudication declared for disagreements. The final
+candidate is evaluated on this holdout once; a failed holdout becomes development data and a new holdout must be sampled.
+
+```bash
+python -m eval.dedup.analysis.select_v062_holdout \
+  --comparisons /raid/hfang/ihb/runs/v0.6.1/data/pair_comparisons.parquet \
+  --payloads /raid/hfang/ihb/runs/v0.6.1/data/judge_payloads.jsonl \
+  --exclude-csv eval/dedup/analysis/hs_blind_adjudication_1000.csv \
+  --exclude-csv eval/dedup/analysis/v05_v06_v061_adjudicated_benchmark_14336.csv \
+  --private-manifest <holdout-private.jsonl> --review-packet <holdout-review.jsonl> \
+  --review-dashboard <holdout-review.html> --selection-summary <holdout-selection.json>
+```
+
+Run only the final prompt on the frozen private holdout IDs, consolidate the independent reviews and third-reviewer
+adjudications into one 400-row labels CSV, then consume the holdout once:
+
+```bash
+python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v0623 --pair-ids <holdout-private.jsonl> --run-id v0.6.2.3-holdout
+python -m eval.dedup.analysis.holdout_evaluation \
+  --labels <adjudicated-holdout-labels.csv> --private-manifest <holdout-private.jsonl> \
+  --baseline-results /raid/hfang/ihb/runs/v0.6.1/data/judge_results.jsonl \
+  --candidate-run-root /raid/hfang/ihb/runs/v0.6.2.3-holdout \
+  --report <holdout-report.json> --approval <v0.6.2.3-release-approval.json>
+```
+
+The approval file is created only if every frozen holdout gate passes. A full release prepare without that matching Judge
+contract approval is rejected:
+
+```bash
+python -m eval.dedup.rejudge_comparison prepare \
+  --judge-policy hs-v0623 --release-approval <v0.6.2.3-release-approval.json> --run-id v0.6.2.3
+```
+
+MinHash is an optional second-stage diagnostic in `analysis.minhash_diagnostics`. It accepts only a resolved SUT contract
+whose provenance is `sut_resolved_config` and real SUT-produced signatures, then deterministically replays band collisions.
+Missing normalization, shingling, hash, band/row, or seed fields returns `UNAVAILABLE_MISSING_CONTRACT`; evaluation-retriever
+settings are explicitly rejected as a substitute.
 
 The blind Judge records observable dedup risk factors, not hidden SUT error direction. Reporting may combine those factors with
 the SUT result later to derive overmerge or undermatch categories without leaking the SUT decision into the Judge prompt.

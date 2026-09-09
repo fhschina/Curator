@@ -1,0 +1,2 @@
+review_id,same_duplicate_group,a_can_replace_b,b_can_replace_a,relation_type,material_difference,reason_code,confidence_tier,reviewer_notes,review_protocol
+H0653,YES,NO,YES,CONTAINMENT,MAJOR,TRANSLATED_CONTENT_EXTENSION,HIGH,"The English side preserves the German Videvo service/license description and adds a contact address plus a request-for-suggestions proposition. This is an additive translation of the same record, not a complete faithful translation.",DIAGNOSTIC_REVIEW_V062_TRANSLATION_ADDITION

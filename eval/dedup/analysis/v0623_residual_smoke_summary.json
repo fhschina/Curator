@@ -1,0 +1,36 @@
+{
+  "baseline": {
+    "containment_over_group": 27,
+    "over_group": 59,
+    "under_group": 17
+  },
+  "candidate": {
+    "containment_over_group": 22,
+    "duplicate_group_newly_correct": 19,
+    "duplicate_group_newly_incorrect": 15,
+    "errors": 0,
+    "over_group": 46,
+    "primary_tuple_exact": 18,
+    "protected_duplicates_retained": 4,
+    "requested": 127,
+    "retried": 2,
+    "retry_rate": 0.015748031496062992,
+    "schema_completion_rate": 1.0,
+    "targeted_translation_misses_recovered": 0,
+    "under_group": 28,
+    "valid": 127
+  },
+  "checks": {
+    "containment_over_group": false,
+    "over_group": true,
+    "protected_duplicates": false,
+    "retry_rate": false,
+    "schema_completion": true,
+    "targeted_translations": false,
+    "under_group": false
+  },
+  "passed": false,
+  "prompt_version": "dedup-judge-hs-v0.6.2.3",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.3-residual-smoke",
+  "schema_version": "dedup-v0623-residual-smoke-summary-v1"
+}

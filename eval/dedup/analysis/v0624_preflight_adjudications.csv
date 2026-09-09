@@ -1,0 +1,4 @@
+review_id,same_duplicate_group,a_can_replace_b,b_can_replace_a,relation_type,material_difference,reason_code,confidence_tier,reviewer_notes,review_protocol
+H0807,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_PURPOSE_ADDITION,HIGH,B adds preference-based advertising to the shared statistical-cookie purpose and is not a complete equivalent message,DIAGNOSTIC_V062_POLICY
+H0802,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_COOKIE_MESSAGES,HIGH,A requires disabling an ad blocker while B presents GDPR settings and advertising-cookie controls; the propositions differ materially,DIAGNOSTIC_V062_POLICY
+H0921,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,SUBSTANTIVE_NON_MAIN_PROFILE_MISMATCH,HIGH,B adds a multi-sentence forum description to the shared registration/profile notice; non-main overlap cannot create containment,DIAGNOSTIC_REVIEW_REVISION_V062_POLICY

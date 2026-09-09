@@ -31,10 +31,24 @@ from eval.dedup.judging.schema_v1 import (
     unresolved_judge_output_v1,
     validate_judge_output_v1,
 )
+from eval.dedup.judging.schema_v2 import (
+    JUDGE_SCHEMA_V2,
+    judge_output_schema_v2,
+    unresolved_judge_output_v2,
+    validate_judge_output_v2,
+)
+from eval.dedup.judging.schema_v3 import (
+    JUDGE_SCHEMA_V3,
+    judge_output_schema_v3,
+    unresolved_judge_output_v3,
+    validate_judge_output_v3,
+)
 from eval.dedup.validation import DedupEvaluationError, require
 
 JUDGE_SCHEMA_V0: Final = "dedup-judge-output-v0"
-SUPPORTED_JUDGE_SCHEMA_VERSIONS: Final = frozenset({JUDGE_SCHEMA_V0, JUDGE_SCHEMA_V1})
+SUPPORTED_JUDGE_SCHEMA_VERSIONS: Final = frozenset(
+    {JUDGE_SCHEMA_V0, JUDGE_SCHEMA_V1, JUDGE_SCHEMA_V2, JUDGE_SCHEMA_V3}
+)
 
 JUDGE_FIELDS: Final = {
     "same_duplicate_group",
@@ -56,6 +70,10 @@ def _is_enum_value(value: Any, enum_type: type) -> bool:
 
 
 def judge_output_schema(schema_version: str = JUDGE_SCHEMA_V0) -> dict[str, Any]:
+    if schema_version == JUDGE_SCHEMA_V3:
+        return judge_output_schema_v3()
+    if schema_version == JUDGE_SCHEMA_V2:
+        return judge_output_schema_v2()
     if schema_version == JUDGE_SCHEMA_V1:
         return judge_output_schema_v1()
     require(
@@ -101,6 +119,10 @@ def judge_output_schema(schema_version: str = JUDGE_SCHEMA_V0) -> dict[str, Any]
 def validate_judge_output(value: Any, schema_version: str = JUDGE_SCHEMA_V0) -> dict[str, Any]:
     """Validate types, enums, evidence bounds, and cross-field consistency."""
 
+    if schema_version == JUDGE_SCHEMA_V3:
+        return validate_judge_output_v3(value)
+    if schema_version == JUDGE_SCHEMA_V2:
+        return validate_judge_output_v2(value)
     if schema_version == JUDGE_SCHEMA_V1:
         return validate_judge_output_v1(value)
     judge_output_schema(schema_version)
@@ -200,6 +222,10 @@ def unresolved_judge_output(
     reason: str = "INSUFFICIENT_EVIDENCE",
     schema_version: str = JUDGE_SCHEMA_V0,
 ) -> dict[str, Any]:
+    if schema_version == JUDGE_SCHEMA_V3:
+        return unresolved_judge_output_v3()
+    if schema_version == JUDGE_SCHEMA_V2:
+        return unresolved_judge_output_v2()
     if schema_version == JUDGE_SCHEMA_V1:
         return unresolved_judge_output_v1()
     judge_output_schema(schema_version)

@@ -1,0 +1,86 @@
+review_id,same_duplicate_group,a_can_replace_b,b_can_replace_a,relation_type,material_difference,reason_code,confidence_tier,reviewer_notes
+H0394,YES,YES,YES,NEAR_SURFACE,NONE,EQUIVALENT_MAIN_CHROME_ONLY,HIGH,Same archive record and fields with presentation-order differences only
+H0257,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,TWO_SIDED_MAIN_DIVERGENCE,HIGH,Different political texts with no shared substantive record
+H0909,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Dosa pan and mixer grinder are different products
+H0862,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_CONTEXT_CONFLICT,MEDIUM,Different cookie notices with different controller context and disclosures
+H0557,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different nail products share only purchase boilerplate
+H0138,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,One cookie notice omits technical-cookie and consent information
+H0530,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,School affiliate disclosure appears on only one non-main page
+H0905,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Specific property search content overlaps only generic site promotion
+H0760,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Report record overlaps only a personal-data notice
+H0317,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LIST_MEMBERSHIP_CONFLICT,HIGH,Placeholder lists name different embedded services
+H0468,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NO_PAGE_SPECIFIC_ANCHOR,MEDIUM,Generic commerce template and color do not prove the same product record
+H0321,NO,NO,NO,VERSION_RELATED,MAJOR,STATE_OR_VERSION_CONFLICT,HIGH,Privacy-policy variants differ in controller wording purposes and rights
+H0167,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Product options overlap only recurring-purchase boilerplate
+H0205,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different academic records and degree programs
+H0704,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Aquarium product overlaps only purchase boilerplate
+H0914,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Taxon heading overlaps only a generic naturalist disclaimer
+H0326,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,Delivery restriction is absent from the other policy-only page
+H0695,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Ebook instructions overlap only a cookie notice
+H0932,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Health article overlaps only subscription and privacy text
+H0527,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Fire report overlaps only publisher legal footer
+H0966,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_CONTEXT_CONFLICT,HIGH,Different merchants and governing laws use the same terms template
+H0011,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,Contact-form privacy content is absent from the cookie-only side
+H0946,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,PAGE_ROLE_CONFLICT,HIGH,Generic photo-frame category copy and a specific frame tool are different pages
+H0999,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,TWO_SIDED_MAIN_DIVERGENCE,HIGH,Biography and retirement-planning page share only financial legal text
+H0242,NO,NO,NO,UNRELATED,MAJOR,NO_PAGE_SPECIFIC_ANCHOR,HIGH,Specific course schedule overlaps only generic schedule controls
+H0038,YES,YES,YES,NEAR_SURFACE,NONE,EQUIVALENT_NON_MAIN_CHROME_ONLY,MEDIUM,Repeated empty blog-template instructions add no semantic information
+H0555,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Author biography overlaps only a publisher disclaimer
+H0855,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_CONTEXT_CONFLICT,HIGH,Different Italian cookie policies are not the same legal notice
+H0707,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,PAGE_ROLE_CONFLICT,HIGH,Order-error state is absent from the cookie-only page
+H0657,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NO_PAGE_SPECIFIC_ANCHOR,HIGH,Specific fabric record overlaps only generic fabric and store policy copy
+H0008,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,Abuse-report workflow is absent from the cookie-policy page
+H0306,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different database troubleshooting threads
+H0773,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Oil article overlaps only publisher description and investment disclaimer
+H0371,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,MEDIUM,Cookie notices differ on third-party analytics disclosure
+H0088,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Placeholder products expose different price and SKU slots
+H0757,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Course heading overlaps only cookie consent text
+H0941,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different dictionary headwords and revision records
+H0811,YES,YES,YES,NEAR_SURFACE,MINOR,EQUIVALENT_NON_MAIN_CHROME_ONLY,MEDIUM,Same cookie message with only site header and contact chrome added
+H0714,NO,NO,NO,UNRELATED,MAJOR,LEGAL_CONTEXT_CONFLICT,HIGH,Different companies purposes and data fields share a legal template
+H0497,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Badges page text overlaps only the site cookie policy
+H0210,NO,NO,NO,VERSION_RELATED,MAJOR,STATE_OR_VERSION_CONFLICT,HIGH,Material phpBB FAQ sections and software-version guidance differ
+H0971,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,One blocked-page message omits the actual block reason
+H0676,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different streaming brands and movie page roles
+H0786,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,PAGE_ROLE_CONFLICT,HIGH,Directory-index path and mirror homepage are different page roles
+H0651,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,Cookie notices contain different preference and statistics sections
+H0769,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Basketball article overlaps only newsletter form text
+H0284,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,MySQL tutorial overlaps only translation and source disclaimers
+H0738,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Fridge category copy overlaps only a finance disclaimer
+H0488,YES,YES,YES,NEAR_SURFACE,MINOR,EQUIVALENT_NON_MAIN_CHROME_ONLY,MEDIUM,Same recurring-purchase message with generic checkout chrome added
+H0869,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Specific cleaning product overlaps only cookie policy
+H0601,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different accounting businesses cities and service records
+H0744,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_CONTEXT_CONFLICT,HIGH,Different consent mechanisms and cookie-policy disclosures
+H0921,YES,YES,YES,NEAR_SURFACE,MINOR,EQUIVALENT_NON_MAIN_CHROME_ONLY,MEDIUM,Same authentication message with site-about footer added
+H0918,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_CONTEXT_CONFLICT,HIGH,Different contact-form consent statements and controller context
+H0748,YES,YES,YES,NEAR_SURFACE,MINOR,EQUIVALENT_MAIN_CHROME_ONLY,MEDIUM,Same site invitation with only a short stories header added
+H0014,NO,NO,NO,VERSION_RELATED,MAJOR,STATE_OR_VERSION_CONFLICT,HIGH,Tracker list and WhatsApp contact differ across cookie-notice states
+H0783,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,TWO_SIDED_MAIN_DIVERGENCE,HIGH,Different dishwasher troubleshooting records and symptoms
+H0727,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different software companies missions and offerings
+H0916,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Blog introduction overlaps only a funding disclaimer footer
+H0603,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Badges explanation overlaps only the Banggood cookie policy
+H0127,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,Map activation adds a distinct third-party data disclosure
+H0203,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,NON_EQUIVALENT_NON_MAIN_MESSAGES,HIGH,Controller and contact-form processing notice appears on only one side
+H0963,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Beckham article overlaps only magazine promotional footer
+H0989,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Database question overlaps only Oracle copyright disclaimer
+H0415,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,TWO_SIDED_MAIN_DIVERGENCE,HIGH,Different speedway reports dates and competitions
+H0722,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Exhibition article overlaps only privacy and newsletter notice
+H0525,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Basketball report overlaps only newsletter form text
+H0872,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Specific embroidery design lacks a shared product anchor on the other side
+H0592,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Sticker record overlaps only a generic SEO keyword cloud
+H0574,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Property listing overlaps only a generic cookie notice
+H0942,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Skirt product record overlaps only recurring-purchase chrome
+H0295,NO,NO,NO,VERSION_RELATED,MAJOR,STATE_OR_VERSION_CONFLICT,HIGH,Privacy-policy versions differ in legal basis and cookie behavior
+H0184,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different academic works institutions and content
+H0831,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Leather-boots title overlaps only recurring-purchase boilerplate
+H0961,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,LEGAL_CONTEXT_CONFLICT,MEDIUM,Different product disclaimers trackers and price conditions
+H0924,NO,NO,NO,UNRELATED,MAJOR,TWO_SIDED_MAIN_DIVERGENCE,HIGH,Different cookie controller and a specific nautical product page
+H0673,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different recipes and result-page roles
+H0310,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different recruitment brands and candidate-page content
+H0361,YES,YES,YES,NEAR_SURFACE,MINOR,EQUIVALENT_MAIN_CHROME_ONLY,HIGH,Same complete article with one redundant image caption difference
+H0239,UNRESOLVED,UNRESOLVED,UNRESOLVED,UNRESOLVED,UNRESOLVED,UNREADABLE_VISIBLE_PAYLOAD,LOW,Both visible texts are empty and the payload is truncated
+H0642,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Saved property alerts contain different property type and location slots
+H0351,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,PAGE_ROLE_CONFLICT,HIGH,Different auction categories impose materially different sale conditions
+H0877,NO,NO,NO,UNRELATED,MAJOR,BOILERPLATE_ONLY_OVERLAP,HIGH,Manufacturing-services content overlaps only cookie notice
+H0204,NO,NO,NO,RELATED_NON_DUPLICATE,MAJOR,TWO_SIDED_MAIN_DIVERGENCE,HIGH,Different authored articles discuss the same advertisement
+H0691,NO,NO,NO,UNRELATED,MAJOR,IDENTITY_OR_SLOT_CONFLICT,HIGH,Different associations and page roles share only HelloAsso platform copy

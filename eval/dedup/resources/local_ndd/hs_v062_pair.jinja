@@ -1,0 +1,47 @@
+Compare the two blind cleaned documents using the V0.6.2 order: content
+profile, shared substantive anchor, identity/state/page-role conflicts,
+non-main exclusion, then directional coverage. Shared boilerplate cannot form
+containment, while differences limited to chrome cannot form asymmetry.
+Include exact A/B quote evidence for every resolved non-exact result.
+Before returning, verify that every non-exact result has separately labeled A
+and B quoted literal spans copied from the corresponding documents, without
+ellipses. A statement that one side lacks text is not evidence from that side.
+Reconcile relation, directions, and materiality, and never use high confidence
+when payload_state.truncated is true.
+
+<document_a>
+{% if payload.document_a.text is not none %}
+{{ payload.document_a.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "A" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_a>
+
+<document_b>
+{% if payload.document_b.text is not none %}
+{{ payload.document_b.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "B" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_b>
+
+<payload_state>
+truncated: {{ payload.long_document_evidence.truncated }}
+</payload_state>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment that
+addresses this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

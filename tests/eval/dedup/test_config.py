@@ -19,7 +19,24 @@ from pathlib import Path
 
 import pytest
 
-from eval.dedup.config import HS_MINHASH_PROMPT_VERSION, load_config
+from eval.dedup.config import (
+    HS_MINHASH_PROMPT_VERSION,
+    HS_MINHASH_V061_PROMPT_VERSION,
+    HS_V062_PROMPT_VERSION,
+    HS_V0621_PROMPT_VERSION,
+    HS_V06210_PROMPT_VERSION,
+    HS_V06211_POLICY_PROMPT_VERSION,
+    HS_V06211_PROMPT_VERSION,
+    HS_V0622_PROMPT_VERSION,
+    HS_V0623_PROMPT_VERSION,
+    HS_V0624_PROMPT_VERSION,
+    HS_V0625_PROMPT_VERSION,
+    HS_V0626_PROMPT_VERSION,
+    HS_V0627_PROMPT_VERSION,
+    HS_V0628_PROMPT_VERSION,
+    HS_V0629_PROMPT_VERSION,
+    load_config,
+)
 from eval.dedup.run import create_run
 from eval.dedup.validation import DedupEvaluationError
 
@@ -120,6 +137,195 @@ def test_config_accepts_hs_minimal_ab_contract(tmp_path: Path) -> None:
     assert config.judge.prompt_version == HS_MINHASH_PROMPT_VERSION
     assert config.judge.schema_version == "dedup-judge-output-v0"
     assert config.judge.runner_config.name == "hs_qwen.yaml"
+
+
+def test_config_accepts_hs_v061_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v061_qwen.yaml")
+    value["judge"]["prompt_version"] = HS_MINHASH_V061_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v2"
+    path = tmp_path / "hs-v061-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_MINHASH_V061_PROMPT_VERSION
+    assert config.judge.schema_version == "dedup-judge-output-v2"
+    assert config.judge.runner_config.name == "hs_v061_qwen.yaml"
+
+
+def test_config_accepts_hs_v062_semantic_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v062_qwen.yaml")
+    value["judge"]["prompt_version"] = HS_V062_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    path = tmp_path / "hs-v062-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V062_PROMPT_VERSION
+    assert config.judge.schema_version == "dedup-judge-output-v3"
+    assert config.judge.runner_config.name == "hs_v062_qwen.yaml"
+
+
+def test_config_accepts_hs_v0621_semantic_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v0621_qwen_c64.yaml")
+    value["judge"]["prompt_version"] = HS_V0621_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    path = tmp_path / "hs-v0621-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V0621_PROMPT_VERSION
+    assert config.judge.schema_version == "dedup-judge-output-v3"
+    assert config.judge.runner_config.name == "hs_v0621_qwen_c64.yaml"
+
+
+def test_config_accepts_hs_v0622_semantic_ledger_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v0622_qwen_c64.yaml")
+    value["judge"]["prompt_version"] = HS_V0622_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    path = tmp_path / "hs-v0622-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V0622_PROMPT_VERSION
+    assert config.judge.schema_version == "dedup-judge-output-v3"
+    assert config.judge.runner_config.name == "hs_v0622_qwen_c64.yaml"
+
+
+def test_config_accepts_hs_v0623_reviewed_boundary_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v0623_qwen_c64.yaml")
+    value["judge"]["prompt_version"] = HS_V0623_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    path = tmp_path / "hs-v0623-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V0623_PROMPT_VERSION
+    assert config.judge.schema_version == "dedup-judge-output-v3"
+    assert config.judge.runner_config.name == "hs_v0623_qwen_c64.yaml"
+
+
+def test_config_accepts_hs_v0624_verified_identity_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v0624_qwen_c64.yaml")
+    value["judge"]["prompt_version"] = HS_V0624_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    path = tmp_path / "hs-v0624-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V0624_PROMPT_VERSION
+    assert config.judge.schema_version == "dedup-judge-output-v3"
+    assert config.judge.runner_config.name == "hs_v0624_qwen_c64.yaml"
+
+
+def test_config_accepts_hs_v0625_boundary_delta_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v0625_qwen_c64.yaml")
+    value["judge"]["prompt_version"] = HS_V0625_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    path = tmp_path / "hs-v0625-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V0625_PROMPT_VERSION
+    assert config.judge.schema_version == "dedup-judge-output-v3"
+    assert config.judge.runner_config.name == "hs_v0625_qwen_c64.yaml"
+
+
+def test_config_accepts_hs_v0626_span_payload_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v0626_qwen_c64.yaml")
+    value["judge"]["prompt_version"] = HS_V0626_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    value["judge"]["visible_payload_version"] = "judge-visible-payload-v3"
+    path = tmp_path / "hs-v0626-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V0626_PROMPT_VERSION
+    assert config.judge.visible_payload_version == "judge-visible-payload-v3"
+    assert config.judge.runner_config.name == "hs_v0626_qwen_c64.yaml"
+
+
+def test_config_accepts_hs_v0627_record_binding_critic_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v0627_qwen_c64.yaml")
+    value["judge"]["prompt_version"] = HS_V0627_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    value["judge"]["visible_payload_version"] = "judge-visible-payload-v3"
+    path = tmp_path / "hs-v0627-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V0627_PROMPT_VERSION
+    assert config.judge.visible_payload_version == "judge-visible-payload-v3"
+    assert config.judge.runner_config.name == "hs_v0627_qwen_c64.yaml"
+
+
+def test_config_accepts_hs_v0628_calibrated_critic_contract(tmp_path: Path) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / "hs_v0628_qwen_c64.yaml")
+    value["judge"]["prompt_version"] = HS_V0628_PROMPT_VERSION
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    value["judge"]["visible_payload_version"] = "judge-visible-payload-v3"
+    path = tmp_path / "hs-v0628-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == HS_V0628_PROMPT_VERSION
+    assert config.judge.visible_payload_version == "judge-visible-payload-v3"
+    assert config.judge.runner_config.name == "hs_v0628_qwen_c64.yaml"
+
+
+@pytest.mark.parametrize(
+    ("version", "runner"),
+    [
+        (HS_V0629_PROMPT_VERSION, "hs_v0629_qwen_c64.yaml"),
+        (HS_V06210_PROMPT_VERSION, "hs_v06210_qwen_c64.yaml"),
+        (HS_V06211_POLICY_PROMPT_VERSION, "hs_v06211_policy_qwen_c64.yaml"),
+        (HS_V06211_PROMPT_VERSION, "hs_v06211_qwen_c64.yaml"),
+    ],
+)
+def test_config_accepts_versioned_boundary_critic_contract(tmp_path: Path, version: str, runner: str) -> None:
+    source = Path(__file__).parents[3] / "eval" / "dedup" / "resources" / "v0_config.example.json"
+    value = json.loads(source.read_text())
+    value["judge"]["runner_config"] = str(source.parent / "local_ndd" / runner)
+    value["judge"]["prompt_version"] = version
+    value["judge"]["schema_version"] = "dedup-judge-output-v3"
+    value["judge"]["visible_payload_version"] = "judge-visible-payload-v3"
+    path = tmp_path / "hs-v0629-judge-contract.json"
+    path.write_text(json.dumps(value))
+
+    config = load_config(path)
+
+    assert config.judge.prompt_version == version
+    assert config.judge.visible_payload_version == "judge-visible-payload-v3"
+    assert config.judge.runner_config.name == runner
 
 
 def test_config_rejects_builtin_runner_prompt_mismatch(tmp_path: Path) -> None:

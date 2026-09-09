@@ -31,11 +31,29 @@ from types import SimpleNamespace
 from typing import Any, Self
 
 from eval.dedup.analysis.comparison import build_pair_comparisons
+from eval.dedup.analysis.holdout_evaluation import RELEASE_APPROVAL_SCHEMA
 from eval.dedup.analysis.metrics import compute_metrics
 from eval.dedup.config import (
     HS_MINHASH_PROMPT_VERSION,
+    HS_MINHASH_V061_PROMPT_VERSION,
+    HS_V062_DEV_BASELINE_PROMPT_VERSION,
+    HS_V062_DEV_GATE_PROMPT_VERSION,
+    HS_V062_PROMPT_VERSION,
+    HS_V0621_PROMPT_VERSION,
+    HS_V06210_PROMPT_VERSION,
+    HS_V06211_POLICY_PROMPT_VERSION,
+    HS_V06211_PROMPT_VERSION,
+    HS_V0622_PROMPT_VERSION,
+    HS_V0623_PROMPT_VERSION,
+    HS_V0624_PROMPT_VERSION,
+    HS_V0625_PROMPT_VERSION,
+    HS_V0626_PROMPT_VERSION,
+    HS_V0627_PROMPT_VERSION,
+    HS_V0628_PROMPT_VERSION,
+    HS_V0629_PROMPT_VERSION,
     LOCAL_NDD_JUDGE_CONTRACTS,
     SARAH_MINHASH_PROMPT_VERSION,
+    V062_RELEASE_PROMPT_VERSIONS,
     LocalNddJudgeConfig,
     TokenizerConfig,
 )
@@ -52,8 +70,100 @@ LOCAL_NDD_RESOURCES = Path(__file__).resolve().parent / "resources" / "local_ndd
 RUNNER_CONFIG_BY_PROMPT = {
     SARAH_MINHASH_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "sarah_minhash_qwen.yaml",
     HS_MINHASH_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_qwen.yaml",
+    HS_MINHASH_V061_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v061_qwen.yaml",
+    HS_V062_DEV_BASELINE_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v062_dev_baseline_qwen.yaml",
+    HS_V062_DEV_GATE_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v062_dev_gate_qwen.yaml",
+    HS_V062_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v062_qwen.yaml",
+    HS_V0621_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0621_qwen_c64.yaml",
+    HS_V0622_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0622_qwen_c64.yaml",
+    HS_V0623_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0623_qwen_c64.yaml",
+    HS_V0624_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0624_qwen_c64.yaml",
+    HS_V0625_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0625_qwen_c64.yaml",
+    HS_V0626_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0626_qwen_c64.yaml",
+    HS_V0627_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0627_qwen_c64.yaml",
+    HS_V0628_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0628_qwen_c64.yaml",
+    HS_V0629_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v0629_qwen_c64.yaml",
+    HS_V06210_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06210_qwen_c64.yaml",
+    HS_V06211_POLICY_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06211_policy_qwen_c64.yaml",
+    HS_V06211_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06211_qwen_c64.yaml",
 }
-PROMPT_VERSION_BY_POLICY = {"sarah": SARAH_MINHASH_PROMPT_VERSION, "hs": HS_MINHASH_PROMPT_VERSION}
+PROMPT_VERSION_BY_POLICY = {
+    "sarah": SARAH_MINHASH_PROMPT_VERSION,
+    "hs": HS_MINHASH_PROMPT_VERSION,
+    "hs-v061": HS_MINHASH_V061_PROMPT_VERSION,
+    "hs-v062-dev-baseline": HS_V062_DEV_BASELINE_PROMPT_VERSION,
+    "hs-v062-dev-gate": HS_V062_DEV_GATE_PROMPT_VERSION,
+    "hs-v062": HS_V062_PROMPT_VERSION,
+    "hs-v0621": HS_V0621_PROMPT_VERSION,
+    "hs-v0622": HS_V0622_PROMPT_VERSION,
+    "hs-v0623": HS_V0623_PROMPT_VERSION,
+    "hs-v0624": HS_V0624_PROMPT_VERSION,
+    "hs-v0625": HS_V0625_PROMPT_VERSION,
+    "hs-v0626": HS_V0626_PROMPT_VERSION,
+    "hs-v0627": HS_V0627_PROMPT_VERSION,
+    "hs-v0628": HS_V0628_PROMPT_VERSION,
+    "hs-v0629": HS_V0629_PROMPT_VERSION,
+    "hs-v06210": HS_V06210_PROMPT_VERSION,
+    "hs-v06211-policy": HS_V06211_POLICY_PROMPT_VERSION,
+    "hs-v06211": HS_V06211_PROMPT_VERSION,
+}
+SCHEMA_VERSION_BY_PROMPT = {
+    SARAH_MINHASH_PROMPT_VERSION: "dedup-judge-output-v0",
+    HS_MINHASH_PROMPT_VERSION: "dedup-judge-output-v0",
+    HS_MINHASH_V061_PROMPT_VERSION: "dedup-judge-output-v2",
+    HS_V062_DEV_BASELINE_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V062_DEV_GATE_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V062_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0621_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0622_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0623_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0624_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0625_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0626_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0627_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0628_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V0629_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06210_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06211_POLICY_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06211_PROMPT_VERSION: "dedup-judge-output-v3",
+}
+VISIBLE_PAYLOAD_VERSION_BY_PROMPT = {
+    prompt_version: (
+        "judge-visible-payload-v3"
+        if prompt_version
+        in {
+            HS_V0626_PROMPT_VERSION,
+            HS_V0627_PROMPT_VERSION,
+            HS_V0628_PROMPT_VERSION,
+            HS_V0629_PROMPT_VERSION,
+            HS_V06210_PROMPT_VERSION,
+            HS_V06211_POLICY_PROMPT_VERSION,
+            HS_V06211_PROMPT_VERSION,
+        }
+        else "judge-visible-payload-v2"
+    )
+    for prompt_version in SCHEMA_VERSION_BY_PROMPT
+}
+POLICY_LABELS = {
+    "sarah": "Sarah",
+    "hs": "HS",
+    "hs-v061": "HS V0.6.1",
+    "hs-v062-dev-baseline": "HS V0.6.2 dev baseline",
+    "hs-v062-dev-gate": "HS V0.6.2 dev anchor gate",
+    "hs-v062": "HS V0.6.2",
+    "hs-v0621": "HS V0.6.2.1",
+    "hs-v0622": "HS V0.6.2.2 semantic ledger",
+    "hs-v0623": "HS V0.6.2.3 reviewed boundary ledger",
+    "hs-v0624": "HS V0.6.2.4 verified identity and surface ledger",
+    "hs-v0625": "HS V0.6.2.5 boundary-delta ledger",
+    "hs-v0626": "HS V0.6.2.6 deterministic span-evidence ledger",
+    "hs-v0627": "HS V0.6.2.7 independently verified record binding",
+    "hs-v0628": "HS V0.6.2.8 calibrated record-binding critic",
+    "hs-v0629": "HS V0.6.2.9 asymmetric record-binding arbitration",
+    "hs-v06210": "HS V0.6.2.10 evidence-scoped boundary arbitration",
+    "hs-v06211-policy": "HS V0.6.2.11 policy-only development ablation",
+    "hs-v06211": "HS V0.6.2.11 scoped policy and translation review",
+}
 DEFAULT_RUNNER_CONFIG = RUNNER_CONFIG_BY_PROMPT[SARAH_MINHASH_PROMPT_VERSION]
 DEFAULT_RAY_TEMP_DIR = Path("/raid/hfang/ihb/qr")
 DEFAULT_HUB_BASE_URL = "https://inference-api.nvidia.com/v1"
@@ -61,13 +171,21 @@ DEFAULT_HUB_MODEL = "nvidia/qwen/qwen3.8-27b"
 DEFAULT_LOGICAL_MODEL = "Qwen/Qwen3.8-27B-FP8"
 DEFAULT_TOKENIZER_MODEL = "Qwen/Qwen3.8-27B-FP8"
 DEFAULT_TOKENIZER_REVISION = "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a"
-CORE_FIELDS = (
+PRIMARY_DECISION_FIELDS = (
     "same_duplicate_group",
     "a_can_replace_b",
     "b_can_replace_a",
+)
+DESCRIPTIVE_TAXONOMY_FIELDS = (
     "relation_type",
     "material_difference",
-    "fuzzy_scope",
+)
+LEGACY_SCOPE_FIELDS = ("fuzzy_scope",)
+CORE_FIELDS = PRIMARY_DECISION_FIELDS + DESCRIPTIVE_TAXONOMY_FIELDS + LEGACY_SCOPE_FIELDS
+MINHASH_DIAGNOSTIC_FIELDS = (
+    "expected_minhash_action",
+    "surface_evidence_sufficiency",
+    "expected_minhash_outcome",
 )
 
 
@@ -84,6 +202,21 @@ def _parquet() -> tuple[Any, Any]:
 def _read_json(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
     require(isinstance(value, dict), "REJUDGE_INVALID_JSON", "expected a JSON object", path=str(path))
+    return value
+
+
+def _release_approval(path: Path, *, prompt_version: str) -> dict[str, Any]:
+    value = _read_json(path)
+    require(
+        value.get("schema_version") == RELEASE_APPROVAL_SCHEMA
+        and value.get("status") == "PASSED"
+        and value.get("prompt_version") == prompt_version
+        and value.get("holdout_evaluated_once") is True
+        and value.get("gates", {}).get("passed") is True,
+        "REJUDGE_RELEASE_APPROVAL_INVALID",
+        "full V0.6.2 requires a passed, one-look holdout approval",
+        path=str(path),
+    )
     return value
 
 
@@ -104,6 +237,24 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
             require(isinstance(row, dict), "REJUDGE_INVALID_JSONL", "JSONL row must be an object")
             rows.append(row)
     return rows
+
+
+def _read_pair_ids(path: Path) -> list[str]:
+    if path.suffix.lower() == ".csv":
+        import csv
+
+        with path.open(encoding="utf-8", newline="") as file:
+            rows = list(csv.DictReader(file))
+    else:
+        rows = _read_jsonl(path)
+    pair_ids = [str(row.get("canonical_pair_id", "")) for row in rows]
+    require(all(pair_ids), "REJUDGE_PAIR_SELECTION_INVALID", "selected pair IDs cannot be empty")
+    require(
+        len(pair_ids) == len(set(pair_ids)),
+        "REJUDGE_PAIR_SELECTION_INVALID",
+        "selected pair IDs must be unique",
+    )
+    return pair_ids
 
 
 def _append_jsonl(path: Path, row: dict[str, Any]) -> None:
@@ -160,13 +311,22 @@ def _resource_hashes(runner_config: Path) -> dict[str, str]:
 
 
 def _source_digest() -> str:
-    relay_path = Path(__file__).resolve().parent / "judging" / "request_relay.py"
-    adapter_path = Path(__file__).resolve().parent / "judging" / "local_ndd.py"
+    judging_root = Path(__file__).resolve().parent / "judging"
     return sha256_json(
         {
             "runner": sha256_file(Path(__file__)),
-            "request_relay": sha256_file(relay_path),
-            "local_ndd_adapter": sha256_file(adapter_path),
+            **{
+                name: sha256_file(judging_root / filename)
+                for name, filename in {
+                    "request_relay": "request_relay.py",
+                    "local_ndd_adapter": "local_ndd.py",
+                    "boundary_critic": "boundary_critic.py",
+                    "scoped_critic": "scoped_critic.py",
+                    "payload": "payload.py",
+                    "schema_router": "schema.py",
+                    "schema_v3": "schema_v3.py",
+                }.items()
+            },
         }
     )
 
@@ -181,10 +341,11 @@ def _policy_name(prompt_version: str) -> str:
 
 
 def _resolve_runner_config(prompt_version: str, runner_config: Path | None) -> Path:
+    schema_version = SCHEMA_VERSION_BY_PROMPT.get(prompt_version)
     require(
-        (prompt_version, "dedup-judge-output-v0") in LOCAL_NDD_JUDGE_CONTRACTS,
+        schema_version is not None and (prompt_version, schema_version) in LOCAL_NDD_JUDGE_CONTRACTS,
         "REJUDGE_PROMPT_UNSUPPORTED",
-        "rejudge prompt must use a supported local_ndd v0-compatible contract",
+        "rejudge prompt must use a supported local_ndd contract",
         prompt_version=prompt_version,
     )
     resolved = (runner_config or RUNNER_CONFIG_BY_PROMPT[prompt_version]).resolve()
@@ -222,8 +383,8 @@ def _judge_config(run_root: Path, manifest: dict[str, Any]) -> LocalNddJudgeConf
         window_tokens=int(settings["window_tokens"]),
         window_overlap_tokens=int(settings["window_overlap_tokens"]),
         prompt_version=prompt_version,
-        schema_version="dedup-judge-output-v0",
-        visible_payload_version="judge-visible-payload-v2",
+        schema_version=SCHEMA_VERSION_BY_PROMPT[prompt_version],
+        visible_payload_version=VISIBLE_PAYLOAD_VERSION_BY_PROMPT[prompt_version],
     )
 
 
@@ -265,6 +426,10 @@ def prepare_run(
     prompt_version: str = SARAH_MINHASH_PROMPT_VERSION,
     ray_temp_dir: Path = DEFAULT_RAY_TEMP_DIR,
     block_size: int = 500,
+    max_parallel_requests: int = 8,
+    run_id: str | None = None,
+    pair_ids_path: Path | None = None,
+    release_approval_path: Path | None = None,
 ) -> Path:
     """Materialize Qwen-visible payloads for exactly the frozen V0 20k pair IDs."""
 
@@ -292,30 +457,91 @@ def prepare_run(
     ):
         require(path.is_file(), "REJUDGE_SOURCE_MISSING", "required source artifact is missing", path=str(path))
     require(block_size > 0, "REJUDGE_BLOCK_SIZE_INVALID", "block size must be positive")
+    require(
+        max_parallel_requests > 0,
+        "REJUDGE_MAX_PARALLEL_REQUESTS_INVALID",
+        "max parallel requests must be positive",
+    )
+    release_approval = None
+    if prompt_version in V062_RELEASE_PROMPT_VERSIONS and pair_ids_path is None:
+        require(
+            release_approval_path is not None,
+            "REJUDGE_RELEASE_APPROVAL_REQUIRED",
+            "the full 20,000-pair V0.6.2 run requires passed holdout approval",
+        )
+    if release_approval_path is not None:
+        release_approval_path = release_approval_path.resolve()
+        require(
+            release_approval_path.is_file(),
+            "REJUDGE_RELEASE_APPROVAL_INVALID",
+            "release approval file is missing",
+            path=str(release_approval_path),
+        )
+        release_approval = _release_approval(release_approval_path, prompt_version=prompt_version)
 
     candidate_table = pq.read_table(source_candidates)
-    candidates = candidate_table.to_pylist()
-    candidate_ids = [str(row["canonical_pair_id"]) for row in candidates]
+    source_candidate_rows = candidate_table.to_pylist()
+    source_candidate_ids = [str(row["canonical_pair_id"]) for row in source_candidate_rows]
     require(
-        len(candidates) == 20_000 and len(set(candidate_ids)) == 20_000,
+        len(source_candidate_rows) == 20_000 and len(set(source_candidate_ids)) == 20_000,
         "REJUDGE_SOURCE_PAIR_COUNT_MISMATCH",
         "the reference run must contain exactly 20,000 unique candidate pairs",
-        rows=len(candidates),
-        unique=len(set(candidate_ids)),
+        rows=len(source_candidate_rows),
+        unique=len(set(source_candidate_ids)),
     )
     provenance = pq.read_table(source_provenance, columns=["canonical_pair_id", "track"]).to_pylist()
     tracks: dict[str, set[str]] = defaultdict(set)
     for row in provenance:
         tracks[str(row["canonical_pair_id"])].add(str(row["track"]))
     require(
-        set(tracks) == set(candidate_ids)
+        set(tracks) == set(source_candidate_ids)
         and Counter(next(iter(value)) for value in tracks.values() if len(value) == 1) == {"5a": 10_000, "5b": 10_000}
         and all(len(value) == 1 for value in tracks.values()),
         "REJUDGE_SOURCE_TRACK_MISMATCH",
         "the reference population must contain 10k single-track 5a and 10k single-track 5b pairs",
     )
+    if pair_ids_path is None:
+        candidates = source_candidate_rows
+        candidate_ids = source_candidate_ids
+        pair_selection = {"kind": "full_frozen_population", "rows": len(candidates)}
+    else:
+        pair_ids_path = pair_ids_path.resolve()
+        require(
+            pair_ids_path.is_file(),
+            "REJUDGE_PAIR_SELECTION_MISSING",
+            "pair selection file is missing",
+            path=str(pair_ids_path),
+        )
+        requested_pair_ids = _read_pair_ids(pair_ids_path)
+        requested_set = set(requested_pair_ids)
+        unknown = sorted(requested_set - set(source_candidate_ids))
+        require(
+            not unknown,
+            "REJUDGE_PAIR_SELECTION_INVALID",
+            "pair selection contains IDs outside the frozen population",
+            unknown_pair_ids=unknown[:20],
+        )
+        candidates = [row for row in source_candidate_rows if str(row["canonical_pair_id"]) in requested_set]
+        candidate_ids = [str(row["canonical_pair_id"]) for row in candidates]
+        require(
+            len(candidates) == len(requested_pair_ids),
+            "REJUDGE_PAIR_SELECTION_INVALID",
+            "pair selection join is incomplete",
+        )
+        pair_selection = {
+            "kind": "frozen_pair_id_subset",
+            "path": str(pair_ids_path),
+            "sha256": sha256_file(pair_ids_path),
+            "rows": len(candidates),
+        }
 
-    run_id = _new_run_id(prompt_version)
+    run_id = run_id or _new_run_id(prompt_version)
+    require(
+        re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,127}", run_id) is not None,
+        "REJUDGE_RUN_ID_INVALID",
+        "run ID must contain only letters, numbers, dots, underscores, and hyphens",
+        run_id=run_id,
+    )
     run_root = runs_root.resolve() / run_id
     require(not run_root.exists(), "REJUDGE_RUN_EXISTS", "run root already exists", path=str(run_root))
     run_root.mkdir(parents=True)
@@ -338,8 +564,8 @@ def prepare_run(
         )
     )
     payload_config = SimpleNamespace(
-        schema_version="dedup-judge-output-v0",
-        visible_payload_version="judge-visible-payload-v2",
+        schema_version=SCHEMA_VERSION_BY_PROMPT[prompt_version],
+        visible_payload_version=VISIBLE_PAYLOAD_VERSION_BY_PROMPT[prompt_version],
         max_visible_tokens=20_000,
         window_tokens=4_096,
         window_overlap_tokens=512,
@@ -406,7 +632,18 @@ def prepare_run(
         "source_artifacts": source_artifacts,
         "source_digests": {name: sha256_file(Path(path)) for name, path in source_artifacts.items()},
         "source_pair_count": len(candidates),
+        "source_population_count": len(source_candidate_rows),
         "source_pair_ids_sha256": sha256_json(sorted(candidate_ids)),
+        "pair_selection": pair_selection,
+        "release_approval": (
+            {
+                "path": str(release_approval_path),
+                "sha256": sha256_file(release_approval_path),
+                "holdout_manifest_sha256": release_approval["holdout_manifest_sha256"],
+            }
+            if release_approval is not None and release_approval_path is not None
+            else None
+        ),
         "candidate_pairs_sha256": sha256_file(candidate_destination),
         "judge_payloads_sha256": sha256_file(payload_destination),
         "payload_membership_sha256": sha256_json(
@@ -427,7 +664,7 @@ def prepare_run(
             "top_p": 1.0,
             "max_output_tokens": 4_096,
             "timeout_seconds": 600.0,
-            "max_parallel_requests": 8,
+            "max_parallel_requests": max_parallel_requests,
             "max_retries": 2,
             "max_visible_tokens": 20_000,
             "window_tokens": 4_096,
@@ -437,6 +674,12 @@ def prepare_run(
         "blocks": blocks,
     }
     manifest["judge_contract_digest"] = _contract_digest(run_root, manifest)
+    if release_approval is not None:
+        require(
+            release_approval["judge_contract_digest"] == manifest["judge_contract_digest"],
+            "REJUDGE_RELEASE_APPROVAL_INVALID",
+            "holdout approval belongs to a different Judge contract",
+        )
     write_json_atomic(run_root / "run_manifest.json", manifest)
     _write_status(
         run_root / "progress.json",
@@ -541,6 +784,21 @@ def _cache_by_pair(path: Path, *, contract_digest: str) -> dict[str, dict[str, A
         )
         by_pair[pair_id] = row
     return by_pair
+
+
+def _carry_forward_failed_attempts(result: dict[str, Any], failed_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    pair_id = str(result["canonical_pair_id"])
+    prior_attempts = sum(
+        int(row.get("attempts", 0)) for row in failed_rows if str(row.get("canonical_pair_id")) == pair_id
+    )
+    if prior_attempts == 0:
+        return result
+    return {
+        **result,
+        "attempts": int(result["attempts"]) + prior_attempts,
+        "retried": True,
+        "prior_failed_run_attempts": prior_attempts,
+    }
 
 
 def run_hub(run_root: Path) -> dict[str, Any]:
@@ -656,9 +914,16 @@ def run_hub(run_root: Path) -> dict[str, Any]:
                 attempt_number = len(list(block_root.glob("run-*"))) + 1 if block_root.exists() else 1
                 work_root = block_root / f"run-{attempt_number:03d}"
                 failed_path = block_root / "failed_attempts.jsonl"
+                failed_history = _read_jsonl(failed_path)
 
-                def persist(result: dict[str, Any], *, _failed_path: Path = failed_path) -> None:
+                def persist(
+                    result: dict[str, Any],
+                    *,
+                    _failed_path: Path = failed_path,
+                    _failed_history: list[dict[str, Any]] = failed_history,
+                ) -> None:
                     if result["record_type"] == "result":
+                        result = _carry_forward_failed_attempts(result, _failed_history)
                         _append_jsonl(cache_path, result)
                         cache[str(result["canonical_pair_id"])] = result
                     else:
@@ -736,16 +1001,31 @@ def build_agreement_summary(
     baseline = _by_pair(baseline_rows)
     new = _by_pair(new_rows)
     common_ids = sorted(set(baseline) & set(new))
+    comparable_fields = list(PRIMARY_DECISION_FIELDS + DESCRIPTIVE_TAXONOMY_FIELDS)
+    if not common_ids or all(
+        field in baseline[pair_id] and field in new[pair_id] for pair_id in common_ids for field in LEGACY_SCOPE_FIELDS
+    ):
+        comparable_fields.extend(LEGACY_SCOPE_FIELDS)
     field_agreement = {
         field: sum(baseline[pair_id].get(field) == new[pair_id].get(field) for pair_id in common_ids) / len(common_ids)
         if common_ids
         else None
-        for field in CORE_FIELDS
+        for field in comparable_fields
     }
     all_core = [
         pair_id
         for pair_id in common_ids
-        if all(baseline[pair_id].get(field) == new[pair_id].get(field) for field in CORE_FIELDS)
+        if all(baseline[pair_id].get(field) == new[pair_id].get(field) for field in comparable_fields)
+    ]
+    primary_agree = [
+        pair_id
+        for pair_id in common_ids
+        if all(baseline[pair_id].get(field) == new[pair_id].get(field) for field in PRIMARY_DECISION_FIELDS)
+    ]
+    taxonomy_agree = [
+        pair_id
+        for pair_id in common_ids
+        if all(baseline[pair_id].get(field) == new[pair_id].get(field) for field in DESCRIPTIVE_TAXONOMY_FIELDS)
     ]
     matrix: dict[str, Counter[str]] = defaultdict(Counter)
     disagreements = []
@@ -753,16 +1033,22 @@ def build_agreement_summary(
         old = baseline[pair_id]
         current = new[pair_id]
         matrix[str(old.get("same_duplicate_group"))][str(current.get("same_duplicate_group"))] += 1
-        changed = [field for field in CORE_FIELDS if old.get(field) != current.get(field)]
+        changed = [field for field in comparable_fields if old.get(field) != current.get(field)]
         if changed:
             disagreements.append(
                 {
                     "canonical_pair_id": pair_id,
                     "changed_fields": changed,
-                    **{f"baseline_{field}": old.get(field) for field in CORE_FIELDS},
-                    **{f"new_{field}": current.get(field) for field in CORE_FIELDS},
+                    **{f"baseline_{field}": old.get(field) for field in comparable_fields},
+                    **{f"new_{field}": current.get(field) for field in comparable_fields},
+                    **{f"new_{field}": current.get(field) for field in MINHASH_DIAGNOSTIC_FIELDS},
                 }
             )
+    minhash_diagnostics = {
+        field: dict(sorted(Counter(str(new[pair_id].get(field)) for pair_id in common_ids).items()))
+        for field in MINHASH_DIAGNOSTIC_FIELDS
+        if any(new[pair_id].get(field) is not None for pair_id in common_ids)
+    }
     return (
         {
             "baseline_valid": len(baseline),
@@ -770,7 +1056,14 @@ def build_agreement_summary(
             "common_valid": len(common_ids),
             "all_core_fields_agreement": len(all_core) / len(common_ids) if common_ids else None,
             "all_core_fields_agree_pairs": len(all_core),
+            "comparable_fields": comparable_fields,
+            "primary_decision_agreement": len(primary_agree) / len(common_ids) if common_ids else None,
+            "primary_decision_agree_pairs": len(primary_agree),
+            "descriptive_taxonomy_agreement": len(taxonomy_agree) / len(common_ids) if common_ids else None,
+            "descriptive_taxonomy_agree_pairs": len(taxonomy_agree),
+            "legacy_fuzzy_scope_comparable": "fuzzy_scope" in comparable_fields,
             "field_agreement": field_agreement,
+            "new_minhash_diagnostics": minhash_diagnostics,
             "same_duplicate_group_matrix": {key: dict(value) for key, value in sorted(matrix.items())},
             "disagreement_pairs": len(disagreements),
         },
@@ -821,7 +1114,7 @@ def summarize(run_root: Path) -> dict[str, Any]:
     run_root = run_root.resolve()
     manifest = _validate_run_root(run_root)
     policy_name = _policy_name(manifest["settings"]["prompt_version"])
-    policy_label = {"sarah": "Sarah", "hs": "HS"}[policy_name]
+    policy_label = POLICY_LABELS[policy_name]
     complete = _read_json(run_root / "run_complete.json")
     source = {name: Path(path) for name, path in manifest["source_artifacts"].items()}
     new_results_path = run_root / "data" / "judge_results.jsonl"
@@ -845,7 +1138,7 @@ def summarize(run_root: Path) -> dict[str, Any]:
     }
     new_metrics = compute_metrics(
         new_comparisons_path,
-        requested_judge_pairs=20_000,
+        requested_judge_pairs=int(complete["requested"]),
         metrics_destination=run_root / "metrics.json",
         slices_destination=run_root / "metrics_by_slice.csv",
         accounting_destination=run_root / "pipeline_accounting.csv",
@@ -862,6 +1155,43 @@ def summarize(run_root: Path) -> dict[str, Any]:
 
         pq.write_table(pa.Table.from_pylist(disagreements), disagreement_path, compression="zstd")
     baseline_metrics = _read_json(source["metrics"])
+    full_population = int(complete["requested"]) == int(manifest.get("source_population_count", 20_000))
+    if full_population:
+        headline_metric_deltas = {
+            "judge_completion_rate": _metric_delta(baseline_metrics, new_metrics, ("judge", "completion_rate")),
+            "removal_precision": _metric_delta(
+                baseline_metrics, new_metrics, ("track_5a_removal_frame", "removal_precision")
+            ),
+            "wrong_removal_rate": _metric_delta(
+                baseline_metrics, new_metrics, ("track_5a_removal_frame", "wrong_removal_rate")
+            ),
+            "cross_group_positive_yield": _metric_delta(
+                baseline_metrics, new_metrics, ("track_5b_candidate_pool", "positive_yield")
+            ),
+        }
+    else:
+        headline_metric_deltas = {
+            "judge_completion_rate": {
+                "baseline": None,
+                "new": new_metrics["judge"]["completion_rate"],
+                "delta": None,
+            },
+            "removal_precision": {
+                "baseline": None,
+                "new": new_metrics["track_5a_removal_frame"]["removal_precision"],
+                "delta": None,
+            },
+            "wrong_removal_rate": {
+                "baseline": None,
+                "new": new_metrics["track_5a_removal_frame"]["wrong_removal_rate"],
+                "delta": None,
+            },
+            "cross_group_positive_yield": {
+                "baseline": None,
+                "new": new_metrics["track_5b_candidate_pool"]["positive_yield"],
+                "delta": None,
+            },
+        }
     comparison = {
         "schema_version": "dedup-framework-comparison-v1",
         "created_at_utc": datetime.now(UTC).isoformat(),
@@ -878,22 +1208,18 @@ def summarize(run_root: Path) -> dict[str, Any]:
         },
         "scope_note": (
             "This is a paired bundle comparison: framework, model, tokenizer, and visible-context policy changed together; "
-            "the observed deltas cannot be attributed to any one component."
+            "the observed deltas cannot be attributed to any one component. Agreement with DeepSeek and SUT-derived "
+            "outcomes are diagnostics only; human calibration gates version selection."
         ),
+        "population": {
+            "pairs": int(complete["requested"]),
+            "track_5a_pairs": int(new_metrics["track_5a_removal_frame"]["requested"]),
+            "track_5b_pairs": int(new_metrics["track_5b_candidate_pool"]["requested"]),
+            "selection": manifest.get("pair_selection"),
+        },
         "agreement": agreement,
         "outcome_agreement": _outcome_agreement(source["pair_comparisons"], new_comparisons_path),
-        "headline_metric_deltas": {
-            "judge_completion_rate": _metric_delta(baseline_metrics, new_metrics, ("judge", "completion_rate")),
-            "removal_precision": _metric_delta(
-                baseline_metrics, new_metrics, ("track_5a_removal_frame", "removal_precision")
-            ),
-            "wrong_removal_rate": _metric_delta(
-                baseline_metrics, new_metrics, ("track_5a_removal_frame", "wrong_removal_rate")
-            ),
-            "cross_group_positive_yield": _metric_delta(
-                baseline_metrics, new_metrics, ("track_5b_candidate_pool", "positive_yield")
-            ),
-        },
+        "headline_metric_deltas": headline_metric_deltas,
         "artifacts": {
             "new_metrics": str(run_root / "metrics.json"),
             "new_pair_comparisons": str(new_comparisons_path),
@@ -922,16 +1248,20 @@ def _render_report(comparison: dict[str, Any]) -> str:
     agreement = comparison["agreement"]
     deltas = comparison["headline_metric_deltas"]
     new_label = comparison["new"].get("label", comparison["new"]["framework"])
+    population = comparison.get("population", {"pairs": 20_000, "track_5a_pairs": 10_000, "track_5b_pairs": 10_000})
     lines = [
         f"# {new_label} Inference Hub vs. V0/DeepSeek",
         "",
-        "This run rejudges the exact frozen V0 population of 20,000 canonical pairs: 10,000 removal-track pairs and "
-        "10,000 cross-group-track pairs.",
+        f"This run rejudges {population['pairs']:,} pairs from the frozen V0 population: "
+        f"{population['track_5a_pairs']:,} removal-track pairs and "
+        f"{population['track_5b_pairs']:,} cross-group-track pairs.",
         "",
         f"- Baseline: `{comparison['baseline']['framework']}` + `{comparison['baseline']['model']}`",
         f"- New: `{comparison['new']['framework']}` + `{comparison['new']['model']}` on NVIDIA Inference Hub",
         f"- Common schema-valid pairs: {agreement['common_valid']:,}",
-        f"- All six core fields agree: {_pct(agreement['all_core_fields_agreement'])}",
+        f"- Primary decision tuple agrees: {_pct(agreement['primary_decision_agreement'])}",
+        f"- Descriptive taxonomy tuple agrees: {_pct(agreement['descriptive_taxonomy_agreement'])}",
+        f"- All comparable fields agree: {_pct(agreement['all_core_fields_agreement'])}",
         "",
         "## Headline metrics",
         "",
@@ -946,11 +1276,16 @@ def _render_report(comparison: dict[str, Any]) -> str:
     ):
         value = deltas[key]
         lines.append(f"| {label} | {_pct(value['baseline'])} | {_pct(value['new'])} | {_pct(value['delta'])} |")
-    lines.extend(["", "## Core-field agreement", "", "| Field | Agreement |", "|---|---:|"])
+    lines.extend(["", "## Agreement by axis", "", "| Field | Agreement |", "|---|---:|"])
     for field, value in agreement["field_agreement"].items():
         lines.append(f"| `{field}` | {_pct(value)} |")
     lines.extend(
         [
+            "",
+            "The three primary decisions are the human-calibrated release axis: `same_duplicate_group` and both "
+            "replacement directions. Relation/material labels are descriptive. Legacy `fuzzy_scope` is compared only "
+            "when both contracts use that same field. DeepSeek agreement, SUT outcomes, proxy scores, and "
+            "version-specific diagnostics do not decide the winner.",
             "",
             "## Interpretation boundary",
             "",
@@ -971,6 +1306,10 @@ def _parser() -> argparse.ArgumentParser:
     prepare.add_argument("--runner-config", type=Path)
     prepare.add_argument("--ray-temp-dir", type=Path, default=DEFAULT_RAY_TEMP_DIR)
     prepare.add_argument("--block-size", type=int, default=500)
+    prepare.add_argument("--max-parallel-requests", type=int, default=8)
+    prepare.add_argument("--run-id")
+    prepare.add_argument("--pair-ids", type=Path)
+    prepare.add_argument("--release-approval", type=Path)
     for command in ("run", "summarize"):
         child = subparsers.add_parser(command)
         child.add_argument("--run-root", type=Path, required=True)
@@ -981,6 +1320,10 @@ def _parser() -> argparse.ArgumentParser:
     all_parser.add_argument("--runner-config", type=Path)
     all_parser.add_argument("--ray-temp-dir", type=Path, default=DEFAULT_RAY_TEMP_DIR)
     all_parser.add_argument("--block-size", type=int, default=500)
+    all_parser.add_argument("--max-parallel-requests", type=int, default=8)
+    all_parser.add_argument("--run-id")
+    all_parser.add_argument("--pair-ids", type=Path)
+    all_parser.add_argument("--release-approval", type=Path)
     return parser
 
 
@@ -995,6 +1338,10 @@ def main(argv: list[str] | None = None) -> int:
                 prompt_version=PROMPT_VERSION_BY_POLICY[args.judge_policy],
                 ray_temp_dir=args.ray_temp_dir,
                 block_size=args.block_size,
+                max_parallel_requests=args.max_parallel_requests,
+                run_id=args.run_id,
+                pair_ids_path=args.pair_ids,
+                release_approval_path=args.release_approval,
             )
             print(json.dumps({"status": "prepared", "run_root": str(run_root)}, sort_keys=True), flush=True)
             if args.command == "prepare":

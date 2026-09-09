@@ -8,7 +8,11 @@ import urllib.request
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
 
-from eval.dedup.judging.request_relay import RelayContext, RequestRelay
+from eval.dedup.judging.request_relay import RelayContext, RequestRelay, _LoopbackServer
+
+
+def test_relay_connection_backlog_covers_64_parallel_requests() -> None:
+    assert _LoopbackServer.request_queue_size >= 64
 
 
 def test_relay_rewrites_model_and_keeps_credentials_and_content_out_of_events(tmp_path) -> None:

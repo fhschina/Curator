@@ -1,0 +1,121 @@
+{
+  "baselines": {
+    "v0623": {
+      "containment_over_group": 22,
+      "over_group": 46,
+      "under_group": 5
+    },
+    "v0624": {
+      "containment_over_group": 0,
+      "over_group": 25,
+      "under_group": 21
+    }
+  },
+  "candidate": {
+    "containment_direction_exact": 6,
+    "containment_direction_requested": 30,
+    "containment_over_group": 25,
+    "diagnostic_negative_violations": [
+      "H0053",
+      "H0716",
+      "H0721",
+      "H0835",
+      "H0921"
+    ],
+    "diagnostic_negatives_preserved": 18,
+    "diagnostic_negatives_requested": 23,
+    "errors": 0,
+    "group_outcomes": {
+      "NO": 76,
+      "YES": 51
+    },
+    "over_group": 31,
+    "protected_duplicates_retained": [
+      "H0347",
+      "H0679"
+    ],
+    "protected_duplicates_rejected": [
+      "H0038",
+      "H0453",
+      "H0748"
+    ],
+    "relation_outcomes": {
+      "CONTAINMENT": 34,
+      "NEAR_SURFACE": 17,
+      "RELATED_NON_DUPLICATE": 71,
+      "VERSION_RELATED": 5
+    },
+    "requested": 127,
+    "retried": 1,
+    "retry_rate": 0.007874015748031496,
+    "schema_completion_rate": 1.0,
+    "under_group": 21,
+    "unweighted": {
+      "duplicate_precision": 0.39215686274509803,
+      "duplicate_recall": 0.4878048780487805,
+      "primary_decision_exact": 0.4881889763779528,
+      "taxonomy_exact": 0.33070866141732286
+    },
+    "valid": 127,
+    "weighted": {
+      "duplicate_precision": 0.3965451827712216,
+      "duplicate_recall": 0.46807021275812616,
+      "primary_decision_exact": 0.5058871556271918,
+      "taxonomy_exact": 0.34154545716273454
+    }
+  },
+  "checks": {
+    "containment_direction_exact": false,
+    "containment_over_group": false,
+    "diagnostic_negatives": false,
+    "over_group": true,
+    "protected_duplicates": false,
+    "retry_rate": true,
+    "schema_completion": true,
+    "terminal_errors": true,
+    "under_group": false
+  },
+  "diagnostics": {
+    "boundary_delta_class": {
+      "MATERIAL_NON_MAIN_MESSAGE_CHANGE": {
+        "over_group": 0,
+        "rows": 32,
+        "under_group": 14
+      },
+      "NONE_OR_FORMATTING": {
+        "over_group": 2,
+        "rows": 2,
+        "under_group": 0
+      },
+      "RECORD_IDENTITY_ROLE_OR_STATE_CHANGE": {
+        "over_group": 0,
+        "rows": 34,
+        "under_group": 4
+      },
+      "SAME_RECORD_CONTENT_EXTENSION": {
+        "over_group": 25,
+        "rows": 35,
+        "under_group": 0
+      },
+      "TWO_SIDED_CONTENT_CHANGE": {
+        "over_group": 0,
+        "rows": 7,
+        "under_group": 1
+      },
+      "UNIVERSAL_UI_OR_REDUNDANT_REPETITION": {
+        "over_group": 4,
+        "rows": 17,
+        "under_group": 2
+      }
+    },
+    "formal_http_200_events": 144,
+    "formal_http_500_events": 0,
+    "group_newly_correct_vs_v0624": 24,
+    "group_newly_incorrect_vs_v0624": 29,
+    "preflight_http_200_events": 11
+  },
+  "passed": false,
+  "prompt_version": "dedup-judge-hs-v0.6.2.5",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.5-residual-smoke",
+  "schema_version": "dedup-v0625-residual-smoke-summary-v1"
+}

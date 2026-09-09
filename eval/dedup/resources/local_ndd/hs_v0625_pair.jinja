@@ -1,0 +1,52 @@
+Compare the two blind cleaned documents with the V0.6.2.5 ordered ledger.
+
+Classify both content profiles, the shared basis, conflicts, coverage location,
+record alignment, non-main difference, translation, identity support, overlap
+scope, surface delta, and finally boundary_delta_class. The final boundary class
+must distinguish a verified same-record extension from a different record/role/
+state and from a materially different non-main message. A short label is benign
+only when it is universal UI and does not select a page, product/category,
+profile, target, count, date, status, or role. Shared boilerplate and length are
+never identity or containment evidence.
+
+Use quote_evidence as the single evidence contract. Every resolved non-exact
+result needs separately labeled A and B exact literal spans, at most 240
+characters and without ellipses. If bilateral evidence is unavailable, return
+the fully unresolved/low result. Truncated input can never be high.
+
+<document_a>
+{% if payload.document_a.text is not none %}
+{{ payload.document_a.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "A" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_a>
+
+<document_b>
+{% if payload.document_b.text is not none %}
+{{ payload.document_b.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "B" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_b>
+
+<payload_state>
+truncated: {{ payload.long_document_evidence.truncated }}
+</payload_state>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment addressing
+this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

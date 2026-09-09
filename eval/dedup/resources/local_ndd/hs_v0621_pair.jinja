@@ -1,0 +1,59 @@
+Compare the two blind cleaned documents using the V0.6.2.1 order.
+
+First classify each side as substantive main content, non-main-only, or
+unreadable. Then run the conflict veto before rewarding overlap: a different
+title, SKU, record/volume/chapter/page/image ID, site/domain/brand/controller,
+date, price, list member, state, or page role requires no/no even inside an
+otherwise identical template. Cookie, legal, auth, error, paywall, navigation,
+and shared-template text cannot be the substantive anchor.
+
+Use near_surface only after establishing the same substantive record or the
+same complete non-main-only message with no identity/role conflict. Use
+containment only when there is a non-empty shared page-specific anchor and one
+side adds meaningful main content without any conflicting slot. A short
+substantive anchor can prove real containment; a generic footer cannot.
+
+Before returning, reconcile relation, both directions, and materiality. Every
+resolved non-exact result needs separately labeled A and B quoted literal spans
+copied from the corresponding documents, at most 240 characters each, without
+ellipses. For no/no quote the conflicting value/role on both sides; for a
+duplicate quote the shared substantive anchor on both sides. If exact bilateral
+evidence is unavailable, return the fully unresolved/low result. Truncated
+input can never receive high confidence.
+
+<document_a>
+{% if payload.document_a.text is not none %}
+{{ payload.document_a.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "A" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_a>
+
+<document_b>
+{% if payload.document_b.text is not none %}
+{{ payload.document_b.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "B" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_b>
+
+<payload_state>
+truncated: {{ payload.long_document_evidence.truncated }}
+</payload_state>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment that
+addresses this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

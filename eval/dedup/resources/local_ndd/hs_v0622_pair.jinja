@@ -1,0 +1,52 @@
+Compare the two blind cleaned documents using the V0.6.2.2 semantic ledger.
+
+First score both content profiles, then shared_content_basis, hard_conflict,
+and decisive_difference_location. The ledger is authoritative: resolve the two
+replacement directions from it before assigning relation and materiality.
+Generic cookie/legal/auth/error/navigation/paywall/template overlap is not a
+substantive anchor. Extra chrome is non_main_only, not a main addition. A
+different identity, state, list member, site/controller, or page role is a hard
+conflict and requires no/no.
+
+For every resolved non-exact result, quote_evidence reasoning must contain
+separately labeled A and B exact literal spans copied from the corresponding
+documents, at most 240 characters and without ellipses. If bilateral evidence
+is unavailable, return the fully unresolved/low result. Truncated input can
+never receive high confidence.
+
+<document_a>
+{% if payload.document_a.text is not none %}
+{{ payload.document_a.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "A" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_a>
+
+<document_b>
+{% if payload.document_b.text is not none %}
+{{ payload.document_b.text }}
+{% else %}
+FULL TEXT WITHHELD BY THE DETERMINISTIC LENGTH LIMIT. Visible windows:
+{% for window in payload.long_document_evidence.windows if window.side == "B" %}
+<window start_char="{{ window.start_char }}" end_char="{{ window.end_char }}">
+{{ window.text }}
+</window>
+{% endfor %}
+{% endif %}
+</document_b>
+
+<payload_state>
+truncated: {{ payload.long_document_evidence.truncated }}
+</payload_state>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment that
+addresses this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

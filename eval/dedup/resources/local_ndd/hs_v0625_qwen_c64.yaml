@@ -1,0 +1,243 @@
+models:
+  - alias: judge
+    model: /model/path/overridden/by/dedup/config
+    served_model_name: Qwen/Qwen3.8-27B
+    dynamo_model:
+      num_replicas: 1
+      mode: aggregated
+      runtime_env:
+        env_vars:
+          UV_CACHE_DIR: /raid/hfang/dedup_eval_cache/uv
+        config:
+          setup_timeout_seconds: 1800
+      engine_kwargs:
+        tensor_parallel_size: 1
+        max_model_len: 32768
+        max_num_seqs: 8
+        gpu_memory_utilization: 0.8
+        enforce_eager: true
+    inference_parameters:
+      temperature: 0.0
+      extra_body:
+        chat_template_kwargs:
+          enable_thinking: false
+      max_tokens: 4096
+      timeout: 600
+      max_parallel_requests: 64
+
+dynamo_server:
+  subprocess_env:
+    DYN_SYSTEM_PORT: "0"
+    PYTHONPATH: cutlass_compat
+
+inference_server:
+  health_check_timeout_s: 1800
+
+execution:
+  num_workers: 1
+  data_designer_run:
+    disable_early_shutdown: true
+    max_conversation_restarts: 0
+    max_conversation_correction_steps: 2
+  stages:
+    - name: hs_v0625_dedup_semantic_retention
+      judges:
+        - name: qwen_dedup_semantic_judge
+          model_alias: judge
+          system_prompt_path: hs_v0625_system.jinja
+          prompt_path: hs_v0625_pair.jinja
+          extract_reasoning_content: false
+          scores:
+            - name: content_profile_a
+              description: Classify A first. A specific policy, notice, form, restriction, or message is substantive_main when it is the retained record; non_main_only means every visible item is reusable chrome with no page-specific target, identity, state, or proposition.
+              options:
+                substantive_main: A contains retainable page-specific meaning.
+                non_main_only: A contains only reusable cookie, legal, navigation, auth, error, paywall, or platform chrome.
+                unreadable: A cannot be judged safely from visible evidence.
+            - name: content_profile_b
+              description: Classify B first. A specific policy, notice, form, restriction, or message is substantive_main when it is the retained record; non_main_only means every visible item is reusable chrome with no page-specific target, identity, state, or proposition.
+              options:
+                substantive_main: B contains retainable page-specific meaning.
+                non_main_only: B contains only reusable cookie, legal, navigation, auth, error, paywall, or platform chrome.
+                unreadable: B cannot be judged safely from visible evidence.
+            - name: shared_content_basis
+              description: Identify a qualifying same-record basis independently of length. Generic family copy, template text, boilerplate, and a local passage do not establish substantive identity. Equivalent non-main requires the same complete message, function, identity, target, role, and state.
+              options:
+                substantive_anchor: Both sides share the same page-specific record, claims, instructions, policy, event, result, list, or purpose.
+                equivalent_non_main_message: Both non-main-only sides have the same complete reusable message and role.
+                none: Any overlap is only topic, template, family copy, boilerplate, chrome, or a local fragment.
+                unresolved: Visible evidence is insufficient.
+            - name: hard_conflict
+              description: Select the most specific incompatible visible identity, state, role, list, or legal value. A field absent on one side is an addition after same-record identity is proved; reordered identical values are not a conflict.
+              options:
+                none: No conflicting material value or page role is visible.
+                identity_or_slot: A title, product, SKU, record, target, profile, image/page/category, named entity, or defining slot differs.
+                state_or_version: A date, count, price, quantity, version, availability, status, or result differs.
+                page_role: Cart, search, register, login, error, index, detail, or another page function differs.
+                list_membership: List members, rankings, results, or snapshot contents differ.
+                legal_context: Controller, obligation, jurisdiction, or legal meaning differs.
+                other_material: Another explicit material conflict exists.
+                unresolved: Visible evidence is insufficient.
+            - name: decisive_difference_location
+              description: Locate the decisive delta after identity/conflict scanning. One-sided main addition is a strict semantic superset of the same record; length or shared boilerplate cannot establish it.
+              options:
+                none: Retained meaning is equivalent, including faithful full translation.
+                non_main_only: Only non-retained chrome, universal UI, formatting, parser noise, or repetition differs.
+                a_only_main_addition: A preserves all B retained meaning and alone adds content to the same record.
+                b_only_main_addition: B preserves all A retained meaning and alone adds content to the same record.
+                two_sided_main_divergence: Both sides have uncovered retained meaning or no strict semantic order exists.
+                unresolved: Visible evidence is insufficient.
+            - name: record_alignment
+              description: Establish whether both sides concern the identical underlying record/message rather than a topic, template, family, site, or local-passage match.
+              options:
+                same_substantive_record: Both sides visibly concern the identical substantive record.
+                same_non_main_message: Both non-main-only sides have the same complete message, identity, role, target, and state.
+                generic_or_template_overlap_only: Overlap is generic, templated, boilerplate, family copy, or local passage only.
+                different_record_or_role: Identity, target, slot, state, membership, or function shows different records or roles.
+                unresolved: Visible evidence is insufficient.
+            - name: non_main_difference
+              description: Decide whether non-main deltas are ignorable chrome or change the complete user-visible message, identity, purpose, permission, function, target, state, date, or count.
+              options:
+                none_or_ignorable_chrome: No non-main delta exists, or only universal UI, formatting, redundant headers, or repetition differs.
+                material_message_or_state: A cookie/legal/auth/error/paywall/platform proposition, identity, purpose, permission, target, role, or state differs.
+                not_applicable: Both sides are substantive and no non-main boundary decides the result.
+                unresolved: Visible evidence is insufficient.
+            - name: translation_status
+              description: Complete faithful translation requires the complete same record with no identity, state, role, addition, or omission. Partial translation follows ordinary coverage.
+              options:
+                complete_faithful: Both sides express the complete same substantive record in different languages.
+                partial_or_additive: Translation is incomplete or one side adds retained meaning.
+                not_translation: Translation is not the relationship.
+                unresolved: Visible evidence is insufficient.
+            - name: record_identity_support
+              description: Classify same-record evidence independently of shared generic prose. Use the final quote_evidence field as the only quote contract; do not repeat quotes here.
+              options:
+                verbatim_shared_identifier: The same visible title, SKU, record/page/image ID, named entity, or defining identifier establishes both records.
+                distinctive_multi_fact_identity: At least two aligned page-specific facts per side jointly establish the same record.
+                same_non_main_message: Both non-main-only sides have the same complete message, function, identity, target, role, and state.
+                not_proven: Similarity does not prove the same record.
+                different_or_conflicting: Visible identity, target, slot, state, membership, or role proves different records.
+                unresolved: Visible evidence is insufficient.
+            - name: overlap_scope
+              description: Decide whether shared meaning represents the complete same record/message or only an isolated passage, reusable family, template, or boilerplate.
+              options:
+                document_wide_same_record: Shared meaning represents the same substantive record, not an isolated excerpt.
+                complete_non_main_message: The entire non-main proposition, identity, target, role, and state agree.
+                local_passage_only: A shared excerpt is not representative of both documents.
+                generic_family_or_template_only: Only reusable family, template, or boilerplate meaning agrees.
+                none: No qualifying overlap exists.
+                unresolved: Visible evidence is insufficient.
+            - name: surface_delta_type
+              description: Separate universal UI/repetition from added propositions and record-bearing labels. Shortness alone is not benign.
+              options:
+                none_or_formatting: No semantic delta exists or only formatting differs.
+                nav_label_byline_only: Only a universal control, harmless heading/byline, or non-record-selecting label differs.
+                redundant_repetition_only: One side merely repeats already complete content.
+                material_proposition_or_record: A proposition, title, product/category, profile, target, role, state, date, count, list item, purpose, permission, policy option, or page description differs.
+                not_applicable: A main-content difference already decides the result.
+                unresolved: Visible evidence is insufficient.
+            - name: boundary_delta_class
+              description: Choose the decisive policy class. A universal UI label must not select a page, product/category, profile, image/file, target, count, date, status, or role. Same-record extension requires a strict semantic superset of a verified substantive record.
+              options:
+                none_or_formatting: No retained meaning differs.
+                universal_ui_or_redundant_repetition: Only universal UI, a harmless heading/byline, or repeated complete text differs.
+                same_record_content_extension: Exactly one side adds retained content to the same verified substantive record without conflict.
+                record_identity_role_or_state_change: A title, product/category, profile, image/page target, date, count, state, list, or page-role delta changes the record.
+                material_non_main_message_change: Cookie, legal, auth, error, paywall, or platform purpose, permission, option, identity, target, role, state, or explanatory meaning differs.
+                two_sided_content_change: Both sides have unique retained meaning.
+                unresolved: Visible evidence is insufficient.
+            - name: a_can_replace_b
+              description: Resolve from the full ledger. A replaces B only when A preserves every material fact, identity, state, and role in B.
+              options:
+                "yes": Retaining A safely preserves all retained meaning in B.
+                "no": B has conflicting or uncovered retained meaning.
+                unresolved: The ledger is unresolved or unreadable.
+            - name: b_can_replace_a
+              description: Resolve from the full ledger. B replaces A only when B preserves every material fact, identity, state, and role in A.
+              options:
+                "yes": Retaining B safely preserves all retained meaning in A.
+                "no": A has conflicting or uncovered retained meaning.
+                unresolved: The ledger is unresolved or unreadable.
+            - name: relation_type
+              description: Containment is only a verified same-record one-sided content extension. Complete translation and benign surface equivalence are near_surface; conflicting or uncovered records are no/no.
+              options:
+                exact: Complete visible cleaned texts are identical.
+                canonical_exact: Differences are only normalization, whitespace, punctuation, encoding, or formatting.
+                near_surface: Verified same-record meaning is bidirectionally replaceable after benign surface or translation changes.
+                containment: Exactly one side adds retained content to the same verified substantive record.
+                version_related: The same evolving record has a conflicting state/version and is not interchangeable.
+                related_non_duplicate: Related records or template siblings must remain separate.
+                unrelated: No meaningful main-content relationship exists.
+                unresolved: The ledger is unresolved or unreadable.
+            - name: material_difference
+              description: Containment and all no/no relations are major; faithful translation is none; a genuine harmless non-core delta is minor.
+              options:
+                none: No materially relevant information or identity differs.
+                minor: Only a real non-core difference remains.
+                major: Identity, state, role, list, legal meaning, main content, or a substantive addition differs.
+                unresolved: The ledger is unresolved or unreadable.
+            - name: primary_material_difference
+              description: Select the single decisive retained-content difference. Containment uses main_content_addition_deletion; material none uses none.
+              options:
+                none: No material difference exists.
+                main_content_addition_deletion: Retained content is present on only one side of the same substantive record.
+                entity_slot_change: A person, organization, product, service, site, brand, controller, or location conflicts.
+                document_identity_change: A title, SKU, record ID, volume, chapter, page, image, profile, target, or category identity conflicts.
+                number_change: A material number, price, quantity, count, or measurement conflicts.
+                date_time_change: A material date or time conflicts.
+                product_version_change: A product or version conflicts materially.
+                result_set_change: List members, rankings, search results, or outcomes differ.
+                page_role_change: The documents serve materially different functions.
+                legal_context_change: A controller, obligation, jurisdiction, permission, or legal meaning differs.
+                negation_change: Negation reverses or materially changes meaning.
+                code_literal_change: Source-code literals, commands, identifiers, or parameters differ materially.
+                code_output_change: Code outputs or execution results differ materially.
+                other_material: A difference exists and no specific option fits.
+                unresolved: The ledger is unresolved or unreadable.
+            - name: dominant_overlap_source
+              description: Report the single largest visible similarity source; it cannot establish the shared basis.
+              options:
+                main_content: Shared substantive main content dominates.
+                shared_page_template: A reusable page template dominates.
+                site_chrome: Navigation, headers, footers, or platform chrome dominates.
+                cookie_consent: Cookie or consent text dominates.
+                legal_policy_template: Generic legal or policy wording dominates.
+                error_auth_paywall: Error, authentication, login, or paywall text dominates.
+                local_passage: A matching local passage is not representative of both documents.
+                parser_artifact: Extraction or parser artifacts dominate.
+                none: No meaningful overlap source is visible.
+                unresolved: The ledger is unresolved or unreadable.
+            - name: primary_risk_factor
+              description: Select the most specific observable deduplication trap.
+              options:
+                none: No distinct deduplication trap is visible.
+                boilerplate_dominated_similarity: Non-main text dominates apparent similarity.
+                template_slot_collision: A shared template masks different records or meaningful slots.
+                identifier_underweighting: A small identifier or defining value decides identity.
+                topic_only_similarity: Related topic could be mistaken for interchangeable content.
+                list_snapshot_collision: Similar list shells contain different members or snapshots.
+                page_role_collision: Similar wording appears in pages with different functions.
+                legal_context_collision: Generic legal text masks different meaning or identity.
+                long_document_local_overlap: A local match is not representative of both documents.
+                translation_equivalence: Equivalent meaning is expressed in another language.
+                paraphrase_equivalence: Equivalent meaning has low literal overlap.
+                containment_asymmetry: Valid one-way preservation could be mistaken for equivalence or separation.
+                extraction_or_payload_limit: Missing or truncated content prevents a reliable decision.
+                parser_artifact_dominance: Parser artifacts dominate the relationship.
+                other: A distinct risk exists and no option fits.
+            - name: confidence_tier
+              description: Boundary cases, containment, translation, template/boilerplate, parser, non-main, UI/repetition, and truncation cannot be high; unresolved is low.
+              options:
+                high: Complete direct evidence is unambiguous and no boundary rule is involved.
+                medium: Resolved, but a semantic boundary requires judgment.
+                low: A resolved boundary remains materially uncertain, or the full result is unresolved.
+            - name: quote_evidence
+              description: >-
+                This is the only quote contract. Every resolved non-exact result needs the smallest decisive exact visible
+                quotes from both documents, separately labeled A and B, copied character-for-character, at most 240
+                characters each, with no normalization, paraphrase, or ellipses. For no/no quote decisive differences;
+                for yes/yes quote the shared content; for containment quote the shared anchor and an addition when possible.
+              options:
+                provided: Exact visible quotes from both A and B appear in this reasoning.
+                not_required: Use only when relation_type is exact.
+                insufficient: Bilateral exact evidence is unavailable and the full result is unresolved.
