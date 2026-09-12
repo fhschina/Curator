@@ -1,6 +1,34 @@
 # Copyright (c) 2026, NVIDIA CORPORATION. All rights reserved.
 
+import pytest
+
 from eval.dedup.analysis import exp5_dashboard as subject
+from eval.dedup.validation import DedupEvaluationError, sha256_file, write_json_atomic
+
+
+def test_baseline_resolves_published_sarah_qwen_instead_of_source_v0(tmp_path):
+    artifact = tmp_path / "comparison.json"
+    write_json_atomic(artifact, {"version": "V0.5"})
+    release = tmp_path / "release_manifest.json"
+    write_json_atomic(
+        release,
+        {
+            "version": "V0.5",
+            "version_definition": {"framework": "Sarah MinHash judging framework"},
+            "result_run_id": "sarah-qwen",
+            "result_run_root": str(tmp_path / "sarah-qwen"),
+            "source_v0_run_root": str(tmp_path / "v0-deepseek"),
+            "artifacts": {"comparison": {"path": str(artifact), "sha256": sha256_file(artifact)}},
+        },
+    )
+    assert subject.baseline_root(release) == tmp_path / "sarah-qwen"
+
+
+def test_mislabeled_v0_cannot_be_used_as_published_v05(tmp_path):
+    release = tmp_path / "release_manifest.json"
+    write_json_atomic(release, {"version": "V0", "version_definition": {"framework": "DeepSeek"}})
+    with pytest.raises(DedupEvaluationError, match="EXP5_V05_RELEASE"):
+        subject.baseline_root(release)
 
 
 def test_comparison_does_not_score_failures_or_missing_baseline_as_agreement():

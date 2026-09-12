@@ -21,6 +21,30 @@ from eval.dedup.report import _group_size_bucket, _ratio_bucket
 from eval.dedup.validation import require, sha256_file, sha256_json, write_json_atomic, write_text_atomic
 
 PRIMARY = ("same_duplicate_group", "a_can_replace_b", "b_can_replace_a")
+V05_RELEASE = Path(
+    "/raid/hfang/codex-home/visualizations/2026/09/02/01a063ce-7f9e-7e33-8507-1aa214c561f9/"
+    "dedup-eval-v0.5/release_manifest.json"
+)
+
+
+def baseline_root(release_path: Path) -> Path:
+    release = experiment.read(release_path)
+    require(
+        release["version"] == "V0.5"
+        and release["version_definition"]["framework"] == "Sarah MinHash judging framework",
+        "EXP5_V05_RELEASE",
+        "use the published Sarah/Qwen v0.5, not the earlier V0/DeepSeek baseline",
+    )
+    root = Path(release["result_run_root"])
+    require(root.name == release["result_run_id"], "EXP5_V05_ROOT", "published result run identity")
+    for artifact in release["artifacts"].values():
+        if "sha256" in artifact:
+            require(
+                sha256_file(Path(artifact["path"])) == artifact["sha256"],
+                "EXP5_V05_BINDING",
+                "published baseline bindings unchanged",
+            )
+    return root
 
 
 def comparison_rows(results: list[dict], baseline: dict[str, dict]) -> list[dict]:
@@ -137,8 +161,22 @@ def build(root: Path, destination: Path, *, preview: bool = False) -> dict:
     )
     require(bool(keys), "EXP5_REPORT_EMPTY", "wait for at least one collected pair")
     source = Path(manifest["source_run"])
-    baseline = {r["canonical_pair_id"]: r for r in _read_jsonl(source / "data/judge_results.jsonl")}
+    v05 = baseline_root(V05_RELEASE)
+    baseline_rows = _read_jsonl(v05 / "data/judge_results.jsonl")
+    baseline = {r["canonical_pair_id"]: r for r in baseline_rows}
+    require(
+        len(baseline_rows) == len(baseline) and set(baseline) == expected,
+        "EXP5_V05_MEMBERSHIP",
+        "complete published v0.5 results on exactly the same 20k pairs",
+    )
     candidates = pq.read_table(source / "data/candidate_pairs.parquet")
+    orientation = lambda r: (r["canonical_pair_id"], r["presented_doc_a"], r["presented_doc_b"])  # noqa: E731
+    require(
+        {orientation(r) for r in candidates.to_pylist()}
+        == {orientation(r) for r in pq.read_table(v05 / "data/candidate_pairs.parquet").to_pylist()},
+        "EXP5_V05_ORIENTATION",
+        "replacement directions refer to identical A/B presentation",
+    )
     selected, flat, errors, payloads = [], [], [], []
     by_id = {r["canonical_pair_id"]: r for r in results}
     for candidate in candidates.to_pylist():
@@ -210,6 +248,10 @@ def build(root: Path, destination: Path, *, preview: bool = False) -> dict:
     summary = {
         "version": experiment.VERSION,
         "baseline": "v0.5",
+        "baseline_definition": "Published Sarah MinHash framework + Qwen; earlier DeepSeek is V0, not v0.5.",
+        "baseline_run_root": str(v05),
+        "baseline_release_sha256": sha256_file(V05_RELEASE),
+        "baseline_results_sha256": sha256_file(v05 / "data/judge_results.jsonl"),
         "complete": not preview,
         "population": len(expected),
         "collected": len(results),
@@ -220,7 +262,7 @@ def build(root: Path, destination: Path, *, preview: bool = False) -> dict:
         "primary_changed_common_valid": sum(r["primary_changed"] is True for r in rows),
         "agreement": agreement,
         "release_eligible": False,
-        "scope_note": "Paired bundle comparison; different model/prompt/context. Agreement is not accuracy or version superiority. SUT metrics are Judge-conditioned, not independent gold.",
+        "scope_note": "Same pair IDs and logical Qwen model; different prompts, semantic contracts and historical serving conditions. Agreement is not accuracy or version superiority. SUT metrics are Judge-conditioned, not independent gold.",
         "minhash_diagnostics": "UNAVAILABLE_MISSING_CONTRACT",
         "exp5_groups": dict(Counter(r["same_duplicate_group"] for r in flat)),
         "v05_groups_same_collected_pairs": dict(
