@@ -13,6 +13,7 @@ from collections import Counter
 from pathlib import Path
 
 from eval.dedup import dashboard
+from eval.dedup.analysis import exp5_comparison_view as view
 from eval.dedup.analysis import exp5_full20k as experiment
 from eval.dedup.analysis.comparison import build_pair_comparisons
 from eval.dedup.analysis.metrics import compute_metrics
@@ -44,6 +45,15 @@ def baseline_root(release_path: Path) -> Path:
                 "EXP5_V05_BINDING",
                 "published baseline bindings unchanged",
             )
+    complete = experiment.read(root / "run_complete.json")
+    require(
+        complete["requested"] == complete["valid"] == release["frozen_pair_count"]
+        and complete["errors"] == 0
+        and sha256_file(root / "data/judge_results.jsonl") == complete["results_sha256"]
+        and sha256_file(root / "logs/judge_errors.jsonl") == complete["errors_sha256"],
+        "EXP5_V05_RESULTS_BINDING",
+        "published baseline results match their completion receipt",
+    )
     return root
 
 
@@ -95,7 +105,13 @@ function baselineComparison(r){
         "Experimental checkpoint, not a release or independent holdout result. "
         "MinHash diagnostics: UNAVAILABLE_MISSING_CONTRACT."
     )
-    return output.replace("</header>", '<p class="muted">' + html.escape(note) + "</p></header>", 1)
+    return output.replace(
+        "</header>",
+        '<p class="muted">'
+        + html.escape(note)
+        + '</p><p><a href="comparison.html">Exp5 / v0.5 comparison overview</a></p></header>',
+        1,
+    )
 
 
 def calibration(results: list[dict], baseline: dict[str, dict]) -> dict:
@@ -124,6 +140,25 @@ def calibration(results: list[dict], baseline: dict[str, dict]) -> dict:
         }
         for key in keys
     ]
+    tiers = {}
+    for tier in ("HIGH", "MEDIUM", "LOW"):
+        refs = [
+            r
+            for r in labels
+            if r["canonical_pair_id"] not in exclusions
+            and by_id[r["canonical_pair_id"]]["status"] == "VALID"
+            and by_id[r["canonical_pair_id"]]["public"]["confidence_tier"] == tier
+        ]
+        scored = (
+            benchmark.reference.score(refs, [historical.projection(by_id[r["canonical_pair_id"]]) for r in refs])
+            if refs
+            else None
+        )
+        tiers[tier] = {
+            "rows": len(refs),
+            "unweighted_primary_exact": scored["unweighted"]["primary_decision_exact"] if scored else None,
+            "weighted_primary_exact": scored["weighted"]["primary_decision_exact"] if scored else None,
+        }
     return {
         "status": "AVAILABLE",
         "independent_holdout": False,
@@ -132,7 +167,26 @@ def calibration(results: list[dict], baseline: dict[str, dict]) -> dict:
         "exclusions_sha256": sha256_file(historical.REBENCHMARK / "comparison_exclusions.json"),
         "v05": benchmark.masked_score(labels, old, exclusions),
         "exp5": benchmark.masked_score(labels, [historical.projection(by_id[key]) for key in keys], exclusions),
+        "exp5_empirical_confidence_tiers": tiers,
     }
+
+
+def sut_metrics(comparisons: Path, directory: Path, *, prefix: str, requested: int, valid: int) -> dict:
+    return compute_metrics(
+        comparisons,
+        requested_judge_pairs=requested,
+        metrics_destination=directory / f"{prefix}_sut_metrics.json",
+        slices_destination=directory / f"{prefix}_sut_slices.csv",
+        accounting_destination=directory / f"{prefix}_pipeline_accounting.csv",
+        stage_markers=[
+            {
+                "step": 6,
+                "name": prefix,
+                "status": "complete",
+                "counts": {"requested": requested, "valid": valid, "failed": requested - valid},
+            }
+        ],
+    )
 
 
 def build(root: Path, destination: Path, *, preview: bool = False) -> dict:
@@ -252,6 +306,8 @@ def build(root: Path, destination: Path, *, preview: bool = False) -> dict:
         "baseline_run_root": str(v05),
         "baseline_release_sha256": sha256_file(V05_RELEASE),
         "baseline_results_sha256": sha256_file(v05 / "data/judge_results.jsonl"),
+        "baseline_completion_sha256": sha256_file(v05 / "run_complete.json"),
+        "snapshot_at_utc": experiment.recovery.now(),
         "complete": not preview,
         "population": len(expected),
         "collected": len(results),
@@ -272,13 +328,20 @@ def build(root: Path, destination: Path, *, preview: bool = False) -> dict:
         "proxy_challenge": {"status": "NOT_USED_FOR_VERSION_SELECTION", "independent_human_gold": False},
     }
     if not preview:
-        summary["judge_conditioned_sut_metrics"] = compute_metrics(
-            comparison_path,
-            requested_judge_pairs=len(expected),
-            metrics_destination=destination / "reports/sut_metrics.json",
-            slices_destination=destination / "reports/sut_slices.csv",
-            accounting_destination=destination / "reports/pipeline_accounting.csv",
-            stage_markers=[],
+        summary["judge_conditioned_sut_metrics"] = sut_metrics(
+            comparison_path, destination / "reports", prefix="exp5", requested=len(expected), valid=len(flat)
+        )
+        old_comparison_path = destination / "data/v05_pair_comparisons.parquet"
+        build_pair_comparisons(
+            candidate_pairs_path=v05 / "data/candidate_pairs.parquet",
+            pair_provenance_path=source / "data/pair_provenance.parquet",
+            outcomes_path=source / "data/document_outcomes.parquet",
+            judge_results_path=v05 / "data/judge_results.jsonl",
+            judge_errors_path=v05 / "logs/judge_errors.jsonl",
+            destination=old_comparison_path,
+        )
+        summary["baseline_judge_conditioned_sut_metrics"] = sut_metrics(
+            old_comparison_path, destination / "reports", prefix="v05", requested=len(expected), valid=len(baseline)
         )
     write_json_atomic(destination / "reports/comparison.json", summary)
     buffer = io.StringIO()
@@ -287,27 +350,8 @@ def build(root: Path, destination: Path, *, preview: bool = False) -> dict:
     writer.writerows(rows)
     write_text_atomic(destination / "reports/v05_exp5_pairs.csv", buffer.getvalue())
     write_text_atomic(destination / "reports/pair_explorer_exp5.html", explorer_html(records, contexts, summary))
-    write_text_atomic(
-        destination / "reports/RESULTS.md",
-        "\n".join(
-            [
-                "# Exp5 vs v0.5",
-                "",
-                "PARTIAL SNAPSHOT" if preview else "Full 20,000-pair experimental result",
-                "",
-                f"Collected {len(results):,}/{len(expected):,}; valid {len(flat):,}; engineering failures {len(errors):,}.",
-                "",
-                f"Primary decisions differ on {summary['primary_changed_common_valid']:,} common-valid pairs. This is not an accuracy score.",
-                "",
-                "The Pair Explorer retains the native filters, evidence, SUT context and review UI, with a v0.5/Exp5 panel for every pair.",
-                "",
-                "Development calibration is separate in comparison.json. It uses the same revised reference and five comparison exclusions for both versions; it is not independent holdout validation.",
-                "",
-                "Experimental checkpoint, not release. Actual SUT MinHash replay remains unavailable without the resolved configuration.",
-                "",
-            ]
-        ),
-    )
+    write_text_atomic(destination / "reports/comparison.html", view.overview_html(summary, rows))
+    write_text_atomic(destination / "reports/RESULTS.md", view.results_markdown(summary))
     write_json_atomic(
         destination / "snapshot.json",
         {
