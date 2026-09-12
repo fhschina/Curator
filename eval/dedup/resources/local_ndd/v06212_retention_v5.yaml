@@ -1,0 +1,15 @@
+contract_version: dedup-critic-retention-v5
+status: EXPERIMENT_NOT_RELEASE
+fixed_main: v0.6.2.12
+predecessor_review_path: /raid/hfang/ihb/runs/critic-five-hour-20260911T070052Z/retention-v4-paired96/review_complete.json
+system_prompt_path: v06212_retention_v5_system.jinja
+prompt_path: v06212_retention_v5_pair.jinja
+rubric:
+  a_loss_span_id: One own A_ONLY span whose actual material meaning B lacks, judged within its complete sentence, not as an isolated diff label; empty when no loss, never SHARED.
+  b_loss_span_id: One own B_ONLY span whose actual material meaning A lacks, judged within its complete sentence, not as an isolated diff label; empty when no loss, never SHARED.
+  a_context_span_id: Required nonempty checked A or SHARED context, independently of whether A has loss.
+  b_context_span_id: Required nonempty checked B or SHARED context, independently of whether B has loss.
+  conflict: First bind the shared assertion to its actual unique subject/object on each side. A liable entity or failed/access target inside that claim is not a header. Independent added Y or an unbound label alone does not conflict.
+  overlap_basis: Unchanged v3 policy for retained content, full reused policies, interface/acknowledgment-only overlap, and uncertain completeness. No new rule to force disputed reference labels.
+  shared_anchor_ids: Account for all common spans before classifying apparent containment as interface-only.
+  explanation: Explain the complete claim and both actual bound values before invoking identity conflict; dismiss a label only after checking it is not part of such an assertion.

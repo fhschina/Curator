@@ -1,0 +1,66 @@
+{
+  "schema_version": "dedup-independent-x-probe-protocol-v1",
+  "purpose": "Test whether the current model can independently identify shared substantive X in original real inputs. This is a component feasibility diagnostic, not a new full Judge or a causal estimate of one old prompt rule.",
+  "online_execution_authorized": false,
+  "automatic_veto_enabled": false,
+  "policy": "dedup-composite-containment-policy-v1",
+  "system_prompt_file": "independent_x_probe_v1_system.txt",
+  "output_schema_file": "independent_x_probe_v1_schema.json",
+  "selection": [
+    {"role": "suspected_template_containment", "count": 12, "required_review_ids": ["H0360", "H0266", "H0419"]},
+    {"role": "repaired_negative_protection", "count": 4, "required_review_ids": ["H0119", "H0546", "H0606", "H0907"]},
+    {"role": "containment_protection", "count": 8, "required_review_ids": ["H0521", "H0822", "H0333", "H0878"]},
+    {"role": "translation_protection", "count": 8, "required_review_ids": ["H0007", "H0893"]},
+    {"role": "chrome_protection", "count": 8, "required_review_ids": ["H0347", "H0741"]},
+    {"role": "identity_role_boundary", "count": 8, "required_review_ids": ["H0537", "H0514"]}
+  ],
+  "selection_order": "Required mechanism exemplars first; fill each quota by descending original stratum weight, then review_id. Require complete original visible evidence; exclude engineering-missing inputs and exact-reference-contradiction groups. Deduplicate unordered exact text pairs only in this panel. Do not silently replace required cases or short quotas.",
+  "selection_warning": "Selected after seeing historical predictions. Neither representative nor holdout. Role names and duplicate references do not establish X labels. Historical disputes remain flagged and are not automatically resolved by this protocol.",
+  "annotation": {
+    "status": "PENDING_INDEPENDENT_REVIEW",
+    "task": "Before model calls, annotate PRESENT/ABSENT/UNRESOLVED shared substantive X, bilateral content profiles, exact source evidence and a rationale. Do not infer X from historical duplicate-group truth or model overlap enums.",
+    "reviewer_packet": "inputs_blind.jsonl and system instructions only; never supply private selection, old labels, version predictions or sampling reasons.",
+    "reviewer_provenance": "Record human versus AI, prediction exposure, disagreements and arbitration. Prediction-aware AI suggestions may support development triage but are not independent human gold.",
+    "freeze": "Freeze completed annotations in a separate immutable pre-call manifest linked to this contract. All 48 IDs remain in reporting. Disputed X labels may be UNRESOLVED, not silently removed or filled by the candidate. No formal correctness gate while required annotations are missing."
+  },
+  "future_execution": {
+    "provider_model": "nvidia/qwen/qwen3.8-27b",
+    "logical_model": "Qwen/Qwen3.8-27B-FP8",
+    "temperature": 0,
+    "top_p": 1,
+    "thinking": false,
+    "max_output_tokens": 4096,
+    "client_context_guard": 65536,
+    "client_context_reserve": 2048,
+    "context_warning": "Client budget only, not a resolved provider context contract. Count full rendered inputs locally before execution; stop instead of shortening any input.",
+    "repeats": 2,
+    "repeat_order": "R1 ascending anonymous case_id; R2 reverse order; all fresh responses, no best-repeat selection.",
+    "technical_preflight_pairs": 4,
+    "technical_preflight_order": "First four anonymous case IDs. Fresh calls; do not reuse in formal repeats. All schema/evidence valid before continuing.",
+    "base_external_calls": 100,
+    "max_model_corrections_per_request": 1,
+    "min_request_interval_seconds": 2,
+    "max_in_flight": 4,
+    "max_transport_attempts_per_request": 4,
+    "max_external_attempts_total": 256,
+    "transport_policy": "Reuse paced relay Retry-After/backoff/deadline rules; cap all HTTP attempts globally. Keep model corrections separate from transport retries; do not record keys or key digests.",
+    "failure_policy": "Freeze the exact correction template and executable boundary tests before any authorization to launch. No semantic retries, no voting, no hidden schema pruning. Formal failures remain on all 48 case records; incomplete runs cannot claim full-panel success."
+  },
+  "comparison": {
+    "primary": "Independent X annotations versus each fresh probe response, separately for both repeats and mechanisms.",
+    "historical": ".32 saved shared_basis claims and .12/.32 main/final errors are diagnostic context only: the old tasks and response contracts differ. Do not present the historical comparison as a contemporaneous one-variable ablation.",
+    "metrics": ["raw and original-weight X confusion", "per-mechanism PRESENT misses and false PRESENT", "UNRESOLVED and terminal failure coverage", "bilateral evidence validity", "repeat flips on 48 paired cases", "model-correction rate", "external call count"],
+    "not_allowed": "No full-dataset precision/recall extrapolation, no treating 96 repeated outputs as 96 independent samples, no duplicate decision from X alone."
+  },
+  "prospective_feasibility_gate": {
+    "interpretation": "Engineering/component hypothesis screen only; does not replace existing full-development 75/75/79, protection or holdout gates.",
+    "all_required_annotations_frozen": true,
+    "formal_schema_and_evidence_completion": 1.0,
+    "confirmed_absent_target_detection_each_repeat_min": 0.8,
+    "confirmed_present_containment_protection_misses_each_repeat_max": 0,
+    "paired_x_label_flips_max": 2,
+    "failed_or_unresolved_confirmed_cases": "Count against the mechanism's correctness, never drop from its denominator.",
+    "decision": "If the subtask still misses boilerplate or harms substantive X protections, do not wire in a gate. If it passes, propose a separate same-policy full-chain paired experiment against a verified baseline. This protocol does not authorize that experiment.",
+    "stop": "No more than two prospectively specified attempts at this hypothesis before revisiting decomposition or requesting a separate stronger-model diagnostic. No mid-run prompt, panel or annotation changes."
+  }
+}

@@ -1,0 +1,32 @@
+Review both directions under this rubric:
+{{ coverage_rubric }}
+
+Identify each side's actual retained subject. Reconstruct complete clauses from
+shared and unique fragments, find the opposite meaning, and briefly explain before
+choosing COVERED, UNCOVERED or UNRESOLVED. Do not infer policy from a button,
+subject identity from an unbound Stories pointer, or a specific method from its topic.
+Choose ONLY that branch's fields. The program derives mode and inactive fields.
+All non-harmless unique meanings in a COVERED result require actual opposite support;
+all UNCOVERED results require an independent own unique loss source.
+Input truncated: {{ payload.long_document_evidence.truncated }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh complete review addressing
+only this safe structured validation issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

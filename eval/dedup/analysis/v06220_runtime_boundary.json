@@ -1,0 +1,14 @@
+{
+  "schema_version": "dedup-coverage-native-boundary-v1",
+  "passed": true,
+  "external_model_calls": 0,
+  "local_http_requests_per_boundary_test": 2,
+  "scope": "Real DataDesignerStage to local HTTP model endpoint and native response parser; not the full Ray executor or an external model",
+  "test_command": "/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup --confcutdir=tests/eval -m 'not gpu' -q -x --tb=short",
+  "tests_passed": 529,
+  "tests_deselected": 2,
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/coverage_runtime.py": "eb5d18c27607a596553546fac832ede1f058d23aa961c210c126395302dd1b6c",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_coverage_runtime.py": "7bcb0bdc67ca50a5146b56fffede4a2ce2c8283b2dc425e00e9284b259aa571f"
+  }
+}

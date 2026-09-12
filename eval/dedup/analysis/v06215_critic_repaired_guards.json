@@ -1,0 +1,200 @@
+[
+  {
+    "review_id": "H0005",
+    "canonical_pair_id": "cp1_dd6dff0947e5794755d040ef20f1c5cee494ab8e92ebf80cfb0a557abe1dd8be",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0119",
+    "canonical_pair_id": "cp1_4ffa303ddd3d465a68f36fd0bc6d87a36e8853253880758b24b6470ef5852a1b",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0126",
+    "canonical_pair_id": "cp1_6aa11beef1206a27793597d60fb0adb6e06d6b699721c24a07e4dee62577d1cf",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0132",
+    "canonical_pair_id": "cp1_6e96d7a982432fdfca2aedb194dc5247af6bc865648f63d7a6f7862808d7a086",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0141",
+    "canonical_pair_id": "cp1_7c239971de0c1c213c6f29e9c7277465fbf8f49353db38ed600485ebf6968d30",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0277",
+    "canonical_pair_id": "cp1_26066ffbc0c8f015981e25b8c589bd34dbc9c365203d8ebf658456366b7f69b1",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0278",
+    "canonical_pair_id": "cp1_4b7d97c327fa800890c508c50569f1cdb33c574503e7dcb8d98ccb01c72d1831",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0298",
+    "canonical_pair_id": "cp1_c67351a3c242dc38dd5529a2cb941b4d33ae98e43831a26250906ec5f71b8857",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0413",
+    "canonical_pair_id": "cp1_fdae54f1cf6672a91ff5c83640f528c89a1cccdccf1ddebc6c82dbe39c5089e5",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0419",
+    "canonical_pair_id": "cp1_74a7ae01c5e7ae3b00c66c6bbfc48eaf8a50d3afb5e80880cf92ff2fbc5c8a8e",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0444",
+    "canonical_pair_id": "cp1_3072a102dc23f338910dd717ad3b94677ebf3f6fca7ea3e9e1c9bad87abe89cb",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0592",
+    "canonical_pair_id": "cp1_6a29b7d9546cfc612dc7a3da3075b92193860f53efb07b87522e38ff88a32576",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0594",
+    "canonical_pair_id": "cp1_f0f5eee139b22175e8756c74934cb51da3de68a331b550c5a6fc7b5b173a6555",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0606",
+    "canonical_pair_id": "cp1_7c5d1435ce3c6285e6a6b71aeb6e2c665ad055ff8960d9a478e4119aad2fb208",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0612",
+    "canonical_pair_id": "cp1_b95b2a23f378b2c33e52a55dd7676c413409cad92c72caa60da5dbdcaef9cee9",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0700",
+    "canonical_pair_id": "cp1_cfae9096c6adb56f4418f90a0d87279eb61a6a6682ffab82a1222fde7af1d6ca",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0809",
+    "canonical_pair_id": "cp1_cd28ad268f57d6d107248fa13c9b3ffe6723163cc29a6c6ea5e0ed7eca4a346b",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0825",
+    "canonical_pair_id": "cp1_325e48a4999ac60671a40cca7d6020d2fb27ca976347c97e54de8f73021a3be1",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0907",
+    "canonical_pair_id": "cp1_89acdf0e248d22549cfeece2a34c5b05ccff2c27341a9048e89e660f3de6b5ba",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0959",
+    "canonical_pair_id": "cp1_42b4d8ca39bedc11dd6454a28d9f11e02126874712064446297be0c0a8b89e57",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0964",
+    "canonical_pair_id": "cp1_3ed7da23474deea2c1dded01aa5bac56c51f2a28fcc12160f30229d1b7fd17cc",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  },
+  {
+    "review_id": "H0977",
+    "canonical_pair_id": "cp1_f96e74e6b8ea1acf3da4aaa5c4181ebd8d5fdcc25772908ed5140d4757bd1e88",
+    "final": {
+      "same_duplicate_group": "NO",
+      "a_can_replace_b": "NO",
+      "b_can_replace_a": "NO"
+    }
+  }
+]

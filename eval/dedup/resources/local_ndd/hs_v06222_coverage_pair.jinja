@@ -1,0 +1,41 @@
+Review the retained meaning in both directions under the supplied rubric:
+{{ coverage_rubric }}
+
+Before declaring an addition, find its closest opposite-side counterpart. Before
+declaring coverage, explain how that counterpart preserves the actual meaning.
+Provide independent record anchors and one strongest grounded witness per uncovered
+side. Review all unique spans; ordinary controls and language alone are not losses.
+Before returning: UNCOVERED -> NOT_COVERED, never MIXED. COVERED + HARMLESS_ONLY
+or NO_UNIQUE_SPANS -> empty coverage_counterpart_ids. COVERED + SEMANTIC_COUNTERPARTS
+or MIXED -> actual counterpart IDs. UNRESOLVED -> NOT_COVERED, empty counterparts.
+COVERED/UNRESOLVED -> inactive witness fields. Do not repair these combinations by
+concealing an actual uncovered proposition or by inventing an opposite-side passage.
+Input truncated: {{ payload.long_document_evidence.truncated }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh complete coverage review
+addressing only this safe structured validation issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}
+
+Final encoding check: each source_quote and counterpart_quote is a contiguous
+verbatim substring of ONE referenced span. Never join two unique spans across a
+shared span; describe other deltas in coverage_explanation. Keep all eight root
+fields and all 13 fields on EACH side, including empty coverage_counterpart_ids.
+Use the complete fictional side-object layout in the system instructions, but
+derive all IDs, quotes and decisions independently from this actual packet.

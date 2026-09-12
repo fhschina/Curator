@@ -1,0 +1,15 @@
+# The source supplies only model/runtime settings, never legacy judge columns.
+base_runner_config: hs_v06216_control_qwen_c64.yaml
+column_name: qwen_dedup_coverage_witness
+output_contract: dedup-retained-coverage-v1
+system_prompt_path: hs_v06220_coverage_system.jinja
+prompt_path: hs_v06220_coverage_pair.jinja
+rubric:
+  coverage: Judge each direction of retained meaning independently, not absence of contradiction.
+  evidence: Ground an uncovered proposition in an own-side unique quote and compare the closest opposite-side meaning.
+  no_match: A missing counterpart is not a conflicting value or proof of same-record identity.
+  covered: Review all unique spans and explain semantic counterparts or genuinely harmless controls.
+  record: Generic company, cookie, legal or checkout text does not independently identify a specific attached record.
+  non_main: Uncovered retained purpose, permission, identity, scope, state or explanation is material; ordinary controls alone are not.
+  translation: Faithful complete translation is covered; added or omitted functions and facts are not language differences.
+  unavailable: Incomplete input or insufficient semantic evidence is unresolved, never a guessed negative.

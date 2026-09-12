@@ -1,0 +1,11 @@
+contract_version: dedup-critic-retention-v2
+status: EXPERIMENT_NOT_RELEASE
+fixed_main: v0.6.2.12
+system_prompt_path: v06212_retention_v2_system.jinja
+prompt_path: v06212_retention_v2_pair.jinja
+rubric:
+  a_has_uncovered_content: A has material meaning absent from B; prove it from A_ONLY, not SHARED or B_ONLY.
+  b_has_uncovered_content: B has material meaning absent from A; prove it from B_ONLY, not SHARED or A_ONLY.
+  conflict: A concrete incompatible subject, value, obligation, state, function or membership. Different forums bound by otherwise identical terms still differ. Independent new sections alone do not conflict.
+  overlap_basis: Actual retained content including complete reused policies versus interface/acknowledgment-only overlap. Uncertain completeness is UNCERTAIN; equal non-main text is not automatically negative.
+  evidence: Bilateral exact own-span witnesses; every shared span accounted for before an interface-only containment veto. No model-owned version field or inverse action name.

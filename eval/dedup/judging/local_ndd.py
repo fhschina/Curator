@@ -30,6 +30,14 @@ from eval.dedup.config import (
     HS_V06210_PROMPT_VERSION,
     HS_V06211_POLICY_PROMPT_VERSION,
     HS_V06211_PROMPT_VERSION,
+    HS_V06212_PROMPT_VERSION,
+    HS_V06212_ROUTE_PROMPT_VERSION,
+    HS_V06213_EXACT_PROMPT_VERSION,
+    HS_V06213_PROMPT_VERSION,
+    HS_V06214_CONTROL_PROMPT_VERSION,
+    HS_V06214_PROMPT_VERSION,
+    HS_V06215_CONTROL_PROMPT_VERSION,
+    HS_V06215_PROMPT_VERSION,
     HS_V0627_PROMPT_VERSION,
     HS_V0628_PROMPT_VERSION,
     HS_V0629_PROMPT_VERSION,
@@ -39,6 +47,14 @@ from eval.dedup.config import (
 from eval.dedup.contracts import canonical_json_bytes, stable_record_id
 from eval.dedup.judging.boundary_critic import arbitrate_boundary_review, parse_boundary_review
 from eval.dedup.judging.payload import align_evidence_offsets
+from eval.dedup.judging.record_scope import (
+    arbitrate_record_scope,
+    arbitrate_record_scope_v8,
+    arbitrate_record_scope_v9,
+    complete_visible_equality,
+    parse_record_scope,
+)
+from eval.dedup.judging.retained_conflict import arbitrate_retained_conflict, parse_retained_conflict
 from eval.dedup.judging.schema import JUDGE_SCHEMA_V0, JUDGE_SCHEMA_V2, JUDGE_SCHEMA_V3, validate_judge_output
 from eval.dedup.judging.schema_v2 import derive_minhash_diagnostics
 from eval.dedup.judging.schema_v3 import unresolved_judge_output_v3
@@ -921,7 +937,12 @@ def _apply_asymmetric_record_binding_critic(  # noqa: PLR0911 - ordered policy g
 
 
 def _v3_span_ledger_target(  # noqa: PLR0911 - ordered immutable policy gates exit independently
-    parsed: dict[str, Any], ledger: dict[str, str], payload: dict[str, Any] | None, citation_issue: str | None
+    parsed: dict[str, Any],
+    ledger: dict[str, str],
+    payload: dict[str, Any] | None,
+    citation_issue: str | None,
+    *,
+    complete_message_translation: bool = False,
 ) -> tuple[dict[str, str], str]:
     packet = payload.get("semantic_diff_evidence") if isinstance(payload, dict) else None
     packet_status = packet.get("status") if isinstance(packet, dict) else None
@@ -977,7 +998,14 @@ def _v3_span_ledger_target(  # noqa: PLR0911 - ordered immutable policy gates ex
     if basis == "NONE":
         return reject("SPAN_NO_VERIFIED_SHARED_RECORD_BASIS")
     if translation == "COMPLETE_FAITHFUL":
-        if profile_a == profile_b == "SUBSTANTIVE_MAIN" and basis == "VERIFIED_SUBSTANTIVE_RECORD":
+        verified_translation = profile_a == profile_b == "SUBSTANTIVE_MAIN" and basis == "VERIFIED_SUBSTANTIVE_RECORD"
+        if complete_message_translation:
+            verified_translation |= (
+                profile_a == profile_b == "NON_MAIN_ONLY" and basis == "VERIFIED_EQUIVALENT_NON_MAIN_MESSAGE"
+            )
+            if {delta_a, delta_b} - {"NONE", "SEMANTICALLY_COVERED", "UNIVERSAL_UI_OR_REPETITION"}:
+                return reject("SPAN_TRANSLATION_WITH_UNCOVERED_DELTA")
+        if verified_translation:
             return (
                 {
                     "a_can_replace_b": "YES",
@@ -1706,6 +1734,14 @@ def _adapt_v3(
     span_ledger = span_ledger_result[0] if span_ledger_result is not None else None
     span_citations = span_ledger_result[1] if span_ledger_result is not None else []
     span_citation_issue = span_ledger_result[2] if span_ledger_result is not None else None
+    retained_review = (
+        parse_retained_conflict(record_binding_critic, payload)
+        if record_binding_policy in {"v6", "v7-exact", "v7", "v8", "v9"}
+        else None
+    )
+    record_scope = (
+        parse_record_scope(record_binding_critic, payload) if record_binding_policy in {"v7", "v8", "v9"} else None
+    )
     boundary_review = parse_boundary_review(record_binding_critic, payload) if record_binding_policy == "v4" else None
     scoped_review = (
         parse_scoped_review(
@@ -1718,7 +1754,7 @@ def _adapt_v3(
         else None
     )
     require(
-        (boundary_review is None and scoped_review is None) or span_ledger is not None,
+        (boundary_review is None and scoped_review is None and retained_review is None) or span_ledger is not None,
         "LOCAL_NDD_OUTPUT_INVALID",
         "boundary arbitration requires the span ledger",
     )
@@ -1738,12 +1774,38 @@ def _adapt_v3(
         if critic_result is not None
         else []
     )
+    if (
+        retained_review is not None
+        and retained_review.score not in {"NONE", "NOT_APPLICABLE", "UNRESOLVED"}
+        and not retained_review.issues
+    ):
+        critic_citations = list(dict.fromkeys([*retained_review.citations, *critic_citations]))
+    if record_scope is not None and not record_scope.issues:
+        critic_citations = list(dict.fromkeys([*record_scope.citations, *critic_citations]))
     contract_events = []
     replacements: dict[str, str] = {}
     ledger_rule = None
     if span_ledger is not None:
-        replacements, ledger_rule = _v3_span_ledger_target(parsed, span_ledger, payload, span_citation_issue)
-        if scoped_review is not None:
+        replacements, ledger_rule = _v3_span_ledger_target(
+            parsed,
+            span_ledger,
+            payload,
+            span_citation_issue,
+            complete_message_translation=record_binding_policy in {"v6-route", "v6", "v7-exact", "v7", "v8", "v9"},
+        )
+        if (
+            record_binding_policy in {"v7-exact", "v7", "v8", "v9"}
+            and replacements.get("a_can_replace_b") == replacements.get("b_can_replace_a") == "YES"
+            and complete_visible_equality(payload)
+        ):
+            replacements = {
+                **replacements,
+                "relation_type": "EXACT",
+                "material_difference": "NONE",
+                "primary_material_difference": "NONE",
+            }
+            critic_rule = "COMPLETE_VISIBLE_EXACT_IDENTITY_PROTECTED"
+        elif scoped_review is not None:
             legacy_target, legacy_rule = _apply_asymmetric_record_binding_critic(
                 replacements, span_ledger, critic_result
             )
@@ -1759,7 +1821,39 @@ def _adapt_v3(
             replacements, critic_rule = arbitrate_boundary_review(
                 replacements, span_ledger, boundary_review, _unresolved_span_target()
             )
-        elif record_binding_policy == "v3":
+        elif record_binding_policy in {"v6", "v7-exact", "v7", "v8", "v9"}:
+            main_target = replacements
+            legacy_target, legacy_rule = _apply_asymmetric_record_binding_critic(
+                replacements, span_ledger, critic_result
+            )
+            replacements, critic_rule = arbitrate_retained_conflict(
+                replacements,
+                span_ledger,
+                retained_review,
+                critic_verdict=critic_result[0],
+                legacy_target=legacy_target,
+                legacy_rule=legacy_rule,
+                unresolved=_unresolved_span_target(),
+            )
+            if record_scope is not None:
+                scope_arbitrator = (
+                    arbitrate_record_scope_v9
+                    if record_binding_policy == "v9"
+                    else arbitrate_record_scope_v8
+                    if record_binding_policy == "v8"
+                    else arbitrate_record_scope
+                )
+                replacements, critic_rule = scope_arbitrator(
+                    main_target,
+                    record_scope,
+                    retained_review,
+                    critic_result,
+                    legacy_target=replacements,
+                    legacy_rule=critic_rule,
+                    unresolved=_unresolved_span_target(),
+                    **({"ledger": span_ledger} if record_binding_policy in {"v8", "v9"} else {}),
+                )
+        elif record_binding_policy in {"v3", "v6-route"}:
             replacements, critic_rule = _apply_asymmetric_record_binding_critic(
                 replacements, span_ledger, critic_result
             )
@@ -1917,6 +2011,12 @@ def _adapt_v3(
                 for field, issues in scoped_review.issues.items()
                 for issue in issues
             )
+        if retained_review is not None:
+            parsed["reason_codes"].append(f"RETAINED_CONFLICT:{retained_review.score}")
+            parsed["reason_codes"].extend(f"RETAINED_CONFLICT_ISSUE:{issue}" for issue in retained_review.issues)
+        if record_scope is not None:
+            parsed["reason_codes"].append(f"RECORD_SCOPE:{record_scope.score}")
+            parsed["reason_codes"].extend(f"RECORD_SCOPE_ISSUE:{issue}" for issue in record_scope.issues)
         if boundary_review is not None:
             parsed["reason_codes"].extend(
                 f"BOUNDARY_{field.upper()}:{score}" for field, score in boundary_review.scores.items()
@@ -2144,7 +2244,19 @@ def _result_record(
         "provider_response_sha256": hashlib.sha256(canonical_json_bytes(raw_judge)).hexdigest(),
         "deterministic_repair_events": repair_events,
         "deterministic_repair_version": (
-            "v062-scoped-review-over-v0629-record-arbitration-v9"
+            "v062-retention-material-veto-coverage-consistency-v13"
+            if config.judge.prompt_version in {HS_V06215_CONTROL_PROMPT_VERSION, HS_V06215_PROMPT_VERSION}
+            else "v062-scoped-ownership-extension-preservation-v12"
+            if config.judge.prompt_version in {HS_V06214_CONTROL_PROMPT_VERSION, HS_V06214_PROMPT_VERSION}
+            else "v062-specific-record-scope-and-coverage-v11"
+            if config.judge.prompt_version == HS_V06213_PROMPT_VERSION
+            else "v062-complete-visible-exact-protection-v11"
+            if config.judge.prompt_version == HS_V06213_EXACT_PROMPT_VERSION
+            else "v062-complete-message-translation-retained-conflict-v10"
+            if config.judge.prompt_version == HS_V06212_PROMPT_VERSION
+            else "v062-complete-message-translation-route-only-v10"
+            if config.judge.prompt_version == HS_V06212_ROUTE_PROMPT_VERSION
+            else "v062-scoped-review-over-v0629-record-arbitration-v9"
             if config.judge.prompt_version in {HS_V06211_POLICY_PROMPT_VERSION, HS_V06211_PROMPT_VERSION}
             else "v062-evidence-scoped-boundary-arbitration-and-span-evidence-v8"
             if config.judge.prompt_version == HS_V06210_PROMPT_VERSION
@@ -2306,6 +2418,14 @@ def run_local_ndd_pending(
                         HS_V06210_PROMPT_VERSION,
                         HS_V06211_POLICY_PROMPT_VERSION,
                         HS_V06211_PROMPT_VERSION,
+                        HS_V06212_ROUTE_PROMPT_VERSION,
+                        HS_V06212_PROMPT_VERSION,
+                        HS_V06213_EXACT_PROMPT_VERSION,
+                        HS_V06213_PROMPT_VERSION,
+                        HS_V06214_CONTROL_PROMPT_VERSION,
+                        HS_V06214_PROMPT_VERSION,
+                        HS_V06215_CONTROL_PROMPT_VERSION,
+                        HS_V06215_PROMPT_VERSION,
                     }:
                         record_binding_critic = output_row.get(RECORD_BINDING_CRITIC_COLUMN)
                         require(
@@ -2326,7 +2446,21 @@ def run_local_ndd_pending(
                         payload=prepared[pair_id],
                         record_binding_critic=record_binding_critic,
                         record_binding_policy=(
-                            "v5"
+                            "v9"
+                            if config.judge.prompt_version
+                            in {HS_V06215_CONTROL_PROMPT_VERSION, HS_V06215_PROMPT_VERSION}
+                            else "v8"
+                            if config.judge.prompt_version
+                            in {HS_V06214_CONTROL_PROMPT_VERSION, HS_V06214_PROMPT_VERSION}
+                            else "v7"
+                            if config.judge.prompt_version == HS_V06213_PROMPT_VERSION
+                            else "v7-exact"
+                            if config.judge.prompt_version == HS_V06213_EXACT_PROMPT_VERSION
+                            else "v6"
+                            if config.judge.prompt_version == HS_V06212_PROMPT_VERSION
+                            else "v6-route"
+                            if config.judge.prompt_version == HS_V06212_ROUTE_PROMPT_VERSION
+                            else "v5"
                             if config.judge.prompt_version == HS_V06211_PROMPT_VERSION
                             else "v5-policy"
                             if config.judge.prompt_version == HS_V06211_POLICY_PROMPT_VERSION

@@ -1,0 +1,589 @@
+{
+  "schema_version": "dedup-v06218-main-ownership-audit-v1",
+  "diagnostic_only": true,
+  "eligible_for_release": false,
+  "interpretation": "Optimistic primary-state envelope from v8 source invariants: critic can preserve a main positive, veto or leave unresolved; it cannot reopen main no/no or reverse positive directions. This is not an attainable model score, a semantic oracle, or a full-development estimate.",
+  "source_root": "/raid/hfang/ihb/runs/v0.6.2.17-presentation-diagnostic",
+  "contract_digest": "6a3ea8a1ddfdfcfcbce533903a94526e745d0c7dc7711ec4b1fa82ce62440fc9",
+  "fixed_main_sha256": "6120474a56d024fc66f4345818f67115cd83fbe6b01cca9e9af80c0b82166f88",
+  "reference_sha256": "977eb95ba066655d03ff533ba98d5c5fe92fa3cb3f63148856159f39d09c1f2a",
+  "pairs": 258,
+  "locked_reference_decisions": [
+    {
+      "review_id": "H0060",
+      "canonical_pair_id": "cp1_5a5e2a9733ccd7bc4712ed91631be6580faa9d7cbf22c776ca390af5f831ea37",
+      "sample_weight": 1.13,
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0196",
+      "canonical_pair_id": "cp1_ac7f9cae06c13b19cd81347725658d64855e214f439d7d40979afe2537eaa5a9",
+      "sample_weight": 10.045,
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0320",
+      "canonical_pair_id": "cp1_446cd6f7ce5113fc82da0fe047b360538fb0d8ea740da28ea6ad51625a310e9d",
+      "sample_weight": 10.045,
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0361",
+      "canonical_pair_id": "cp1_6cc534b921c21d6075a5ad229ac37cf9095edcb45a2a531aa2083daa09ffd5a3",
+      "sample_weight": 8.568493150684931,
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "parser_noise",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0394",
+      "canonical_pair_id": "cp1_3facffbd466321f4a15a6ef9271571208aceaae0de12f32e7607688f3cac41ff",
+      "sample_weight": 8.568493150684931,
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "main": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "cohort": "material_content",
+      "cause": "positive_direction_owned_by_main",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ],
+        [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ],
+        [
+          "YES",
+          "NO",
+          "YES"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0451",
+      "canonical_pair_id": "cp1_e613556581cabfae13a9601e0f0b2d4c3d8cdfec0ce50017ad36bdc12ac61992",
+      "sample_weight": 1.13,
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "translation",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0470",
+      "canonical_pair_id": "cp1_7b227e37ca480e023743c441061ffcbfc5e2ad699fb9f813490992cc00e75d78",
+      "sample_weight": 1.13,
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "main": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "cohort": "translation",
+      "cause": "positive_direction_owned_by_main",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ],
+        [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ],
+        [
+          "YES",
+          "NO",
+          "YES"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0521",
+      "canonical_pair_id": "cp1_a2ef484ffca7f48b5056c6306ed7cf19851cfba412da597c3dc09cf58f6bbaa9",
+      "sample_weight": 10.045,
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0540",
+      "canonical_pair_id": "cp1_5d6fdecbb614fe0a90b4ba712977c433116e31ca134d6412e74adf58b619b68e",
+      "sample_weight": 10.045,
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0672",
+      "canonical_pair_id": "cp1_fff3482eb549be8b4549b4b8d643e3ecba28c0021ddedddb6c04eaf3b8853567",
+      "sample_weight": 10.045,
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0751",
+      "canonical_pair_id": "cp1_7a85c8455799ad37ce8dd335dc1010efd089590c68685b4fa90a981f30d4576a",
+      "sample_weight": 8.568493150684931,
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "main": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "cohort": "factual_state",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0811",
+      "canonical_pair_id": "cp1_dced1c083aac5d9d4988b11231da4441aae73e16a7d7d73dc19ccb87180d9e0a",
+      "sample_weight": 10.045,
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0847",
+      "canonical_pair_id": "cp1_d5af1b4c3b37c38832ed910750e760f843e57a70b310fa6a0687836ee446cbcb",
+      "sample_weight": 8.568493150684931,
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0938",
+      "canonical_pair_id": "cp1_b75d915023ab7e1b4df08b22d5db3dc9778603607a1e7c0e16116e7f645b4bab",
+      "sample_weight": 8.568493150684931,
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    },
+    {
+      "review_id": "H0998",
+      "canonical_pair_id": "cp1_d20215be0128058ccfd307ce3e8042f8c66b1a1da93a214081b517ba07cb7a77",
+      "sample_weight": 13.248571428571429,
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "main": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "cohort": "meaningful_addition",
+      "cause": "main_negative_or_unresolved",
+      "all_id_synthetic_score_combinations_reached": [
+        [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      ],
+      "synthetic_validation_errors": 0
+    }
+  ],
+  "locked_count": 15,
+  "optimistic_weighted_primary_envelope": 0.9422266293776754,
+  "synthetic_score_combinations_checked": 6720,
+  "synthetic_probe_note": "All known span IDs supplied as syntactic citations; arbitrary scores are not real semantic proofs. Missing citation/packet checks remain active. No responses are used as candidate predictions or training labels.",
+  "main_only_metrics": {
+    "unweighted": {
+      "rows": 258,
+      "weight_total": 258,
+      "primary_decision_exact": 0.748062015503876,
+      "taxonomy_exact": 0.4496124031007752,
+      "duplicate_precision": 0.6855345911949685,
+      "duplicate_recall": 0.9008264462809917,
+      "duplicate_f1": 0.7785714285714286,
+      "true_positive": 109,
+      "false_positive": 50,
+      "false_negative": 12,
+      "true_negative": 85,
+      "unresolved": 2
+    },
+    "weighted": {
+      "rows": 258,
+      "weight_total": 2072.772211350298,
+      "primary_decision_exact": 0.7161142097152658,
+      "taxonomy_exact": 0.5270833345134827,
+      "duplicate_precision": 0.582925594373086,
+      "duplicate_recall": 0.865856900455488,
+      "duplicate_f1": 0.6967645594030664,
+      "true_positive": 655.0517025440314,
+      "false_positive": 468.67954011741716,
+      "false_negative": 101.48405088062621,
+      "true_negative": 825.7398532289623,
+      "unresolved": 21.81706457925636
+    },
+    "over_group": 50,
+    "containment_over_group": 18,
+    "under_group": 12,
+    "containment_under_group": 9,
+    "cohorts": {
+      "boilerplate_only": {
+        "rows": 18,
+        "primary_decision_exact": 0.5555555555555556,
+        "weighted_primary_decision_exact": 0.5545141371023921,
+        "over_group": 8,
+        "under_group": 0
+      },
+      "canonical": {
+        "rows": 6,
+        "primary_decision_exact": 1,
+        "weighted_primary_decision_exact": 1,
+        "over_group": 0,
+        "under_group": 0
+      },
+      "chrome_only": {
+        "rows": 7,
+        "primary_decision_exact": 1,
+        "weighted_primary_decision_exact": 1,
+        "over_group": 0,
+        "under_group": 0
+      },
+      "factual_state": {
+        "rows": 17,
+        "primary_decision_exact": 0.47058823529411764,
+        "weighted_primary_decision_exact": 0.46554332061329895,
+        "over_group": 8,
+        "under_group": 0
+      },
+      "identical": {
+        "rows": 12,
+        "primary_decision_exact": 1,
+        "weighted_primary_decision_exact": 1,
+        "over_group": 0,
+        "under_group": 0
+      },
+      "identity_slot": {
+        "rows": 16,
+        "primary_decision_exact": 0.4375,
+        "weighted_primary_decision_exact": 0.44983358281258684,
+        "over_group": 9,
+        "under_group": 0
+      },
+      "list_membership": {
+        "rows": 2,
+        "primary_decision_exact": 0,
+        "weighted_primary_decision_exact": 0,
+        "over_group": 2,
+        "under_group": 0
+      },
+      "material_content": {
+        "rows": 11,
+        "primary_decision_exact": 0.8181818181818182,
+        "weighted_primary_decision_exact": 0.8280313324310765,
+        "over_group": 1,
+        "under_group": 0
+      },
+      "meaningful_addition": {
+        "rows": 94,
+        "primary_decision_exact": 0.7446808510638298,
+        "weighted_primary_decision_exact": 0.7499225651168636,
+        "over_group": 14,
+        "under_group": 10
+      },
+      "page_role": {
+        "rows": 20,
+        "primary_decision_exact": 0.6,
+        "weighted_primary_decision_exact": 0.6156576088239758,
+        "over_group": 8,
+        "under_group": 0
+      },
+      "parser_noise": {
+        "rows": 1,
+        "primary_decision_exact": 0,
+        "weighted_primary_decision_exact": 0,
+        "over_group": 0,
+        "under_group": 1
+      },
+      "translation": {
+        "rows": 54,
+        "primary_decision_exact": 0.9629629629629629,
+        "weighted_primary_decision_exact": 0.9839909240408258,
+        "over_group": 0,
+        "under_group": 1
+      }
+    },
+    "confidence_tiers": {
+      "LOW": {
+        "rows": 2,
+        "primary_decision_accuracy": 0.5,
+        "weighted_primary_decision_accuracy": 0.6072572861689265,
+        "duplicate_group_accuracy": 0.5,
+        "weighted_duplicate_group_accuracy": 0.6072572861689265
+      },
+      "MEDIUM": {
+        "rows": 256,
+        "primary_decision_accuracy": 0.75,
+        "weighted_primary_decision_accuracy": 0.717272176789606,
+        "duplicate_group_accuracy": 0.7578125,
+        "weighted_duplicate_group_accuracy": 0.7220009458053273
+      }
+    },
+    "semantic_ledger": {},
+    "relation_matrix": {
+      "CANONICAL_EXACT": {
+        "NEAR_SURFACE": 3
+      },
+      "CONTAINMENT": {
+        "CONTAINMENT": 30,
+        "RELATED_NON_DUPLICATE": 9
+      },
+      "EXACT": {
+        "EXACT": 12
+      },
+      "NEAR_SURFACE": {
+        "CONTAINMENT": 2,
+        "NEAR_SURFACE": 62,
+        "RELATED_NON_DUPLICATE": 3
+      },
+      "RELATED_NON_DUPLICATE": {
+        "CONTAINMENT": 9,
+        "NEAR_SURFACE": 21,
+        "RELATED_NON_DUPLICATE": 54
+      },
+      "UNRELATED": {
+        "CONTAINMENT": 8,
+        "NEAR_SURFACE": 2,
+        "RELATED_NON_DUPLICATE": 20,
+        "UNRELATED": 1
+      },
+      "UNRESOLVED": {
+        "UNRESOLVED": 1
+      },
+      "VERSION_RELATED": {
+        "CONTAINMENT": 1,
+        "NEAR_SURFACE": 9,
+        "RELATED_NON_DUPLICATE": 7,
+        "UNRESOLVED": 1,
+        "VERSION_RELATED": 3
+      }
+    }
+  },
+  "new_model_calls": 0,
+  "reference_or_weights_changed": false
+}

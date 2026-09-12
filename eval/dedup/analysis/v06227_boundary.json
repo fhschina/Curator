@@ -1,0 +1,26 @@
+{
+  "schema_version": "dedup-typed-policy-boundary-v1",
+  "created_at_utc": "2026-09-10T19:15:23.573756+00:00",
+  "passed": true,
+  "external_model_calls": 0,
+  "local_http_requests": 12,
+  "full_boundary_tests_passed": 4,
+  "full_module_tests_passed": 22,
+  "cpu_tests_passed": 756,
+  "cpu_ray_tests_skipped": 26,
+  "gpu_tests_deselected": 2,
+  "owned_ray_address": "127.0.0.1:52652",
+  "native_mixed_branch_echo": "both arms preserved all three typed branches exactly; first and encoded retry requests matched pre-rendering",
+  "single_block_contrast_validated_pairs": 147,
+  "candidate_matches_prior_typed_messages": true,
+  "pre_boundary_unit_assertion_fix": "judge_retried_pairs is the native/outer union, not outer-only; test now asserts retried=0 and judge_retried_pairs=1 for one native correction; production accounting unchanged",
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/policy_runtime.py": "1e68962cebd4aeae414399b8129826da3b58b6e88f4771d40fbef87f5caaf11a",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/policy_experiment.py": "244a43d921c5f48a049b51c686c334927e3a72e0b067f2eb80194554f788ab0f",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_policy_runtime.py": "bd8f37e809cad63104ca15cffd03881ff539cd5dd395641bde381378f007baef",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_policy_experiment.py": "83f2e370242f7b88b0aef782c149cb10dbfbdf05f79a737ceccd7803b9697eca",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06227_control_qwen_c16.yaml": "468f76f3952fb407d690237f07a4dbdfc6666afcd330d21b8904beabc07b2bcd",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06227_proposition_qwen_c16.yaml": "ae2dbcd03e12c366ea72f74d042b29ac3a13d7a04cc0adda39851a0d372a0f3f",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/v06227_experiment.json": "cf3e9a0e7ea2cc8e4050c9d75004f0194ba0ac867f0237da30cadeefed8be8c6"
+  }
+}

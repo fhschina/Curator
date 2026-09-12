@@ -1,0 +1,33 @@
+Reconstruct A and B propositions from shared and side-specific fragments before
+claiming a loss. For each decisive delta name its actual meaning, its counterpart
+or absence, and its function: covered UI, same-record addition, independent record,
+or identity/state/permission boundary. Then assign the three consistent scores.
+
+An Accept button does not erase B's written continued-browsing consent condition.
+A Stories/byline pointer alone does not prove an unseen article. Added FAQ actions
+are retained; headings whose meaning is in the shared answers can be covered.
+New access restrictions are permission changes even in a long substantive policy;
+absence of a contradictory sentence does not make them ordinary extensions.
+Preserve actual differing recipients, SKUs, directory paths, dates and list members.
+Give each active field its OWN real bilateral anchor and decisive delta citations.
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment addressing
+this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

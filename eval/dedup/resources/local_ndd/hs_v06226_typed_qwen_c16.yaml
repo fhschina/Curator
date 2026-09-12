@@ -1,0 +1,17 @@
+base_runner_config: hs_v06216_control_qwen_c64.yaml
+base_selection_config: hs_v06225_proposition_qwen_c16.yaml
+column_name: qwen_dedup_coverage_witness
+output_contract: dedup-retained-coverage-v3
+system_prompt_path: hs_v06226_typed_system.jinja
+prompt_path: hs_v06226_typed_pair.jinja
+rubric:
+  proposition: Compare full clauses across shared and unique fragments before committing to a typed result; a lexical fragment alone is not a new proposition.
+  anchor: Each side needs an independent retained record or message subject. Shared chrome cannot bind a one-sided listing; actual private-profile subjects still matter.
+  consent: Equivalent continued-use consent remains equivalent with optional buttons. Only actual new purposes, conditions, permissions or states are retained losses, not imagined clicks or defaults.
+  identity: Distinguish actual profile/record/recipient identity from an unbound Stories pointer alongside the same site prose; preserve real biography, service targets and members.
+  extension: Specific contact, application subject or FAQ steps are not implied by topic. Actual same-record additions differ from conflicting fields or empty shared anchors.
+  covered: Review every unique ID. Mark an ID harmless only if its entire meaning is harmless; all remaining unique meanings require actual opposite semantic support. Purely harmless or no-unique sides may cite explanatory context without claiming semantic counterparts.
+  uncovered: Supply one own unique loss source, an actual opposite counterpart if one exists, type, comparison relation and concrete consequence. Missing content is not an invented contrary policy.
+  unresolved: Provide only the unresolved branch and checked IDs; do not fabricate evidence or default to a negative.
+  typed: Emit only the selected branch fields. Program-derived mode and inactive fields are not model guesses. Strict raw schema and exact evidence checks remain required.
+  translation: Faithful complete translation retains meaning; explicit missing conditions are not automatically faithful. Common wording does not erase retained non-main obligations or access conditions.

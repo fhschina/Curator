@@ -1,0 +1,26 @@
+{
+  "schema_version": "dedup-composite-format-boundary-v1",
+  "created_at_utc": "2026-09-10T23:21:39.148935+00:00",
+  "passed": true,
+  "external_model_calls": 0,
+  "full_boundary_tests_passed": 4,
+  "cpu_tests_passed": 921,
+  "cpu_tests_skipped": 38,
+  "gpu_deselected": 2,
+  "local_http_responses_final_boundary": 14,
+  "native_first_retry_stages": [
+    "main",
+    "critic"
+  ],
+  "strict_raw_pruning_disabled": true,
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/composite_format_runtime.py": "c60310eaaf453253c07744da555da3fdbe809d8d2ff92f6a99ea62f3e3456656",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/composite_format_experiment.py": "87ac6504fa9a80ab44115c712478fe9813ee880ac5a66a7d07685c086f5d2567",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_composite_format_runtime.py": "1971fb92e5c0c1b85b8aca66ae6a6c6e15e65249da70b35e87b215fb01c231ba",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_composite_format_experiment.py": "6f2a4b19110b3df4417d2aef98d655425fe577ba91ee57b7556e50bcbec9539d",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06230_format_qwen_c16.yaml": "2ad7aad98e491bfda7d015d90b73b5c35302033ebe8f5f4cf451e464f40dd011",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06230_branch_format.jinja": "b956ec7020ea2b8da5451173fde377b58c9e6a837780892f722b0f32059b88b5",
+    "/raid/hfang/ihb/composite-format-cpu-tests-final.xml": "1d9895d2d41f0fcb909e7b012802cad4fd7122ad82d4211ca96b36f390b4956c",
+    "/raid/hfang/ihb/composite-format-native-boundary-final.xml": "5c2c8787e321683b4b5917b705638dff13c3b46d3105074e134a53d7d87fca09"
+  }
+}

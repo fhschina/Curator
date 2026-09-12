@@ -1,0 +1,25 @@
+{
+  "schema_version": "dedup-routed-coverage-boundary-v1",
+  "passed": true,
+  "external_model_calls": 0,
+  "full_boundary_tests_passed": 4,
+  "local_http_requests_in_successful_full_boundary_invocation": 8,
+  "routine_tests_passed": 592,
+  "routine_tests_skipped": 10,
+  "routine_gpu_tests_deselected": 2,
+  "full_module_tests_with_owned_ray": 18,
+  "scope": "Both arms and initial/encoded retry feedback: real JSONL reader, Ray Data, DataDesigner, local HTTP, raw trace, writer and strict version-specific binding. Coverage call ownership precedes requests; all public pairs retained.",
+  "full_boundary_command": "RAY_ADDRESS=127.0.0.1:52648 COVERAGE_TEST_RAY_ADDRESS=127.0.0.1:52648 /raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup/test_coverage_experiment.py --confcutdir=tests/eval -s -q -x --tb=short",
+  "routine_command": "/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup --confcutdir=tests/eval -m 'not gpu' -q -x --tb=short",
+  "skip_scope": "Four current and six historical full-Ray cases require explicitly owned Ray; current four passed separately.",
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/coverage_experiment.py": "a256f6b58f5c3d8b6e455805c0e1965d50574039240fd0ba31d90ab5f6cb8149",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_coverage_experiment.py": "5149985cdf85372845f349c2421f2dffe59e4cc4d09fe1bc781381c663634d2e",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/v06222_experiment.json": "5bf4546e5fec40cf2a4e7e5c178367a3c095c739c0f03f6ea6a976f16f238202",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06221_control_qwen_c64.yaml": "3bbf01980c46c9b0da81816126c29b59b685d06e568eacc83fb4d9f497e84c47",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06222_coverage_qwen_c64.yaml": "27ca84c2fe565d0e783dae55a1fff82afae1d03b2bb7be5e5553ab670af01513",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06222_coverage_system.jinja": "79f9101077200ef63e898eecc944423303d480235ced8adfa69b6b5a5d2987e9",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06222_coverage_pair.jinja": "4781cd535eaf0007a71cd26cd5c6c60fd1dc180ef5cd5d22c47c7dd13166bf26",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/coverage_routing.py": "f5c7442941befc861433fd43b66dfe299b25983376e6ab147a795bd5cb38fbbe"
+  }
+}

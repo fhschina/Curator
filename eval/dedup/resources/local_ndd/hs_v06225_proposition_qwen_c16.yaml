@@ -1,0 +1,19 @@
+base_runner_config: hs_v06216_control_qwen_c64.yaml
+column_name: qwen_dedup_coverage_witness
+output_contract: dedup-retained-coverage-v2
+response_field_order: evidence_then_decision
+system_prompt_path: hs_v06225_proposition_system.jinja
+prompt_path: hs_v06225_proposition_pair.jinja
+rubric:
+  proposition: Reconstruct each complete retained clause from shared and unique fragments, locate its actual opposite counterpart, and briefly explain the comparison before final status.
+  anchor: Each side must independently represent the same substantive record; shared chrome cannot bind a one-sided listing. Non-main messages still have actual subjects, purposes and states.
+  consent: Two paraphrases of continued-use consent remain equivalent with optional Accept or Settings buttons. An explicit contrary prerequisite is material; a button or withdrawal option alone asserts no default or past action.
+  identity: A private-profile title binds the named person to the access message. An isolated Stories pointer beside unchanged site prose does not bind that person as the prose subject; actual biography or members remain retained.
+  extension: Specific application contact, address, subject or FAQ steps are not implied by topic or common practice. Same-method translation is coverage; changed values are conflicts, not missing fields.
+  non_main: Real data-use purposes, obligations, definitions, access conditions and consequences remain material; do not equate messages only because they share a template or are consistent.
+  translation: Reconstruct complete translated or paraphrased clauses; changed explicit conditions and actual missing retained clauses are not automatically faithful translation.
+  selection: Select one own unique source ID for a decisive loss and one opposite/shared counterpart if present; program-extracted exact text proves provenance, not entailment. Never fabricate a loss on a side with no unique spans.
+  mode: UNCOVERED uses NOT_COVERED and active evidence. MIXED means all meanings covered plus harmless UI. HARMLESS_ONLY and NO_UNIQUE_SPANS have no coverage counterparts.
+  inactive: Covered or unresolved sides require NONE loss, empty witness and consequence, and NOT_APPLICABLE relation. Include every schema field; do not rewrite a real loss to satisfy schema.
+  contrast: CONTRADICTS needs an actual contrary proposition; mere absence uses NO_EQUIVALENT_FOUND, never a presumed opt-in default, click or record state.
+  scope: Byte-exact identity belongs to the deterministic router. Same record needs bilateral substantive anchors; unresolved scope remains unresolved.

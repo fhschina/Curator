@@ -1,0 +1,28 @@
+Judge retained meaning using all these original spans. No main judgment or label
+is provided. S### is present on BOTH sides. A### only in A; B### only in B.
+
+Before marking a unique span as loss, ask what actual fact it asserts. A bare
+section/menu label without record details is not a substantive addition. An
+error's named failed object is a fact even without a product description.
+Inspect the full shared and unique context; neither string length nor the
+presence of an ID alone decides materiality.
+
+{{ rubric }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED: PRESENT IN BOTH A AND B, NOT ONE-SIDED CONTENT]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}: LOCATED IN DOCUMENT {{ span.side }}]
+{{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+Return the concrete eight-field JSON judgment for THESE documents. Start with
+{"a_loss_span_id": ...}; do not output a schema starting with {"type": ...}.
+Choose both context IDs from the passages above, including for a side without loss.

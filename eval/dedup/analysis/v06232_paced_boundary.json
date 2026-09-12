@@ -1,0 +1,21 @@
+{
+  "schema_version": "dedup-paced-native-boundary-v1",
+  "created_at_utc": "2026-09-11 00:55:21 UTC",
+  "passed": true,
+  "external_model_calls": 0,
+  "full_boundary_tests_passed": 4,
+  "cpu_tests_passed": 1012,
+  "cpu_tests_skipped": 50,
+  "gpu_deselected": 2,
+  "local_upstream_requests": 24,
+  "local_429_receipts": 2,
+  "native_model_corrections": 0,
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/paced_relay.py": "b8a22c26ec93d763bd0a4052fb8272ea1b8e55f5c9b5eed809cfc0260e034540",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/paced_development.py": "d0edc299c8d19d24bd13043e10f25c198b20eb5f3c6dbe3d367ddd8ca3ece2b9",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_paced_relay.py": "822a13fc5389692befe69db4eee733a6cbdde7d2a7a2daeec687a7735cf56af0",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_paced_development.py": "d46c11a1d76f9d930d36ef778915cfa214442731a4043e2770be9b47f4070c16",
+    "/raid/hfang/ihb/paced-native-boundary-final.xml": "0678362f3212c81b86361886ffde608613bcad0a0f0c58094758633a8ca5d844",
+    "/raid/hfang/ihb/paced-cpu-tests.xml": "7a809fb2083f25e2bdbddc37fde70596a843c1a9f3fd52ce909e839c0bc8084c"
+  }
+}

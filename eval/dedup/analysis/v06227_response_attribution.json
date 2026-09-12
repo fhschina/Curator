@@ -1,0 +1,242 @@
+{
+  "schema_version": "dedup-typed-policy-attribution-v1",
+  "diagnostic_contract_digest": "2369ce14f3c3a04417c97714420c22428aa111464ea83f3b8e80fc9df555f62f",
+  "external_model_calls": 0,
+  "reference_changed": false,
+  "cells": {
+    "repeat_1_control": {
+      "over_group_by_cohort": {
+        "meaningful_addition": 5,
+        "boilerplate_only": 6,
+        "factual_state": 6,
+        "page_role": 7,
+        "list_membership": 1,
+        "identity_slot": 3,
+        "material_content": 1
+      },
+      "over_group_by_relation": {
+        "NEAR_SURFACE": 16,
+        "CONTAINMENT": 13
+      },
+      "containment_over_group_main_profiles": {
+        "substantive_main/substantive_main": 13
+      },
+      "outer_failures": [
+        {
+          "review_id": "H0154",
+          "canonical_pair_id": "cp1_ec759fb512246b9e58d76791e9ff5613a57dd64c68b87fdcb0d7fdf3deaad9d6",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0333",
+          "canonical_pair_id": "cp1_cdcd4674fd2e466156ad71b338e3adf8d41d1bb686a24862f00444e606aa34ee",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0825",
+          "canonical_pair_id": "cp1_325e48a4999ac60671a40cca7d6020d2fb27ca976347c97e54de8f73021a3be1",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0878",
+          "canonical_pair_id": "cp1_2c5cfe085d56f32fde9351d21de242a8f7d8d67ddb9c125fe87eafd584e57f81",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0289",
+          "canonical_pair_id": "cp1_062ec341abc8638606b627850368740039b2f815a2bac98d8d6ef322c99624aa",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        }
+      ]
+    },
+    "repeat_1_coverage": {
+      "over_group_by_cohort": {
+        "meaningful_addition": 4,
+        "page_role": 8,
+        "factual_state": 5,
+        "boilerplate_only": 4,
+        "list_membership": 1,
+        "identity_slot": 6,
+        "material_content": 1
+      },
+      "over_group_by_relation": {
+        "NEAR_SURFACE": 19,
+        "CONTAINMENT": 10
+      },
+      "containment_over_group_main_profiles": {
+        "substantive_main/substantive_main": 10
+      },
+      "outer_failures": [
+        {
+          "review_id": "H0066",
+          "canonical_pair_id": "cp1_036a71baebab1146e230df07b1d3ea7f20d7b45b629ffe0d9fd9bcec17718bc2",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "TYPED_OUTPUT_MISSING",
+            "details": {},
+            "message": "every called pair requires its response"
+          }
+        },
+        {
+          "review_id": "H0878",
+          "canonical_pair_id": "cp1_2c5cfe085d56f32fde9351d21de242a8f7d8d67ddb9c125fe87eafd584e57f81",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        }
+      ]
+    },
+    "repeat_2_control": {
+      "over_group_by_cohort": {
+        "boilerplate_only": 6,
+        "page_role": 7,
+        "identity_slot": 4,
+        "factual_state": 6,
+        "meaningful_addition": 5,
+        "list_membership": 1,
+        "material_content": 1
+      },
+      "over_group_by_relation": {
+        "CONTAINMENT": 11,
+        "NEAR_SURFACE": 19
+      },
+      "containment_over_group_main_profiles": {
+        "substantive_main/substantive_main": 11
+      },
+      "outer_failures": [
+        {
+          "review_id": "H0333",
+          "canonical_pair_id": "cp1_cdcd4674fd2e466156ad71b338e3adf8d41d1bb686a24862f00444e606aa34ee",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0158",
+          "canonical_pair_id": "cp1_6b5494d205f846b0561a6098016e7a9daf0888f0c6b966f88fa56ebaafd49ba2",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0878",
+          "canonical_pair_id": "cp1_2c5cfe085d56f32fde9351d21de242a8f7d8d67ddb9c125fe87eafd584e57f81",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        }
+      ]
+    },
+    "repeat_2_coverage": {
+      "over_group_by_cohort": {
+        "page_role": 8,
+        "identity_slot": 5,
+        "meaningful_addition": 5,
+        "factual_state": 5,
+        "list_membership": 1,
+        "boilerplate_only": 5,
+        "material_content": 1
+      },
+      "over_group_by_relation": {
+        "NEAR_SURFACE": 20,
+        "CONTAINMENT": 10
+      },
+      "containment_over_group_main_profiles": {
+        "substantive_main/substantive_main": 10
+      },
+      "outer_failures": [
+        {
+          "review_id": "H0907",
+          "canonical_pair_id": "cp1_89acdf0e248d22549cfeece2a34c5b05ccff2c27341a9048e89e660f3de6b5ba",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0458",
+          "canonical_pair_id": "cp1_2a81d0e930b0e5a02e7695a1a84fb2d5d656562499e2c9261550a5a4e5b095a7",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0005",
+          "canonical_pair_id": "cp1_dd6dff0947e5794755d040ef20f1c5cee494ab8e92ebf80cfb0a557abe1dd8be",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        },
+        {
+          "review_id": "H0289",
+          "canonical_pair_id": "cp1_062ec341abc8638606b627850368740039b2f815a2bac98d8d6ef322c99624aa",
+          "outer_attempt": 1,
+          "issue": {
+            "code": "ParserException",
+            "message": "local NDD runtime failed before producing a valid batch"
+          }
+        }
+      ]
+    }
+  },
+  "paired_transitions": {
+    "1": {
+      "changed_pairs": 23,
+      "corrected": 12,
+      "regressed": 7,
+      "changed_but_still_wrong": 4
+    },
+    "2": {
+      "changed_pairs": 20,
+      "corrected": 11,
+      "regressed": 7,
+      "changed_but_still_wrong": 2
+    }
+  },
+  "dropped_native_row": {
+    "cell": "repeat_1_coverage",
+    "review_id": "H0066",
+    "canonical_pair_id": "cp1_036a71baebab1146e230df07b1d3ea7f20d7b45b629ffe0d9fd9bcec17718bc2",
+    "input_index_0based": 35,
+    "worker_log": "/raid/hfang/ihb/r27diag/session_2026-09-10_19-13-47_997395_275071/logs/worker-9239aefa3a207abb835545ab6c405c27f122553a0259c224e05e7ddf-1a000000-292153.err",
+    "worker_log_sha256": "7b17e6f642283a486da83c2e297a287b6388811de047b8303b018d232a1d3806",
+    "cause_excerpt": "  | Cause: The model output from 'Qwen/Qwen3.8-27B-FP8' could not be parsed into the requested format while running generation for column 'qwen_dedup_coverage_witness'. Validation detail: Response doesn't match requested <response_schema> 'anchor_a_ids' is a required property Failed validating 'required' in schema: {'type': 'object', 'additionalProperties': False, 'required': ['contract_version', ",
+    "native_solution_excerpt": "  | Solution: The response appears to have been cut off because it reached max_tokens, causing the parse failure. Increase inference_parameters.max_tokens in the model config and try again.",
+    "native_trace_not_retained_in_row_output": true,
+    "http_200_excess_over_base_plus_outer_plus_retained_native_corrections": 2,
+    "interpretation": "This dropped pair is already in the outer retry union. Two additional HTTP 200 requests lack saved row-level assistant traces. The worker log records repeated scope explanation and max-token truncation; retained native-correction counts are not complete response traces."
+  }
+}

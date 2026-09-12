@@ -1,0 +1,43 @@
+{
+  "policy_version": "dedup-composite-containment-policy-v1",
+  "policy_status": "USER_APPROVED",
+  "review_method": "PREDICTION_AWARE_AI_DEVELOPMENT_REVIEW_NOT_GOLD",
+  "reference_changed": false,
+  "runtime_changed": false,
+  "cases": {
+    "H0048": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S003", "A001", "A002"], "note": "募捐诉求加作者简介；独立作者不再自动否决，但须区分具体募捐正文与全站募捐 banner。"},
+    "H0060": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "B001"], "note": "共享 Client/Year 及占位文字，B 增摄影师姓名和职业；须核对记录主体绑定及占位正文，不能只以新增姓名判身份冲突。"},
+    "H0132": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S002", "A001", "A002"], "note": "旧负例；共享 Unimar 服务/FAA 认证介绍，A 加 utilities 灯具说明。须核实公司介绍是否实质 X；独立产品用途本身不是公司身份冲突。"},
+    "H0196": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S003", "S005", "A001"], "note": "共享三段具体文章摘要，A 加 Taylor Swift 广告指针。須核对 Y 是否有独立可见实质含义，不能从未见视频补内容，也不能只把多一段当列表冲突。"},
+    "H0208": {"status": "NONEMPTY_GATE_REVIEW", "direction": null, "evidence_ids": ["S001", "S004", "A001"], "note": "共享通用配送退货文字，A 才有镜框尺寸。新政策不证明这些共享模板是实质 X；原正标签不自动获确认。"},
+    "H0320": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S002", "A001", "A003", "A005"], "note": "共享具名市政联系人，A 加更多联系人和独立税务新闻。独立新闻不再否决；还须核对联系人集合是否承载实际成员/完整性含义，不能凭字符包含跳过。"},
+    "H0394": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S006", "S009", "B001", "A005", "B002"], "note": "同一 Burns Archive，B 增 Organization Type；列表重排应核对覆盖，不是独立 Y 问题。Museum 等字段是否已被 A 蕴含仍需判断。"},
+    "H0492": {"status": "NONEMPTY_GATE_REVIEW", "direction": null, "evidence_ids": ["S001", "A001", "A002"], "note": "共享订房平台的无佣金/平台介绍，A 加具体公寓位置和隐私。须辨平台模板与独立实质介绍；不因新规则自动认可原 containment。"},
+    "H0521": {"status": "SUPPORTED_COMPOSITE", "direction": "B_REPLACES_A", "evidence_ids": ["S001", "S002", "S003", "B001", "B004", "B005"], "note": "A 的具体 2025 闭馆通知、预约期限与服务说明完整保留于 B；B 增科幻馆藏及作者信息。没有改写原通知，独立馆藏不再否决单向包含。"},
+    "H0540": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S005", "S007", "S014", "A001", "A005", "B001", "B004"], "note": "共享天气网站历史和预报方法，B 加实际天气预报；A 署名在 B 文末也有，不能仅看差异 span 判丢失。剩余为网站介绍是否实质 X 与站点标题保留边界。"},
+    "H0666": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S002", "A001", "A002", "B001"], "note": "旧负例；共享账户个人数据说明，A 增运输方式页面介绍。Newsletter/Stay Connected 不单独证明角色冲突；账户说明的正文属性与实际功能还需核对。"},
+    "H0672": {"status": "NONEMPTY_GATE_REVIEW", "direction": null, "evidence_ids": ["S001", "S002", "B001", "B002"], "note": "共享尺码帮助/退换模板，只有 B 描述 Shihara 耳环。不能把对侧无商品正文的空锚点当成复合包含证据。"},
+    "H0787": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S003", "S005", "S008", "B001", "B002"], "note": "共享具体 Editor's picks 摘要，B 增 Whirl 杂志介绍。须核实共享摘要的正文属性；推荐标题本身不证明角色/成员冲突，也不能要求 Whirl 在 A 已有核心。"},
+    "H0800": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S002", "B001", "B002"], "note": "共享 PRO RETINA 资料库使用说明和 cookie，B 有 Suchergebnisse 具体条目。须核对实际结果集合语义，不把搜索结果变化自动当独立 Y 放行，也不凭标题编造 A 为零结果。"},
+    "H0822": {"status": "SUPPORTED_COMPOSITE", "direction": "A_REPLACES_B", "evidence_ids": ["S001", "S002", "A001", "A002", "A003", "A004"], "note": "B 的 Top Drawer 申请及折扣展位说明完整保留于 A，A 增 Bloomsbury 志愿者和独立实习机会。不同机会未替换原申请主体或条件，属于 X 加独立 Y。"},
+    "H0870": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S004", "S008", "A001", "A002", "A003"], "note": "共享实质商品评价并非只有支付模板；A 增眼镜盒描述及此商品的周期购买条件。独立商品本身不否决，但支付适用对象/权限条件是否变化仍须核对。"},
+    "H0926": {"status": "OTHER_BOUNDARY_REVIEW", "direction": null, "evidence_ids": ["S001", "S006", "S010", "B001", "B002", "B003"], "note": "共享多段具体安防文章摘要，B 增 POST Act 新闻。独立新闻不再否决；仍核对摘要的正文属性和实际集合/角色含义，不能只以 SHOULD READ 或 Single Post 判冲突。"},
+    "H0957": {"status": "NONEMPTY_GATE_REVIEW", "direction": null, "evidence_ids": ["S001", "S005", "S008", "B001", "B002"], "note": "共享重复配送与 special-order 文案，B 才有户外面料性能。仍须通过非空实质 X 门槛，文本长短和完整子串不替代该判断。"},
+    "H0998": {"status": "NONEMPTY_GATE_REVIEW", "direction": null, "evidence_ids": ["S001", "S003", "S006", "B001", "B005"], "note": "共享通用 Toyota 免责声明/保修，B 才有 52309-0C010 具体零件。须区分保修模板与独立政策正文；本次不自动把通用保修提升为 X。"}
+  },
+  "examples": [
+    {"id": "independent_addition", "a": "图书馆将在 5 月 5 日闭馆检修，8 月 4 日恢复预约。\n独立馆藏介绍：科幻论文集收录 1978 年会议论文。", "b": "图书馆将在 5 月 5 日闭馆检修，8 月 4 日恢复预约。", "directions": ["YES", "NO"], "relation": "CONTAINMENT", "material": "MAJOR", "primary_difference": "MAIN_CONTENT_ADDITION_DELETION", "note": "同一具体闭馆通知完整保留；新增馆藏不必属于闭馆记录。"},
+    {"id": "both_have_additions", "a": "天文馆周二开放。\n独立展览：海洋摄影展周五开幕。", "b": "天文馆周二开放。\n独立通知：游泳馆周三维修。", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "MAIN_CONTENT_ADDITION_DELETION", "note": "两侧各有未被对侧保留的实质 Y/Z。"},
+    {"id": "chrome_only", "a": "天文馆周二开放，成人票 20 元。\n导航：首页 | English | 返回顶部", "b": "天文馆周二开放，成人票 20 元。", "directions": ["YES", "YES"], "relation": "NEAR_SURFACE", "material": "MINOR", "primary_difference": "OTHER_MATERIAL", "note": "普通导航和语言切换不是实质增补，也不证明角色冲突。"},
+    {"id": "cookie_empty_anchor", "a": "我们使用 cookie。接受 | 设置\n相机 K7：重量 300 克，价格 500 元。", "b": "我们使用 cookie。接受 | 设置", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "MAIN_CONTENT_ADDITION_DELETION", "note": "仅 cookie 共性不能充当共享正文 X。"},
+    {"id": "disclaimer_empty_anchor", "a": "本站信息仅供参考。\n独立报道：河流治理项目今天完成，新增湿地 30 公顷。", "b": "本站信息仅供参考。", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "MAIN_CONTENT_ADDITION_DELETION", "note": "通用免责声明不是非空正文锚点。"},
+    {"id": "missing_record_field", "a": "相机 K7：重量 300 克。电池续航 8 小时。", "b": "相机 K7：重量 300 克。", "directions": ["YES", "NO"], "relation": "CONTAINMENT", "material": "MAJOR", "primary_difference": "MAIN_CONTENT_ADDITION_DELETION", "note": "同记录字段增补仍允许，不能因放宽复合文档而破坏。"},
+    {"id": "actual_sku_conflict", "a": "本商品 SKU K7，重量 300 克，电池续航 8 小时。", "b": "本商品 SKU K8，重量 300 克，电池续航 8 小时。", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "DOCUMENT_IDENTITY_CHANGE", "note": "相同规格不能覆盖实际所售 SKU 冲突。"},
+    {"id": "actual_state_conflict", "a": "申请项目 R：提交简历并通过面试。当前状态：开放申请。", "b": "申请项目 R：提交简历并通过面试。当前状态：已关闭，不再接受申请。", "directions": ["NO", "NO"], "relation": "VERSION_RELATED", "material": "MAJOR", "primary_difference": "OTHER_MATERIAL", "note": "同一项目的实际状态冲突，不是增补独立 Y。"},
+    {"id": "actual_role_conflict", "a": "账户服务。此表单通过邮箱和密码登录已有账户，不创建新账户。", "b": "账户服务。此表单通过邮箱和密码创建新账户，不登录已有账户。", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "PAGE_ROLE_CHANGE", "note": "明示表单功能互斥，不是把普通导航标题升级为冲突。"},
+    {"id": "actual_membership_conflict", "a": "本轮入选的完整名单，仅限：甲、乙。", "b": "本轮入选的完整名单，仅限：甲、乙、丙。", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "RESULT_SET_CHANGE", "note": "明确完整名单的成员冲突；不是任意两个文章板块都当封闭集合。"},
+    {"id": "faithful_translation", "a": "The library is closed on Mondays and opens at nine on Tuesdays.", "b": "图书馆周一闭馆，周二九点开放。", "directions": ["YES", "YES"], "relation": "NEAR_SURFACE", "material": "NONE", "primary_difference": "NONE", "note": "完整忠实翻译保留全部命题，material 为 NONE。"},
+    {"id": "equivalent_nonmain", "a": "我们使用 cookie。接受 | 设置", "b": "接受 | 设置。我们使用 cookie。", "directions": ["YES", "YES"], "relation": "NEAR_SURFACE", "material": "MINOR", "primary_difference": "OTHER_MATERIAL", "note": "两个等价 non-main 页面不需要制造正文 containment。"},
+    {"id": "truncated_unknown_remainder", "a": "项目申请要求：提交简历。", "b": "项目申请要求：提交简历。", "truncated": true, "directions": ["UNRESOLVED", "UNRESOLVED"], "relation": "UNRESOLVED", "material": "UNRESOLVED", "primary_difference": "UNRESOLVED", "note": "只有相同可见片段，实际输入截断；不得宣称完整 exact 或包含。"}
+  ]
+}

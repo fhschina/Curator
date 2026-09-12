@@ -1,0 +1,24 @@
+Check contextual compatibility BEFORE additions. Both addition kinds NONE does
+not imply equivalence: a supported context_conflict independently gives NO/NO.
+If a unique prefix/suffix reverses a shared claim, cite that modifier on its side
+and the shared assertion on the other. Do not invent a missing unique loss span.
+Then assess unique content: A's addition prevents B replacing A, and vice versa.
+The same-record and non-main-only vetoes do not apply. Proper subset direction
+does not depend on severity. Titles/navigation alone are not role conflicts.
+
+Field rubric:
+{{ rubric }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>

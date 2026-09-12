@@ -255,6 +255,300 @@ def _record_binding_critic(verdict: str, reasoning: str) -> dict[str, dict[str, 
     return {"record_binding_verdict": {"score": verdict, "reasoning": reasoning}}
 
 
+def _translated_message() -> tuple[dict, dict, dict]:
+    texts = {"A": "Nous utilisons des cookies essentiels.", "B": "Utilizziamo cookie essenziali."}
+    spans = [
+        {
+            "span_id": f"{side}001",
+            "kind": f"{side}_ONLY",
+            "side": side,
+            "start_char": 0,
+            "end_char": len(text),
+            "text": text,
+        }
+        for side, text in texts.items()
+    ]
+    rubric = _with_span_ledger(
+        _rubric_v3(),
+        profile_a="non_main_only",
+        profile_b="non_main_only",
+        basis="verified_equivalent_non_main_message",
+        basis_reasoning="A001 B001 express the same complete cookie message.",
+        delta_a="semantically_covered",
+        delta_a_reasoning="A001 is covered by B001.",
+        delta_b="semantically_covered",
+        delta_b_reasoning="B001 is covered by A001.",
+        translation="complete_faithful",
+        translation_reasoning="A001 B001 preserve the same purpose and permission.",
+    )
+    critic = _record_binding_critic("benign_non_record_delta", "A001 B001 are semantically equivalent.")
+    critic["retained_conflict"] = {"score": "none", "reasoning": "A001 B001 preserve purpose, target and role."}
+    return rubric, _span_payload(texts["A"], texts["B"], spans), critic
+
+
+@pytest.mark.parametrize(("policy", "expected"), [("v3", "NO"), ("v6-route", "YES"), ("v6", "YES")])
+def test_v06212_translation_route_is_versioned_and_preserves_exact_evidence(policy: str, expected: str) -> None:
+    from eval.dedup.judging.payload import validate_evidence_offsets
+
+    rubric, payload, critic = _translated_message()
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy=policy
+    )
+    assert result["a_can_replace_b"] == result["b_can_replace_a"] == expected
+    if expected == "YES":
+        assert result["relation_type"] == "NEAR_SURFACE"
+        assert result["material_difference"] == result["primary_material_difference"] == "NONE"
+        assert result["confidence_tier"] != "HIGH"
+    assert {span["side"] for span in result["evidence"]} == {"A", "B"}
+    validate_evidence_offsets(result, payload)
+
+
+@pytest.mark.parametrize("profile", ["non_main_only", "substantive_main"])
+@pytest.mark.parametrize(
+    "delta", ["material_non_main_message_change", "same_record_content_extension", "other_substantive_content"]
+)
+def test_v06212_complete_translation_cannot_override_an_uncovered_delta(profile: str, delta: str) -> None:
+    rubric, payload, critic = _translated_message()
+    for side in ("a", "b"):
+        rubric[f"span_content_profile_{side}"]["score"] = profile
+    rubric["span_shared_basis"]["score"] = (
+        "verified_substantive_record" if profile == "substantive_main" else "verified_equivalent_non_main_message"
+    )
+    rubric["span_a_delta"]["score"] = delta
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy="v6"
+    )
+    assert result["same_duplicate_group"] == "NO"
+    assert any("SPAN_TRANSLATION_WITH_UNCOVERED_DELTA" in r for r in result["reason_codes"])
+
+
+@pytest.mark.parametrize(
+    ("field", "score", "expected"),
+    [
+        ("span_hard_conflict", "legal_context", "NO"),
+        ("span_shared_basis", "none", "NO"),
+        ("span_shared_basis", "verified_substantive_record", "NO"),
+        ("span_content_profile_b", "substantive_main", "NO"),
+        ("span_translation_status", "unresolved", "UNRESOLVED"),
+    ],
+)
+def test_v06212_translation_never_bypasses_identity_or_conflict_gates(field: str, score: str, expected: str) -> None:
+    rubric, payload, critic = _translated_message()
+    rubric[field] = {"score": score, "reasoning": "A001 B001 establish the boundary."}
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy="v6"
+    )
+    assert result["same_duplicate_group"] == expected
+
+
+@pytest.mark.parametrize("failure", ["unknown_span", "missing_bilateral", "incomplete_packet"])
+def test_v06212_translation_fails_closed_on_missing_evidence(failure: str) -> None:
+    rubric, payload, critic = _translated_message()
+    if failure == "incomplete_packet":
+        payload["semantic_diff_evidence"]["status"] = "INCOMPLETE_LIMIT"
+        payload["long_document_evidence"]["truncated"] = True
+    else:
+        for field, item in rubric.items():
+            if field.startswith("span_"):
+                item["reasoning"] = "A999 B001" if failure == "unknown_span" else "A001"
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy="v6"
+    )
+    assert result["same_duplicate_group"] == "UNRESOLVED"
+    assert result["confidence_tier"] == "LOW"
+
+
+@pytest.mark.parametrize(
+    ("policy", "expected"), [("v6", "UNRESOLVED"), ("v7-exact", "YES"), ("v7", "YES"), ("v8", "YES"), ("v9", "YES")]
+)
+def test_v06213_exact_is_protected_from_impossible_critic_unique_span(policy: str, expected: str) -> None:
+    text = "Model Z troubleshooting instructions."
+    span = {
+        "span_id": "S001",
+        "kind": "SHARED",
+        "a_start_char": 0,
+        "b_start_char": 0,
+        "a_end_char": len(text),
+        "b_end_char": len(text),
+        "a_text": text,
+        "b_text": text,
+    }
+    payload = _span_payload(text, text, [span])
+    rubric = _with_span_ledger(_rubric_v3())
+    critic = _record_binding_critic("benign_non_record_delta", "S001 is identical on both sides; no unique spans.")
+    critic["retained_conflict"] = {"score": "none", "reasoning": "S001 is identical."}
+    critic["record_scope"] = {"score": "not_applicable", "reasoning": "Exact text."}
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy=policy
+    )
+    assert result["a_can_replace_b"] == result["b_can_replace_a"] == expected
+    if expected == "YES":
+        assert result["relation_type"] == "EXACT"
+        assert result["material_difference"] == "NONE"
+        assert "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_UNIQUE_SPAN" in result["reason_codes"]
+
+
+@pytest.mark.parametrize("policy", ["v7-exact", "v7", "v8", "v9"])
+def test_v06213_preserves_non_main_translation_and_bilateral_evidence(policy: str) -> None:
+    from eval.dedup.judging.payload import validate_evidence_offsets
+
+    rubric, payload, critic = _translated_message()
+    critic["record_scope"] = {
+        "score": "equivalent_complete_message",
+        "reasoning": "A001 B001 preserve the same complete message.",
+    }
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy=policy
+    )
+    assert result["same_duplicate_group"] == "YES"
+    assert result["material_difference"] == "NONE"
+    assert {e["side"] for e in result["evidence"]} == {"A", "B"}
+    validate_evidence_offsets(result, payload)
+
+
+@pytest.mark.parametrize(("policy", "expected"), [("v8", "YES"), ("v9", "NO")])
+def test_v06215_cited_permission_veto_reaches_substantive_profile(policy: str, expected: str) -> None:
+    rubric, payload, critic = _translated_message()
+    for side in ("a", "b"):
+        rubric[f"span_content_profile_{side}"]["score"] = "substantive_main"
+    rubric["span_shared_basis"]["score"] = "verified_substantive_record"
+    critic["record_scope"] = {"score": "same_specific_record", "reasoning": "A001 B001 identify the policy."}
+    critic["record_binding_verdict"] = {
+        "score": "non_main_policy_or_state_change",
+        "reasoning": "A001 B001 have different access conditions.",
+    }
+    critic["retained_conflict"] = {
+        "score": "policy_permission_change",
+        "reasoning": "A001 B001 preserve different access conditions.",
+    }
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy=policy
+    )
+    assert result["same_duplicate_group"] == expected
+    if policy == "v9":
+        assert result["primary_material_difference"] == "LEGAL_CONTEXT_CHANGE"
+
+
+def test_v06213_final_cannot_invent_record_scope_from_v06212_raw_outputs() -> None:
+    rubric, payload, critic = _translated_message()
+    with pytest.raises(DedupEvaluationError, match="record-scope proof"):
+        adapt_ndd_judge_output(
+            rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy="v7"
+        )
+
+
+def test_v06212_final_contract_does_not_accept_historical_critic_as_new_evidence() -> None:
+    rubric, payload, critic = _translated_message()
+    critic.pop("retained_conflict")
+    with pytest.raises(DedupEvaluationError, match="LOCAL_NDD_OUTPUT_INVALID"):
+        adapt_ndd_judge_output(
+            rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy="v6"
+        )
+
+
+@pytest.mark.parametrize(
+    ("score", "expected"), [("none", "YES"), ("policy_permission_change", "NO"), ("unresolved", "UNRESOLVED")]
+)
+@pytest.mark.parametrize("policy", ["v6", "v8", "v9"])
+def test_v06212_non_main_translation_preserves_specific_conflict_review(
+    score: str, expected: str, policy: str
+) -> None:
+    rubric, payload, critic = _translated_message()
+    critic["record_binding_verdict"]["score"] = "non_main_policy_or_state_change"
+    critic["retained_conflict"] = {"score": score, "reasoning": "A001 B001 establish the permission comparison."}
+    critic["record_scope"] = {"score": "generic_context_only", "reasoning": "A001 B001 are reusable policy messages."}
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy=policy
+    )
+    assert result["same_duplicate_group"] == expected
+
+
+@pytest.mark.parametrize(
+    ("delta", "conflict", "expected"),
+    [
+        ("Accept Settings", "none", "YES"),
+        ("Water-heater installation services", "identity_or_service_target_change", "NO"),
+        ("Search results for replacement heaters", "page_role_change", "NO"),
+    ],
+)
+def test_v06212_non_main_proof_uses_exact_shared_context_and_material_delta(
+    delta: str, conflict: str, expected: str
+) -> None:
+    from eval.dedup.judging.payload import validate_evidence_offsets
+
+    shared = "We use necessary cookies."
+    text_b = f"{shared} {delta}"
+    spans = [
+        {
+            "span_id": "S001",
+            "kind": "SHARED",
+            "a_start_char": 0,
+            "a_end_char": len(shared),
+            "a_text": shared,
+            "b_start_char": 0,
+            "b_end_char": len(shared),
+            "b_text": shared,
+        },
+        {
+            "span_id": "B001",
+            "kind": "B_ONLY",
+            "side": "B",
+            "start_char": len(shared) + 1,
+            "end_char": len(text_b),
+            "text": delta,
+        },
+    ]
+    payload = _span_payload(shared, text_b, spans)
+    rubric = _with_span_ledger(
+        _rubric_v3(),
+        profile_a="non_main_only",
+        profile_b="non_main_only",
+        basis="verified_equivalent_non_main_message",
+        delta_b="universal_ui_or_repetition",
+        delta_b_reasoning="B001 provisionally treated as chrome.",
+    )
+    critic = _record_binding_critic(
+        "separate_record_or_template_attachment", "S001 establishes the message; B001 is the delta to audit."
+    )
+    critic["retained_conflict"] = {
+        "score": conflict,
+        "reasoning": "S001 is A's complete message and B's context. B001 adds the visible difference.",
+    }
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy="v6"
+    )
+    assert result["same_duplicate_group"] == expected
+    assert any(e["quote"] == delta for e in result["evidence"])
+    validate_evidence_offsets(result, payload)
+
+
+@pytest.mark.parametrize(
+    ("verdict", "expected"),
+    [
+        ("atomic_same_record_extension", "YES"),
+        ("benign_non_record_delta", "YES"),
+        ("separate_record_or_template_attachment", "NO"),
+    ],
+)
+def test_v06212_preserves_record_binding_and_real_addition_direction(verdict: str, expected: str) -> None:
+    rubric, payload, critic = _translated_message()
+    for side in ("a", "b"):
+        rubric[f"span_content_profile_{side}"]["score"] = "substantive_main"
+    rubric["span_shared_basis"]["score"] = "verified_substantive_record"
+    rubric["span_translation_status"]["score"] = "not_translation"
+    rubric["span_b_delta"]["score"] = "same_record_content_extension"
+    critic["record_binding_verdict"]["score"] = verdict
+    critic["retained_conflict"]["score"] = "not_applicable"
+    result = adapt_ndd_judge_output(
+        rubric, JUDGE_SCHEMA_V3, payload=payload, record_binding_critic=critic, record_binding_policy="v6"
+    )
+    assert result["same_duplicate_group"] == expected
+    if expected == "YES":
+        assert (result["a_can_replace_b"], result["b_can_replace_a"]) == ("NO", "YES")
+        assert result["relation_type"] == "CONTAINMENT"
+        assert result["material_difference"] == "MAJOR"
+
+
 @pytest.mark.parametrize(
     ("subtype", "expected"),
     [("equivalent_message_or_wrapper", "YES"), ("policy_proposition_change", "NO"), ("cookie_inventory_change", "NO")],

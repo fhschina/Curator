@@ -1,0 +1,34 @@
+Review both directions under this rubric:
+{{ coverage_rubric }}
+
+First bind each document's actual retained subject. Then reconstruct complete clauses
+from shared AND unique fragments, find the opposite meaning, and briefly explain that
+comparison before giving the final status. Do not infer a new policy from a button,
+a retained subject from a navigation pointer, or a specific method from the topic.
+An explicitly named private-profile subject and a concrete application method are
+retained, unlike an unbound Stories link or an implied ordinary action.
+One exact selected own-unique ID locates a loss; it does not define the full clause's
+meaning. Review every unique ID. Keep all fields, including inactive empty strings.
+UNCOVERED requires NOT_COVERED and a consistent actual loss witness, never MIXED.
+Input truncated: {{ payload.long_document_evidence.truncated }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh complete review addressing
+only this safe structured validation issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

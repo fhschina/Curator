@@ -1,0 +1,17 @@
+base_runner_config: hs_v06216_control_qwen_c64.yaml
+column_name: qwen_dedup_coverage_witness
+output_contract: dedup-retained-coverage-v2
+system_prompt_path: hs_v06223_selection_system.jinja
+prompt_path: hs_v06223_selection_pair.jinja
+rubric:
+  coverage: Judge all retained meaning in each direction, not absence of contradiction or lexical novelty.
+  anchor: Both sides must independently represent the same substantive record; shared store navigation cannot bind a one-sided tag/product listing or supply an empty record core.
+  extension: A new procedure, application method or missing field of the same anchored record can be material; conflicting values or independent members are not harmless or ordinary extensions.
+  non_main: Retained purpose, permission, controller, target, role, scope and actual state matter; ordinary buttons and generic validation chrome alone do not establish a conflict.
+  translation: Complete faithful translation and repetition preserve meaning; changed permissions, actions or facts are not language differences.
+  selection: Choose one own unique source_span_id and optionally one opposite/shared counterpart_span_id; the program extracts exact source text, but selected IDs alone do not prove entailment.
+  inactive: Covered or unresolved sides require NONE loss type, empty witness selections and consequence, and NOT_APPLICABLE counterpart relation; do not omit required fields.
+  mode: UNCOVERED always uses NOT_COVERED; MIXED means fully covered semantic counterparts plus harmless UI; harmless-only or no-unique coverage has empty coverage_counterpart_ids.
+  scope: Byte-exact identity belongs to the deterministic router, not this critic; repetition and soft hyphens can be covered but cannot generate IDENTICAL_TEXT.
+  uncertainty: Unresolved evidence remains unresolved; do not relabel a difficult loss as harmless to avoid evidence.
+  concise: Explain the retained proposition and checked counterpart in one or two sentences; no long internal debate or generated quote fields.

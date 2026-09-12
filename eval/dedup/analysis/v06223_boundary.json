@@ -1,0 +1,28 @@
+{
+  "schema_version": "dedup-selection-boundary-v1",
+  "passed": true,
+  "external_model_calls": 0,
+  "full_boundary_tests_passed": 4,
+  "local_http_requests_in_successful_full_boundary_invocation": 8,
+  "routine_tests_passed": 627,
+  "routine_tests_skipped": 14,
+  "routine_gpu_tests_deselected": 2,
+  "full_experiment_module_tests_with_owned_ray": 14,
+  "scope": "Both arms initial/encoded retry feedback, real Ray Data reader/native DataDesigner/local HTTP/writer/binding. Coverage includes a selected Thai own-unique witness, true containment direction and original evidence; control keeps all pairs.",
+  "full_boundary_command": "RAY_ADDRESS=127.0.0.1:52649 COVERAGE_TEST_RAY_ADDRESS=127.0.0.1:52649 /raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup/test_selection_experiment.py --confcutdir=tests/eval -s -q -x --tb=short",
+  "routine_command": "/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup --confcutdir=tests/eval -m 'not gpu' -q -x --tb=short",
+  "skip_scope": "Four current and ten historical full-Ray tests require an explicitly owned head; current four passed separately.",
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/selection_experiment.py": "be68160108a04c2382db5a21d605299ea54a44126e491343f7c002929b0d99eb",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/coverage_selection.py": "1d76c5e7db69cad4d0911c64001573c34977b88ffeb89de233c9001815986b9b",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/selection_runtime.py": "0e3b45a931f75ed6751a27cc847717ec5323832d0688594cbee1870704832fb9",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_selection_experiment.py": "ff3e22a204676f15a0ac628616a47a1bd347116906020c47dae432d78cd1bcc3",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_selection_runtime.py": "d297fc8c2914d7a54fc4cef83d3fab64b827abe9ec69b2a19bcced278d6feb8b",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_coverage_selection.py": "9cb7c595fb6605a1e32aa981e3c0a918669d21e651c9159915f8638e31434b90",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/v06223_experiment.json": "d4d638748cc05dc516dca112b8c03884c10544e3789c6a59ac3077b73e286dc7",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06223_selection_system.jinja": "89482f9b09220e271799a1e6b58700d6da8ce21d034446b5924e8daef5839d9e",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06223_selection_pair.jinja": "6fc7b6fc6b57ebc7061a6728b8eb6fb0a13547a41aa8bf5f2ec3f4388e3ac3f3",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06223_selection_qwen_c16.yaml": "487ee493253eba9efc0a74ee2f7bcaf34e8bf51a07f8a1ea9ea26d51ec5030b6",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06221_control_qwen_c64.yaml": "3bbf01980c46c9b0da81816126c29b59b685d06e568eacc83fb4d9f497e84c47"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "dedup-directional-boundary-v1",
+  "created_at_utc": "2026-09-11T00:14:54.425115+00:00",
+  "passed": true,
+  "external_model_calls": 0,
+  "full_boundary_tests_passed": 4,
+  "cpu_tests_passed": 996,
+  "cpu_tests_skipped": 46,
+  "gpu_deselected": 2,
+  "local_http_responses_final_boundary": 24,
+  "native_first_and_actual_outer_retry_stages": [
+    "main",
+    "critic"
+  ],
+  "strict_raw_pruning_disabled": true,
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/directional_witness.py": "10bcdefddf358e6a48257b8ff7b657d3e6619a17e6f1b024557e5b72e67586d9",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/directional_runtime.py": "4f4f5cb5becf4df3925a036d3c021f98f21ccf38b2e5be58c874c8a93d8a5655",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/directional_experiment.py": "d05d91e39946b85df8d518cf426bcb7167fb4f9a0809a7fb7045d2d9b66a4413",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_directional_witness.py": "a3f16cc4713532181dbc16b4a0047fde516a6093bb6ff82c9c840926b374635c",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_directional_runtime.py": "d3058b19c09e62c60f749563f4c1b8eb43f585cf538d0dfc4f87ee904f086873",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_directional_experiment.py": "80ad40f0ea782ca0f8b536215f463bb0654dbc0814eb8ad2f7029c8b5eae54a3",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06232_directional_qwen_c16.yaml": "78bb2d63159513ba9aaf4aa61513e48e3f318c56d84c97be7d46d103018bdb91",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06232_directional_system.jinja": "f2b57b1d97ad04106a9e08284bddf67c24de8b97ea3ba3a9a5f462c8f5624195",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06232_directional_pair.jinja": "96bda74de7aec59dd39f3319cb6a3cc434cb5a642c0a12ff4c259fef55f2f1e2",
+    "/raid/hfang/ihb/directional-cpu-tests-final.xml": "592ee57e434e1622521faf8801a04d1f250e9b33df2768d96b0c4c00866cd3aa",
+    "/raid/hfang/ihb/directional-native-boundary-final.xml": "bb06637073f256ee0c7cdf52bb18948fa48f2463292b856e8531c86ca89186cf"
+  }
+}

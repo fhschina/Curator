@@ -1,0 +1,2133 @@
+{
+  "schema_version": "dedup-v06214-component-attribution-v1",
+  "interpretation": "Same saved v14 responses and payload; counterfactual arbitration, zero additional calls. Main-only includes complete-message translation routing. Not release evidence.",
+  "raw_source_digests": {
+    "/raid/hfang/ihb/runs/v0.6.2.14-local-development/runtime/block-0001/run-001/attempt_01/output/d91e5be6b593.jsonl": "0629f5cd1cbacbccc9fb6d39e96d8ed169d1d559f4a7d313d435164c5d8875d2"
+  },
+  "operations": {
+    "preflight": {
+      "http_events": 41,
+      "http_status_counts": {
+        "200": 41
+      },
+      "first_completed_at_utc": "2026-09-10T03:52:35.074181+00:00",
+      "last_completed_at_utc": "2026-09-10T03:53:29.901695+00:00"
+    },
+    "runtime": {
+      "http_events": 548,
+      "http_status_counts": {
+        "200": 523,
+        "429": 25
+      },
+      "first_completed_at_utc": "2026-09-10T03:54:16.272532+00:00",
+      "last_completed_at_utc": "2026-09-10T03:57:29.967431+00:00"
+    }
+  },
+  "modes": {
+    "main_only_translation_route": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.7161142097152658,
+          "taxonomy_exact": 0.5270833345134827,
+          "duplicate_precision": 0.582925594373086,
+          "duplicate_recall": 0.865856900455488,
+          "duplicate_f1": 0.6967645594030664,
+          "true_positive": 655.0517025440314,
+          "false_positive": 468.67954011741716,
+          "false_negative": 101.48405088062621,
+          "true_negative": 825.7398532289623,
+          "unresolved": 21.81706457925636
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.748062015503876,
+          "taxonomy_exact": 0.4496124031007752,
+          "duplicate_precision": 0.6855345911949685,
+          "duplicate_recall": 0.9008264462809917,
+          "duplicate_f1": 0.7785714285714286,
+          "true_positive": 109,
+          "false_positive": 50,
+          "false_negative": 12,
+          "true_negative": 85,
+          "unresolved": 2
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.5555555555555556,
+            "weighted_primary_decision_exact": 0.5545141371023921,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.47058823529411764,
+            "weighted_primary_decision_exact": 0.46554332061329895,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.4375,
+            "weighted_primary_decision_exact": 0.44983358281258684,
+            "over_group": 9,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.8181818181818182,
+            "weighted_primary_decision_exact": 0.8280313324310765,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.7446808510638298,
+            "weighted_primary_decision_exact": 0.7499225651168636,
+            "over_group": 14,
+            "under_group": 10
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.6,
+            "weighted_primary_decision_exact": 0.6156576088239758,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9629629629629629,
+            "weighted_primary_decision_exact": 0.9839909240408258,
+            "over_group": 0,
+            "under_group": 1
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 19,
+          "violations": [
+            "H0444",
+            "H0964",
+            "H0959",
+            "H0278",
+            "H0119",
+            "H0592",
+            "H0132",
+            "H0790",
+            "H0419",
+            "H0141",
+            "H0828",
+            "H0267",
+            "H0612",
+            "H0480",
+            "H0700",
+            "H0253",
+            "H0594",
+            "H0977",
+            "H0413"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 13,
+          "violations": [
+            "H0444",
+            "H0964",
+            "H0959",
+            "H0592",
+            "H0419",
+            "H0612",
+            "H0480"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 5,
+          "violations": [],
+          "passed": true
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 3,
+          "violations": [],
+          "passed": true
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        }
+      },
+      "effects_to_actual": {
+        "BOTH_CORRECT": 172,
+        "REPAIRED": 22,
+        "REGRESSED": 21,
+        "BOTH_WRONG": 43
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0005",
+          "canonical_pair_id": "cp1_dd6dff0947e5794755d040ef20f1c5cee494ab8e92ebf80cfb0a557abe1dd8be",
+          "sample_weight": 10.045,
+          "human_reason_code": "list_membership",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0023",
+          "canonical_pair_id": "cp1_0cfd4bec35f2e573645678641da984aa298a1764683f93f906f891e728c9d459",
+          "sample_weight": 1.13,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0048",
+          "canonical_pair_id": "cp1_8fcf24752562346e511a2559c0faf86592f3bff041d696266b1ae8f85a03f965",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0119",
+          "canonical_pair_id": "cp1_4ffa303ddd3d465a68f36fd0bc6d87a36e8853253880758b24b6470ef5852a1b",
+          "sample_weight": 10.045,
+          "human_reason_code": "boilerplate_only",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0126",
+          "canonical_pair_id": "cp1_6aa11beef1206a27793597d60fb0adb6e06d6b699721c24a07e4dee62577d1cf",
+          "sample_weight": 10.045,
+          "human_reason_code": "boilerplate_only",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0132",
+          "canonical_pair_id": "cp1_6e96d7a982432fdfca2aedb194dc5247af6bc865648f63d7a6f7862808d7a086",
+          "sample_weight": 10.045,
+          "human_reason_code": "page_role",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0141",
+          "canonical_pair_id": "cp1_7c239971de0c1c213c6f29e9c7277465fbf8f49353db38ed600485ebf6968d30",
+          "sample_weight": 10.045,
+          "human_reason_code": "boilerplate_only",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0146",
+          "canonical_pair_id": "cp1_430264711cc3aa539ae3e8bf17606145bad1290a2ca421cbad4297eadf8a9881",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "UNRESOLVED",
+            "a_can_replace_b": "UNRESOLVED",
+            "b_can_replace_a": "UNRESOLVED",
+            "relation_type": "UNRESOLVED",
+            "confidence_tier": "LOW",
+            "error": "UNRESOLVED"
+          }
+        },
+        {
+          "review_id": "H0168",
+          "canonical_pair_id": "cp1_f11549ee6c80569d287624f090bad585beb09b6ffadbe3a40b5f10224afb0b9d",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0208",
+          "canonical_pair_id": "cp1_fa41425a9afc22d77883a4f1331c0ecb3ea191b2df88ecf6311856477da7e9c9",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0243",
+          "canonical_pair_id": "cp1_8c2b7c8a0a09de30f932db97aff27707ade10dadc5f4e4ddda6a7d0742823477",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0249",
+          "canonical_pair_id": "cp1_d79b57cb6be09ec4f51315f1db3ea5065ef438672d784c64dba7a528d1141604",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0253",
+          "canonical_pair_id": "cp1_f0ca15c22dce611eca01dee9b0b1c92c4c5482ff534e3fc64ee7844edb8c94d7",
+          "sample_weight": 10.045,
+          "human_reason_code": "boilerplate_only",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "UNRESOLVED",
+            "a_can_replace_b": "UNRESOLVED",
+            "b_can_replace_a": "UNRESOLVED",
+            "relation_type": "UNRESOLVED",
+            "confidence_tier": "LOW",
+            "error": "UNRESOLVED"
+          }
+        },
+        {
+          "review_id": "H0277",
+          "canonical_pair_id": "cp1_26066ffbc0c8f015981e25b8c589bd34dbc9c365203d8ebf658456366b7f69b1",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "page_role",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0278",
+          "canonical_pair_id": "cp1_4b7d97c327fa800890c508c50569f1cdb33c574503e7dcb8d98ccb01c72d1831",
+          "sample_weight": 10.045,
+          "human_reason_code": "identity_slot",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0298",
+          "canonical_pair_id": "cp1_c67351a3c242dc38dd5529a2cb941b4d33ae98e43831a26250906ec5f71b8857",
+          "sample_weight": 13.248571428571429,
+          "human_reason_code": "factual_state",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0305",
+          "canonical_pair_id": "cp1_d1d696a8315cca5d6df1771e0f22a4c97c2ea21532c9f06a933e146a9ade8f48",
+          "sample_weight": 1.13,
+          "human_reason_code": "translation",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0347",
+          "canonical_pair_id": "cp1_354821595c1e7477c9ee811a4869e8c52c1cf76fa78f3eb4a1413829a9a0e1f3",
+          "sample_weight": 10.045,
+          "human_reason_code": "chrome_only",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "UNRESOLVED",
+            "a_can_replace_b": "UNRESOLVED",
+            "b_can_replace_a": "UNRESOLVED",
+            "relation_type": "UNRESOLVED",
+            "confidence_tier": "LOW",
+            "error": "UNRESOLVED"
+          }
+        },
+        {
+          "review_id": "H0413",
+          "canonical_pair_id": "cp1_fdae54f1cf6672a91ff5c83640f528c89a1cccdccf1ddebc6c82dbe39c5089e5",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "factual_state",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0419",
+          "canonical_pair_id": "cp1_74a7ae01c5e7ae3b00c66c6bbfc48eaf8a50d3afb5e80880cf92ff2fbc5c8a8e",
+          "sample_weight": 10.045,
+          "human_reason_code": "boilerplate_only",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0444",
+          "canonical_pair_id": "cp1_3072a102dc23f338910dd717ad3b94677ebf3f6fca7ea3e9e1c9bad87abe89cb",
+          "sample_weight": 10.045,
+          "human_reason_code": "boilerplate_only",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0492",
+          "canonical_pair_id": "cp1_65435daa2e0569b3b10195e5d942d53355ee63fae0a9b0b7c083dbe9bc87291a",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0545",
+          "canonical_pair_id": "cp1_deb4807dfe81ea7368f7450badc9cfe8de1730f4337bb4d8e176e3c798105da6",
+          "sample_weight": 1.13,
+          "human_reason_code": "translation",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0592",
+          "canonical_pair_id": "cp1_6a29b7d9546cfc612dc7a3da3075b92193860f53efb07b87522e38ff88a32576",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0594",
+          "canonical_pair_id": "cp1_f0f5eee139b22175e8756c74934cb51da3de68a331b550c5a6fc7b5b173a6555",
+          "sample_weight": 10.045,
+          "human_reason_code": "identity_slot",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0606",
+          "canonical_pair_id": "cp1_7c5d1435ce3c6285e6a6b71aeb6e2c665ad055ff8960d9a478e4119aad2fb208",
+          "sample_weight": 10.045,
+          "human_reason_code": "identity_slot",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0612",
+          "canonical_pair_id": "cp1_b95b2a23f378b2c33e52a55dd7676c413409cad92c72caa60da5dbdcaef9cee9",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0700",
+          "canonical_pair_id": "cp1_cfae9096c6adb56f4418f90a0d87279eb61a6a6682ffab82a1222fde7af1d6ca",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "identity_slot",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0711",
+          "canonical_pair_id": "cp1_02819a3db3494a14d888c794457d808c3b37a8a31e8f9969b2cf1efcc452b6a6",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0736",
+          "canonical_pair_id": "cp1_6609a6a836251269449491f4a8debd72077982cf39c3a2db74784e1c87b2cee3",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0748",
+          "canonical_pair_id": "cp1_6ce61cc7c1b58bda318f66a824127eb8afa30f1cda89e4f2ecda9913e0aa59ec",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "chrome_only",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0787",
+          "canonical_pair_id": "cp1_3460ceb516b2f71b50c2268fa7ed6ea444a9f1b992926d48d738fb64d084f0f4",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0800",
+          "canonical_pair_id": "cp1_cc2d8ca6e11b819a58d821474f3182e49b4c14aaf5b9c9ec39e7e23031322a1a",
+          "sample_weight": 13.248571428571429,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0809",
+          "canonical_pair_id": "cp1_cd28ad268f57d6d107248fa13c9b3ffe6723163cc29a6c6ea5e0ed7eca4a346b",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "identity_slot",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0822",
+          "canonical_pair_id": "cp1_617ddba4a46041dfa503360fc65a57cca7926bf3f4bce7c3e2d0b637ecc17776",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0824",
+          "canonical_pair_id": "cp1_c617ab7732fd2ae7bc8e96867af724ab1c8b23105ce7beddc4db85e048c729df",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0825",
+          "canonical_pair_id": "cp1_325e48a4999ac60671a40cca7d6020d2fb27ca976347c97e54de8f73021a3be1",
+          "sample_weight": 10.045,
+          "human_reason_code": "identity_slot",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0870",
+          "canonical_pair_id": "cp1_fdc047798b74f755ac7b2138d38cc31ce55d66a2bc11d5b47bd04e54d241422a",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0907",
+          "canonical_pair_id": "cp1_89acdf0e248d22549cfeece2a34c5b05ccff2c27341a9048e89e660f3de6b5ba",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "identity_slot",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0926",
+          "canonical_pair_id": "cp1_3e491118b72969bf9fee321900b06e0c392c1f0c9ab9bc6983590d1e40b935c1",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0957",
+          "canonical_pair_id": "cp1_3bb0a6a8c21d776d48594dc0ab3cfe9135e60e510546b267c187eaf55222050d",
+          "sample_weight": 10.045,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          }
+        },
+        {
+          "review_id": "H0959",
+          "canonical_pair_id": "cp1_42b4d8ca39bedc11dd6454a28d9f11e02126874712064446297be0c0a8b89e57",
+          "sample_weight": 10.045,
+          "human_reason_code": "material_content",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0964",
+          "canonical_pair_id": "cp1_3ed7da23474deea2c1dded01aa5bac56c51f2a28fcc12160f30229d1b7fd17cc",
+          "sample_weight": 10.045,
+          "human_reason_code": "page_role",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0977",
+          "canonical_pair_id": "cp1_f96e74e6b8ea1acf3da4aaa5c4181ebd8d5fdcc25772908ed5140d4757bd1e88",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "identity_slot",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        }
+      ],
+      "false_containment": 18,
+      "reference_containment_misses": 9
+    },
+    "actual_v8": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.7310140488937448,
+          "taxonomy_exact": 0.49449095183039377,
+          "duplicate_precision": 0.6585407081953639,
+          "duplicate_recall": 0.6239991296200106,
+          "duplicate_f1": 0.6408047791064513,
+          "true_positive": 472.0776516634053,
+          "false_positive": 244.77651663405078,
+          "false_negative": 284.45810176125235,
+          "true_negative": 1039.5978767123277,
+          "unresolved": 50.47555772994129
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.751937984496124,
+          "taxonomy_exact": 0.42248062015503873,
+          "duplicate_precision": 0.7652173913043478,
+          "duplicate_recall": 0.7272727272727273,
+          "duplicate_f1": 0.7457627118644068,
+          "true_positive": 88,
+          "false_positive": 27,
+          "false_negative": 33,
+          "true_negative": 107,
+          "unresolved": 5
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8333333333333334,
+            "weighted_primary_decision_exact": 0.827084822614351,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.7142857142857143,
+            "weighted_primary_decision_exact": 0.7526302635178926,
+            "over_group": 0,
+            "under_group": 2
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.5882352941176471,
+            "weighted_primary_decision_exact": 0.636025067354964,
+            "over_group": 6,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.9375,
+            "weighted_primary_decision_exact": 0.934597765032845,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.9090909090909091,
+            "weighted_primary_decision_exact": 0.9208363342512894,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.5851063829787234,
+            "weighted_primary_decision_exact": 0.5925318867559477,
+            "over_group": 12,
+            "under_group": 27
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.75,
+            "weighted_primary_decision_exact": 0.7579532117318626,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9259259259259259,
+            "weighted_primary_decision_exact": 0.9679818480816516,
+            "over_group": 0,
+            "under_group": 3
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 33,
+          "violations": [
+            "H0790",
+            "H0828",
+            "H0267",
+            "H0480",
+            "H0253"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 19,
+          "violations": [
+            "H0480"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 3,
+          "violations": [
+            "H0347",
+            "H0748"
+          ],
+          "passed": false
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 2,
+          "violations": [
+            "H0347"
+          ],
+          "passed": false
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        }
+      },
+      "effects_to_actual": {
+        "BOTH_CORRECT": 194,
+        "BOTH_WRONG": 64
+      },
+      "changes_to_actual": [],
+      "false_containment": 7,
+      "reference_containment_misses": 26
+    },
+    "v7": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.7179002170155847,
+          "taxonomy_exact": 0.4855109524610664,
+          "duplicate_precision": 0.6629757914728835,
+          "duplicate_recall": 0.5880695834243106,
+          "duplicate_f1": 0.6232801868499769,
+          "true_positive": 444.89566536203534,
+          "false_positive": 226.16302348336583,
+          "false_negative": 311.6400880626223,
+          "true_negative": 1039.5978767123277,
+          "unresolved": 87.70254403131115
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7403100775193798,
+          "taxonomy_exact": 0.41472868217054265,
+          "duplicate_precision": 0.7727272727272727,
+          "duplicate_recall": 0.7024793388429752,
+          "duplicate_f1": 0.735930735930736,
+          "true_positive": 85,
+          "false_positive": 25,
+          "false_negative": 36,
+          "true_negative": 107,
+          "unresolved": 9
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8333333333333334,
+            "weighted_primary_decision_exact": 0.827084822614351,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.5714285714285714,
+            "weighted_primary_decision_exact": 0.6191341495511634,
+            "over_group": 0,
+            "under_group": 3
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.5882352941176471,
+            "weighted_primary_decision_exact": 0.636025067354964,
+            "over_group": 6,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.9375,
+            "weighted_primary_decision_exact": 0.934597765032845,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.9090909090909091,
+            "weighted_primary_decision_exact": 0.9208363342512894,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.5638297872340425,
+            "weighted_primary_decision_exact": 0.5737343602545639,
+            "over_group": 12,
+            "under_group": 29
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.75,
+            "weighted_primary_decision_exact": 0.7579532117318626,
+            "over_group": 3,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9259259259259259,
+            "weighted_primary_decision_exact": 0.9679818480816516,
+            "over_group": 0,
+            "under_group": 3
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 33,
+          "violations": [
+            "H0790",
+            "H0828",
+            "H0267",
+            "H0480",
+            "H0253"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 19,
+          "violations": [
+            "H0480"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 1,
+          "violations": [
+            "H0038",
+            "H0347",
+            "H0679",
+            "H0748"
+          ],
+          "passed": false
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 1,
+          "violations": [
+            "H0038",
+            "H0347"
+          ],
+          "passed": false
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        }
+      },
+      "effects_to_actual": {
+        "BOTH_CORRECT": 191,
+        "BOTH_WRONG": 64,
+        "REPAIRED": 3
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0038",
+          "canonical_pair_id": "cp1_9f78e30084d9ff63c6835f645c0afb9a9aab16970190ab93ed08d96c2019406f",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM",
+            "error": "UNDER_GROUP_RESOLVED"
+          },
+          "candidate": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0154",
+          "canonical_pair_id": "cp1_ec759fb512246b9e58d76791e9ff5613a57dd64c68b87fdcb0d7fdf3deaad9d6",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "page_role",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "UNRESOLVED",
+            "a_can_replace_b": "UNRESOLVED",
+            "b_can_replace_a": "UNRESOLVED",
+            "relation_type": "UNRESOLVED",
+            "confidence_tier": "LOW",
+            "error": "UNRESOLVED"
+          },
+          "candidate": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "LOW",
+            "error": "OVER_GROUP"
+          }
+        },
+        {
+          "review_id": "H0458",
+          "canonical_pair_id": "cp1_2a81d0e930b0e5a02e7695a1a84fb2d5d656562499e2c9261550a5a4e5b095a7",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "meaningful_addition",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "UNRESOLVED",
+            "a_can_replace_b": "UNRESOLVED",
+            "b_can_replace_a": "UNRESOLVED",
+            "relation_type": "UNRESOLVED",
+            "confidence_tier": "LOW",
+            "error": "UNRESOLVED"
+          },
+          "candidate": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "LOW",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0679",
+          "canonical_pair_id": "cp1_869f40cdb7b5e2e6b43d1392836374a884c6da6bc5e2cc59ecad0b7ea2102e39",
+          "sample_weight": 10.045,
+          "human_reason_code": "chrome_only",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source": {
+            "same_duplicate_group": "UNRESOLVED",
+            "a_can_replace_b": "UNRESOLVED",
+            "b_can_replace_a": "UNRESOLVED",
+            "relation_type": "UNRESOLVED",
+            "confidence_tier": "LOW",
+            "error": "UNRESOLVED"
+          },
+          "candidate": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "CORRECT"
+          }
+        },
+        {
+          "review_id": "H0797",
+          "canonical_pair_id": "cp1_16880dd2ef900660e77188cd4e372554d446a219a1b2202b8fe8cba157fcc816",
+          "sample_weight": 10.045,
+          "human_reason_code": "page_role",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "UNRESOLVED",
+            "a_can_replace_b": "UNRESOLVED",
+            "b_can_replace_a": "UNRESOLVED",
+            "relation_type": "UNRESOLVED",
+            "confidence_tier": "LOW",
+            "error": "UNRESOLVED"
+          },
+          "candidate": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          }
+        },
+        {
+          "review_id": "H0837",
+          "canonical_pair_id": "cp1_b9b1e1a3817827b585ddca73e35c070ea912ca771d78645afdce7da6fb7abf62",
+          "sample_weight": 8.568493150684931,
+          "human_reason_code": "factual_state",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "LOW",
+            "error": "OVER_GROUP"
+          }
+        }
+      ],
+      "false_containment": 5,
+      "reference_containment_misses": 27
+    },
+    "v7-exact": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.7310140488937448,
+          "taxonomy_exact": 0.49449095183039377,
+          "duplicate_precision": 0.6494403519116771,
+          "duplicate_recall": 0.6239991296200106,
+          "duplicate_f1": 0.6364656039179288,
+          "true_positive": 472.0776516634053,
+          "false_positive": 254.82151663405074,
+          "false_negative": 284.45810176125235,
+          "true_negative": 1039.5978767123277,
+          "unresolved": 40.43055772994129
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.751937984496124,
+          "taxonomy_exact": 0.42248062015503873,
+          "duplicate_precision": 0.7586206896551724,
+          "duplicate_recall": 0.7272727272727273,
+          "duplicate_f1": 0.7426160337552743,
+          "true_positive": 88,
+          "false_positive": 28,
+          "false_negative": 33,
+          "true_negative": 107,
+          "unresolved": 4
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8333333333333334,
+            "weighted_primary_decision_exact": 0.827084822614351,
+            "over_group": 3,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.7142857142857143,
+            "weighted_primary_decision_exact": 0.7526302635178926,
+            "over_group": 0,
+            "under_group": 2
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.5882352941176471,
+            "weighted_primary_decision_exact": 0.636025067354964,
+            "over_group": 6,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.9375,
+            "weighted_primary_decision_exact": 0.934597765032845,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.9090909090909091,
+            "weighted_primary_decision_exact": 0.9208363342512894,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.5851063829787234,
+            "weighted_primary_decision_exact": 0.5925318867559477,
+            "over_group": 12,
+            "under_group": 27
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.75,
+            "weighted_primary_decision_exact": 0.7579532117318626,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9259259259259259,
+            "weighted_primary_decision_exact": 0.9679818480816516,
+            "over_group": 0,
+            "under_group": 3
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 33,
+          "violations": [
+            "H0790",
+            "H0828",
+            "H0267",
+            "H0480",
+            "H0253"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 19,
+          "violations": [
+            "H0480"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 3,
+          "violations": [
+            "H0347",
+            "H0748"
+          ],
+          "passed": false
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 2,
+          "violations": [
+            "H0347"
+          ],
+          "passed": false
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        }
+      },
+      "effects_to_actual": {
+        "BOTH_CORRECT": 194,
+        "BOTH_WRONG": 64
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0253",
+          "canonical_pair_id": "cp1_f0ca15c22dce611eca01dee9b0b1c92c4c5482ff534e3fc64ee7844edb8c94d7",
+          "sample_weight": 10.045,
+          "human_reason_code": "boilerplate_only",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES",
+            "relation_type": "CONTAINMENT",
+            "confidence_tier": "MEDIUM",
+            "error": "OVER_GROUP"
+          },
+          "candidate": {
+            "same_duplicate_group": "UNRESOLVED",
+            "a_can_replace_b": "UNRESOLVED",
+            "b_can_replace_a": "UNRESOLVED",
+            "relation_type": "UNRESOLVED",
+            "confidence_tier": "LOW",
+            "error": "UNRESOLVED"
+          }
+        }
+      ],
+      "false_containment": 8,
+      "reference_containment_misses": 26
+    }
+  }
+}

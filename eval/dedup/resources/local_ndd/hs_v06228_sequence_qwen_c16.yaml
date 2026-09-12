@@ -1,0 +1,6 @@
+base_policy_config: hs_v06227_proposition_qwen_c16.yaml
+response_field_order: compare_then_bind
+system_instruction_path: hs_v06228_sequence_system.jinja
+pair_instruction_path: hs_v06228_sequence_pair.jinja
+rubric:
+  generation_sequence: Compare both sides first; within each side commit status after the brief comparison and before branch-only fields. Bind independent anchors and final scope afterward to the actual specific record compared, not a broader shared owner or template. Preserve genuine same-record additions, complete translations, harmless controls and actual identity/role/state conflicts under the unchanged semantic rules.

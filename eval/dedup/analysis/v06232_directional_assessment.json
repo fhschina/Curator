@@ -1,0 +1,387 @@
+{
+  "schema_version": "dedup-directional-assessment-v1",
+  "version": "dedup-judge-hs-v0.6.2.32",
+  "created_at_utc": "2026-09-11T00:18:58.288445+00:00",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic",
+  "contract_digest": "7a3657934db32e41469896afc1b4de952cd56cabdbf056f25cb9aa1b2507ffe7",
+  "response_contract": "dedup-retained-coverage-v5",
+  "reference_changed": false,
+  "schedule_complete": false,
+  "eligible_for_release": false,
+  "preflight": {
+    "comparison": {
+      "corrected_weight": 0,
+      "final_metrics": {
+        "cohorts": {
+          "synthetic_policy": {
+            "over_group": 0,
+            "primary_decision_exact": 1.0,
+            "rows": 10,
+            "under_group": 0,
+            "weighted_primary_decision_exact": 1.0
+          },
+          "translation": {
+            "over_group": 0,
+            "primary_decision_exact": 1.0,
+            "rows": 1,
+            "under_group": 0,
+            "weighted_primary_decision_exact": 1.0
+          }
+        },
+        "confidence_tiers": {
+          "MEDIUM": {
+            "duplicate_group_accuracy": 1.0,
+            "primary_decision_accuracy": 1.0,
+            "rows": 11,
+            "weighted_duplicate_group_accuracy": 1.0,
+            "weighted_primary_decision_accuracy": 1.0
+          }
+        },
+        "containment_over_group": 0,
+        "containment_under_group": 0,
+        "over_group": 0,
+        "relation_matrix": {
+          "CONTAINMENT": {
+            "CONTAINMENT": 4
+          },
+          "NEAR_SURFACE": {
+            "NEAR_SURFACE": 2
+          },
+          "RELATED_NON_DUPLICATE": {
+            "RELATED_NON_DUPLICATE": 4
+          },
+          "VERSION_RELATED": {
+            "VERSION_RELATED": 1
+          }
+        },
+        "semantic_ledger": {},
+        "under_group": 0,
+        "unweighted": {
+          "duplicate_f1": 1.0,
+          "duplicate_precision": 1.0,
+          "duplicate_recall": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "primary_decision_exact": 1.0,
+          "rows": 11,
+          "taxonomy_exact": 1.0,
+          "true_negative": 5.0,
+          "true_positive": 6.0,
+          "unresolved": 0,
+          "weight_total": 11.0
+        },
+        "weighted": {
+          "duplicate_f1": 1.0,
+          "duplicate_precision": 1.0,
+          "duplicate_recall": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "primary_decision_exact": 1.0,
+          "rows": 11,
+          "taxonomy_exact": 1.0,
+          "true_negative": 5.0,
+          "true_positive": 6.13,
+          "unresolved": 0,
+          "weight_total": 11.129999999999999
+        }
+      },
+      "group_weight_changes": {},
+      "interpretation": "Same fresh .32 V5 main with and without the V5 critic; no arbitration or historical main reuse.",
+      "main_metrics": {
+        "cohorts": {
+          "synthetic_policy": {
+            "over_group": 0,
+            "primary_decision_exact": 1.0,
+            "rows": 10,
+            "under_group": 0,
+            "weighted_primary_decision_exact": 1.0
+          },
+          "translation": {
+            "over_group": 0,
+            "primary_decision_exact": 1.0,
+            "rows": 1,
+            "under_group": 0,
+            "weighted_primary_decision_exact": 1.0
+          }
+        },
+        "confidence_tiers": {
+          "MEDIUM": {
+            "duplicate_group_accuracy": 1.0,
+            "primary_decision_accuracy": 1.0,
+            "rows": 11,
+            "weighted_duplicate_group_accuracy": 1.0,
+            "weighted_primary_decision_accuracy": 1.0
+          }
+        },
+        "containment_over_group": 0,
+        "containment_under_group": 0,
+        "over_group": 0,
+        "relation_matrix": {
+          "CONTAINMENT": {
+            "CONTAINMENT": 4
+          },
+          "NEAR_SURFACE": {
+            "NEAR_SURFACE": 2
+          },
+          "RELATED_NON_DUPLICATE": {
+            "RELATED_NON_DUPLICATE": 4
+          },
+          "VERSION_RELATED": {
+            "VERSION_RELATED": 1
+          }
+        },
+        "semantic_ledger": {},
+        "under_group": 0,
+        "unweighted": {
+          "duplicate_f1": 1.0,
+          "duplicate_precision": 1.0,
+          "duplicate_recall": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "primary_decision_exact": 1.0,
+          "rows": 11,
+          "taxonomy_exact": 1.0,
+          "true_negative": 5.0,
+          "true_positive": 6.0,
+          "unresolved": 0,
+          "weight_total": 11.0
+        },
+        "weighted": {
+          "duplicate_f1": 1.0,
+          "duplicate_precision": 1.0,
+          "duplicate_recall": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "primary_decision_exact": 1.0,
+          "rows": 11,
+          "taxonomy_exact": 1.0,
+          "true_negative": 5.0,
+          "true_positive": 6.13,
+          "unresolved": 0,
+          "weight_total": 11.129999999999999
+        }
+      },
+      "net_primary_gain_pp": 0.0,
+      "regressed_weight": 0,
+      "transitions": {
+        "CORRECT -> CORRECT": {
+          "pairs": 11,
+          "review_ids": [
+            "H0653",
+            "independent_addition:ab",
+            "independent_addition:ba",
+            "chrome_only:ab",
+            "cookie_empty_anchor:ab",
+            "missing_record_field:ab",
+            "actual_sku_conflict:ab",
+            "actual_state_conflict:ab",
+            "actual_membership_conflict:ab",
+            "actual_membership_conflict:ba",
+            "faithful_translation:ab"
+          ],
+          "weight": 11.129999999999999
+        }
+      }
+    },
+    "operations": {
+      "complete": true,
+      "critic": {
+        "artifacts": {
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/attempt_01/events.jsonl": "38489b5799f3003a013c8d4d79c048422e71db7df20fbf4a2892d2cf837f04c7",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/attempt_01/input.jsonl": "33dda00aeae37421c69fe54b586cca1a032d79489cd3ab47137885af52c8e5bd",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/attempt_01/output/9c0044d1004e.jsonl": "5e48bb76a32e92b4f4657f6627aae514c19ff8a049cdc5440fbea4d779d73417",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/attempt_01/validation_errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/native_corrections.json": "5d20aad541358d89488171f8393dd61ff38eba03fbb8e3f8a9eb28fa0f748204",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/owned_predictions.jsonl": "0d1eab44937f5263d61de2d51296a4559251c756a40932b4abdb50b38af1e57c",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/predictions.jsonl": "da3a97f7c822c71d20f731f36d2baa8916f8d9ae522ab25deab9f5af874dee46",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/terminal_pair_ids.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "called_final_contract_completion": 1.0,
+        "called_pair_retry_rate": 0.0,
+        "called_pairs": 6,
+        "called_valid": 6,
+        "completed_at_utc": "2026-09-11T00:15:42.355113+00:00",
+        "errors": 0,
+        "fatal_boundary": false,
+        "http_statuses": {
+          "200": 6,
+          "429": 6
+        },
+        "judge_retried_pairs": 0,
+        "native_corrected_pairs": 0,
+        "native_corrections": 0,
+        "not_requested_owned_pairs": 5,
+        "requested": 11,
+        "retried": 0,
+        "valid": 11
+      },
+      "main": {
+        "artifacts": {
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/attempt_01/events.jsonl": "382152fa5154c42e3718121808977ce5cacc6d522ecb2b3ac202e226aa39835f",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/attempt_01/input.jsonl": "9055504d0cba8ab6d31d8501a303bcd8c810c987ff35be0f7ee0d1e248783e12",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/attempt_01/output/e972d7447753.jsonl": "1ccf0f5b966acdaa33f231970f11a25e3c34a40d02a6a3d64eeb796eff9daba2",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/attempt_01/validation_errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/native_corrections.json": "7fa4207a029ccbe8f1b69b9766874d4aff6fc9ceba71e5abd0ff5c44fe7106b7",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/owned_predictions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/predictions.jsonl": "c726a5160bf1d4b062551ce9ec12f559bd2c86efe1dc5af573090df590344592",
+          "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/terminal_pair_ids.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "called_final_contract_completion": 1.0,
+        "called_pair_retry_rate": 0.0,
+        "called_pairs": 11,
+        "called_valid": 11,
+        "completed_at_utc": "2026-09-11T00:15:11.649962+00:00",
+        "errors": 0,
+        "fatal_boundary": false,
+        "http_statuses": {
+          "200": 11
+        },
+        "judge_retried_pairs": 0,
+        "native_corrected_pairs": 0,
+        "native_corrections": 0,
+        "not_requested_owned_pairs": 0,
+        "requested": 11,
+        "retried": 0,
+        "valid": 11
+      }
+    },
+    "passed": false
+  },
+  "gate_checks": {
+    "complete_main_and_final": true,
+    "primary_correct_main": 11,
+    "primary_correct_final": 11,
+    "requested_denominator": 11,
+    "judge_correction_pairs": 0,
+    "strict_schema_completion": true,
+    "zero_extra_http_requirement": false,
+    "sole_gate_failure": "critic HTTP 429 transport retries; not a model/schema/evidence error"
+  },
+  "targeted_mirrors": [
+    {
+      "pair_id": "actual_membership_conflict:ab",
+      "attempts": 1,
+      "group": "NO",
+      "directions": [
+        "NO",
+        "NO"
+      ],
+      "hard_conflict": {
+        "kind": "MEMBERSHIP",
+        "a_span_id": "S001",
+        "b_span_id": "B001",
+        "explanation": "A states the complete list is only 甲, 乙. B states the complete list is 甲, 乙, 丙. The 'complete' and 'only' qualifiers make the inclusion of 丙 in B a direct contradiction to the exclusion in A."
+      },
+      "side_witnesses": {
+        "a_meaning_in_b": {
+          "status": "UNCOVERED",
+          "source_span_id": "S001",
+          "counterpart_span_id": "B001"
+        },
+        "b_meaning_in_a": {
+          "status": "UNCOVERED",
+          "source_span_id": "B001",
+          "counterpart_span_id": "S001"
+        }
+      }
+    },
+    {
+      "pair_id": "actual_membership_conflict:ba",
+      "attempts": 1,
+      "group": "NO",
+      "directions": [
+        "NO",
+        "NO"
+      ],
+      "hard_conflict": {
+        "kind": "MEMBERSHIP",
+        "a_span_id": "A001",
+        "b_span_id": "S001",
+        "explanation": "A asserts 丙 is in the complete list (A001), while B asserts the complete list is limited to only 甲 and 乙 (S001). These are incompatible exclusive membership claims."
+      },
+      "side_witnesses": {
+        "a_meaning_in_b": {
+          "status": "UNCOVERED",
+          "source_span_id": "A001",
+          "counterpart_span_id": "S001"
+        },
+        "b_meaning_in_a": {
+          "status": "UNCOVERED",
+          "source_span_id": "S001",
+          "counterpart_span_id": "A001"
+        }
+      }
+    }
+  ],
+  "formal_repeats_submitted": false,
+  "http_statuses": {
+    "200": 17,
+    "429": 6
+  },
+  "trace_accounting": {
+    "main": {
+      "saved_assistant_messages": 11,
+      "strict_shape_valid_messages": 11,
+      "http_statuses": {
+        "200": 11
+      },
+      "success_minus_saved_assistants": 0
+    },
+    "critic": {
+      "saved_assistant_messages": 6,
+      "strict_shape_valid_messages": 6,
+      "http_statuses": {
+        "429": 6,
+        "200": 6
+      },
+      "success_minus_saved_assistants": 0
+    }
+  },
+  "trace_accounting_scope": "Per-stage and attempt counts reconcile; full raw/input/prompt/public outputs replayed. No exact request-body-hash reconstruction claimed.",
+  "local_verification": {
+    "cpu_passed": 996,
+    "cpu_skipped": 46,
+    "gpu_deselected": 2,
+    "native_passed": 4,
+    "local_http_requests_final_boundary": 24,
+    "external_calls_in_boundary": 0,
+    "initial_native_template_failure_fixed_before_freeze": true
+  },
+  "max_main_input_tokens": 22179,
+  "max_main_tokens_with_output_and_margin": 28323,
+  "frozen_asset_count": 216,
+  "historical_freezes_unchanged": [
+    ".27",
+    ".28",
+    ".29",
+    ".30",
+    ".31"
+  ],
+  "offline_feedback_probe": "v06232_feedback_probe.json",
+  "interpretation": "Both evidence directions pass on this preflight, including the previous terminal mirror. All main/final primary decisions correct with zero model corrections. Frozen transport gate stopped formal cells after six HTTP 429s; no semantic ranking, critic benefit or 75% full-development claim.",
+  "artifacts": {
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/attempt_01/events.jsonl": "382152fa5154c42e3718121808977ce5cacc6d522ecb2b3ac202e226aa39835f",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/attempt_01/input.jsonl": "9055504d0cba8ab6d31d8501a303bcd8c810c987ff35be0f7ee0d1e248783e12",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/attempt_01/output/e972d7447753.jsonl": "1ccf0f5b966acdaa33f231970f11a25e3c34a40d02a6a3d64eeb796eff9daba2",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/attempt_01/validation_errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/native_corrections.json": "7fa4207a029ccbe8f1b69b9766874d4aff6fc9ceba71e5abd0ff5c44fe7106b7",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/owned_predictions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/predictions.jsonl": "c726a5160bf1d4b062551ce9ec12f559bd2c86efe1dc5af573090df590344592",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/terminal_pair_ids.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/attempt_01/events.jsonl": "38489b5799f3003a013c8d4d79c048422e71db7df20fbf4a2892d2cf837f04c7",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/attempt_01/input.jsonl": "33dda00aeae37421c69fe54b586cca1a032d79489cd3ab47137885af52c8e5bd",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/attempt_01/output/9c0044d1004e.jsonl": "5e48bb76a32e92b4f4657f6627aae514c19ff8a049cdc5440fbea4d779d73417",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/attempt_01/validation_errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/native_corrections.json": "5d20aad541358d89488171f8393dd61ff38eba03fbb8e3f8a9eb28fa0f748204",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/owned_predictions.jsonl": "0d1eab44937f5263d61de2d51296a4559251c756a40932b4abdb50b38af1e57c",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/predictions.jsonl": "da3a97f7c822c71d20f731f36d2baa8916f8d9ae522ab25deab9f5af874dee46",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/terminal_pair_ids.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/manifest.json": "455491c7a87699a558bd91403afcfdaa128be09816dec327de88108de67dabcb",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight_assessment.json": "2f9fe22b3819aefba05ea23082651624e37c462d460c0d5b853bac505a3b5710",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/operations.json": "6bae5b057ba44abb801bfb03253f682ca8b1985cb36a90378fdcba25925ac95f",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/stopped.json": "03c3b80d244130cd8a84544bd14769af45f807975571f0c584c339e833fbac3e",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/assessment_partial.json": "f3c56e09ea2acf6b66b1ad2299ff9ba230208c68f0829429128351184a5c87d2",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/main/complete.json": "b214abc52073ab42cda983d07f10c58dba79f2e319f7265900340aefa54d7e45",
+    "/raid/hfang/ihb/runs/v0.6.2.32-directional-diagnostic/preflight/critic/complete.json": "11c4ad6a668bb4f7ccebea4f5ee8424afcd58237371267e965c7c5395b2e2b16"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "dedup-context-boundary-v1",
+  "created_at_utc": "2026-09-10T23:53:24.523708+00:00",
+  "passed": true,
+  "external_model_calls": 0,
+  "full_boundary_tests_passed": 4,
+  "cpu_tests_passed": 972,
+  "cpu_tests_skipped": 42,
+  "gpu_deselected": 2,
+  "local_http_responses_final_boundary": 22,
+  "native_first_retry_stages": [
+    "main",
+    "critic"
+  ],
+  "strict_raw_pruning_disabled": true,
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/context_coverage.py": "ecbf793ab302049ff7d8382ded4c5dd6f2bcc0a37f90de41030a6ff330ab1575",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/context_runtime.py": "fa4686df2e0c9954f4c54161f01490911b8969f036915befd8feabe88a5ab800",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/context_experiment.py": "f170a226ab4bc2f87e03fcdb2647341b22e77cd083d265d9250fdcb31d3db9f2",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_context_coverage.py": "924b2e8bd35663de8baae1aa5c45c21cc120b745b1154bf876c9b54115e34b48",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_context_runtime.py": "1a679ceb1dece2fd7207388a2f330991c13ec82cad7a237c80fbb1d7168ea117",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_context_experiment.py": "e193698d81d60753a34537fc884aec374104e60a476fc0cbafdad1aef6415a3b",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06231_context_qwen_c16.yaml": "f4bc636530f7ac7c7c694cf6ca256021191a8ff215d6277c7e13e28a7ba39adc",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06231_context_rules.jinja": "0f8e840b3bb5e0309ff2b00a9780ae42814ca3546e0205e2350ebaa515f05b41",
+    "/raid/hfang/ihb/context-cpu-tests-final.xml": "e1ef6adf61b79e13c1a6014f4553436b3021fa67da9ea0040820ec5e84585f05",
+    "/raid/hfang/ihb/context-native-boundary-final.xml": "a5eb02d69f0b14c8cf400475cbc4c3d3570a7bb9c8adb34ced61d8ee6310ff19"
+  }
+}

@@ -1,0 +1,6 @@
+judge_version: dedup-judge-hs-v0.6.2.31
+base_format_config: hs_v06230_format_qwen_c16.yaml
+output_contract: dedup-retained-coverage-v5
+context_instructions_path: hs_v06231_context_rules.jinja
+context_witness_rule: UNCOVERED normally needs one own-unique decisive loss ID and its actual counterpart. A shared source is permitted ONLY for CONTRADICTS matching the same kind and exact bilateral hard_conflict witnesses, where the opposite witness is an actual opposite-unique difference. Never use shared context for NO_EQUIVALENT_FOUND or turn a contradicted side into COVERED merely because it has no unique spans.
+translation_rule: translation_status describes the WHOLE PAIR. Translated core X plus retained Y on only one side MUST use OTHER, with the true containment directions. COMPLETE_FAITHFUL is reserved for complete bilateral preservation of all retained meanings, without conflict or uncertainty.

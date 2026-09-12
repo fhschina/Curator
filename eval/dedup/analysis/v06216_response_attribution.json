@@ -1,0 +1,1049 @@
+{
+  "schema_version": "dedup-v06216-response-attribution-v1",
+  "diagnostic_only": true,
+  "eligible_for_release": false,
+  "diagnostic_contract_digest": "9ffa59bc4edd13f3981f402ee0790c0f6e9c0ce736ce84011bce0a2d12452b00",
+  "public_evidence_and_digest_matched_replay_count": 1548,
+  "formal_http_statuses": {
+    "200": 1553,
+    "429": 10
+  },
+  "within_arm_repeats": {
+    "control": {
+      "pairs": 258,
+      "identical_successful_request_bodies": 258,
+      "successful_request_counts": [
+        259,
+        259
+      ],
+      "raw_response_dicts_identical": 2,
+      "all_three_critic_scores_identical": 218,
+      "final_primary_changes": 11
+    },
+    "consent": {
+      "pairs": 258,
+      "identical_successful_request_bodies": 258,
+      "successful_request_counts": [
+        259,
+        259
+      ],
+      "raw_response_dicts_identical": 1,
+      "all_three_critic_scores_identical": 214,
+      "final_primary_changes": 9
+    },
+    "pointer": {
+      "pairs": 258,
+      "identical_successful_request_bodies": 258,
+      "successful_request_counts": [
+        258,
+        259
+      ],
+      "raw_response_dicts_identical": 1,
+      "all_three_critic_scores_identical": 221,
+      "final_primary_changes": 10
+    }
+  },
+  "source_v14_successful_request_bodies_matching_control": {
+    "repeat_1": 258,
+    "repeat_2": 258
+  },
+  "additional_counts": {
+    "repeat_1_control": {
+      "reference_containment_primary_errors": 25,
+      "reference_containment_pairs": 39
+    },
+    "repeat_1_consent": {
+      "reference_containment_primary_errors": 25,
+      "reference_containment_pairs": 39
+    },
+    "repeat_1_pointer": {
+      "reference_containment_primary_errors": 27,
+      "reference_containment_pairs": 39
+    },
+    "repeat_2_pointer": {
+      "reference_containment_primary_errors": 27,
+      "reference_containment_pairs": 39
+    },
+    "repeat_2_consent": {
+      "reference_containment_primary_errors": 24,
+      "reference_containment_pairs": 39
+    },
+    "repeat_2_control": {
+      "reference_containment_primary_errors": 25,
+      "reference_containment_pairs": 39
+    }
+  },
+  "case_review_inputs": {
+    "H0748": {
+      "reference": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "YES",
+        "b_can_replace_a": "YES"
+      },
+      "visible_payload": {
+        "document_a": {
+          "text": "Join us to make the most of Polka Dot Wedding!\n\nTo make the most of your features on Polka Dot Wedding, you must advertise in one of our directories. From real wedding features to event styling shoots, wedding day fashion, news and practical ideas, Polka Dot Wedding brings together the voice of - not just our editorial team - but wedding industry professionals and real-life couples from all over the world!"
+        },
+        "document_b": {
+          "text": "Stories...Casey-Lee Lyons\n\nJoin us to make the most of Polka Dot Wedding!\n\nTo make the most of your features on Polka Dot Wedding, you must advertise in one of our directories. From real wedding features to event styling shoots, wedding day fashion, news and practical ideas, Polka Dot Wedding brings together the voice of - not just our editorial team - but wedding industry professionals and real-life couples from all over the world!"
+        },
+        "long_document_evidence": {
+          "truncated": false,
+          "windows": []
+        },
+        "payload_schema_version": "judge-visible-payload-v3",
+        "semantic_diff_evidence": {
+          "contract_version": "visible-semantic-diff-v1",
+          "span_counts": {
+            "A_ONLY": 0,
+            "B_ONLY": 1,
+            "SHARED": 2
+          },
+          "spans": [
+            {
+              "a_end_char": 213,
+              "a_start_char": 0,
+              "a_text": "Join us to make the most of Polka Dot Wedding!\n\nTo make the most of your features on Polka Dot Wedding, you must advertise in one of our directories. From real wedding features to event styling shoots, wedding day",
+              "b_end_char": 240,
+              "b_start_char": 27,
+              "b_text": "Join us to make the most of Polka Dot Wedding!\n\nTo make the most of your features on Polka Dot Wedding, you must advertise in one of our directories. From real wedding features to event styling shoots, wedding day",
+              "kind": "SHARED",
+              "span_id": "S001"
+            },
+            {
+              "a_end_char": 409,
+              "a_start_char": 214,
+              "a_text": "fashion, news and practical ideas, Polka Dot Wedding brings together the voice of - not just our editorial team - but wedding industry professionals and real-life couples from all over the world!",
+              "b_end_char": 436,
+              "b_start_char": 241,
+              "b_text": "fashion, news and practical ideas, Polka Dot Wedding brings together the voice of - not just our editorial team - but wedding industry professionals and real-life couples from all over the world!",
+              "kind": "SHARED",
+              "span_id": "S002"
+            },
+            {
+              "end_char": 25,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B001",
+              "start_char": 0,
+              "text": "Stories...Casey-Lee Lyons"
+            }
+          ],
+          "status": "COMPLETE",
+          "tokenization": "nfkc-casefold-visible-token-v1"
+        }
+      },
+      "cells": {
+        "repeat_1_control": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "The shared text (S001, S002) describes the general 'Polka Dot Wedding' platform, its editorial mission, and the requirement to advertise in directories. This is generic site/brand context. Side B adds 'Stories...Casey-Lee Lyons' (B001), which introduces a specific story/article record or author profile that is not present on Side A. The shared text does not independently identify this specific story on both sides; it only provides the general context in which such stories might exist. Therefore, the scope is generic context with a specific record attached on one side.",
+              "score": "generic_context_only"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared anchor (S001, S002) establishes the general platform description. The unique span B001 ('Stories...Casey-Lee Lyons') introduces a specific content item (a story by Casey-Lee Lyons) that is not part of the general platform description itself. This is a separate record (a specific article/story) attached to the generic site context, rather than an extension of the organization's own profile or a benign UI element. Side A lacks this specific record entirely.",
+              "score": "separate_record_or_template_attachment"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no conflict in the shared text. The difference is an addition of a specific record on Side B, not a change in the meaning, permission, or state of the shared content. The shared propositions remain consistent.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_1_consent": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "The shared text (S001, S002) describes the general 'Polka Dot Wedding' platform, its editorial mission, and the requirement to advertise in directories. This is generic site/brand context. The unique span B001 ('Stories...Casey-Lee Lyons') introduces a specific record: a story or profile for a particular individual, Casey-Lee Lyons. This specific record is not identified on side A, nor is it independently anchored by the generic shared text. Therefore, the scope is generic context with a specific attachment on one side.",
+              "score": "generic_context_only"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared spans S001 and S002 provide generic context about the Polka Dot Wedding platform. The unique span B001 on side B introduces a specific record ('Stories...Casey-Lee Lyons') that is not present on side A. This specific story/profile is a distinct record attached to the generic site description, rather than an extension of the generic description itself (which would be mission/history) or a benign UI element. The subject of B001 (a specific person's story) differs from the generic platform description in S001/S002.",
+              "score": "separate_record_or_template_attachment"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no conflict in the shared text. The difference is an addition of a specific record on side B. This is a coverage difference (separate attachment) rather than a conflict in identity, policy, or state between the two sides for the shared content. The shared content remains consistent.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_1_pointer": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "The shared text (S001, S002) describes the general 'Polka Dot Wedding' platform, its editorial mission, and the requirement to advertise in directories. This is generic brand/site context. Side B adds 'Stories...Casey-Lee Lyons' (B001), which introduces a specific author/story pointer not present on Side A. The shared text does not independently identify this specific story or author as part of the core record on both sides; it is an attachment to the generic context.",
+              "score": "generic_context_only"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared anchor (S001, S002) provides generic platform description. The unique span B001 ('Stories...Casey-Lee Lyons') is a pointer to a specific story or author profile. According to the contrastive boundaries, a short Stories/author pointer attached to generic site copy is a separate attachment or navigation element, not a field of the shared generic description. It does not extend the generic organization description with its own history or mission, nor is it a benign UI control like a 'Settings' button; it points to specific content (a story by Casey-Lee Lyons) that is not present on Side A. Therefore, it is a separate record attachment to the generic context.",
+              "score": "separate_record_or_template_attachment"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no conflict in the shared text. The addition of a specific story pointer on Side B is an extension of content availability or navigation, not a change in policy, permission, state, or identity of the shared generic message itself. The core meaning of the shared text remains consistent.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_2_pointer": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "The shared text (S001, S002) describes the general 'Polka Dot Wedding' platform, its editorial mission, and the requirement to advertise in directories. This is generic site/brand context. Side B adds 'Stories...Casey-Lee Lyons' (B001), which introduces a specific author/story pointer not present on Side A. The generic context does not bind this specific story/author record to the shared text.",
+              "score": "generic_context_only"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared anchor (S001, S002) provides generic platform description. The unique span B001 ('Stories...Casey-Lee Lyons') is a specific pointer to a story or author profile. This is a separate record attachment (a specific story/author) to the generic site context, rather than an extension of the generic description itself. It is not benign because it introduces a specific subject (Casey-Lee Lyons) not covered by the generic text.",
+              "score": "separate_record_or_template_attachment"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no conflict between the sides. Side A contains the generic text, and Side B contains the generic text plus an additional pointer. The addition does not contradict or change the meaning of the shared text; it simply adds a specific reference. Therefore, there is no retained conflict in terms of identity, policy, or state change.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_2_consent": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "The shared text (S001, S002) describes the general mission and editorial scope of the 'Polka Dot Wedding' organization. Side B adds 'Stories...Casey-Lee Lyons' (B001), which introduces a specific individual profile or article record. The shared text does not independently identify Casey-Lee Lyons as the subject of the record on both sides; it only provides the generic organizational context to which this specific record is attached.",
+              "score": "generic_context_only"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared spans S001 and S002 establish the generic context of the Polka Dot Wedding platform. The unique span B001 ('Stories...Casey-Lee Lyons') introduces a specific record (a story or profile about Casey-Lee Lyons) that is not present on Side A. This is a separate record attachment to the generic site description, not an extension of the organization's own profile or a benign UI change, as it targets a specific individual/content item not identified in the shared text.",
+              "score": "separate_record_or_template_attachment"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no conflict in the shared text. The difference is an addition of a specific record on Side B, which is a scope/binding issue, not a conflict of retained values or permissions in the shared messaging.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_2_control": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "The shared text (S001, S002) describes the general 'Polka Dot Wedding' platform, its editorial mission, and the requirement to advertise in directories. This is generic brand/site context. Side B introduces a specific record: 'Stories...Casey-Lee Lyons' (B001). This specific story/profile is not identified on Side A, so the shared context does not bind this specific record to Side A.",
+              "score": "generic_context_only"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared text (S001, S002) provides generic context about the Polka Dot Wedding platform. Side B adds 'Stories...Casey-Lee Lyons' (B001), which is a specific article or profile record. This specific record is not present on Side A. Therefore, the specific record on Side B is a separate attachment to the generic context, not an extension of a record independently anchored on both sides.",
+              "score": "separate_record_or_template_attachment"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no conflict in the shared text. The addition of a specific story title on Side B is a content difference, not a change in policy, permission, state, or identity of the shared generic message itself.",
+              "score": "none"
+            }
+          }
+        }
+      }
+    },
+    "H0977": {
+      "reference": {
+        "same_duplicate_group": "NO",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "NO"
+      },
+      "visible_payload": {
+        "document_a": {
+          "text": "SAUNGQQ # Sekolah Tinggi Ilmu Farmasi Riau\n\nIDR 10,000.00\n\nSAUNGQQ Merupakan Perguruan Tinggi Farmasi yang unggul dalam menghasilkan lulusan yang bermoral dan professional, enterpreneural dan kompetitif dalam pekerjaan kefarmasian dan mengembangkan ilmu pengetahuan dan teknologi kefarmasian berbasis sumber daya alam lokal di tingkat ASEAN pada tahun 2030."
+        },
+        "document_b": {
+          "text": "PEMAIN168 # Sekolah Tinggi Ilmu Farmasi Riau\n\nIDR 10,000.00\n\nPEMAIN168 Merupakan Perguruan Tinggi Farmasi yang unggul dalam menghasilkan lulusan yang bermoral dan professional, enterpreneural dan kompetitif dalam pekerjaan kefarmasian dan mengembangkan ilmu pengetahuan dan teknologi kefarmasian berbasis sumber daya alam lokal di tingkat ASEAN pada tahun 2030."
+        },
+        "long_document_evidence": {
+          "truncated": false,
+          "windows": []
+        },
+        "payload_schema_version": "judge-visible-payload-v3",
+        "semantic_diff_evidence": {
+          "contract_version": "visible-semantic-diff-v1",
+          "span_counts": {
+            "A_ONLY": 2,
+            "B_ONLY": 2,
+            "SHARED": 3
+          },
+          "spans": [
+            {
+              "a_end_char": 57,
+              "a_start_char": 8,
+              "a_text": "# Sekolah Tinggi Ilmu Farmasi Riau\n\nIDR 10,000.00",
+              "b_end_char": 59,
+              "b_start_char": 10,
+              "b_text": "# Sekolah Tinggi Ilmu Farmasi Riau\n\nIDR 10,000.00",
+              "kind": "SHARED",
+              "span_id": "S001"
+            },
+            {
+              "a_end_char": 279,
+              "a_start_char": 67,
+              "a_text": "Merupakan Perguruan Tinggi Farmasi yang unggul dalam menghasilkan lulusan yang bermoral dan professional, enterpreneural dan kompetitif dalam pekerjaan kefarmasian dan mengembangkan ilmu pengetahuan dan teknologi",
+              "b_end_char": 283,
+              "b_start_char": 71,
+              "b_text": "Merupakan Perguruan Tinggi Farmasi yang unggul dalam menghasilkan lulusan yang bermoral dan professional, enterpreneural dan kompetitif dalam pekerjaan kefarmasian dan mengembangkan ilmu pengetahuan dan teknologi",
+              "kind": "SHARED",
+              "span_id": "S002"
+            },
+            {
+              "a_end_char": 357,
+              "a_start_char": 280,
+              "a_text": "kefarmasian berbasis sumber daya alam lokal di tingkat ASEAN pada tahun 2030.",
+              "b_end_char": 361,
+              "b_start_char": 284,
+              "b_text": "kefarmasian berbasis sumber daya alam lokal di tingkat ASEAN pada tahun 2030.",
+              "kind": "SHARED",
+              "span_id": "S003"
+            },
+            {
+              "end_char": 7,
+              "kind": "A_ONLY",
+              "side": "A",
+              "span_id": "A001",
+              "start_char": 0,
+              "text": "SAUNGQQ"
+            },
+            {
+              "end_char": 66,
+              "kind": "A_ONLY",
+              "side": "A",
+              "span_id": "A002",
+              "start_char": 59,
+              "text": "SAUNGQQ"
+            },
+            {
+              "end_char": 9,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B001",
+              "start_char": 0,
+              "text": "PEMAIN168"
+            },
+            {
+              "end_char": 70,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B002",
+              "start_char": 61,
+              "text": "PEMAIN168"
+            }
+          ],
+          "status": "COMPLETE",
+          "tokenization": "nfkc-casefold-visible-token-v1"
+        }
+      },
+      "cells": {
+        "repeat_1_control": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present the same named organization, 'Sekolah Tinggi Ilmu Farmasi Riau' (S001), along with its mission statement (S002-S003). The shared text describes the institution's profile and goals, establishing it as a single organizational record.",
+              "score": "same_organization_description"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared organizational description (S001-S003) is identical. However, Side A contains unique identifiers 'SAUNGQQ' (A001, A002) while Side B contains unique identifiers 'PEMAIN168' (B001, B002). These are distinct, non-translatable strings that appear to be user handles, account names, or specific identifiers attached to the organization's page. Since both sides retain different unique identifiers that are not semantically equivalent or translations of each other, there are uncovered retained propositions on both sides, indicating a conflict in the specific identity or account associated with the record.",
+              "score": "two_sided_or_conflicting"
+            },
+            "retained_conflict": {
+              "reasoning": "The visible text shows a change in the specific identifier or account name associated with the organization. Side A retains 'SAUNGQQ' (A001, A002) while Side B retains 'PEMAIN168' (B001, B002). This represents a change in the specific identity or service target (e.g., a specific user account or handle) linked to the shared organizational context.",
+              "score": "identity_or_service_target_change"
+            }
+          }
+        },
+        "repeat_1_consent": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present the same named organization, 'Sekolah Tinggi Ilmu Farmasi Riau' (S001), along with its mission statement (S002-S003). The shared text describes the institution's profile and goals, establishing it as an organization description record.",
+              "score": "same_organization_description"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans A001/A002 ('SAUNGQQ') and B001/B002 ('PEMAIN168') appear to be user identifiers, watermarks, or navigation artifacts that do not alter the core organizational record. The substantive content (S001-S003) is identical on both sides. These unique strings do not represent a change in the organization's identity, mission, or a new specific record attachment; they are harmless UI or metadata differences that do not affect the semantic meaning of the organization's profile.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no change in the organization's identity, service target, or policy. The core descriptive text is identical, and the unique spans are non-substantive artifacts.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_1_pointer": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present the same named organization, 'Sekolah Tinggi Ilmu Farmasi Riau' (S001), along with its mission statement (S002-S003). The shared text describes the institution's profile and goals, establishing it as a single organizational record.",
+              "score": "same_organization_description"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared organizational description (S001-S003) is identical on both sides. However, Side A contains unique identifiers 'SAUNGQQ' (A001, A002) while Side B contains unique identifiers 'PEMAIN168' (B001, B002). These are distinct, non-translatable strings that appear to be user handles, account names, or specific identifiers attached to the organization's page. Since both sides retain different unique identifiers that are not covered by the other side, this constitutes a two-sided conflict where each side has uncovered retained propositions (the specific identity/handle) that the other lacks.",
+              "score": "two_sided_or_conflicting"
+            },
+            "retained_conflict": {
+              "reasoning": "The visible text shows a change in the specific identifier or user handle associated with the organization's record. Side A retains 'SAUNGQQ' (A001, A002) while Side B retains 'PEMAIN168' (B001, B002). This represents a change in the specific identity or service target (e.g., account owner or specific user context) attached to the shared organizational description.",
+              "score": "identity_or_service_target_change"
+            }
+          }
+        },
+        "repeat_2_pointer": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present the same named organization, 'Sekolah Tinggi Ilmu Farmasi Riau' (S001), along with its mission statement (S002-S003). The shared text describes the institution's profile and goals, establishing it as a single organizational record.",
+              "score": "same_organization_description"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared anchor is the organization profile (S001-S003). Side A introduces the unique identifier 'SAUNGQQ' (A001-A002), while Side B introduces the distinct identifier 'PEMAIN168' (B001-B002). These are incompatible values attached to the same organizational context, representing a conflict in the specific identifier or account associated with the record.",
+              "score": "two_sided_or_conflicting"
+            },
+            "retained_conflict": {
+              "reasoning": "The visible identifiers 'SAUNGQQ' (A001) and 'PEMAIN168' (B001) represent different specific targets or identities attached to the shared organization profile (S001). This constitutes a change in the specific identity or service target associated with the record.",
+              "score": "identity_or_service_target_change"
+            }
+          }
+        },
+        "repeat_2_consent": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present the same named organization, 'Sekolah Tinggi Ilmu Farmasi Riau' (S001), along with its mission statement and vision (S002, S003). The shared text describes the organization's profile, specifically its goal to produce professional graduates and develop pharmaceutical science. The unique spans (A001/A002 'SAUNGQQ' and B001/B002 'PEMAIN168') appear to be user identifiers or handles attached to this organizational profile, but the core record represented is the organization itself.",
+              "score": "same_organization_description"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared anchor is the organization profile (S001-S003). Side A contains unique spans A001 and A002 with the value 'SAUNGQQ'. Side B contains unique spans B001 and B002 with the value 'PEMAIN168'. These are distinct, incompatible identifiers (likely usernames or account handles) attached to the same organizational record. Since both sides retain different specific identifiers for the same context, this constitutes a two-sided conflict where neither side's unique value is covered by the other.",
+              "score": "two_sided_or_conflicting"
+            },
+            "retained_conflict": {
+              "reasoning": "The visible content shows a change in the specific identifier associated with the record. Side A retains 'SAUNGQQ' (A001, A002) while Side B retains 'PEMAIN168' (B001, B002). This represents a change in the specific identity or target (user/account) linked to the organizational profile, which is a material difference in the retained identity.",
+              "score": "identity_or_service_target_change"
+            }
+          }
+        },
+        "repeat_2_control": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present the same named organization, 'Sekolah Tinggi Ilmu Farmasi Riau' (S001), along with its mission statement (S002-S003). The shared text describes the institution's profile and goals, establishing it as a single organizational record.",
+              "score": "same_organization_description"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The shared organizational description (S001-S003) is identical. However, Side A contains unique identifiers 'SAUNGQQ' (A001, A002) while Side B contains unique identifiers 'PEMAIN168' (B001, B002). These are distinct, non-translatable strings that appear to be user handles, account names, or specific identifiers attached to the organization's page. Since both sides retain different unique identifiers that are not semantically equivalent or translations of each other, there are uncovered retained propositions on both sides.",
+              "score": "two_sided_or_conflicting"
+            },
+            "retained_conflict": {
+              "reasoning": "The unique spans A001/A002 ('SAUNGQQ') and B001/B002 ('PEMAIN168') represent different specific identities or targets associated with the shared organization context. This constitutes a change in the specific identity or service target attached to the record.",
+              "score": "identity_or_service_target_change"
+            }
+          }
+        }
+      }
+    },
+    "H0347": {
+      "reference": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "YES",
+        "b_can_replace_a": "YES"
+      },
+      "visible_payload": {
+        "document_a": {
+          "text": "Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy.\nContinuando a consultare questo sito, acconsenti all’uso dei cookie."
+        },
+        "document_b": {
+          "text": "Liste dei Desideri\n\nQuesto sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy.\nSe vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del sito acconsenti all'uso dei cookie.\nAccetta"
+        },
+        "long_document_evidence": {
+          "truncated": false,
+          "windows": []
+        },
+        "payload_schema_version": "judge-visible-payload-v3",
+        "semantic_diff_evidence": {
+          "contract_version": "visible-semantic-diff-v1",
+          "span_counts": {
+            "A_ONLY": 3,
+            "B_ONLY": 4,
+            "SHARED": 4
+          },
+          "spans": [
+            {
+              "a_end_char": 159,
+              "a_start_char": 0,
+              "a_text": "Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy.",
+              "b_end_char": 179,
+              "b_start_char": 20,
+              "b_text": "Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy.",
+              "kind": "SHARED",
+              "span_id": "S001"
+            },
+            {
+              "a_end_char": 196,
+              "a_start_char": 192,
+              "a_text": "sito",
+              "b_end_char": 265,
+              "b_start_char": 261,
+              "b_text": "sito",
+              "kind": "SHARED",
+              "span_id": "S002"
+            },
+            {
+              "a_end_char": 212,
+              "a_start_char": 198,
+              "a_text": "acconsenti all",
+              "b_end_char": 280,
+              "b_start_char": 266,
+              "b_text": "acconsenti all",
+              "kind": "SHARED",
+              "span_id": "S003"
+            },
+            {
+              "a_end_char": 228,
+              "a_start_char": 213,
+              "a_text": "uso dei cookie.",
+              "b_end_char": 296,
+              "b_start_char": 281,
+              "b_text": "uso dei cookie.",
+              "kind": "SHARED",
+              "span_id": "S004"
+            },
+            {
+              "end_char": 191,
+              "kind": "A_ONLY",
+              "side": "A",
+              "span_id": "A001",
+              "start_char": 160,
+              "text": "Continuando a consultare questo"
+            },
+            {
+              "end_char": 197,
+              "kind": "A_ONLY",
+              "side": "A",
+              "span_id": "A002",
+              "start_char": 196,
+              "text": ","
+            },
+            {
+              "end_char": 213,
+              "kind": "A_ONLY",
+              "side": "A",
+              "span_id": "A003",
+              "start_char": 212,
+              "text": "’"
+            },
+            {
+              "end_char": 18,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B001",
+              "start_char": 0,
+              "text": "Liste dei Desideri"
+            },
+            {
+              "end_char": 260,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B002",
+              "start_char": 180,
+              "text": "Se vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del"
+            },
+            {
+              "end_char": 281,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B003",
+              "start_char": 280,
+              "text": "'"
+            },
+            {
+              "end_char": 304,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B004",
+              "start_char": 297,
+              "text": "Accetta"
+            }
+          ],
+          "status": "COMPLETE",
+          "tokenization": "nfkc-casefold-visible-token-v1"
+        }
+      },
+      "cells": {
+        "repeat_1_control": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a standard cookie consent banner. The shared spans S001-S004 establish the core message: the site uses cookies, and the user is asked to consent to their use. The differences lie in the specific wording of the consent mechanism (implied consent via browsing vs. explicit button) and minor UI elements, but the fundamental record is the same non-main message regarding cookie policy.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans on both sides represent variations in the UI presentation and phrasing of the same cookie consent message. A001-A003 ('Continuando a consultare questo...') indicates an implied consent mechanism where browsing constitutes acceptance. B001-B004 ('Liste dei Desideri', 'Se vuoi saperne di più...', 'Accetta') includes a reference to a wishlist (likely a UI artifact or unrelated link in the banner context), a link to the policy, and an explicit 'Accept' button. These are harmless UI controls and phrasing differences for the same underlying cookie policy message. No new substantive record, product, or distinct service target is introduced; the core meaning of 'this site uses cookies, please consent' is preserved on both sides.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "The differences are in the method of consent (implied vs. explicit button) and minor UI text. This does not constitute a change in the controller, the purpose of the cookies, or the service target. It is a variation in the user interface for the same policy message.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_1_consent": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a cookie consent banner for the same website ('sito'). The core message is identical: the site uses cookies for functionality and purposes described in the policy, and the user is asked to consent to their use. The shared spans S001, S002, S003, and S004 establish this common record. The differences lie in the specific mechanism of consent (continued browsing vs. explicit acceptance) and minor UI elements, but the fundamental record is the same cookie policy notice.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The consent condition differs materially between the two sides. Side A (spans A001, A002, A003) states 'Continuando a consultare questo... acconsenti all' uso dei cookie' (By continuing to browse this... you consent to the use of cookies), which establishes implied consent through continued browsing. Side B (spans B002, B003, B004) states 'Se vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del... Accetta' (If you want to know more consult the cookie policy. Continuing the navigation of... Accept), which pairs the navigation with an explicit 'Accetta' (Accept) button. This changes the consent mechanism from implied (A) to explicit (B), which is a material change in the policy/permission state. Additionally, B001 ('Liste dei Desideri') is a harmless UI label not present in A, but the consent mechanism change is the decisive factor.",
+              "score": "non_main_policy_or_state_change"
+            },
+            "retained_conflict": {
+              "reasoning": "The retained conflict is the change in the consent permission mechanism. Side A retains the proposition that continued browsing constitutes consent (A001-A003). Side B retains the proposition that consent is given via an explicit 'Accetta' action (B004) alongside navigation (B002). This is a change in the legal/policy state of how consent is obtained, not just a UI difference.",
+              "score": "policy_permission_change"
+            }
+          }
+        },
+        "repeat_1_pointer": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a standard cookie consent banner (non-main message) with the same core function: informing the user about cookies and requesting consent. The shared spans S001-S004 establish the identical policy context and consent mechanism. The differences are in the specific wording of the consent action (A: 'Continuing to browse' vs B: 'Accept') and the presence of a 'Wishlist' label on B, but the fundamental record unit is the same cookie policy notification.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans on both sides represent harmless UI variations or navigation elements that do not alter the core meaning of the cookie consent message. A001-A003 ('Continuando a consultare questo , ’') are fragments of the standard 'implied consent' phrasing ('Continuing to browse this site...'), which is semantically equivalent to the explicit 'Accept' button (B004) and the 'Proceeding with navigation' text (B002) on the other side. B001 ('Liste dei Desideri') is a navigation label (Wishlist) that is unrelated to the cookie policy record and does not constitute a material attachment to the consent message itself. B002-B004 provide the explicit consent mechanism and link to the policy, which is functionally equivalent to A's implied consent mechanism. All unique spans are accounted for as either equivalent consent mechanisms or harmless UI/navigation labels.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no retained conflict. The differences between 'implied consent' (A) and 'explicit accept' (B) are standard variations in cookie banner implementation that do not change the underlying policy, permission, or state in a way that constitutes a material conflict for this diagnostic. The 'Wishlist' label on B is a separate UI element not related to the cookie policy. The core message and function remain equivalent.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_2_pointer": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a standard cookie consent banner (non-main message) for the same site. The shared spans S001-S004 establish the core message: the site uses cookies, and the user is asked to consent to their use. The differences lie in the specific phrasing of the consent mechanism (implied consent via browsing vs. explicit acceptance button) and the presence of a 'Wishlist' label on B, but the fundamental function and target (cookie policy consent for the site) are identical.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans on both sides are variations of standard UI text for cookie consent. A001-A003 ('Continuando a consultare questo...') describes implied consent through continued browsing. B001 ('Liste dei Desideri') is a navigation label likely part of the site's header/footer visible in the diff context, not part of the cookie message itself. B002-B004 ('Se vuoi saperne di più... Accetta') provides a link to the policy and an explicit 'Accept' button. These are different implementations of the same cookie consent function. The 'Wishlist' label is harmless navigation chrome. The core meaning (consent to cookies) is preserved on both sides, just with different interaction patterns (implied vs. explicit). No specific record identity is changed, only the UI presentation of the consent mechanism.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no material conflict in identity, service target, or policy state. Both sides communicate the same cookie policy requirement. The difference between implied consent (A) and explicit acceptance (B) is a UI/UX variation, not a change in the underlying policy or the site's identity. The 'Wishlist' label on B is unrelated navigation. No recipient, controller, or permission scope is materially altered in a way that constitutes a conflict.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_2_consent": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a cookie consent banner for the same site. The shared spans S001, S002, S003, and S004 establish the core message: the site uses cookies, and the user is asked to consent to their use. The unique spans on each side (A001-A003 and B001-B004) are variations in how the consent mechanism is described or presented (e.g., 'Continuing to browse' vs. 'Proceeding with navigation' and an 'Accept' button), but they do not change the fundamental record, which is the cookie consent policy for the site.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The differences are benign variations in the phrasing of the consent condition and UI elements. A001 ('Continuando a consultare questo') and B002 ('Proseguendo la navigazione del') both convey the same meaning: that continuing to use the site constitutes consent. A002 and A003 are punctuation/typographical artifacts. B001 ('Liste dei Desideri') appears to be a stray label or navigation element not central to the consent message, and B004 ('Accetta') is a standard UI button for consent. The core consent condition is preserved on both sides: continued use implies consent. No new facts, permissions, or record identities are introduced.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no retained conflict. Both sides communicate the same cookie consent policy. The variations in phrasing ('Continuando a consultare' vs. 'Proseguendo la navigazione') and the presence of an 'Accept' button on one side do not change the policy, permission, or state. The consent condition is equivalent on both sides.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_2_control": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a standard cookie consent banner. The shared text (S001-S004) establishes the core message: the site uses cookies, and the user is asked to consent to their use. The differences lie in the specific phrasing of the consent mechanism (implied consent via browsing vs. explicit acceptance) and the presence of a 'Wishlist' label on B, which appears to be a UI element or navigation link rather than a change to the core record of the cookie policy message itself. The fundamental record is the cookie consent notification.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans on A (A001-A003: 'Continuando a consultare questo , ’') and B (B001-B004: 'Liste dei Desideri', 'Se vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del', \"'\", 'Accetta') represent variations in the UI presentation and specific consent wording. A uses implied consent language ('Continuing to browse...'), while B uses explicit action language ('Accept') and includes a link to the policy. B001 'Liste dei Desideri' is a navigation label unrelated to the cookie policy record. These are harmless UI/UX variations in how the same cookie consent message is delivered, not a change to the underlying policy record or a separate record attachment.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no material conflict in the retained meaning. Both sides communicate the same core proposition: the site uses cookies and user consent is required/assumed. The difference between implied consent (A) and explicit acceptance (B) is a UI/UX choice in how the consent is captured, not a change in the policy's purpose, scope, or controller. The 'Wishlist' label on B is irrelevant to the cookie policy record.",
+              "score": "none"
+            }
+          }
+        }
+      }
+    },
+    "H0453": {
+      "reference": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "YES",
+        "b_can_replace_a": "YES"
+      },
+      "visible_payload": {
+        "document_a": {
+          "text": "Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy.\nContinuando a consultare questo sito, acconsenti all’uso dei cookie."
+        },
+        "document_b": {
+          "text": "Liste dei Desideri\n\nQuesto sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy.\nSe vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del sito acconsenti all'uso dei cookie.\nAccetta"
+        },
+        "long_document_evidence": {
+          "truncated": false,
+          "windows": []
+        },
+        "payload_schema_version": "judge-visible-payload-v3",
+        "semantic_diff_evidence": {
+          "contract_version": "visible-semantic-diff-v1",
+          "span_counts": {
+            "A_ONLY": 3,
+            "B_ONLY": 4,
+            "SHARED": 4
+          },
+          "spans": [
+            {
+              "a_end_char": 159,
+              "a_start_char": 0,
+              "a_text": "Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy.",
+              "b_end_char": 179,
+              "b_start_char": 20,
+              "b_text": "Questo sito o gli strumenti terzi da questo utilizzati si avvalgono di cookie necessari al funzionamento ed utili alle finalità illustrate nella cookie policy.",
+              "kind": "SHARED",
+              "span_id": "S001"
+            },
+            {
+              "a_end_char": 196,
+              "a_start_char": 192,
+              "a_text": "sito",
+              "b_end_char": 265,
+              "b_start_char": 261,
+              "b_text": "sito",
+              "kind": "SHARED",
+              "span_id": "S002"
+            },
+            {
+              "a_end_char": 212,
+              "a_start_char": 198,
+              "a_text": "acconsenti all",
+              "b_end_char": 280,
+              "b_start_char": 266,
+              "b_text": "acconsenti all",
+              "kind": "SHARED",
+              "span_id": "S003"
+            },
+            {
+              "a_end_char": 228,
+              "a_start_char": 213,
+              "a_text": "uso dei cookie.",
+              "b_end_char": 296,
+              "b_start_char": 281,
+              "b_text": "uso dei cookie.",
+              "kind": "SHARED",
+              "span_id": "S004"
+            },
+            {
+              "end_char": 191,
+              "kind": "A_ONLY",
+              "side": "A",
+              "span_id": "A001",
+              "start_char": 160,
+              "text": "Continuando a consultare questo"
+            },
+            {
+              "end_char": 197,
+              "kind": "A_ONLY",
+              "side": "A",
+              "span_id": "A002",
+              "start_char": 196,
+              "text": ","
+            },
+            {
+              "end_char": 213,
+              "kind": "A_ONLY",
+              "side": "A",
+              "span_id": "A003",
+              "start_char": 212,
+              "text": "’"
+            },
+            {
+              "end_char": 18,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B001",
+              "start_char": 0,
+              "text": "Liste dei Desideri"
+            },
+            {
+              "end_char": 260,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B002",
+              "start_char": 180,
+              "text": "Se vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del"
+            },
+            {
+              "end_char": 281,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B003",
+              "start_char": 280,
+              "text": "'"
+            },
+            {
+              "end_char": 304,
+              "kind": "B_ONLY",
+              "side": "B",
+              "span_id": "B004",
+              "start_char": 297,
+              "text": "Accetta"
+            }
+          ],
+          "status": "COMPLETE",
+          "tokenization": "nfkc-casefold-visible-token-v1"
+        }
+      },
+      "cells": {
+        "repeat_1_control": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a standard cookie consent banner. The shared spans S001-S004 establish the core message: the site uses cookies, and the user is asked to consent to their use. The differences lie in the specific wording of the consent mechanism (implied consent via browsing vs. explicit button) and minor UI elements, but the fundamental record is the same non-main message regarding cookie policy.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans on both sides represent variations in the UI presentation and phrasing of the same cookie consent message. A001-A003 ('Continuando a consultare questo...') indicates an implied consent mechanism where browsing constitutes acceptance. B001-B004 ('Liste dei Desideri', 'Se vuoi saperne di più...', 'Accetta') includes a reference to a wishlist (likely a UI artifact or unrelated link in the banner context), a link to the policy, and an explicit 'Accept' button. These are harmless UI controls and phrasing differences for the same underlying cookie policy message. No new substantive record, product, or distinct service target is introduced; the core proposition (consent to cookies) is preserved on both sides.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "The differences are in the method of consent (implied vs. explicit button) and minor UI text. This does not constitute a change in the actual policy, permission scope, or service target. The core obligation to inform and obtain consent for cookies is present in both. The 'Liste dei Desideri' in B001 appears to be a navigation element or artifact within the banner area, not a change in the cookie policy's subject or target. Therefore, there is no retained conflict in identity, policy, or state.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_1_consent": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a cookie consent banner for the same website ('sito'). The core message is identical: the site uses cookies for functionality and purposes described in the policy, and the user is asked to consent to their use. The shared spans S001, S002, S003, and S004 establish this common record. The differences lie in the specific mechanism of consent (continued browsing vs. explicit acceptance) and minor UI elements, but the fundamental record is the same cookie policy notice.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The consent condition differs materially between the two sides. Side A (spans A001, A002, A003) states 'Continuando a consultare questo... acconsenti all' uso dei cookie' (By continuing to browse this... you consent to the use of cookies), which establishes an implied consent mechanism based on user action. Side B (spans B002, B003, B004) states 'Se vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del... ' and includes an 'Accetta' (Accept) button. While B also mentions 'Proseguendo la navigazione' (Continuing navigation), the presence of the explicit 'Accetta' button and the phrasing 'Se vuoi saperne di più' (If you want to know more) suggests a different interaction model, potentially requiring explicit action or providing a clearer opt-in/opt-out structure compared to A's implied consent. More critically, A explicitly links continued browsing to consent, while B's text is fragmented but includes an explicit control. The change from implied consent via browsing (A) to a structure with an explicit Accept button (B) represents a change in the consent mechanism/state. However, looking closer at B002 'Proseguendo la navigazione del' and B004 'Accetta', it seems B might also imply consent by proceeding but offers a button. Let's re-evaluate. A: 'Continuando a consultare... acconsenti'. B: 'Proseguendo la navigazione... Accetta'. Both seem to rely on proceeding. But A is a complete sentence linking action to consent. B is 'If you want to know more... Continuing navigation... Accept'. The 'Accetta' button is a distinct UI element not present in A. Is this a policy change? Often, adding an explicit accept button changes the legal state from 'implied consent by browsing' to 'explicit consent by click' or provides a clearer affirmative action. This is a change in the permission/consent state. Therefore, it is a non_main_policy_or_state_change.",
+              "score": "non_main_policy_or_state_change"
+            },
+            "retained_conflict": {
+              "reasoning": "Side A (A001-A003) explicitly states that continuing to browse constitutes consent ('acconsenti all' uso dei cookie'). Side B (B002, B004) includes an 'Accetta' (Accept) button and text 'Proseguendo la navigazione'. The presence of the explicit 'Accetta' button in B, combined with the different phrasing, indicates a shift in how consent is obtained or presented. While both may rely on navigation, the explicit control in B changes the user's interaction and potentially the legal basis of consent (explicit vs implied). This is a change in the policy/permission mechanism.",
+              "score": "policy_permission_change"
+            }
+          }
+        },
+        "repeat_1_pointer": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a standard cookie consent banner (non-main message) for the same site. The shared spans S001-S004 establish the core policy text regarding cookies and consent. The differences are in the specific wording of the consent mechanism (implicit vs. explicit) and the presence of a navigation link on one side, but the fundamental function and target (cookie policy for the current site) are identical.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans represent variations in the UI presentation and consent mechanism of the same cookie policy message. A001-A003 ('Continuando a consultare questo...') indicates an implicit consent mechanism ('by continuing to browse'). B001 ('Liste dei Desideri') is a navigation link, B002 ('Se vuoi saperne di più...') provides a link to the policy, and B004 ('Accetta') is an explicit consent button. These are harmless UI controls and phrasing differences for the same underlying cookie policy record. No new specific record, product, or distinct service target is introduced; the differences are in how the user interacts with the same policy notice.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "The differences between implicit consent (A) and explicit consent (B) are variations in the user interface and legal phrasing of the cookie banner, not a change in the actual policy scope, controller, or service target. The core message about cookie usage and the reference to the cookie policy (S001, S004) remains consistent. The presence of a navigation link (B001) or a button (B004) does not constitute a material conflict in the record's identity or purpose.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_2_pointer": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a standard cookie consent banner (non-main message) for the same site. The shared spans S001-S004 establish the core message: the site uses cookies, and the user is asked to consent to their use. The differences lie in the specific wording of the consent mechanism (implicit vs. explicit) and the presence of a navigation link on one side, but the fundamental function and target (cookie policy consent for the current site) are identical.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans represent variations in the UI presentation and consent mechanism of the same cookie policy message. A001-A003 ('Continuando a consultare questo...') indicates an implicit consent mechanism ('by continuing to browse'). B001-B004 ('Liste dei Desideri', 'Se vuoi saperne di più...', 'Accetta') includes a navigation link ('Wish Lists'), a reference to the policy, and an explicit 'Accept' button. These are different implementations of the same cookie consent function. The 'Liste dei Desideri' (Wish Lists) in B001 is a navigation element within the banner, not a separate record or product description. The core meaning (consent to cookies) is preserved on both sides, with B offering an explicit action and A relying on continued browsing. This is a benign UI/UX variation of the same non-main message.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no material conflict in identity, service target, or page role. Both sides address the user regarding cookie usage on the same site. The difference between implicit consent (A) and explicit consent (B) is a variation in the consent mechanism, not a change in the policy's purpose or the site's identity. The 'Wish Lists' link in B is a navigation element, not a change in the primary service target of the message.",
+              "score": "none"
+            }
+          }
+        },
+        "repeat_2_consent": {
+          "prediction": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO",
+            "relation_type": "RELATED_NON_DUPLICATE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a cookie consent banner for the same website ('sito'). The core message is identical: the site uses cookies for functionality and purposes described in the policy, and the user is asked to consent to their use. The shared spans S001, S002, S003, and S004 establish this common record. The differences lie in the specific mechanism of consent (continued browsing vs. explicit acceptance) and minor UI elements, but the fundamental record is the same cookie policy notice.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The consent condition differs materially between the two sides. Side A (spans A001, A002, A003) states 'Continuando a consultare questo... acconsenti all' uso dei cookie' (By continuing to browse this... you consent to the use of cookies), establishing an implied consent mechanism based on user action. Side B (spans B002, B003, B004) states 'Se vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del... Accetta' (If you want to know more consult the cookie policy. Continuing the navigation of... Accept), which introduces an explicit 'Accetta' (Accept) button and frames the action as 'continuing navigation' leading to an explicit acceptance choice. This changes the permission model from implied consent via browsing to a state requiring explicit acceptance via a control, which is a material change in the policy/permission state.",
+              "score": "non_main_policy_or_state_change"
+            },
+            "retained_conflict": {
+              "reasoning": "The conflict lies in the consent mechanism. Side A retains the proposition that continued browsing constitutes consent (A001-A003). Side B retains the proposition that the user must interact with an 'Accetta' control (B004) after being informed (B002). This is a change in the permission state and the method of obtaining consent, which is a material policy difference.",
+              "score": "policy_permission_change"
+            }
+          }
+        },
+        "repeat_2_control": {
+          "prediction": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES",
+            "relation_type": "NEAR_SURFACE",
+            "confidence_tier": "MEDIUM"
+          },
+          "critic": {
+            "record_scope": {
+              "reasoning": "Both sides present a standard cookie consent banner. The shared text (S001-S004) establishes the core message: the site uses cookies, and the user is asked to consent to their use. The differences lie in the specific phrasing of the consent mechanism (A: 'Continuing to browse' vs B: 'Proceeding with navigation' + 'Accept' button) and the inclusion of a 'Wishlist' label (B001) which appears to be a UI element or navigation link rather than a change to the cookie policy record itself. The core function and target (user consent to cookies) are identical.",
+              "score": "equivalent_complete_message"
+            },
+            "record_binding_verdict": {
+              "reasoning": "The unique spans on both sides represent variations in UI phrasing and harmless navigation elements. A001-A003 ('Continuando a consultare questo , ’') and B002-B004 ('Se vuoi saperne di più consulta la cookie policy. Proseguendo la navigazione del ', ' ', 'Accetta') are different ways of expressing the same consent action (continuing browsing implies consent). B001 ('Liste dei Desideri') is a navigation label (Wishlist) that does not alter the cookie policy record or the consent mechanism. The core meaning of the cookie notice is preserved on both sides.",
+              "score": "benign_non_record_delta"
+            },
+            "retained_conflict": {
+              "reasoning": "There is no change in the subject, purpose, permission, or state of the cookie policy. The differences are purely in the wording of the consent prompt and the presence of a navigation label, which do not constitute a material conflict in the record's meaning or function.",
+              "score": "none"
+            }
+          }
+        }
+      }
+    }
+  },
+  "assessment_sha256": "cd5d12e36fa5d19f73312639c93c75fe4702abfb3076884cfcba9f4e30d3bec2"
+}

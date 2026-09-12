@@ -1,0 +1,22 @@
+{
+  "schema_version": "dedup-coverage-transport-boundary-v1",
+  "passed": true,
+  "external_model_calls": 0,
+  "successful_full_boundary_invocation_local_http_requests": 4,
+  "full_boundary_tests_passed": 2,
+  "full_boundary_scope": "Actual JSONL reader, Ray Data executor, DataDesignerStage, local HTTP endpoint, native response trace, JSONL writer, original-payload binding and public evidence validation; both initial and retry-feedback scenarios with mixed shared/unique spans",
+  "full_boundary_command": "COVERAGE_TEST_RAY_ADDRESS=127.0.0.1:52646 RAY_ADDRESS=127.0.0.1:52646 /raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup/test_coverage_transport_replay.py::test_full_ray_pipeline_mixed_spans_with_local_http_only --confcutdir=tests/eval -q -s -x --tb=short",
+  "routine_tests_passed": 555,
+  "routine_tests_skipped": 2,
+  "routine_tests_deselected_gpu": 2,
+  "routine_skip_reason": "The two full Ray boundary cases require an explicitly supplied owned cluster and were passed separately",
+  "routine_command": "/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup --confcutdir=tests/eval -m 'not gpu' -q -x --tb=short",
+  "owned_ray_process_stopped": 3326942,
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/payload_transport.py": "125d98a9aa288505b578d34c211bebbb179c499c68d67c417b39bb66c6fa0a20",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/coverage_transport_replay.py": "1fcca0d6b042afe119128f2ee62d91a819c97d143b33036611d0072aa1587b20",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_payload_transport.py": "c5c83d08d2cd2e565deea7b63c0048aafb6c858a4eed80c04749803fa78e1221",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_coverage_transport_replay.py": "b830c915d4d120afe548479cdde448dec6e65367e2be8510d0654eb38173f11c",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/coverage_runtime.py": "eb5d18c27607a596553546fac832ede1f058d23aa961c210c126395302dd1b6c"
+  }
+}

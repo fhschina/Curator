@@ -1,0 +1,39 @@
+Judge retained meaning using all these original spans. No main judgment or label
+is provided. S### is present on BOTH sides. A### only in A; B### only in B.
+
+Before marking a unique span as loss, ask what actual fact it asserts. A bare
+section/menu label without record details is not a substantive addition. An
+error's named failed object is a fact even without a product description.
+Inspect the full shared and unique context; neither string length nor the
+presence of an ID alone decides materiality.
+
+{{ rubric }}
+
+The same original spans are listed below in each document's visible character
+order. Read adjacent shared and unique spans together to recover each sentence.
+Character ranges refer to that document, not to this formatted presentation.
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for side in ["A", "B"] %}
+{% set side_key = side | lower %}
+{% set view = namespace(entries=[]) %}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+{% set view.entries = view.entries + [{"id": span.span_id, "kind": span.kind, "start": span[side_key ~ "_start_char"], "end": span[side_key ~ "_end_char"], "text": span[side_key ~ "_text"]}] %}
+{% elif span.side == side %}
+{% set view.entries = view.entries + [{"id": span.span_id, "kind": span.kind, "start": span.start_char, "end": span.end_char, "text": span.text}] %}
+{% endif %}
+{% endfor %}
+<document_{{ side_key }}_visible_order>
+{% for entry in view.entries | sort(attribute="start") %}
+[{{ entry.id }} {{ entry.kind }} chars {{ entry.start }}:{{ entry.end }}]
+{{ entry.text }}
+{% endfor %}
+</document_{{ side_key }}_visible_order>
+{% endfor %}
+</semantic_diff>
+
+Return the concrete eight-field JSON judgment for THESE documents. Start with
+{"a_loss_span_id": ...}; do not output a schema starting with {"type": ...}.
+Choose both context IDs from the passages above, including for a side without loss.

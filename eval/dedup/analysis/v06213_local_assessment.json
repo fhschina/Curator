@@ -1,0 +1,2762 @@
+{
+  "schema_version": "dedup-v06213-local-assessment-v1",
+  "eligible_for_promotion": false,
+  "interpretation": "Error-enriched 258-pair local development, not full/holdout. Score original stratum weights from the frozen reference join, never the incomplete selector weight column. Same-output scope ablation uses new saved responses; no extra calls. Primary tuple order is same_duplicate_group,a_can_replace_b,b_can_replace_a.",
+  "operations": {
+    "completed_at_utc": "2026-09-10T03:24:00.859583+00:00",
+    "errors": 0,
+    "errors_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "requested": 258,
+    "results_sha256": "7773e6cc85fe1f3155bcd815fd426e6abe4fcbcb59028d867caf9160e5924e29",
+    "retried": 1,
+    "schema_version": "dedup-rejudge-complete-v1",
+    "valid": 258,
+    "http": {
+      "preflight": {
+        "events": 41,
+        "status_counts": {
+          "200": 41
+        }
+      },
+      "runtime": {
+        "events": 535,
+        "status_counts": {
+          "200": 535
+        }
+      }
+    }
+  },
+  "metrics": {
+    "v0.6.2.9-full-development-diagnostic": {
+      "weighted": {
+        "rows": 258,
+        "weight_total": 2072.772211350298,
+        "primary_decision_exact": 0.6820821090448071,
+        "taxonomy_exact": 0.4612055279022588,
+        "duplicate_precision": 0.6146118101586326,
+        "duplicate_recall": 0.47125978010230335,
+        "duplicate_f1": 0.5334734403246237,
+        "true_positive": 356.52487279843456,
+        "false_positive": 223.5565166340508,
+        "false_negative": 400.01088062622307,
+        "true_negative": 1070.8628767123278,
+        "unresolved": 34.12206457925636
+      },
+      "unweighted": {
+        "rows": 258,
+        "weight_total": 258,
+        "primary_decision_exact": 0.6162790697674418,
+        "taxonomy_exact": 0.39147286821705424,
+        "duplicate_precision": 0.68,
+        "duplicate_recall": 0.4214876033057851,
+        "duplicate_f1": 0.520408163265306,
+        "true_positive": 51,
+        "false_positive": 24,
+        "false_negative": 70,
+        "true_negative": 111,
+        "unresolved": 5
+      },
+      "cohorts": {
+        "boilerplate_only": {
+          "rows": 18,
+          "primary_decision_exact": 0.9444444444444444,
+          "weighted_primary_decision_exact": 0.9534988541187314,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "canonical": {
+          "rows": 6,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "chrome_only": {
+          "rows": 7,
+          "primary_decision_exact": 0.7142857142857143,
+          "weighted_primary_decision_exact": 0.7526302635178926,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "factual_state": {
+          "rows": 17,
+          "primary_decision_exact": 0.5882352941176471,
+          "weighted_primary_decision_exact": 0.5413287704424619,
+          "over_group": 6,
+          "under_group": 0
+        },
+        "identical": {
+          "rows": 12,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "identity_slot": {
+          "rows": 16,
+          "primary_decision_exact": 0.6875,
+          "weighted_primary_decision_exact": 0.692215673922716,
+          "over_group": 5,
+          "under_group": 0
+        },
+        "list_membership": {
+          "rows": 2,
+          "primary_decision_exact": 0.5,
+          "weighted_primary_decision_exact": 0.5396622718090058,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "material_content": {
+          "rows": 11,
+          "primary_decision_exact": 0.9090909090909091,
+          "weighted_primary_decision_exact": 0.9208363342512894,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "meaningful_addition": {
+          "rows": 94,
+          "primary_decision_exact": 0.5851063829787234,
+          "weighted_primary_decision_exact": 0.5922570504757598,
+          "over_group": 6,
+          "under_group": 32
+        },
+        "page_role": {
+          "rows": 20,
+          "primary_decision_exact": 0.75,
+          "weighted_primary_decision_exact": 0.7506220365993734,
+          "over_group": 5,
+          "under_group": 0
+        },
+        "parser_noise": {
+          "rows": 1,
+          "primary_decision_exact": 0,
+          "weighted_primary_decision_exact": 0,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "translation": {
+          "rows": 54,
+          "primary_decision_exact": 0.3148148148148148,
+          "weighted_primary_decision_exact": 0.4463005055738441,
+          "over_group": 0,
+          "under_group": 36
+        }
+      },
+      "over_group": 24,
+      "under_group": 70,
+      "containment_over_group": 4,
+      "containment_under_group": 30
+    },
+    "v0.6.2.12-full-development": {
+      "weighted": {
+        "rows": 258,
+        "weight_total": 2072.772211350298,
+        "primary_decision_exact": 0.6117717737365626,
+        "taxonomy_exact": 0.3959680711595095,
+        "duplicate_precision": 0.49021288494673176,
+        "duplicate_recall": 0.6948682190943648,
+        "duplicate_f1": 0.5748692695858455,
+        "true_positive": 525.6926516634054,
+        "false_positive": 546.6835909980434,
+        "false_negative": 230.8431017612524,
+        "true_negative": 747.7358023483363,
+        "unresolved": 48.99905088062622
+      },
+      "unweighted": {
+        "rows": 258,
+        "weight_total": 258,
+        "primary_decision_exact": 0.6705426356589147,
+        "taxonomy_exact": 0.3449612403100775,
+        "duplicate_precision": 0.6274509803921569,
+        "duplicate_recall": 0.7933884297520661,
+        "duplicate_f1": 0.7007299270072992,
+        "true_positive": 96,
+        "false_positive": 57,
+        "false_negative": 25,
+        "true_negative": 78,
+        "unresolved": 5
+      },
+      "cohorts": {
+        "boilerplate_only": {
+          "rows": 18,
+          "primary_decision_exact": 0.6666666666666666,
+          "weighted_primary_decision_exact": 0.6635424113071757,
+          "over_group": 6,
+          "under_group": 0
+        },
+        "canonical": {
+          "rows": 6,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "chrome_only": {
+          "rows": 7,
+          "primary_decision_exact": 0.5714285714285714,
+          "weighted_primary_decision_exact": 0.6191341495511634,
+          "over_group": 0,
+          "under_group": 2
+        },
+        "factual_state": {
+          "rows": 17,
+          "primary_decision_exact": 0.4117647058823529,
+          "weighted_primary_decision_exact": 0.35395791508469066,
+          "over_group": 9,
+          "under_group": 0
+        },
+        "identical": {
+          "rows": 12,
+          "primary_decision_exact": 0.8333333333333334,
+          "weighted_primary_decision_exact": 0.8109292276814121,
+          "over_group": 0,
+          "under_group": 2
+        },
+        "identity_slot": {
+          "rows": 16,
+          "primary_decision_exact": 0.3125,
+          "weighted_primary_decision_exact": 0.32864253725752224,
+          "over_group": 11,
+          "under_group": 0
+        },
+        "list_membership": {
+          "rows": 2,
+          "primary_decision_exact": 0.5,
+          "weighted_primary_decision_exact": 0.5396622718090058,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "material_content": {
+          "rows": 11,
+          "primary_decision_exact": 0.8181818181818182,
+          "weighted_primary_decision_exact": 0.8280313324310765,
+          "over_group": 1,
+          "under_group": 1
+        },
+        "meaningful_addition": {
+          "rows": 94,
+          "primary_decision_exact": 0.6276595744680851,
+          "weighted_primary_decision_exact": 0.6216928350008963,
+          "over_group": 16,
+          "under_group": 18
+        },
+        "page_role": {
+          "rows": 20,
+          "primary_decision_exact": 0.4,
+          "weighted_primary_decision_exact": 0.4234864132359635,
+          "over_group": 12,
+          "under_group": 0
+        },
+        "parser_noise": {
+          "rows": 1,
+          "primary_decision_exact": 0,
+          "weighted_primary_decision_exact": 0,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "translation": {
+          "rows": 54,
+          "primary_decision_exact": 0.9629629629629629,
+          "weighted_primary_decision_exact": 0.8981470609803482,
+          "over_group": 1,
+          "under_group": 1
+        }
+      },
+      "over_group": 57,
+      "under_group": 25,
+      "containment_over_group": 22,
+      "containment_under_group": 17
+    },
+    "v06213": {
+      "weighted": {
+        "rows": 258,
+        "weight_total": 2072.772211350298,
+        "primary_decision_exact": 0.6692134417108364,
+        "taxonomy_exact": 0.43160001740958465,
+        "duplicate_precision": 0.7022746960699552,
+        "duplicate_recall": 0.561760752230976,
+        "duplicate_f1": 0.6242077499761957,
+        "true_positive": 424.9920939334639,
+        "false_positive": 180.1729452054794,
+        "false_negative": 331.54365949119375,
+        "true_negative": 1008.8658121330715,
+        "unresolved": 207.80825831702535
+      },
+      "unweighted": {
+        "rows": 258,
+        "weight_total": 258,
+        "primary_decision_exact": 0.7170542635658915,
+        "taxonomy_exact": 0.3798449612403101,
+        "duplicate_precision": 0.8113207547169812,
+        "duplicate_recall": 0.7107438016528925,
+        "duplicate_f1": 0.7577092511013217,
+        "true_positive": 86,
+        "false_positive": 20,
+        "false_negative": 35,
+        "true_negative": 105,
+        "unresolved": 20
+      },
+      "cohorts": {
+        "boilerplate_only": {
+          "rows": 18,
+          "primary_decision_exact": 0.9444444444444444,
+          "weighted_primary_decision_exact": 0.9534988541187314,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "canonical": {
+          "rows": 6,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "chrome_only": {
+          "rows": 7,
+          "primary_decision_exact": 0.5714285714285714,
+          "weighted_primary_decision_exact": 0.6191341495511634,
+          "over_group": 0,
+          "under_group": 3
+        },
+        "factual_state": {
+          "rows": 17,
+          "primary_decision_exact": 0.5294117647058824,
+          "weighted_primary_decision_exact": 0.46283566520371877,
+          "over_group": 4,
+          "under_group": 0
+        },
+        "identical": {
+          "rows": 12,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "identity_slot": {
+          "rows": 16,
+          "primary_decision_exact": 0.8125,
+          "weighted_primary_decision_exact": 0.8230201438570256,
+          "over_group": 3,
+          "under_group": 0
+        },
+        "list_membership": {
+          "rows": 2,
+          "primary_decision_exact": 0.5,
+          "weighted_primary_decision_exact": 0.5396622718090058,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "material_content": {
+          "rows": 11,
+          "primary_decision_exact": 0.7272727272727273,
+          "weighted_primary_decision_exact": 0.7352263306108637,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "meaningful_addition": {
+          "rows": 94,
+          "primary_decision_exact": 0.5425531914893617,
+          "weighted_primary_decision_exact": 0.5500167201819467,
+          "over_group": 5,
+          "under_group": 29
+        },
+        "page_role": {
+          "rows": 20,
+          "primary_decision_exact": 0.6,
+          "weighted_primary_decision_exact": 0.5924200102277618,
+          "over_group": 6,
+          "under_group": 0
+        },
+        "parser_noise": {
+          "rows": 1,
+          "primary_decision_exact": 0,
+          "weighted_primary_decision_exact": 0,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "translation": {
+          "rows": 54,
+          "primary_decision_exact": 0.9629629629629629,
+          "weighted_primary_decision_exact": 0.8981470609803484,
+          "over_group": 0,
+          "under_group": 2
+        }
+      },
+      "over_group": 20,
+      "under_group": 35,
+      "containment_over_group": 3,
+      "containment_under_group": 27
+    }
+  },
+  "guards": {
+    "negative_38": {
+      "expected": 38,
+      "preserved": 29,
+      "violations": [
+        "H0553",
+        "H0072",
+        "H0770",
+        "H0964",
+        "H0872",
+        "H0959",
+        "H0828",
+        "H0612",
+        "H0977"
+      ],
+      "passed": false
+    },
+    "baseline_negative_20": {
+      "expected": 20,
+      "preserved": 14,
+      "violations": [
+        "H0553",
+        "H0072",
+        "H0770",
+        "H0964",
+        "H0959",
+        "H0612"
+      ],
+      "passed": false
+    },
+    "benign_5": {
+      "expected": 5,
+      "preserved": 2,
+      "violations": [
+        "H0038",
+        "H0679",
+        "H0748"
+      ],
+      "passed": false
+    },
+    "baseline_benign_3": {
+      "expected": 3,
+      "preserved": 2,
+      "violations": [
+        "H0038"
+      ],
+      "passed": false
+    },
+    "true_containment_4": {
+      "expected": 4,
+      "preserved": 1,
+      "violations": [
+        "H0017",
+        "H0333",
+        "H0878"
+      ],
+      "passed": false
+    },
+    "exact_12": {
+      "expected": 12,
+      "preserved": 12,
+      "violations": [],
+      "passed": true
+    }
+  },
+  "full_diagnostic_continuation": {
+    "passed": false,
+    "checks": {
+      "schema_completion": true,
+      "terminal_errors": true,
+      "retry_rate": true,
+      "exact_12": true,
+      "true_containment_4": false,
+      "no_new_negative_guard_regressions": false,
+      "no_new_benign_guard_regressions": false,
+      "translation_weighted_regression": true
+    },
+    "protocol": "v06213_design.md; not promotion"
+  },
+  "effects_vs_v06212": {
+    "REGRESSED": {
+      "count": 31,
+      "review_ids": [
+        "H0019",
+        "H0066",
+        "H0383",
+        "H0023",
+        "H0384",
+        "H0553",
+        "H0072",
+        "H0458",
+        "H0878",
+        "H0770",
+        "H0964",
+        "H0959",
+        "H0146",
+        "H0844",
+        "H0017",
+        "H0195",
+        "H0736",
+        "H0432",
+        "H0243",
+        "H0488",
+        "H0038",
+        "H0938",
+        "H0612",
+        "H0824",
+        "H0298",
+        "H0333",
+        "H0847",
+        "H0249",
+        "H0135",
+        "H0154",
+        "H0168"
+      ]
+    },
+    "BOTH_CORRECT": {
+      "count": 142,
+      "review_ids": [
+        "H0148",
+        "H0363",
+        "H0343",
+        "H0289",
+        "H0954",
+        "H0256",
+        "H0266",
+        "H0987",
+        "H0796",
+        "H0752",
+        "H0356",
+        "H0602",
+        "H0292",
+        "H0007",
+        "H0392",
+        "H0599",
+        "H0760",
+        "H0922",
+        "H0397",
+        "H0207",
+        "H0354",
+        "H0059",
+        "H0494",
+        "H0276",
+        "H0299",
+        "H0214",
+        "H0418",
+        "H0036",
+        "H0144",
+        "H0815",
+        "H0867",
+        "H0444",
+        "H0825",
+        "H0947",
+        "H0347",
+        "H0911",
+        "H0610",
+        "H0973",
+        "H0581",
+        "H0572",
+        "H0943",
+        "H0807",
+        "H0177",
+        "H0958",
+        "H0764",
+        "H0968",
+        "H0914",
+        "H0726",
+        "H0453",
+        "H0526",
+        "H0542",
+        "H0322",
+        "H0580",
+        "H0921",
+        "H0742",
+        "H0647",
+        "H0108",
+        "H0093",
+        "H0512",
+        "H0346",
+        "H0641",
+        "H0903",
+        "H0485",
+        "H0592",
+        "H0126",
+        "H0158",
+        "H0638",
+        "H0979",
+        "H0716",
+        "H0115",
+        "H0893",
+        "H0945",
+        "H0830",
+        "H0419",
+        "H0246",
+        "H0296",
+        "H0470",
+        "H0884",
+        "H0750",
+        "H0073",
+        "H0150",
+        "H0443",
+        "H0303",
+        "H0718",
+        "H0226",
+        "H0222",
+        "H0406",
+        "H0604",
+        "H0313",
+        "H0496",
+        "H0962",
+        "H0104",
+        "H0792",
+        "H0721",
+        "H0174",
+        "H0189",
+        "H0848",
+        "H0900",
+        "H0010",
+        "H0489",
+        "H0984",
+        "H0596",
+        "H0559",
+        "H0518",
+        "H0761",
+        "H0835",
+        "H0703",
+        "H0573",
+        "H0662",
+        "H0861",
+        "H0955",
+        "H0089",
+        "H0833",
+        "H0802",
+        "H0081",
+        "H0480",
+        "H0022",
+        "H0681",
+        "H0899",
+        "H0325",
+        "H0030",
+        "H0305",
+        "H0167",
+        "H0385",
+        "H0482",
+        "H0079",
+        "H0421",
+        "H0145",
+        "H0983",
+        "H0005",
+        "H0100",
+        "H0545",
+        "H0894",
+        "H0122",
+        "H0239",
+        "H0653",
+        "H0165",
+        "H0710",
+        "H0887",
+        "H0688",
+        "H0248",
+        "H0728"
+      ]
+    },
+    "BOTH_WRONG": {
+      "count": 42,
+      "review_ids": [
+        "H0711",
+        "H0741",
+        "H0917",
+        "H0634",
+        "H0702",
+        "H0787",
+        "H0957",
+        "H0926",
+        "H0394",
+        "H0872",
+        "H0320",
+        "H0723",
+        "H0221",
+        "H0540",
+        "H0822",
+        "H0492",
+        "H0361",
+        "H0748",
+        "H0928",
+        "H0751",
+        "H0056",
+        "H0828",
+        "H0679",
+        "H0636",
+        "H0048",
+        "H0733",
+        "H0856",
+        "H0521",
+        "H0758",
+        "H0260",
+        "H0196",
+        "H0468",
+        "H1000",
+        "H0800",
+        "H0998",
+        "H0811",
+        "H0186",
+        "H0668",
+        "H0977",
+        "H0208",
+        "H0870",
+        "H0672"
+      ]
+    },
+    "REPAIRED": {
+      "count": 43,
+      "review_ids": [
+        "H0889",
+        "H0786",
+        "H0797",
+        "H0597",
+        "H0732",
+        "H0277",
+        "H0088",
+        "H0789",
+        "H0666",
+        "H0278",
+        "H0119",
+        "H0978",
+        "H0060",
+        "H0003",
+        "H0132",
+        "H0790",
+        "H0882",
+        "H0053",
+        "H0141",
+        "H0606",
+        "H0810",
+        "H0771",
+        "H0907",
+        "H0267",
+        "H0906",
+        "H0317",
+        "H0417",
+        "H0242",
+        "H0319",
+        "H0837",
+        "H0809",
+        "H0373",
+        "H0700",
+        "H0713",
+        "H0546",
+        "H0140",
+        "H0345",
+        "H0451",
+        "H0920",
+        "H0253",
+        "H0594",
+        "H0413",
+        "H0558"
+      ]
+    }
+  },
+  "same_output_scope_ablation": {
+    "public_replay_exact": 258,
+    "without_scope_metrics": {
+      "weighted": {
+        "rows": 258,
+        "weight_total": 2072.772211350298,
+        "primary_decision_exact": 0.6814517102085687,
+        "taxonomy_exact": 0.4348582865379894,
+        "duplicate_precision": 0.6808337313903984,
+        "duplicate_recall": 0.6171541217968599,
+        "duplicate_f1": 0.6474318577853472,
+        "true_positive": 466.8991585127203,
+        "false_positive": 218.8764383561643,
+        "false_negative": 289.6365949119373,
+        "true_negative": 994.932397260273,
+        "unresolved": 149.69960861056748
+      },
+      "unweighted": {
+        "rows": 258,
+        "weight_total": 258,
+        "primary_decision_exact": 0.7209302325581395,
+        "taxonomy_exact": 0.375968992248062,
+        "duplicate_precision": 0.7894736842105263,
+        "duplicate_recall": 0.743801652892562,
+        "duplicate_f1": 0.7659574468085106,
+        "true_positive": 90,
+        "false_positive": 24,
+        "false_negative": 31,
+        "true_negative": 103,
+        "unresolved": 15
+      },
+      "cohorts": {
+        "boilerplate_only": {
+          "rows": 18,
+          "primary_decision_exact": 0.9444444444444444,
+          "weighted_primary_decision_exact": 0.9534988541187314,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "canonical": {
+          "rows": 6,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "chrome_only": {
+          "rows": 7,
+          "primary_decision_exact": 0.7142857142857143,
+          "weighted_primary_decision_exact": 0.7526302635178926,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "factual_state": {
+          "rows": 17,
+          "primary_decision_exact": 0.6470588235294118,
+          "weighted_primary_decision_exact": 0.6082842343164452,
+          "over_group": 4,
+          "under_group": 0
+        },
+        "identical": {
+          "rows": 12,
+          "primary_decision_exact": 1,
+          "weighted_primary_decision_exact": 1,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "identity_slot": {
+          "rows": 16,
+          "primary_decision_exact": 0.6875,
+          "weighted_primary_decision_exact": 0.7018290983019612,
+          "over_group": 3,
+          "under_group": 0
+        },
+        "list_membership": {
+          "rows": 2,
+          "primary_decision_exact": 0.5,
+          "weighted_primary_decision_exact": 0.5396622718090058,
+          "over_group": 1,
+          "under_group": 0
+        },
+        "material_content": {
+          "rows": 11,
+          "primary_decision_exact": 0.7272727272727273,
+          "weighted_primary_decision_exact": 0.7352263306108637,
+          "over_group": 0,
+          "under_group": 0
+        },
+        "meaningful_addition": {
+          "rows": 94,
+          "primary_decision_exact": 0.5319148936170213,
+          "weighted_primary_decision_exact": 0.5389983794780561,
+          "over_group": 8,
+          "under_group": 28
+        },
+        "page_role": {
+          "rows": 20,
+          "primary_decision_exact": 0.65,
+          "weighted_primary_decision_exact": 0.658202026371612,
+          "over_group": 7,
+          "under_group": 0
+        },
+        "parser_noise": {
+          "rows": 1,
+          "primary_decision_exact": 0,
+          "weighted_primary_decision_exact": 0,
+          "over_group": 0,
+          "under_group": 1
+        },
+        "translation": {
+          "rows": 54,
+          "primary_decision_exact": 0.9629629629629629,
+          "weighted_primary_decision_exact": 0.9839909240408258,
+          "over_group": 0,
+          "under_group": 1
+        }
+      },
+      "over_group": 24,
+      "under_group": 31,
+      "containment_over_group": 5,
+      "containment_under_group": 26
+    },
+    "changes": [
+      {
+        "review_id": "H0553",
+        "without_scope_error": "CORRECT",
+        "actual_error": "UNRESOLVED",
+        "without_scope": [
+          "NO",
+          "NO",
+          "NO"
+        ],
+        "actual": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ]
+      },
+      {
+        "review_id": "H0797",
+        "without_scope_error": "OVER_GROUP",
+        "actual_error": "CORRECT",
+        "without_scope": [
+          "YES",
+          "YES",
+          "YES"
+        ],
+        "actual": [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      },
+      {
+        "review_id": "H0741",
+        "without_scope_error": "DIRECTION_ONLY",
+        "actual_error": "UNRESOLVED",
+        "without_scope": [
+          "YES",
+          "NO",
+          "YES"
+        ],
+        "actual": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ]
+      },
+      {
+        "review_id": "H0878",
+        "without_scope_error": "CORRECT",
+        "actual_error": "DIRECTION_ONLY",
+        "without_scope": [
+          "YES",
+          "YES",
+          "NO"
+        ],
+        "actual": [
+          "YES",
+          "YES",
+          "YES"
+        ]
+      },
+      {
+        "review_id": "H0088",
+        "without_scope_error": "OVER_GROUP",
+        "actual_error": "CORRECT",
+        "without_scope": [
+          "YES",
+          "YES",
+          "YES"
+        ],
+        "actual": [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      },
+      {
+        "review_id": "H0017",
+        "without_scope_error": "CORRECT",
+        "actual_error": "UNRESOLVED",
+        "without_scope": [
+          "YES",
+          "NO",
+          "YES"
+        ],
+        "actual": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ]
+      },
+      {
+        "review_id": "H0221",
+        "without_scope_error": "OVER_GROUP",
+        "actual_error": "OVER_GROUP",
+        "without_scope": [
+          "YES",
+          "NO",
+          "YES"
+        ],
+        "actual": [
+          "YES",
+          "YES",
+          "YES"
+        ]
+      },
+      {
+        "review_id": "H0195",
+        "without_scope_error": "CORRECT",
+        "actual_error": "UNRESOLVED",
+        "without_scope": [
+          "NO",
+          "NO",
+          "NO"
+        ],
+        "actual": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ]
+      },
+      {
+        "review_id": "H0606",
+        "without_scope_error": "UNRESOLVED",
+        "actual_error": "CORRECT",
+        "without_scope": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ],
+        "actual": [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      },
+      {
+        "review_id": "H0679",
+        "without_scope_error": "CORRECT",
+        "actual_error": "UNRESOLVED",
+        "without_scope": [
+          "YES",
+          "YES",
+          "YES"
+        ],
+        "actual": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ]
+      },
+      {
+        "review_id": "H0636",
+        "without_scope_error": "CORRECT",
+        "actual_error": "UNRESOLVED",
+        "without_scope": [
+          "NO",
+          "NO",
+          "NO"
+        ],
+        "actual": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ]
+      },
+      {
+        "review_id": "H0038",
+        "without_scope_error": "CORRECT",
+        "actual_error": "UNDER_GROUP_RESOLVED",
+        "without_scope": [
+          "YES",
+          "YES",
+          "YES"
+        ],
+        "actual": [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      },
+      {
+        "review_id": "H0468",
+        "without_scope_error": "OVER_GROUP",
+        "actual_error": "UNRESOLVED",
+        "without_scope": [
+          "YES",
+          "YES",
+          "NO"
+        ],
+        "actual": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ]
+      },
+      {
+        "review_id": "H0809",
+        "without_scope_error": "UNRESOLVED",
+        "actual_error": "CORRECT",
+        "without_scope": [
+          "UNRESOLVED",
+          "UNRESOLVED",
+          "UNRESOLVED"
+        ],
+        "actual": [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      },
+      {
+        "review_id": "H0713",
+        "without_scope_error": "OVER_GROUP",
+        "actual_error": "CORRECT",
+        "without_scope": [
+          "YES",
+          "YES",
+          "YES"
+        ],
+        "actual": [
+          "NO",
+          "NO",
+          "NO"
+        ]
+      },
+      {
+        "review_id": "H0451",
+        "without_scope_error": "DIRECTION_ONLY",
+        "actual_error": "CORRECT",
+        "without_scope": [
+          "YES",
+          "NO",
+          "YES"
+        ],
+        "actual": [
+          "YES",
+          "YES",
+          "YES"
+        ]
+      }
+    ]
+  },
+  "source_digests": {
+    "eval/dedup/analysis/v06213_design.md": "dd13d590b04b03482085af4e7ca10ececb2bc6188ec9835d5771facc2b1b49c1",
+    "eval/dedup/analysis/v06213_local_labels.csv": "8484ee158fbc99484fd8a0fc75b7985ca08b8caac887b7f0a2ef191b535fb094",
+    "eval/dedup/analysis/v06213_local_evaluation_labels.csv": "977eb95ba066655d03ff533ba98d5c5fe92fa3cb3f63148856159f39d09c1f2a",
+    "eval/dedup/analysis/v0628_policy_reconciled_labels_1000.csv": "6f685cdf717df61a9332e431c685a9d860348a6c83e3665356075e8dc6c28096",
+    "eval/dedup/analysis/v06212_translation_route_replay.json": "601e0808f3e7cf4f07d01991bf4f1a933c365364ca7ab255dfba2fbe384bc681",
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/run_manifest.json": "66c252a6326275bccd126f9c6aede0776fa94839537cd7dc4b0ea1e54425027f",
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/run_complete.json": "40dd8124ad3ab35e50e9c330158e92ac334c38775fa5300cecbdb98d2aacee7a",
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/data/judge_results.jsonl": "7773e6cc85fe1f3155bcd815fd426e6abe4fcbcb59028d867caf9160e5924e29",
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/data/judge_payloads.jsonl": "3653af1154165e2d91cdc8f18813e60d62c04403ef7e70b039f62c3b026762c6"
+  },
+  "raw_source_digests": {
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/runtime/block-0001/run-001/attempt_01/output/6dc260330b93.jsonl": "27334639c8ce6f9687d257abacd39bfa34f4df42b7cfc2d4b52d3ead9b98ac00",
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/runtime/block-0001/run-001/attempt_02/output/ad1480f0bb49.jsonl": "0366c95149f33dc45036ae4f388bf3ca10543d6c3f8c228ea80b42704bd29768"
+  },
+  "errors": [
+    {
+      "review_id": "H0019",
+      "canonical_pair_id": "cp1_0092eaed4c42ece646f04afffe37edf9a17101846970f093ae0c68a65f49fb78",
+      "error_type": "DIRECTION_ONLY",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0711",
+      "canonical_pair_id": "cp1_02819a3db3494a14d888c794457d808c3b37a8a31e8f9969b2cf1efcc452b6a6",
+      "error_type": "UNRESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0066",
+      "canonical_pair_id": "cp1_036a71baebab1146e230df07b1d3ea7f20d7b45b629ffe0d9fd9bcec17718bc2",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0383",
+      "canonical_pair_id": "cp1_0caff164a01fd4ad68cc5fac161b3e62540f9976b56294a3a241517f0913b685",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_EXTENSION_PROOF_INVALID",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0023",
+      "canonical_pair_id": "cp1_0cfd4bec35f2e573645678641da984aa298a1764683f93f906f891e728c9d459",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0384",
+      "canonical_pair_id": "cp1_0d38a9acc7c7e85afc4f9e7e6c8f1c0b413a87659577438e8f645aebb17e61a9",
+      "error_type": "OVER_GROUP",
+      "old_error": "CORRECT",
+      "reference_reason": "boilerplate_only",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0553",
+      "canonical_pair_id": "cp1_0f1ddeccf3a9c6eb1e18e0252d159801758c2ff0e58a7cb8e4001aaab6105be9",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "page_role",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE_ISSUE:MISSING_RECORD_DELTA"
+      ]
+    },
+    {
+      "review_id": "H0741",
+      "canonical_pair_id": "cp1_19f0c29c971d5d58bbfc0c621264fca791d7247df4711d7bcd4fb72f431091b1",
+      "error_type": "UNRESOLVED",
+      "old_error": "DIRECTION_ONLY",
+      "reference_reason": "chrome_only",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_EXTENSION_PROOF_INVALID",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION",
+        "RECORD_SCOPE_ISSUE:MISSING_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0917",
+      "canonical_pair_id": "cp1_1e3d28051bf118e89acc1bd2dab425f0af2bb67124e05c087f887cc8c96e13cd",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "page_role",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:EQUIVALENT_COMPLETE_MESSAGE"
+      ]
+    },
+    {
+      "review_id": "H0072",
+      "canonical_pair_id": "cp1_26f8d8e50fdea94ab28f573cee22d5419ac32554b8ba5279fbba6da7530af926",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "material_content",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_EXTENSION_PROOF_INVALID",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0458",
+      "canonical_pair_id": "cp1_2a81d0e930b0e5a02e7695a1a84fb2d5d656562499e2c9261550a5a4e5b095a7",
+      "error_type": "DIRECTION_ONLY",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0634",
+      "canonical_pair_id": "cp1_2b078eb916a589c3e11b8b247caf022f6ab2c9747e1419a2add09098d510243d",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "page_role",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "relation": "CONTAINMENT",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+ASYMMETRIC_CRITIC_CONFIRMED_ATOMIC_EXTENSION",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0702",
+      "canonical_pair_id": "cp1_2c5ab7e9a8a52ec1cea2465201dae4384b0d11d154621ceaab3fcaedbbfa27f7",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "factual_state",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0878",
+      "canonical_pair_id": "cp1_2c5cfe085d56f32fde9351d21de242a8f7d8d67ddb9c125fe87eafd584e57f81",
+      "error_type": "DIRECTION_ONLY",
+      "old_error": "CORRECT",
+      "reference_reason": "factual_state",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VERIFIED_BENIGN_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0770",
+      "canonical_pair_id": "cp1_3009938e22579d49cadc4413d853beeaa1882bbc9485001eadba7f42007f488c",
+      "error_type": "OVER_GROUP",
+      "old_error": "CORRECT",
+      "reference_reason": "page_role",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION"
+      ]
+    },
+    {
+      "review_id": "H0787",
+      "canonical_pair_id": "cp1_3460ceb516b2f71b50c2268fa7ed6ea444a9f1b992926d48d738fb64d084f0f4",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_LIST_MEMBERSHIP_CHANGE",
+        "RECORD_SCOPE:LIST_MEMBERSHIP_CHANGE"
+      ]
+    },
+    {
+      "review_id": "H0957",
+      "canonical_pair_id": "cp1_3bb0a6a8c21d776d48594dc0ab3cfe9135e60e510546b267c187eaf55222050d",
+      "error_type": "UNRESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0926",
+      "canonical_pair_id": "cp1_3e491118b72969bf9fee321900b06e0c392c1f0c9ab9bc6983590d1e40b935c1",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:LIST_MEMBERSHIP_CHANGE",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0964",
+      "canonical_pair_id": "cp1_3ed7da23474deea2c1dded01aa5bac56c51f2a28fcc12160f30229d1b7fd17cc",
+      "error_type": "OVER_GROUP",
+      "old_error": "CORRECT",
+      "reference_reason": "page_role",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "relation": "CONTAINMENT",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+ASYMMETRIC_CRITIC_CONFIRMED_ATOMIC_EXTENSION",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0394",
+      "canonical_pair_id": "cp1_3facffbd466321f4a15a6ef9271571208aceaae0de12f32e7607688f3cac41ff",
+      "error_type": "DIRECTION_ONLY",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "material_content",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "relation": "CONTAINMENT",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+ASYMMETRIC_CRITIC_CONFIRMED_ATOMIC_EXTENSION",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION"
+      ]
+    },
+    {
+      "review_id": "H0872",
+      "canonical_pair_id": "cp1_41ecba65ee7935c9174633bde81c96384e28aad34987d55eab3970e536c31cee",
+      "error_type": "UNRESOLVED",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0959",
+      "canonical_pair_id": "cp1_42b4d8ca39bedc11dd6454a28d9f11e02126874712064446297be0c0a8b89e57",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "material_content",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_EXTENSION_PROOF_INVALID",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0146",
+      "canonical_pair_id": "cp1_430264711cc3aa539ae3e8bf17606145bad1290a2ca421cbad4297eadf8a9881",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_EXTENSION_PROOF_INVALID",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0320",
+      "canonical_pair_id": "cp1_446cd6f7ce5113fc82da0fe047b360538fb0d8ea740da28ea6ad51625a310e9d",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION"
+      ]
+    },
+    {
+      "review_id": "H0844",
+      "canonical_pair_id": "cp1_4ad503c640c69a631eb3f048e6a0f82a5cab8796aa9cc9fdb03c83cf6ab2e637",
+      "error_type": "OVER_GROUP",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0723",
+      "canonical_pair_id": "cp1_4caf9a7fae63ed2fd09c31681ff746d50db73259ac3c5b60fd72e2b4cb52d0e6",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "relation": "CONTAINMENT",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+ASYMMETRIC_CRITIC_CONFIRMED_ATOMIC_EXTENSION",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0017",
+      "canonical_pair_id": "cp1_576f6a00b985e9bb7452a0f93ab5d88a7c5aa311116e7b0eda662fab07f4406e",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "translation",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_EXTENSION_PROOF_INVALID",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0221",
+      "canonical_pair_id": "cp1_57ba830a38bacabf1eae39f564fa084eb0922dbdc94b0d7c3dbb85e84d910a3b",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "factual_state",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VERIFIED_BENIGN_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0540",
+      "canonical_pair_id": "cp1_5d6fdecbb614fe0a90b4ba712977c433116e31ca134d6412e74adf58b619b68e",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+ASYMMETRIC_CRITIC_VETO_TWO_SIDED_OR_CONFLICTING",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION"
+      ]
+    },
+    {
+      "review_id": "H0195",
+      "canonical_pair_id": "cp1_5f7573abec7cc4ead5c49b95175dcd286b5c07718b46f6eb56057509a0b0b4df",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "page_role",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE_ISSUE:MISSING_RECORD_DELTA"
+      ]
+    },
+    {
+      "review_id": "H0822",
+      "canonical_pair_id": "cp1_617ddba4a46041dfa503360fc65a57cca7926bf3f4bce7c3e2d0b637ecc17776",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:DISTINCT_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0492",
+      "canonical_pair_id": "cp1_65435daa2e0569b3b10195e5d942d53355ee63fae0a9b0b7c083dbe9bc87291a",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_NO_VERIFIED_SHARED_RECORD_BASIS",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0736",
+      "canonical_pair_id": "cp1_6609a6a836251269449491f4a8debd72077982cf39c3a2db74784e1c87b2cee3",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0361",
+      "canonical_pair_id": "cp1_6cc534b921c21d6075a5ad229ac37cf9095edcb45a2a531aa2083daa09ffd5a3",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "parser_noise",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_INVALID_CONTENT_EXTENSION",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0748",
+      "canonical_pair_id": "cp1_6ce61cc7c1b58bda318f66a824127eb8afa30f1cda89e4f2ecda9913e0aa59ec",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "chrome_only",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0928",
+      "canonical_pair_id": "cp1_77536cf08e0ee534d0c865004d0a7a48617565c959cc98c24ca4d7768d2ee647",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "factual_state",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0751",
+      "canonical_pair_id": "cp1_7a85c8455799ad37ce8dd335dc1010efd089590c68685b4fa90a981f30d4576a",
+      "error_type": "UNRESOLVED",
+      "old_error": "UNRESOLVED",
+      "reference_reason": "factual_state",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:A_DELTA_WITHOUT_VISIBLE_SIDE_SPANS",
+        "RECORD_SCOPE:UNRESOLVED",
+        "RECORD_SCOPE_ISSUE:INCOMPLETE_PACKET",
+        "SPAN_CRITIC_ISSUE:CRITIC_SEMANTIC_DIFF_UNAVAILABLE_TRUNCATED"
+      ]
+    },
+    {
+      "review_id": "H0056",
+      "canonical_pair_id": "cp1_80a9d58242eeb6e067f432ef1654db813a958a5ab50f2ad7434ad8061bd677cc",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "factual_state",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0828",
+      "canonical_pair_id": "cp1_83f76dfe9251e756d004a257655e8fbc6d971677c54743e3c94063987a5ae701",
+      "error_type": "UNRESOLVED",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_EXTENSION_PROOF_INVALID",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0679",
+      "canonical_pair_id": "cp1_869f40cdb7b5e2e6b43d1392836374a884c6da6bc5e2cc59ecad0b7ea2102e39",
+      "error_type": "UNRESOLVED",
+      "old_error": "UNRESOLVED",
+      "reference_reason": "chrome_only",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0636",
+      "canonical_pair_id": "cp1_878a988db4d04ee03ee2271df20ba69a26225a5790ea72b31e4c72a44e559ce1",
+      "error_type": "UNRESOLVED",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "factual_state",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE_ISSUE:MISSING_RECORD_DELTA"
+      ]
+    },
+    {
+      "review_id": "H0432",
+      "canonical_pair_id": "cp1_889ce11b0b4eb4cee10708758a8199f238038f3ad9a36a736cef053e8205950e",
+      "error_type": "DIRECTION_ONLY",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "relation": "CONTAINMENT",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+ASYMMETRIC_CRITIC_CONFIRMED_ATOMIC_EXTENSION",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0243",
+      "canonical_pair_id": "cp1_8c2b7c8a0a09de30f932db97aff27707ade10dadc5f4e4ddda6a7d0742823477",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0048",
+      "canonical_pair_id": "cp1_8fcf24752562346e511a2559c0faf86592f3bff041d696266b1ae8f85a03f965",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0488",
+      "canonical_pair_id": "cp1_94311aff6d5c64bad4d81af0fd953fe04137078873efe4b7646b490e3de395ba",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_MATERIAL_NON_MAIN_DELTA",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0038",
+      "canonical_pair_id": "cp1_9f78e30084d9ff63c6835f645c0afb9a9aab16970190ab93ed08d96c2019406f",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0733",
+      "canonical_pair_id": "cp1_a031ed89d239613a8768ebac59d421dd84c1ef01f48a73f392890eae3c7d0510",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "identity_slot",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0856",
+      "canonical_pair_id": "cp1_a15a9ef1f3275c8915e654068ee2ab6a3d4346b7204acf120caef3c34736ebf3",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION"
+      ]
+    },
+    {
+      "review_id": "H0521",
+      "canonical_pair_id": "cp1_a2ef484ffca7f48b5056c6306ed7cf19851cfba412da597c3dc09cf58f6bbaa9",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0758",
+      "canonical_pair_id": "cp1_a750a75f00d970e8e23a7c507f3329ee6b007cd31792f298a9a9a2a559de928a",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "page_role",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:NOT_APPLICABLE"
+      ]
+    },
+    {
+      "review_id": "H0260",
+      "canonical_pair_id": "cp1_a8cbec54785bfaf0bf22c62322244e5a6c1db745b3de7b4477ff281a821b05e9",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0196",
+      "canonical_pair_id": "cp1_ac7f9cae06c13b19cd81347725658d64855e214f439d7d40979afe2537eaa5a9",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0938",
+      "canonical_pair_id": "cp1_b75d915023ab7e1b4df08b22d5db3dc9778603607a1e7c0e16116e7f645b4bab",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_MATERIAL_NON_MAIN_DELTA",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0612",
+      "canonical_pair_id": "cp1_b95b2a23f378b2c33e52a55dd7676c413409cad92c72caa60da5dbdcaef9cee9",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_SEPARATION_PROOF_DISAGREEMENT",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H0468",
+      "canonical_pair_id": "cp1_c0106bc72b83e0863c159ab2be87330996adfd065ef9f729e821166339db9a93",
+      "error_type": "UNRESOLVED",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_EXTENSION_PROOF_INVALID",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD",
+        "RECORD_SCOPE_ISSUE:MISSING_BILATERAL_BASIS"
+      ]
+    },
+    {
+      "review_id": "H1000",
+      "canonical_pair_id": "cp1_c0ca45ab5e1bba03eceb0d5906d3489a53846adcff9e04ad9abd93ffca34734f",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0824",
+      "canonical_pair_id": "cp1_c617ab7732fd2ae7bc8e96867af724ab1c8b23105ce7beddc4db85e048c729df",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0298",
+      "canonical_pair_id": "cp1_c67351a3c242dc38dd5529a2cb941b4d33ae98e43831a26250906ec5f71b8857",
+      "error_type": "UNRESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "factual_state",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "UNRESOLVED",
+        "UNRESOLVED",
+        "UNRESOLVED"
+      ],
+      "relation": "UNRESOLVED",
+      "rules": [
+        "SPAN_LEDGER_RULE:A_SIDE_SPANS_CLASSIFIED_AS_NONE",
+        "RECORD_SCOPE:DISTINCT_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0800",
+      "canonical_pair_id": "cp1_cc2d8ca6e11b819a58d821474f3182e49b4c14aaf5b9c9ec39e7e23031322a1a",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_LIST_MEMBERSHIP_CHANGE",
+        "RECORD_SCOPE:LIST_MEMBERSHIP_CHANGE"
+      ]
+    },
+    {
+      "review_id": "H0333",
+      "canonical_pair_id": "cp1_cdcd4674fd2e466156ad71b338e3adf8d41d1bb686a24862f00444e606aa34ee",
+      "error_type": "DIRECTION_ONLY",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0998",
+      "canonical_pair_id": "cp1_d20215be0128058ccfd307ce3e8042f8c66b1a1da93a214081b517ba07cb7a77",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0847",
+      "canonical_pair_id": "cp1_d5af1b4c3b37c38832ed910750e760f843e57a70b310fa6a0687836ee446cbcb",
+      "error_type": "DIRECTION_ONLY",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0249",
+      "canonical_pair_id": "cp1_d79b57cb6be09ec4f51315f1db3ea5065ef438672d784c64dba7a528d1141604",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0811",
+      "canonical_pair_id": "cp1_dced1c083aac5d9d4988b11231da4441aae73e16a7d7d73dc19ccb87180d9e0a",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_CONTENT_PROFILE_MISMATCH",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0135",
+      "canonical_pair_id": "cp1_ddd96496815f4436413405bf2fa2d347052bec97a421ca6221f0dda07cd64d4d",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "translation",
+      "reference": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_NO_VERIFIED_SHARED_RECORD_BASIS",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0186",
+      "canonical_pair_id": "cp1_e1fc46857f7924b9ab22aacbb90edb32b08409f8bbcd4169ba635f0a32f6faeb",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "identity_slot",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0154",
+      "canonical_pair_id": "cp1_ec759fb512246b9e58d76791e9ff5613a57dd64c68b87fdcb0d7fdf3deaad9d6",
+      "error_type": "OVER_GROUP",
+      "old_error": "CORRECT",
+      "reference_reason": "page_role",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION"
+      ]
+    },
+    {
+      "review_id": "H0168",
+      "canonical_pair_id": "cp1_f11549ee6c80569d287624f090bad585beb09b6ffadbe3a40b5f10224afb0b9d",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "CORRECT",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0668",
+      "canonical_pair_id": "cp1_f4d163b347f19b876c76a46ab8f3688cd3b028d497e05e040d17318ee5485232",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "list_membership",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE+RETAINED_COMPLETE_MESSAGE_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_SPECIFIC_RECORD"
+      ]
+    },
+    {
+      "review_id": "H0977",
+      "canonical_pair_id": "cp1_f96e74e6b8ea1acf3da4aaa5c4181ebd8d5fdcc25772908ed5140d4757bd1e88",
+      "error_type": "OVER_GROUP",
+      "old_error": "OVER_GROUP",
+      "reference_reason": "identity_slot",
+      "reference": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "actual": [
+        "YES",
+        "YES",
+        "YES"
+      ],
+      "relation": "NEAR_SURFACE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_BIDIRECTIONAL_EQUIVALENCE",
+        "RECORD_SCOPE:SAME_ORGANIZATION_DESCRIPTION"
+      ]
+    },
+    {
+      "review_id": "H0208",
+      "canonical_pair_id": "cp1_fa41425a9afc22d77883a4f1331c0ecb3ea191b2df88ecf6311856477da7e9c9",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_VERIFIED_SAME_RECORD_CONTENT_EXTENSION+RECORD_SCOPE_VETO_GENERIC_CONTEXT_ONLY",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0870",
+      "canonical_pair_id": "cp1_fdc047798b74f755ac7b2138d38cc31ce55d66a2bc11d5b47bd04e54d241422a",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "YES",
+        "NO"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY"
+      ]
+    },
+    {
+      "review_id": "H0672",
+      "canonical_pair_id": "cp1_fff3482eb549be8b4549b4b8d643e3ecba28c0021ddedddb6c04eaf3b8853567",
+      "error_type": "UNDER_GROUP_RESOLVED",
+      "old_error": "UNDER_GROUP_RESOLVED",
+      "reference_reason": "meaningful_addition",
+      "reference": [
+        "YES",
+        "NO",
+        "YES"
+      ],
+      "actual": [
+        "NO",
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE",
+      "rules": [
+        "SPAN_LEDGER_RULE:SPAN_UNCOVERED_MATERIAL_DELTA",
+        "RECORD_SCOPE:GENERIC_CONTEXT_ONLY",
+        "SPAN_CRITIC_ISSUE:CRITIC_VERDICT_WITHOUT_BILATERAL_BASIS"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+Compare the two blind cleaned documents using the deterministic span ledger.
+Inspect all unique spans, cite only supplied stable IDs, and let the ledger—not
+raw length or boilerplate volume—determine the replacement directions.
+
+First distinguish the shared record or complete non-main message from reusable
+context. Full faithful translations of either content type are bidirectionally
+equivalent, material none, only when every unique span is covered or harmless UI.
+Name the narrowest shared record on BOTH sides before calling a missing field
+an extension. Same company/brand/topic does not bind a new product, article,
+service category, or result list. First introduction of a SKU is not a missing
+attribute unless other shared evidence already identifies that specific item.
+Separate catalog membership from explanatory article additions. Check names in
+context: the recipient in a greeting is not a byline; a directory Index of title
+is not a generic Downloads link. A lone Payment label does not establish a role.
+Cite concrete subject/service target, policy scope, state, or page-role changes;
+buttons, navigation, language, and whitespace alone do not establish a conflict.
+Check every delta even when translation_status is complete_faithful.
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment addressing
+this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

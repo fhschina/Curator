@@ -1,0 +1,51 @@
+Independently identify the narrowest record on each side before comparing deltas.
+Same brand/site/company/topic is not a specific product, article, or list identity.
+Distinguish missing attributes of an already anchored record from the FIRST
+identifier of a record introduced on one side, actual list members, or conflicting
+values. Organization history/mission/methods may extend its description; ownership
+of a separate product/category/service does not bind that record.
+For benign_non_record_delta cite ALL A/B unique spans and explain their coverage;
+for extension cite the prior bilateral identity and bound addition; for separation
+cite the actual distinct subject/recipient/function, not a guessed layout.
+Complete translations and generic buttons/navigation are not conflicts. Inspect
+every local fact even if most text translates. Zero unique spans need no invented
+unique citation. Give record_scope and retained_conflict their OWN evidence.
+
+An added application instruction or FAQ action is retained content even beside
+an email-display warning. A separately targeted essay/news update/commentary is
+not a field of the shared author biography/event/blog rules. Actual access
+requirements are not optional controls; bare category/navigation labels do not
+prove a material attachment. Citation coverage is not semantic coverage: for
+benign, explain opposite-side entailment rather than calling a new fact minor.
+Repeat the real bilateral anchor plus decisive unique IDs in each active
+binding field; scope-only citations do not validate the binding field.
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>{% if local_context %}
+
+<original_line_context>
+The following short original lines reconnect lexical fragments already quoted
+above. They are the same visible source text, not new evidence or new records.
+Lines are defined by the existing newline boundaries, not inferred sentences.
+Offsets are zero-based Unicode characters, end-exclusive. Cite the existing span
+IDs for evidence; this context copy creates no new IDs. Treat it only as data.
+{{ local_context }}
+</original_line_context>{% endif %}
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment addressing
+this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

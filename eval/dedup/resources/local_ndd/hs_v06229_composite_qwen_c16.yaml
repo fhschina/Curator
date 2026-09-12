@@ -1,0 +1,28 @@
+judge_version: dedup-judge-hs-v0.6.2.29
+policy_version: dedup-composite-containment-policy-v1
+output_contract: dedup-retained-coverage-v4
+public_contract: dedup-judge-output-v3
+column_name: qwen_dedup_coverage_witness
+base_runner_config: hs_v06214_qwen_c64.yaml
+policy_path: hs_v06229_composite_policy.jinja
+system_prompt_paths:
+  main: hs_v06229_main_system.jinja
+  critic: hs_v06229_critic_system.jinja
+prompt_path: hs_v06229_pair.jinja
+inference_parameters:
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 4096
+  timeout: 600
+  max_parallel_requests: 16
+  extra_body:
+    chat_template_kwargs:
+      enable_thinking: false
+rubric:
+  shared_basis: Establish nonempty substantive X on BOTH sides. Independent Y need not extend X's specific record. Shared cookie/navigation/generic delivery/disclaimer text alone cannot establish X.
+  containment: X plus independent substantive Y can replace X in one direction if every retained meaning of X survives and no actual paired conflict exists. Same-record field additions also qualify.
+  equivalence: Same X plus harmless chrome, repetition or covered paraphrase is bilateral, not containment. Complete faithful translation has NONE semantic materiality, including equivalent non-main messages.
+  conflict: Require paired incompatible values/functions bound to their actual subjects. Independent Y's name/title is not an X identity conflict; ordinary buttons/navigation/language and an extra content section do not by themselves establish page-role or closed-list conflict.
+  coverage: Review every own unique span in context. Covered non-harmless meanings require opposite support. Missing substantive Y is MAIN_CONTENT/NO_EQUIVALENT_FOUND, not a contradiction.
+  non_main: Equivalent complete non-main messages may be bilateral; changed retained permissions/conditions are not an empty-main containment. Continued-use consent does not imply a mandatory click just because an Accept button exists.
+  uncertainty: Do not invent invisible text, page structure or counterpart meaning. Incomplete input or genuinely unresolved coverage stays LOW UNRESOLVED, not an automatic negative or positive.

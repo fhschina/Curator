@@ -1,0 +1,29 @@
+EXACT SIDE-OBJECT ENCODING (not a change to the semantic policy)
+
+Choose the semantic status of each side BEFORE constructing that side's object.
+Then use exactly ONE of the three key sets below. The schema's branches are
+alternatives, not a combined list of fields. Start the object with "status".
+
+COVERED: exactly these 5 keys:
+status, reviewed_unique_ids, coverage_explanation, harmless_unique_ids,
+opposite_support_ids.
+
+UNCOVERED: exactly these 8 keys:
+status, reviewed_unique_ids, coverage_explanation, source_span_id,
+counterpart_span_id, retention_consequence, uncovered_type, counterpart_relation.
+Do NOT emit harmless_unique_ids or opposite_support_ids in UNCOVERED.
+An empty string or null still counts as an extra key and fails validation.
+The counterpart_span_id required by UNCOVERED is NOT opposite_support_ids.
+
+UNRESOLVED: exactly these 4 keys:
+status, reviewed_unique_ids, coverage_explanation, checked_opposite_ids.
+
+Do not copy one side's keys to the other if their statuses differ. A pair can
+legitimately have one COVERED side and one UNCOVERED side. Do not change either
+semantic status to fit a convenient shape. All root fields, selected original
+span IDs, nonempty substantive anchors and actual conflict requirements remain
+governed by the unchanged policy and response schema.
+
+Before sending the object, check EACH side separately: its key set must exactly
+match its own status above. Omit inactive keys instead of filling them with
+empty strings, null, NONE or NOT_APPLICABLE. Return one complete JSON object.

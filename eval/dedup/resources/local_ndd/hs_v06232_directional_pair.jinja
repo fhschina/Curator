@@ -1,0 +1,10 @@
+
+<document_owned_evidence>
+This is a mechanical ID inventory from the original payload, not a proposed verdict.
+A_ONLY source IDs: {% for span in payload.semantic_diff_evidence.spans if span.kind == 'A_ONLY' %}{{ span.span_id }} {% endfor %}
+B_ONLY source IDs: {% for span in payload.semantic_diff_evidence.spans if span.kind == 'B_ONLY' %}{{ span.span_id }} {% endfor %}
+SHARED IDs present on both documents: {% for span in payload.semantic_diff_evidence.spans if span.kind == 'SHARED' %}{{ span.span_id }} {% endfor %}
+a_meaning_in_b: source on A, counterpart on B. b_meaning_in_a: source on B, counterpart on A.
+For an actual shared-context conflict, at least one hard_conflict ID must be the actual unique difference on its owning document.
+Bind the same paired witnesses consistently in root and directional fields. Do not infer a conflict from this inventory.
+</document_owned_evidence>

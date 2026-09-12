@@ -1,0 +1,9 @@
+{
+  "schema_version": "dedup-v06213-local-weight-provenance-v1",
+  "interpretation": "The frozen selection CSV omitted stratum_population_n/stratum_sample_n and its sample_weight column is blank. Do NOT evaluate weighted metrics from that selector. Use this exact projection of original frozen reference rows, joined by canonical_pair_id. No pairs, semantic labels, original weights, inference payloads, prompts, or runtime/cache contents changed. Identified before scoring the local candidate; execution selector/manifest remain immutable.",
+  "selection_sha256": "8484ee158fbc99484fd8a0fc75b7985ca08b8caac887b7f0a2ef191b535fb094",
+  "original_reference_sha256": "6f685cdf717df61a9332e431c685a9d860348a6c83e3665356075e8dc6c28096",
+  "rows": 258,
+  "original_weight_total": 2072.772211350298,
+  "primary_labels_and_taxonomy_equal": true
+}

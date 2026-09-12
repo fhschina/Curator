@@ -1,0 +1,1213 @@
+{
+  "schema_version": "dedup-bottleneck-review-v1",
+  "reference_changed": false,
+  "review_method": "Prediction-aware AI development triage, not independent human adjudication. A dispute is not a confirmed label error; causes describe .12 final errors only. Evidence IDs locate original spans, not an entailment certificate.",
+  "cases": {
+    "H0003": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_state",
+      "note": "B 明示最近48小时已定价、尚不接受新建议；不是普通按钮或可以合并的同记录字段。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0009": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "unnecessary_abstention",
+      "note": "模型已识别两侧独有产品/服务内容，却因没有相同产品ID选择未决；不能互相保留的两侧不要求先证明同一产品。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "MAIN"
+    },
+    "H0025": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "一侧明确同意/撤回及功能影响，另一侧主要目的摘要；是否已被共享分类覆盖需统一，不能仅按模板认等价。",
+      "evidence_ids": [
+        "A004",
+        "A005",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0048": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共享募捐诉求附加独立作者简介；旧containment与同记录非空gate存在张力，沿用既有争议复核，不强制恢复。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0051": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "两侧cookie用途和继续使用同意文字并非完整互译；旧双向等价需逐命题确认。",
+      "evidence_ids": [
+        "A004",
+        "B002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0053": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "exact_reference_conflict",
+      "note": "与H0739完整原文恰好交换A/B，旧参照却要求no/no，而H0739要求yes/yes；必须统一权限消息新增的口径。",
+      "evidence_ids": [
+        "S001",
+        "B003"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0056": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "reference_misread",
+      "note": "两篇全文保留相同试驾和置换表单及对应字段，只改变表单顺序；旧理由把移动的日期/车型字段当冲突。",
+      "evidence_ids": [
+        "A002",
+        "B002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0060": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共有项目字段与占位混杂，新增摄影师身份究竟项目归属字段还是网站头部尚不明确。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0088": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "placeholder_record",
+      "note": "共享占位商品描述，一侧价格、另一侧SKU；哪些占位槽仍应保留需统一，不以模板自动推出真实主体或忽略具体值。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0119": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "A 包含具体法律书目及价格；共同店铺导航和服务信息不足以独立绑定这些书目。",
+      "evidence_ids": [
+        "A001",
+        "A002"
+      ],
+      "locus": "MIXED"
+    },
+    "H0130": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "默认假定同意/选择退出与Accept All等表述、具体必要/非必要限制不同；旧正例不能迫使忽略真实条件。",
+      "evidence_ids": [
+        "A004",
+        "A005",
+        "A007",
+        "B002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0132": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共有Unimar企业服务介绍，新增同企业Utilities照明方法；企业服务扩展与独立产品类别边界需统一，不能只看page_role旧标签。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0137": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0140": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "Leather Boots 标题只在A，另一侧仅周期扣款模板；商品首次出现不等于已绑定记录的字段补全。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0141": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "Botanic Garden 产品系列介绍只在A；共有询价及数据处理表单并非该系列的共同主体。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0152": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bound_contact",
+      "note": "#1 Burning Software在搜索表单前，可能站点身份也可能一般标题；是否保留服务对象需确认。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0153": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0175": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0186": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "不同姓名直接位于个人 profile 标题，与“此用户限制查看”消息绑定，不是旁置作者署名。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0196": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共享多个摘要，新增独立Taylor Swift内容；整页语义超集与单记录扩展是两种口径。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0208": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共享配送/退换条款，独有镜框尺寸；旧containment缺少共同具体产品核心。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0221": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "partial_translation",
+      "note": "英语侧新增实体店可换货、网店不可换货的渠道规则；不是整段完整互译。",
+      "evidence_ids": [
+        "A001",
+        "B001",
+        "B002"
+      ],
+      "locus": "MIXED"
+    },
+    "H0242": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "具体课程代码及2023/24学期只在A；共享课表显示设置不构成该课程记录。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0253": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_membership",
+      "note": "B 新增具体书目成员；共享主题介绍和订阅提示不等价于相同检索列表。",
+      "evidence_ids": [
+        "B001",
+        "B002"
+      ],
+      "locus": "MIXED"
+    },
+    "H0254": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0257": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0260": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "新增Select product to add而无具体商品/选择结果；应先确定普通控件是否足以改变页面角色。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0267": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "共享交易/运送模板，B 才有鞋履材料字段；未建立双侧具体鞋款锚点。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0274": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "两边都是JS启用提示，但一侧额外IE最低版本6要求；是否保留具体支持条件需统一。",
+      "evidence_ids": [
+        "A007",
+        "A008",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0277": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "共有作者介绍，Veerkracht与rolverdeling为裸词；是否实际文章标题/标签未知，不能看旧reason直接确认。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0278": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "两侧共有品牌通用功效，只有B绑定具体085 Dubai；不能由品牌一致推断同一SKU。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0311": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "A有继续浏览同意和营销，B强调必要/可选分析cookie；旧等价与保留条件要求有冲突。",
+      "evidence_ids": [
+        "A001",
+        "A008",
+        "B005"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0317": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_policy",
+      "note": "B 另有 Instagram/Google Maps 的第三方加载及数据披露消息，不能视作只有同义改写。",
+      "evidence_ids": [
+        "S001",
+        "B001",
+        "B002"
+      ],
+      "locus": "MIXED"
+    },
+    "H0319": {
+      "cause": "PENDING_REVIEW",
+      "cluster": "cookie_entailment",
+      "note": "需逐命题确认“所有非必要cookie事先同意”是否已由共用第三方条款完整蕴含；不把短默认同意语句自动判冲突。",
+      "evidence_ids": [
+        "A004",
+        "A005",
+        "B003"
+      ],
+      "locus": "UNDETERMINED"
+    },
+    "H0320": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共有政府联系信息之外增加独立税务新闻；是否接受复合文档X对X+Y而不要求同一记录需统一。",
+      "evidence_ids": [
+        "S001",
+        "A003"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0331": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0334": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "与H0274反向同类JS提示，IE>=6要求并非普通语言变化。",
+      "evidence_ids": [
+        "A001",
+        "B007",
+        "B008"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0345": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_policy",
+      "note": "B 增加 listing data 不保证准确的声明及合作销售说明，不能整侧视为无损覆盖。",
+      "evidence_ids": [
+        "B001",
+        "B007"
+      ],
+      "locus": "MIXED"
+    },
+    "H0361": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "reference_misread",
+      "note": "同篇报道的图片说明描述不同人群/地点/动物事件；旧parser_noise并不自动意味着这些信息可丢。",
+      "evidence_ids": [
+        "A001",
+        "B001",
+        "B005"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0362": {
+      "cause": "ENGINEERING_ERROR",
+      "cluster": "invalid_citation",
+      "note": "原main方向已是no/no，但说明中引用不存在的span导致严格适配未决。保留拒绝，不自动修正引用或伪造证明。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "MAIN"
+    },
+    "H0373": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_policy",
+      "note": "两侧均保留继续浏览同意；B还明示可拒绝全部或部分cookie。问题是新增选择说明，不是凭空猜测必须点击。",
+      "evidence_ids": [
+        "B001",
+        "B002"
+      ],
+      "locus": "MIXED"
+    },
+    "H0394": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "列表调序本身可等价，但新增Organization Type含Museum；是否被原文蕴含需确认。",
+      "evidence_ids": [
+        "B001",
+        "S001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0410": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0413": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "timestamp_role",
+      "note": "共同文章事实相同，日期/时间与尾部数字不同；需确认发表时间/计数哪些是被保留状态，而非一律忽略或升级。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0417": {
+      "cause": "ENGINEERING_ERROR",
+      "cluster": "exact_unique_span_gate",
+      "note": "两侧完整文本完全一致，main与critic均认为等价；旧仲裁却要求不存在的独有span而产生未决。",
+      "evidence_ids": [
+        "S001"
+      ],
+      "locus": "CRITIC_OR_ADAPTER"
+    },
+    "H0427": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0449": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bound_contact",
+      "note": "BITS Pilani位于成员查询说明前，可能绑定服务对象；旧chrome等价与身份规则需统一。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0451": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "partial_translation",
+      "note": "此前完整可见文本复核已指出法语侧增加local storage用途和供应商地址；旧完整翻译标签仍待统一政策记录边界。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0468": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "180W 功率仅A保留，共同保修/运输条款及颜色不足以独立绑定具体电器。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0490": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0492": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共有订房平台服务说明之外新增具体公寓地点/隐私描述；旧包含不等于已证明共同房源。",
+      "evidence_ids": [
+        "A001",
+        "S001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0498": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0521": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "闭馆通知之外增加科幻研究馆藏；旧包含与同一记录限制冲突。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0540": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "网站历史/服务介绍之外增加具体地区天气预报；新增报道不自动属于共同网站记录。",
+      "evidence_ids": [
+        "S005",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0546": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "不同组织嵌入实际cookie处理者及同意对象句子，不只是语言或普通导航变体。",
+      "evidence_ids": [
+        "A003",
+        "B003"
+      ],
+      "locus": "MIXED"
+    },
+    "H0558": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "New Ícone 浴室配件系列只在A；共享企业价值宣传不构成该系列的共同核心。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0561": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0582": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0594": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "asset_identity",
+      "note": "差异是图片文件名及日期片段；缺少图片内容时，文件名是保留资产身份还是chrome需统一。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0597": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "Hello 后的欢迎对象是 BelPatty86 与 Robinsyl.，直接绑定消息接收者。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0605": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0606": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "免责声明中免于评论责任的实际主体分别为 Medya Tilkisi 与 HABER01.COM。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0617": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "A含聊天服务/行为广告及必要cookie，B是通用统计介绍；旧chrome标签不能证明全命题覆盖。",
+      "evidence_ids": [
+        "A005",
+        "A006",
+        "B004"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0628": {
+      "cause": "PENDING_REVIEW",
+      "cluster": "cookie_entailment",
+      "note": "两侧Matomo均要求额外同意；城市署名与单个偏好cookie说明的保留意义需进一步核对，未证明必须相反答案。",
+      "evidence_ids": [
+        "A001",
+        "A002",
+        "B003"
+      ],
+      "locus": "UNDETERMINED"
+    },
+    "H0634": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "exact_reference_conflict",
+      "note": "与H0177完整有序payload相同，旧参照分别no/no和containment；本轮不替任何一方改标。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0636": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_state",
+      "note": "价格有效期间由单日30/06/2025变成01/06/2025至30/06/2025，属于条款事实。",
+      "evidence_ids": [
+        "S001",
+        "S002",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0640": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0656": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0666": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "账户条款附加配送方式介绍，可能独立帮助记录而非账户字段；需统一功能说明与普通导航边界。",
+      "evidence_ids": [
+        "S001",
+        "A002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0668": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "reference_misread",
+      "note": "差异数字处于This page is generated by waf at时间戳，未看到列表成员变化；旧list_membership理由不能直接当已证实语义错。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0672": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共同鞋码/退货说明之外增加耳饰商品，旧正例与非空产品核心要求冲突。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0679": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "ui_overinterpretation",
+      "note": "唯一新增Оплата是孤立入口词；main升级为实际页面角色冲突，证据校验随后正确挡成未决。放松引用不能修复语义误读。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "MAIN"
+    },
+    "H0700": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "实际产品目录主体小麦硬度仪与酸度计不同，不能被共有仪器导航覆盖。",
+      "evidence_ids": [
+        "A006",
+        "B005",
+        "B007"
+      ],
+      "locus": "MIXED"
+    },
+    "H0702": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "timestamp_role",
+      "note": "独有com. June19,2025未显式标明是数据有效期还是footer时间；不能与明确价格有效期混为一类。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0711": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "共有Liverpool Cathedral介绍，独有Events & Conferences及日期短条；是导航、事件状态还是独立记录需确认。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0713": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "Erläuterungen zum Kalender与OK是孤立栏目/按钮文字；是否保留实际日历主体不能由标题自动推出。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0723": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "policy_record_extension",
+      "note": "同一完整ESO cookie政策增加sessionid用途/期限条目；政策自身是实质记录还是只能no/no的non-main消息需统一。",
+      "evidence_ids": [
+        "A002",
+        "A003"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0732": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "No reviews yet是否具体对象状态还是空widget，没有明确对象，保留既有待仲裁状态。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0733": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "asset_identity",
+      "note": "IMG_8738与Capture d’écran文件名不同；只有文件名而无图像内容时的资产身份边界待确认。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0739": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "exact_reference_conflict",
+      "note": "与H0053完全交换原文；新增禁止附件消息在两条参照中的处理矛盾。方向错误计主决策，不计duplicate FP/FN。",
+      "evidence_ids": [
+        "S001",
+        "A003"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0741": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "ui_overinterpretation",
+      "note": "Traits and Properties 是没有具体值的栏目标题；共享NFT介绍未新增保留事实，却被判单向扩展。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0748": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "Stories...Casey-Lee Lyons只有指针，无人物正文；旧开发意见偏导航，但用户明确要求确认此口径，因此不当独立已确认正例。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0751": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0758": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "共享完整论坛欢迎消息，唯一差异论坛名和Search；不能只见Search就认定真实搜索记录冲突。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0771": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_state",
+      "note": "一侧为下载选项和No documents found，另一侧为Added to your cart及Blowers；有实际功能状态消息，不仅栏目单词。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0782": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "同意处理浏览/ID句子的有无与H0882/H0978同类，却标等价；应先统一该条件是否新增而非按预测修标签。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0786": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "Index of 加具体目录路径绑定目录对象；共享镜像站说明不能证明相同目录记录。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0787": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共享推荐列表附加独立Whirl文章，旧正例不能直接视为该恢复的真实扩展。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0789": {
+      "cause": "PENDING_REVIEW",
+      "cluster": "long_record_entailment",
+      "note": "长篇共同论坛内容附加NAIT段落和时间变化；尚未完成所有保留命题对齐，不凭page_role旧标签给定结论。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "UNDETERMINED"
+    },
+    "H0790": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_policy",
+      "note": "额外询价说明含提交数据即接受隐私条款；不应吞入共同订单错误模板的单记录扩展。",
+      "evidence_ids": [
+        "A001",
+        "A002"
+      ],
+      "locus": "MIXED"
+    },
+    "H0797": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "Follow Us与Chairs仅是短标签，共有法律说明；具体页面角色没有正文支撑。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0798": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0799": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0800": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "资料库简介之外增加具体搜索结果成员；旧包含与列表成员/页面角色规则冲突。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0801": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "一侧新增Facebook及向广告平台共享联系信息等具体说明；旧双向等价需要完整覆盖证明。",
+      "evidence_ids": [
+        "A001",
+        "A002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0809": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "错误页标题绑定不同服务主体；在现有实际服务对象规则下，非正文模板不能抹掉该差异。",
+      "evidence_ids": [
+        "S001",
+        "A001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0810": {
+      "cause": "ENGINEERING_ERROR",
+      "cluster": "exact_unique_span_gate",
+      "note": "两侧完整文本完全一致，main与critic均认为等价；旧仲裁却要求不存在的独有span而产生未决。",
+      "evidence_ids": [
+        "S001"
+      ],
+      "locus": "CRITIC_OR_ADAPTER"
+    },
+    "H0811": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bound_contact",
+      "note": "新增机构名称/地点与联系邮箱；实际联系对象还是站点chrome需要统一，不能所有短字段都忽略。",
+      "evidence_ids": [
+        "B001",
+        "S001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0822": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "两侧确有TopDrawer申请记录，A还加其他机会；此例暴露单记录gate与复合文档X对X+Y的选择，不能为本轮recall单独改口径。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0828": {
+      "cause": "PENDING_REVIEW",
+      "cluster": "long_record_entailment",
+      "note": "共同长篇交易条款与附加卖家统计/介绍，须核对共有内容是否已独立绑定同一卖家；暂不硬判独立记录。",
+      "evidence_ids": [
+        "A001",
+        "A003"
+      ],
+      "locus": "UNDETERMINED"
+    },
+    "H0837": {
+      "cause": "PENDING_REVIEW",
+      "cluster": "multilingual_faq",
+      "note": "FAQ中图标举例、头像限制和标题变化混合；需完整俄语命题核对，不能把词汇差异全部视为版本冲突。",
+      "evidence_ids": [
+        "A003",
+        "A005",
+        "B003"
+      ],
+      "locus": "UNDETERMINED"
+    },
+    "H0856": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "Amanda Warner 与 Contact Me 连在一起，指向实际联系对象；不能只因短而视作通用免责声明。",
+      "evidence_ids": [
+        "S001",
+        "A001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0868": {
+      "cause": "PENDING_REVIEW",
+      "cluster": "cookie_entailment",
+      "note": "大量德语同义改写并伴随服务开关说明差异；需逐命题核对共享第三方服务条款是否覆盖，不默认全部只是chrome。",
+      "evidence_ids": [
+        "A047",
+        "A049",
+        "B051"
+      ],
+      "locus": "UNDETERMINED"
+    },
+    "H0870": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共同结账条款及多种评论之外新增眼镜套描述；需要共同具体商品核心。",
+      "evidence_ids": [
+        "S001",
+        "A002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0872": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "nonempty_record",
+      "note": "具体 Skull & Bones Crossbone Heart 设计只在B；通用刺绣下载使用说明不独立绑定该设计。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0880": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0882": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "与H0782同类cookie段落增删但旧参照相反，额外社交入口是否影响角色及营销段能否覆盖同意说明需统一。",
+      "evidence_ids": [
+        "A001",
+        "B001",
+        "B002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0889": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_state",
+      "note": "comments 的实际计数为1与0，区别于单纯按钮排版；按当前状态事实规则需分离。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "MIXED"
+    },
+    "H0897": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0906": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "retained_policy",
+      "note": "A额外说明同意处理浏览行为/唯一ID及撤回后功能影响；只共享分类用途不能证明这些条件已全部覆盖。",
+      "evidence_ids": [
+        "A001",
+        "A002"
+      ],
+      "locus": "MIXED"
+    },
+    "H0907": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "完整错误句明确要求检查不同商品组编号TOY-GDM-2824与LTD-PCG-08315。",
+      "evidence_ids": [
+        "A001",
+        "A002",
+        "A003",
+        "B001",
+        "B002",
+        "B003"
+      ],
+      "locus": "MIXED"
+    },
+    "H0910": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0917": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "完整同意条款主要为同义改写，差异是Méta与若干访客导航；旧参照page_role缺少实际角色冲突证明。",
+      "evidence_ids": [
+        "A001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0920": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "partial_translation",
+      "note": "货运平台共同模板是互译，但具体栏目/运输任务不同；不能用完整翻译覆盖该差异。",
+      "evidence_ids": [
+        "A025",
+        "A026",
+        "B026",
+        "B027"
+      ],
+      "locus": "MIXED"
+    },
+    "H0926": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共享多篇安防摘要之外新增POST Act新闻，独立文章与复合页面包含的边界待统一。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0928": {
+      "cause": "PENDING_REVIEW",
+      "cluster": "multilingual_faq",
+      "note": "意大利语FAQ图标举例及多个同义改写混合；需确认是否真有实质版本事实冲突。",
+      "evidence_ids": [
+        "A011",
+        "B011",
+        "B012"
+      ],
+      "locus": "UNDETERMINED"
+    },
+    "H0940": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "INCOMPLETE_LIMIT",
+      "note": "全文可能仍在，但语义 diff packet 达到上限；冻结路由保守未决。需另做完整证据能力测试，不能自动填入旧参照。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0957": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "共同运输说明之外新增面料性能/抗晒规格；未建立双侧同一面料身份。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0977": {
+      "cause": "SEMANTIC_ERROR",
+      "cluster": "bound_identity",
+      "note": "SAUNGQQ 与 PEMAIN168 在标题和正文主语槽重复出现，不是仅站点角标。",
+      "evidence_ids": [
+        "A001",
+        "A002",
+        "B001",
+        "B002"
+      ],
+      "locus": "MIXED"
+    },
+    "H0978": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "cookie_coverage",
+      "note": "与H0782同类同意说明差异，旧参照却分离；日历/搜索短语与保留条件分别核对，不能按栏目名直接裁决。",
+      "evidence_ids": [
+        "A001",
+        "B001",
+        "B002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H0986": {
+      "cause": "INPUT_LIMITATION",
+      "cluster": "UNAVAILABLE_TRUNCATED",
+      "note": "原始 payload 标记截断且无完整全文；保守未决与旧参照不一致，不是已证明的语义误判。",
+      "evidence_ids": [],
+      "locus": "INPUT"
+    },
+    "H0995": {
+      "cause": "ENGINEERING_ERROR",
+      "cluster": "missing_conflict_proof",
+      "note": "critic指出独有论坛权限和在线状态，但没有合同要求的冲突证据；严格适配未决。需要生成有效证明而非放宽校验。",
+      "evidence_ids": [
+        "S001",
+        "B001"
+      ],
+      "locus": "CRITIC_OR_ADAPTER"
+    },
+    "H0998": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "record_unit",
+      "note": "商品零件号/具体安全作用只在B，共有Toyota保修条款；旧containment与共同商品核心限制冲突。",
+      "evidence_ids": [
+        "B001",
+        "B002"
+      ],
+      "locus": "REFERENCE"
+    },
+    "H1000": {
+      "cause": "POLICY_REFERENCE_DISPUTE",
+      "cluster": "bare_ui_role",
+      "note": "Always active与Sempre attivo语义相同；Pneumatici/Informazioni是裸栏目词，旧meaningful_addition需确认。",
+      "evidence_ids": [
+        "A001",
+        "B001",
+        "B002"
+      ],
+      "locus": "REFERENCE"
+    }
+  }
+}

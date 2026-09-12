@@ -1,0 +1,12 @@
+{
+  "version": "v0.6.2.22",
+  "coverage_config": "eval/dedup/resources/local_ndd/hs_v06222_coverage_qwen_c64.yaml",
+  "control_config": "eval/dedup/resources/local_ndd/hs_v06221_control_qwen_c64.yaml",
+  "protocol": "eval/dedup/analysis/v06222_run_protocol.md",
+  "design": "eval/dedup/analysis/v06222_design.md",
+  "ray_temp_dir": "/raid/hfang/ihb/r22diag",
+  "coverage_routing": "dedup-coverage-call-routing-v1",
+  "control_routing": "ALL_PAIRS",
+  "public_pairs_per_cell": 258,
+  "technical_pairs_per_arm": 8
+}

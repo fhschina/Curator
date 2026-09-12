@@ -1,0 +1,118 @@
+{
+  "schema_version": "dedup-bottleneck-panel-spec-v1",
+  "purpose": "Prediction-aware diagnostic clear cases plus correct guards; not independent human gold, not representative, not a release gate.",
+  "freeze_status": "Provisional old-reference development panel; contentious policy decisions require user/independent confirmation before new online comparisons.",
+  "selection_policy": "Selected after historical predictions had been observed, by reviewed mechanisms and correct guards. This is NOT a blinded or prospectively preregistered comparison of those old predictions. Both repeats and all selected IDs are retained; exact unordered text pairs are deduplicated only in this small diagnostic panel, never in full evaluation. Freeze this selection before any future online comparison.",
+  "cases": [
+    {
+      "review_id": "H0267",
+      "role": "nonempty_record_negative",
+      "note": "商品材料只在一侧；共享付款配送不是商品核心。"
+    },
+    {
+      "review_id": "H0119",
+      "role": "nonempty_record_negative",
+      "note": "具体书目与价格对共同店铺导航。"
+    },
+    {
+      "review_id": "H0186",
+      "role": "identity_negative",
+      "note": "姓名绑定受限个人profile。"
+    },
+    {
+      "review_id": "H0597",
+      "role": "identity_negative",
+      "note": "欢迎消息接收者不同。"
+    },
+    {
+      "review_id": "H0546",
+      "role": "identity_negative",
+      "note": "cookie条款实际处理者不同。"
+    },
+    {
+      "review_id": "H0606",
+      "role": "identity_negative",
+      "note": "免责声明实际责任主体不同。"
+    },
+    {
+      "review_id": "H0907",
+      "role": "identity_negative",
+      "note": "错误消息绑定不同商品组编号。"
+    },
+    {
+      "review_id": "H0221",
+      "role": "partial_translation_negative",
+      "note": "退换渠道条款并未完整互译。"
+    },
+    {
+      "review_id": "H0537",
+      "role": "correct_negative_guard",
+      "note": "相同论坛注册条款绑定不同论坛主体，保留已有正确负例。"
+    },
+    {
+      "review_id": "H0514",
+      "role": "correct_negative_guard",
+      "note": "同登录限制对应个人profile与团队名单，保留实际访问对象差异。"
+    },
+    {
+      "review_id": "H0347",
+      "role": "equivalence_positive",
+      "note": "两侧均明确继续浏览同意；Accept按钮不额外产生必须点击的条件。"
+    },
+    {
+      "review_id": "H0679",
+      "role": "equivalence_positive",
+      "note": "相同隐私消息增加孤立Payment入口。"
+    },
+    {
+      "review_id": "H0741",
+      "role": "equivalence_positive",
+      "note": "相同NFT简介增加空栏目标题，无新增具体属性。"
+    },
+    {
+      "review_id": "H0417",
+      "role": "exact_positive",
+      "note": "完整原文逐字符相同，不能要求不存在的独有证据。"
+    },
+    {
+      "review_id": "H0810",
+      "role": "exact_positive",
+      "note": "完整原文相同的非正文告示。"
+    },
+    {
+      "review_id": "H0333",
+      "role": "containment_guard",
+      "note": "同一招聘新增具体联系对象和必需邮件主题。"
+    },
+    {
+      "review_id": "H0878",
+      "role": "containment_guard",
+      "note": "同一登录FAQ增加查注册邮件的方法步骤。"
+    },
+    {
+      "review_id": "H0653",
+      "role": "containment_guard",
+      "note": "同一Videvo简介互译，B另增具体联系服务。"
+    },
+    {
+      "review_id": "H0017",
+      "role": "containment_guard",
+      "note": "同一组织简介互译，阿语另增社交账号/服务事实。"
+    },
+    {
+      "review_id": "H0945",
+      "role": "containment_guard",
+      "note": "相同Geek Mania使命加本组织方法/服务展开。"
+    },
+    {
+      "review_id": "H0007",
+      "role": "translation_guard",
+      "note": "同一Skechers必要cookie消息西葡完整互译，只取一份等文样本。"
+    },
+    {
+      "review_id": "H0893",
+      "role": "translation_guard",
+      "note": "同一邮箱用途及非公开说明西意互译。"
+    }
+  ]
+}

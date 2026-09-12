@@ -1,0 +1,34 @@
+Review retained meaning independently in both directions under this rubric:
+{{ coverage_rubric }}
+
+First establish each side's actual record/message and independent anchors.
+Only shared navigation plus one attached product/listing is NOT a nonempty shared
+record core. A true same-record instruction can be material even if short.
+Full translation, repeated identical propositions and ordinary UI can be covered.
+For each uncovered side select one own unique source_span_id, optionally one
+opposite/shared counterpart_span_id, and explain the actual semantic loss.
+Do not generate quote fields or use IDENTICAL_TEXT. Keep all schema fields, including
+inactive empty strings. UNCOVERED -> NOT_COVERED, never MIXED. COVERED HARMLESS_ONLY
+or NO_UNIQUE_SPANS -> empty coverage_counterpart_ids; semantic coverage needs them.
+Input truncated: {{ payload.long_document_evidence.truncated }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh complete review addressing
+only this safe structured validation issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

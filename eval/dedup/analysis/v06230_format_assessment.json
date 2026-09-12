@@ -1,0 +1,169 @@
+{
+  "schema_version": "dedup-composite-format-assessment-v1",
+  "version": "dedup-judge-hs-v0.6.2.30",
+  "contract_digest": "cee0dc9799704a94af225cd85cb5de033002500becd980f51074d0fb6bb77bc2",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic",
+  "schedule_complete": false,
+  "eligible_for_release": false,
+  "reference_changed": false,
+  "preflight": {
+    "passed": true,
+    "transitions": {
+      "CORRECT -> CORRECT": {
+        "pairs": 8,
+        "review_ids": [
+          "independent_addition:ab",
+          "independent_addition:ba",
+          "chrome_only:ab",
+          "cookie_empty_anchor:ab",
+          "missing_record_field:ab",
+          "actual_sku_conflict:ab",
+          "actual_state_conflict:ab",
+          "faithful_translation:ab"
+        ],
+        "weight": 8
+      }
+    },
+    "operations": {
+      "main": {
+        "requested": 8,
+        "valid": 8,
+        "errors": 0,
+        "called_pairs": 8,
+        "called_valid": 8,
+        "not_requested_owned_pairs": 0,
+        "retried": 0,
+        "native_corrected_pairs": 0,
+        "native_corrections": 0,
+        "judge_retried_pairs": 0,
+        "called_pair_retry_rate": 0,
+        "http_statuses": {
+          "200": 8
+        }
+      },
+      "critic": {
+        "requested": 8,
+        "valid": 8,
+        "errors": 0,
+        "called_pairs": 5,
+        "called_valid": 5,
+        "not_requested_owned_pairs": 3,
+        "retried": 0,
+        "native_corrected_pairs": 0,
+        "native_corrections": 0,
+        "judge_retried_pairs": 0,
+        "called_pair_retry_rate": 0,
+        "http_statuses": {
+          "200": 5
+        }
+      }
+    }
+  },
+  "repeat_1_main": {
+    "requested": 50,
+    "valid": 49,
+    "errors": 1,
+    "called_pairs": 46,
+    "called_valid": 45,
+    "not_requested_owned_pairs": 4,
+    "retried": 2,
+    "native_corrected_pairs": 1,
+    "native_corrections": 2,
+    "judge_retried_pairs": 2,
+    "called_pair_retry_rate": 0.043478260869565216,
+    "http_statuses": {
+      "200": 53,
+      "429": 4
+    }
+  },
+  "formal_critic_called": false,
+  "repeat_2_submitted": false,
+  "terminal_pair_ids": [
+    "actual_membership_conflict:ab"
+  ],
+  "validation_errors": [
+    {
+      "attempt": "attempt_01",
+      "issues": [
+        {
+          "canonical_pair_id": "cp1_f1f54f5c85e3ba6660b4b60782d6dcf9d48a039e09160be9caaca97a0dc889c7",
+          "fatal_boundary": false,
+          "issue": {
+            "code": "COMPOSITE_TRANSLATION",
+            "details": {},
+            "message": "complete translation cannot have a retained loss or unresolved/conflicting basis"
+          }
+        },
+        {
+          "canonical_pair_id": "actual_membership_conflict:ab",
+          "fatal_boundary": false,
+          "issue": {
+            "code": "SELECTION_REFERENCE_SIDE",
+            "details": {},
+            "message": "witness must select the required document and own-unique source"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "attempt_02",
+      "issues": [
+        {
+          "canonical_pair_id": "cp1_f1f54f5c85e3ba6660b4b60782d6dcf9d48a039e09160be9caaca97a0dc889c7",
+          "fatal_boundary": false,
+          "issue": {
+            "code": "COMPOSITE_TRANSLATION",
+            "details": {},
+            "message": "complete translation cannot have a retained loss or unresolved/conflicting basis"
+          }
+        },
+        {
+          "canonical_pair_id": "actual_membership_conflict:ab",
+          "fatal_boundary": false,
+          "issue": {
+            "code": "SELECTION_REFERENCE_SIDE",
+            "details": {},
+            "message": "witness must select the required document and own-unique source"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "attempt_03",
+      "issues": [
+        {
+          "canonical_pair_id": "actual_membership_conflict:ab",
+          "fatal_boundary": false,
+          "issue": {
+            "code": "SELECTION_REFERENCE_SIDE",
+            "details": {},
+            "message": "witness must select the required document and own-unique source"
+          }
+        }
+      ]
+    }
+  ],
+  "all_external_http_statuses": {
+    "200": 66,
+    "429": 4
+  },
+  "total_external_requests": 70,
+  "saved_assistant_trace_accounting": {
+    "messages": 65,
+    "strict_schema_valid": 63,
+    "missing_parseable_fenced_json": 2,
+    "successful_http_responses_without_saved_assistant_trace_attribution": 1
+  },
+  "next_diagnosis": {
+    "membership": "Shared-context closed-list contradiction rejected by own-unique-only loss witness requirement. Do not change the correct NO/NO reference or relabel a contradicted side COVERED just to pass validation.",
+    "translation": "H0653 recognized extra contact/service content, but first two outer attempts incorrectly also asserted COMPLETE_FAITHFUL for the whole pair; OTHER on attempt three passed."
+  },
+  "interpretation": "Incomplete format-only candidate schedule, not a semantic ranking or a full-development threshold result. No arbitration stage in this candidate.",
+  "artifacts": {
+    "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/manifest.json": "a112b38f1c24a4a832a3e223de394a1b33ef7add8b4897f67e45325d666e2c05",
+    "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/preflight_assessment.json": "66f3548c86b872bbf49b9592c2d6271b1af528141b674fc20b61fe81739972f5",
+    "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/repeat_1/main_operations.json": "3be1f8f14b70192752ab79a551313cc71acba551fe0907254b65a48e3485d704",
+    "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/stopped.json": "0d3cb38bc2ac37e2e2c83c3231c96d5fae7c3d7c11fba0120543f016b675ae3b",
+    "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/assessment_partial.json": "c444c134abfadda9f4e89478216c81276978f4a9120364c3b5418b66e7799545"
+  }
+}

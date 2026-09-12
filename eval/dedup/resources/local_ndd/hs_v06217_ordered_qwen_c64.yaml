@@ -1,0 +1,82 @@
+models:
+  - alias: judge
+    model: /model/path/overridden/by/dedup/config
+    served_model_name: Qwen/Qwen3.8-27B
+    dynamo_model:
+      num_replicas: 1
+      mode: aggregated
+      runtime_env:
+        env_vars:
+          UV_CACHE_DIR: /raid/hfang/dedup_eval_cache/uv
+        config:
+          setup_timeout_seconds: 1800
+      engine_kwargs:
+        tensor_parallel_size: 1
+        max_model_len: 32768
+        max_num_seqs: 8
+        gpu_memory_utilization: 0.8
+        enforce_eager: true
+    inference_parameters:
+      temperature: 0.0
+      extra_body:
+        chat_template_kwargs:
+          enable_thinking: false
+      max_tokens: 3072
+      timeout: 600
+      max_parallel_requests: 64
+
+dynamo_server:
+  subprocess_env:
+    DYN_SYSTEM_PORT: "0"
+    PYTHONPATH: cutlass_compat
+
+inference_server:
+  health_check_timeout_s: 1800
+
+execution:
+  num_workers: 1
+  data_designer_run:
+    disable_early_shutdown: true
+    max_conversation_restarts: 0
+    max_conversation_correction_steps: 2
+  stages:
+    - name: hs_v06217_original_order_critic_diagnostic
+      judges:
+        - name: qwen_dedup_record_binding_critic
+          model_alias: judge
+          system_prompt_path: hs_v06214_record_binding_system.jinja
+          prompt_path: hs_v06217_ordered_pair.jinja
+          extract_reasoning_content: false
+          scores:
+            - name: record_scope
+              description: Identify the narrowest record represented on each side BEFORE assessing the delta. Cite this field's own bilateral anchor; for separation also cite a decisive unique span. Same brand/site/topic/company ownership is not specific-record identity. The adapter checks this proof separately from the binding verdict.
+              options:
+                same_specific_record: Both sides independently identify the same particular article, product/SKU, profile, event, job, FAQ, or policy record. The identity is not supplied only by the proposed added field.
+                same_organization_description: Both sides describe the same named organization itself; additions are its own history, mission, editorial methods, or explicitly bound organization fields, not independently targeted products/categories/services/articles.
+                equivalent_complete_message: Both sides retain the same complete non-main message, with no recipient, controller, target, permission, state, membership, or role change.
+                generic_context_only: Shared template/brand/site/family/topic text does not bind the retained product, SKU, article, biography, service category, or directory introduced on one side. Cite context plus the separate attachment.
+                distinct_record: The actual recipient, product, profile, document, targeted service, directory, or other represented identity differs. Cite its actual function rather than guessing from names or labels.
+                list_membership_change: Actual catalog/search/result/ranked-list members change or occur beside only a collection introduction; these are not ordinary missing record fields or harmless navigation.
+                not_applicable: Full texts are identical or no positive record claim needs review.
+                unresolved: Visible evidence does not establish the record unit; do not invent its identity.
+            - name: record_binding_verdict
+              description: Independently cite this verdict's bilateral anchor AND decisive unique delta, not only IDs in record_scope. Citation completeness is not entailment. For benign explain opposite-side coverage, never erase a short new action/fact. Application instructions extend the same recruitment record; a separate essay/news/commentary does not extend a shared biography/event/blog policy.
+              options:
+                atomic_same_record_extension: One side alone extends an independently anchored specific record or the same organization's own profile/history/mission/methods. Generic brand/site/company context does not bind a new product/category/article, first SKU, recipient, directory, or actual list member.
+                benign_non_record_delta: Cite every unique span and explain opposite-side semantic coverage or genuinely harmless UI/repetition. A short new fact, application instruction, FAQ action or actual access requirement is not benign. This verdict alone cannot overturn an established one-way extension.
+                separate_record_or_template_attachment: Cite the shared context, the independently identified unique record, and why their subjects differ; template overlap alone cannot bind them.
+                two_sided_or_conflicting: Identify uncovered propositions on both sides or incompatible retained values; merely having A-only and B-only strings is insufficient.
+                non_main_policy_or_state_change: Identify a changed purpose, permission, controller, target, scope, or actual state; button presence, order, navigation, and translation alone are not material.
+                not_applicable: Full texts are identical or no positive claim needs review. For exact text do not invent a unique span.
+                unresolved: The visible evidence is incomplete or insufficient.
+            - name: retained_conflict
+              description: Independently identify a retained conflict in a messaging-dominated pair. Cite its own bilateral context and decisive unique span; explain each side's proposition and the practical change. Language, UI labels, or inferred hostname/context are not proof.
+              options:
+                none: The complete messages are equivalent; differences are semantic coverage or harmless UI, with no changed subject, purpose, permission, state, or role.
+                not_applicable: No actual messaging/identity/role boundary needs this supplemental check. A greeting recipient, targeted service, or policy controller is material even if main content is present.
+                identity_or_service_target_change: A visible named record, product, controller, or actual service target differs or is attached to the shared generic message.
+                page_role_change: Visible content establishes incompatible page functions, not merely a heading, button, navigation link, or layout.
+                policy_permission_change: A retained purpose, obligation, permission, consent consequence, or applicable scope actually changes; not merely an optional control label.
+                state_change: Visible retained status or version actually differs; language and button presence alone are not state.
+                membership_change: Actual services, policy categories, or record/result members change, not reordered navigation or translated labels.
+                unresolved: A potentially material messaging boundary cannot be established from the visible evidence.

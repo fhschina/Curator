@@ -1,0 +1,14 @@
+{
+  "version": "v0.6.2.23",
+  "coverage_config": "eval/dedup/resources/local_ndd/hs_v06223_selection_qwen_c16.yaml",
+  "control_config": "eval/dedup/resources/local_ndd/hs_v06221_control_qwen_c64.yaml",
+  "protocol": "eval/dedup/analysis/v06223_run_protocol.md",
+  "design": "eval/dedup/analysis/v06223_design.md",
+  "ray_temp_dir": "/raid/hfang/ihb/r23diag",
+  "coverage_routing": "dedup-coverage-call-routing-v1",
+  "control_routing": "ALL_PAIRS",
+  "coverage_contract": "dedup-retained-coverage-v2",
+  "public_pairs_per_cell": 258,
+  "technical_pairs_per_arm": 8,
+  "max_parallel_requests": 16
+}

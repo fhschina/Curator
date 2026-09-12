@@ -1,0 +1,18 @@
+{
+  "version": "v06233-exp2-synthetic-protections-v1",
+  "provenance": "ASSISTANT_AUTHORED_CURRENT_POLICY_REGRESSION_NOT_HUMAN_GOLD",
+  "cases": [
+    {"id": "S01", "mechanism": "policy_plus_product", "a": "Returns are accepted within thirty days.\n\nThe insulated cup keeps drinks cold for six hours.", "b": "Returns are accepted within thirty days.", "expected": ["YES", "NO"]},
+    {"id": "S02", "mechanism": "independent_article", "a": "Article One: The library opens at nine.\n\nArticle Two: Swallows migrate south in winter.", "b": "Article One: The library opens at nine.", "expected": ["YES", "NO"]},
+    {"id": "S03", "mechanism": "navigation_addition", "a": "The exhibition opens on Monday.\n\nNext page", "b": "The exhibition opens on Monday.", "expected": ["YES", "NO"]},
+    {"id": "S04", "mechanism": "equivalent_nonmain", "a": "We use analytics cookies only with your consent.", "b": "We use analytics cookies only with your consent.", "expected": ["YES", "YES"]},
+    {"id": "S05", "mechanism": "faithful_nonmain_translation", "a": "We use analytics cookies only with your consent.", "b": "我们仅在征得您同意后使用分析 Cookie。", "expected": ["YES", "YES"]},
+    {"id": "S06", "mechanism": "different_sku", "a": "The selected product has SKU A11.", "b": "The selected product has SKU B22.", "expected": ["NO", "NO"]},
+    {"id": "S07", "mechanism": "missing_field", "a": "The selected model is Cup K9. Capacity: 500 ml.", "b": "The selected model is Cup K9.", "expected": ["YES", "NO"]},
+    {"id": "S08", "mechanism": "two_sided_loss", "a": "The park is open.\nThe north entrance closes at six.", "b": "The park is open.\nThe south entrance closes at eight.", "expected": ["NO", "NO"]},
+    {"id": "S09", "mechanism": "negated_quote", "a": "The following claim is false: The service is free.", "b": "The service is free.", "expected": ["NO", "NO"]},
+    {"id": "S10", "mechanism": "suffix_identity", "a": "The actual account owner is Ann.", "b": "The actual account owner is Anna.", "expected": ["NO", "NO"]},
+    {"id": "S11", "mechanism": "format_only", "a": "The library opens at nine.", "b": "The   library opens at nine.\n", "expected": ["YES", "YES"]},
+    {"id": "S12", "mechanism": "actual_liable_party", "a": "Agency Cedar is not liable for user comments.", "b": "Agency Birch is not liable for user comments.", "expected": ["NO", "NO"]}
+  ]
+}

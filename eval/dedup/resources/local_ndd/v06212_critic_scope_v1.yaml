@@ -1,0 +1,20 @@
+contract_version: dedup-v06212-critic-intervention-v1
+status: EXPERIMENT_NOT_RELEASE
+base_runner_config: hs_v06212_qwen_c64.yaml
+system_prompt_path: v06212_critic_scope_v1_system.jinja
+prompt_path: v06212_critic_scope_v1_pair.jinja
+main_policy: v6-route
+rubric:
+  KEEP_MAIN: No proved objection. Includes faithful translation and harmless UI. Does not independently assert duplicate membership.
+  REJECT_A_REPLACES_B: B contains a retained proposition not preserved in A. A-only additions cannot justify this veto.
+  REJECT_B_REPLACES_A: A contains a retained proposition not preserved in B. B-only additions cannot justify this veto.
+  REJECT_BOTH: Both documents have uncovered retained content, or an actual incompatible slot, obligation, state, role or membership is evidenced. Independent added Y alone is not a conflict.
+  REJECT_EMPTY_ANCHOR: Only an apparent containment with no substantive shared X; account for all shared spans and identify the new substantive content. A complete policy is not empty merely because it is reused.
+  ABSTAIN: Material uncertainty or incomplete proof remains. Short-policy completeness disputes are not forced negatives.
+policy:
+  independent_x_plus_y_allowed: true
+  complete_same_policy_plus_product_allowed: true
+  main_negative_or_unresolved_reopened: false
+  critic_may_create_positive_direction: false
+  exact_complete_input_bypasses_critic: true
+  runtime_scope: diagnostic_only

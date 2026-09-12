@@ -1,0 +1,5 @@
+judge_version: dedup-judge-hs-v0.6.2.30
+base_composite_config: hs_v06229_composite_qwen_c16.yaml
+output_contract: dedup-retained-coverage-v4
+format_instructions_path: hs_v06230_branch_format.jinja
+response_encoding: Choose each side's status first and emit exactly its branch's keys. UNCOVERED must omit harmless_unique_ids and opposite_support_ids entirely, even when empty. Never combine branches or add inactive keys with null values. Keep all semantic decisions and evidence requirements unchanged.

@@ -1,0 +1,289 @@
+{
+  "diagnostic_only": true,
+  "external_model_calls": 0,
+  "raw_or_payload_modified": false,
+  "response_contract_changed": false,
+  "accepted_count_unchanged": 10,
+  "rejected_count_unchanged": 3,
+  "results": [
+    {
+      "pair_id": "independent_addition:ab",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "independent_addition:ba",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "chrome_only:ab",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "missing_record_field:ab",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "cookie_empty_anchor:ab",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "actual_sku_conflict:ab",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "actual_state_conflict:ab",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "faithful_translation:ab",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "actual_membership_conflict:ab",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "actual_membership_conflict:ba",
+      "attempt": "attempt_01",
+      "accepted": false,
+      "original_error": "CONTEXT_DIFFERENCE_REQUIRED",
+      "new_feedback": {
+        "code": "DIRECTIONAL_WITNESS_BINDING",
+        "message": "Re-select the cited IDs on their required documents, then make root and directional witnesses agree. Do not change semantic coverage statuses merely to bypass an ID error. Return the full fenced JSON.",
+        "details": {
+          "field": [
+            "a_meaning_in_b.counterpart_span_id",
+            "a_meaning_in_b.counterpart_span_id",
+            "hard_conflict.a_span_id",
+            "hard_conflict"
+          ],
+          "actual_fields": [
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "value": "A001"
+            },
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "value": "A001"
+            },
+            {
+              "field": "hard_conflict.a_span_id",
+              "value": "S001"
+            },
+            {
+              "field": "hard_conflict",
+              "value": {
+                "A": "S001",
+                "B": "S001"
+              }
+            }
+          ],
+          "expected_fields": [
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "allowed_single_ids": [
+                "S001",
+                "S002"
+              ],
+              "rule": "counterpart belongs to document B, never document A's unique spans"
+            },
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "allowed_single_ids": [],
+              "rule": "shared source requires an actual opposite-unique difference on document B"
+            },
+            {
+              "field": "hard_conflict.a_span_id",
+              "allowed_single_ids": [
+                "A001"
+              ],
+              "rule": "must match the same directional conflict witness after correcting its document ownership"
+            },
+            {
+              "field": "hard_conflict",
+              "unique_choices_by_document": {
+                "A": [
+                  "A001"
+                ],
+                "B": []
+              },
+              "rule": "at least one root witness must cite the actual differing unique span; two shared roots do not suffice"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair_id": "cp1_f1f54f5c85e3ba6660b4b60782d6dcf9d48a039e09160be9caaca97a0dc889c7",
+      "attempt": "attempt_01",
+      "accepted": true,
+      "public_unchanged": true
+    },
+    {
+      "pair_id": "actual_membership_conflict:ba",
+      "attempt": "attempt_02",
+      "accepted": false,
+      "original_error": "CONTEXT_DIFFERENCE_REQUIRED",
+      "new_feedback": {
+        "code": "DIRECTIONAL_WITNESS_BINDING",
+        "message": "Re-select the cited IDs on their required documents, then make root and directional witnesses agree. Do not change semantic coverage statuses merely to bypass an ID error. Return the full fenced JSON.",
+        "details": {
+          "field": [
+            "a_meaning_in_b.counterpart_span_id",
+            "a_meaning_in_b.counterpart_span_id",
+            "hard_conflict.a_span_id",
+            "hard_conflict"
+          ],
+          "actual_fields": [
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "value": "A001"
+            },
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "value": "A001"
+            },
+            {
+              "field": "hard_conflict.a_span_id",
+              "value": "S001"
+            },
+            {
+              "field": "hard_conflict",
+              "value": {
+                "A": "S001",
+                "B": "S001"
+              }
+            }
+          ],
+          "expected_fields": [
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "allowed_single_ids": [
+                "S001",
+                "S002"
+              ],
+              "rule": "counterpart belongs to document B, never document A's unique spans"
+            },
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "allowed_single_ids": [],
+              "rule": "shared source requires an actual opposite-unique difference on document B"
+            },
+            {
+              "field": "hard_conflict.a_span_id",
+              "allowed_single_ids": [
+                "A001"
+              ],
+              "rule": "must match the same directional conflict witness after correcting its document ownership"
+            },
+            {
+              "field": "hard_conflict",
+              "unique_choices_by_document": {
+                "A": [
+                  "A001"
+                ],
+                "B": []
+              },
+              "rule": "at least one root witness must cite the actual differing unique span; two shared roots do not suffice"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pair_id": "actual_membership_conflict:ba",
+      "attempt": "attempt_03",
+      "accepted": false,
+      "original_error": "CONTEXT_DIFFERENCE_REQUIRED",
+      "new_feedback": {
+        "code": "DIRECTIONAL_WITNESS_BINDING",
+        "message": "Re-select the cited IDs on their required documents, then make root and directional witnesses agree. Do not change semantic coverage statuses merely to bypass an ID error. Return the full fenced JSON.",
+        "details": {
+          "field": [
+            "a_meaning_in_b.counterpart_span_id",
+            "a_meaning_in_b.counterpart_span_id",
+            "hard_conflict.a_span_id",
+            "hard_conflict"
+          ],
+          "actual_fields": [
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "value": "A001"
+            },
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "value": "A001"
+            },
+            {
+              "field": "hard_conflict.a_span_id",
+              "value": "S001"
+            },
+            {
+              "field": "hard_conflict",
+              "value": {
+                "A": "S001",
+                "B": "S001"
+              }
+            }
+          ],
+          "expected_fields": [
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "allowed_single_ids": [
+                "S001",
+                "S002"
+              ],
+              "rule": "counterpart belongs to document B, never document A's unique spans"
+            },
+            {
+              "field": "a_meaning_in_b.counterpart_span_id",
+              "allowed_single_ids": [],
+              "rule": "shared source requires an actual opposite-unique difference on document B"
+            },
+            {
+              "field": "hard_conflict.a_span_id",
+              "allowed_single_ids": [
+                "A001"
+              ],
+              "rule": "must match the same directional conflict witness after correcting its document ownership"
+            },
+            {
+              "field": "hard_conflict",
+              "unique_choices_by_document": {
+                "A": [
+                  "A001"
+                ],
+                "B": []
+              },
+              "rule": "at least one root witness must cite the actual differing unique span; two shared roots do not suffice"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "artifacts": {
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/input_repeat_1.jsonl": "939eec9b1925f0c182f21ff5eb88a65831e06f9be46d2e75a975b7c9300524d9",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_01/output/a00e1f21cb39.jsonl": "4f08e50660bc7de9391b2e778fa92a31d74487202d16ac1c26626a2f0e351c4d",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_02/output/3f263eed5334.jsonl": "f16712b9c24eae279683bcce190af26e42250e87ffae7b4d40a24d1de0b4cd72",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_03/output/404a0f105a74.jsonl": "bbf0f1ef5ce123d93f66aa570e83a66abc8aa7a61fed88e3315faa9f8ed5b447"
+  }
+}

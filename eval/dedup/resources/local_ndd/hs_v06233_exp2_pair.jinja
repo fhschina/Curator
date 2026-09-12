@@ -1,0 +1,22 @@
+Compare complete retention on both sides. A's loss means B cannot replace A;
+B's loss means A cannot replace B. The same-record and non-main-only vetoes do
+not apply. Proper subset directions do not depend on difference severity.
+An added title/navigation entry is retained content, not a contradictory role.
+Verify actual context before declaring an identity, policy, role or state conflict.
+
+Field rubric:
+{{ rubric }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>

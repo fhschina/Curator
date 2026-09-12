@@ -1,0 +1,319 @@
+{
+  "schema_version": "dedup-context-assessment-v1",
+  "created_at_utc": "2026-09-10T23:58:31.803251+00:00",
+  "version": "dedup-judge-hs-v0.6.2.31",
+  "contract_digest": "d1efd349f5d18f08a821b20d20e80cd3f75047804243d2424fa36971e85acfb5",
+  "run_root": "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic",
+  "schedule_complete": false,
+  "eligible_for_release": false,
+  "reference_changed": false,
+  "preflight_passed": false,
+  "preflight_main": {
+    "called_final_contract_completion": 0.9090909090909091,
+    "called_pair_retry_rate": 0.09090909090909091,
+    "called_pairs": 11,
+    "called_valid": 10,
+    "completed_at_utc": "2026-09-10T23:54:06.549662+00:00",
+    "errors": 1,
+    "fatal_boundary": false,
+    "http_statuses": {
+      "200": 13
+    },
+    "judge_retried_pairs": 1,
+    "native_corrected_pairs": 0,
+    "native_corrections": 0,
+    "not_requested_owned_pairs": 0,
+    "requested": 11,
+    "retried": 1,
+    "valid": 10
+  },
+  "primary_correct_valid_rows": 10,
+  "preflight_requested_denominator": 11,
+  "valid_rows": [
+    {
+      "pair_id": "independent_addition:ab",
+      "review_id": "independent_addition:ab",
+      "primary": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "YES",
+        "b_can_replace_a": "NO"
+      },
+      "primary_correct": true,
+      "relation": "CONTAINMENT",
+      "attempts": 1
+    },
+    {
+      "pair_id": "independent_addition:ba",
+      "review_id": "independent_addition:ba",
+      "primary": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "YES"
+      },
+      "primary_correct": true,
+      "relation": "CONTAINMENT",
+      "attempts": 1
+    },
+    {
+      "pair_id": "chrome_only:ab",
+      "review_id": "chrome_only:ab",
+      "primary": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "YES",
+        "b_can_replace_a": "YES"
+      },
+      "primary_correct": true,
+      "relation": "NEAR_SURFACE",
+      "attempts": 1
+    },
+    {
+      "pair_id": "missing_record_field:ab",
+      "review_id": "missing_record_field:ab",
+      "primary": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "YES",
+        "b_can_replace_a": "NO"
+      },
+      "primary_correct": true,
+      "relation": "CONTAINMENT",
+      "attempts": 1
+    },
+    {
+      "pair_id": "cookie_empty_anchor:ab",
+      "review_id": "cookie_empty_anchor:ab",
+      "primary": {
+        "same_duplicate_group": "NO",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "NO"
+      },
+      "primary_correct": true,
+      "relation": "RELATED_NON_DUPLICATE",
+      "attempts": 1
+    },
+    {
+      "pair_id": "actual_sku_conflict:ab",
+      "review_id": "actual_sku_conflict:ab",
+      "primary": {
+        "same_duplicate_group": "NO",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "NO"
+      },
+      "primary_correct": true,
+      "relation": "RELATED_NON_DUPLICATE",
+      "attempts": 1
+    },
+    {
+      "pair_id": "actual_state_conflict:ab",
+      "review_id": "actual_state_conflict:ab",
+      "primary": {
+        "same_duplicate_group": "NO",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "NO"
+      },
+      "primary_correct": true,
+      "relation": "VERSION_RELATED",
+      "attempts": 1
+    },
+    {
+      "pair_id": "faithful_translation:ab",
+      "review_id": "faithful_translation:ab",
+      "primary": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "YES",
+        "b_can_replace_a": "YES"
+      },
+      "primary_correct": true,
+      "relation": "NEAR_SURFACE",
+      "attempts": 1
+    },
+    {
+      "pair_id": "actual_membership_conflict:ab",
+      "review_id": "actual_membership_conflict:ab",
+      "primary": {
+        "same_duplicate_group": "NO",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "NO"
+      },
+      "primary_correct": true,
+      "relation": "RELATED_NON_DUPLICATE",
+      "attempts": 1
+    },
+    {
+      "pair_id": "cp1_f1f54f5c85e3ba6660b4b60782d6dcf9d48a039e09160be9caaca97a0dc889c7",
+      "review_id": "H0653",
+      "primary": {
+        "same_duplicate_group": "YES",
+        "a_can_replace_b": "NO",
+        "b_can_replace_a": "YES"
+      },
+      "primary_correct": true,
+      "relation": "CONTAINMENT",
+      "attempts": 1
+    }
+  ],
+  "terminal_pair_ids": [
+    "actual_membership_conflict:ba"
+  ],
+  "terminal_attempts": [
+    {
+      "attempt": "attempt_01",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_01/output/a00e1f21cb39.jsonl",
+      "source_sha256": "4f08e50660bc7de9391b2e778fa92a31d74487202d16ac1c26626a2f0e351c4d",
+      "side_witnesses": {
+        "a_meaning_in_b": {
+          "status": "UNCOVERED",
+          "source_span_id": "S001",
+          "counterpart_span_id": "A001",
+          "counterpart_relation": "CONTRADICTS"
+        },
+        "b_meaning_in_a": {
+          "status": "UNCOVERED",
+          "source_span_id": "S001",
+          "counterpart_span_id": "A001",
+          "counterpart_relation": "CONTRADICTS"
+        }
+      },
+      "hard_conflict": {
+        "kind": "MEMBERSHIP",
+        "a_span_id": "S001",
+        "b_span_id": "S001",
+        "explanation": "A asserts the complete list includes 丙 (via A001), while B asserts the complete list is limited to 甲 and 乙 (excluding 丙). These are incompatible membership claims for the same subject."
+      },
+      "validation_errors": [
+        {
+          "canonical_pair_id": "actual_membership_conflict:ba",
+          "fatal_boundary": false,
+          "issue": {
+            "code": "CONTEXT_DIFFERENCE_REQUIRED",
+            "details": {},
+            "message": "two shared witnesses alone do not establish the differing value"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "attempt_02",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_02/output/3f263eed5334.jsonl",
+      "source_sha256": "f16712b9c24eae279683bcce190af26e42250e87ffae7b4d40a24d1de0b4cd72",
+      "side_witnesses": {
+        "a_meaning_in_b": {
+          "status": "UNCOVERED",
+          "source_span_id": "S001",
+          "counterpart_span_id": "A001",
+          "counterpart_relation": "CONTRADICTS"
+        },
+        "b_meaning_in_a": {
+          "status": "UNCOVERED",
+          "source_span_id": "S001",
+          "counterpart_span_id": "A001",
+          "counterpart_relation": "CONTRADICTS"
+        }
+      },
+      "hard_conflict": {
+        "kind": "MEMBERSHIP",
+        "a_span_id": "S001",
+        "b_span_id": "S001",
+        "explanation": "A claims the complete list is {甲, 乙, 丙} (via S001 + A001). B claims the complete list is {甲, 乙} (via S001). The exclusive nature of the list ('仅限') makes the presence of 丙 in A and its absence in B a direct contradiction."
+      },
+      "validation_errors": [
+        {
+          "canonical_pair_id": "actual_membership_conflict:ba",
+          "fatal_boundary": false,
+          "issue": {
+            "code": "CONTEXT_DIFFERENCE_REQUIRED",
+            "details": {},
+            "message": "two shared witnesses alone do not establish the differing value"
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "attempt_03",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_03/output/404a0f105a74.jsonl",
+      "source_sha256": "bbf0f1ef5ce123d93f66aa570e83a66abc8aa7a61fed88e3315faa9f8ed5b447",
+      "side_witnesses": {
+        "a_meaning_in_b": {
+          "status": "UNCOVERED",
+          "source_span_id": "S001",
+          "counterpart_span_id": "A001",
+          "counterpart_relation": "CONTRADICTS"
+        },
+        "b_meaning_in_a": {
+          "status": "UNCOVERED",
+          "source_span_id": "S001",
+          "counterpart_span_id": "A001",
+          "counterpart_relation": "CONTRADICTS"
+        }
+      },
+      "hard_conflict": {
+        "kind": "MEMBERSHIP",
+        "a_span_id": "S001",
+        "b_span_id": "S001",
+        "explanation": "Both sides claim the list is 'complete' and 'limited to' specific members. A's list includes 丙 (via A001), while B's list (S001) excludes it. The exclusive nature of the claim ('limited to') makes the differing membership a hard conflict."
+      },
+      "validation_errors": [
+        {
+          "canonical_pair_id": "actual_membership_conflict:ba",
+          "fatal_boundary": false,
+          "issue": {
+            "code": "CONTEXT_DIFFERENCE_REQUIRED",
+            "details": {},
+            "message": "two shared witnesses alone do not establish the differing value"
+          }
+        }
+      ]
+    }
+  ],
+  "critic_submitted": false,
+  "formal_repeats_submitted": false,
+  "http_statuses": {
+    "200": 13
+  },
+  "saved_assistant_messages": 13,
+  "strict_shape_valid_messages": 13,
+  "missing_successful_response_count": 0,
+  "request_trace_attribution": "Per-attempt response counts reconcile; no request-body hash reconstruction claimed. Complete accepted raw/input/prompt binding replays strictly.",
+  "local_verification": {
+    "cpu_passed": 972,
+    "cpu_skipped": 42,
+    "gpu_deselected": 2,
+    "native_passed": 4,
+    "local_http_requests": 22,
+    "external_calls_in_boundary": 0
+  },
+  "max_main_input_tokens": 20985,
+  "max_main_tokens_with_output_and_margin": 27129,
+  "frozen_asset_count": 200,
+  "historical_freezes_unchanged": [
+    ".27",
+    ".28",
+    ".29",
+    ".30"
+  ],
+  "adapter_probe": "v06231_adapter_probe.json",
+  "owned_ray_stopped": true,
+  "conclusion": "Forward closed-list context and whole-pair/core translation probes fixed on this observed preflight. Mirrored list remains terminal due wrong-side counterpart and shared/shared hard-conflict witnesses. No full-panel ranking or 75% gate claim.",
+  "artifacts": {
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_01/events.jsonl": "7239623bf92b1eac5b5bdd8be185a25b71312d7dcf9cf94354319eadd49d1bd3",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_01/input.jsonl": "9055504d0cba8ab6d31d8501a303bcd8c810c987ff35be0f7ee0d1e248783e12",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_01/output/a00e1f21cb39.jsonl": "4f08e50660bc7de9391b2e778fa92a31d74487202d16ac1c26626a2f0e351c4d",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_01/validation_errors.json": "046e2e714e71050a2aa134ef44356c83f663d87f965e902b54bd29a29bc46f47",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_02/events.jsonl": "17cb7b71b44c0c2b8875c644d9161715f03bdbc44ebf9ddb28c9744ae81783b9",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_02/input.jsonl": "c51ee63fe0ffb18fbd49093fad0b8901228178cd89c26b768458e15562cfa4e2",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_02/output/3f263eed5334.jsonl": "f16712b9c24eae279683bcce190af26e42250e87ffae7b4d40a24d1de0b4cd72",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_02/validation_errors.json": "046e2e714e71050a2aa134ef44356c83f663d87f965e902b54bd29a29bc46f47",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_03/events.jsonl": "4e031bf43ecfcff4055e839b4b53cd628156946aab151f9eebca30eb3a48f773",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_03/input.jsonl": "c51ee63fe0ffb18fbd49093fad0b8901228178cd89c26b768458e15562cfa4e2",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_03/output/404a0f105a74.jsonl": "bbf0f1ef5ce123d93f66aa570e83a66abc8aa7a61fed88e3315faa9f8ed5b447",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/attempt_03/validation_errors.json": "046e2e714e71050a2aa134ef44356c83f663d87f965e902b54bd29a29bc46f47",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/native_corrections.json": "0fb427707fa4419f15efdcc1d91f5277e1f34099273c7d386aa9c4d2a7ece6de",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/owned_predictions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/predictions.jsonl": "e786677031f932c8cb4da3930d9f194467400aeb0b7df55abcda346472e58ad0",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/terminal_pair_ids.json": "57ad533285e69dcabdab4e7b483b114f0b395e83b155b69431c2b2dbdaceb522",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/manifest.json": "8557954fc5c59435d2d07e283c52d53d40cc661409232058732f5c09e81ac36d",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main/complete.json": "23e905a56d917098d6f1af68149d2a8b0ea78e08182b54d4b709452429dbda00",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/preflight/main_operations.json": "23e905a56d917098d6f1af68149d2a8b0ea78e08182b54d4b709452429dbda00",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/stopped.json": "9f9bd14dfd2134baedaf1b1a1576c77930f40f01ccbd42038ce3d1ccfb060bf1",
+    "/raid/hfang/ihb/runs/v0.6.2.31-context-diagnostic/assessment_partial.json": "b8f6f204186b17f8d8ebffb00c3424b059bdd7bb00ee893531601707441786b0"
+  }
+}

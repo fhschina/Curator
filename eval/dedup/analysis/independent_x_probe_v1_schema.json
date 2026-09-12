@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["shared_substantive_x", "content_profile_a", "content_profile_b", "evidence", "rationale"],
+  "properties": {
+    "shared_substantive_x": {"type": "string", "enum": ["PRESENT", "ABSENT", "UNRESOLVED"]},
+    "content_profile_a": {"type": "string", "enum": ["SUBSTANTIVE_MAIN", "NON_MAIN_ONLY", "UNRESOLVED"]},
+    "content_profile_b": {"type": "string", "enum": ["SUBSTANTIVE_MAIN", "NON_MAIN_ONLY", "UNRESOLVED"]},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["side", "start_char", "end_char", "quote"],
+        "properties": {
+          "side": {"type": "string", "enum": ["A", "B"]},
+          "start_char": {"type": "integer", "minimum": 0},
+          "end_char": {"type": "integer", "minimum": 1},
+          "quote": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "rationale": {"type": "string", "minLength": 1}
+  }
+}

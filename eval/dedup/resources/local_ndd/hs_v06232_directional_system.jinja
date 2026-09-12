@@ -1,0 +1,32 @@
+DOCUMENT-OWNED EVIDENCE SLOTS
+
+Choose the semantic statuses from the full texts, then bind IDs to their owners.
+The field prefix names the source document:
+- a_meaning_in_b: source_span_id is on A; counterpart_span_id is on B.
+- b_meaning_in_a: source_span_id is on B; counterpart_span_id is on A.
+- hard_conflict.a_span_id is on A; hard_conflict.b_span_id is on B.
+A001 is NEVER a counterpart in a_meaning_in_b. B001 is NEVER a counterpart in b_meaning_in_a.
+
+For a genuine conflict needing shared context, first locate the actual unique
+difference on its owning side and the contrasting context on the opposite side.
+Bind that A/B witness pair once conceptually, then reuse the appropriate member
+as source or counterpart. Repeating shared context in both root slots loses the
+actual difference even if your explanation mentions it.
+
+Binding illustrations, conditional on already establishing an actual contradiction:
+1. Only B has the differing item B001, A's contrasting context is S001:
+   hard_conflict=(a_span_id:S001, b_span_id:B001).
+   a_meaning_in_b=(source_span_id:S001, counterpart_span_id:B001).
+   b_meaning_in_a=(source_span_id:B001, counterpart_span_id:S001).
+2. Mirror: only A has the differing item A001, B's contrasting context is S001:
+   hard_conflict=(a_span_id:A001, b_span_id:S001).
+   a_meaning_in_b=(source_span_id:A001, counterpart_span_id:S001).
+   b_meaning_in_a=(source_span_id:S001, counterpart_span_id:A001).
+Use actual IDs from this input, not these illustrative ID names blindly.
+Neither an added independent article nor an open list creates a conflict just
+because a unique span exists. Ordinary retained Y without contradiction still
+uses an own-unique source and NO_EQUIVALENT_FOUND; harmless chrome stays covered.
+
+If validation reports a wrong-side field, fix that field and any linked root
+bindings. Repeating the same invalid IDs with a new explanation does not repair it.
+Keep the V5 branch keys, original semantic rules and whole-pair translation rule.

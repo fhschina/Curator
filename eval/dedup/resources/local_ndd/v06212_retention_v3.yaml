@@ -1,0 +1,15 @@
+contract_version: dedup-critic-retention-v3
+status: EXPERIMENT_NOT_RELEASE
+fixed_main: v0.6.2.12
+predecessor_review_path: /raid/hfang/ihb/runs/critic-five-hour-20260911T070052Z/retention-v2-pilot/review_complete.json
+system_prompt_path: v06212_retention_v3_system.jinja
+prompt_path: v06212_retention_v3_pair.jinja
+rubric:
+  a_loss_span_id: One own A_ONLY span containing meaning B fails to preserve, otherwise empty. Never cite SHARED as one-sided loss.
+  b_loss_span_id: One own B_ONLY span containing meaning A fails to preserve, otherwise empty. Never cite SHARED as one-sided loss.
+  a_context_span_id: Required nonempty checked A or SHARED context, independently of whether A has loss.
+  b_context_span_id: Required nonempty checked B or SHARED context, independently of whether B has loss.
+  conflict: Actual subject, value, obligation, state, function or membership incompatibility. Use context selections for the two actual values. Independent Y alone is not a conflict.
+  overlap_basis: Same v2 policy for retained content including complete reused policies, interface/acknowledgment-only overlap, and uncertain completeness. Equivalent non-main text is not automatically negative.
+  shared_anchor_ids: Account for all common spans before classifying apparent containment as interface-only.
+  explanation: Brief retained meanings and concrete consequence, not a schema or a loop repeating instructions.

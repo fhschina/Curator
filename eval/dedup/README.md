@@ -22,6 +22,287 @@ Earlier revisions are in the [proposal archive](docs/proposals/archive/). The la
 
 ## Current results and dashboards
 
+### .12 critic scope v1 — completed local pilot, do not expand
+
+The [critic-scope report](analysis/critic_scope_v1_report.md) keeps saved .12 main outputs fixed and tests a
+veto-only critic on 19 frozen cases, two arms and two repeats. All 64 fresh requests return HTTP 200, but the
+candidate validates only 16/32 called outputs: each repeat has three contract-name errors and five directional-proof
+failures. It also misses a real forum-identity conflict. Under the unchanged partial policy draft, candidate primary
+agreement is 9/19 in each repeat versus 13/19 and 14/19 for the fresh .12 critic controls. These are selected-panel,
+reference-sensitive results, not full-development performance. Exact-text bypass gains are reported separately.
+The report preserves the earlier stopped execution and flags H0093 for policy-boundary review without changing labels.
+Use `eval.dedup.analysis.critic_scope_execution` for the failure-durable runner; the original experiment runner's
+failure-recorder defect is retained only as frozen history. No release or larger online run is authorized by this pilot.
+
+### .9 / .12 / .32 offline rebenchmark — partial policy-v2 reference sensitivity
+
+The [same-output comparison](analysis/reference_policy_v2_rebenchmark_v1.md) replays all six main/final views on the
+identical original 1,000 inputs. Historical references and outputs remain unchanged. A separate, explicitly partial
+AI development reference applies five primary-decision revisions under the approved policy-only rule; H0998 remains
+an unchanged positive control. Final weighted precision/recall under that draft are **73.86%/57.10% (.9)**,
+**67.99%/75.07% (.12)**, and **44.70%/80.80% (.32)**. These are label-sensitivity results, not new model gains or
+independent gold. The text-only all-population screen leaves 184 additive candidates without completed individual
+review, and two exact-document reference conflicts remain unresolved. Recommend .12 as the next experimental
+control and isolate critic intervention; no new online calls, Judge version, release, or 20,000-pair run.
+
+### Policy-only clarification — unchanged complete policy plus product is one-way replaceable
+
+The user-approved [policy v2](analysis/composite_containment_policy_v2.md) permits a page with the complete same policy
+plus substantive product content to replace the policy-only page. The [application inventory](analysis/policy_only_application_v1.md)
+supports five previously disputed cases and the existing H0998 positive control as AI development suggestions, not new
+human gold. Four short credit/warranty notices remain pending; H0352's mandatory negative expectation is suspended.
+The old 121-case review and 48/64-case freezes remain intact, with a separate policy overlay covering all 64 IDs.
+No new model calls, reference edits, scores or runtime changes; new-policy requests and independent annotations are not yet frozen.
+
+### .12 → .32 full 121-case review — evidence-bound triage and revised panel
+
+The [complete review](analysis/v06212_v06232_review121_report.md) classifies all 121 incremental over-groups:
+79 clear model errors, 40 policy/reference disputes and 2 pending cases. These are prediction-aware AI development
+judgments, not independent human gold. All 20 lost historical repairs have a separate inventory; 5 supported negative
+conclusions enter development protection, while 15 disputed/pending conclusions are not forced onto a new model.
+The original 48-case freeze remains unchanged. A [64-case panel revision](analysis/independent_x_probe_v2.json) retains
+every old member and flag, adds missing mechanisms and all 5 supported repairs, and uses full anonymous inputs.
+Independent X annotations and executable preflight are still pending; no new model calls, reference changes or scores.
+
+### .12 → .32 incremental audit — offline ledger and independent-X probe freeze
+
+The [incremental audit](analysis/v06212_v06232_incremental_audit.md) strictly replays the saved four component views
+on all original 1,000 inputs: 47 final decisions improve, 152 regress, 77 remain wrong, and 724 remain reference-correct.
+Of 121 newly over-grouped pairs, 101 were already correct in the old main and 20 lose an old postprocessing repair.
+A [48-pair independent-X protocol](analysis/independent_x_probe_v1.json) freezes real inputs, protection candidates,
+anonymous requests and an empty annotation template. X labels still need independent review; X absence does not imply
+no/no for equivalent non-main pages. No new model calls, label changes, Judge version or release are included.
+
+### V0.6.2.32 paced full development — transport recovered, semantic gates fail
+
+The [full audit](analysis/v06232_paced_audit.md) evaluates the original 1,000 pairs under a new
+[transport-only execution protocol](analysis/v06232_paced_protocol.md), with unchanged `.32` prompts and references.
+Final weighted precision/recall/primary exact are **42.90% / 80.16% / 77.63%**; 156 over-groups include
+134 false containments. The critic fixes only two over-groups and one direction. Strict completion is 997/1,000,
+and 42/964 called pairs require model corrections. All 1,491 upstream requests, including preflight/local panels,
+return HTTP 200; there are no transport retries. See the [machine-readable assessment](analysis/v06232_paced_assessment.json).
+The broad semantic-content gate and weak critic correction remain the bottlenecks. This is a completed diagnostic,
+not a release or a 75% gate pass; historical failures, labels and caches remain intact.
+
+### V0.6.2.32 directional binding — all semantic probes pass; HTTP 429 gate stops expansion
+
+The [audit](analysis/v06232_directional_audit.md) reports 11/11 correct, fully valid main and final preflight decisions,
+with zero model corrections. Both closed-list directions now bind evidence correctly, including the previous terminal
+mirror. Critic requests encountered six HTTP 429s before succeeding; the frozen single-HTTP-200 gate therefore stopped
+both formal 50-pair repeats. This is a transport-gate failure, not a remaining evidence error or a full-development pass.
+The [assessment](analysis/v06232_directional_assessment.json) accounts for all 23 external HTTP requests (17 successful),
+while [996 CPU and four native tests](analysis/v06232_boundary.json) and the
+[offline feedback probe](analysis/v06232_feedback_probe.json) verify unchanged V5 acceptance and precise retry feedback.
+See the [design](analysis/v06232_design.md). References and prior freezes remain unchanged; this is not a release.
+
+### V0.6.2.31 contextual witnesses — targeted fixes pass, mirrored preflight still fails
+
+The [audit](analysis/v06231_context_audit.md) records 10/11 valid first-pass main outputs, all ten matching the original
+primary labels. The original forward closed-list case and core-translation-plus-addition case now pass; the mirrored
+list still cites a wrong-side counterpart and two shared root witnesses across three attempts. All 13 external HTTP
+requests succeeded; strict JSON shape passed, but evidence completion and the correction gate failed. No critic or
+formal repeat was submitted. See the [assessment](analysis/v06231_context_assessment.json),
+[design](analysis/v06231_design.md), [972 CPU plus four native tests](analysis/v06231_boundary.json), and
+[offline adapter probe](analysis/v06231_adapter_probe.json). V5 permits narrowly grounded shared-context contradictions;
+public v3, substantive independent-Y containment, references and historical runs remain preserved. This is not a release
+or a 75% accuracy-gate pass.
+
+### V0.6.2.30 format-only follow-up — preflight passed, first formal main stopped
+
+The [audit](analysis/v06230_format_audit.md) reports 8/8 correct first-pass preflight decisions for main and final,
+with zero corrections. First-round main then produced 49/50 valid outputs; a closed-list conflict was rejected by
+the own-unique-only loss-witness constraint. A separate core-translation-plus-addition case required retries to stop
+claiming complete-pair translation. No formal critic or second repeat was submitted, so no semantic ranking is claimed.
+All 70 external requests remain accounted for (66 HTTP 200, four 429), including one successful response without saved
+assistant-trace attribution. See the [assessment](analysis/v06230_format_assessment.json),
+[frozen design](analysis/v06230_design.md) and [boundary tests](analysis/v06230_boundary.json).
+Only encoding instructions changed from `.29`; references, semantic policy, strict schema and historical runs remain unchanged.
+
+### V0.6.2.29 composite containment — credentials recovered, online preflight stopped
+
+The [credential recovery and preflight audit](analysis/v06229_credential_recovery.md) confirms that the existing
+repository `.env` key works: all 12 external requests returned HTTP 200. The main preflight produced 7/8 finally
+valid outputs; two pairs needed retries and one repeatedly emitted cross-branch fields. The runner stopped before
+critic and both formal repeats. This is a schema-completion failure, not a credential failure or a semantic gate pass.
+
+The earlier [offline implementation checkpoint](analysis/v06229_implementation_report.md) and
+[frozen design](analysis/v06229_design.md) implement substantive X + independent Y containment with a fresh V4 main
+and a same-policy critic. The candidate preserves the nonempty anchor and actual conflict gates, exports public v3,
+does not reuse historical main outputs or caches, and leaves reference labels unchanged. It is an opt-in experiment,
+not a release.
+Verification passed 900 CPU tests and four native local-HTTP integration cases; these are not model accuracy results.
+The frozen schedule was eight preflight cases, then two repeats of 24 real development plus 26 synthetic cases scored
+separately; the latter were not submitted after preflight failed. No 75% gate pass or semantic improvement is claimed.
+Historical freezes remain unchanged.
+
+### Composite-containment policy approved — historical runs unchanged
+
+The [approved policy](analysis/composite_containment_policy_v1.md) permits substantive X + independent Y to
+replace X in one direction, without requiring Y to extend the same record. Nonempty substantive overlap,
+full directional retention and actual conflict protections remain required. The
+[19-case development review and paired synthetic fixtures](analysis/composite_containment_review_v1.json)
+keep policy approval separate from per-case gold adjudication. Old references, scores, prompts, adapters and
+caches were unchanged at that policy-only checkpoint; implementation followed in the `.29` candidate above.
+The policy review itself made no new model calls.
+
+### Offline bottleneck audit — prompt iteration paused for policy arbitration
+
+The [full-1,000 audit](analysis/bottleneck_audit_v1.md) separates 124 final `.12` primary disagreements into
+34 development-reviewed semantic errors, 56 policy/reference disputes, four engineering issues, 23 input limitations,
+and seven pending reviews. Disputes are not approved label corrections. It strictly replays the saved main/critic
+outputs, reports weighted FP/FN contributions, and keeps `.28` fixed-main local results separate.
+See the [arbitration priorities](analysis/bottleneck_arbitration_v1.md), [case-level review notes](analysis/bottleneck_reviews_v1.json),
+and [22-case mixed diagnostic panel](analysis/bottleneck_panel_v1.json). This work makes no model calls or reference changes;
+the panel is prediction-aware development work, not independent human calibration or a replacement release gate.
+
+### V0.6.2.27 same-contract semantic blocks — complete paired schedule, no promotion
+
+The [audit](analysis/v06227_policy_audit.md) reports 258/258 valid outputs in all four cells. The expanded
+policy block improves paired weighted primary by 1.71/0.94 percentage points, but candidate weighted
+precision remains 66.70%/64.99% and recall 69.73%/68.20%. Negative/benign protections, repeat stability,
+and the 1% correction gate fail. These are fixed-main local diagnostics, not full-development results.
+See the [assessment](analysis/v06227_policy_assessment.json), [attribution](analysis/v06227_response_attribution.json),
+[protocol](analysis/v06227_design.md), [boundary tests](analysis/v06227_boundary.json), and
+[next sequencing design](analysis/v06228_design.md). All 645 external HTTP requests remain accounted for;
+the audit separately discloses one dropped native row with two successful requests lacking saved assistant traces.
+
+### V0.6.2.26 typed coverage — candidate preflight passed, flat control stopped the experiment
+
+The [audit](analysis/v06226_typed_audit.md) records typed coverage 8/8 first-pass valid with zero corrections,
+but flat control 7/8, then 8/8 after one outer retry (17 HTTP 200 requests total). Both arms had to pass,
+so no formal cells or semantic ranking were submitted. Typed sides remove redundant inactive fields;
+strict original-response, transport, evidence and semantic protection checks remain separate.
+See the [protocol](analysis/v06226_run_protocol.md), [assessment](analysis/v06226_typed_assessment.json),
+[boundary tests](analysis/v06226_boundary.json), and [next semantic-block comparison](analysis/v06227_design.md).
+The next design uses the same typed contract on both arms; it does not reinterpret the failed .25/.26 schedules.
+
+### V0.6.2.25 proposition-first prompt — preflight stopped before formal scoring
+
+The [audit](analysis/v06225_proposition_audit.md) records control 8/8 first-pass valid and candidate 7/8,
+then 8/8 after one outer retry (17 HTTP 200 requests total). A harmless-only mode with nonempty counterpart
+references violated the unchanged V2 contract, so the zero-correction preflight gate stopped formal submission.
+No semantic ranking is published. Both arms share the .24 scope postprocessor; this control is the .23 selection
+prompt, not the old .14 critic. See the [protocol](analysis/v06225_design.md),
+[assessment](analysis/v06225_proposition_assessment.json), [boundary tests](analysis/v06225_boundary.json), and
+[next contract design](analysis/v06226_design.md). Original results and thresholds remain unchanged.
+
+### V0.6.2.24 offline scope probe — routing gains, semantic protections still fail
+
+The [offline audit](analysis/v06224_scope_audit.md) isolates main/critic content-taxonomy disagreement using
+the accepted .23 responses, with no new model calls or edits to either response. Unresolved outputs fall
+from 20 to 3 per repeat and weighted primary rises about 2.4 percentage points, but one identity false positive
+is exposed and recall remains 68.00%/61.89%. Containment, translation, benign and retry protections still fail.
+See the [predeclared protocol](analysis/v06224_design.md), [replay](analysis/selection_scope_replay.py), and
+[all-pair assessment](analysis/v06224_scope_assessment.json). This is a code counterfactual, not an online .24
+score or a production policy. Labels, weights, historical results and all original gates remain unchanged.
+
+### V0.6.2.23 span selection — complete paired schedule, no promotion
+
+The [online audit](analysis/v06223_selection_audit.md) records 258/258 valid outputs in all four formal cells
+and 147/147 final strict candidate contracts per repeat. Selecting original spans removes quote-regeneration
+failures without relaxing evidence alignment. Weighted precision is 74.68%/76.28%, recall 65.37%/59.11%,
+and primary 74.45%/73.60%; both repeats fail semantic protections and primary stability. Native/outer
+correction rates and separate HTTP 429/500/503 failures remain reported, not erased by final completion.
+See the [assessment](analysis/v06223_selection_assessment.json), [protocol](analysis/v06223_run_protocol.md),
+and [full-pipeline boundary tests](analysis/v06223_boundary.json). These are fixed-main local diagnostics,
+not the complete 1,000-pair development evaluation or independent holdout results.
+
+### V0.6.2.22 routed coverage — preflight passed, first formal round stopped
+
+The [audit](analysis/v06222_coverage_audit.md) records a clean 8/8 preflight on both arms, followed by
+258/258 control outputs and 256/258 coverage outputs. Coverage requested 147 pairs and retained 111 deterministic
+outputs without fabricated critic proofs; its actual called-pair retry rate was 9/147 (6.12%). Two terminal
+errors stopped the second repeat. Control also exceeded the 1% correction gate and encountered separately recorded
+HTTP 429s. No semantic ranking or promotion is claimed from this incomplete schedule. See the
+[assessment](analysis/v06222_coverage_assessment.json), [protocol](analysis/v06222_run_protocol.md), and
+[boundary tests](analysis/v06222_boundary.json). The [.23 design](analysis/v06223_design.md) proposes selecting
+original spans instead of regenerating quotes, while keeping the substantive-anchor gate and all original targets.
+The audit also discloses the frozen prompt's incorrect side-field count (13 stated; the actual schema has 12).
+
+### V0.6.2.21 coverage preflight — transport fixed, retry gate not passed
+
+The [online preflight audit](analysis/v06221_coverage_audit.md) records 8/8 final valid pairs on both arms and
+18 external HTTP requests. Coverage needed one outer retry and one native correction on the same pair, so the
+frozen zero-retry preflight gate stopped formal submission. Actual native prompts and transport checks passed;
+this is not evidence of semantic improvement. See the [assessment](analysis/v06221_coverage_assessment.json),
+[run protocol](analysis/v06221_run_protocol.md), and [runtime boundary tests](analysis/v06221_boundary.json).
+An [offline ownership-routing audit](analysis/v06221_coverage_routing_audit.json) preserves all 258 pair IDs and
+identifies 147 requiring coverage, with 111 deterministic branches unchanged by valid coverage probes.
+At the time of that audit the routing was offline only; the subsequent .22 experiment above uses fresh frozen
+requests and separate called-pair retry accounting. Original labels and gates remain unchanged.
+
+### V0.6.2.20 structured coverage preflight — stopped before formal evaluation
+
+The [preflight audit](analysis/v06220_coverage_audit.md) records control 8/8 valid and coverage 0/8 accepted:
+the new payload equality check rejected Arrow's null padding and numeric representation changes. All 32 external
+HTTP requests are retained; no formal 258-pair cell or full-development run was submitted. A separate strict
+[transport binding](judging/payload_transport.py) and stable retry-feedback encoding now pass two complete Ray/HTTP
+boundary cases. [Offline verification](analysis/v06220_transport_verification.json) still finds eight response-contract
+failures among 24 saved attempts, so neither the replay nor transport fix establishes semantic improvement.
+See the unchanged [contract](analysis/v06220_design.md), [frozen protocol](analysis/v06220_run_protocol.md),
+[original failed assessment](analysis/v06220_coverage_assessment.json), and [.21 follow-up scope](analysis/v06221_design.md).
+Historical contracts, labels, weights and run results remain unchanged; no release is approved.
+
+### V0.6.2.19 non-main consistency counterfactual — not advanced
+
+The [offline audit](analysis/v06219_consistency_audit.md) replays all 3,612 historical critic responses from .16–.18
+without new model calls. A narrowly supported equivalence/extension disagreement occurs in 107 responses across 11
+pair IDs. Turning those decisions into abstentions raises precision but lowers primary accuracy in all 14 cells;
+no primary error becomes correct. This is not a production policy or release. See the
+[protocol](analysis/v06219_design.md), [replay tool](analysis/nonmain_consistency.py), and
+[all-cell assessment summary](analysis/v06219_consistency_assessment.json). Original labels, weights, and frozen runs
+remain unchanged; 3,612 repeated responses are not 3,612 independent examples.
+
+### V0.6.2.18 local-context diagnostic — not advanced
+
+The [paired-repeat audit](analysis/v06218_context_audit.md) preserves full span quotations and adds only short original-line
+context. Both repeats underperform their control; over-group counts rise from 23/23 to 25/25. The predeclared 136 unchanged
+requests separate response variance from actual prompt changes. All 1,032 critic-only judgments are valid, but this is not
+a full online candidate or release. See the [protocol](analysis/v06218_design.md), [assessment](analysis/v06218_context_assessment.json),
+[response attribution](analysis/v06218_response_attribution.json), [main ownership audit](analysis/v06218_main_ownership_audit.json),
+and [pending reference-policy checks](analysis/v06218_reference_pressure.md). The ongoing improvement goal remains unmet;
+original labels, weights, production policies and historical results are unchanged.
+
+### V0.6.2.17 fixed-main presentation diagnostic — not advanced
+
+The [paired-repeat audit](analysis/v06217_presentation_audit.md) tests complete original-order text plus a positional span
+index against the unchanged .14 critic, with main responses and v8 arbitration frozen. It improves the two consent-condition
+targets, but the short story pointer remains misclassified and over-group counts increase from 24/24 to 29/31 across repeats.
+Both repeats fail negative protections; the 1,032 critic-only judgments do not authorize a full-development run or release.
+See the [protocol](analysis/v06217_design.md), [assessment](analysis/v06217_presentation_assessment.json),
+[raw-response attribution and repeated inputs](analysis/v06217_response_attribution.json), and
+[pending reference review](analysis/v06217_reference_review.md). Original labels, weights, and historical results remain unchanged.
+
+### V0.6.2.16 fixed-main critic diagnostics — neither patch advanced
+
+The [paired-repeat audit](analysis/v06216_critic_audit.md) isolates two minimal .14 critic patches on the same 258 pairs,
+with .14 main responses and v8 arbitration frozen. Both consent-only and pointer-only patches underperform the unchanged
+control in both repeats and fail negative protections. The 1,548 critic-only judgments are diagnostic, not a complete
+online Judge candidate; no full-development run or production policy was registered.
+The audit also finds 230 distinct visible inputs among 258 pairs and one identical-input reference conflict (H0177/H0634).
+Original labels and weights remain unchanged. See the [protocol](analysis/v06216_design.md),
+[assessment](analysis/v06216_critic_assessment.json), [response attribution](analysis/v06216_response_attribution.json),
+and [input redundancy audit](analysis/v06216_input_redundancy.json).
+
+### V0.6.2.15 critic experiment — rejected
+
+The [258-pair audit](analysis/v06215_local_audit.md) restores all five benign guards but regresses weighted primary
+agreement from 73.10% (.14) to 69.05%, fails translation and negative protections, and does not proceed to full development.
+The main prompts were unchanged, yet 39/258 repeated main decisions differed. Fixed-main counterfactuals still show the new
+critic regressing; those mixed-response diagnostics are not an online candidate. See the [43-case AI review](analysis/v06215_critic_review.md),
+[frozen protocol](analysis/v06215_design.md), and [component attribution](analysis/v06215_component_attribution.json).
+No labels, historical resources, caches, or release approvals were changed.
+
+### V0.6.2.14 local development — not promoted
+
+The [258-pair local audit](analysis/v06214_local_audit.md) reports weighted primary agreement improving from
+66.92% (.13) to 73.10% (.14), with all four containment guards restored, but weighted precision falling from
+70.23% to 65.85%. Two frozen continuation guards still fail (H0480 and H0347), so no full 1,000-pair .14 run
+was submitted. This is an error-enriched development subset, not independent human calibration or release evidence.
+See the [frozen protocol](analysis/v06214_design.md), [code-only replay](analysis/v06214_arbitration_replay.json),
+[local assessment](analysis/v06214_local_assessment.json), and [same-response critic attribution](analysis/v06214_component_attribution.json).
+Historical prompts, results, reference labels, and caches remain unchanged.
+
 ### Experimental checkpoint through V0.6.2.11
 
 V0.6.2.9 remains the comparison baseline for the 127-pair residual experiment, **not an approved release**.
@@ -183,6 +464,11 @@ same model, decoding settings, and selected payload IDs:
   supplement. This is a development ablation, not a release candidate.
 - `hs-v06211`: adds an applicability-gated translation supplement to that ablation. Citation failures affect the active
   decision branch; valid negative decisions survive unrelated issues. See [the frozen protocol](analysis/v06211_design.md).
+- `hs-v06212-route`: retains the exact .9 prompts and isolates the deterministic complete non-main translation fix.
+- `hs-v06212`: synchronizes main/system/pair rubrics, distinguishes equivalence from extension in the critic, and requires
+  a separately cited retained identity/service/role/permission/state conflict to override non-main equivalence. See the
+  [implementation design](analysis/v06212_design.md) and [22-case development review](analysis/v06212_extension_review.md).
+  This candidate has not been evaluated online or approved for release.
 
 Prepare each development run with the same 1,000-pair label CSV:
 
@@ -269,6 +555,43 @@ V0.6.2.9's asymmetric arbitration is documented in
 [`analysis/v0629_residual_smoke.md`](analysis/v0629_residual_smoke.md). It restored recall, all protected benign duplicates,
 and three of four true-containment directions, but reopened one diagnostic non-main negative and missed one additive
 translation. It is frozen and may not advance to the full development set or holdout.
+
+A subsequent explicit user request authorized a one-off full 1,000-pair **diagnostic exception**, not promotion.
+The [frozen diagnostic protocol](analysis/v0629_full_development_protocol.md),
+[full-development audit](analysis/v0629_full_development_audit.md),
+[metrics and fixed-output arbitration analysis](analysis/v0629_full_development_summary.json), and
+[154-row disagreement queue](analysis/v0629_full_development_errors.csv) preserve that experiment separately.
+Weighted precision/recall are 73.86%/59.01%; 91 of 95 reference duplicate misses occur outside the old 127-pair residual.
+The earlier rejection remains in effect. No labels, frozen Judge resources, release approval, or holdout were changed.
+
+The [V0.6.2.12 isolated translation replay](analysis/v06212_translation_route_replay.json) uses all 1,000 saved .9 outputs,
+not new model calls: weighted precision/recall become 74.92%/62.37%, with 23 recovered reference positives and no new
+over-group. All 38 critic-repaired negative guards survive. The revised .12 critic prompt is **not** evaluated by this
+replay; its required retained-conflict field cannot be invented from historical outputs. For future full-development
+diagnostics, pass `--guard-replay eval/dedup/analysis/v06212_translation_route_replay.json` to enforce that protection suite.
+
+The subsequently authorized [V0.6.2.12 online development audit](analysis/v06212_online_development_audit.md)
+completed a separate 20-pair technical preflight and all 1,000 development pairs with 100% valid schema and no terminal
+errors or outer pair retries. Weighted precision/recall are **67.99%/77.59%**, with 57 over-groups and 22 false containments;
+only 20 of 38 critic-repaired negative guards survive. It fails development promotion despite its translation/recall gains.
+The [frozen protocol](analysis/v06212_online_development_protocol.md),
+[metrics](analysis/v06212_online_development_summary.json),
+[gate comparison](analysis/v06212_online_development_comparison.json),
+[saved-output attribution](analysis/v06212_online_development_attribution.json), and
+[124-row disagreement queue](analysis/v06212_online_development_errors.csv) preserve the failure without rewriting labels
+or frozen Judge resources. No holdout, 20,000-pair run, or release approval is authorized by this diagnostic.
+
+V0.6.2.13's [implementation and predeclared continuation protocol](analysis/v06213_design.md) separates an
+exact-only adapter control (`hs-v06213-exact`, unchanged .12 prompts) from the new specific-record-scope experiment
+(`hs-v06213`). The [exact replay](analysis/v06213_exact_replay.json) fixes two previously unresolved identical pairs
+without changing any other primary decision. The [258-pair local online audit](analysis/v06213_local_audit.md) is
+**rejected**: false containments fall from 22 to 3, but only 1/4 true-containment directions and 2/5 benign guards survive;
+six previously preserved negative guards regress. The prepared full 1,000-pair run was not submitted.
+Use the [weight-audited evaluation labels](analysis/v06213_local_evaluation_labels.csv) for local scoring, not the frozen
+selection CSV, which omitted the original stratum weight columns. Original reference labels and weights remain unchanged.
+The [local metrics and arbitration ablation](analysis/v06213_local_assessment.json),
+[cross-run counterfactuals](analysis/v06213_cross_run_attribution.json), and
+[73-row disagreement queue](analysis/v06213_local_errors.csv) are development diagnostics, not promotion or holdout results.
 
 V0.6.2.10's evidence-scoped boundary review is documented in
 [`analysis/v06210_design.md`](analysis/v06210_design.md). Its [residual audit](analysis/v06210_residual_smoke.md) and

@@ -1,0 +1,414 @@
+{
+  "schema_version": "dedup-v06213-exact-only-replay-v1",
+  "eligible_for_promotion": false,
+  "interpretation": "Only complete-visible-exact protection changed on digest-matched v06212 saved main+critic. No online calls, no record_scope synthesized, no labels/cache changed. This does not evaluate v06213 prompts or scope proof.",
+  "historical_v0629_public_replay_exact": 1000,
+  "historical_v06212_public_replay_exact": 1000,
+  "original": {
+    "weighted": {
+      "rows": 1000,
+      "weight_total": 10023.000000000047,
+      "primary_decision_exact": 0.8828225365416846,
+      "taxonomy_exact": 0.5806431733431859,
+      "duplicate_precision": 0.6798539627801528,
+      "duplicate_recall": 0.7758664655302834,
+      "duplicate_f1": 0.724693946613365,
+      "true_positive": 1160.9233365949124,
+      "false_positive": 546.6835909980434,
+      "false_negative": 335.3693737769081,
+      "true_negative": 7720.153855185894,
+      "unresolved": 289.0518297455969
+    },
+    "unweighted": {
+      "rows": 1000,
+      "weight_total": 1000,
+      "primary_decision_exact": 0.876,
+      "taxonomy_exact": 0.561,
+      "duplicate_precision": 0.7443946188340808,
+      "duplicate_recall": 0.8137254901960784,
+      "duplicate_f1": 0.7775175644028103,
+      "true_positive": 166,
+      "false_positive": 57,
+      "false_negative": 38,
+      "true_negative": 714,
+      "unresolved": 30
+    },
+    "over_group": 57,
+    "under_group": 38,
+    "containment_over_group": 22,
+    "containment_under_group": 17,
+    "cohorts": {
+      "boilerplate_only": {
+        "rows": 91,
+        "primary_decision_exact": 0.8901098901098901,
+        "weighted_primary_decision_exact": 0.8968666883015596,
+        "over_group": 6,
+        "under_group": 4
+      },
+      "canonical": {
+        "rows": 6,
+        "primary_decision_exact": 1,
+        "weighted_primary_decision_exact": 1,
+        "over_group": 0,
+        "under_group": 0
+      },
+      "chrome_only": {
+        "rows": 78,
+        "primary_decision_exact": 0.8717948717948718,
+        "weighted_primary_decision_exact": 0.8637580549661731,
+        "over_group": 0,
+        "under_group": 6
+      },
+      "factual_state": {
+        "rows": 49,
+        "primary_decision_exact": 0.7142857142857143,
+        "weighted_primary_decision_exact": 0.7559232710905728,
+        "over_group": 9,
+        "under_group": 0
+      },
+      "identical": {
+        "rows": 12,
+        "primary_decision_exact": 0.8333333333333334,
+        "weighted_primary_decision_exact": 0.8109292276814121,
+        "over_group": 0,
+        "under_group": 2
+      },
+      "identity_slot": {
+        "rows": 296,
+        "primary_decision_exact": 0.9324324324324325,
+        "weighted_primary_decision_exact": 0.9373445608505455,
+        "over_group": 11,
+        "under_group": 0
+      },
+      "list_membership": {
+        "rows": 30,
+        "primary_decision_exact": 0.9,
+        "weighted_primary_decision_exact": 0.8679471652889734,
+        "over_group": 1,
+        "under_group": 0
+      },
+      "material_content": {
+        "rows": 129,
+        "primary_decision_exact": 0.9069767441860465,
+        "weighted_primary_decision_exact": 0.9223634071937189,
+        "over_group": 1,
+        "under_group": 4
+      },
+      "meaningful_addition": {
+        "rows": 156,
+        "primary_decision_exact": 0.7692307692307693,
+        "weighted_primary_decision_exact": 0.7741707962684222,
+        "over_group": 16,
+        "under_group": 18
+      },
+      "page_role": {
+        "rows": 94,
+        "primary_decision_exact": 0.8723404255319149,
+        "weighted_primary_decision_exact": 0.8898657549173401,
+        "over_group": 12,
+        "under_group": 0
+      },
+      "parser_noise": {
+        "rows": 5,
+        "primary_decision_exact": 0.4,
+        "weighted_primary_decision_exact": 0.6185414091470951,
+        "over_group": 0,
+        "under_group": 3
+      },
+      "translation": {
+        "rows": 54,
+        "primary_decision_exact": 0.9629629629629629,
+        "weighted_primary_decision_exact": 0.8981470609803482,
+        "over_group": 1,
+        "under_group": 1
+      }
+    }
+  },
+  "replay": {
+    "weighted": {
+      "rows": 1000,
+      "weight_total": 10023.000000000047,
+      "primary_decision_exact": 0.8845323027096353,
+      "taxonomy_exact": 0.5823529395111366,
+      "duplicate_precision": 0.6830349209560751,
+      "duplicate_recall": 0.7873194293672264,
+      "duplicate_f1": 0.7314789990409883,
+      "true_positive": 1178.0603228962825,
+      "false_positive": 546.6835909980434,
+      "false_negative": 318.2323874755382,
+      "true_negative": 7720.153855185894,
+      "unresolved": 271.914843444227
+    },
+    "unweighted": {
+      "rows": 1000,
+      "weight_total": 1000,
+      "primary_decision_exact": 0.878,
+      "taxonomy_exact": 0.563,
+      "duplicate_precision": 0.7466666666666667,
+      "duplicate_recall": 0.8235294117647058,
+      "duplicate_f1": 0.7832167832167831,
+      "true_positive": 168,
+      "false_positive": 57,
+      "false_negative": 36,
+      "true_negative": 714,
+      "unresolved": 28
+    },
+    "over_group": 57,
+    "under_group": 36,
+    "containment_over_group": 22,
+    "containment_under_group": 17,
+    "cohorts": {
+      "boilerplate_only": {
+        "rows": 91,
+        "primary_decision_exact": 0.8901098901098901,
+        "weighted_primary_decision_exact": 0.8968666883015596,
+        "over_group": 6,
+        "under_group": 4
+      },
+      "canonical": {
+        "rows": 6,
+        "primary_decision_exact": 1,
+        "weighted_primary_decision_exact": 1,
+        "over_group": 0,
+        "under_group": 0
+      },
+      "chrome_only": {
+        "rows": 78,
+        "primary_decision_exact": 0.8717948717948718,
+        "weighted_primary_decision_exact": 0.8637580549661731,
+        "over_group": 0,
+        "under_group": 6
+      },
+      "factual_state": {
+        "rows": 49,
+        "primary_decision_exact": 0.7142857142857143,
+        "weighted_primary_decision_exact": 0.7559232710905728,
+        "over_group": 9,
+        "under_group": 0
+      },
+      "identical": {
+        "rows": 12,
+        "primary_decision_exact": 1,
+        "weighted_primary_decision_exact": 1,
+        "over_group": 0,
+        "under_group": 0
+      },
+      "identity_slot": {
+        "rows": 296,
+        "primary_decision_exact": 0.9324324324324325,
+        "weighted_primary_decision_exact": 0.9373445608505455,
+        "over_group": 11,
+        "under_group": 0
+      },
+      "list_membership": {
+        "rows": 30,
+        "primary_decision_exact": 0.9,
+        "weighted_primary_decision_exact": 0.8679471652889734,
+        "over_group": 1,
+        "under_group": 0
+      },
+      "material_content": {
+        "rows": 129,
+        "primary_decision_exact": 0.9069767441860465,
+        "weighted_primary_decision_exact": 0.9223634071937189,
+        "over_group": 1,
+        "under_group": 4
+      },
+      "meaningful_addition": {
+        "rows": 156,
+        "primary_decision_exact": 0.7692307692307693,
+        "weighted_primary_decision_exact": 0.7741707962684222,
+        "over_group": 16,
+        "under_group": 18
+      },
+      "page_role": {
+        "rows": 94,
+        "primary_decision_exact": 0.8723404255319149,
+        "weighted_primary_decision_exact": 0.8898657549173401,
+        "over_group": 12,
+        "under_group": 0
+      },
+      "parser_noise": {
+        "rows": 5,
+        "primary_decision_exact": 0.4,
+        "weighted_primary_decision_exact": 0.6185414091470951,
+        "over_group": 0,
+        "under_group": 3
+      },
+      "translation": {
+        "rows": 54,
+        "primary_decision_exact": 0.9629629629629629,
+        "weighted_primary_decision_exact": 0.8981470609803482,
+        "over_group": 1,
+        "under_group": 1
+      }
+    }
+  },
+  "changes": [
+    {
+      "review_id": "H0602",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0494",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0036",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0973",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0943",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0542",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0903",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0810",
+      "changed_fields": [
+        "a_can_replace_b",
+        "b_can_replace_a",
+        "relation_type",
+        "material_difference",
+        "primary_material_difference",
+        "dominant_overlap_source",
+        "primary_risk_factor",
+        "confidence_tier",
+        "same_duplicate_group",
+        "reason_codes"
+      ],
+      "primary_changed": true,
+      "old_error": "UNRESOLVED",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0750",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0496",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0417",
+      "changed_fields": [
+        "a_can_replace_b",
+        "b_can_replace_a",
+        "relation_type",
+        "material_difference",
+        "primary_material_difference",
+        "dominant_overlap_source",
+        "primary_risk_factor",
+        "confidence_tier",
+        "same_duplicate_group",
+        "reason_codes"
+      ],
+      "primary_changed": true,
+      "old_error": "UNRESOLVED",
+      "replay_error": "CORRECT"
+    },
+    {
+      "review_id": "H0385",
+      "changed_fields": [
+        "reason_codes"
+      ],
+      "primary_changed": false,
+      "old_error": "CORRECT",
+      "replay_error": "CORRECT"
+    }
+  ],
+  "negative_guards": {
+    "expected": 38,
+    "preserved": 20,
+    "violations": [
+      "H0597",
+      "H0789",
+      "H0872",
+      "H0278",
+      "H0119",
+      "H0132",
+      "H0790",
+      "H0141",
+      "H0771",
+      "H0828",
+      "H0267",
+      "H0242",
+      "H0700",
+      "H0253",
+      "H0594",
+      "H0977",
+      "H0413",
+      "H0558"
+    ],
+    "passed": false
+  },
+  "source_digests": {
+    "eval/dedup/analysis/v0628_policy_reconciled_labels_1000.csv": "6f685cdf717df61a9332e431c685a9d860348a6c83e3665356075e8dc6c28096",
+    "eval/dedup/analysis/v06212_translation_route_replay.json": "601e0808f3e7cf4f07d01991bf4f1a933c365364ca7ab255dfba2fbe384bc681",
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/run_manifest.json": "4dec7a415fe97b779e8bd12ae7aee56d76a96155e2a033508035b52f5690da86",
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/run_complete.json": "be3c0a2ef653020a67ad30900645e02d7d931f1d78eab45442dcb6d4f07bc5ac",
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/data/judge_results.jsonl": "5f09493cc16958953b9123cdc268ed7809b653ee7308c7fed3edceec851f3b68",
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/data/judge_payloads.jsonl": "1e7acb8dbc7c9e667dc93945066afcfdd389bf6264e702ca72ee15a2fe2ff736",
+    "eval/dedup/judging/local_ndd.py": "b3e41fea0f46744fb1c794aedc85b4053ecbb036c52a6c87212cf0604acbaf89",
+    "eval/dedup/judging/record_scope.py": "c19390240c9eda8b36c43f076f69e300393b8708fcc764203a883818abf69129"
+  },
+  "raw_source_digests": {
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/runtime/block-0001/run-001/attempt_01/output/6342cb94ebc0.jsonl": "a9b3e17910d2cd89043a1cf761a2256c7789a78917582f3d89c62258f39ba1fe",
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/runtime/block-0002/run-001/attempt_01/output/921f3936cc96.jsonl": "8b3490f27b9a01829ee8b2c4e584f7be619c88b43eb3880fa91146567ad28b13"
+  }
+}

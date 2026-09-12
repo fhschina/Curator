@@ -108,6 +108,14 @@ HS_V0629_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.9"
 HS_V06210_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.10"
 HS_V06211_POLICY_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.11-dev-policy"
 HS_V06211_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.11"
+HS_V06212_ROUTE_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.12-dev-route"
+HS_V06212_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.12"
+HS_V06213_EXACT_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.13-dev-exact"
+HS_V06213_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.13"
+HS_V06214_CONTROL_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.14-dev-arbitration"
+HS_V06214_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.14"
+HS_V06215_CONTROL_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.15-dev-arbitration"
+HS_V06215_PROMPT_VERSION = "dedup-judge-hs-v0.6.2.15"
 V062_RELEASE_PROMPT_VERSIONS = frozenset(
     {
         HS_V062_PROMPT_VERSION,
@@ -123,6 +131,14 @@ V062_RELEASE_PROMPT_VERSIONS = frozenset(
         HS_V06210_PROMPT_VERSION,
         HS_V06211_POLICY_PROMPT_VERSION,
         HS_V06211_PROMPT_VERSION,
+        HS_V06212_ROUTE_PROMPT_VERSION,
+        HS_V06212_PROMPT_VERSION,
+        HS_V06213_EXACT_PROMPT_VERSION,
+        HS_V06213_PROMPT_VERSION,
+        HS_V06214_CONTROL_PROMPT_VERSION,
+        HS_V06214_PROMPT_VERSION,
+        HS_V06215_CONTROL_PROMPT_VERSION,
+        HS_V06215_PROMPT_VERSION,
     }
 )
 LOCAL_NDD_JUDGE_CONTRACTS = frozenset(
@@ -145,6 +161,14 @@ LOCAL_NDD_JUDGE_CONTRACTS = frozenset(
         (HS_V06210_PROMPT_VERSION, "dedup-judge-output-v3"),
         (HS_V06211_POLICY_PROMPT_VERSION, "dedup-judge-output-v3"),
         (HS_V06211_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06212_ROUTE_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06212_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06213_EXACT_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06213_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06214_CONTROL_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06214_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06215_CONTROL_PROMPT_VERSION, "dedup-judge-output-v3"),
+        (HS_V06215_PROMPT_VERSION, "dedup-judge-output-v3"),
     }
 )
 _BUILTIN_LOCAL_NDD_RUNNER_PROMPTS = {
@@ -167,6 +191,14 @@ _BUILTIN_LOCAL_NDD_RUNNER_PROMPTS = {
     "hs_v06210_qwen_c64.yaml": HS_V06210_PROMPT_VERSION,
     "hs_v06211_policy_qwen_c64.yaml": HS_V06211_POLICY_PROMPT_VERSION,
     "hs_v06211_qwen_c64.yaml": HS_V06211_PROMPT_VERSION,
+    "hs_v06212_route_qwen_c64.yaml": HS_V06212_ROUTE_PROMPT_VERSION,
+    "hs_v06212_qwen_c64.yaml": HS_V06212_PROMPT_VERSION,
+    "hs_v06213_exact_qwen_c64.yaml": HS_V06213_EXACT_PROMPT_VERSION,
+    "hs_v06213_qwen_c64.yaml": HS_V06213_PROMPT_VERSION,
+    "hs_v06214_arbitration_qwen_c64.yaml": HS_V06214_CONTROL_PROMPT_VERSION,
+    "hs_v06214_qwen_c64.yaml": HS_V06214_PROMPT_VERSION,
+    "hs_v06215_arbitration_qwen_c64.yaml": HS_V06215_CONTROL_PROMPT_VERSION,
+    "hs_v06215_qwen_c64.yaml": HS_V06215_PROMPT_VERSION,
 }
 
 
@@ -308,6 +340,14 @@ def _load_judge(value: dict[str, Any], base: Path) -> AnyJudgeConfig:
                 HS_V06210_PROMPT_VERSION,
                 HS_V06211_POLICY_PROMPT_VERSION,
                 HS_V06211_PROMPT_VERSION,
+                HS_V06212_ROUTE_PROMPT_VERSION,
+                HS_V06212_PROMPT_VERSION,
+                HS_V06213_EXACT_PROMPT_VERSION,
+                HS_V06213_PROMPT_VERSION,
+                HS_V06214_CONTROL_PROMPT_VERSION,
+                HS_V06214_PROMPT_VERSION,
+                HS_V06215_CONTROL_PROMPT_VERSION,
+                HS_V06215_PROMPT_VERSION,
             }
             else "judge-visible-payload-v2"
         )

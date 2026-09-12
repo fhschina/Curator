@@ -1,0 +1,235 @@
+{
+  "schema_version": "dedup-v06213-cross-run-attribution-v1",
+  "eligible_for_promotion": false,
+  "interpretation": "Cross-run counterfactual only: combine saved v06212/v06213 responses on identical local payloads. No additional model calls, no score fabricated, no sample-specific routing, no new labels. These are NOT online candidates or full-development scores and cannot pass the frozen local continuation gate on behalf of v06213.",
+  "rows": 258,
+  "variants": {
+    "new_main_old_critic": {
+      "policy": "v7-exact",
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.6500898283645196,
+          "taxonomy_exact": 0.43754045321192575,
+          "duplicate_precision": 0.5605441082041067,
+          "duplicate_recall": 0.7076878288838322,
+          "duplicate_f1": 0.6255799610904795,
+          "true_positive": 535.3911448140902,
+          "false_positive": 419.73644814090045,
+          "false_negative": 221.14460861056747,
+          "true_negative": 861.4343737769073,
+          "unresolved": 35.06563600782779
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.6976744186046512,
+          "taxonomy_exact": 0.3798449612403101,
+          "duplicate_precision": 0.6853146853146853,
+          "duplicate_recall": 0.8099173553719008,
+          "duplicate_f1": 0.7424242424242423,
+          "true_positive": 98,
+          "false_positive": 45,
+          "false_negative": 23,
+          "true_negative": 89,
+          "unresolved": 3
+        },
+        "over_group": 45,
+        "under_group": 23,
+        "containment_over_group": 16
+      },
+      "negative_guards": {
+        "expected": 38,
+        "preserved": 23,
+        "violations": [
+          "H0770",
+          "H0444",
+          "H0872",
+          "H0119",
+          "H0132",
+          "H0790",
+          "H0141",
+          "H0828",
+          "H0267",
+          "H0303",
+          "H0700",
+          "H0594",
+          "H0977",
+          "H0413",
+          "H0558"
+        ],
+        "passed": false
+      },
+      "containment_guards": {
+        "expected": 4,
+        "preserved": 3,
+        "violations": [
+          "H0333"
+        ],
+        "passed": false
+      },
+      "benign_guards": {
+        "expected": 5,
+        "preserved": 4,
+        "violations": [
+          "H0748"
+        ],
+        "passed": false
+      }
+    },
+    "old_main_new_critic_without_scope": {
+      "policy": "v7-exact",
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.6714983223919178,
+          "taxonomy_exact": 0.4257844038057117,
+          "duplicate_precision": 0.6242178237373658,
+          "duplicate_recall": 0.6269864306031689,
+          "duplicate_f1": 0.6255990640476993,
+          "true_positive": 474.33765166340527,
+          "false_positive": 285.5535812133072,
+          "false_negative": 282.19810176125236,
+          "true_negative": 922.8903326810168,
+          "unresolved": 185.19953033268098
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7170542635658915,
+          "taxonomy_exact": 0.3682170542635659,
+          "duplicate_precision": 0.75,
+          "duplicate_recall": 0.743801652892562,
+          "duplicate_f1": 0.7468879668049793,
+          "true_positive": 90,
+          "false_positive": 30,
+          "false_negative": 31,
+          "true_negative": 96,
+          "unresolved": 19
+        },
+        "over_group": 30,
+        "under_group": 31,
+        "containment_over_group": 6
+      },
+      "negative_guards": {
+        "expected": 38,
+        "preserved": 28,
+        "violations": [
+          "H0760",
+          "H0072",
+          "H0789",
+          "H0964",
+          "H0872",
+          "H0959",
+          "H0771",
+          "H0828",
+          "H0443",
+          "H0977"
+        ],
+        "passed": false
+      },
+      "containment_guards": {
+        "expected": 4,
+        "preserved": 4,
+        "violations": [],
+        "passed": true
+      },
+      "benign_guards": {
+        "expected": 5,
+        "preserved": 3,
+        "violations": [
+          "H0679",
+          "H0748"
+        ],
+        "passed": false
+      }
+    },
+    "old_main_new_critic_with_scope": {
+      "policy": "v7",
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.6698318926995479,
+          "taxonomy_exact": 0.43309797348266943,
+          "duplicate_precision": 0.6712406649041721,
+          "duplicate_recall": 0.5848706886372085,
+          "duplicate_f1": 0.6250862852516486,
+          "true_positive": 442.4755870841488,
+          "false_positive": 216.71508806262227,
+          "false_negative": 314.0601663405088,
+          "true_negative": 966.9587475538151,
+          "unresolved": 233.26318003913883
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7170542635658915,
+          "taxonomy_exact": 0.375968992248062,
+          "duplicate_precision": 0.7909090909090909,
+          "duplicate_recall": 0.71900826446281,
+          "duplicate_f1": 0.7532467532467533,
+          "true_positive": 87,
+          "false_positive": 23,
+          "false_negative": 34,
+          "true_negative": 101,
+          "unresolved": 23
+        },
+        "over_group": 23,
+        "under_group": 34,
+        "containment_over_group": 4
+      },
+      "negative_guards": {
+        "expected": 38,
+        "preserved": 28,
+        "violations": [
+          "H0553",
+          "H0760",
+          "H0072",
+          "H0789",
+          "H0964",
+          "H0872",
+          "H0959",
+          "H0828",
+          "H0443",
+          "H0977"
+        ],
+        "passed": false
+      },
+      "containment_guards": {
+        "expected": 4,
+        "preserved": 1,
+        "violations": [
+          "H0017",
+          "H0333",
+          "H0878"
+        ],
+        "passed": false
+      },
+      "benign_guards": {
+        "expected": 5,
+        "preserved": 2,
+        "violations": [
+          "H0038",
+          "H0679",
+          "H0748"
+        ],
+        "passed": false
+      }
+    }
+  },
+  "source_digests": {
+    "eval/dedup/analysis/v06213_local_evaluation_labels.csv": "977eb95ba066655d03ff533ba98d5c5fe92fa3cb3f63148856159f39d09c1f2a",
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/data/judge_results.jsonl": "7773e6cc85fe1f3155bcd815fd426e6abe4fcbcb59028d867caf9160e5924e29",
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/data/judge_results.jsonl": "5f09493cc16958953b9123cdc268ed7809b653ee7308c7fed3edceec851f3b68",
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/data/judge_payloads.jsonl": "3653af1154165e2d91cdc8f18813e60d62c04403ef7e70b039f62c3b026762c6"
+  },
+  "raw_source_digests": {
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/runtime/block-0001/run-001/attempt_01/output/6dc260330b93.jsonl": "27334639c8ce6f9687d257abacd39bfa34f4df42b7cfc2d4b52d3ead9b98ac00",
+    "/raid/hfang/ihb/runs/v0.6.2.13-local-development/runtime/block-0001/run-001/attempt_02/output/ad1480f0bb49.jsonl": "0366c95149f33dc45036ae4f388bf3ca10543d6c3f8c228ea80b42704bd29768",
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/runtime/block-0001/run-001/attempt_01/output/6342cb94ebc0.jsonl": "a9b3e17910d2cd89043a1cf761a2256c7789a78917582f3d89c62258f39ba1fe",
+    "/raid/hfang/ihb/runs/v0.6.2.12-full-development/runtime/block-0002/run-001/attempt_01/output/921f3936cc96.jsonl": "8b3490f27b9a01829ee8b2c4e584f7be619c88b43eb3880fa91146567ad28b13"
+  }
+}

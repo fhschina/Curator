@@ -1,0 +1,18 @@
+{
+  "schema_version": "dedup-coverage-followup-boundary-v1",
+  "passed": true,
+  "external_model_calls": 0,
+  "full_boundary_tests_passed": 4,
+  "local_http_requests_in_successful_full_boundary_invocation": 8,
+  "scope": "Both arms, initial and encoded retry feedback: actual JSONL reader, Ray Data executor, native DataDesignerStage, local HTTP requests, raw trace, JSONL writer, strict transport binding and public evidence validation",
+  "full_boundary_command": "COVERAGE_TEST_RAY_ADDRESS=127.0.0.1:52647 RAY_ADDRESS=127.0.0.1:52647 /raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup/test_coverage_followup.py::test_full_ray_http_boundary_for_both_arms_and_feedback_states --confcutdir=tests/eval -q -s -x --tb=short",
+  "routine_command": "/raid/hfang/llm_judge_env_pr2324_latest/bin/python -m pytest tests/eval/dedup --confcutdir=tests/eval -m 'not gpu' -q -x --tb=short",
+  "routine_tests_passed": 569,
+  "routine_tests_skipped": 6,
+  "routine_gpu_tests_deselected": 2,
+  "skip_scope": "Four current and two historical full-Ray cases require explicit owned clusters; current four passed separately",
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/coverage_followup.py": "93c9d80ba337003179ac4f2425743b50cb98d96602a1037d2843c9bc8531c36f",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_coverage_followup.py": "c1d53b0694560b72af05329eef47c84d7661dc353e70b58e16eb39fb394c4893"
+  }
+}

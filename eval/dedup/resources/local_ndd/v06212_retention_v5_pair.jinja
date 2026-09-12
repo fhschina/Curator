@@ -1,0 +1,27 @@
+Judge retained meaning using all these original spans. No main judgment or label
+is provided. S### is present on BOTH sides. A### only in A; B### only in B.
+
+Before treating a unique span as a label, read its complete sentence with the
+shared predicate. A name inside a liability/access/error assertion is not a
+standalone header. Only unbound labels without actual facts are harmless chrome.
+Do not infer a conflict from an independent added subject or an ordinary button.
+
+{{ rubric }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED: PRESENT IN BOTH A AND B, NOT ONE-SIDED CONTENT]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}: LOCATED IN DOCUMENT {{ span.side }}]
+{{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+Return the concrete eight-field JSON judgment for THESE documents. Start with
+{"a_loss_span_id": ...}; do not output a schema starting with {"type": ...}.
+Choose both context IDs from the passages above, including for a side without loss.

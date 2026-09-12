@@ -1,0 +1,16 @@
+{
+  "version": "v0.6.2.27",
+  "control_config": "eval/dedup/resources/local_ndd/hs_v06227_control_qwen_c16.yaml",
+  "coverage_config": "eval/dedup/resources/local_ndd/hs_v06227_proposition_qwen_c16.yaml",
+  "control_contract": "dedup-retained-coverage-v3",
+  "coverage_contract": "dedup-retained-coverage-v3",
+  "scope_postprocessor": "dedup-selection-scope-counterfactual-v1",
+  "control_routing": "dedup-coverage-call-routing-v1",
+  "coverage_routing": "dedup-coverage-call-routing-v1",
+  "design": "eval/dedup/analysis/v06227_design.md",
+  "protocol": "eval/dedup/analysis/v06227_design.md",
+  "ray_temp_dir": "/raid/hfang/ihb/r27diag",
+  "public_pairs_per_cell": 258,
+  "technical_pairs_per_arm": 8,
+  "max_parallel_requests": 16
+}

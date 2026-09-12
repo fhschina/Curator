@@ -1,0 +1,36 @@
+{
+  "policy_version": "dedup-composite-containment-policy-v2",
+  "policy_status": "USER_APPROVED",
+  "user_decision": "政策-only 页面，与“完整相同政策＋商品正文”的页面，接受后者单向替代前者",
+  "application_provenance": "PREDICTION_AWARE_AI_APPLICATION_NOT_INDEPENDENT_GOLD",
+  "reference_changed": false,
+  "runtime_changed": false,
+  "supported": [
+    {"review_id": "H0108", "product_side": "B", "policy_start": "Toyota Parts and Accessories Warranty Information", "policy_witness": "Proof of original purchase is required", "product_witness": "Rear Bumper Plate Left Hand (#52164-52090)", "note": "完整保修覆盖、期限、除外责任和索赔条件被保留；新增零件描述没有要求政策页先含该 SKU。"},
+    {"review_id": "H0126", "product_side": "A", "policy_start": "Info voordat u bestelt", "policy_witness": "een bedenktijd van 14 dagen", "product_witness": "De Graf Bolero kunstschaatsen", "note": "完整购买、配送、费用和退货政策被保留，另增冰鞋材质与用途；共同 cookie 不是这里的 X 依据。"},
+    {"review_id": "H0419", "product_side": "A", "policy_start": "Γενική Ταχυδρομική", "policy_witness": "Επιστροφές - Αλλαγές", "product_witness": "Μπουφάν αμάνικο", "note": "完整配送、退款、取消和支付政策被保留，另增背心特征；不再以配送模板或不同产品记录直接否决。"},
+    {"review_id": "H0590", "product_side": "A", "policy_start": "Wir nutzen für unsere Bewertungen", "policy_witness": "ProvenExpert hat Maßnahmen ergriffen", "product_witness": "BENROMACH German Selection", "note": "逐平台评价核验方法与责任说明完整保留，另增威士忌正文；18 岁销售限制限定新增商品，不改写共有评价核验说明。"},
+    {"review_id": "H0869", "product_side": "A", "policy_start": "CONSERVACIÓN DE LOS DATOS", "policy_witness": "DATOS DE CONTACTO PARA EJERCER SUS DERECHOS", "product_witness": "Soporte para estropajos Clean Kit Tescoma", "note": "整份 cookie 政策含期限、主体、权利渠道和处理事项，完整保留并增商品介绍；不能与单纯 cookie 同意按钮混同。"},
+    {"review_id": "H0998", "product_side": "B", "policy_start": "Toyota Parts and Accessories Warranty Information", "policy_witness": "Proof of original purchase is required", "product_witness": "Back Step Reinforcement Sub-Assembly (#52309-0C010)", "note": "原面板正例与 H0108 有完全相同的政策-only 原文，应一致允许政策＋零件单向替代；这条不属于新增 over-group 的 121 条。"}
+  ],
+  "deferred": [
+    {"review_id": "H0008", "status": "OUTSIDE_APPROVED_PRODUCT_SCOPE", "note": "新增是举报流程，不是商品正文，本次不自动裁定。"},
+    {"review_id": "H0756", "status": "OUTSIDE_APPROVED_PRODUCT_SCOPE", "note": "新增是地区发展与人物介绍，本次不自动扩展政策适用范围。"},
+    {"review_id": "H0876", "status": "OUTSIDE_APPROVED_PRODUCT_SCOPE", "note": "新增是活动报名正文，不冒充已获确认的政策＋商品案例。"},
+    {"review_id": "H0964", "status": "OUTSIDE_APPROVED_PRODUCT_SCOPE", "note": "博客规则＋评论文章仍留在原争议清单。"},
+    {"review_id": "H0266", "status": "RECHECK_POLICY_COMPLETENESS", "note": "信贷代表例和 BNPL 条款具有具体约束；是否完整政策尚不明确，不能仅用复用页脚维持必错结论。"},
+    {"review_id": "H0352", "status": "RECHECK_POLICY_COMPLETENESS", "note": "同 H0266 的完整短侧；暂挂起强制 NO 回归要求，不让旧模板口径预先决定完整性。"},
+    {"review_id": "H0738", "status": "RECHECK_POLICY_COMPLETENESS", "note": "同 H0266/H0352 的信贷短侧，须统一判断，不能因商品类别不同分别裁定。"},
+    {"review_id": "H0812", "status": "RECHECK_POLICY_COMPLETENESS", "note": "短保修说明本身含覆盖、索赔及权利条件；是否独立完整政策待判，不因短或无标题自动否决。"}
+  ],
+  "examples": [
+    {"id": "complete_policy_plus_product", "a": "甲店退货政策：收到商品后 14 天内可申请退款，定制商品不退；退回运费由买家承担。\n相机 K7：重量 300 克，电池续航 8 小时。", "b": "甲店退货政策：收到商品后 14 天内可申请退款，定制商品不退；退回运费由买家承担。", "directions": ["YES", "NO"], "relation": "CONTAINMENT", "material": "MAJOR", "primary_difference": "MAIN_CONTENT_ADDITION_DELETION", "note": "完整政策作为 X，不要求政策页先描述相机。"},
+    {"id": "same_policy_extra_chrome", "a": "甲店退货政策：收到商品后 14 天内可退款，买家承担退回运费。\n导航：首页 | 返回顶部", "b": "甲店退货政策：收到商品后 14 天内可退款，买家承担退回运费。", "directions": ["YES", "YES"], "relation": "NEAR_SURFACE", "material": "MINOR", "primary_difference": "OTHER_MATERIAL", "note": "新增普通 chrome 不制造单向 containment。"},
+    {"id": "same_policy_distinct_products", "a": "甲店退货政策：收到商品后 14 天内可退款。\n商品 K7：300 克。", "b": "甲店退货政策：收到商品后 14 天内可退款。\n商品 K8：500 克。", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "DOCUMENT_IDENTITY_CHANGE", "note": "共享政策不能覆盖两侧不同商品的独有内容。"},
+    {"id": "product_overrides_policy", "a": "甲店退货政策：所有商品收到后 14 天内可退款，无例外。\n商品 K7：此商品不适用以上条款，禁止退款。", "b": "甲店退货政策：所有商品收到后 14 天内可退款，无例外。", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "OTHER_MATERIAL", "note": "字符包含不能掩盖新增例外推翻共有承诺。"},
+    {"id": "policy_obligor_changes", "a": "甲店负责商品保修 12 个月。\n相机 K7：300 克。", "b": "乙店负责商品保修 12 个月。", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "DOCUMENT_IDENTITY_CHANGE", "note": "实际义务主体不同，不是相同完整政策。"},
+    {"id": "cookie_ui_not_full_policy", "a": "我们使用 cookie。接受 | 设置\n商品 K7：300 克。", "b": "我们使用 cookie。接受 | 设置", "directions": ["NO", "NO"], "relation": "RELATED_NON_DUPLICATE", "material": "MAJOR", "primary_difference": "MAIN_CONTENT_ADDITION_DELETION", "note": "普通同意提示没有被本次完整政策规则自动升格。"},
+    {"id": "equivalent_cookie_ui", "a": "我们使用 cookie。接受 | 设置", "b": "接受 | 设置。我们使用 cookie。", "directions": ["YES", "YES"], "relation": "NEAR_SURFACE", "material": "MINOR", "primary_difference": "OTHER_MATERIAL", "note": "X 缺失不等于最终 no/no。"},
+    {"id": "policy_truncated", "a": "甲店退货政策：收到商品后 14 天内可退款。", "b": "甲店退货政策：收到商品后 14 天内可退款。", "truncated": true, "directions": ["UNRESOLVED", "UNRESOLVED"], "relation": "UNRESOLVED", "material": "UNRESOLVED", "primary_difference": "UNRESOLVED", "note": "截断时不得凭可见相同片段宣称完整政策被保留。"}
+  ]
+}

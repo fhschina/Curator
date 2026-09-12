@@ -1,0 +1,14 @@
+{
+  "status": "REJECTED_BEFORE_INFERENCE",
+  "maximum_input_tokens": 28300,
+  "output_budget": 4096,
+  "safety_margin": 2048,
+  "required_total_tokens": 34444,
+  "context_budget": 32768,
+  "model_requests": 0,
+  "run_root_created": false,
+  "tokenizer_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+  "renderer": "native NDD RecordBasedPromptRenderer with judge response recipe",
+  "candidate_scope": "original full text appended to unchanged fully quoted span packet",
+  "next_preinference_design": "retain complete original text once and use positional span previews as an index"
+}

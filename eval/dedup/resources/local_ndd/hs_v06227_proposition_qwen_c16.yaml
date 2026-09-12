@@ -1,0 +1,2 @@
+base_typed_config: hs_v06226_typed_qwen_c16.yaml
+semantic_policy: complete_propositions

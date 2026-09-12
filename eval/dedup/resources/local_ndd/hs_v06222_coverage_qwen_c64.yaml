@@ -1,0 +1,21 @@
+# The source supplies only model/runtime settings, never legacy judge columns.
+base_runner_config: hs_v06216_control_qwen_c64.yaml
+column_name: qwen_dedup_coverage_witness
+output_contract: dedup-retained-coverage-v1
+system_prompt_path: hs_v06222_coverage_system.jinja
+prompt_path: hs_v06222_coverage_pair.jinja
+rubric:
+  coverage: Judge each direction of retained meaning independently, not absence of contradiction.
+  evidence: Ground an uncovered proposition in an own-side unique quote and compare the closest opposite-side meaning.
+  no_match: A missing counterpart is not a conflicting value or proof of same-record identity.
+  covered: Review all unique spans and explain semantic counterparts or genuinely harmless controls.
+  record: Generic company, cookie, legal or checkout text does not independently identify a specific attached record.
+  non_main: Uncovered retained purpose, permission, identity, scope, state or explanation is material; ordinary controls alone are not.
+  translation: Faithful complete translation is covered; added or omitted functions and facts are not language differences.
+  unavailable: Incomplete input or insufficient semantic evidence is unresolved, never a guessed negative.
+  status_modes: UNCOVERED always uses NOT_COVERED even with partial overlap; MIXED is only for a fully covered side combining semantic counterparts and harmless UI.
+  covered_references: COVERED SEMANTIC_COUNTERPARTS or MIXED needs opposite/shared coverage_counterpart_ids; HARMLESS_ONLY and NO_UNIQUE_SPANS need an empty string there, with context in separate anchors.
+  witness_state: COVERED and UNRESOLVED require uncovered_type NONE, empty witness fields and counterpart_relation NOT_APPLICABLE; UNCOVERED requires typed own-unique evidence, retention consequence and an actual comparison.
+  unresolved_mode: UNRESOLVED uses NOT_COVERED with empty coverage_counterpart_ids; never fabricate coverage or a witness to make a difficult case fit.
+  single_span_quote: Each quote must be copied contiguously from ONE referenced span; citing multiple IDs does not permit joining text across spans or omitting intervening shared context.
+  complete_objects: Always return all eight root fields and both full 13-field side objects; keep empty required strings including coverage_counterpart_ids, never omit or auto-fill fields.

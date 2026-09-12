@@ -1,0 +1,4416 @@
+{
+  "schema_version": "dedup-v06215-component-attribution-v1",
+  "interpretation": "Same-response policy ablations and explicit cross-run factorial diagnostics; no additional model calls. Mixed old/new response modes are NOT an online candidate or promotion evidence. Main prompts/rubrics/model/payload held fixed but repeated responses may vary. Reference and weights unchanged.",
+  "raw_source_digests": {
+    "v14": {
+      "/raid/hfang/ihb/runs/v0.6.2.14-local-development/runtime/block-0001/run-001/attempt_01/output/d91e5be6b593.jsonl": "0629f5cd1cbacbccc9fb6d39e96d8ed169d1d559f4a7d313d435164c5d8875d2"
+    },
+    "v15": {
+      "/raid/hfang/ihb/runs/v0.6.2.15-local-development/runtime/block-0001/run-001/attempt_01/output/5de613c7cf36.jsonl": "7a9fc3fb84cfe00d2907d1dd48561e659e0a3b4eeaa90eff79a867e704d97ad7"
+    }
+  },
+  "operations": {
+    "preflight": {
+      "http_events": 40,
+      "http_status_counts": {
+        "200": 40
+      },
+      "first_completed_at_utc": "2026-09-10T04:20:50.712221+00:00",
+      "last_completed_at_utc": "2026-09-10T04:21:11.638949+00:00"
+    },
+    "runtime": {
+      "http_events": 554,
+      "http_status_counts": {
+        "200": 522,
+        "429": 32
+      },
+      "first_completed_at_utc": "2026-09-10T04:21:49.806303+00:00",
+      "last_completed_at_utc": "2026-09-10T04:27:08.164564+00:00"
+    }
+  },
+  "modes": {
+    "actual_m15_c15_v9": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.690457403822895,
+          "taxonomy_exact": 0.466717738876227,
+          "duplicate_precision": 0.6463677188069119,
+          "duplicate_recall": 0.6300549287685498,
+          "duplicate_f1": 0.6381070843654121,
+          "true_positive": 476.6590802348338,
+          "false_positive": 260.78350293542064,
+          "false_negative": 279.8766731898238,
+          "true_negative": 977.0037475538151,
+          "unresolved": 128.764686888454
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7209302325581395,
+          "taxonomy_exact": 0.3992248062015504,
+          "duplicate_precision": 0.7565217391304347,
+          "duplicate_recall": 0.71900826446281,
+          "duplicate_f1": 0.7372881355932204,
+          "true_positive": 87,
+          "false_positive": 28,
+          "false_negative": 34,
+          "true_negative": 102,
+          "unresolved": 16
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8888888888888888,
+            "weighted_primary_decision_exact": 0.8815989597167428,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.8571428571428571,
+            "weighted_primary_decision_exact": 0.8665038860332708,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.5294117647058824,
+            "weighted_primary_decision_exact": 0.46283566520371877,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.75,
+            "weighted_primary_decision_exact": 0.7480044845106256,
+            "over_group": 4,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.8181818181818182,
+            "weighted_primary_decision_exact": 0.8280313324310765,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.574468085106383,
+            "weighted_primary_decision_exact": 0.587991855864852,
+            "over_group": 9,
+            "under_group": 27
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.7,
+            "weighted_primary_decision_exact": 0.7080776190517373,
+            "over_group": 6,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.8703703703703703,
+            "weighted_primary_decision_exact": 0.7722805080219354,
+            "over_group": 0,
+            "under_group": 6
+          }
+        },
+        "confidence_tiers": {
+          "LOW": {
+            "rows": 21,
+            "primary_decision_accuracy": 0.19047619047619047,
+            "weighted_primary_decision_accuracy": 0.23516563592655795,
+            "duplicate_group_accuracy": 0.23809523809523808,
+            "weighted_duplicate_group_accuracy": 0.2958073088586312
+          },
+          "MEDIUM": {
+            "rows": 237,
+            "primary_decision_accuracy": 0.7679324894514767,
+            "weighted_primary_decision_accuracy": 0.7300021634779953,
+            "duplicate_group_accuracy": 0.7805907172995781,
+            "weighted_duplicate_group_accuracy": 0.7434808037811236
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 31,
+          "violations": [
+            "H0597",
+            "H0964",
+            "H0959",
+            "H0278",
+            "H0828",
+            "H0267",
+            "H0612"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 17,
+          "violations": [
+            "H0964",
+            "H0959",
+            "H0612"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 5,
+          "violations": [],
+          "passed": true
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 3,
+          "violations": [],
+          "passed": true
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        },
+        "additional_critic_repair_guards": {
+          "expected": 22,
+          "preserved": 16,
+          "violations": [
+            "H0277",
+            "H0278",
+            "H0298",
+            "H0612",
+            "H0959",
+            "H0964"
+          ],
+          "passed": false
+        }
+      },
+      "effects_to_actual": {
+        "BOTH_WRONG": 72,
+        "BOTH_CORRECT": 186
+      },
+      "changes_to_actual": [],
+      "false_containment": 9,
+      "reference_containment_misses": 28
+    },
+    "published_m14_c14_v8": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.7310140488937448,
+          "taxonomy_exact": 0.49449095183039377,
+          "duplicate_precision": 0.6585407081953639,
+          "duplicate_recall": 0.6239991296200106,
+          "duplicate_f1": 0.6408047791064513,
+          "true_positive": 472.0776516634053,
+          "false_positive": 244.77651663405078,
+          "false_negative": 284.45810176125235,
+          "true_negative": 1039.5978767123277,
+          "unresolved": 50.47555772994129
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.751937984496124,
+          "taxonomy_exact": 0.42248062015503873,
+          "duplicate_precision": 0.7652173913043478,
+          "duplicate_recall": 0.7272727272727273,
+          "duplicate_f1": 0.7457627118644068,
+          "true_positive": 88,
+          "false_positive": 27,
+          "false_negative": 33,
+          "true_negative": 107,
+          "unresolved": 5
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8333333333333334,
+            "weighted_primary_decision_exact": 0.827084822614351,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.7142857142857143,
+            "weighted_primary_decision_exact": 0.7526302635178926,
+            "over_group": 0,
+            "under_group": 2
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.5882352941176471,
+            "weighted_primary_decision_exact": 0.636025067354964,
+            "over_group": 6,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.9375,
+            "weighted_primary_decision_exact": 0.934597765032845,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.9090909090909091,
+            "weighted_primary_decision_exact": 0.9208363342512894,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.5851063829787234,
+            "weighted_primary_decision_exact": 0.5925318867559477,
+            "over_group": 12,
+            "under_group": 27
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.75,
+            "weighted_primary_decision_exact": 0.7579532117318626,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9259259259259259,
+            "weighted_primary_decision_exact": 0.9679818480816516,
+            "over_group": 0,
+            "under_group": 3
+          }
+        },
+        "confidence_tiers": {
+          "LOW": {
+            "rows": 8,
+            "primary_decision_accuracy": 0.25,
+            "weighted_primary_decision_accuracy": 0.28638445190941036,
+            "duplicate_group_accuracy": 0.25,
+            "weighted_duplicate_group_accuracy": 0.28638445190941036
+          },
+          "MEDIUM": {
+            "rows": 250,
+            "primary_decision_accuracy": 0.768,
+            "weighted_primary_decision_accuracy": 0.7479791363379429,
+            "duplicate_group_accuracy": 0.776,
+            "weighted_duplicate_group_accuracy": 0.7528366621430067
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 33,
+          "violations": [
+            "H0790",
+            "H0828",
+            "H0267",
+            "H0480",
+            "H0253"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 19,
+          "violations": [
+            "H0480"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 3,
+          "violations": [
+            "H0347",
+            "H0748"
+          ],
+          "passed": false
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 2,
+          "violations": [
+            "H0347"
+          ],
+          "passed": false
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        },
+        "additional_critic_repair_guards": {
+          "expected": 22,
+          "preserved": 22,
+          "violations": [],
+          "passed": true
+        }
+      },
+      "effects_to_actual": {
+        "REGRESSED": 23,
+        "BOTH_CORRECT": 171,
+        "BOTH_WRONG": 49,
+        "REPAIRED": 15
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0003",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0019",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0053",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0135",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0146",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0154",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0168",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0177",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0208",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0221",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0253",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0277",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0278",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0289",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0298",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0305",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0347",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0383",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0458",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0470",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "DIRECTION_ONLY",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0480",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0545",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0597",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0612",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0634",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0688",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0732",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0733",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0741",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0748",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0790",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0815",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0824",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0837",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0844",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0847",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0889",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0899",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0955",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0959",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0964",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0979",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H1000",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        }
+      ],
+      "false_containment": 7,
+      "reference_containment_misses": 26
+    },
+    "same_response_m15_c15_v8": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.6962267271885796,
+          "taxonomy_exact": 0.4708515713850597,
+          "duplicate_precision": 0.6283090503411256,
+          "duplicate_recall": 0.6571877988390641,
+          "duplicate_f1": 0.642424043353634,
+          "true_positive": 497.1860665362037,
+          "false_positive": 294.12207436399217,
+          "false_negative": 259.3496868884539,
+          "true_negative": 977.0037475538151,
+          "unresolved": 74.89912915851272
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7364341085271318,
+          "taxonomy_exact": 0.40310077519379844,
+          "duplicate_precision": 0.7479674796747967,
+          "duplicate_recall": 0.7603305785123967,
+          "duplicate_f1": 0.7540983606557377,
+          "true_positive": 92,
+          "false_positive": 31,
+          "false_negative": 29,
+          "true_negative": 102,
+          "unresolved": 8
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8888888888888888,
+            "weighted_primary_decision_exact": 0.8815989597167428,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.8571428571428571,
+            "weighted_primary_decision_exact": 0.8665038860332708,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.5294117647058824,
+            "weighted_primary_decision_exact": 0.46283566520371877,
+            "over_group": 6,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.75,
+            "weighted_primary_decision_exact": 0.7480044845106256,
+            "over_group": 4,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.8181818181818182,
+            "weighted_primary_decision_exact": 0.8280313324310765,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.5851063829787234,
+            "weighted_primary_decision_exact": 0.5973906191155438,
+            "over_group": 10,
+            "under_group": 25
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.7,
+            "weighted_primary_decision_exact": 0.7080776190517373,
+            "over_group": 6,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9259259259259259,
+            "weighted_primary_decision_exact": 0.7962941219606966,
+            "over_group": 1,
+            "under_group": 3
+          }
+        },
+        "confidence_tiers": {
+          "LOW": {
+            "rows": 13,
+            "primary_decision_accuracy": 0.3076923076923077,
+            "weighted_primary_decision_accuracy": 0.34848977702489065,
+            "duplicate_group_accuracy": 0.38461538461538464,
+            "weighted_duplicate_group_accuracy": 0.4383541102862111
+          },
+          "MEDIUM": {
+            "rows": 245,
+            "primary_decision_accuracy": 0.7591836734693878,
+            "weighted_primary_decision_accuracy": 0.7160482706938556,
+            "duplicate_group_accuracy": 0.7755102040816326,
+            "weighted_duplicate_group_accuracy": 0.7335261400926769
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 31,
+          "violations": [
+            "H0597",
+            "H0964",
+            "H0959",
+            "H0278",
+            "H0828",
+            "H0267",
+            "H0612"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 17,
+          "violations": [
+            "H0964",
+            "H0959",
+            "H0612"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 5,
+          "violations": [],
+          "passed": true
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 3,
+          "violations": [],
+          "passed": true
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        },
+        "additional_critic_repair_guards": {
+          "expected": 22,
+          "preserved": 16,
+          "violations": [
+            "H0277",
+            "H0278",
+            "H0298",
+            "H0612",
+            "H0959",
+            "H0964"
+          ],
+          "passed": false
+        }
+      },
+      "effects_to_actual": {
+        "BOTH_WRONG": 68,
+        "BOTH_CORRECT": 186,
+        "REGRESSED": 4
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0003",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0019",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "DIRECTION_ONLY",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0053",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0458",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0470",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0545",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0815",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0899",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        }
+      ],
+      "false_containment": 11,
+      "reference_containment_misses": 27
+    },
+    "mixed_m14_c15_v9": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.6990131200677945,
+          "taxonomy_exact": 0.47427306954223053,
+          "duplicate_precision": 0.6369721966778442,
+          "duplicate_recall": 0.6315485792601291,
+          "duplicate_f1": 0.6342487935093405,
+          "true_positive": 477.7890802348338,
+          "false_positive": 272.3050097847357,
+          "false_negative": 278.74667318982375,
+          "true_negative": 967.5558121330716,
+          "unresolved": 116.99262230919764
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7248062015503876,
+          "taxonomy_exact": 0.4069767441860465,
+          "duplicate_precision": 0.7521367521367521,
+          "duplicate_recall": 0.7272727272727273,
+          "duplicate_f1": 0.7394957983193278,
+          "true_positive": 88,
+          "false_positive": 29,
+          "false_negative": 33,
+          "true_negative": 100,
+          "unresolved": 15
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8333333333333334,
+            "weighted_primary_decision_exact": 0.827084822614351,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.5294117647058824,
+            "weighted_primary_decision_exact": 0.5324987844872823,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.875,
+            "weighted_primary_decision_exact": 0.8691955300656903,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.8181818181818182,
+            "weighted_primary_decision_exact": 0.8280313324310765,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.574468085106383,
+            "weighted_primary_decision_exact": 0.5831331235052558,
+            "over_group": 10,
+            "under_group": 27
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.6,
+            "weighted_primary_decision_exact": 0.6156576088239758,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.8888888888888888,
+            "weighted_primary_decision_exact": 0.8661289090619999,
+            "over_group": 0,
+            "under_group": 5
+          }
+        },
+        "confidence_tiers": {
+          "LOW": {
+            "rows": 21,
+            "primary_decision_accuracy": 0.23809523809523808,
+            "weighted_primary_decision_accuracy": 0.28219437905609057,
+            "duplicate_group_accuracy": 0.23809523809523808,
+            "weighted_duplicate_group_accuracy": 0.28219437905609057
+          },
+          "MEDIUM": {
+            "rows": 237,
+            "primary_decision_accuracy": 0.7679324894514767,
+            "weighted_primary_decision_accuracy": 0.7358724589543756,
+            "duplicate_group_accuracy": 0.7763713080168776,
+            "weighted_duplicate_group_accuracy": 0.7409652193565396
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 28,
+          "violations": [
+            "H0964",
+            "H0959",
+            "H0278",
+            "H0132",
+            "H0790",
+            "H0828",
+            "H0267",
+            "H0612",
+            "H0480",
+            "H0253"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 16,
+          "violations": [
+            "H0964",
+            "H0959",
+            "H0612",
+            "H0480"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 5,
+          "violations": [],
+          "passed": true
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 3,
+          "violations": [],
+          "passed": true
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        },
+        "additional_critic_repair_guards": {
+          "expected": 22,
+          "preserved": 15,
+          "violations": [
+            "H0132",
+            "H0277",
+            "H0278",
+            "H0298",
+            "H0612",
+            "H0959",
+            "H0964"
+          ],
+          "passed": false
+        }
+      },
+      "effects_to_actual": {
+        "REGRESSED": 11,
+        "BOTH_CORRECT": 176,
+        "BOTH_WRONG": 61,
+        "REPAIRED": 10
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0003",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0019",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0053",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0132",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0154",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0221",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0253",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0470",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "DIRECTION_ONLY",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0480",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0597",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0634",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0688",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0732",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0733",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0741",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0790",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0815",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0837",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0844",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0847",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0889",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0955",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0979",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H1000",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        }
+      ],
+      "false_containment": 11,
+      "reference_containment_misses": 26
+    },
+    "mixed_m15_c14_v9": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.7093445007706852,
+          "taxonomy_exact": 0.46897562242573554,
+          "duplicate_precision": 0.6368023513003623,
+          "duplicate_recall": 0.5885276012347663,
+          "duplicate_f1": 0.6117140277132282,
+          "true_positive": 445.2421722113504,
+          "false_positive": 253.94207436399208,
+          "false_negative": 311.2935812133072,
+          "true_negative": 1030.4323189823865,
+          "unresolved": 85.87953033268101
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7364341085271318,
+          "taxonomy_exact": 0.3992248062015504,
+          "duplicate_precision": 0.7567567567567568,
+          "duplicate_recall": 0.6942148760330579,
+          "duplicate_f1": 0.7241379310344828,
+          "true_positive": 84,
+          "false_positive": 27,
+          "false_negative": 37,
+          "true_negative": 107,
+          "unresolved": 10
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8888888888888888,
+            "weighted_primary_decision_exact": 0.8815989597167428,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.5714285714285714,
+            "weighted_primary_decision_exact": 0.6191341495511634,
+            "over_group": 0,
+            "under_group": 2
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.6470588235294118,
+            "weighted_primary_decision_exact": 0.6448550533101438,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.875,
+            "weighted_primary_decision_exact": 0.8788089544449353,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.8181818181818182,
+            "weighted_primary_decision_exact": 0.7984337762081046,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.5638297872340425,
+            "weighted_primary_decision_exact": 0.5785930926141603,
+            "over_group": 11,
+            "under_group": 30
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.7,
+            "weighted_primary_decision_exact": 0.7007464439192481,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9259259259259259,
+            "weighted_primary_decision_exact": 0.9679818480816516,
+            "over_group": 0,
+            "under_group": 4
+          }
+        },
+        "confidence_tiers": {
+          "LOW": {
+            "rows": 12,
+            "primary_decision_accuracy": 0.16666666666666666,
+            "weighted_primary_decision_accuracy": 0.22826444599006931,
+            "duplicate_group_accuracy": 0.16666666666666666,
+            "weighted_duplicate_group_accuracy": 0.22826444599006931
+          },
+          "MEDIUM": {
+            "rows": 246,
+            "primary_decision_accuracy": 0.7642276422764228,
+            "weighted_primary_decision_accuracy": 0.7326000216777167,
+            "duplicate_group_accuracy": 0.7723577235772358,
+            "weighted_duplicate_group_accuracy": 0.7420141162896202
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 35,
+          "violations": [
+            "H0770",
+            "H0828",
+            "H0267"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 19,
+          "violations": [
+            "H0770"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 3,
+          "violations": [
+            "H0347",
+            "H0748"
+          ],
+          "passed": false
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 2,
+          "violations": [
+            "H0347"
+          ],
+          "passed": false
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        },
+        "additional_critic_repair_guards": {
+          "expected": 22,
+          "preserved": 22,
+          "violations": [],
+          "passed": true
+        }
+      },
+      "effects_to_actual": {
+        "REGRESSED": 16,
+        "BOTH_CORRECT": 174,
+        "BOTH_WRONG": 56,
+        "REPAIRED": 12
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0003",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0053",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0059",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0088",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0135",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0146",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0168",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0177",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0195",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0208",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0277",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0278",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0289",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0298",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0305",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0347",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0373",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0383",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0432",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0458",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0545",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0597",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0612",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0732",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0748",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0770",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0815",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0824",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0847",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0899",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0959",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0964",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        }
+      ],
+      "false_containment": 7,
+      "reference_containment_misses": 28
+    },
+    "control_m14_c14_v9": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.7220340495244174,
+          "taxonomy_exact": 0.4855109524610664,
+          "duplicate_precision": 0.6504909115288574,
+          "duplicate_recall": 0.5993955427221989,
+          "duplicate_f1": 0.6238988375713374,
+          "true_positive": 453.4641585127203,
+          "false_positive": 243.64651663405078,
+          "false_negative": 303.0715949119373,
+          "true_negative": 1039.5978767123277,
+          "unresolved": 70.21905088062623
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7441860465116279,
+          "taxonomy_exact": 0.41472868217054265,
+          "duplicate_precision": 0.7678571428571429,
+          "duplicate_recall": 0.7107438016528925,
+          "duplicate_f1": 0.7381974248927038,
+          "true_positive": 86,
+          "false_positive": 26,
+          "false_negative": 35,
+          "true_negative": 107,
+          "unresolved": 8
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.8333333333333334,
+            "weighted_primary_decision_exact": 0.827084822614351,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.5714285714285714,
+            "weighted_primary_decision_exact": 0.6191341495511634,
+            "over_group": 0,
+            "under_group": 3
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.5882352941176471,
+            "weighted_primary_decision_exact": 0.636025067354964,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.9375,
+            "weighted_primary_decision_exact": 0.934597765032845,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.9090909090909091,
+            "weighted_primary_decision_exact": 0.9208363342512894,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.574468085106383,
+            "weighted_primary_decision_exact": 0.5831331235052558,
+            "over_group": 12,
+            "under_group": 28
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.75,
+            "weighted_primary_decision_exact": 0.7579532117318626,
+            "over_group": 5,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9259259259259259,
+            "weighted_primary_decision_exact": 0.9679818480816516,
+            "over_group": 0,
+            "under_group": 3
+          }
+        },
+        "confidence_tiers": {
+          "LOW": {
+            "rows": 11,
+            "primary_decision_accuracy": 0.18181818181818182,
+            "weighted_primary_decision_accuracy": 0.227439889500542,
+            "duplicate_group_accuracy": 0.18181818181818182,
+            "weighted_duplicate_group_accuracy": 0.227439889500542
+          },
+          "MEDIUM": {
+            "rows": 247,
+            "primary_decision_accuracy": 0.7692307692307693,
+            "weighted_primary_decision_accuracy": 0.7460337299050295,
+            "duplicate_group_accuracy": 0.7773279352226721,
+            "weighted_duplicate_group_accuracy": 0.7509397695780976
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 33,
+          "violations": [
+            "H0790",
+            "H0828",
+            "H0267",
+            "H0480",
+            "H0253"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 19,
+          "violations": [
+            "H0480"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 3,
+          "violations": [
+            "H0347",
+            "H0748"
+          ],
+          "passed": false
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 2,
+          "violations": [
+            "H0347"
+          ],
+          "passed": false
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        },
+        "additional_critic_repair_guards": {
+          "expected": 22,
+          "preserved": 22,
+          "violations": [],
+          "passed": true
+        }
+      },
+      "effects_to_actual": {
+        "REGRESSED": 22,
+        "BOTH_CORRECT": 170,
+        "BOTH_WRONG": 50,
+        "REPAIRED": 16
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0003",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0019",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0053",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0135",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0146",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0154",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0168",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0177",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0208",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0221",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0253",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0277",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0278",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0289",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0298",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0305",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0347",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0383",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0432",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0458",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0470",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "DIRECTION_ONLY",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0480",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0545",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0597",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0612",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0634",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0688",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0732",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0733",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0741",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNRESOLVED",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0748",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0790",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0815",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0824",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0837",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0844",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0847",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0889",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0899",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0955",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0959",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0964",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0979",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H1000",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        }
+      ],
+      "false_containment": 7,
+      "reference_containment_misses": 26
+    },
+    "main_only_m15": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.6692134417108366,
+          "taxonomy_exact": 0.4870295045273405,
+          "duplicate_precision": 0.5514258017431162,
+          "duplicate_recall": 0.8771828597533763,
+          "duplicate_f1": 0.6771641174401666,
+          "true_positive": 663.6201956947164,
+          "false_positive": 539.8421624266149,
+          "false_negative": 92.91555772994128,
+          "true_negative": 754.5772309197648,
+          "unresolved": 21.81706457925636
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.7170542635658915,
+          "taxonomy_exact": 0.41472868217054265,
+          "duplicate_precision": 0.6626506024096386,
+          "duplicate_recall": 0.9090909090909091,
+          "duplicate_f1": 0.7665505226480838,
+          "true_positive": 110,
+          "false_positive": 56,
+          "false_negative": 11,
+          "true_negative": 79,
+          "unresolved": 2
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.5555555555555556,
+            "weighted_primary_decision_exact": 0.5625271283235153,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 0.8571428571428571,
+            "weighted_primary_decision_exact": 0.8665038860332708,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.47058823529411764,
+            "weighted_primary_decision_exact": 0.3958802013297354,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.25,
+            "weighted_primary_decision_exact": 0.2632403022903673,
+            "over_group": 12,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0.5,
+            "weighted_primary_decision_exact": 0.5396622718090058,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.7272727272727273,
+            "weighted_primary_decision_exact": 0.7056287743878918,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.7021276595744681,
+            "weighted_primary_decision_exact": 0.7123275121140961,
+            "over_group": 16,
+            "under_group": 9
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.6,
+            "weighted_primary_decision_exact": 0.6083264336914866,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9629629629629629,
+            "weighted_primary_decision_exact": 0.8981470609803482,
+            "over_group": 1,
+            "under_group": 1
+          }
+        },
+        "confidence_tiers": {
+          "LOW": {
+            "rows": 2,
+            "primary_decision_accuracy": 0.5,
+            "weighted_primary_decision_accuracy": 0.6072572861689265,
+            "duplicate_group_accuracy": 0.5,
+            "weighted_duplicate_group_accuracy": 0.6072572861689265
+          },
+          "MEDIUM": {
+            "rows": 256,
+            "primary_decision_accuracy": 0.71875,
+            "weighted_primary_decision_accuracy": 0.6698725011976655,
+            "duplicate_group_accuracy": 0.73828125,
+            "weighted_duplicate_group_accuracy": 0.6914814440711917
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 19,
+          "violations": [
+            "H0597",
+            "H0770",
+            "H0444",
+            "H0964",
+            "H0872",
+            "H0959",
+            "H0278",
+            "H0119",
+            "H0592",
+            "H0419",
+            "H0141",
+            "H0828",
+            "H0267",
+            "H0242",
+            "H0612",
+            "H0700",
+            "H0594",
+            "H0977",
+            "H0413"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 13,
+          "violations": [
+            "H0770",
+            "H0444",
+            "H0964",
+            "H0959",
+            "H0592",
+            "H0419",
+            "H0612"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 5,
+          "violations": [],
+          "passed": true
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 3,
+          "violations": [],
+          "passed": true
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        },
+        "additional_critic_repair_guards": {
+          "expected": 22,
+          "preserved": 3,
+          "violations": [
+            "H0119",
+            "H0141",
+            "H0277",
+            "H0278",
+            "H0298",
+            "H0413",
+            "H0419",
+            "H0444",
+            "H0592",
+            "H0594",
+            "H0606",
+            "H0612",
+            "H0700",
+            "H0809",
+            "H0825",
+            "H0907",
+            "H0959",
+            "H0964",
+            "H0977"
+          ],
+          "passed": false
+        }
+      },
+      "effects_to_actual": {
+        "BOTH_WRONG": 50,
+        "BOTH_CORRECT": 163,
+        "REGRESSED": 22,
+        "REPAIRED": 23
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0003",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0019",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "DIRECTION_ONLY",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0023",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0048",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0053",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0059",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0088",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0119",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0135",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0140",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0141",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0177",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0195",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0196",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0208",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0242",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0243",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0249",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0289",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0298",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0319",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0373",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0383",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0413",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0419",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0444",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0458",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0470",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0492",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0545",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0546",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0592",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0594",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0606",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0612",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0700",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0711",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0736",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0770",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0787",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0800",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0809",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0815",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0822",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0825",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0872",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0899",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0907",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0926",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0957",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0977",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        }
+      ],
+      "false_containment": 21,
+      "reference_containment_misses": 11
+    },
+    "main_only_m14": {
+      "metrics": {
+        "weighted": {
+          "rows": 258,
+          "weight_total": 2072.772211350298,
+          "primary_decision_exact": 0.7161142097152658,
+          "taxonomy_exact": 0.5270833345134827,
+          "duplicate_precision": 0.582925594373086,
+          "duplicate_recall": 0.865856900455488,
+          "duplicate_f1": 0.6967645594030664,
+          "true_positive": 655.0517025440314,
+          "false_positive": 468.67954011741716,
+          "false_negative": 101.48405088062621,
+          "true_negative": 825.7398532289623,
+          "unresolved": 21.81706457925636
+        },
+        "unweighted": {
+          "rows": 258,
+          "weight_total": 258,
+          "primary_decision_exact": 0.748062015503876,
+          "taxonomy_exact": 0.4496124031007752,
+          "duplicate_precision": 0.6855345911949685,
+          "duplicate_recall": 0.9008264462809917,
+          "duplicate_f1": 0.7785714285714286,
+          "true_positive": 109,
+          "false_positive": 50,
+          "false_negative": 12,
+          "true_negative": 85,
+          "unresolved": 2
+        },
+        "cohorts": {
+          "boilerplate_only": {
+            "rows": 18,
+            "primary_decision_exact": 0.5555555555555556,
+            "weighted_primary_decision_exact": 0.5545141371023921,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "canonical": {
+            "rows": 6,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "chrome_only": {
+            "rows": 7,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "factual_state": {
+            "rows": 17,
+            "primary_decision_exact": 0.47058823529411764,
+            "weighted_primary_decision_exact": 0.46554332061329895,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "identical": {
+            "rows": 12,
+            "primary_decision_exact": 1,
+            "weighted_primary_decision_exact": 1,
+            "over_group": 0,
+            "under_group": 0
+          },
+          "identity_slot": {
+            "rows": 16,
+            "primary_decision_exact": 0.4375,
+            "weighted_primary_decision_exact": 0.44983358281258684,
+            "over_group": 9,
+            "under_group": 0
+          },
+          "list_membership": {
+            "rows": 2,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 2,
+            "under_group": 0
+          },
+          "material_content": {
+            "rows": 11,
+            "primary_decision_exact": 0.8181818181818182,
+            "weighted_primary_decision_exact": 0.8280313324310765,
+            "over_group": 1,
+            "under_group": 0
+          },
+          "meaningful_addition": {
+            "rows": 94,
+            "primary_decision_exact": 0.7446808510638298,
+            "weighted_primary_decision_exact": 0.7499225651168636,
+            "over_group": 14,
+            "under_group": 10
+          },
+          "page_role": {
+            "rows": 20,
+            "primary_decision_exact": 0.6,
+            "weighted_primary_decision_exact": 0.6156576088239758,
+            "over_group": 8,
+            "under_group": 0
+          },
+          "parser_noise": {
+            "rows": 1,
+            "primary_decision_exact": 0,
+            "weighted_primary_decision_exact": 0,
+            "over_group": 0,
+            "under_group": 1
+          },
+          "translation": {
+            "rows": 54,
+            "primary_decision_exact": 0.9629629629629629,
+            "weighted_primary_decision_exact": 0.9839909240408258,
+            "over_group": 0,
+            "under_group": 1
+          }
+        },
+        "confidence_tiers": {
+          "LOW": {
+            "rows": 2,
+            "primary_decision_accuracy": 0.5,
+            "weighted_primary_decision_accuracy": 0.6072572861689265,
+            "duplicate_group_accuracy": 0.5,
+            "weighted_duplicate_group_accuracy": 0.6072572861689265
+          },
+          "MEDIUM": {
+            "rows": 256,
+            "primary_decision_accuracy": 0.75,
+            "weighted_primary_decision_accuracy": 0.717272176789606,
+            "duplicate_group_accuracy": 0.7578125,
+            "weighted_duplicate_group_accuracy": 0.7220009458053273
+          }
+        }
+      },
+      "guards": {
+        "all_negative": {
+          "expected": 38,
+          "preserved": 19,
+          "violations": [
+            "H0444",
+            "H0964",
+            "H0959",
+            "H0278",
+            "H0119",
+            "H0592",
+            "H0132",
+            "H0790",
+            "H0419",
+            "H0141",
+            "H0828",
+            "H0267",
+            "H0612",
+            "H0480",
+            "H0700",
+            "H0253",
+            "H0594",
+            "H0977",
+            "H0413"
+          ],
+          "passed": false
+        },
+        "baseline_negative_floor": {
+          "expected": 20,
+          "preserved": 13,
+          "violations": [
+            "H0444",
+            "H0964",
+            "H0959",
+            "H0592",
+            "H0419",
+            "H0612",
+            "H0480"
+          ],
+          "passed": false
+        },
+        "all_benign": {
+          "expected": 5,
+          "preserved": 5,
+          "violations": [],
+          "passed": true
+        },
+        "baseline_benign_floor": {
+          "expected": 3,
+          "preserved": 3,
+          "violations": [],
+          "passed": true
+        },
+        "true_containment": {
+          "expected": 4,
+          "preserved": 4,
+          "violations": [],
+          "passed": true
+        },
+        "identical": {
+          "expected": 12,
+          "preserved": 12,
+          "violations": [],
+          "passed": true
+        },
+        "additional_critic_repair_guards": {
+          "expected": 22,
+          "preserved": 0,
+          "violations": [
+            "H0005",
+            "H0119",
+            "H0126",
+            "H0132",
+            "H0141",
+            "H0277",
+            "H0278",
+            "H0298",
+            "H0413",
+            "H0419",
+            "H0444",
+            "H0592",
+            "H0594",
+            "H0606",
+            "H0612",
+            "H0700",
+            "H0809",
+            "H0825",
+            "H0907",
+            "H0959",
+            "H0964",
+            "H0977"
+          ],
+          "passed": false
+        }
+      },
+      "effects_to_actual": {
+        "REGRESSED": 32,
+        "REPAIRED": 25,
+        "BOTH_CORRECT": 161,
+        "BOTH_WRONG": 40
+      },
+      "changes_to_actual": [
+        {
+          "review_id": "H0003",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0005",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0019",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0023",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0048",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0053",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0119",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0126",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0132",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0135",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0141",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0154",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0177",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0208",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0221",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0243",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0249",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0253",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0289",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0298",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0383",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0413",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0419",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0444",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0458",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0470",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "DIRECTION_ONLY",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0480",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0492",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0545",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0592",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0594",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0597",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0606",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0612",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0634",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0688",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0700",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0711",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0732",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0733",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0736",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0741",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0787",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0790",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0800",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0809",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0815",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0822",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0825",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0837",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0844",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0847",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "UNDER_GROUP_RESOLVED",
+          "candidate_error": "DIRECTION_ONLY"
+        },
+        {
+          "review_id": "H0870",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0889",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H0899",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "YES",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNRESOLVED"
+        },
+        {
+          "review_id": "H0907",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0926",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0955",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0957",
+          "reference": {
+            "same_duplicate_group": "YES",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "YES"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "UNDER_GROUP_RESOLVED"
+        },
+        {
+          "review_id": "H0977",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        },
+        {
+          "review_id": "H0979",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "CORRECT",
+          "candidate_error": "OVER_GROUP"
+        },
+        {
+          "review_id": "H1000",
+          "reference": {
+            "same_duplicate_group": "NO",
+            "a_can_replace_b": "NO",
+            "b_can_replace_a": "NO"
+          },
+          "source_error": "OVER_GROUP",
+          "candidate_error": "CORRECT"
+        }
+      ],
+      "false_containment": 18,
+      "reference_containment_misses": 9
+    }
+  },
+  "main_repeat": {
+    "identical_raw_main_responses": 0,
+    "identical_main_span_scores": 190,
+    "changed_main_primary_ids": [
+      "H0003",
+      "H0005",
+      "H0019",
+      "H0053",
+      "H0059",
+      "H0088",
+      "H0126",
+      "H0132",
+      "H0140",
+      "H0154",
+      "H0195",
+      "H0196",
+      "H0221",
+      "H0242",
+      "H0253",
+      "H0319",
+      "H0373",
+      "H0470",
+      "H0480",
+      "H0546",
+      "H0592",
+      "H0597",
+      "H0634",
+      "H0688",
+      "H0732",
+      "H0733",
+      "H0741",
+      "H0770",
+      "H0790",
+      "H0815",
+      "H0837",
+      "H0844",
+      "H0847",
+      "H0870",
+      "H0872",
+      "H0889",
+      "H0955",
+      "H0979",
+      "H1000"
+    ]
+  }
+}

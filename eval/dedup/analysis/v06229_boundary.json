@@ -1,0 +1,33 @@
+{
+  "schema_version": "dedup-composite-boundary-v1",
+  "passed": true,
+  "external_model_calls": 0,
+  "full_boundary_tests_passed": 4,
+  "cpu_tests_passed": 900,
+  "cpu_tests_skipped": 34,
+  "gpu_deselected": 2,
+  "local_http_responses": 14,
+  "native_first_retry_stages": [
+    "main",
+    "critic"
+  ],
+  "raw_pruning_disabled": true,
+  "frozen_references_unchanged": true,
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/bottleneck_audit.py": "45b33ae3228e70c249914f6deb82c6ca92cbcb6919f1a555e21050f42933b13f",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/composite_containment_review.py": "ac2d6bd8c43a0fc61d94257b9c9100cebb1c6d39313a8c9b648b3e8e6fe734b6",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/composite_experiment.py": "838ef4750523d639e7e4bbb03fc0655e57747eec9675df40ad76f189aa0d30ae",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/composite_coverage.py": "3f141e433ca8bff50d0ec3ba9cab20b14ceb22aa3920e312965e5d4262744781",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/composite_runtime.py": "b3247fd71760deee7869d140d3bdb8fe0cc5de5511a0d69ac9091fbc01c0a510",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06229_composite_policy.jinja": "897cb5a46bfd2d2e6a39b0f96da3ee4f8a03b4451d2b5c4b547302cb7aab9029",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06229_composite_qwen_c16.yaml": "e2d2b2e3485d2f210382acec251a1d16d0ee39a35d2e2e38cca27660e1ddd9f8",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06229_critic_system.jinja": "434500d4655d76775c5eb5920fec4e12c12aeb99cfcbd3a8d67596bc9a1922c5",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06229_main_system.jinja": "9875c37467a3f8be9361a01367139a7cd1b909325971f0959563590731225b0f",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06229_pair.jinja": "0ddd9f10c681c4b324e2ef65f77549a3b72b648eb97c93ce8d140360571166df",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_composite_coverage.py": "e4ffaf9b7b0fd7a4e3053ef7774441db14ea5a7689658ae5859850315c95a0ad",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_composite_experiment.py": "16955c82cdc7dba73aace7d34bb72d65f60a4efe0b972f2665cece9744d6b551",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_composite_runtime.py": "18ed8ced6821704a6be637ecd9855c6bbf2b354d972844ddd60535112621ca61",
+    "/raid/hfang/ihb/composite-cpu-tests-v2.xml": "9046547c3fdc8627d299ab6173e8712d1827c0821b7138358dfbd0eaa839bf6a",
+    "/raid/hfang/ihb/composite-native-boundary-v2.xml": "778e0d9cac145eeaa9a93fb4ee07b5ef33bc32c09b40c6213b914ea93e6a2bd8"
+  }
+}

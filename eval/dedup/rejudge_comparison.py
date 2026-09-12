@@ -43,6 +43,14 @@ from eval.dedup.config import (
     HS_V06210_PROMPT_VERSION,
     HS_V06211_POLICY_PROMPT_VERSION,
     HS_V06211_PROMPT_VERSION,
+    HS_V06212_PROMPT_VERSION,
+    HS_V06212_ROUTE_PROMPT_VERSION,
+    HS_V06213_EXACT_PROMPT_VERSION,
+    HS_V06213_PROMPT_VERSION,
+    HS_V06214_CONTROL_PROMPT_VERSION,
+    HS_V06214_PROMPT_VERSION,
+    HS_V06215_CONTROL_PROMPT_VERSION,
+    HS_V06215_PROMPT_VERSION,
     HS_V0622_PROMPT_VERSION,
     HS_V0623_PROMPT_VERSION,
     HS_V0624_PROMPT_VERSION,
@@ -86,6 +94,14 @@ RUNNER_CONFIG_BY_PROMPT = {
     HS_V06210_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06210_qwen_c64.yaml",
     HS_V06211_POLICY_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06211_policy_qwen_c64.yaml",
     HS_V06211_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06211_qwen_c64.yaml",
+    HS_V06212_ROUTE_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06212_route_qwen_c64.yaml",
+    HS_V06212_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06212_qwen_c64.yaml",
+    HS_V06213_EXACT_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06213_exact_qwen_c64.yaml",
+    HS_V06213_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06213_qwen_c64.yaml",
+    HS_V06214_CONTROL_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06214_arbitration_qwen_c64.yaml",
+    HS_V06214_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06214_qwen_c64.yaml",
+    HS_V06215_CONTROL_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06215_arbitration_qwen_c64.yaml",
+    HS_V06215_PROMPT_VERSION: LOCAL_NDD_RESOURCES / "hs_v06215_qwen_c64.yaml",
 }
 PROMPT_VERSION_BY_POLICY = {
     "sarah": SARAH_MINHASH_PROMPT_VERSION,
@@ -106,6 +122,14 @@ PROMPT_VERSION_BY_POLICY = {
     "hs-v06210": HS_V06210_PROMPT_VERSION,
     "hs-v06211-policy": HS_V06211_POLICY_PROMPT_VERSION,
     "hs-v06211": HS_V06211_PROMPT_VERSION,
+    "hs-v06212-route": HS_V06212_ROUTE_PROMPT_VERSION,
+    "hs-v06212": HS_V06212_PROMPT_VERSION,
+    "hs-v06213-exact": HS_V06213_EXACT_PROMPT_VERSION,
+    "hs-v06213": HS_V06213_PROMPT_VERSION,
+    "hs-v06214-arbitration": HS_V06214_CONTROL_PROMPT_VERSION,
+    "hs-v06214": HS_V06214_PROMPT_VERSION,
+    "hs-v06215-arbitration": HS_V06215_CONTROL_PROMPT_VERSION,
+    "hs-v06215": HS_V06215_PROMPT_VERSION,
 }
 SCHEMA_VERSION_BY_PROMPT = {
     SARAH_MINHASH_PROMPT_VERSION: "dedup-judge-output-v0",
@@ -126,6 +150,14 @@ SCHEMA_VERSION_BY_PROMPT = {
     HS_V06210_PROMPT_VERSION: "dedup-judge-output-v3",
     HS_V06211_POLICY_PROMPT_VERSION: "dedup-judge-output-v3",
     HS_V06211_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06212_ROUTE_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06212_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06213_EXACT_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06213_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06214_CONTROL_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06214_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06215_CONTROL_PROMPT_VERSION: "dedup-judge-output-v3",
+    HS_V06215_PROMPT_VERSION: "dedup-judge-output-v3",
 }
 VISIBLE_PAYLOAD_VERSION_BY_PROMPT = {
     prompt_version: (
@@ -139,6 +171,14 @@ VISIBLE_PAYLOAD_VERSION_BY_PROMPT = {
             HS_V06210_PROMPT_VERSION,
             HS_V06211_POLICY_PROMPT_VERSION,
             HS_V06211_PROMPT_VERSION,
+            HS_V06212_ROUTE_PROMPT_VERSION,
+            HS_V06212_PROMPT_VERSION,
+            HS_V06213_EXACT_PROMPT_VERSION,
+            HS_V06213_PROMPT_VERSION,
+            HS_V06214_CONTROL_PROMPT_VERSION,
+            HS_V06214_PROMPT_VERSION,
+            HS_V06215_CONTROL_PROMPT_VERSION,
+            HS_V06215_PROMPT_VERSION,
         }
         else "judge-visible-payload-v2"
     )
@@ -163,6 +203,14 @@ POLICY_LABELS = {
     "hs-v06210": "HS V0.6.2.10 evidence-scoped boundary arbitration",
     "hs-v06211-policy": "HS V0.6.2.11 policy-only development ablation",
     "hs-v06211": "HS V0.6.2.11 scoped policy and translation review",
+    "hs-v06212-route": "HS V0.6.2.12 translation-route-only development ablation",
+    "hs-v06212": "HS V0.6.2.12 complete-message translation and retained-conflict review",
+    "hs-v06213-exact": "HS V0.6.2.13 full-text exact-identity offline control",
+    "hs-v06213": "HS V0.6.2.13 specific-record scope and complete benign coverage",
+    "hs-v06214-arbitration": "HS V0.6.2.14 arbitration-only offline control",
+    "hs-v06214": "HS V0.6.2.14 scoped ownership and actionable-content boundaries",
+    "hs-v06215-arbitration": "HS V0.6.2.15 retention consistency offline control",
+    "hs-v06215": "HS V0.6.2.15 proposition-matched critic over unchanged V0.6.2.14 main prompts",
 }
 DEFAULT_RUNNER_CONFIG = RUNNER_CONFIG_BY_PROMPT[SARAH_MINHASH_PROMPT_VERSION]
 DEFAULT_RAY_TEMP_DIR = Path("/raid/hfang/ihb/qr")
@@ -322,6 +370,8 @@ def _source_digest() -> str:
                     "local_ndd_adapter": "local_ndd.py",
                     "boundary_critic": "boundary_critic.py",
                     "scoped_critic": "scoped_critic.py",
+                    "retained_conflict": "retained_conflict.py",
+                    "record_scope": "record_scope.py",
                     "payload": "payload.py",
                     "schema_router": "schema.py",
                     "schema_v3": "schema_v3.py",
@@ -801,9 +851,24 @@ def _carry_forward_failed_attempts(result: dict[str, Any], failed_rows: list[dic
     }
 
 
-def run_hub(run_root: Path) -> dict[str, Any]:
+def _validated_preflight(value: dict[str, Any], contract_digest: str, requested: int) -> dict[str, Any]:
+    require(
+        value.get("schema_version") == "dedup-rejudge-hub-preflight-v1"
+        and value.get("judge_contract_digest") == contract_digest
+        and value.get("status") == "pass"
+        and value.get("valid") == value.get("requested")
+        and isinstance(value.get("requested"), int)
+        and value["requested"] >= requested,
+        "REJUDGE_HUB_PREFLIGHT_INVALID",
+        "saved preflight does not establish a complete pilot for this contract and requested size",
+    )
+    return value
+
+
+def run_hub(run_root: Path, *, preflight_only: bool = False, preflight_pairs: int = 10) -> dict[str, Any]:
     """Run pending blocks through the selected NDD prompt policy on Inference Hub."""
 
+    require(preflight_pairs > 0, "REJUDGE_PREFLIGHT_SIZE_INVALID", "preflight size must be positive")
     _, pq = _parquet()
     run_root = run_root.resolve()
     manifest = _validate_run_root(run_root)
@@ -861,7 +926,7 @@ def run_hub(run_root: Path) -> dict[str, Any]:
     with runtime:
         preflight_path = run_root / "hub_preflight.json"
         if not preflight_path.is_file():
-            pilot_rows = candidates[:10]
+            pilot_rows = candidates[:preflight_pairs]
             pilot_terminal: list[dict[str, Any]] = []
             pilot_root = run_root / "preflight" / f"pilot-{uuid.uuid4().hex[:8]}"
             borrowed = _BorrowedExternalRuntime(
@@ -880,6 +945,7 @@ def run_hub(run_root: Path) -> dict[str, Any]:
                 runtime_factory=lambda *_args, _borrowed=borrowed, **_kwargs: _borrowed,
             )
             pilot_valid = sum(row["record_type"] == "result" for row in pilot_terminal)
+            _write_jsonl(pilot_root / "terminal_results.jsonl", pilot_terminal)
             require(
                 pilot_valid == len(pilot_rows),
                 "REJUDGE_HUB_PREFLIGHT_FAILED",
@@ -896,9 +962,22 @@ def run_hub(run_root: Path) -> dict[str, Any]:
                     "judge_contract_digest": manifest["judge_contract_digest"],
                     "requested": len(pilot_rows),
                     "valid": pilot_valid,
+                    "retried": sum(int(row["attempts"]) > 1 for row in pilot_terminal),
+                    "pilot_root": str(pilot_root),
+                    "terminal_results_sha256": sha256_file(pilot_root / "terminal_results.jsonl"),
                     "status": "pass",
                 },
             )
+        preflight = _validated_preflight(
+            _read_json(preflight_path), manifest["judge_contract_digest"], min(preflight_pairs, len(candidates))
+        )
+        if preflight_only:
+            _write_status(
+                run_root / "progress.json",
+                {"status": "preflight_passed", "completed_pairs": len(cache), "preflight": preflight},
+            )
+            relay.stop()
+            return preflight
         for block in manifest["blocks"]:
             block_rows = candidates[block["start"] : block["stop"]]
             require(
@@ -1310,9 +1389,11 @@ def _parser() -> argparse.ArgumentParser:
     prepare.add_argument("--run-id")
     prepare.add_argument("--pair-ids", type=Path)
     prepare.add_argument("--release-approval", type=Path)
-    for command in ("run", "summarize"):
+    for command in ("run", "summarize", "preflight"):
         child = subparsers.add_parser(command)
         child.add_argument("--run-root", type=Path, required=True)
+        if command == "preflight":
+            child.add_argument("--pairs", type=int, default=20)
     all_parser = subparsers.add_parser("all")
     all_parser.add_argument("--source-run-root", type=Path, default=DEFAULT_SOURCE_RUN)
     all_parser.add_argument("--runs-root", type=Path, default=DEFAULT_RUNS_ROOT)
@@ -1348,6 +1429,12 @@ def main(argv: list[str] | None = None) -> int:
                 return 0
         else:
             run_root = args.run_root
+        if args.command == "preflight":
+            print(
+                json.dumps(run_hub(run_root, preflight_only=True, preflight_pairs=args.pairs), sort_keys=True),
+                flush=True,
+            )
+            return 0
         if args.command in {"run", "all"}:
             print(json.dumps(run_hub(run_root), sort_keys=True), flush=True)
             if args.command == "run":

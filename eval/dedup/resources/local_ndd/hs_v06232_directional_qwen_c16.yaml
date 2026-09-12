@@ -1,0 +1,7 @@
+judge_version: dedup-judge-hs-v0.6.2.32
+base_context_config: hs_v06231_context_qwen_c16.yaml
+output_contract: dedup-retained-coverage-v5
+feedback_contract: dedup-directional-witness-feedback-v1
+binding_instructions_path: hs_v06232_directional_system.jinja
+binding_pair_path: hs_v06232_directional_pair.jinja
+binding_rule: In a_meaning_in_b, source belongs to A and counterpart belongs to B. In b_meaning_in_a, source belongs to B and counterpart belongs to A. For an actual shared-context contradiction, first select the real unique difference on its owning side and the contrasting context on the other side, then put these same witnesses into hard_conflict and each matching directional branch. A/B are document owners, not the order of arguments in your explanation. Never copy a witness into an opposite-document slot. This binding rule does not decide whether the pair conflicts.

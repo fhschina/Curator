@@ -18,6 +18,14 @@ from eval.dedup.config import (
     HS_V06210_PROMPT_VERSION,
     HS_V06211_POLICY_PROMPT_VERSION,
     HS_V06211_PROMPT_VERSION,
+    HS_V06212_PROMPT_VERSION,
+    HS_V06212_ROUTE_PROMPT_VERSION,
+    HS_V06213_EXACT_PROMPT_VERSION,
+    HS_V06213_PROMPT_VERSION,
+    HS_V06214_CONTROL_PROMPT_VERSION,
+    HS_V06214_PROMPT_VERSION,
+    HS_V06215_CONTROL_PROMPT_VERSION,
+    HS_V06215_PROMPT_VERSION,
     HS_V0622_PROMPT_VERSION,
     HS_V0623_PROMPT_VERSION,
     HS_V0624_PROMPT_VERSION,
@@ -38,7 +46,9 @@ from eval.dedup.rejudge_comparison import (
     _release_approval,
     _resolve_runner_config,
     _resource_hashes,
+    _validated_preflight,
     build_agreement_summary,
+    run_hub,
 )
 from eval.dedup.validation import DedupEvaluationError
 
@@ -55,6 +65,34 @@ def _result(pair_id: str, **overrides: str) -> dict[str, str]:
     }
     row.update(overrides)
     return row
+
+
+def test_preflight_command_stops_at_the_requested_technical_pilot() -> None:
+    args = _parser().parse_args(["preflight", "--run-root", "/example/run", "--pairs", "20"])
+    assert args.command == "preflight"
+    assert args.pairs == 20
+    assert _parser().parse_args(["run", "--run-root", "/example/run"]).command == "run"
+
+
+@pytest.mark.parametrize(
+    "change", [{"judge_contract_digest": "other"}, {"status": "failed"}, {"valid": 19}, {"requested": 10, "valid": 10}]
+)
+def test_preflight_resume_rejects_incomplete_wrong_contract_or_smaller_pilot(change: dict) -> None:
+    value = {
+        "schema_version": "dedup-rejudge-hub-preflight-v1",
+        "judge_contract_digest": "contract",
+        "status": "pass",
+        "requested": 20,
+        "valid": 20,
+    }
+    assert _validated_preflight(value, "contract", 20) == value
+    with pytest.raises(DedupEvaluationError, match="REJUDGE_HUB_PREFLIGHT_INVALID"):
+        _validated_preflight({**value, **change}, "contract", 20)
+
+
+def test_preflight_rejects_empty_size_before_runtime_or_network(tmp_path: Path) -> None:
+    with pytest.raises(DedupEvaluationError, match="REJUDGE_PREFLIGHT_SIZE_INVALID"):
+        run_hub(tmp_path, preflight_only=True, preflight_pairs=0)
 
 
 def test_resume_preserves_prior_failed_attempts_in_retry_accounting() -> None:
@@ -350,6 +388,14 @@ def test_v062_development_variants_have_separate_immutable_prompt_resources() ->
             "hs_v06210_qwen_c64.yaml",
             "hs_v06211_policy_qwen_c64.yaml",
             "hs_v06211_qwen_c64.yaml",
+            "hs_v06212_route_qwen_c64.yaml",
+            "hs_v06212_qwen_c64.yaml",
+            "hs_v06213_exact_qwen_c64.yaml",
+            "hs_v06213_qwen_c64.yaml",
+            "hs_v06214_arbitration_qwen_c64.yaml",
+            "hs_v06214_qwen_c64.yaml",
+            "hs_v06215_arbitration_qwen_c64.yaml",
+            "hs_v06215_qwen_c64.yaml",
         }:
             expected_scores = [
                 "span_content_profile_a",
@@ -414,6 +460,80 @@ def test_v06211_ablations_preserve_the_main_judge_and_legacy_record_score() -> N
         assert current_judges[0] == judges[0]
         assert current_judges[1]["scores"][0] == judges[1]["scores"][0]
         assert len(current_judges[1]["scores"]) == axis_count
+
+
+def test_v06212_route_is_an_exact_prompt_control_and_final_has_its_own_proof_contract() -> None:
+    from eval.dedup.judging.retained_conflict import RETAINED_CONFLICT_OPTIONS
+    from eval.dedup.judging.scoped_critic import LEGACY_BINDING_OPTIONS
+
+    baseline = yaml.safe_load(_resolve_runner_config(HS_V0629_PROMPT_VERSION, None).read_text())
+    route = yaml.safe_load(_resolve_runner_config(HS_V06212_ROUTE_PROMPT_VERSION, None).read_text())
+    candidate_path = _resolve_runner_config(HS_V06212_PROMPT_VERSION, None)
+    candidate = yaml.safe_load(candidate_path.read_text())
+    assert route["execution"]["stages"][0]["judges"] == baseline["execution"]["stages"][0]["judges"]
+    assert route["models"] == candidate["models"] == baseline["models"]
+    judges = candidate["execution"]["stages"][0]["judges"]
+    assert {s["name"]: {str(k).upper() for k in s["options"]} for s in judges[1]["scores"]} == {
+        "record_binding_verdict": LEGACY_BINDING_OPTIONS,
+        "retained_conflict": RETAINED_CONFLICT_OPTIONS,
+    }
+    resources = _resource_hashes(candidate_path)
+    assert all(
+        j[field] in resources and "v06212" in j[field]
+        for j in judges
+        for field in ("system_prompt_path", "prompt_path")
+    )
+    for policy in ("hs-v06212-route", "hs-v06212"):
+        args = _parser().parse_args(["prepare", "--judge-policy", policy])
+        assert args.judge_policy == policy
+
+
+def test_v06213_exact_control_preserves_prompts_and_final_scope_contract_is_registered() -> None:
+    from eval.dedup.judging.record_scope import RECORD_SCOPE_OPTIONS
+
+    baseline = yaml.safe_load(_resolve_runner_config(HS_V06212_PROMPT_VERSION, None).read_text())
+    exact = yaml.safe_load(_resolve_runner_config(HS_V06213_EXACT_PROMPT_VERSION, None).read_text())
+    path = _resolve_runner_config(HS_V06213_PROMPT_VERSION, None)
+    final = yaml.safe_load(path.read_text())
+    assert exact["execution"]["stages"][0]["judges"] == baseline["execution"]["stages"][0]["judges"]
+    assert final["models"] == exact["models"] == baseline["models"]
+    judges = final["execution"]["stages"][0]["judges"]
+    scores = {s["name"]: s for s in judges[1]["scores"]}
+    assert {k.upper() for k in scores["record_scope"]["options"]} == RECORD_SCOPE_OPTIONS
+    resources = _resource_hashes(path)
+    assert all(j[field] in resources for j in judges for field in ("system_prompt_path", "prompt_path"))
+    for policy in ("hs-v06213-exact", "hs-v06213"):
+        assert _parser().parse_args(["prepare", "--judge-policy", policy]).judge_policy == policy
+
+
+def test_v06214_arbitration_control_preserves_v13_prompts_and_uses_fresh_contract() -> None:
+    baseline = yaml.safe_load(_resolve_runner_config(HS_V06213_PROMPT_VERSION, None).read_text())
+    control_path = _resolve_runner_config(HS_V06214_CONTROL_PROMPT_VERSION, None)
+    control = yaml.safe_load(control_path.read_text())
+    final_path = _resolve_runner_config(HS_V06214_PROMPT_VERSION, None)
+    final = yaml.safe_load(final_path.read_text())
+    assert control["execution"]["stages"][0]["judges"] == baseline["execution"]["stages"][0]["judges"]
+    assert final["models"] == control["models"] == baseline["models"]
+    assert _resource_hashes(final_path) != _resource_hashes(control_path)
+    for policy in ("hs-v06214-arbitration", "hs-v06214"):
+        assert _parser().parse_args(["prepare", "--judge-policy", policy]).judge_policy == policy
+
+
+def test_v06215_preserves_main_and_control_but_versions_critic_contract() -> None:
+    baseline = yaml.safe_load(_resolve_runner_config(HS_V06214_PROMPT_VERSION, None).read_text())
+    control = yaml.safe_load(_resolve_runner_config(HS_V06215_CONTROL_PROMPT_VERSION, None).read_text())
+    path = _resolve_runner_config(HS_V06215_PROMPT_VERSION, None)
+    final = yaml.safe_load(path.read_text())
+    old_judges = baseline["execution"]["stages"][0]["judges"]
+    new_judges = final["execution"]["stages"][0]["judges"]
+    assert control["execution"]["stages"][0]["judges"] == old_judges
+    assert new_judges[0] == old_judges[0]
+    assert new_judges[1] != old_judges[1]
+    assert final["models"] == control["models"] == baseline["models"]
+    resources = _resource_hashes(path)
+    assert all(j[field] in resources for j in new_judges for field in ("system_prompt_path", "prompt_path"))
+    for policy in ("hs-v06215-arbitration", "hs-v06215"):
+        assert _parser().parse_args(["prepare", "--judge-policy", policy]).judge_policy == policy
 
 
 def test_release_approval_requires_passed_one_look_holdout(tmp_path: Path) -> None:

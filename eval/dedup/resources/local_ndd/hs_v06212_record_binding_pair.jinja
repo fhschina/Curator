@@ -1,0 +1,31 @@
+Independently distinguish complete semantic equivalence, a true one-sided
+same-record extension, and material separation. Do not test every pair as if
+it had to be containment. Full translations of substantive records AND complete
+non-main messages may be equivalent; A/B-only strings are not semantic losses.
+For an extension, name the shared subject and bind the added facts to it.
+For a retained_conflict, state the two retained meanings, cite its own bilateral
+context and decisive delta, and explain the actual identity/service/role/
+permission/state/membership change. Buttons, navigation, language, and spacing
+alone do not establish a conflict. Inspect every span; do not infer unseen roles.
+Use only supplied individual span IDs in record_binding_verdict.
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}"
+ contract="{{ payload.semantic_diff_evidence.contract_version }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{% if repair_feedback %}
+<repair_retry>
+The previous result failed local validation. Return a fresh judgment addressing
+this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

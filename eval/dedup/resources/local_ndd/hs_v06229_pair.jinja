@@ -1,0 +1,32 @@
+Apply this semantic rubric to both directions:
+{{ composite_rubric }}
+
+Establish shared substantive X, account for all retained meanings on each side, and
+check actual paired conflicts. X + independent Y versus X may be one-way containment;
+do not require Y to extend X's record. Boilerplate-only overlap is not substantive X.
+Same X with only chrome or full translation is bilateral. Distinct Y's title alone
+does not invalidate preserved X. Select exact original span IDs, not invented quotes.
+
+Input truncated: {{ payload.long_document_evidence.truncated }}
+<document_a>{{ payload.document_a.text }}</document_a>
+<document_b>{{ payload.document_b.text }}</document_b>
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}">
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+{{ stage_review }}
+
+{% if repair_feedback %}
+<repair_retry>
+The previous object failed validation. Return a fresh complete object addressing
+only this safe structured issue: {{ repair_feedback }}
+</repair_retry>
+{% endif %}

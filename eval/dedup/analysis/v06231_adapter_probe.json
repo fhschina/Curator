@@ -1,0 +1,74 @@
+{
+  "counterfactual_only": true,
+  "external_model_calls": 0,
+  "raw_response_or_input_modified": false,
+  "change": "V4 to V5 contract tag on in-memory copy only; no new model outputs or semantic performance claim",
+  "results": [
+    {
+      "pair_id": "cp1_f1f54f5c85e3ba6660b4b60782d6dcf9d48a039e09160be9caaca97a0dc889c7",
+      "attempt": "attempt_01",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/repeat_1/main/attempt_01/output/fd7a2201c2c0.jsonl",
+      "source_sha256": "5f54187f07451cfec85668d5a951a364d8b61946a1d3edafc4dd00bfffe1843e",
+      "translation_status": "COMPLETE_FAITHFUL",
+      "accepted": false,
+      "issue": "COMPOSITE_TRANSLATION: complete translation cannot have a retained loss or unresolved/conflicting basis"
+    },
+    {
+      "pair_id": "actual_membership_conflict:ab",
+      "attempt": "attempt_01",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/repeat_1/main/attempt_01/output/fd7a2201c2c0.jsonl",
+      "source_sha256": "5f54187f07451cfec85668d5a951a364d8b61946a1d3edafc4dd00bfffe1843e",
+      "translation_status": "OTHER",
+      "accepted": true,
+      "directions": [
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE"
+    },
+    {
+      "pair_id": "cp1_f1f54f5c85e3ba6660b4b60782d6dcf9d48a039e09160be9caaca97a0dc889c7",
+      "attempt": "attempt_02",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/repeat_1/main/attempt_02/output/4228ea24c55a.jsonl",
+      "source_sha256": "39e2f89e714a710d28aed1189c6f8657f45d21c3bcda91fceb513f31982cb706",
+      "translation_status": "COMPLETE_FAITHFUL",
+      "accepted": false,
+      "issue": "COMPOSITE_TRANSLATION: complete translation cannot have a retained loss or unresolved/conflicting basis"
+    },
+    {
+      "pair_id": "actual_membership_conflict:ab",
+      "attempt": "attempt_02",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/repeat_1/main/attempt_02/output/4228ea24c55a.jsonl",
+      "source_sha256": "39e2f89e714a710d28aed1189c6f8657f45d21c3bcda91fceb513f31982cb706",
+      "translation_status": "OTHER",
+      "accepted": true,
+      "directions": [
+        "NO",
+        "NO"
+      ],
+      "relation": "RELATED_NON_DUPLICATE"
+    },
+    {
+      "pair_id": "cp1_f1f54f5c85e3ba6660b4b60782d6dcf9d48a039e09160be9caaca97a0dc889c7",
+      "attempt": "attempt_03",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/repeat_1/main/attempt_03/output/7cf12d6d6cd6.jsonl",
+      "source_sha256": "aec7dc5b7ccbbc0f2cb28049cefa07630861c95a74f1cbf9ad3834a6fbb38367",
+      "translation_status": "OTHER",
+      "accepted": true,
+      "directions": [
+        "NO",
+        "YES"
+      ],
+      "relation": "CONTAINMENT"
+    },
+    {
+      "pair_id": "actual_membership_conflict:ab",
+      "attempt": "attempt_03",
+      "source": "/raid/hfang/ihb/runs/v0.6.2.30-format-diagnostic/repeat_1/main/attempt_03/output/7cf12d6d6cd6.jsonl",
+      "source_sha256": "aec7dc5b7ccbbc0f2cb28049cefa07630861c95a74f1cbf9ad3834a6fbb38367",
+      "translation_status": "OTHER",
+      "accepted": false,
+      "issue": "CONTEXT_DIFFERENCE_REQUIRED: two shared witnesses alone do not establish the differing value"
+    }
+  ]
+}

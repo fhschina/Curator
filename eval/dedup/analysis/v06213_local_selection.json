@@ -1,0 +1,19 @@
+{
+  "pairs": 258,
+  "description": "Union of old 127 residual, all 54 translation, 12 identical, 6 canonical, 39 reference containment, 38 frozen negative guards, all 57 v06212 overgroups. Frozen before v06213 inference; error-enriched development only. CSV projects original identity/weight/reference fields without modifications.",
+  "reference_sha256": "6f685cdf717df61a9332e431c685a9d860348a6c83e3665356075e8dc6c28096",
+  "reason_counts": {
+    "factual_state": 17,
+    "list_membership": 2,
+    "translation": 54,
+    "meaningful_addition": 94,
+    "identical": 12,
+    "material_content": 11,
+    "canonical": 6,
+    "boilerplate_only": 18,
+    "page_role": 20,
+    "identity_slot": 16,
+    "chrome_only": 7,
+    "parser_noise": 1
+  }
+}

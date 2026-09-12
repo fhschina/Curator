@@ -1,0 +1,22 @@
+Compare all retained meaning, not just the unique-token sections. No main judgment
+or reference is supplied. The schema's a_* fields always refer to document A;
+b_* always refers to document B. No replacement direction needs to be emitted.
+
+{{ rubric }}
+
+<semantic_diff status="{{ payload.semantic_diff_evidence.status }}">
+counts: {{ payload.semantic_diff_evidence.span_counts }}
+{% for span in payload.semantic_diff_evidence.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED: PRESENT IN BOTH A AND B, NOT ONE-SIDED CONTENT]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}: LOCATED IN DOCUMENT {{ span.side }}]
+{{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+Return one JSON object satisfying this exact schema:
+{{ schema }}

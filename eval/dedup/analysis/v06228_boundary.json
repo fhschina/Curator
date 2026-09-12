@@ -1,0 +1,28 @@
+{
+  "schema_version": "dedup-sequencing-boundary-v1",
+  "created_at_utc": "2026-09-10T19:45:44.026248+00:00",
+  "passed": true,
+  "external_model_calls": 0,
+  "local_http_requests": 12,
+  "full_boundary_tests_passed": 4,
+  "full_module_tests_passed": 22,
+  "cpu_tests_passed": 795,
+  "cpu_ray_tests_skipped": 30,
+  "gpu_tests_deselected": 2,
+  "owned_ray_address": "127.0.0.1:52653",
+  "schema_constraints_unchanged": true,
+  "raw_field_order_is_not_an_acceptance_condition": true,
+  "boundary_test_helper": "Reuse both-arm native first/retry fixture with explicit owned Ray address; all three valid typed branch shapes retain original meaning in either key order.",
+  "pre_boundary_test_fixes": "Separate visible packet equality from intentionally reordered appended schema; select the actual response_schema tag rather than its explanatory mention. Production acceptance unchanged.",
+  "artifacts": {
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/judging/sequencing_runtime.py": "6964db1eac53cd916aaf651e256c3c7f1e788ad51912e170a6adacedb67fa165",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/sequencing_experiment.py": "52724ced3118947e986d171ecf77db2aea854d095d3d85348845a26eb35b48d6",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_sequencing_runtime.py": "d0e89cbafb86cb22c71a2f5976ee9e208f8b7d645415cbed3d114bf715e823a1",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/tests/eval/dedup/test_sequencing_experiment.py": "1d5f3343c1dddb43270c09fcb84a395feda629e7062b9870952791a636d86888",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06227_proposition_qwen_c16.yaml": "ae2dbcd03e12c366ea72f74d042b29ac3a13d7a04cc0adda39851a0d372a0f3f",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06228_sequence_qwen_c16.yaml": "63ee75c774bdd3e2324cc5bef6906ccbb5846a4852bd010ee609bf56d0c550aa",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06228_sequence_system.jinja": "b4ffddefe7b6a2f51baff5296411080f836e4cb7cb2d7215d847c84980039333",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/resources/local_ndd/hs_v06228_sequence_pair.jinja": "effbf41a97d7b7bbf48cb739e1201bda45a8e63e7a775eba0e681f4ef876aa1b",
+    "/raid/hfang/codex-home/worktrees/faab/Curator/eval/dedup/analysis/v06228_experiment.json": "e289ed553576a31f68c32faa31cff7de060bd03a107a80f9079db5738418130f"
+  }
+}
