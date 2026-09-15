@@ -22,6 +22,17 @@ Earlier revisions are in the [proposal archive](docs/proposals/archive/). The la
 
 ## Current results and dashboards
 
+### Internal Judge v0.7 — fork preview
+
+[`v0.7`](analysis/v07.md) is the internal release identity for the selected
+`v0.6.2.33-exp6+coverage-format-fix1` runtime. It is published only on the
+`fhschina/Curator` fork's `dedup-eval` branch for teammate evaluation; it is
+not an NVIDIA-NeMo/Curator release. The runtime entry point is
+`eval.dedup.analysis.v07`, and the fresh smoke-gated 20,000-pair validation
+runner is `eval.dedup.analysis.v07_full20k`. The final tag remains gated on
+that exact commit's complete run and immutable offline replay; the independent
+holdout is tracked separately.
+
 ### .12 critic scope v1 — completed local pilot, do not expand
 
 The [critic-scope report](analysis/critic_scope_v1_report.md) keeps saved .12 main outputs fixed and tests a

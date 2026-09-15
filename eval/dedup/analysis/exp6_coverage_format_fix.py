@@ -18,13 +18,21 @@ VERSION = "v0.6.2.33-exp6+coverage-format-fix1"
 old = previous.old
 
 
-def execute_case(root: Path, row: dict, endpoint: str, frozen: dict, render_coverage: Callable) -> dict:
+def execute_case(
+    root: Path,
+    row: dict,
+    endpoint: str,
+    frozen: dict,
+    render_coverage: Callable,
+    *,
+    version: str = VERSION,
+) -> dict:
     """Keep the frozen Exp6 source intact so historical receipts remain replayable."""
     key, payload = row["canonical_pair_id"], row["payload"]
     result = {
         "canonical_pair_id": key,
         "review_id": row["review_id"],
-        "version": VERSION,
+        "version": version,
         "status": "VALID",
         "components": {},
         "stages": [],
