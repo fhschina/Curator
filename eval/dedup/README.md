@@ -1,6 +1,6 @@
 # NeMo Curator Fuzzy Dedup Evaluation
 
-> **Internal fork release:** tool v0.7.1 with Judge contract v0.7 on
+> **Current internal release:** v0.7.1 on
 > [`fhschina/Curator:dedup-eval`](https://github.com/fhschina/Curator/tree/dedup-eval).
 > This is not an NVIDIA-NeMo/Curator upstream release.
 
@@ -13,21 +13,17 @@ It does **not** rerun exact or fuzzy deduplication, change the source corpus, or
 physically remove documents. Use it when dedup outputs already exist and you want
 to measure whether the pair-level decisions are supported by document evidence.
 
-## Current release: v0.7.1
+## Current release
 
-v0.7.1 is the recommended internal tool release. It preserves the prompts,
-schemas, model parameters, frozen 20,000-pair population, smoke gate, retry
-policy, and Judge semantics of contract v0.7 while presenting them through one
-stable entry point:
+Use the stable Dedup Eval command for new runs:
 
 ```bash
 python -m eval.dedup --version
 ```
 
-The command prints `v0.7.1`. New runs should use `python -m eval.dedup`.
-`python -m eval.dedup.recommended` is a deprecated compatibility alias for one
-release cycle; historical experiment and version-specific entry points are no
-longer part of the active tree.
+The command prints the installed tool version. Each run manifest records that
+version together with Judge contract `v0.7`, the source digest, model settings,
+and backend configuration.
 
 The same Judge contract can run against either:
 
@@ -57,8 +53,8 @@ needs the following evaluation-specific resources.
 The input bundle contains internal evaluation data and is intentionally not
 committed to Git. Obtain it from the project owner or approved private storage.
 Dedup Eval resolves files relative to the supplied bundle and verifies their
-content hashes. The fixed 24-pair smoke panel ships with v0.7.1, so no historical
-Exp6 checkpoint or result bundle is needed.
+content hashes. The fixed 24-pair smoke panel ships with the tool, so no prior
+result bundle is needed.
 
 Configure the input location once per shell:
 
@@ -258,9 +254,8 @@ reference:
 | Weighted primary-decision agreement | 88.88% |
 
 These are development-reference results, not independent holdout accuracy. See
-the [current results summary](RESULTS.md) for v0.7.1 Hub and local smoke
-acceptance. Raw requests, dashboards, historical reports, and presentations are
-kept outside the active source tree.
+the [full current results](RESULTS.md) for comparison tables, engineering
+accounting, SUT diagnostics, and methodological limits.
 
 ## How a run works
 
@@ -305,11 +300,7 @@ Commands do not write runtime files into `eval/dedup`.
 - `runtime/`: prepare, Hub/local execution, status, replay, and audit
 - `analysis/`: reusable metrics, comparisons, and constraint graphs
 - `reporting/`: reports, Pair Explorer, and checksum-bound serving
-- `release/`: selected prompts, schema, local config, and smoke panel
-
-Historical experiments and versioned implementations are available in the
-[private archive repository](https://github.com/fhschina/curator-dedup-eval-archive),
-not in this active branch.
+- `release/`: prompts, schema, local config, and smoke panel
 
 ## Development
 
@@ -330,10 +321,8 @@ Judge contract and must not silently reuse an existing run root.
 
 ## Scope and limitations
 
-- v0.7.1 is an internal fork tool release, not an upstream
+- This is an internal fork tool release, not an upstream
   NVIDIA-NeMo/Curator production release.
-- Judge contract v0.7 is unchanged; v0.7.1 changes packaging, interfaces, and
-  dependency boundaries.
 - The LLM Judge is an automated development reference, not independent human
   ground truth.
 - Git contains the runner and current summary, but not the private frozen 20K
