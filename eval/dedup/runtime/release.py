@@ -52,14 +52,25 @@ def _verify_manifest_digest(root: Path, *, error_code: str) -> dict:
     return manifest
 
 
-def _bound_digest(bindings: dict[str, str], relative_path: Path, *, error_code: str) -> str:
-    parts = relative_path.parts
-    matches = {digest for path, digest in bindings.items() if Path(path).parts[-len(parts) :] == parts}
+def _index_bound_digests(bindings: dict[str, str]) -> dict[tuple[str, ...], set[str]]:
+    """Index relocatable path suffixes while retaining conflicting digests."""
+    index: dict[tuple[str, ...], set[str]] = {}
+    for path, digest in bindings.items():
+        parts = Path(path).parts
+        for length in range(1, len(parts) + 1):
+            index.setdefault(parts[-length:], set()).add(digest)
+    return index
+
+
+def _bound_digest(bindings: dict[tuple[str, ...], set[str]], relative_path: Path, *, error_code: str) -> str:
+    matches = bindings.get(relative_path.parts, set())
     require(len(matches) == 1, error_code, f"one digest for {relative_path.as_posix()}")
     return next(iter(matches))
 
 
-def _verify_bound_file(root: Path, relative_path: Path, bindings: dict[str, str], *, error_code: str) -> Path:
+def _verify_bound_file(
+    root: Path, relative_path: Path, bindings: dict[tuple[str, ...], set[str]], *, error_code: str
+) -> Path:
     path = root / relative_path
     require(
         path.is_file() and sha256_file(path) == _bound_digest(bindings, relative_path, error_code=error_code),
@@ -136,10 +147,11 @@ def prepare(root: Path, *, source: Path, smoke_only: bool = False) -> dict:
     require(not root.exists(), "V07_FRESH_ROOT", "new run root; no historical answers may be copied")
     source = source.expanduser().resolve()
     original = _verify_manifest_digest(source, error_code="V07_SOURCE_MANIFEST")
+    source_bindings = _index_bound_digests(original["artifacts"])
     _verify_bound_file(
         source,
         Path("panel_index.json"),
-        original["artifacts"],
+        source_bindings,
         error_code="V07_SOURCE_ARTIFACT",
     )
     source_completion = read(source / "complete.json")
@@ -174,7 +186,7 @@ def prepare(root: Path, *, source: Path, smoke_only: bool = False) -> dict:
             source_path = _verify_bound_file(
                 source,
                 relative,
-                original["artifacts"],
+                source_bindings,
                 error_code="V07_SOURCE_ARTIFACT",
             )
             target = root / relative

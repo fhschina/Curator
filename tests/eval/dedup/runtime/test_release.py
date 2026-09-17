@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from eval.dedup.core.validation import DedupEvaluationError, sha256_json
+from eval.dedup.core.validation import DedupEvaluationError, sha256_file, sha256_json
 from eval.dedup.runtime import contract, release, state
 
 
@@ -64,6 +64,38 @@ def test_smoke_only_root_cannot_continue_as_full_run() -> None:
     release.require_execution_mode(manifest, smoke_only=True)
     with pytest.raises(DedupEvaluationError, match="DEDUP_SMOKE_ONLY_ROOT"):
         release.require_execution_mode(manifest, smoke_only=False)
+
+
+def test_relocated_source_file_retains_checksum_validation(tmp_path: Path) -> None:
+    relative = Path("inputs/pair.json")
+    target = tmp_path / relative
+    target.parent.mkdir()
+    target.write_text('{"text": "frozen"}', encoding="utf-8")
+    digest = sha256_file(target)
+    bindings = release._index_bound_digests(
+        {"/previous/machine/run/inputs/pair.json": digest, "inputs/pair.json": digest}
+    )
+
+    assert release._verify_bound_file(tmp_path, relative, bindings, error_code="SOURCE_CHANGED") == target
+
+    target.write_text('{"text": "changed"}', encoding="utf-8")
+    with pytest.raises(DedupEvaluationError, match="SOURCE_CHANGED"):
+        release._verify_bound_file(tmp_path, relative, bindings, error_code="SOURCE_CHANGED")
+
+
+@pytest.mark.parametrize(
+    "bindings",
+    [
+        {},
+        {"/previous/not-inputs/pair.json": "a"},
+        {"/first/inputs/pair.json": "a", "/second/inputs/pair.json": "b"},
+    ],
+)
+def test_source_digest_requires_an_unambiguous_path_suffix(bindings: dict[str, str]) -> None:
+    with pytest.raises(DedupEvaluationError, match="SOURCE_BINDING"):
+        release._bound_digest(
+            release._index_bound_digests(bindings), Path("inputs/pair.json"), error_code="SOURCE_BINDING"
+        )
 
 
 @pytest.mark.skipif(not os.environ.get("CURATOR_V07_VERIFIED_RUN"), reason="archived v0.7 bundle not configured")

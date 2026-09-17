@@ -5,9 +5,11 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -130,7 +132,7 @@ def _runner_contract(runner_config: Path) -> dict:
     require(
         isinstance(engine, dict) and all(engine.get(key) == value for key, value in expected.items()),
         "V07_LOCAL_CONFIG",
-        "validated single-B200 engine settings",
+        "frozen single-GPU engine settings",
     )
     return {"path": str(runner_config), "sha256": sha256_file(runner_config), "engine": expected}
 
@@ -256,6 +258,39 @@ def prepare_local(
     return {key: value for key, value in manifest.items() if key not in {"sources", "artifacts"}}
 
 
+def _local_gpus(devices: list[str]) -> list[str]:
+    gpus = []
+    families = set()
+    uuids = set()
+    for device in devices:
+        gpu = subprocess.run(  # noqa: S603 - fixed executable and frozen device selector
+            [
+                "nvidia-smi",
+                "-i",
+                device,
+                "--query-gpu=index,name,uuid,memory.total",
+                "--format=csv,noheader,nounits",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        rows = list(csv.reader(gpu.splitlines()))
+        require(len(rows) == 1 and len(rows[0]) == 4, "V07_LOCAL_GPU", "one GPU per device selector")
+        _, name, uuid, _ = (field.strip() for field in rows[0])
+        family = next((value for value in ("B200", "H100") if re.search(rf"\b{value}\b", name)), None)
+        require(family is not None and bool(uuid), "V07_LOCAL_GPU", "NVIDIA B200 or H100 GPU")
+        families.add(family)
+        uuids.add(uuid)
+        gpus.append(gpu)
+    require(
+        bool(gpus) and len(uuids) == len(devices) and len(families) == 1,
+        "V07_LOCAL_GPU",
+        "distinct GPUs from one supported family, one GPU per local replica",
+    )
+    return gpus
+
+
 def _local_preflight(manifest: dict) -> dict:
     local = manifest["local_backend"]
     require(
@@ -284,26 +319,11 @@ def _local_preflight(manifest: dict) -> dict:
         "etcd, nats-server, and ray on PATH",
     )
     os.environ["CUDA_VISIBLE_DEVICES"] = local["cuda_visible_devices"]
-    gpus = []
-    for device in local["devices"]:
-        gpu = subprocess.run(  # noqa: S603 - fixed executable and frozen device selector
-            [
-                "nvidia-smi",
-                "-i",
-                device,
-                "--query-gpu=index,name,uuid,memory.total",
-                "--format=csv,noheader,nounits",
-            ],
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip()
-        require(len(gpu.splitlines()) == 1 and "B200" in gpu, "V07_LOCAL_GPU", "visible B200")
-        gpus.append(gpu)
+    gpus = _local_gpus(local["devices"])
     require(
         len(gpus) == len(set(gpus)) == local["replicas"],
         "V07_LOCAL_GPU",
-        "one distinct B200 per local replica",
+        "one distinct supported GPU per local replica",
     )
     runtime_root = Path(local["runtime_root"])
     for path in (runtime_root, Path(local["ray_temp_dir"]), Path(local["uv_cache_dir"]), Path(local["hf_home"])):
