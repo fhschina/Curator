@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "a_can_replace_b": {"enum": ["YES", "NO", "UNRESOLVED"], "type": "string"},
+    "b_can_replace_a": {"enum": ["YES", "NO", "UNRESOLVED"], "type": "string"},
+    "confidence_tier": {"enum": ["LOW", "MEDIUM", "HIGH"], "type": "string"},
+    "dominant_overlap_source": {
+      "enum": ["MAIN_CONTENT", "SHARED_PAGE_TEMPLATE", "SITE_CHROME", "COOKIE_CONSENT", "LEGAL_POLICY_TEMPLATE", "ERROR_AUTH_PAYWALL", "LOCAL_PASSAGE", "PARSER_ARTIFACT", "NONE", "UNRESOLVED"],
+      "type": "string"
+    },
+    "evidence": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "end_char": {"minimum": 0, "type": "integer"},
+          "quote": {"maxLength": 240, "minLength": 1, "type": "string"},
+          "side": {"enum": ["A", "B"], "type": "string"},
+          "start_char": {"minimum": 0, "type": "integer"}
+        },
+        "required": ["side", "start_char", "end_char", "quote"],
+        "type": "object"
+      },
+      "maxItems": 4,
+      "type": "array"
+    },
+    "material_difference": {"enum": ["NONE", "MINOR", "MAJOR", "UNRESOLVED"], "type": "string"},
+    "primary_material_difference": {
+      "enum": ["NONE", "MAIN_CONTENT_ADDITION_DELETION", "ENTITY_SLOT_CHANGE", "DOCUMENT_IDENTITY_CHANGE", "NUMBER_CHANGE", "DATE_TIME_CHANGE", "PRODUCT_VERSION_CHANGE", "RESULT_SET_CHANGE", "PAGE_ROLE_CHANGE", "LEGAL_CONTEXT_CHANGE", "NEGATION_CHANGE", "CODE_LITERAL_CHANGE", "CODE_OUTPUT_CHANGE", "OTHER_MATERIAL", "UNRESOLVED"],
+      "type": "string"
+    },
+    "primary_risk_factor": {
+      "enum": ["NONE", "BOILERPLATE_DOMINATED_SIMILARITY", "TEMPLATE_SLOT_COLLISION", "IDENTIFIER_UNDERWEIGHTING", "TOPIC_ONLY_SIMILARITY", "LIST_SNAPSHOT_COLLISION", "PAGE_ROLE_COLLISION", "LEGAL_CONTEXT_COLLISION", "LONG_DOCUMENT_LOCAL_OVERLAP", "TRANSLATION_EQUIVALENCE", "PARAPHRASE_EQUIVALENCE", "CONTAINMENT_ASYMMETRY", "EXTRACTION_OR_PAYLOAD_LIMIT", "PARSER_ARTIFACT_DOMINANCE", "OTHER"],
+      "type": "string"
+    },
+    "reason_codes": {"items": {"type": "string"}, "type": "array", "uniqueItems": true},
+    "relation_type": {"enum": ["EXACT", "CANONICAL_EXACT", "NEAR_SURFACE", "CONTAINMENT", "VERSION_RELATED", "RELATED_NON_DUPLICATE", "UNRELATED", "UNRESOLVED"], "type": "string"},
+    "same_duplicate_group": {"enum": ["YES", "NO", "UNRESOLVED"], "type": "string"}
+  },
+  "required": ["a_can_replace_b", "b_can_replace_a", "confidence_tier", "dominant_overlap_source", "evidence", "material_difference", "primary_material_difference", "primary_risk_factor", "reason_codes", "relation_type", "same_duplicate_group"],
+  "type": "object"
+}

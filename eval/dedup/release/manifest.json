@@ -1,0 +1,9 @@
+{
+  "judge_contract_version": "v0.7",
+  "lineage": {
+    "original_release_commit": "ef17d9b6527532521580781570942728509629bd"
+  },
+  "schema": "judge_schema.json",
+  "smoke_panel": "smoke_panel.json",
+  "tool_version": "v0.7.1"
+}

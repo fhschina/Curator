@@ -5748,6 +5748,19 @@ deduplication-cuda12 = [
     { name = "raft-dask-cu12" },
     { name = "rapidsmpf-cu12" },
 ]
+dedup-eval = [
+    { name = "ai-dynamo", marker = "(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+    { name = "data-designer" },
+    { name = "gpustat" },
+    { name = "jinja2" },
+    { name = "nixl-cu12", marker = "(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+    { name = "nvidia-ml-py" },
+    { name = "pyyaml" },
+    { name = "quack-kernels", marker = "(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+    { name = "ray", extra = ["serve"] },
+    { name = "requests" },
+    { name = "vllm", version = "0.22.0+cu129", source = { registry = "https://wheels.vllm.ai/0.22.0/cu129" }, extra = ["otel", "runai"], marker = "(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
+]
 image-cpu = [
     { name = "pillow" },
     { name = "torchvision", marker = "(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
@@ -6034,6 +6047,7 @@ requires-dist = [
     { name = "gpustat", marker = "extra == 'cuda12'" },
     { name = "hydra-core" },
     { name = "iso639-lang", marker = "extra == 'translation-common'", specifier = ">=2.6.0" },
+    { name = "jinja2", marker = "extra == 'dedup-eval'" },
     { name = "jieba", specifier = "==0.42.1" },
     { name = "justext", marker = "extra == 'text-cpu'" },
     { name = "lance-ray", marker = "extra == 'lance'", specifier = ">=0.4" },
@@ -6058,6 +6072,7 @@ requires-dist = [
     { name = "nemo-curator", extras = ["deduplication-cuda12"], marker = "extra == 'image-cuda12'" },
     { name = "nemo-curator", extras = ["deduplication-cuda12"], marker = "extra == 'math-cuda12'" },
     { name = "nemo-curator", extras = ["deduplication-cuda12"], marker = "extra == 'text-cuda12'" },
+    { name = "nemo-curator", extras = ["sdg-cuda12"], marker = "extra == 'dedup-eval'" },
     { name = "nemo-curator", extras = ["image-cpu"], marker = "extra == 'image-cuda12'" },
     { name = "nemo-curator", extras = ["image-cuda12"], marker = "extra == 'all'" },
     { name = "nemo-curator", extras = ["inference-server"], marker = "extra == 'all'" },
@@ -6110,6 +6125,7 @@ requires-dist = [
     { name = "pillow", marker = "extra == 'interleaved-cpu'" },
     { name = "pyannote-audio", marker = "platform_machine == 'x86_64' and sys_platform != 'darwin' and extra == 'audio-common'", specifier = ">=4.0.0" },
     { name = "pyarrow" },
+    { name = "pyyaml", marker = "extra == 'dedup-eval'" },
     { name = "pycld2", marker = "extra == 'text-cpu'" },
     { name = "pycuda", marker = "extra == 'video-cuda12'" },
     { name = "pydub", marker = "extra == 'audio-common'", specifier = ">=0.25.1" },
@@ -6127,6 +6143,7 @@ requires-dist = [
     { name = "ray", extras = ["data", "default"], specifier = ">=2.57.0" },
     { name = "ray", extras = ["serve"], marker = "extra == 'inference-server'", specifier = ">=2.57.0" },
     { name = "requests", marker = "extra == 'translation-nmt'" },
+    { name = "requests", marker = "extra == 'dedup-eval'" },
     { name = "resiliparse", marker = "extra == 'text-cpu'" },
     { name = "s3fs", marker = "extra == 'interleaved-cpu'", specifier = ">=2024.12.0" },
     { name = "s5cmd", marker = "extra == 'text-cpu'" },
@@ -6167,7 +6184,7 @@ requires-dist = [
     { name = "warcio", marker = "extra == 'text-cpu'" },
     { name = "whisperx", marker = "platform_machine == 'x86_64' and sys_platform != 'darwin' and extra == 'audio-common'", specifier = ">=3.8.4" },
 ]
-provides-extras = ["cuda12", "cv2", "vllm", "inference-server", "deduplication-cuda12", "audio-common", "audio-cpu", "audio-cuda12", "image-cpu", "image-cuda12", "translation-common", "translation-metrics", "translation-segmentation", "translation-aws", "translation-google", "translation-nmt", "translation-all", "text-cpu", "lance", "text-cuda12", "video-cpu", "video-cuda12", "video-media", "math-cpu", "math-cuda12", "interleaved-cpu", "interleaved-cuda12", "sdg-cpu", "sdg-cuda12", "all"]
+provides-extras = ["cuda12", "cv2", "vllm", "inference-server", "deduplication-cuda12", "dedup-eval", "audio-common", "audio-cpu", "audio-cuda12", "image-cpu", "image-cuda12", "translation-common", "translation-metrics", "translation-segmentation", "translation-aws", "translation-google", "translation-nmt", "translation-all", "text-cpu", "lance", "text-cuda12", "video-cpu", "video-cuda12", "video-media", "math-cpu", "math-cuda12", "interleaved-cpu", "interleaved-cuda12", "sdg-cpu", "sdg-cuda12", "all"]
 
 [package.metadata.requires-dev]
 build = [

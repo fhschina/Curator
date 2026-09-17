@@ -295,6 +295,14 @@ sdg_cuda12 = [
     "nemo_curator[inference_server]",
 ]
 
+# Source-checkout-only dedup evaluation and Judge v0.7 runtime.
+dedup_eval = [
+    "nemo_curator[sdg_cuda12]",
+    "jinja2",
+    "pyyaml",
+    "requests",
+]
+
 # All dependencies
 all = [
     "nemo_curator[audio_cuda12]",
@@ -447,6 +455,21 @@ fixable = ["ALL"]
 
 [tool.ruff.lint.extend-per-file-ignores]
 "nemo_curator/__init__.py" = ["F401"]
+"eval/dedup/**/*.py" = [
+    "ANN401", # JSON/parquet contracts intentionally carry heterogeneous values
+    "C901", # semantic decision gates are kept linear and auditable
+    "EM101", # stable machine-readable error strings are part of the contract
+    "N818", # HumanQAPending is a control-flow signal retained for compatibility
+    "PLR0912", # explicit contract branches are easier to audit than dispatch indirection
+    "PLR0913", # pipeline entry points expose named immutable inputs
+    "PLR0915", # semantic decision gates are kept together for auditability
+    "PLR1714", # explicit path boundary checks remain readable
+    "PLR2004", # thresholds and protocol values are frozen contract constants
+    "S607", # fixed git and nvidia-smi commands intentionally use the selected PATH
+    "TC001", # runtime config classes are required for construction and validation
+    "TC003", # runtime pathlib/collection classes are used by validation paths
+    "TRY300", # CLI success output remains in the guarded credential-safe block
+]
 "examples/**" = [
     "INP001", # no __init__.py is required
 ]

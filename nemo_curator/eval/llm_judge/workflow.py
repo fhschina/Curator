@@ -111,6 +111,26 @@ def _validate_filter_references(config: dict[str, object], stages: list[dict[str
             raise ValueError(msg)
 
 
+def _get_num_workers(config: dict[str, object], *, owner: str) -> int | None:
+    """Return an optional fixed Ray worker count for one NDD stage."""
+    num_workers = config.get("num_workers")
+    if num_workers is None:
+        return None
+    if isinstance(num_workers, bool) or not isinstance(num_workers, int) or num_workers <= 0:
+        msg = f"{owner} must be a positive integer."
+        raise ValueError(msg)
+    return num_workers
+
+
+def _get_data_designer_run_config(execution: dict[str, object]) -> dd.RunConfig:
+    """Build supported Data Designer runtime settings from judge YAML."""
+    value = execution.get("data_designer_run", {})
+    if not isinstance(value, dict):
+        msg = "execution.data_designer_run must be a mapping."
+        raise TypeError(msg)
+    return dd.RunConfig(**value)
+
+
 def _keep_judge_score(  # noqa: C901, PLR0911
     judge_result: object,
     *,
@@ -194,28 +214,34 @@ def _build_language_filter_stage(
     ).with_(name="fasttext_language_filter")
 
 
-def build_config_builder(
+def build_config_builder(  # noqa: PLR0913 - provider and inference overrides are independent public inputs
     config_path: str | Path,
     *,
     endpoint: str,
     models: list[dict[str, object]],
     judges: list[dict[str, object]],
+    provider_api_key: str = "unused",  # pragma: allowlist secret
+    inference_parameter_overrides: dict[str, dict[str, object]] | None = None,
 ) -> tuple[dd.DataDesignerConfigBuilder, list[dd.ModelProvider]]:
     """Build one NDD configuration for a selected group of judge columns."""
     config_path = Path(config_path)
     provider_name = "local-judge"
-    config_builder = dd.DataDesignerConfigBuilder(
-        model_configs=[
+    model_configs = []
+    for model in models:
+        alias = str(model["alias"])
+        inference_parameters = dict(model.get("inference_parameters", {}))
+        if inference_parameter_overrides and alias in inference_parameter_overrides:
+            inference_parameters.update(inference_parameter_overrides[alias])
+        model_configs.append(
             dd.ModelConfig(
-                alias=str(model["alias"]),
+                alias=alias,
                 model=str(model.get("served_model_name", model["model"])),
                 provider=provider_name,
                 skip_health_check=bool(model.get("skip_health_check", True)),
-                inference_parameters=dd.ChatCompletionInferenceParams(**model.get("inference_parameters", {})),
+                inference_parameters=dd.ChatCompletionInferenceParams(**inference_parameters),
             )
-            for model in models
-        ]
-    )
+        )
+    config_builder = dd.DataDesignerConfigBuilder(model_configs=model_configs)
 
     for judge in judges:
         judge_name = str(judge["name"])
@@ -245,7 +271,7 @@ def build_config_builder(
         dd.ModelProvider(
             name=provider_name,
             endpoint=endpoint,
-            api_key="unused",  # pragma: allowlist secret
+            api_key=provider_api_key,
         )
     ]
     return config_builder, model_providers
@@ -297,6 +323,7 @@ def build_pipeline(  # noqa: PLR0913
             list[dd.ModelProvider],
             dict[str, object] | None,
             int | None,
+            dd.RunConfig,
             list[dict[str, object]],
         ]
     ],
@@ -313,11 +340,21 @@ def build_pipeline(  # noqa: PLR0913
     )
     writer = JsonlWriter(path=output_path) if output_format == "jsonl" else ParquetWriter(path=output_path)
     processing_stages = []
-    for stage_name, config_builder, model_providers, runtime_env, num_workers, stage_filters in judge_stages:
+    for (
+        stage_name,
+        config_builder,
+        model_providers,
+        runtime_env,
+        num_workers,
+        run_config,
+        stage_filters,
+    ) in judge_stages:
         processing_stages.append(
-            DataDesignerStage(config_builder=config_builder, model_providers=model_providers).with_(
-                name=f"ndd_{stage_name}", runtime_env=runtime_env, num_workers=num_workers
-            )
+            DataDesignerStage(
+                config_builder=config_builder,
+                model_providers=model_providers,
+                run_config=run_config,
+            ).with_(name=f"ndd_{stage_name}", runtime_env=runtime_env, num_workers=num_workers)
         )
         processing_stages.extend(_build_filter_stages(stage_filters, name_prefix=f"judge_filter_{stage_name}"))
     return Pipeline(
@@ -376,12 +413,14 @@ class LLMJudgeWorkflow(WorkflowBase):
             list[dd.ModelProvider],
             dict[str, object] | None,
             int | None,
+            dd.RunConfig,
             list[dict[str, object]],
         ]
     ]:
         models = self.config["models"]
         stages = self.config["execution"]["stages"]
         stage_filters = _place_filters(self.config, stages)
+        run_config = _get_data_designer_run_config(self.config["execution"])
         judge_stages = []
         for stage, filters_after_stage in zip(stages, stage_filters, strict=True):
             config_builder, model_providers = build_config_builder(
@@ -396,7 +435,8 @@ class LLMJudgeWorkflow(WorkflowBase):
                     config_builder,
                     model_providers,
                     stage.get("runtime_env"),
-                    stage.get("num_workers"),
+                    _get_num_workers(stage, owner=f"Stage {stage.get('name', '<unnamed>')!r} num_workers"),
+                    run_config,
                     filters_after_stage,
                 )
             )

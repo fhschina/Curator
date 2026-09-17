@@ -179,9 +179,10 @@ def test_build_pipeline_orders_reader_judges_filters_and_writer(monkeypatch: pyt
             [],
             {"env": "one"},
             1,
+            subject.dd.RunConfig(),
             [{"judge": "quality", "score": "score", "operator": "eq", "value": 1}],
         ),
-        ("safety", object(), [], {"env": "two"}, 2, []),
+        ("safety", object(), [], {"env": "two"}, 2, subject.dd.RunConfig(), []),
     ]
 
     pipeline = subject.build_pipeline(
@@ -267,7 +268,7 @@ def test_workflow_run_builds_pipeline_and_returns_result(monkeypatch: pytest.Mon
 
     assert captured["builder_judges"] == [["quality_judge"], ["safety_judge"]]
     stage_details = [
-        (stage[0], stage[3], stage[4], [item["judge"] for item in stage[5]]) for stage in captured["judge_stages"]
+        (stage[0], stage[3], stage[4], [item["judge"] for item in stage[6]]) for stage in captured["judge_stages"]
     ]
     assert stage_details == [
         ("quality", {"env": "quality"}, 1, ["quality_judge"]),

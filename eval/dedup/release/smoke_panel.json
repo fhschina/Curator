@@ -1,0 +1,122 @@
+[
+  {
+    "canonical_pair_id": "cp1_10375a59fc50e77593562a0ee55603388414c140ba1eeaf2fd95ee67569768f6",
+    "review_id": "P01329",
+    "sampling_reason": "historical_failure_or_repetition"
+  },
+  {
+    "canonical_pair_id": "cp1_78336bf42c5b231f5e43c53a10ba45d2a7c47d077bb831f0e6ac6750f54b6299",
+    "review_id": "P09549",
+    "sampling_reason": "historical_failure_or_repetition"
+  },
+  {
+    "canonical_pair_id": "cp1_cccb7666c8e19890130557d50b89fecf6dba59a92a8fe9f1ab0d6fabe1347a71",
+    "review_id": "P16061",
+    "sampling_reason": "historical_failure_or_repetition"
+  },
+  {
+    "canonical_pair_id": "cp1_53fb878ec91721ad572facf9e84db450b66f4f9ba95fb72e1c48b44cd11c1647",
+    "review_id": "P06727",
+    "sampling_reason": "historical_failure_or_repetition"
+  },
+  {
+    "canonical_pair_id": "cp1_b466090323c0d872c05b07ba34fc1a79689dec9fb8b236283ece2be16a590027",
+    "review_id": "P14187",
+    "sampling_reason": "historical_failure_or_repetition"
+  },
+  {
+    "canonical_pair_id": "cp1_00230ed92c937a163134e576a12009e8cff77d29c65cef964de7f16c7f0a11a6",
+    "review_id": "P00008",
+    "sampling_reason": "EXACT"
+  },
+  {
+    "canonical_pair_id": "cp1_002864d06ca887c73c178ce97f1c126b5ee2e0e001a0bcc2e0c3015c5b111dac",
+    "review_id": "P00012",
+    "sampling_reason": "EXACT"
+  },
+  {
+    "canonical_pair_id": "cp1_0002c53cb6e8043c37f390b2afbd955f9ac049bbdb19091e410fe1bd0e477cd1",
+    "review_id": "P00001",
+    "sampling_reason": "RELATED_NON_DUPLICATE"
+  },
+  {
+    "canonical_pair_id": "cp1_00080d79746fab493e19be51934be9af9813e5bc51386dceaa97688d2d9c356d",
+    "review_id": "P00003",
+    "sampling_reason": "RELATED_NON_DUPLICATE"
+  },
+  {
+    "canonical_pair_id": "cp1_000b4e6e18eb87d20bb732902e38e6e058b9006af430a62092015dbb6fb25987",
+    "review_id": "P00005",
+    "sampling_reason": "UNRELATED"
+  },
+  {
+    "canonical_pair_id": "cp1_0023acdc664130958f3e1aaac34c7a0340a52e4585b4a66071daeaf19623a4db",
+    "review_id": "P00009",
+    "sampling_reason": "UNRELATED"
+  },
+  {
+    "canonical_pair_id": "cp1_0054bf772ef152eb1ceced04d4bef704a37356c9dbf2f8953bd33be925f41278",
+    "review_id": "P00025",
+    "sampling_reason": "UNRESOLVED"
+  },
+  {
+    "canonical_pair_id": "cp1_007a92f3453d44d94fae1ccb4e8d757e098518d06e654c457a810dd6d276ee23",
+    "review_id": "P00044",
+    "sampling_reason": "UNRESOLVED"
+  },
+  {
+    "canonical_pair_id": "cp1_00332e3c226f4c1c7afd1820b213dc7bcf4b7f8580f7347c9198d30f39f3d296",
+    "review_id": "P00014",
+    "sampling_reason": "coverage"
+  },
+  {
+    "canonical_pair_id": "cp1_00344916ca34fb21106bb2e5c0cb31037f6b30900ddf0feb2d89d593c3234b39",
+    "review_id": "P00016",
+    "sampling_reason": "coverage"
+  },
+  {
+    "canonical_pair_id": "cp1_0071ac027f6cbab89829b8bfff0195bc401ef9c1b35bd693fe7081ec50e4f66f",
+    "review_id": "P00039",
+    "sampling_reason": "native_correction"
+  },
+  {
+    "canonical_pair_id": "cp1_0078d83e2285631ed534f8ad83bafe73fb90843bbbb76d0d8effe3d33baf0a17",
+    "review_id": "P00042",
+    "sampling_reason": "native_correction"
+  },
+  {
+    "canonical_pair_id": "cp1_00074dd9f51b6528dc4362e79338895a3f5047a0225be411560098c8818c40da",
+    "review_id": "P00002",
+    "sampling_reason": "subject"
+  },
+  {
+    "canonical_pair_id": "cp1_006626ca9550ab3d74c2eb52e47282c997f14278b50f63d0298b27d1195d1f73",
+    "review_id": "P00035",
+    "sampling_reason": "subject"
+  },
+  {
+    "canonical_pair_id": "cp1_0064a3b7211604f6b81bc578759cfcf5bb1835ed1a9db7d58957ff1920887342",
+    "review_id": "P00034",
+    "sampling_reason": "verifier"
+  },
+  {
+    "canonical_pair_id": "cp1_064316d111277a79794fd98e6fcc6d26ad55fb8073401673d7cab220c261946a",
+    "review_id": "P00529",
+    "sampling_reason": "verifier"
+  },
+  {
+    "canonical_pair_id": "cp1_005dfec1553f9f06bdb05b5f214ff597ed0f91d4b9848fc33308a42f78043c82",
+    "review_id": "H0308",
+    "sampling_reason": "normal_path_protection"
+  },
+  {
+    "canonical_pair_id": "cp1_0063aa27c0983816c05e2224a7e9286801b9ff7c7ef44630c79a3a61e486e89c",
+    "review_id": "P00033",
+    "sampling_reason": "normal_path_protection"
+  },
+  {
+    "canonical_pair_id": "cp1_006afdef2760f767ddf5952c503e1ad16a88d918a689c9b89b821eaf70ef4c02",
+    "review_id": "P00037",
+    "sampling_reason": "normal_path_protection"
+  }
+]

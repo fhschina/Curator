@@ -1,0 +1,14 @@
+contract_version: dedup-critic-retention-v4
+status: RELEASE
+fixed_main: v0.7
+system_prompt_path: coverage_system.jinja
+prompt_path: coverage_pair.jinja
+rubric:
+  a_loss_span_id: One own A_ONLY span asserting actual material meaning B lacks; bare menu/section labels without facts are not material loss. Empty when no actual loss, never SHARED.
+  b_loss_span_id: One own B_ONLY span asserting actual material meaning A lacks; bare menu/section labels without facts are not material loss. Empty when no actual loss, never SHARED.
+  a_context_span_id: Required nonempty checked A or SHARED context, independently of whether A has loss.
+  b_context_span_id: Required nonempty checked B or SHARED context, independently of whether B has loss.
+  conflict: Actual incompatible subjects of retained claims include the named failed object in an error, actual access target or liable entity, not every incidental identifier or independent added Y. Use the concrete predicate and both values.
+  overlap_basis: Unchanged v3 policy for retained content, full reused policies, interface/acknowledgment-only overlap, and uncertain completeness. No new rule to force disputed reference labels.
+  shared_anchor_ids: Account for all common spans before classifying apparent containment as interface-only.
+  explanation: State actual facts and their consequences; do not call a navigation label a new record or dismiss an error's actual target as arbitrary template metadata.
