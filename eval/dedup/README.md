@@ -257,6 +257,11 @@ These are development-reference results, not independent holdout accuracy. See
 the [full current results](RESULTS.md) for comparison tables, engineering
 accounting, SUT diagnostics, and methodological limits.
 
+Use the
+[internal Pair Explorer](http://umb-b200-218.cl1u1.colossus.nvidia.com:18750/dedup-dashboard/)
+to inspect pair-level decisions, document excerpts, Judge evidence, SUT context,
+and reason codes. It requires access to the NVIDIA internal network.
+
 ## How a run works
 
 ```text

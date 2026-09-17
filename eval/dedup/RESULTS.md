@@ -113,6 +113,14 @@ candidates. Track 5b yield is not corpus recall.
 See the [evaluation README](README.md) for installation, Hub and local backend
 commands, smoke-gate execution, status monitoring, and offline audit.
 
+The internal dashboards provide pair-level inspection:
+
+- [Pair Explorer](http://umb-b200-218.cl1u1.colossus.nvidia.com:18750/dedup-dashboard/)
+- [Track 5a removal review queue](http://umb-b200-218.cl1u1.colossus.nvidia.com:18750/dedup-dashboard/pair_explorer_v07.html?track=5a)
+- [Track 5b cross-group review queue](http://umb-b200-218.cl1u1.colossus.nvidia.com:18750/dedup-dashboard/pair_explorer_v07.html?track=5b)
+
+These links require access to the NVIDIA internal network.
+
 To verify a completed run without making model calls:
 
 ```bash
