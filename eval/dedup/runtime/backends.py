@@ -216,6 +216,7 @@ def prepare_local(
     tools_dir: Path,
     devices: str = "0",
     replicas: int | None = None,
+    smoke_only: bool = False,
 ) -> dict:
     local = _local_contract(
         root,
@@ -226,7 +227,7 @@ def prepare_local(
         devices=devices,
         replicas=replicas,
     )
-    release.prepare(root, source=source_run)
+    release.prepare(root, source=source_run, smoke_only=smoke_only)
     manifest = release.read(root / "manifest.json")
     local_sources = [
         HERE,
@@ -343,6 +344,10 @@ def _local_target(manifest: dict) -> Iterator[tuple[str, str, str]]:
 
 def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
     with state.exclusive(root):
+        manifest = verify(root)
+        release.require_execution_mode(manifest, smoke_only=smoke_only)
+        require(_backend(manifest) == "local", "V07_BACKEND", "local run manifest")
+        require(not (root / "complete.json").exists(), "V07_COMPLETE", "completed run is immutable")
         require(not (session / "started.json").exists(), "V07_SESSION", "fresh execution session required")
         write_json_atomic(
             session / "started.json",
@@ -364,7 +369,7 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
                     {
                         "at_utc": state.now(),
                         "completed": len(list((root / "results").glob("*.json"))),
-                        "population": release.POPULATION,
+                        "population": manifest["population"],
                         "backend": "local",
                         **collector.heartbeat(),
                     },
@@ -375,9 +380,6 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
         thread = threading.Thread(target=heartbeat, daemon=True)
         thread.start()
         try:
-            manifest = verify(root)
-            require(_backend(manifest) == "local", "V07_BACKEND", "local run manifest")
-            require(not (root / "complete.json").exists(), "V07_COMPLETE", "completed run is immutable")
             used = sum(bool(event.get("external_request")) for event in state.events(root / "transport_events.jsonl"))
             budget = manifest["max_external_attempts"] - used
             require(budget > 0, "V07_BUDGET", "bounded external request budget")
@@ -474,6 +476,7 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
 def launch_local(root: Path, *, smoke_only: bool = False) -> dict:
     with state.exclusive(root):
         manifest = verify(root)
+        release.require_execution_mode(manifest, smoke_only=smoke_only)
         require(_backend(manifest) == "local", "V07_BACKEND", "local launch manifest")
         require(
             not (root / "complete.json").exists() and not release.status(root)["running"],
@@ -601,9 +604,10 @@ def main(argv: list[str] | None = None) -> int:
                     tools_dir=tools_dir,
                     devices=args.local_devices or args.local_device or "0",
                     replicas=args.local_replicas,
+                    smoke_only=args.smoke_only,
                 )
             else:
-                value = release.prepare(root, source=source)
+                value = release.prepare(root, source=source, smoke_only=args.smoke_only)
         else:
             manifest = release.read(root / "manifest.json") if args.command == "status" else verify(root)
             backend = _backend(manifest)

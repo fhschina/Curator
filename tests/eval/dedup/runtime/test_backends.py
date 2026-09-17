@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -30,3 +31,35 @@ def test_release_local_runner_freezes_selected_engine_settings() -> None:
         "enforce_eager": True,
     }
     assert Path(value["path"]).is_file()
+
+
+def test_hub_prepare_cli_forwards_smoke_only(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    calls = []
+    monkeypatch.setattr(
+        backends.release,
+        "prepare",
+        lambda root, **kwargs: calls.append((root, kwargs)) or {"mode": backends.release.SMOKE_ONLY_MODE},
+    )
+
+    assert (
+        backends.main(
+            [
+                "prepare",
+                "--root",
+                str(tmp_path / "run"),
+                "--source-run",
+                str(tmp_path / "source"),
+                "--smoke-only",
+            ]
+        )
+        == 0
+    )
+    assert json.loads(capsys.readouterr().out) == {"mode": backends.release.SMOKE_ONLY_MODE}
+    assert calls == [
+        (
+            (tmp_path / "run").resolve(),
+            {"source": (tmp_path / "source").resolve(), "smoke_only": True},
+        )
+    ]

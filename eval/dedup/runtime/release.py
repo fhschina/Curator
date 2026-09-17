@@ -31,6 +31,8 @@ VERSION = TOOL_VERSION
 POPULATION = 20000
 SMOKE_SIZE = 24
 REQUIRED_SMOKE_STAGES = {"main", "coverage", "subject", "verifier"}
+FULL_MODE = "FRESH_FULL20K_WITH_SMOKE_GATE"
+SMOKE_ONLY_MODE = "FRESH_SMOKE_ONLY"
 read = state.read
 
 
@@ -130,7 +132,7 @@ def verify(root: Path) -> dict:
     return manifest
 
 
-def prepare(root: Path, *, source: Path) -> dict:
+def prepare(root: Path, *, source: Path, smoke_only: bool = False) -> dict:
     require(not root.exists(), "V07_FRESH_ROOT", "new run root; no historical answers may be copied")
     source = source.expanduser().resolve()
     original = _verify_manifest_digest(source, error_code="V07_SOURCE_MANIFEST")
@@ -142,9 +144,14 @@ def prepare(root: Path, *, source: Path) -> dict:
     )
     source_completion = read(source / "complete.json")
     state.intact(source_completion["contract_digest"] == original["contract_digest"])
-    rows = read(source / "panel_index.json")
-    state.intact(len(rows) == len({r["canonical_pair_id"] for r in rows}) == POPULATION)
-    smoke = frozen_smoke(rows)
+    source_rows = read(source / "panel_index.json")
+    state.intact(len(source_rows) == len({r["canonical_pair_id"] for r in source_rows}) == POPULATION)
+    smoke = frozen_smoke(source_rows)
+    if smoke_only:
+        by_key = {row["canonical_pair_id"]: row for row in source_rows}
+        rows = [by_key[row["canonical_pair_id"]] for row in smoke]
+    else:
+        rows = source_rows
     extras = [
         HERE,
         RELEASE_MANIFEST,
@@ -205,10 +212,11 @@ def prepare(root: Path, *, source: Path) -> dict:
         "runtime_version": JUDGE_CONTRACT_VERSION,
         "tool_version": TOOL_VERSION,
         "judge_contract_version": JUDGE_CONTRACT_VERSION,
-        "mode": "FRESH_FULL20K_WITH_SMOKE_GATE",
+        "mode": SMOKE_ONLY_MODE if smoke_only else FULL_MODE,
         "distribution": "FHSCHINA_FORK_DEDUP_EVAL_ONLY",
         "at_utc": state.now(),
         "population": len(rows),
+        "source_population": len(source_rows),
         "smoke_size": len(smoke),
         "required_smoke_stages": sorted(REQUIRED_SMOKE_STAGES),
         "git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
@@ -239,6 +247,14 @@ def prepare(root: Path, *, source: Path) -> dict:
     manifest["contract_digest"] = sha256_json(manifest)
     write_json_atomic(root / "manifest.json", manifest)
     return {k: v for k, v in manifest.items() if k not in {"sources", "artifacts"}}
+
+
+def require_execution_mode(manifest: dict, *, smoke_only: bool) -> None:
+    require(
+        manifest.get("mode") != SMOKE_ONLY_MODE or smoke_only,
+        "DEDUP_SMOKE_ONLY_ROOT",
+        "a smoke-only prepared root cannot continue as a full run",
+    )
 
 
 def execute(root: Path, row: dict, endpoint: str, render: Callable) -> dict:
@@ -417,6 +433,9 @@ def run(root: Path, env_file: Path, session: Path, *, smoke_only: bool = False) 
     from eval.dedup.cli import _load_repository_env
 
     with state.exclusive(root):
+        manifest = verify(root)
+        require_execution_mode(manifest, smoke_only=smoke_only)
+        require(not (root / "complete.json").exists(), "V07_COMPLETE", "completed run is immutable")
         require(not (session / "started.json").exists(), "V07_SESSION", "fresh execution session required")
         write_json_atomic(
             session / "started.json",
@@ -433,7 +452,7 @@ def run(root: Path, env_file: Path, session: Path, *, smoke_only: bool = False) 
                     {
                         "at_utc": state.now(),
                         "completed": len(list((root / "results").glob("*.json"))),
-                        "population": POPULATION,
+                        "population": manifest["population"],
                         **collector.heartbeat(),
                     },
                 )
@@ -443,8 +462,6 @@ def run(root: Path, env_file: Path, session: Path, *, smoke_only: bool = False) 
         thread = threading.Thread(target=heartbeat, daemon=True)
         thread.start()
         try:
-            manifest = verify(root)
-            require(not (root / "complete.json").exists(), "V07_COMPLETE", "completed run is immutable")
             _load_repository_env(env_file)
             credential = os.environ.get("NVIDIA_API_KEY", "").strip()
             require(bool(credential), "V07_CREDENTIAL", "existing NVIDIA key required")
@@ -531,7 +548,8 @@ def status(root: Path) -> dict:
 
 def launch(root: Path, env_file: Path, *, smoke_only: bool = False) -> dict:
     with state.exclusive(root):
-        verify(root)
+        manifest = verify(root)
+        require_execution_mode(manifest, smoke_only=smoke_only)
         require(
             not (root / "complete.json").exists() and not status(root)["running"],
             "V07_LAUNCH",

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from eval.dedup.core.validation import sha256_json
+from eval.dedup.core.validation import DedupEvaluationError, sha256_json
 from eval.dedup.runtime import contract, release, state
 
 
@@ -56,6 +56,14 @@ def test_legacy_smoke_audit_never_creates_a_completion_marker(tmp_path: Path, mo
             persist_missing=False,
         )
     assert not (tmp_path / "smoke_complete.json").exists()
+
+
+def test_smoke_only_root_cannot_continue_as_full_run() -> None:
+    manifest = {"mode": release.SMOKE_ONLY_MODE}
+
+    release.require_execution_mode(manifest, smoke_only=True)
+    with pytest.raises(DedupEvaluationError, match="DEDUP_SMOKE_ONLY_ROOT"):
+        release.require_execution_mode(manifest, smoke_only=False)
 
 
 @pytest.mark.skipif(not os.environ.get("CURATOR_V07_VERIFIED_RUN"), reason="archived v0.7 bundle not configured")

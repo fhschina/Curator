@@ -16,6 +16,10 @@ python -m eval.dedup status --root RUN_ROOT
 python -m eval.dedup audit --root RUN_ROOT
 ```
 
+Add `--smoke-only` to `prepare` and `run` (or `launch`) to create a compact
+24-pair acceptance root. A smoke-only root is explicitly prevented from
+continuing as a full 20K run.
+
 Choose `--backend local` during `prepare` to freeze a local Qwen/B200 backend;
 otherwise the Hub backend is used. Existing `CURATOR_V07_SOURCE_RUN`,
 `CURATOR_V07_LOCAL_MODEL_PATH`, and `CURATOR_V07_LOCAL_TOOLS_DIR` environment
