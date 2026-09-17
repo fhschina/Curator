@@ -29,7 +29,7 @@ The same Judge contract can run against either:
 
 - **NVIDIA Inference Hub**, the default backend; or
 - **a local Qwen FP8 deployment**, with one tensor-parallel-1 replica per
-  selected B200.
+  selected B200 or H100. Use GPUs from the same family within a run.
 
 Backend selection is frozen when a run is prepared. Hub and local evaluations
 must use different fresh run roots.
@@ -79,7 +79,7 @@ NVIDIA_API_KEY=replace_with_your_key
 
 ### Additional requirements for the local backend
 
-- Linux, a CUDA 12-compatible NVIDIA driver, and one or more NVIDIA B200 GPUs.
+- Linux, a CUDA 12-compatible NVIDIA driver, and NVIDIA B200 or H100 GPUs.
 - The pinned `Qwen/Qwen3.8-27B-FP8` checkpoint at revision
   `017b9c7af6b5689d5dd426a76e0bc077eb5ca20a`. The validated model bundle
   includes `.hosting-benchmark-revision.json`; preparation rejects a different
@@ -97,6 +97,13 @@ export CURATOR_V07_LOCAL_TOOLS_DIR=/path/to/directory-containing-etcd-and-nats-s
 
 The equivalent options are `--local-model-path` and `--local-tools-dir`.
 
+H100 deployments may also need a CUDA toolkit for runtime kernel compilation
+and a driver-specific worker configuration. Follow the
+[H100 and CW-DFW deployment guide](../../fern/versions/main/pages/curate-text/process-data/deduplication/evaluation-h100.mdx)
+to generate a separate runner profile and use the Slurm examples. The validated
+CW-DFW configuration uses H100 80GB HBM3 and driver 535.216.03; single-GPU smoke
+passed, while eight-GPU inference and the complete 20K evaluation remain unverified.
+
 ## Installation
 
 Clone the internal branch and create an environment on a suitable machine:
@@ -112,8 +119,10 @@ python -m eval.dedup --version
 ```
 
 Do not reuse an environment resolved from unconstrained package versions. The
-lockfile preserves the validated Data Designer, Ray, Dynamo, vLLM, PyArrow, and
-RAPIDS compatibility set.
+lockfile preserves the driver environment's Data Designer, Ray, Dynamo, vLLM,
+PyArrow, and RAPIDS compatibility set. Dynamo resolves additional model-worker
+dependencies in an isolated environment, which can select a different vLLM
+version. Preserve its installation logs when validating another deployment.
 
 ## Quick start
 
@@ -152,9 +161,13 @@ python -m eval.dedup launch \
   --env-file "$V07_ENV_FILE"
 ```
 
-### Option B: local model on one B200
+### Option B: local model on one GPU
 
 GPU 0 with one local replica is the explicit single-GPU configuration:
+
+For H100, first create the profile described in the deployment guide and add
+`--local-runner-config /path/to/profile/config.yaml` to `prepare`. Under Slurm,
+use the guide's foreground `run` example instead of the detached `launch` below.
 
 ```bash
 export V07_RUN_ROOT=/path/to/runs/v071-local-1gpu-001
@@ -179,7 +192,7 @@ python -m eval.dedup launch --root "$V07_RUN_ROOT"
 
 The local backend does not read or persist an NVIDIA API key.
 
-### Option C: local model on multiple B200s
+### Option C: local model on multiple GPUs
 
 Use a comma-separated device list and the same number of independent replicas:
 
@@ -197,9 +210,11 @@ python -m eval.dedup launch \
   --smoke-only
 ```
 
-Each B200 hosts one tensor-parallel-1 replica. Aggregate client concurrency is
+Each GPU hosts one tensor-parallel-1 replica. Aggregate client concurrency is
 eight requests per replica. `--local-replicas` must equal the number of unique
 devices in `--local-devices`; the runner does not split one model across GPUs.
+Apply the same H100 profile and Slurm guidance as in Option B. A new replica
+count requires a new run root and its own smoke gate.
 
 ### Compact smoke-only root
 

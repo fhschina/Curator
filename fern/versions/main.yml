@@ -249,6 +249,9 @@ navigation:
                   - page: Fuzzy Deduplication
                     path: ./main/pages/curate-text/process-data/deduplication/fuzzy.mdx
                     slug: fuzzy
+                  - page: Dedup Eval on H100
+                    path: ./main/pages/curate-text/process-data/deduplication/evaluation-h100.mdx
+                    slug: evaluation-h100
                   - page: Semantic Deduplication
                     path: ./main/pages/curate-text/process-data/deduplication/semdedup.mdx
                     slug: semdedup

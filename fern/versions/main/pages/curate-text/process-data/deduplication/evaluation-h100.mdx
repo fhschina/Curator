@@ -1,0 +1,231 @@
+---
+description: "Deploy the internal v0.7.1 frozen-pair Judge on H100 GPUs, including CW-DFW Slurm jobs."
+categories: ["workflows"]
+tags: ["deduplication", "evaluation", "h100", "slurm"]
+personas: ["mle-focused"]
+difficulty: "advanced"
+content_type: "how-to"
+modality: "text-only"
+---
+
+# Dedup Eval on H100
+
+This guide applies to the internal `fhschina/Curator:dedup-eval` v0.7.1
+source-checkout tool. It is not an NVIDIA-NeMo/Curator upstream release.
+The tool evaluates the frozen 20,000-pair Judge v0.7 population using
+`Qwen/Qwen3.8-27B-FP8`, with one tensor-parallel-1 replica per selected GPU.
+It does not rerun deduplication or construct a new evaluation population.
+
+The scripts in `eval/dedup/deploy/` accept deployment paths and the Slurm account
+from the caller. Keep environments, model weights, input bundles, generated
+runner profiles, and run outputs outside the checkout.
+
+## Validation scope
+
+On September 17, 2026, the CW-DFW deployment passed the engineering smoke gate
+on one H100 80GB HBM3 GPU with NVIDIA driver 535.216.03:
+
+- All 24 sample pairs produced structurally valid results.
+- All 38 saved model calls replayed identically offline.
+- Main, coverage, subject, and verifier stages were exercised.
+- Four pairs had an allowed `unresolved` semantic result. This gate checks the
+  engineering workflow; it does not establish semantic accuracy.
+
+The full 20K input roots were prepared for one and eight replicas. Eight-GPU
+inference and the complete 20K evaluation have not been validated. Other H100
+variants are accepted by device detection but were not inference-tested.
+
+| Component | Observed working version |
+| --- | --- |
+| Python | 3.11.15 |
+| Ray | 2.57.0 |
+| Data Designer | 0.9.1 |
+| Dynamo | 1.3.1 |
+| Driver-environment vLLM | 0.22.0+cu129 |
+| Model-worker vLLM | 0.23.0+cu129 |
+| Model-worker FlashInfer | 0.6.12 |
+| CUDA compiler / runtime | 12.9.86 / 12.9.79 |
+| CCCL / cuRAND | 12.9.27 / 10.3.10.19 |
+
+The repository lockfile controls the driver environment. Dynamo installs
+additional dependencies in its isolated model-worker environment, so the
+lockfile alone does not freeze the complete worker dependency graph. Keep
+worker installation logs with each deployment's validation evidence.
+
+## Set paths and prepare the environment
+
+Use Bash on the cluster. Replace the example paths and account before running:
+
+```bash
+export DEPLOY_ROOT=/path/to/shared/dedup-deployment
+export V07_REPO_DIR=/path/to/Curator
+export SLURM_ACCOUNT=your_slurm_account
+export PYTHON_BIN="$DEPLOY_ROOT/venv/bin/python"
+export CURATOR_V07_SOURCE_RUN="$DEPLOY_ROOT/inputs/v07-frozen20k"
+export CURATOR_V07_LOCAL_MODEL_PATH="$DEPLOY_ROOT/models/Qwen3.8-27B-FP8"
+export CURATOR_V07_LOCAL_TOOLS_DIR="$DEPLOY_ROOT/tools"
+export V07_RUNNER_CONFIG="$DEPLOY_ROOT/profiles/h100-r535/config.yaml"
+export V07_RUN_ROOT="$DEPLOY_ROOT/runs/h100-1gpu-001"
+export V07_LOCAL_DEVICES=0
+mkdir -p "$DEPLOY_ROOT/logs" "$CURATOR_V07_LOCAL_TOOLS_DIR"
+cd "$V07_REPO_DIR"
+```
+
+Use a real Git checkout: preparation records the Git revision as well as source
+hashes. Keep the checkout, Python environment, model, input bundle, and generated
+profile at paths visible on every allocated node.
+
+If a suitable environment already exists, set `PYTHON_BIN` to its Python
+executable. Otherwise, with `uv >= 0.12.0` on `PATH`, create one using a CPU
+allocation:
+
+```bash
+export UV_PROJECT_ENVIRONMENT="$DEPLOY_ROOT/venv"
+export UV_CACHE_DIR="$DEPLOY_ROOT/cache/uv"
+export UV_PYTHON_INSTALL_DIR="$DEPLOY_ROOT/tools/python"
+export UV_LINK_MODE=copy
+srun --account="$SLURM_ACCOUNT" --partition=cpu_short \
+  --nodes=1 --ntasks=1 --cpus-per-task=4 --mem=16G --time=00:30:00 \
+  uv sync --locked --python 3.11 --extra dedup_eval --no-dev
+"$PYTHON_BIN" -m eval.dedup --version
+```
+
+Obtain these inputs separately:
+
+- The private frozen input bundle: `manifest.json`, `complete.json`,
+  `panel_index.json`, `inputs/`, and `main_requests/`. Old model responses are
+  unnecessary. Preparation verifies the bound file hashes after relocation.
+- The validated FP8 checkpoint at revision
+  `017b9c7af6b5689d5dd426a76e0bc077eb5ca20a`, including its
+  `.hosting-benchmark-revision.json` marker and all indexed weight shards.
+  Obtain the verified bundle from approved storage; a directory name alone
+  does not establish the revision.
+- Executable `etcd` and `nats-server` binaries in
+  `CURATOR_V07_LOCAL_TOOLS_DIR`. The tested deployment used versions 3.5.32
+  and 2.10.28, respectively.
+
+## Install CUDA tools and generate the runner profile
+
+FlashInfer and the model's GDN kernels compile during startup or inference.
+The driver and Python CUDA wheels alone do not supply all required compiler
+tools and headers. The helper installs NVIDIA's CUDA 12.9.1 `cuda_nvcc`,
+`cuda_cudart`, `cuda_cccl`, and `libcurand` redistributions into a user directory.
+It verifies a pinned manifest hash and each archive's SHA-256, then compiles
+and links an `sm_90` probe. It does not execute GPU code or modify the driver.
+Use a dedicated toolkit directory and run only one installer against it at a
+time. A compatible existing toolkit can be used instead.
+
+```bash
+srun --account="$SLURM_ACCOUNT" --partition=cpu_short \
+  --nodes=1 --ntasks=1 --cpus-per-task=4 --mem=4G --time=00:15:00 \
+  bash eval/dedup/deploy/install_cuda.sh \
+    "$DEPLOY_ROOT/tools/cuda-12.9.1" "$DEPLOY_ROOT/cache/cuda-redist"
+
+"$PYTHON_BIN" -m eval.dedup.deploy.configure_h100 \
+  --output "$(dirname "$V07_RUNNER_CONFIG")" \
+  --cuda-home "$DEPLOY_ROOT/tools/cuda-12.9.1" \
+  --max-jobs 8 \
+  --disable-deep-gemm
+```
+
+The generator copies the immutable release runner, prompts, and CUTLASS
+compatibility shim into a new directory. It changes only the model's
+`dynamo_model.runtime_env.env_vars`:
+
+- `CUDA_HOME` points to the shared toolkit.
+- `MAX_JOBS` limits compiler parallelism per worker.
+- With `--disable-deep-gemm`, `VLLM_USE_DEEP_GEMM=0` selects a fallback for
+  the driver API failure observed with CW-DFW driver 535.216.03. This flag is
+  an explicit deployment choice, not a universal H100 or B200 default.
+
+These variables belong to the model worker's environment. Setting them only
+in the submitting shell does not reliably configure the isolated worker.
+The profile preserves the TP=1, 32,768-token context, eight-sequence limit,
+0.8 GPU memory fraction, eager execution, and frozen generation parameters.
+Do not edit the generated profile after preparing a run; create a new profile
+and run root when settings change.
+
+## Prepare inputs and run the smoke gate
+
+Prepare the full input population on a CPU node, then schedule a smoke run:
+
+```bash
+prepare_job=$(sbatch --parsable --account="$SLURM_ACCOUNT" \
+  --output="$DEPLOY_ROOT/logs/prepare-%j.log" \
+  eval/dedup/deploy/prepare.slurm full)
+sbatch --account="$SLURM_ACCOUNT" --dependency="afterok:${prepare_job%%;*}" \
+  --output="$DEPLOY_ROOT/logs/judge-%j.log" \
+  eval/dedup/deploy/run.slurm smoke
+```
+
+The GPU example requests one exclusive eight-GPU node even when
+`V07_LOCAL_DEVICES=0` selects a single replica. The runtime freezes physical
+device indices and sets `CUDA_VISIBLE_DEVICES` from its manifest; arbitrary
+partial-GPU Slurm allocations are not supported by this example. Reserving
+all eight GPUs keeps device indices available across job resumes. Single-GPU
+smoke therefore leaves seven allocated GPUs idle.
+
+`run.slurm` uses foreground `python -m eval.dedup run`. Do not replace it with
+the detached `launch` command, which can end the batch script and release its
+allocation while the service is starting. The script makes a fresh execution
+session for each submission, including requeues, and attempts to save model
+worker and dependency-installation logs under `recovery/slurm-logs/` on exit.
+A forced kill or node failure can prevent that final log copy.
+
+The first smoke took approximately 30 minutes, including dependency download
+and kernel compilation. Leave enough time for cold caches when moving nodes.
+Inspect the Slurm exit status and the run's `smoke_complete.json`: it must
+contain `passed: true`. The execution session should report `SMOKE_PASSED`.
+
+```bash
+"$PYTHON_BIN" -m eval.dedup status --root "$V07_RUN_ROOT"
+squeue -u "$USER"
+```
+
+For a compact 24-pair-only diagnostic root, pass `smoke` to both scripts.
+Such a root cannot later continue to the full 20K population.
+
+## Continue, resume, or use eight replicas
+
+After smoke passes on a full input root, continue using the same paths:
+
+```bash
+sbatch --account="$SLURM_ACCOUNT" --time=04:00:00 \
+  --output="$DEPLOY_ROOT/logs/judge-%j.log" \
+  eval/dedup/deploy/run.slurm full
+```
+
+The full command runs the smoke gate if needed and resumes saved progress.
+After a time limit, verify the previous job has stopped, inspect its logs,
+then resubmit the same command. Four hours is a scheduling limit, not an
+estimate that 20K will finish. The script runs the offline audit after full
+completion. Do not change bound source files, the environment, checkpoint,
+profile, or device selection while a prepared run is in use.
+
+Changing the replica count requires a fresh root. To prepare eight TP=1 replicas:
+
+```bash
+export V07_RUN_ROOT="$DEPLOY_ROOT/runs/h100-8gpu-001"
+export V07_LOCAL_DEVICES=0,1,2,3,4,5,6,7
+```
+
+Repeat the preparation and smoke submissions above before attempting full
+execution. Each replica allows eight concurrent requests; eight-replica
+inference still requires its own validation.
+
+The examples use CW-DFW's `cpu_short` and `batch` partition names. Supply your
+authorized account explicitly and check a proposed GPU request with
+`sbatch --test-only` before submission. A partition appearing in `sinfo` does
+not prove that your account may use it; longer partitions can have separate
+account restrictions. Override partition and time with submission options
+only when the allocation is permitted.
+
+## Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| `nvcc` missing during warmup or GDN inference | Confirm the generated profile's `CUDA_HOME` is visible in the model worker and contains `bin/nvcc`. Disabling sampling warmup alone does not eliminate GDN compilation. |
+| `curand.h` or `curand_kernel.h` missing | Include `libcurand` with nvcc, cudart, and CCCL; rerun the compile/link probe. |
+| DeepGEMM reports `Failed to load CUDA driver API` on the tested R535 driver | Generate a new profile with `--disable-deep-gemm`, then prepare a new run root. |
+| Source, profile, or model binding fails on resume | Restore the exact bound resources or start a fresh root; do not rewrite the saved manifest. |
+| Worker dependency installation fails | Inspect `recovery/slurm-logs/` and the Ray runtime logs. Check the worker's CUDA wheel tags and resolved versions separately from the driver environment. |
