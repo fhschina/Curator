@@ -166,10 +166,13 @@ def execute_case(
             raw = review("coverage", render_coverage(payload), contract.coverage.response_schema())
             normalized, corrections = anchor_ids.normalize_shared_anchor_ids(payload, raw)
             if corrections:
+                repair_contract = anchor_ids.ZERO_PADDING_CONTRACT
+                if any(c.get("action") == "remove_exact_duplicate" for c in corrections):
+                    repair_contract = anchor_ids.EXACT_DUPLICATE_CONTRACT
+                elif any(c["original"].isdigit() for c in corrections):
+                    repair_contract = anchor_ids.CONTRACT
                 result["coverage_anchor_id_repair"] = {
-                    "contract_version": anchor_ids.CONTRACT
-                    if any(c["original"].isdigit() for c in corrections)
-                    else anchor_ids.ZERO_PADDING_CONTRACT,
+                    "contract_version": repair_contract,
                     "corrections": corrections,
                     "original_review": deepcopy(raw),
                     "normalized_review": deepcopy(normalized),
