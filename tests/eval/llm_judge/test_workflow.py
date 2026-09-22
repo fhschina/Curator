@@ -14,13 +14,24 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
-from typing import Any
+from types import SimpleNamespace
+from typing import TYPE_CHECKING, Any
+from unittest.mock import Mock
 
+import data_designer.config as dd
 import pytest
+import yaml
 from jinja2 import Environment, StrictUndefined
+from pydantic import ValidationError
 
 from nemo_curator.eval.llm_judge import workflow as subject
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+
+    import pytest_httpserver
 
 EXAMPLE_DIR = Path(__file__).parents[3] / "tutorials" / "eval" / "llm_judge" / "cc_extract_example"
 
@@ -124,6 +135,8 @@ def test_filter_validation_rejects_stage_local_filter_for_later_judge() -> None:
         ({"quality": {"score": "good"}}, "quality", "in", ["good", "bad"], True),
         ({"quality": {"score": "good"}}, "quality", "not_in", ["bad"], True),
         ({}, "quality", "eq", 4, False),
+        (None, "quality", "eq", 4, False),
+        (None, "quality", "ne", 4, False),
         ({"quality": {"score": "four"}}, "quality", "gt", 3, False),
     ],
 )
@@ -396,3 +409,216 @@ def _run_workflow_with_fakes(
     finally:
         assert captured.get("server_stopped") is True
     return captured, result
+
+
+def _conditional_judge(name: str = "quality_judge", **options: object) -> dict[str, object]:
+    return {
+        "name": name,
+        "prompt_path": f"{name}.jinja",
+        "scores": [{"name": "quality", "description": "Is the text readable?", "options": {0: "No", 1: "Yes"}}],
+        **options,
+    }
+
+
+def _write_judge_config(tmp_path: Path, stages: list[dict[str, object]]) -> Path:
+    for stage in stages:
+        for judge in stage["judges"]:
+            (tmp_path / judge["prompt_path"]).write_text(
+                f"Judge {judge['name']} for {{{{ id }}}}: {{{{ text }}}}", encoding="utf-8"
+            )
+    config = {
+        "models": [
+            {
+                "alias": "judge",
+                "model": "mock-model",
+                "skip_health_check": True,
+                "inference_parameters": {"max_tokens": 256, "max_parallel_requests": 2},
+            }
+        ],
+        "execution": {"stages": stages},
+    }
+    path = tmp_path / "judge.yaml"
+    path.write_text(yaml.safe_dump(config), encoding="utf-8")
+    return path
+
+
+@pytest.mark.parametrize(
+    ("options", "expected_skip", "propagate_skip"),
+    [
+        ({}, None, True),
+        ({"skip": None}, None, True),
+        ({"skip": {"when": "{{ not should_run }}"}}, {"when": "{{ not should_run }}", "value": None}, True),
+        (
+            {"skip": {"when": "{{ not should_run }}", "value": 0}, "propagate_skip": False},
+            {"when": "{{ not should_run }}", "value": 0},
+            False,
+        ),
+        ({"propagate_skip": False}, None, False),
+    ],
+)
+def test_build_config_builder_forwards_skip_options(
+    tmp_path: Path, options: dict[str, object], expected_skip: dict[str, object] | None, propagate_skip: bool
+) -> None:
+    config_path = _write_judge_config(tmp_path, [{"name": "quality", "judges": [_conditional_judge(**options)]}])
+    workflow = subject.LLMJudgeWorkflow(judge_config=config_path, input_path="unused", output_path="unused")
+
+    builder = workflow._build_judge_stages(endpoint="http://unused/v1")[0][1]
+    column = builder.get_column_config("quality_judge")
+
+    assert isinstance(column, dd.LLMJudgeColumnConfig)
+    assert (column.skip.model_dump() if column.skip is not None else None) == expected_skip
+    assert column.propagate_skip is propagate_skip
+
+
+@pytest.mark.parametrize(
+    "options",
+    [
+        {"skip": {}},
+        {"skip": False},
+        {"skip": {"when": "not should_run"}},
+        {"skip": {"when": "{{ not should_run"}},
+        {"skip": {"when": "{{ not should_run }}", "value": {"quality": {"score": 0}}}},
+        {"propagate_skip": "sometimes"},
+    ],
+)
+def test_build_config_builder_rejects_invalid_skip_options(tmp_path: Path, options: dict[str, object]) -> None:
+    config_path = _write_judge_config(tmp_path, [{"name": "quality", "judges": [_conditional_judge(**options)]}])
+    workflow = subject.LLMJudgeWorkflow(judge_config=config_path, input_path="unused", output_path="unused")
+
+    with pytest.raises(ValidationError):
+        workflow._build_judge_stages(endpoint="http://unused/v1")
+
+
+@pytest.fixture
+def judge_endpoint(
+    monkeypatch: pytest.MonkeyPatch, httpserver: pytest_httpserver.HTTPServer
+) -> Iterator[pytest_httpserver.HTTPServer]:
+    completion = {
+        "id": "judge-completion",
+        "object": "chat.completion",
+        "choices": [
+            {
+                "index": 0,
+                "message": {
+                    "role": "assistant",
+                    "content": '```json\n{"quality": {"score": 1, "reasoning": "Readable text."}}\n```',
+                },
+                "finish_reason": "stop",
+            }
+        ],
+        "usage": {"prompt_tokens": 1, "completion_tokens": 1, "total_tokens": 2},
+    }
+    httpserver.expect_request("/v1/chat/completions", method="POST").respond_with_json(completion)
+    server = SimpleNamespace(endpoint=httpserver.url_for("/v1"), stop=Mock())
+    start_server = Mock(return_value=server)
+    monkeypatch.setattr(subject, "_start_inference_server", start_server)
+    yield httpserver
+    start_server.assert_called_once()
+    server.stop.assert_called_once()
+
+
+def _run_conditional_workflow(tmp_path: Path, config_path: Path, flags: list[bool]) -> dict[str, dict]:
+    seeds = [
+        {"id": f"row_{index}", "text": f"Example text {index}.", "should_run": flag}
+        for index, flag in enumerate(flags)
+    ]
+    input_path = tmp_path / "input.jsonl"
+    input_path.write_text("".join(json.dumps(row) + "\n" for row in seeds), encoding="utf-8")
+    workflow = subject.LLMJudgeWorkflow(
+        judge_config=config_path, input_path=str(input_path), output_path=str(tmp_path / "output")
+    )
+
+    result = workflow.run()
+    records = [
+        json.loads(line)
+        for task in result.pipeline_tasks["llm_judge"]
+        for path in task.data
+        for line in Path(path).read_text(encoding="utf-8").splitlines()
+    ]
+    assert sorted(row["id"] for row in records) == [row["id"] for row in seeds]
+    by_id = {row["id"]: row for row in records}
+    for seed in seeds:
+        assert {key: by_id[seed["id"]][key] for key in seed} == seed
+    return by_id
+
+
+@pytest.mark.parametrize(
+    ("options", "flags", "expected_calls"),
+    [
+        ({"skip": {"when": "{{ not should_run }}"}}, [True, False, True, False], 2),
+        ({"skip": {"when": "{{ not should_run }}"}}, [False] * 4, 0),
+        ({"skip": {"when": "{{ not should_run }}"}}, [True] * 4, 4),
+        ({}, [True, False, True, False], 4),
+        ({"skip": None}, [True, False, True, False], 4),
+    ],
+    ids=["mixed", "all-skipped", "all-selected", "no-skip-config", "null-skip-config"],
+)
+def test_workflow_conditional_judge_preserves_rows(
+    tmp_path: Path,
+    judge_endpoint: pytest_httpserver.HTTPServer,
+    options: dict[str, object],
+    flags: list[bool],
+    expected_calls: int,
+) -> None:
+    config_path = _write_judge_config(tmp_path, [{"name": "quality", "judges": [_conditional_judge(**options)]}])
+
+    records = _run_conditional_workflow(tmp_path, config_path, flags)
+
+    assert len(judge_endpoint.log) == expected_calls
+    for record in records.values():
+        if options.get("skip") is not None and not record["should_run"]:
+            assert record["quality_judge"] is None
+        else:
+            assert record["quality_judge"]["quality"] == {"score": 1, "reasoning": "Readable text."}
+
+
+@pytest.mark.parametrize("propagate_skip", [True, False])
+def test_workflow_propagates_skips_within_one_stage(
+    tmp_path: Path, judge_endpoint: pytest_httpserver.HTTPServer, propagate_skip: bool
+) -> None:
+    producer = _conditional_judge(skip={"when": "{{ not should_run }}"})
+    consumer = _conditional_judge("followup")
+    if not propagate_skip:
+        consumer["propagate_skip"] = False
+    config_path = _write_judge_config(tmp_path, [{"name": "quality", "judges": [producer, consumer]}])
+    (tmp_path / "followup.jinja").write_text(
+        "Review {{ id }}: {{ text }}. Earlier result: "
+        '{{ quality_judge if quality_judge is not none else "Not evaluated" }}',
+        encoding="utf-8",
+    )
+
+    records = _run_conditional_workflow(tmp_path, config_path, [True, False, True, False])
+
+    assert len(judge_endpoint.log) == (4 if propagate_skip else 6)
+    for record in records.values():
+        if not record["should_run"]:
+            assert record["quality_judge"] is None
+        if propagate_skip and not record["should_run"]:
+            assert record["followup"] is None
+        else:
+            assert record["followup"]["quality"]["score"] == 1
+
+
+def test_workflow_gates_later_stage_with_explicit_null_condition(
+    tmp_path: Path, judge_endpoint: pytest_httpserver.HTTPServer
+) -> None:
+    config_path = _write_judge_config(
+        tmp_path,
+        [
+            {"name": "quality", "judges": [_conditional_judge(skip={"when": "{{ not should_run }}"})]},
+            {
+                "name": "followup",
+                "judges": [_conditional_judge("followup", skip={"when": "{{ quality_judge is none }}"})],
+            },
+        ],
+    )
+
+    records = _run_conditional_workflow(tmp_path, config_path, [True, False, True, False])
+
+    assert len(judge_endpoint.log) == 4
+    for record in records.values():
+        if record["should_run"]:
+            assert record["followup"]["quality"]["score"] == 1
+        else:
+            assert record["quality_judge"] is None
+            assert record["followup"] is None

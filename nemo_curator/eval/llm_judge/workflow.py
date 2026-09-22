@@ -239,6 +239,10 @@ def build_config_builder(
             judge_kwargs["system_prompt"] = _read_template(str(system_prompt_path), config_path=config_path)
         if trace := judge.get("with_trace"):
             judge_kwargs["with_trace"] = dd.TraceType(trace)
+        if (skip := judge.get("skip")) is not None:
+            judge_kwargs["skip"] = dd.SkipConfig.model_validate(skip)
+        if "propagate_skip" in judge:
+            judge_kwargs["propagate_skip"] = judge["propagate_skip"]
         config_builder.add_column(dd.LLMJudgeColumnConfig(**judge_kwargs))
 
     model_providers = [
