@@ -156,13 +156,54 @@ execution:
                 5: Excellent.
 ```
 
-Each entry under a stage's `judges:` list is one LLM call per input row, regardless of how many `scores:` it defines — all scores for a judge are returned together in that single call's structured response. Call count scales with the number of judge entries (summed across every stage) and the number of input rows; stage names and `scores:` count do not affect it. For example, `cc_extract_example/text_extraction_qwen_judge.yaml` has 2 judges (2 calls/row), and `cc_extract_example/text_extraction_qwen_gemma_judges.yaml` runs the same rubrics through two models via YAML anchors, giving 4 judges (4 calls/row).
+Each entry under a stage's `judges:` list generates one structured response per row it evaluates, regardless of how many `scores:` it defines — all scores for a judge are returned together. Conditional generation can skip individual judge cells; retries and response corrections can increase the actual request count. With no skips or retries, `cc_extract_example/text_extraction_qwen_judge.yaml` has 2 judges (2 calls/row), and `cc_extract_example/text_extraction_qwen_gemma_judges.yaml` runs the same rubrics through two models via YAML anchors, giving 4 judges (4 calls/row).
 
 `alias` is the name judges use to select a served model. `model` is the model identifier or local weights path. `served_model_name` is the API name exposed by Dynamo/vLLM and is useful when it differs from the local path.
 
 Each judge needs a unique `name`, a `prompt_path`, and one or more rubric scores. Score option keys may be numeric or string labels, such as `unclear`. Use bare keys for intentional numeric outputs. Quote string labels that YAML would otherwise coerce to another type, such as `"yes"`, `"no"`, `"true"`, `"false"`, `"on"`, `"off"`, and `"null"`. A judge may omit `model_alias` to use the first configured model.
 
 The bundled Qwen example disables thinking through `inference_parameters.extra_body.chat_template_kwargs.enable_thinking`. Keep that setting for Qwen structured judging; remove it for providers that do not support it.
+
+### Conditional judges
+
+Each judge can use Data Designer's native `skip` and `propagate_skip` options. For example, to evaluate only input records whose boolean `should_run` field is true:
+
+```yaml
+execution:
+  stages:
+    - name: optional_quality
+      judges:
+        - name: quality_judge
+          model_alias: judge
+          prompt_path: quality_prompt.jinja
+          scores:
+            - name: quality
+              description: Is the text readable?
+              options:
+                0: Not readable.
+                1: Readable.
+          skip:
+            when: "{{ not should_run }}"
+            value: null
+          propagate_skip: true
+```
+
+Keep the existing `models` configuration and provide `quality_prompt.jinja`, for example `Evaluate this text: {{ text }}`. The workflow does not compute `should_run`; supply it as an input field. Conditions can also reference an earlier judge's result.
+
+When `skip.when` is true, NDD does not call the model for that judge cell. The row and original fields are retained, and the entire judge result defaults to `null` in JSONL, rather than a fabricated score object. `skip.value` sets an alternative scalar fill value using NDD's native semantics; keep the default `null` for structured judge results so downstream code can distinguish an absent judgment. Omitting `skip` or setting `skip: null` adds no explicit skip condition. An empty mapping (`skip: {}`), invalid Jinja syntax, or invalid option types fail NDD configuration validation.
+
+Within one execution stage, `propagate_skip: true` (the default) also skips a judge if a column it depends on was skipped. This applies even without an explicit `skip` condition. Set `propagate_skip: false` to let a dependent judge continue; its prompt must still handle missing results, for example `{{ quality_judge if quality_judge is not none else "Not evaluated" }}`.
+
+Skip tracking is local to one Data Designer execution and is not carried across Curator stages. For a judge in a later stage, put the producing stage first and express the condition using the earlier output, for example:
+
+```yaml
+skip:
+  when: "{{ quality_judge is none or quality_judge.quality.score == 0 }}"
+```
+
+Use existing columns with the intended types and guard nullable results before accessing nested scores. Some runtime expression errors are logged by NDD and treated as a skip; they do not necessarily stop the workflow. Generation failures may still drop records, so check input/output IDs and counts after a run.
+
+The example above has no output filters. A configured score filter on a skipped judge result still rejects that row, since `null` has no rubric score. Skipping generation and filtering output remain separate operations.
 
 ## Model support
 
