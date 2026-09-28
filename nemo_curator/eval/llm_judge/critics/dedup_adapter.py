@@ -129,8 +129,20 @@ def normalize_main(record: dict[str, Any], source_judge: str) -> dict[str, str]:
     return decision
 
 
-def _slice(span: dict[str, Any], document: str, prefix: str, pair_id: object) -> str:
-    start, end, text = (span.get(prefix + key) for key in ("start_char", "end_char", "text"))
+def _offset(span: dict[str, Any], key: str, pair_id: object) -> int:
+    value = span.get(key)
+    # Arrow/Pandas roundtrips promote nullable integer members of span structs to floats.
+    require(
+        type(value) is int or (type(value) is float and value.is_integer()),
+        f"missing or non-integral {key} for {span.get('span_id')}",
+        pair_id=pair_id,
+    )
+    return int(value)
+
+
+def _slice(span: dict[str, Any], document: str, prefix: str, pair_id: object) -> tuple[str, int, int]:
+    start, end = (_offset(span, prefix + key, pair_id) for key in ("start_char", "end_char"))
+    text = span.get(prefix + "text")
     require(
         type(start) is int
         and type(end) is int
@@ -140,7 +152,7 @@ def _slice(span: dict[str, Any], document: str, prefix: str, pair_id: object) ->
         f"invalid original offsets/text for {span.get('span_id')}",
         pair_id=pair_id,
     )
-    return text
+    return text, start, end
 
 
 def adapt_alignment(record: dict[str, Any]) -> dict[str, Any]:
@@ -153,7 +165,11 @@ def adapt_alignment(record: dict[str, Any]) -> dict[str, Any]:
     )
     packet = record.get("semantic_diff")
     require(isinstance(packet, dict), "missing semantic_diff", pair_id=pair_id)
-    require(packet.get("status") in {"COMPLETE", "INCOMPLETE_LIMIT"}, "invalid packet status", pair_id=pair_id)
+    require(
+        isinstance(packet.get("status"), str) and packet["status"] in {"COMPLETE", "INCOMPLETE_LIMIT"},
+        "invalid packet status",
+        pair_id=pair_id,
+    )
     flags = [record.get("truncated"), *(packet.get(key) for key in ("truncated", "truncated_a", "truncated_b"))]
     require(all(type(flag) is bool for flag in flags), "truncation flags must be booleans", pair_id=pair_id)
     require(flags[0] == flags[1] == (flags[2] or flags[3]), "inconsistent truncation flags", pair_id=pair_id)
@@ -168,22 +184,27 @@ def adapt_alignment(record: dict[str, Any]) -> dict[str, Any]:
             "span IDs must be valid and unique",
             pair_id=pair_id,
         )
-        require(kind in {"SHARED", "A_ONLY", "B_ONLY"}, f"invalid kind for {sid}", pair_id=pair_id)
+        require(
+            isinstance(kind, str) and kind in {"SHARED", "A_ONLY", "B_ONLY"},
+            f"invalid kind for {sid}",
+            pair_id=pair_id,
+        )
         require(sid[0] == ("S" if kind == "SHARED" else kind[0]), f"ID/kind mismatch for {sid}", pair_id=pair_id)
         seen.add(sid)
         counts[kind] += 1
         item = dict(span)
         if kind == "SHARED":
             for side, document in documents.items():
-                text = _slice(span, document, side.lower() + "_", pair_id)
+                text, start, end = _slice(span, document, side.lower() + "_", pair_id)
                 require(len(text) <= MAX_EVIDENCE_CHARS, f"oversized shared span {sid}", pair_id=pair_id)
+                item.update({side.lower() + "_start_char": start, side.lower() + "_end_char": end})
         else:
             side, document = kind[0], documents[kind[0]]
             require(span.get("side", side) == side, f"wrong side for {sid}", pair_id=pair_id)
-            _slice(span, document, "", pair_id)
-            start, end = span.get("delta_start_char"), span.get("delta_end_char")
+            context_text, context_start, context_end = _slice(span, document, "", pair_id)
+            start, end = (_offset(span, key, pair_id) for key in ("delta_start_char", "delta_end_char"))
             require(
-                type(start) is int and type(end) is int and span["start_char"] <= start < end <= span["end_char"],
+                context_start <= start < end <= context_end,
                 f"missing or invalid delta boundaries for {sid}",
                 pair_id=pair_id,
             )
@@ -193,9 +214,9 @@ def adapt_alignment(record: dict[str, Any]) -> dict[str, Any]:
                 start_char=start,
                 end_char=end,
                 text=document[start:end],
-                context_text=span["text"],
-                context_start_char=span["start_char"],
-                context_end_char=span["end_char"],
+                context_text=context_text,
+                context_start_char=context_start,
+                context_end_char=context_end,
             )
         canonical.append(item)
     declared = packet.get("span_counts")

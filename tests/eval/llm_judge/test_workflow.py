@@ -333,6 +333,31 @@ execution:
         subject.LLMJudgeWorkflow(judge_config=config_path, input_path="input.jsonl", output_path="output")
 
 
+def test_critic_references_and_templates_are_validated_before_startup(tmp_path: Path) -> None:
+    config, stages = _config_with_filters()
+    config.update(models=[{"alias": "judge", "model": "model"}], execution={"stages": stages})
+    template = tmp_path / "critic.jinja"
+    template.write_text("Review {{ _coverage_payload }}", encoding="utf-8")
+    entry = {
+        "name": "coverage",
+        "source_judge": "quality_judge",
+        "model_alias": "judge",
+        "prompt_path": template.name,
+        "system_prompt_path": template.name,
+    }
+    config["execution"]["critics"] = [entry]
+    loaded = subject._load_critics(config, tmp_path / "judge.yaml")
+    assert loaded[0][0].source_judge == "quality_judge"
+    assert loaded[0][2] == template.read_text(encoding="utf-8")
+    entry["model_alias"] = "missing"
+    with pytest.raises(ValueError, match="unknown source_judge or model_alias"):
+        subject._load_critics(config, tmp_path / "judge.yaml")
+    entry["model_alias"] = "judge"
+    template.unlink()
+    with pytest.raises(FileNotFoundError):
+        subject._load_critics(config, tmp_path / "judge.yaml")
+
+
 def _run_workflow_with_fakes(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,

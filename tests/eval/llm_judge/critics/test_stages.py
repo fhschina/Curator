@@ -1,0 +1,208 @@
+# Copyright (c) 2026, NVIDIA CORPORATION. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+from __future__ import annotations
+
+import json
+import threading
+from copy import deepcopy
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from typing import Any
+
+import pandas as pd
+import pytest
+import yaml
+
+from nemo_curator.eval.llm_judge import workflow
+from nemo_curator.eval.llm_judge.critics.coverage import CoverageCritic
+from nemo_curator.eval.llm_judge.critics.dedup_adapter import DECISION_OPTIONS
+from nemo_curator.eval.llm_judge.critics.stages import CriticApplyStage, CriticPrepareStage
+from nemo_curator.tasks import DocumentBatch
+
+PROMPTS = Path(__file__).parents[4] / "tutorials/eval/dedup/judge_config/critics/coverage"
+
+
+def test_stages_preserve_records_and_metadata(pair: dict[str, Any], review: dict[str, Any]) -> None:
+    critic = CoverageCritic("pair_semantic_judgment")
+    batch = DocumentBatch(data=pd.DataFrame([pair]), dataset_name="pairs", _metadata={"source": "fixture"})
+    prepared = CriticPrepareStage(critic).process(batch)
+    prepared.data = prepared.to_pandas()
+    prepared.data["coverage_review"] = [review]
+    result = CriticApplyStage(critic).process(prepared)
+    row = result.to_pyarrow().to_pylist()[0]
+    for key, value in pair.items():
+        # Arrow may materialize absent keys as null in heterogeneous span structs.
+        if key != "semantic_diff":
+            assert row[key] == value
+    assert row["coverage_action"] == "KEEP_MAIN"
+    assert result.dataset_name == batch.dataset_name
+    assert result._metadata == batch._metadata
+    assert result._stage_perf is batch._stage_perf
+    assert not set(critic.temporary_columns) & set(result.get_columns())
+    with pytest.raises(ValueError, match="overwrite"):
+        CriticPrepareStage(critic).process(result)
+
+
+def test_apply_does_not_treat_failed_generation_as_skip(pair: dict[str, Any]) -> None:
+    critic = CoverageCritic("pair_semantic_judgment")
+    prepared = CriticPrepareStage(critic).process(DocumentBatch(data=pd.DataFrame([pair]), dataset_name="pairs"))
+    prepared.data = prepared.to_pandas()
+    prepared.data["coverage_review"] = None
+    with pytest.raises(ValueError, match="pair-1"):
+        CriticApplyStage(critic).process(prepared)
+
+
+@pytest.mark.parametrize("all_skipped", [False, True])
+@pytest.mark.usefixtures("shared_ray_client")
+def test_workflow_runs_real_conditional_critic_pipeline(  # noqa: C901, PLR0915
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    pair: dict[str, Any],
+    review: dict[str, Any],
+    all_skipped: bool,
+) -> None:
+    requests: list[str] = []
+    coverage_prompts: list[str] = []
+    lifecycle: list[str] = []
+    main = deepcopy(pair.pop("pair_semantic_judgment"))
+    negative = deepcopy(main)
+    for key, value in {
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no",
+        "relation_type": "related_non_duplicate",
+        "material_difference": "major",
+        "primary_material_difference": "other_material",
+    }.items():
+        negative[key]["score"] = value
+    review["a_loss_span_id"] = "A001"
+
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, *_args: object) -> None:
+            pass
+
+        def do_POST(self) -> None:
+            request = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+            prompt = request["messages"][-1]["content"]
+            if isinstance(prompt, list):
+                prompt = "\n".join(block.get("text", "") for block in prompt)
+            is_main = "MAIN " in prompt
+            requests.append("main" if is_main else "coverage")
+            if not is_main:
+                coverage_prompts.append(prompt)
+            content = (negative if "skip" in prompt else main) if is_main else review
+            response = {
+                "id": "test-response",
+                "object": "chat.completion",
+                "created": 0,
+                "model": "test-model",
+                "choices": [
+                    {
+                        "index": 0,
+                        "message": {"role": "assistant", "content": "```json\n" + json.dumps(content) + "\n```"},
+                        "finish_reason": "stop",
+                    }
+                ],
+                "usage": {"prompt_tokens": 10, "completion_tokens": 10, "total_tokens": 20},
+            }
+            body = json.dumps(response).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+
+    class ModelServer:
+        endpoint = f"http://127.0.0.1:{server.server_port}/v1"
+
+        def stop(self) -> None:
+            lifecycle.append("stop")
+
+    def start_server(*_args: object, **_kwargs: object) -> ModelServer:
+        lifecycle.append("start")
+        return ModelServer()
+
+    monkeypatch.setattr(workflow, "_start_inference_server", start_server)
+    (tmp_path / "main.jinja").write_text("MAIN {{ pair_id }}", encoding="utf-8")
+    records = [
+        {**deepcopy(pair), "pair_id": f"{'skip' if all_skipped or index % 2 else 'run'}-{index}"} for index in range(4)
+    ]
+    input_path = tmp_path / "pairs.jsonl"
+    input_path.write_text("".join(json.dumps(row) + "\n" for row in records), encoding="utf-8")
+    config = {
+        "models": [{"alias": "judge", "model": "test-model", "skip_health_check": True}],
+        "execution": {
+            "stages": [
+                {
+                    "name": "main",
+                    "num_workers": 1,
+                    "judges": [
+                        {
+                            "name": "pair_semantic_judgment",
+                            "prompt_path": "main.jinja",
+                            "model_alias": "judge",
+                            "scores": [
+                                {
+                                    "name": name,
+                                    "description": name,
+                                    "options": dict.fromkeys(options, "An allowed value."),
+                                }
+                                for name, options in DECISION_OPTIONS.items()
+                            ],
+                        }
+                    ],
+                }
+            ],
+            "critics": [
+                {
+                    "name": "coverage",
+                    "source_judge": "pair_semantic_judgment",
+                    "model_alias": "judge",
+                    "prompt_path": str(PROMPTS / "pair.jinja"),
+                    "system_prompt_path": str(PROMPTS / "system.jinja"),
+                }
+            ],
+        },
+    }
+    config_path = tmp_path / "judge.yaml"
+    config_path.write_text(yaml.safe_dump(config), encoding="utf-8")
+    try:
+        workflow.LLMJudgeWorkflow(
+            judge_config=config_path, input_path=str(input_path), output_path=str(tmp_path / "output")
+        ).run()
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
+    assert lifecycle == ["start", "stop"]
+    assert requests.count("main") == 4
+    assert requests.count("coverage") == (0 if all_skipped else 2)
+    for prompt in coverage_prompts:
+        assert "A001" in prompt
+        assert "apples" in prompt
+        assert "pears" in prompt
+        assert "Original main reasoning" not in prompt
+    rows = [
+        json.loads(line) for path in (tmp_path / "output").glob("*.jsonl") for line in path.read_text().splitlines()
+    ]
+    assert len(rows) == len(records)
+    by_id = {row["pair_id"]: row for row in rows}
+    assert len(by_id) == len(records)
+    for original in records:
+        row = by_id[original["pair_id"]]
+        for key in ("text_a", "text_b", "truncated"):
+            assert row[key] == original[key]
+        skipped = original["pair_id"].startswith("skip")
+        assert row["coverage_should_run"] is not skipped
+        assert row["coverage_action"] == ("SKIP" if skipped else "REJECT_B_REPLACES_A")
+        if skipped:
+            assert row["coverage_review"] is None
+            assert row["final_decision"] == {key: value["score"] for key, value in negative.items()}
+        else:
+            assert row["coverage_review"] == review
+            assert row["final_decision"]["a_can_replace_b"] == "yes"
+            assert row["final_decision"]["b_can_replace_a"] == "no"

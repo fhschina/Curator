@@ -70,29 +70,33 @@ def _bucket_relation(relation: str | None) -> str:
 
 
 def _correct_identical_text_relation(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Deterministically correct `relation_type` to `exact` for pairs the judge should never get
-    wrong: an untruncated, COMPLETE span packet with zero `A_ONLY`/`B_ONLY` spans means the
-    visible text on both sides is identical.
-
-    `judge_config/fuzzy_pair_judge.yaml` already defines `exact` as "Complete visible cleaned
-    texts are identical" -- an objectively checkable condition from `semantic_diff` alone -- but
-    the LLM sometimes still returns `near_surface` for it.
-    """
+    """Correct main relations only for complete, untruncated, equal nonempty original texts."""
     diff = df["semantic_diff"]
     is_complete = diff.map(lambda d: isinstance(d, dict) and d.get("status") == "COMPLETE")
-    span_counts = diff.map(lambda d: d.get("span_counts", {}) if isinstance(d, dict) else {})
-    identical_visible_text = span_counts.map(lambda c: c.get("A_ONLY", 1) == 0 and c.get("B_ONLY", 1) == 0)
-    eligible = is_complete & identical_visible_text & ~df["truncated"] & df["relation_type"].notna()
+    packet_untruncated = diff.map(
+        lambda d: isinstance(d, dict)
+        and all(d.get(key) is False for key in ("truncated", "truncated_a", "truncated_b"))
+    )
+    raw_equal = df.apply(
+        lambda row: isinstance(row.get("text_a"), str)
+        and bool(row["text_a"].strip())
+        and row["text_a"] == row.get("text_b"),
+        axis=1,
+    )
+    eligible = is_complete & packet_untruncated & raw_equal & ~df["truncated"] & df["relation_type"].notna()
     df["relation_type_corrected"] = eligible & (df["relation_type"] != "exact")
     df.loc[df["relation_type_corrected"], "relation_type"] = "exact"
     return df
 
 
-def annotate(df: pd.DataFrame) -> pd.DataFrame:
+def annotate(df: pd.DataFrame, *, decision_source: str = "main") -> pd.DataFrame:
     """Add `relation_type`, `verdict`, and `is_disagreement` columns to the raw judge output."""
-    if JUDGE_COLUMN not in df.columns:
-        msg = f"Expected judge output column {JUDGE_COLUMN!r} not found; columns present: {list(df.columns)}"
+    if decision_source not in {"main", "final"}:
+        msg = "decision_source must be 'main' or 'final'."
+        raise ValueError(msg)
+    decision_column = JUDGE_COLUMN if decision_source == "main" else "final_decision"
+    if decision_column not in df.columns:
+        msg = f"Expected judge output column {decision_column!r} not found; columns present: {list(df.columns)}"
         raise KeyError(msg)
     if "pair_type" not in df.columns or "expected_duplicate" not in df.columns:
         msg = (
@@ -103,11 +107,15 @@ def annotate(df: pd.DataFrame) -> pd.DataFrame:
         raise KeyError(msg)
 
     df = df.copy()
-    df["relation_type"] = df[JUDGE_COLUMN].map(_extract_relation)
+    df["relation_type"] = df[decision_column].map(
+        _extract_relation
+        if decision_source == "main"
+        else lambda row: row.get(SCORE_NAME) if isinstance(row, dict) else None
+    )
     # Older pairs files predate build_semantic_diff()/the `truncated` column -- treat those as
     # not truncated rather than dropping them, since we have no truncation info for them either way.
     df["truncated"] = df["truncated"].fillna(False).astype(bool) if "truncated" in df.columns else False
-    if "semantic_diff" in df.columns:
+    if decision_source == "main" and "semantic_diff" in df.columns:
         df = _correct_identical_text_relation(df)
     else:
         df["relation_type_corrected"] = False
@@ -166,6 +174,12 @@ _DISAGREEMENT_COLUMNS = [
     "primary_risk_factor",
     "dominant_overlap_source",
     JUDGE_COLUMN,
+    "final_decision",
+    "coverage_should_run",
+    "coverage_review",
+    "coverage_action",
+    "coverage_reason",
+    "coverage_evidence",
 ]
 
 
@@ -190,6 +204,12 @@ def _parse_args() -> argparse.Namespace:
         help="Directory of JSONL or Parquet part files written by 5_run_llm_judge.py (step 5).",
     )
     parser.add_argument(
+        "--decision-source",
+        choices=("main", "final"),
+        default="main",
+        help="Analyze the original main judgment or the coverage-adjusted final decision.",
+    )
+    parser.add_argument(
         "--disagreements-output",
         default=None,
         help=(
@@ -205,12 +225,12 @@ def main() -> None:
     df = _load_judge_output(args.judge_output_path)
     logger.info(f"Loaded {len(df)} judged pairs from {args.judge_output_path}")
 
-    df = annotate(df)
+    df = annotate(df, decision_source=args.decision_source)
     num_corrected = int(df["relation_type_corrected"].sum())
     if num_corrected:
         logger.info(
             f"Deterministically corrected relation_type to 'exact' for {num_corrected}/{len(df)} pairs where "
-            "the visible span packet showed identical text but the judge said otherwise."
+            "the complete, untruncated original texts were identical but the judge said otherwise."
         )
     summary = summarize(df)
     logger.warning(

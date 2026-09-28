@@ -79,7 +79,7 @@ python tutorials/eval/dedup/4_span_alignment.py \
 
 # Step 5: judge each pair. Edit judge_config/fuzzy_pair_judge.yaml first --
 # set models[0].model to a local model path or HF repo id, and size
-# num_replicas/tensor_parallel_size to your GPUs (bundled default: 1 GPU).
+# num_replicas/tensor_parallel_size to your GPUs (set num_replicas: 1 for a single-GPU run).
 # --input-path accepts a glob, so point it at one strategy's directory, or at
 # several (e.g. output/dedup_eval/*_pairs) to judge them together.
 python tutorials/eval/dedup/5_run_llm_judge.py \
@@ -166,9 +166,9 @@ three Curator `ProcessingStage`s -- `TokenizerStage` (tokenizes `text_a`/
 characters into multiple spans, re-slicing `TokenizerStage`'s token lists
 instead of re-tokenizing, and assembles the final packet) -- so alignment
 happens per reader task via Ray Data -- one raw pairs file from step 3
-becomes one task by default (`--files-per-partition 1`) -- instead of a
-single-process Python loop over every pair. No single span is ever more than
-`_MAX_SPAN_CHUNK_CHARS` characters, so one long run of unchanged text or one
+becomes one task -- instead of a
+single-process Python loop over every pair. Each core span is bounded by
+`_MAX_SPAN_CHUNK_CHARS` characters before context padding, so one long run of unchanged text or one
 long difference doesn't become a single undifferentiated block. Side-only
 spans are additionally padded, at their outer edges only (not between
 chunks), with a little neighboring shared text (`_SPAN_CONTEXT_CHARS`) so a
@@ -181,7 +181,9 @@ B: Applicable to Model X200
 
 the packet includes an `A_ONLY`/`B_ONLY` pair covering "Applicable to Model
 X100"/"...X200" rather than just the bare `X100`/`X200` tokens, so the judge
-sees what the changed value actually refers to. This is stored as the
+sees what the changed value actually refers to. Side-only spans also retain
+`delta_start_char`/`delta_end_char`, the core boundaries before padding.
+This is stored as the
 `semantic_diff` field (`status`, `truncated`, `truncated_a`, `truncated_b`,
 `span_counts`, `spans`) and is what `judge_config/pair.jinja` renders to the
 judge -- the judge never sees raw `text_a`/`text_b` directly. `status` is
@@ -211,11 +213,87 @@ rubric field -- `span_content_profile_a`/`span_content_profile_b`,
 
 Before bucketing, `6_analyze_results.py` also deterministically corrects
 `relation_type` to `exact` for any untruncated, `COMPLETE` pair whose
-`semantic_diff.span_counts` shows zero `A_ONLY`/`B_ONLY` spans -- i.e. the
-visible text is objectively identical, per `fuzzy_pair_judge.yaml`'s own
-definition of `exact` -- since the judge sometimes returns `near_surface`
+nonempty original `text_a` and `text_b` are exactly equal -- since the judge sometimes returns `near_surface`
 for this instead (`_correct_identical_text_relation()`; corrected rows are
 flagged with `relation_type_corrected` in the disagreements output).
+Zero side-only span counts alone are insufficient: alignment normalizes case
+and Unicode, which can hide meaningful differences such as code identifiers.
+
+### Optional coverage critic
+
+Coverage reviews positive main replacement directions using span evidence. It
+is disabled by default. To enable it, add this list alongside `stages` under
+`execution` in `judge_config/fuzzy_pair_judge.yaml`:
+
+```yaml
+execution:
+  stages:
+    # Keep the existing main judge stage here.
+  critics:
+    - name: coverage
+      source_judge: pair_semantic_judgment
+      model_alias: judge
+      system_prompt_path: critics/coverage/system.jinja
+      prompt_path: critics/coverage/pair.jinja
+```
+
+Run step 5 as usual. The workflow starts one shared inference server and runs
+one Pipeline: main judge → prepare coverage → NDD coverage → apply coverage.
+No extra runner or model service is needed. Omit `critics` or use `critics: []`
+to retain main-only behavior. The first version supports one coverage entry.
+Model aliases and template paths reuse the existing configuration conventions.
+
+The adapter preserves the original alignment packet and separates each unique
+span's core delta from its padded reading context. The model sees those spans,
+not the main prediction or dedup labels, and selects IDs in an eight-field
+structured review. Python validates references and original offsets, then
+applies the retained-coverage v4 veto rules. Coverage can remove an existing
+positive replacement direction; it cannot create one. Empty-anchor objections
+only affect containment, and explicit abstention produces an unresolved result.
+
+Negative/unresolved main decisions and complete, untruncated, exactly equal
+nonempty texts bypass review. Preparation writes `coverage_should_run`; the
+NDD structured column uses `SkipConfig(when="{{ not coverage_should_run }}")`.
+All rows enter the stage; skipped reviews serialize as `null`. Do not attach
+score filters that remove rows if comparing complete input/output populations.
+
+Input must use step 4's current schema, including delta boundaries on side-only
+spans and boolean truncation flags. Invalid main summaries, missing boundaries,
+invalid review references, or empty results on rows requiring review fail
+validation. An incomplete/truncated packet cannot support a conclusive veto.
+The adapter does not run the historical evaluator's main-decision arbitration;
+compatibility covers coverage rules for a fixed valid main decision and review,
+not equivalence of the complete v0.7.1 evaluator.
+
+The original main result remains in `pair_semantic_judgment`. Added columns are:
+
+| Column | Meaning |
+| --- | --- |
+| `coverage_should_run` | Boolean routing decision |
+| `coverage_review` | Raw structured review, or `null` for skipped rows |
+| `coverage_action`, `coverage_reason` | Applied action and explanation code |
+| `coverage_evidence` | Validated original quotes and offsets |
+| `final_decision` | Eight scalar summary fields, using the main rubric's lowercase enums |
+
+`final_decision` contains the two replacement directions, `relation_type`,
+`material_difference`, `primary_material_difference`, `dominant_overlap_source`,
+`primary_risk_factor`, and `confidence_tier`. Skips and keeps preserve those main
+values; applied vetoes update the related summary fields consistently. Temporary
+prompt payloads are removed. Reserved output-column collisions fail rather than
+overwriting previous results.
+
+Compare both decisions from the same output:
+
+```bash
+python tutorials/eval/dedup/6_analyze_results.py --judge-output-path output/dedup_eval/judged_pairs --decision-source main
+python tutorials/eval/dedup/6_analyze_results.py --judge-output-path output/dedup_eval/judged_pairs --decision-source final
+```
+
+`main` remains the default. `final` requires `final_decision` and does not apply
+the analysis-only exact-text correction. Check input/output IDs when accepting a
+run: record loss from an upstream generation failure cannot be detected by an
+apply stage that only receives surviving records. Routing counts describe rows,
+not HTTP requests, which may include retries.
 
 `6_analyze_results.py` (step 6) buckets `relation_type` into a coarse
 duplicate/not_duplicate/unresolved verdict (`exact`/`canonical_exact`/
@@ -270,7 +348,7 @@ that point, sample duplicate groups before loading.
 of `JsonlReader -> TokenizerStage -> SpanAlignmentStage -> SpanChunkingStage ->
 JsonlWriter` stages, so span alignment itself already runs distributed across
 reader tasks via Ray Data rather than loading pairs into driver memory -- the
-per-partition granularity is set by step 4's `--files-per-partition`.
+each input file forms one reader task in step 4.
 
 ## Files
 

@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, ClassVar
 
 from nemo_curator.eval.llm_judge.critics.dedup_adapter import (
+    _offset,
     adapt_alignment,
     complete_text_equality,
     normalize_main,
@@ -85,7 +86,7 @@ def _compile_review(value: object, packet: dict[str, Any], pair_id: object) -> t
             evidence.append(
                 {
                     "side": side,
-                    **{key: span[prefix + key] for key in ("start_char", "end_char")},
+                    **{key: _offset(span, prefix + key, pair_id) for key in ("start_char", "end_char")},
                     "quote": span[prefix + "text"],
                 }
             )

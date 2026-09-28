@@ -49,6 +49,15 @@ def test_complete_does_not_imply_untruncated_or_raw_equality(pair: dict[str, Any
     assert not complete_text_equality(pair, packet)
 
 
+def test_nullable_offset_transport_is_lossless(pair: dict[str, Any]) -> None:
+    span = pair["semantic_diff"]["spans"][1]
+    span["delta_start_char"] = 8.0
+    assert adapt_alignment(pair)["spans"][1]["start_char"] == 8
+    span["delta_start_char"] = 8.5
+    with pytest.raises(ValueError, match="non-integral"):
+        adapt_alignment(pair)
+
+
 def test_main_is_unwrapped_without_rewriting_reasoning(pair: dict[str, Any]) -> None:
     original = deepcopy(pair)
     result = normalize_main(pair, "pair_semantic_judgment")
