@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, ClassVar
 
-from nemo_curator.eval.llm_judge.critics.dedup_adapter import (
+from tutorials.eval.dedup.critics.dedup_adapter import (
     _offset,
     adapt_alignment,
     complete_text_equality,

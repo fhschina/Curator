@@ -8,7 +8,7 @@ from typing import Any
 
 import pytest
 
-from nemo_curator.eval.llm_judge.critics.dedup_adapter import adapt_alignment, complete_text_equality, normalize_main
+from tutorials.eval.dedup.critics.dedup_adapter import adapt_alignment, complete_text_equality, normalize_main
 
 
 def test_core_evidence_is_separate_from_context(pair: dict[str, Any]) -> None:

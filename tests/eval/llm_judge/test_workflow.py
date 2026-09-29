@@ -170,7 +170,10 @@ def test_start_inference_server_forwards_dynamo_configuration(monkeypatch: pytes
     assert captured["started"] is True
 
 
-def test_build_pipeline_orders_reader_judges_filters_and_writer(monkeypatch: pytest.MonkeyPatch) -> None:
+@pytest.mark.parametrize("with_hooks", [False, True])
+def test_build_pipeline_orders_reader_judges_filters_and_writer(
+    monkeypatch: pytest.MonkeyPatch, with_hooks: bool
+) -> None:
     monkeypatch.setattr(subject.DataDesignerStage, "_init_data_designer", lambda self: None)  # noqa: ARG005
     judge_stages = [
         (
@@ -184,6 +187,8 @@ def test_build_pipeline_orders_reader_judges_filters_and_writer(monkeypatch: pyt
         ("safety", object(), [], {"env": "two"}, 2, []),
     ]
 
+    before = subject.Filter(lambda _value: True, filter_field="text").with_(name="prepare") if with_hooks else None
+    after = subject.Filter(lambda _value: True, filter_field="text").with_(name="apply") if with_hooks else None
     pipeline = subject.build_pipeline(
         input_path="input.jsonl",
         input_format="jsonl",
@@ -192,17 +197,21 @@ def test_build_pipeline_orders_reader_judges_filters_and_writer(monkeypatch: pyt
         judge_stages=judge_stages,
         language_filter_stage=None,
         files_per_partition=4,
+        preprocessing_stages=[before] if before else [],
+        postprocessing_stages=[after] if after else [],
     )
 
     assert [stage.name for stage in pipeline.stages] == [
         "jsonl_reader",
+        *(["prepare"] if with_hooks else []),
         "ndd_quality",
         "judge_filter_quality_01",
         "ndd_safety",
+        *(["apply"] if with_hooks else []),
         "jsonl_writer",
     ]
     assert isinstance(pipeline.stages[0], subject.JsonlReader)
-    assert isinstance(pipeline.stages[2], subject.Filter)
+    assert isinstance(pipeline.stages[3 if with_hooks else 2], subject.Filter)
     assert isinstance(pipeline.stages[-1], subject.JsonlWriter)
     ndd_stages = [stage for stage in pipeline.stages if stage.name.startswith("ndd_")]
     assert [stage.runtime_env for stage in ndd_stages] == [{"env": "one"}, {"env": "two"}]
@@ -263,7 +272,12 @@ def test_build_language_filter_stage_builds_score_filter(monkeypatch: pytest.Mon
 
 
 def test_workflow_run_builds_pipeline_and_returns_result(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
-    captured, result = _run_workflow_with_fakes(monkeypatch, tmp_path, output_tasks=["task-a", "task-b"])
+    hooks = {"preprocessing_stages": [object()], "postprocessing_stages": [object()]}
+    captured, result = _run_workflow_with_fakes(
+        monkeypatch, tmp_path, output_tasks=["task-a", "task-b"], workflow_kwargs=hooks
+    )
+    for key, value in hooks.items():
+        assert captured["build_pipeline_kwargs"][key] is value
 
     assert captured["builder_judges"] == [["quality_judge"], ["safety_judge"]]
     stage_details = [
@@ -331,31 +345,6 @@ execution:
 
     with pytest.raises(ValueError, match="unknown judge output column"):
         subject.LLMJudgeWorkflow(judge_config=config_path, input_path="input.jsonl", output_path="output")
-
-
-def test_critic_references_and_templates_are_validated_before_startup(tmp_path: Path) -> None:
-    config, stages = _config_with_filters()
-    config.update(models=[{"alias": "judge", "model": "model"}], execution={"stages": stages})
-    template = tmp_path / "critic.jinja"
-    template.write_text("Review {{ _coverage_payload }}", encoding="utf-8")
-    entry = {
-        "name": "coverage",
-        "source_judge": "quality_judge",
-        "model_alias": "judge",
-        "prompt_path": template.name,
-        "system_prompt_path": template.name,
-    }
-    config["execution"]["critics"] = [entry]
-    loaded = subject._load_critics(config, tmp_path / "judge.yaml")
-    assert loaded[0][0].source_judge == "quality_judge"
-    assert loaded[0][2] == template.read_text(encoding="utf-8")
-    entry["model_alias"] = "missing"
-    with pytest.raises(ValueError, match="unknown source_judge or model_alias"):
-        subject._load_critics(config, tmp_path / "judge.yaml")
-    entry["model_alias"] = "judge"
-    template.unlink()
-    with pytest.raises(FileNotFoundError):
-        subject._load_critics(config, tmp_path / "judge.yaml")
 
 
 def _run_workflow_with_fakes(

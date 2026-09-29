@@ -18,7 +18,7 @@ from nemo_curator.tasks import DocumentBatch
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from nemo_curator.eval.llm_judge.critics.base import Critic
+    from tutorials.eval.dedup.critics.base import Critic
 
 
 def _update_batch(

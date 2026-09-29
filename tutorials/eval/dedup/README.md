@@ -20,7 +20,8 @@ things to look into, not proven errors.
 3. 3_build_pair_dataset.py  -> labeled document pairs from fuzzy dedup's decisions
 4. 4_span_alignment.py      -> add span-alignment evidence (semantic_diff/truncated) to each pair
 5. 5_run_llm_judge.py       -> LLMJudgeWorkflow judges each pair
-6. 6_analyze_results.py     -> summarize judge verdicts vs. fuzzy dedup's decisions
+6. 6_run_critics.py         -> optionally review saved main results with coverage
+7. 7_analyze_results.py     -> summarize judge verdicts vs. fuzzy dedup's decisions
 ```
 
 Step 1 downloads a small Common Crawl sample and extracts HTML content with
@@ -36,7 +37,7 @@ decisions to make, and it's the same class of content the judge rubric in
 - Steps 2-3 need the RAPIDS/cuGraph GPU stages `FuzzyDeduplicationWorkflow`
   normally needs (MinHash/LSH/connected components).
 - Step 4 is CPU-only (`difflib`-based span alignment run through Ray Data).
-- Step 5 needs GPU(s) to serve a local judge model through Dynamo --
+- Steps 5-6 need GPU(s) to serve a local judge model through Dynamo --
   `LLMJudgeWorkflow` only supports locally served models, there's no
   hosted-inference-API backend.
 
@@ -86,8 +87,15 @@ python tutorials/eval/dedup/5_run_llm_judge.py \
   --input-path output/dedup_eval/keeper_removed_pairs \
   --output-path output/dedup_eval/judged_pairs
 
-# Step 6: summarize, and write disagreeing pairs out for manual review.
-python tutorials/eval/dedup/6_analyze_results.py \
+# Step 6 (optional): review saved main results. Run from the repository root;
+# keep the checkout on PYTHONPATH for both the driver and Ray workers.
+PYTHONPATH="$PWD" python tutorials/eval/dedup/6_run_critics.py \
+  --input-path output/dedup_eval/judged_pairs \
+  --output-path output/dedup_eval/reviewed_pairs
+
+# Step 7: summarize main-only results, and write disagreements for manual review.
+# To analyze coverage instead, use reviewed_pairs and --decision-source final.
+python tutorials/eval/dedup/7_analyze_results.py \
   --judge-output-path output/dedup_eval/judged_pairs \
   --disagreements-output output/dedup_eval/disagreements.jsonl
 ```
@@ -115,7 +123,7 @@ which strategy once they reach the judge.
 
 Each pair is stamped with `pair_type` and `expected_duplicate`: `true` for
 `keeper_removed`/`all_pairwise` (fuzzy dedup grouped them together) and
-`false` for `cross_group_sample` (fuzzy dedup did not). `6_analyze_results.py`
+`false` for `cross_group_sample` (fuzzy dedup did not). `7_analyze_results.py`
 compares the judge's verdict against this label.
 
 ## Keep step 2 and step 3 inputs matched
@@ -196,7 +204,7 @@ visible-character limit, `pair.jinja` renders a `<truncation_notice>` telling
 the judge a decisive difference could exist only in the cut-off portion, and
 `system.jinja`'s deterministic policy requires `unresolved`/low confidence
 rather than a conclusive verdict built only on "no difference was visible."
-`6_analyze_results.py` excludes truncated pairs from the headline
+`7_analyze_results.py` excludes truncated pairs from the headline
 disagreement rate for the same reason, reporting them as `num_truncated`
 instead.
 
@@ -211,7 +219,7 @@ rubric field -- `span_content_profile_a`/`span_content_profile_b`,
 `judge_config/fuzzy_pair_judge.yaml` for the full rubric and
 `nemo_curator/eval/llm_judge/LLM_JUDGE_CONFIG_SKILL.md` for how to change it.
 
-Before bucketing, `6_analyze_results.py` also deterministically corrects
+Before bucketing, `7_analyze_results.py` also deterministically corrects
 `relation_type` to `exact` for any untruncated, `COMPLETE` pair whose
 nonempty original `text_a` and `text_b` are exactly equal -- since the judge sometimes returns `near_surface`
 for this instead (`_correct_identical_text_relation()`; corrected rows are
@@ -222,26 +230,31 @@ and Unicode, which can hide meaningful differences such as code identifiers.
 ### Optional coverage critic
 
 Coverage reviews positive main replacement directions using span evidence. It
-is disabled by default. To enable it, add this list alongside `stages` under
-`execution` in `judge_config/fuzzy_pair_judge.yaml`:
+is optional: run `6_run_critics.py` after step 5, or skip directly to analysis.
+Step 6 reads saved main results and writes to a separate output directory, so
+coverage can be rerun without repeating main inference. Do not add an
+`execution.critics` block to the main judge configuration.
 
-```yaml
-execution:
-  stages:
-    # Keep the existing main judge stage here.
-  critics:
-    - name: coverage
-      source_judge: pair_semantic_judgment
-      model_alias: judge
-      system_prompt_path: critics/coverage/system.jinja
-      prompt_path: critics/coverage/pair.jinja
+The script reuses `--judge-config` (default: `judge_config/fuzzy_pair_judge.yaml`)
+for model and server settings. `--model-alias` defaults to the first configured
+model, and `--source-judge` defaults to `pair_semantic_judgment`. The source
+judge's worker settings are reused; its judges and score filters are not run.
+Prompts live in `judge_config/critics/coverage/`.
+
+The tutorial's `CoverageWorkflow` is a small `LLMJudgeWorkflow` subclass that
+builds the existing structured coverage column instead of scoring columns.
+It supplies tutorial-owned prepare/apply stages through the generic
+`preprocessing_stages` / `postprocessing_stages` Python arguments:
+
+```text
+Reader → prepare coverage → NDD coverage + SkipConfig → apply coverage → Writer
 ```
 
-Run step 5 as usual. The workflow starts one shared inference server and runs
-one Pipeline: main judge → prepare coverage → NDD coverage → apply coverage.
-No extra runner or model service is needed. Omit `critics` or use `critics: []`
-to retain main-only behavior. The first version supports one coverage entry.
-Model aliases and template paths reuse the existing configuration conventions.
+Step 6 uses one Pipeline and one model-service lifecycle. Steps 5 and 6 each
+start and stop their own service; they do not share a running model across
+steps. The base workflow keeps its existing language and score filters:
+preprocessing runs after the language gate, before all NDD stages;
+postprocessing runs after all NDD stages and score filters, before the writer.
 
 The adapter preserves the original alignment packet and separates each unique
 span's core delta from its padded reading context. The model sees those spans,
@@ -285,8 +298,8 @@ overwriting previous results.
 Compare both decisions from the same output:
 
 ```bash
-python tutorials/eval/dedup/6_analyze_results.py --judge-output-path output/dedup_eval/judged_pairs --decision-source main
-python tutorials/eval/dedup/6_analyze_results.py --judge-output-path output/dedup_eval/judged_pairs --decision-source final
+python tutorials/eval/dedup/7_analyze_results.py --judge-output-path output/dedup_eval/reviewed_pairs --decision-source main
+python tutorials/eval/dedup/7_analyze_results.py --judge-output-path output/dedup_eval/reviewed_pairs --decision-source final
 ```
 
 `main` remains the default. `final` requires `final_decision` and does not apply
@@ -295,7 +308,7 @@ run: record loss from an upstream generation failure cannot be detected by an
 apply stage that only receives surviving records. Routing counts describe rows,
 not HTTP requests, which may include retries.
 
-`6_analyze_results.py` (step 6) buckets `relation_type` into a coarse
+`7_analyze_results.py` (step 7) buckets `relation_type` into a coarse
 duplicate/not_duplicate/unresolved verdict (`exact`/`canonical_exact`/
 `near_surface`/`containment` -> duplicate; `version_related`/
 `related_non_duplicate`/`unrelated` -> not_duplicate -- see the bucketing
@@ -367,4 +380,4 @@ each input file forms one reader task in step 4.
   semantic-retention rubric.
 - `5_run_llm_judge.py` -- runs `LLMJudgeWorkflow` over the span-aligned pairs
   part files with this example's judge config.
-- `6_analyze_results.py` -- summarizes step 5's output.
+- `7_analyze_results.py` -- summarizes step 5's output.

@@ -35,8 +35,6 @@ from loguru import logger
 
 from nemo_curator.backends.ray_data import RayDataExecutor
 from nemo_curator.core.serve import DynamoServerConfig, DynamoVLLMModelConfig, InferenceServer
-from nemo_curator.eval.llm_judge.critics import BUILTIN_CRITICS
-from nemo_curator.eval.llm_judge.critics.stages import CriticApplyStage, CriticPrepareStage
 from nemo_curator.pipeline import Pipeline
 from nemo_curator.pipeline.workflow import WorkflowBase, WorkflowRunResult
 from nemo_curator.stages.synthetic.nemo_data_designer import DataDesignerStage
@@ -45,7 +43,7 @@ from nemo_curator.stages.text.io.reader import JsonlReader, ParquetReader
 from nemo_curator.stages.text.io.writer import JsonlWriter, ParquetWriter
 
 if TYPE_CHECKING:
-    from nemo_curator.eval.llm_judge.critics.base import Critic
+    from nemo_curator.stages.base import ProcessingStage
 
 DataFormat = Literal["jsonl", "parquet"]
 FilterOperator = Literal["eq", "ne", "gt", "gte", "lt", "lte", "in", "not_in"]
@@ -66,46 +64,6 @@ def _read_template(path: str, *, config_path: Path) -> str:
     if not template_path.is_absolute():
         template_path = config_path.parent / template_path
     return template_path.read_text(encoding="utf-8")
-
-
-def _load_critics(config: dict[str, object], config_path: Path) -> list[tuple[Critic, str, str, str]]:
-    """Resolve optional built-in critics before starting the inference server."""
-    entries = config["execution"].get("critics", [])
-    if not isinstance(entries, list) or len(entries) > 1:
-        message = "execution.critics must be a list containing at most one coverage critic."
-        raise ValueError(message)
-    judges = {judge["name"] for stage in config["execution"]["stages"] for judge in stage["judges"]}
-    models = {model["alias"] for model in config["models"]}
-    result = []
-    required = {"name", "source_judge", "model_alias", "prompt_path", "system_prompt_path"}
-    for entry in entries:
-        if (
-            not isinstance(entry, dict)
-            or set(entry) != required
-            or not all(isinstance(v, str) for v in entry.values())
-        ):
-            message = f"Each critic requires string fields: {sorted(required)}"
-            raise ValueError(message)
-        if entry["name"] not in BUILTIN_CRITICS:
-            message = f"Unknown critic {entry['name']!r}."
-            raise ValueError(message)
-        if entry["source_judge"] not in judges or entry["model_alias"] not in models:
-            message = f"Critic {entry['name']!r} refers to an unknown source_judge or model_alias."
-            raise ValueError(message)
-        critic = BUILTIN_CRITICS[entry["name"]](source_judge=entry["source_judge"])
-        collisions = judges & {*critic.output_columns, *critic.temporary_columns}
-        if collisions:
-            message = f"Critic output conflicts with judge columns: {sorted(collisions)}"
-            raise ValueError(message)
-        result.append(
-            (
-                critic,
-                entry["model_alias"],
-                _read_template(entry["prompt_path"], config_path=config_path),
-                _read_template(entry["system_prompt_path"], config_path=config_path),
-            )
-        )
-    return result
 
 
 def _place_filters(config: dict[str, object], stages: list[dict[str, object]]) -> list[list[dict[str, object]]]:
@@ -351,7 +309,8 @@ def build_pipeline(  # noqa: PLR0913
     ],
     language_filter_stage: ScoreFilter | None,
     files_per_partition: int | None,
-    critic_stages: list[tuple[Critic, dd.DataDesignerConfigBuilder, list[dd.ModelProvider]]] | None = None,
+    preprocessing_stages: list[ProcessingStage] | None = None,
+    postprocessing_stages: list[ProcessingStage] | None = None,
 ) -> Pipeline:
     """Build a streaming pipeline with an optional language gate, NDD stages, filters, and writer."""
     # TODO: Add an optional TokenLengthFilter stage before NDD stages so prompts
@@ -370,20 +329,17 @@ def build_pipeline(  # noqa: PLR0913
             )
         )
         processing_stages.extend(_build_filter_stages(stage_filters, name_prefix=f"judge_filter_{stage_name}"))
-    for critic, config_builder, model_providers in critic_stages or []:
-        processing_stages.extend(
-            [
-                CriticPrepareStage(critic),
-                DataDesignerStage(config_builder=config_builder, model_providers=model_providers).with_(
-                    name=f"ndd_{critic.name}",
-                ),
-                CriticApplyStage(critic),
-            ]
-        )
     return Pipeline(
         name="llm_judge",
         description="Evaluate text records with a config-driven NDD LLM judge.",
-        stages=[reader, *([language_filter_stage] if language_filter_stage else []), *processing_stages, writer],
+        stages=[
+            reader,
+            *([language_filter_stage] if language_filter_stage else []),
+            *(preprocessing_stages or []),
+            *processing_stages,
+            *(postprocessing_stages or []),
+            writer,
+        ],
     )
 
 
@@ -396,7 +352,9 @@ class LLMJudgeWorkflow(WorkflowBase):
     and ``execution.stages``), starts a Dynamo/vLLM inference server hosting
     the configured judge models, then runs one Curator pipeline containing:
     reader -> optional FastText language gate -> one NDD ``DataDesignerStage``
-    (+ its filters) per judge stage -> optional critic prepare/NDD/apply -> writer.
+    (+ its filters) per judge stage -> writer. Caller-provided preprocessing
+    stages run after the language gate and before all NDD stages; postprocessing
+    stages run after all NDD stages and their filters, before the writer.
     """
 
     # required args
@@ -418,35 +376,17 @@ class LLMJudgeWorkflow(WorkflowBase):
     # execution
     checkpoint_path: str | None = None
 
+    preprocessing_stages: list[ProcessingStage] = field(default_factory=list)
+    postprocessing_stages: list[ProcessingStage] = field(default_factory=list)
+
     config_path: Path = field(init=False)
     config: dict[str, object] = field(init=False)
-    critics: list[tuple[Critic, str, str, str]] = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         self.config_path = Path(self.judge_config).resolve()
         self.config = _load_yaml(self.config_path)
         stages = self.config["execution"]["stages"]
         _validate_filter_references(self.config, stages)
-        self.critics = _load_critics(self.config, self.config_path)
-
-    def _build_critic_stages(
-        self,
-        *,
-        endpoint: str,
-    ) -> list[tuple[Critic, dd.DataDesignerConfigBuilder, list[dd.ModelProvider]]]:
-        stages = []
-        for critic, model_alias, prompt, system_prompt in self.critics:
-            builder, providers = build_config_builder(
-                self.config_path,
-                endpoint=endpoint,
-                models=self.config["models"],
-                judges=[],
-            )
-            builder.add_column(
-                critic.build_column(model_alias=model_alias, prompt=prompt, system_prompt=system_prompt)
-            )
-            stages.append((critic, builder, providers))
-        return stages
 
     def _build_judge_stages(
         self, *, endpoint: str
@@ -515,7 +455,8 @@ class LLMJudgeWorkflow(WorkflowBase):
                 judge_stages=judge_stages,
                 language_filter_stage=language_filter_stage,
                 files_per_partition=self.files_per_partition,
-                critic_stages=self._build_critic_stages(endpoint=inference_server.endpoint),
+                preprocessing_stages=self.preprocessing_stages,
+                postprocessing_stages=self.postprocessing_stages,
             )
             output_tasks = pipeline.run(executor=executor, checkpoint_path=self.checkpoint_path)
         except Exception as e:

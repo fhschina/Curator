@@ -7,50 +7,40 @@ import json
 import threading
 from copy import deepcopy
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
-from typing import Any
+from importlib import import_module
+from typing import TYPE_CHECKING, Any
 
-import pandas as pd
 import pytest
 import yaml
 
 from nemo_curator.eval.llm_judge import workflow
-from nemo_curator.eval.llm_judge.critics.coverage import CoverageCritic
-from nemo_curator.eval.llm_judge.critics.dedup_adapter import DECISION_OPTIONS
-from nemo_curator.eval.llm_judge.critics.stages import CriticApplyStage, CriticPrepareStage
-from nemo_curator.tasks import DocumentBatch
+from tutorials.eval.dedup.critics.dedup_adapter import DECISION_OPTIONS
 
-PROMPTS = Path(__file__).parents[4] / "tutorials/eval/dedup/judge_config/critics/coverage"
+if TYPE_CHECKING:
+    from pathlib import Path
 
-
-def test_stages_preserve_records_and_metadata(pair: dict[str, Any], review: dict[str, Any]) -> None:
-    critic = CoverageCritic("pair_semantic_judgment")
-    batch = DocumentBatch(data=pd.DataFrame([pair]), dataset_name="pairs", _metadata={"source": "fixture"})
-    prepared = CriticPrepareStage(critic).process(batch)
-    prepared.data = prepared.to_pandas()
-    prepared.data["coverage_review"] = [review]
-    result = CriticApplyStage(critic).process(prepared)
-    row = result.to_pyarrow().to_pylist()[0]
-    for key, value in pair.items():
-        # Arrow may materialize absent keys as null in heterogeneous span structs.
-        if key != "semantic_diff":
-            assert row[key] == value
-    assert row["coverage_action"] == "KEEP_MAIN"
-    assert result.dataset_name == batch.dataset_name
-    assert result._metadata == batch._metadata
-    assert result._stage_perf is batch._stage_perf
-    assert not set(critic.temporary_columns) & set(result.get_columns())
-    with pytest.raises(ValueError, match="overwrite"):
-        CriticPrepareStage(critic).process(result)
+runner = import_module("tutorials.eval.dedup.6_run_critics")
 
 
-def test_apply_does_not_treat_failed_generation_as_skip(pair: dict[str, Any]) -> None:
-    critic = CoverageCritic("pair_semantic_judgment")
-    prepared = CriticPrepareStage(critic).process(DocumentBatch(data=pd.DataFrame([pair]), dataset_name="pairs"))
-    prepared.data = prepared.to_pandas()
-    prepared.data["coverage_review"] = None
-    with pytest.raises(ValueError, match="pair-1"):
-        CriticApplyStage(critic).process(prepared)
+def test_critic_configuration_is_validated_before_startup(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    config_path = tmp_path / "judge.yaml"
+    config_path.write_text(
+        yaml.safe_dump(
+            {
+                "models": [{"alias": "judge", "model": "test-model"}],
+                "execution": {"stages": [{"name": "main", "judges": [{"name": "main", "scores": []}]}]},
+            }
+        ),
+        encoding="utf-8",
+    )
+    kwargs = {"judge_config": config_path, "input_path": "input", "output_path": "output", "source_judge": "main"}
+    with pytest.raises(ValueError, match="model alias"):
+        runner.CoverageWorkflow(**kwargs, model_alias="missing")
+    with pytest.raises(ValueError, match="source judge"):
+        runner.CoverageWorkflow(**{**kwargs, "source_judge": "missing"})
+    monkeypatch.setattr(runner, "_PROMPT_DIR", tmp_path)
+    with pytest.raises(FileNotFoundError):
+        runner.CoverageWorkflow(**kwargs)
 
 
 @pytest.mark.parametrize("all_skipped", [False, True])
@@ -65,7 +55,7 @@ def test_workflow_runs_real_conditional_critic_pipeline(  # noqa: C901, PLR0915
     requests: list[str] = []
     coverage_prompts: list[str] = []
     lifecycle: list[str] = []
-    main = deepcopy(pair.pop("pair_semantic_judgment"))
+    main = deepcopy(pair["pair_semantic_judgment"])
     negative = deepcopy(main)
     for key, value in {
         "a_can_replace_b": "no",
@@ -131,6 +121,8 @@ def test_workflow_runs_real_conditional_critic_pipeline(  # noqa: C901, PLR0915
     records = [
         {**deepcopy(pair), "pair_id": f"{'skip' if all_skipped or index % 2 else 'run'}-{index}"} for index in range(4)
     ]
+    for record in records:
+        record["pair_semantic_judgment"] = deepcopy(negative if record["pair_id"].startswith("skip") else main)
     input_path = tmp_path / "pairs.jsonl"
     input_path.write_text("".join(json.dumps(row) + "\n" for row in records), encoding="utf-8")
     config = {
@@ -157,21 +149,12 @@ def test_workflow_runs_real_conditional_critic_pipeline(  # noqa: C901, PLR0915
                     ],
                 }
             ],
-            "critics": [
-                {
-                    "name": "coverage",
-                    "source_judge": "pair_semantic_judgment",
-                    "model_alias": "judge",
-                    "prompt_path": str(PROMPTS / "pair.jinja"),
-                    "system_prompt_path": str(PROMPTS / "system.jinja"),
-                }
-            ],
         },
     }
     config_path = tmp_path / "judge.yaml"
     config_path.write_text(yaml.safe_dump(config), encoding="utf-8")
     try:
-        workflow.LLMJudgeWorkflow(
+        runner.CoverageWorkflow(
             judge_config=config_path, input_path=str(input_path), output_path=str(tmp_path / "output")
         ).run()
     finally:
@@ -179,7 +162,7 @@ def test_workflow_runs_real_conditional_critic_pipeline(  # noqa: C901, PLR0915
         server.server_close()
         thread.join(timeout=5)
     assert lifecycle == ["start", "stop"]
-    assert requests.count("main") == 4
+    assert requests.count("main") == 0
     assert requests.count("coverage") == (0 if all_skipped else 2)
     for prompt in coverage_prompts:
         assert "A001" in prompt
@@ -194,7 +177,7 @@ def test_workflow_runs_real_conditional_critic_pipeline(  # noqa: C901, PLR0915
     assert len(by_id) == len(records)
     for original in records:
         row = by_id[original["pair_id"]]
-        for key in ("text_a", "text_b", "truncated"):
+        for key in ("text_a", "text_b", "truncated", "pair_semantic_judgment"):
             assert row[key] == original[key]
         skipped = original["pair_id"].startswith("skip")
         assert row["coverage_should_run"] is not skipped

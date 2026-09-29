@@ -8,7 +8,7 @@ from typing import Any
 
 import pytest
 
-from nemo_curator.eval.llm_judge.critics.coverage import CoverageCritic
+from tutorials.eval.dedup.critics.coverage import CoverageCritic
 
 
 @pytest.mark.parametrize(

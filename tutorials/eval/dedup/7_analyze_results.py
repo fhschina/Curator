@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """
-Summarize the fuzzy-dedup-eval LLM judge output (step 6): bucket the judge's
+Summarize the fuzzy-dedup-eval LLM judge output (step 7): bucket the judge's
 `relation_type` verdict into duplicate/not_duplicate/unresolved and compare
 it against what each pair's `pair_type` implied fuzzy dedup decided
 (`expected_duplicate`, written by 3_build_pair_dataset.py).
@@ -22,7 +22,7 @@ See README.md's "Output shape" section for the bucketing rationale and
 disagreement-rate definitions.
 
 Example:
-    python tutorials/eval/dedup/6_analyze_results.py \
+    python tutorials/eval/dedup/7_analyze_results.py \
         --judge-output-path output/dedup_eval/judged_pairs \
         --disagreements-output output/dedup_eval/disagreements.jsonl
 """
