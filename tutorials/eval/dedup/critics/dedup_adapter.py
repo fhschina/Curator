@@ -87,7 +87,7 @@ DECISION_OPTIONS = {
 
 def require(condition: bool, message: str, *, pair_id: object) -> None:
     if not condition:
-        message = f"Coverage pair {pair_id!r}: {message}"
+        message = f"Critic pair {pair_id!r}: {message}"
         raise ValueError(message)
 
 

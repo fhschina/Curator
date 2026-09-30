@@ -28,18 +28,19 @@ from nemo_curator.tasks import DocumentBatch
 
 if TYPE_CHECKING:
     from .coverage import CoverageCritic
+    from .subject import SubjectCritic, SubjectVerifier
 
 
 @dataclass
 class CriticPrepareStage(ProcessingStage[DocumentBatch, DocumentBatch]):
-    critic: CoverageCritic
+    critic: CoverageCritic | SubjectCritic
 
     def __post_init__(self) -> None:
         self.name = f"prepare_{self.critic.name}"
         self.resources = Resources(cpus=1, gpus=0)
 
     def inputs(self) -> tuple[list[str], list[str]]:
-        return ["data"], ["pair_id", "text_a", "text_b", "semantic_diff", "truncated", self.critic.source_judge]
+        return ["data"], list(self.critic.input_columns)
 
     def outputs(self) -> tuple[list[str], list[str]]:
         return ["data"], list(self.critic.prepared_columns)
@@ -66,24 +67,24 @@ class CriticPrepareStage(ProcessingStage[DocumentBatch, DocumentBatch]):
 
 @dataclass
 class CriticApplyStage(ProcessingStage[DocumentBatch, DocumentBatch]):
-    critic: CoverageCritic
+    critic: CoverageCritic | SubjectCritic | SubjectVerifier
 
     def __post_init__(self) -> None:
         self.name = f"apply_{self.critic.name}"
         self.resources = Resources(cpus=1, gpus=0)
 
     def inputs(self) -> tuple[list[str], list[str]]:
-        return ["data"], ["pair_id", *self.critic.prepared_columns, "coverage_review"]
+        return ["data"], ["pair_id", *self.critic.prepared_columns, self.critic.review_column]
 
     def outputs(self) -> tuple[list[str], list[str]]:
-        return ["data"], list(self.critic.output_columns)
+        return ["data"], list(self.critic.applied_columns)
 
     def process(self, batch: DocumentBatch) -> DocumentBatch:
         frame = batch.to_pandas().copy()
         updates = [self.critic.apply(record) for record in batch.to_pyarrow().to_pylist()]
         for column in self.critic.applied_columns:
             frame[column] = pd.Series([update[column] for update in updates], index=frame.index, dtype=object)
-        data = pa.Table.from_pandas(frame.drop(columns=list(self.critic.temporary_columns)), preserve_index=False)
+        data = pa.Table.from_pandas(frame.drop(columns=list(self.critic.drop_columns)), preserve_index=False)
         return DocumentBatch(
             dataset_name=batch.dataset_name,
             data=data,

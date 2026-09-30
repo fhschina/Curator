@@ -61,6 +61,14 @@ _DISAGREEMENT_COLUMNS = [
     "coverage_action",
     "coverage_reason",
     "coverage_evidence",
+    "subject_base_decision",
+    "subject_should_run",
+    "subject_review",
+    "subject_verifier_should_run",
+    "subject_verifier_review",
+    "subject_action",
+    "subject_reason",
+    "subject_evidence",
 ]
 
 
@@ -217,7 +225,7 @@ def _parse_args() -> argparse.Namespace:
         "--decision-source",
         choices=("main", "final"),
         default="main",
-        help="Analyze the original main judgment or the coverage-adjusted final decision.",
+        help="Analyze the original main judgment or the final decision after the enabled critics.",
     )
     parser.add_argument(
         "--apply-main-corrections",

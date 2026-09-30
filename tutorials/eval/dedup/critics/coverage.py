@@ -170,7 +170,9 @@ class CoverageCritic:
     source_judge: str
 
     name: ClassVar[str] = "coverage"
+    review_column: ClassVar[str] = "coverage_review"
     temporary_columns: ClassVar[tuple[str, ...]] = ("_coverage_payload", "_coverage_main")
+    drop_columns: ClassVar[tuple[str, ...]] = temporary_columns
     prepared_columns: ClassVar[tuple[str, ...]] = ("coverage_should_run", "coverage_reason", *temporary_columns)
     applied_columns: ClassVar[tuple[str, ...]] = (
         "coverage_action",
@@ -186,6 +188,10 @@ class CoverageCritic:
         "coverage_evidence",
         "final_decision",
     )
+
+    @property
+    def input_columns(self) -> tuple[str, ...]:
+        return "pair_id", "text_a", "text_b", "semantic_diff", "truncated", self.source_judge
 
     def prepare(self, record: dict[str, Any]) -> dict[str, Any]:
         main = normalize_main(record, self.source_judge)

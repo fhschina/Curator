@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Step 6: optionally review saved main-judge results with the coverage critic.
+"""Step 6: review saved main results with coverage and optional subject verification.
 
 Run from the repository root:
     python tutorials/eval/dedup/6_run_critics.py \
@@ -21,6 +21,8 @@ Run from the repository root:
 
 Reuses the main judge YAML's serving/model settings, but does not run its judges
 or score filters. Main results must already be present in the input records.
+Add --subject to check fixed subject-conflict proposals after coverage, sharing
+the same service and Pipeline.
 """
 
 from __future__ import annotations
@@ -34,9 +36,11 @@ import critics
 import ray
 from critics.coverage import CoverageCritic
 from critics.stages import CriticApplyStage, CriticPrepareStage
+from critics.subject import SubjectCritic, SubjectVerifier
 
 from nemo_curator.core.client import RayClient
 from nemo_curator.eval.llm_judge.workflow import LLMJudgeWorkflow, build_config_builder
+from nemo_curator.stages.synthetic.nemo_data_designer import DataDesignerStage
 
 if TYPE_CHECKING:
     import data_designer.config as dd
@@ -51,6 +55,7 @@ class CoverageWorkflow(LLMJudgeWorkflow):
 
     source_judge: str = "pair_semantic_judgment"
     model_alias: str | None = None
+    subject: bool = False
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -74,6 +79,17 @@ class CoverageWorkflow(LLMJudgeWorkflow):
         self._critic = CoverageCritic(self.source_judge)
         self._prompt = (_PROMPT_DIR / "pair.jinja").read_text(encoding="utf-8")
         self._system_prompt = (_PROMPT_DIR / "system.jinja").read_text(encoding="utf-8")
+        self._subject_prompts = []
+        if self.subject:
+            directory = _CONFIG_DIR / "critics" / "subject"
+            for prefix in ("", "verifier_"):
+                self._subject_prompts.append(
+                    (
+                        (directory / f"{prefix}pair.jinja").read_text(encoding="utf-8"),
+                        (directory / f"{prefix}system.jinja").read_text(encoding="utf-8"),
+                    )
+                )
+        self._user_postprocessing = list(self.postprocessing_stages)
         self.preprocessing_stages = [*self.preprocessing_stages, CriticPrepareStage(self._critic)]
         self.postprocessing_stages = [CriticApplyStage(self._critic), *self.postprocessing_stages]
 
@@ -97,6 +113,33 @@ class CoverageWorkflow(LLMJudgeWorkflow):
                 model_alias=self.model_alias, prompt=self._prompt, system_prompt=self._system_prompt
             )
         )
+        if self.subject:
+            subject_critic, verifier = SubjectCritic(), SubjectVerifier()
+            subject_stages = [CriticPrepareStage(subject_critic)]
+            for critic, (prompt, system_prompt) in zip((subject_critic, verifier), self._subject_prompts, strict=True):
+                subject_builder, subject_providers = build_config_builder(
+                    self.config_path, endpoint=endpoint, models=self.config["models"], judges=[]
+                )
+                subject_builder.add_column(
+                    critic.build_column(model_alias=self.model_alias, prompt=prompt, system_prompt=system_prompt)
+                )
+                subject_stages.extend(
+                    [
+                        DataDesignerStage(config_builder=subject_builder, model_providers=subject_providers).with_(
+                            name=f"ndd_{critic.name}",
+                            runtime_env=self._source_stage.get("runtime_env"),
+                            num_workers=self._source_stage.get("num_workers"),
+                        ),
+                        CriticApplyStage(critic),
+                    ]
+                )
+            self.postprocessing_stages = [
+                CriticApplyStage(self._critic),
+                *subject_stages,
+                *self._user_postprocessing,
+            ]
+        # Dynamo startup detaches from Ray; distribute helpers in the subsequent pipeline job.
+        ray.init(ignore_reinit_error=True, runtime_env={"py_modules": [critics]})
         return [
             (
                 "coverage",
@@ -118,6 +161,7 @@ def main() -> None:
     parser.add_argument("--output-format", default="jsonl", choices=("jsonl", "parquet"))
     parser.add_argument("--source-judge", default="pair_semantic_judgment")
     parser.add_argument("--model-alias", default=None, help="Model alias from the YAML; defaults to the first model.")
+    parser.add_argument("--subject", action="store_true", help="Verify subject-conflict proposals after coverage.")
     parser.add_argument("--checkpoint-path", default=None)
     parser.add_argument("--ray-temp-dir", default="/tmp/ray")  # noqa: S108
     args = parser.parse_args()
@@ -129,11 +173,10 @@ def main() -> None:
         output_format=args.output_format,
         source_judge=args.source_judge,
         model_alias=args.model_alias,
+        subject=args.subject,
         checkpoint_path=args.checkpoint_path,
     )
     with RayClient(ray_temp_dir=args.ray_temp_dir):
-        # Ship the local tutorial package so workers need no tutorial-specific PYTHONPATH.
-        ray.init(runtime_env={"py_modules": [critics]})
         try:
             workflow.run()
         finally:
