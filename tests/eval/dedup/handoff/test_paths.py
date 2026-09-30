@@ -28,6 +28,7 @@ def make_inputs(root: Path, *, prefix: str = "fresh", combined: bool = False) ->
         data = {
             ID: selected,
             "text": [f"{prefix} example article about shared subject and document {item}" for item in selected],
+            "source_id": selected,
         }
         if combined:
             data["embeddings"] = vectors[selected].tolist()
@@ -70,6 +71,12 @@ def test_shuffled_shards_align_text_and_embeddings_by_id(tmp_path: Path, combine
         key: f"fresh example article about shared subject and document {key}" for key in [0, 3, 16, 23]
     }
     assert all(value["url"] is None and value["language"] is None for value in documents.values())
+    assert load_documents_by_ids(corpus, [0], columns=("source_id",))[0]["source_id"] is None
+    assert all(
+        row["source_id"] is None
+        for batch in iter_corpus_batches(corpus, columns=("source_id",), batch_size=5)
+        for row in batch.to_pylist()
+    )
     streamed = [
         row
         for batch in iter_corpus_batches(corpus, columns=("text", "url"), batch_size=5)

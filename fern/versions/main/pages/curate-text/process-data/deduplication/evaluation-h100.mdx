@@ -40,8 +40,9 @@ are singletons. No singleton file or Common Crawl metadata is required.
 
 Embeddings must cover all documents, use one consistent nonzero dimension, and
 contain finite numbers with unit L2 norm (`rtol=atol=1e-3`). There is no fixed
-embedding model or dimension. Optional metadata such as `url` and `language`
-may be absent; the corresponding analysis fields remain unavailable. Files and
+embedding model or dimension. Optional string metadata such as `url` and `language`
+may be absent; the corresponding analysis fields remain unavailable. Extra columns
+with other types are ignored. Files and
 rows may be shuffled because text and embeddings are always aligned by ID.
 The documents and embeddings paths may point to the same directory.
 

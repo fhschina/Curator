@@ -36,6 +36,19 @@ def _arrow() -> tuple[Any, Any]:
     return pa, pq
 
 
+def _available_columns(schema: Any, *, explicit_id: str | None) -> set[str]:
+    pa, _ = _arrow()
+    if not explicit_id:
+        return set(schema.names)
+    return {
+        field.name
+        for field in schema
+        if field.name in {explicit_id, "text"}
+        or pa.types.is_string(field.type)
+        or pa.types.is_large_string(field.type)
+    }
+
+
 class TokenCounter:
     """Frozen tokenizer adapter used for lengths and long-document windows."""
 
@@ -140,7 +153,7 @@ def iter_corpus_batches(
     for shard in corpus_manifest["shards"]:
         physical_offset = 0
         parquet_file = pq.ParquetFile(shard["resolved_path"])
-        available = parquet_file.schema_arrow.names
+        available = _available_columns(parquet_file.schema_arrow, explicit_id=explicit_id)
         selected = [column for column in columns if column in available]
         selected = list(dict.fromkeys([explicit_id, *selected])) if explicit_id else list(columns)
         for batch in parquet_file.iter_batches(batch_size=batch_size, columns=selected):
@@ -198,7 +211,8 @@ def load_documents_by_ids(
     for index, ids in by_shard.items():
         shard = shards[index]
         parquet = pq.ParquetFile(shard["resolved_path"])
-        selected = [name for name in columns if name in parquet.schema_arrow.names]
+        available = _available_columns(parquet.schema_arrow, explicit_id=corpus_manifest.get("explicit_id_column"))
+        selected = [name for name in columns if name in available]
         ordered = sorted(ids, key=lambda item: item[1])
         cursor, start = 0, 0
         for row_group in range(parquet.num_row_groups):
@@ -208,8 +222,11 @@ def load_documents_by_ids(
                 stop += 1
             if stop > cursor:
                 requested = ordered[cursor:stop]
-                table = parquet.read_row_group(row_group, columns=selected)
-                values = table.take(pa.array([offset - start for _, offset in requested])).to_pylist()
+                if selected:
+                    table = parquet.read_row_group(row_group, columns=selected)
+                    values = table.take(pa.array([offset - start for _, offset in requested])).to_pylist()
+                else:
+                    values = [{} for _ in requested]
                 for (doc_id, offset), value in zip(requested, values, strict=True):
                     result[doc_id] = {
                         "doc_id": doc_id,

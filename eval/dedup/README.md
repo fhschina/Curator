@@ -100,9 +100,10 @@ absent from all groups are singletons; no singleton file is needed.
 
 Embeddings must cover every document exactly once, have one consistent nonzero
 dimension, and contain finite numeric values with unit L2 norm (tolerance
-`rtol=atol=1e-3`). No embedding model or dimension is fixed. Optional `url`,
-`language`, and source metadata may be omitted; their analysis fields remain
-unavailable. Common Crawl schema metadata is not required.
+`rtol=atol=1e-3`). No embedding model or dimension is fixed. Optional string
+metadata such as `url` and `language` may be omitted; their analysis fields remain
+unavailable. Other extra columns are ignored, including non-string source
+metadata. Common Crawl schema metadata is not required.
 
 Preparation needs the existing CUDA MinHash dependencies and a GPU, even when
 the Judge runs on Hub. It checks free disk space before conversion, streams
