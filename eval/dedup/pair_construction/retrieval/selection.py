@@ -49,6 +49,9 @@ def _outcome_arrays(outcomes_path: Path, expected_rows: int) -> tuple[Any, Any, 
     np, _, pq = _dependencies()
     table = pq.read_table(outcomes_path, columns=["doc_id", "predicted_group_id", "predicted_group_size"])
     doc_ids = table["doc_id"].to_numpy(zero_copy_only=False).astype(np.int64, copy=False)
+    if len(doc_ids) > 1 and not np.all(doc_ids[1:] > doc_ids[:-1]):
+        table = table.take(np.argsort(doc_ids, kind="stable"))
+        doc_ids = table["doc_id"].to_numpy(zero_copy_only=False).astype(np.int64, copy=False)
     require(
         len(doc_ids) == expected_rows and np.array_equal(doc_ids, np.arange(expected_rows, dtype=np.int64)),
         "OUTCOME_ID_ORDER_MISMATCH",
@@ -281,6 +284,7 @@ def retrieve_and_select_cross_group_pairs(
     signature_manifest: dict[str, Any],
     destination: Path,
     retrieval_config_destination: Path,
+    lexical_pilot: tuple[list[int], tuple[int, int], list[dict[str, Any]]] | None = None,
 ) -> dict[str, int]:
     """Execute both retrieval channels and write selected provenance memberships."""
 
@@ -288,12 +292,18 @@ def retrieve_and_select_cross_group_pairs(
     doc_ids, group_ids, group_sizes = _outcome_arrays(outcomes_path, config.dataset.expected_rows)
     pilot_count = min(100, config.dataset.expected_rows)
     pilot_ids = _pilot_anchor_ids(doc_ids, group_ids, group_sizes, seed=config.seeds["pilot_seed"], target=pilot_count)
-    (bands, rows_per_band), trials = choose_lsh_configuration(
-        signature_path,
-        config=config,
-        pilot_anchor_ids=pilot_ids,
-        predicted_group_ids=group_ids,
-    )
+    if lexical_pilot is None:
+        (bands, rows_per_band), trials = choose_lsh_configuration(
+            signature_path,
+            config=config,
+            pilot_anchor_ids=pilot_ids,
+            predicted_group_ids=group_ids,
+        )
+    else:
+        preflight_ids, (bands, rows_per_band), trials = lexical_pilot
+        require(
+            preflight_ids == pilot_ids, "PILOT_POPULATION_CHANGED", "preflight and outcome pilot anchors must match"
+        )
     pilot_semantic = exact_cosine_topk(
         Path(corpus_manifest["embedding"]["path"]),
         rows=config.dataset.embedding_rows,

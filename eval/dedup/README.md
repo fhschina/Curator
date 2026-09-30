@@ -44,7 +44,8 @@ needs the following evaluation-specific resources.
 - Python 3.11 and `uv >= 0.12.0`; use the checked-in lockfile.
 - The `dedup_eval` optional dependency set. It includes the CUDA 12 SDG, Data
   Designer, and Curator inference-server dependencies required by the Judge.
-- A readable copy of the frozen v0.7 20K input bundle. It contains
+- Either the four Parquet inputs described below, or a readable copy of the
+  frozen v0.7 20K input bundle. The legacy bundle contains
   `manifest.json`, `complete.json`, `panel_index.json`, `inputs/`, and
   `main_requests/`.
 - A new writable run directory with enough space for the selected population,
@@ -64,6 +65,70 @@ export CURATOR_V07_SOURCE_RUN=/path/to/frozen-v07-inputs
 
 The equivalent `prepare` option is `--source-run`. An explicit option takes
 precedence over the environment variable.
+
+### Prepare pairs from a new dataset
+
+Supply four local or mounted paths. Each accepts one Parquet file or a directory
+of Parquet shards (including nested directories):
+
+| Option | Required columns |
+| --- | --- |
+| `--documents` | `_curator_dedup_id`, `text` |
+| `--groups` | `_curator_dedup_id`, `_duplicate_group_id` |
+| `--removals` | `_curator_dedup_id` |
+| `--embeddings` | `_curator_dedup_id`, `embeddings` |
+
+```bash
+python -m eval.dedup prepare \
+  --documents /data/documents \
+  --groups /data/duplicate_groups \
+  --removals /data/removal_ids \
+  --embeddings /data/embeddings \
+  --root /runs/new-dataset
+python -m eval.dedup launch --root /runs/new-dataset --env-file /private/nvidia.env
+python -m eval.dedup status --root /runs/new-dataset
+python -m eval.dedup audit --root /runs/new-dataset
+```
+
+`--documents` and `--embeddings` may point to the same files. IDs must be unique
+integers covering `0..N-1` in both inputs; alignment always uses IDs, even when
+shards and rows are in different orders. Text must be a non-null string.
+Duplicate-group IDs must be nonnegative integers, each grouped document must
+occur once, and each group must have at least two members and exactly one member
+absent from the removal list. Every removal must belong to a group. Documents
+absent from all groups are singletons; no singleton file is needed.
+
+Embeddings must cover every document exactly once, have one consistent nonzero
+dimension, and contain finite numeric values with unit L2 norm (tolerance
+`rtol=atol=1e-3`). No embedding model or dimension is fixed. Optional `url`,
+`language`, and source metadata may be omitted; their analysis fields remain
+unavailable. Common Crawl schema metadata is not required.
+
+Preparation needs the existing CUDA MinHash dependencies and a GPU, even when
+the Judge runs on Hub. It checks free disk space before conversion, streams
+inputs, and writes the ID lookup, float32 embedding matrix, MinHash matrix,
+outcomes, and pair provenance under the new run's `preparation/` directory.
+For 100M documents and 768-dimensional vectors, the two matrices alone need
+about 411 GB (383 GiB); the preflight also reserves space for outcomes and
+intermediate files. Keep inputs immutable while preparing. Input inventories,
+SHA-256 checksums, derived counts, tokenizer revision, and preparation settings
+are recorded in the run artifacts.
+
+The existing seeds, retrieval pilot, anchor quotas, and budgets remain fixed:
+10K keeper/removal pairs (5a) and 10K cross-group pairs (5b). A corpus that cannot
+fill these quotas, or that exceeds the existing retrieval limits, stops with a
+named error and diagnostic details. Preparation does not retune the method.
+Each new run deterministically selects up to 24 smoke pairs from its own
+population, preferring 12 per track. The gate requires valid results and exact
+offline replay; conditional critics need not all trigger on a new population.
+Judge prompts, critic routing, transport limits, and recovery are unchanged.
+
+All four paths are required together and are mutually exclusive with
+`--source-run`. Supplying new paths ignores `CURATOR_V07_SOURCE_RUN`; no old
+pairs or answers are used. `--smoke-only` prepares the new full population but
+freezes only its smoke subset for execution, as in the legacy execution mode.
+Use a fresh `--root` for every preparation attempt, including after a failed
+preflight or retrieval pilot. Preparation caches are confined to that run.
 
 ### Additional requirements for NVIDIA Inference Hub
 

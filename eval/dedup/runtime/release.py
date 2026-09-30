@@ -140,6 +140,17 @@ def verify(root: Path) -> dict:
         "DEDUP_RUNTIME_BINDING",
         "a supported immutable v0.7 run is required",
     )
+    if manifest.get("input_mode") == "parquet_paths":
+        original_root = Path(manifest["artifact_root"])
+        for raw_path, digest in manifest["artifacts"].items():
+            relative = Path(raw_path).relative_to(original_root)
+            path = root / relative
+            require(
+                path.is_file() and sha256_file(path) == digest,
+                "INPUT_ARTIFACT_CHANGED",
+                "new-population inputs must match their frozen checksums",
+                path=str(relative),
+            )
     return manifest
 
 

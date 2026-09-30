@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit, urlunsplit
@@ -98,7 +99,7 @@ def build_document_outcomes(
     url_failure_count = 0
     empty_text_count = 0
     input_columns = ("source_id", "warc_path", "warc_record_id", "url", "timestamp", "language", "text")
-    for batch in iter_corpus_batches(corpus_manifest, columns=input_columns):
+    for batch_index, batch in enumerate(iter_corpus_batches(corpus_manifest, columns=input_columns), 1):
         values = batch.to_pydict()
         doc_ids = np.asarray(values["doc_id"], dtype=np.int64)
         raw_group, group_sizes, keepers, is_removal = sut.lookup(doc_ids)
@@ -147,6 +148,17 @@ def build_document_outcomes(
             "shard_index": values["shard_index"],
             "physical_row_index": values["physical_row_index"],
         }
+        for column in (
+            "source_id",
+            "warc_path",
+            "warc_id",
+            "url",
+            "crawl_timestamp",
+            "language",
+            "hostname",
+            "canonical_url_v0",
+        ):
+            output[column] = pa.array(output[column], type=pa.string())
         table = pa.table(output)
         require(
             tuple(table.column_names) == DOCUMENT_OUTCOME_COLUMNS, "INTERNAL_SCHEMA_ERROR", "outcome columns changed"
@@ -157,6 +169,8 @@ def build_document_outcomes(
         total_rows += len(doc_ids)
         removal_count += int(is_removal.sum())
         singleton_count += int((raw_group == -1).sum())
+        if batch_index % 64 == 0:
+            print(json.dumps({"outcome_rows": total_rows, "expected_rows": config.dataset.expected_rows}), flush=True)
     if writer is not None:
         writer.close()
     retained_count = total_rows - removal_count

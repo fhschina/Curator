@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import inspect
+import json
 import os
 from pathlib import Path
 from typing import Any
@@ -137,7 +138,9 @@ def build_minhash_cache(
         temporary, dtype=np.uint32, mode="w+", shape=(config.dataset.expected_rows, retrieval.num_hashes)
     )
     written = 0
-    for batch in iter_corpus_batches(corpus_manifest, columns=("text",), batch_size=retrieval.signature_chunk_rows):
+    for batch_index, batch in enumerate(
+        iter_corpus_batches(corpus_manifest, columns=("text",), batch_size=retrieval.signature_chunk_rows), 1
+    ):
         values = batch.to_pydict()
         texts = values["text"]
         if retrieval.backend == "fixture_cpu":
@@ -154,10 +157,15 @@ def build_minhash_cache(
             )
         else:
             signatures = _gpu_signatures(texts, retrieval)
-        start = int(values["doc_id"][0])
-        require(start == written, "MINHASH_ID_ORDER_MISMATCH", "corpus batches are not in doc_id order")
-        matrix[start : start + len(texts)] = signatures
+        if corpus_manifest.get("explicit_id_column"):
+            matrix[values["doc_id"]] = signatures
+        else:
+            start = int(values["doc_id"][0])
+            require(start == written, "MINHASH_ID_ORDER_MISMATCH", "corpus batches are not in doc_id order")
+            matrix[start : start + len(texts)] = signatures
         written += len(texts)
+        if batch_index % 64 == 0:
+            print(json.dumps({"minhash_rows": written, "expected_rows": config.dataset.expected_rows}), flush=True)
     matrix.flush()
     del matrix
     require(written == config.dataset.expected_rows, "MINHASH_ROW_COUNT_MISMATCH", "signature cache is incomplete")

@@ -12,13 +12,73 @@ modality: "text-only"
 
 This guide applies to the internal `fhschina/Curator:dedup-eval` v0.7.1
 source-checkout tool. It is not an NVIDIA-NeMo/Curator upstream release.
-The tool evaluates the frozen 20,000-pair Judge v0.7 population using
+The tool evaluates a frozen 20,000-pair Judge v0.7 population using
 `Qwen/Qwen3.8-27B-FP8`, with one tensor-parallel-1 replica per selected GPU.
-It does not rerun deduplication or construct a new evaluation population.
+It can construct new pairs from supplied Parquet inputs or reuse the historical
+frozen input bundle. It does not rerun deduplication.
 
 The scripts in `eval/dedup/deploy/` accept deployment paths and the Slurm account
 from the caller. Keep environments, model weights, input bundles, generated
 runner profiles, and run outputs outside the checkout.
+
+## Use a new dataset
+
+Provide four local or mounted Parquet paths, each a file or shard directory:
+
+| Argument | Required columns |
+| --- | --- |
+| `--documents` | `_curator_dedup_id`, `text` |
+| `--groups` | `_curator_dedup_id`, `_duplicate_group_id` |
+| `--removals` | `_curator_dedup_id` |
+| `--embeddings` | `_curator_dedup_id`, `embeddings` |
+
+Document and embedding IDs must each uniquely cover the integers `0..N-1`.
+Text must be a non-null string. Group IDs must be nonnegative integers; every
+group has at least two documents and exactly one keeper, determined by absence
+from the removal list. Every removal must join to a group. Ungrouped documents
+are singletons. No singleton file or Common Crawl metadata is required.
+
+Embeddings must cover all documents, use one consistent nonzero dimension, and
+contain finite numbers with unit L2 norm (`rtol=atol=1e-3`). There is no fixed
+embedding model or dimension. Optional metadata such as `url` and `language`
+may be absent; the corresponding analysis fields remain unavailable. Files and
+rows may be shuffled because text and embeddings are always aligned by ID.
+The documents and embeddings paths may point to the same directory.
+
+Run preparation in an existing Curator environment with the CUDA MinHash
+dependencies and an allocated GPU. For a Hub evaluation:
+
+```bash
+python -m eval.dedup prepare \
+  --documents /data/documents \
+  --groups /data/duplicate_groups \
+  --removals /data/removal_ids \
+  --embeddings /data/embeddings \
+  --root /runs/new-dataset
+python -m eval.dedup launch --root /runs/new-dataset --env-file /private/nvidia.env
+python -m eval.dedup status --root /runs/new-dataset
+python -m eval.dedup audit --root /runs/new-dataset
+```
+
+Preparation creates fresh 5a and 5b pairs using the existing seeds, retrieval
+parameters, and 10K-per-track budgets. It streams the input conversion into the
+new run directory, checks free disk space first, and records the file inventory,
+checksums, derived dataset counts, and embedding dimension. Keep the input files
+immutable until preparation finishes. The float32 embedding matrix and the
+260-column MinHash matrix alone require roughly 411 GB for 100M documents with
+768-dimensional embeddings; outcomes and intermediate artifacts need additional
+space, included in the disk preflight estimate.
+
+The smoke panel comes from the new population, with up to 24 pairs and a
+preference for 12 per track. It checks structural validity and identical offline
+replay without requiring every conditional critic to trigger. Judge prompts,
+critic routing, rate limits, and execution commands remain unchanged.
+
+Supply all four paths together, without `--source-run`. This mode ignores the
+legacy `CURATOR_V07_SOURCE_RUN` variable. An unfillable sample budget or a
+retrieval-limit failure is reported explicitly; parameters are not automatically
+changed. Use a fresh run root after a failed preparation. To use the local Judge,
+add `--backend local` and the local deployment options described below.
 
 ## Validation scope
 

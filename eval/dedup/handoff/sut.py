@@ -145,12 +145,12 @@ def load_sut_arrays(config: EvaluationConfig, *, groups_path: Path, removals_pat
     )
     require(len(np.unique(removal_ids)) == len(removal_ids), "DUPLICATE_REMOVAL_ID", "removal IDs are not unique")
     require(
-        doc_ids.min() >= 0 and doc_ids.max() < config.dataset.expected_rows,
+        not len(doc_ids) or (doc_ids.min() >= 0 and doc_ids.max() < config.dataset.expected_rows),
         "SUT_ID_OUT_OF_RANGE",
         "grouped ID is outside corpus",
     )
     require(
-        removal_ids.min() >= 0 and removal_ids.max() < config.dataset.expected_rows,
+        not len(removal_ids) or (removal_ids.min() >= 0 and removal_ids.max() < config.dataset.expected_rows),
         "SUT_ID_OUT_OF_RANGE",
         "removal ID is outside corpus",
     )
