@@ -34,14 +34,14 @@ def preparation_config(root: Path, dataset: DatasetConfig) -> EvaluationConfig:
         "tokenizer": {
             "kind": "huggingface",
             "model_id": LOGICAL_MODEL,
-            "revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+            "revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",  # pragma: allowlist secret - public model commit
             "cache_root": str(root / "preparation/tokenizer"),
         },
         "judge": {
             "backend": "nvidia_openai",
             "base_url": "https://inference-api.nvidia.com/v1",
             "model": "nvidia/qwen/qwen3.8-27b",
-            "api_key_env": "NVIDIA_API_KEY",
+            "api_key_env": "NVIDIA_API_KEY",  # pragma: allowlist secret - environment variable name
             "structured_output_mode": "json_schema",
             "thinking": False,
             "temperature": 0.0,

@@ -22,6 +22,9 @@ from tests.eval.dedup.handoff.test_paths import make_inputs
 
 @pytest.fixture
 def small_config(monkeypatch: pytest.MonkeyPatch) -> None:
+    import torch
+
+    monkeypatch.setattr(torch.cuda, "device_count", lambda: 0)
     original = preparation.preparation_config
 
     def create(root: Path, dataset: DatasetConfig) -> EvaluationConfig:

@@ -262,7 +262,7 @@ def prepare(root: Path, *, source: Path, smoke_only: bool = False) -> dict:
         "sources": sources,
         "source_digest": sha256_json(sources),
         "contract_lineage": {
-            "original_release_commit": "ef17d9b6527532521580781570942728509629bd",
+            "original_release_commit": "ef17d9b6527532521580781570942728509629bd",  # pragma: allowlist secret - Git commit
             "judge_contract_version": JUDGE_CONTRACT_VERSION,
         },
         "artifacts": artifacts,
