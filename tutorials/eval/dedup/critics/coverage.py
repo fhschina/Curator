@@ -19,7 +19,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, ClassVar
 
-from tutorials.eval.dedup.critics.dedup_adapter import (
+from .dedup_adapter import (
     _offset,
     adapt_alignment,
     complete_text_equality,

@@ -14,8 +14,8 @@
 
 """Step 6: optionally review saved main-judge results with the coverage critic.
 
-Run from the repository root so the tutorial helpers are importable by Ray:
-    PYTHONPATH="$PWD" python tutorials/eval/dedup/6_run_critics.py \
+Run from the repository root:
+    python tutorials/eval/dedup/6_run_critics.py \
         --input-path output/dedup_eval/judged_pairs \
         --output-path output/dedup_eval/reviewed_pairs
 
@@ -30,10 +30,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+import critics
+import ray
+from critics.coverage import CoverageCritic
+from critics.stages import CriticApplyStage, CriticPrepareStage
+
 from nemo_curator.core.client import RayClient
 from nemo_curator.eval.llm_judge.workflow import LLMJudgeWorkflow, build_config_builder
-from tutorials.eval.dedup.critics.coverage import CoverageCritic
-from tutorials.eval.dedup.critics.stages import CriticApplyStage, CriticPrepareStage
 
 if TYPE_CHECKING:
     import data_designer.config as dd
@@ -129,7 +132,12 @@ def main() -> None:
         checkpoint_path=args.checkpoint_path,
     )
     with RayClient(ray_temp_dir=args.ray_temp_dir):
-        workflow.run()
+        # Ship the local tutorial package so workers need no tutorial-specific PYTHONPATH.
+        ray.init(runtime_env={"py_modules": [critics]})
+        try:
+            workflow.run()
+        finally:
+            ray.shutdown()
 
 
 if __name__ == "__main__":

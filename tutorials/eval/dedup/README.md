@@ -1,50 +1,40 @@
 # Fuzzy dedup evaluation example
 
-This example builds an evaluation dataset from a completed fuzzy-deduplication
-run and uses an LLM judge to check whether fuzzy dedup's keep/remove/group
-decisions are actually correct. It does not change fuzzy dedup itself; it
-audits the decisions fuzzy dedup already made.
+Fuzzy deduplication groups near-duplicate documents and picks one "keeper" per group, removing the rest. This example checks whether those decisions were actually correct, by having an LLM judge look at the pairs of documents fuzzy dedup grouped together (and some it didn't) and render its own verdict on whether they're really duplicates. It doesn't change fuzzy dedup itself -- it's a way to audit and spot-check the decisions a completed fuzzy dedup run already made.
 
-This is an illustrative worked example, not a calibrated production
-evaluation. The judging rubric, model, and per-field thresholds in
-`judge_config/` are starting points -- re-validate them on your own data
-before trusting the results at scale. The LLM judge is an automated opinion,
-not ground truth: treat disagreements between the judge and fuzzy dedup as
-things to look into, not proven errors.
+The main evaluation workflow has been tested at the 10 million and 100 million document scale, and the judge config in `judge_config/` was tuned on 8xH100 nodes. The optional coverage step below has only been validated on small inputs. The LLM judge is an automated opinion, not ground truth: treat disagreements between the judge and fuzzy dedup as things to look into, not proven errors.
 
 ## Pipeline
 
-```text
-1. 1_data_prep.py           -> download & extract a Common Crawl sample with jusText
-2. 2_run_fuzzy_dedup.py     -> FuzzyDeduplicationWorkflow (identification only)
-3. 3_build_pair_dataset.py  -> labeled document pairs from fuzzy dedup's decisions
-4. 4_span_alignment.py      -> add span-alignment evidence (semantic_diff/truncated) to each pair
-5. 5_run_llm_judge.py       -> LLMJudgeWorkflow judges each pair
-6. 6_run_critics.py         -> optionally review saved main results with coverage
-7. 7_analyze_results.py     -> summarize judge verdicts vs. fuzzy dedup's decisions
-```
+The example is seven standalone scripts (step 6 is optional), run in order. Each also has a full example invocation and flag reference in its own docstring.
 
-Step 1 downloads a small Common Crawl sample and extracts HTML content with
-jusText. Common Crawl pages are full of real exact- and near-duplicate
-boilerplate -- cookie notices, legal disclaimers, navigation chrome, mirrored
-or syndicated articles -- so fuzzy dedup and the LLM judge have real
-decisions to make, and it's the same class of content the judge rubric in
-`judge_config/` is written for.
+**1. `1_data_prep.py`** downloads and extracts a Common Crawl sample with jusText. This just gets you a realistic corpus to run fuzzy dedup against -- Common Crawl pages are full of real near-duplicate content (cookie notices, legal boilerplate, syndicated articles), which is exactly the kind of thing this eval is meant to check.
 
-**Prerequisites:**
+**2. `2_run_fuzzy_dedup.py`** runs `FuzzyDeduplicationWorkflow` in identification-only mode: it groups near-duplicate documents and decides which one to keep in each group, but doesn't actually delete anything. Its output -- duplicate groups and removal decisions -- is what the rest of the pipeline evaluates.
 
-- Step 1 needs network access to Common Crawl.
-- Steps 2-3 need the RAPIDS/cuGraph GPU stages `FuzzyDeduplicationWorkflow`
-  normally needs (MinHash/LSH/connected components).
-- Step 4 is CPU-only (`difflib`-based span alignment run through Ray Data).
-- Steps 5-6 need GPU(s) to serve a local judge model through Dynamo --
-  `LLMJudgeWorkflow` only supports locally served models, there's no
-  hosted-inference-API backend.
+**3. `3_build_pair_dataset.py`** turns fuzzy dedup's output into a dataset of document *pairs*, since that's the unit the LLM judge reasons about ("are these two documents duplicates?") rather than whole groups. Pick one of three `--pair-strategy` values depending on what you want to check:
+
+- `keeper_removed` -- pairs the document fuzzy dedup kept with each document it removed from that group. This is the core check: "was this removal decision correct?"
+- `all_pairwise` -- pairs every document in a group with every other document in that group, including removed-vs-removed pairs `keeper_removed` skips. More expensive, but also catches cases where fuzzy dedup grouped two documents together that shouldn't have been in the same group at all.
+- `cross_group_sample` -- samples pairs of documents from *different* groups, i.e. pairs fuzzy dedup did **not** treat as duplicates. This checks the opposite failure mode: documents that should have been grouped together but weren't (missed duplicates).
+
+Run the script once per strategy you want to evaluate, each with its own `--output-path`. Every pair is labeled `expected_duplicate=true` (for `keeper_removed`/`all_pairwise`) or `false` (for `cross_group_sample`) -- this is fuzzy dedup's original decision, and step 7 later checks the judge's verdict against it.
+
+**4. `4_span_alignment.py`** is where the pairs get prepped for judging. The judge is only shown a limited amount of text per document (6000 characters, matching the judge's context window), and rather than hand it two long, mostly-identical blobs of text and hope it spots the difference, this step runs a text diff (`difflib`) between each pair and breaks the visible text into labeled spans: `SHARED` (text common to both), `A_ONLY` (only in document A), and `B_ONLY` (only in document B). That span breakdown -- not the raw text -- is what actually gets rendered into the judge's prompt, so the judge's job becomes "look at what's different" instead of "read two documents and find what's different." If a document had to be cut off to fit the 6000-character limit, the pair is flagged `truncated`, since a difference could be hiding in the part the judge never saw.
+
+**5. `5_run_llm_judge.py`** is the actual evaluation step, and the main point of this example: it runs `LLMJudgeWorkflow` to have a locally-served LLM judge each pair against the rubric in `judge_config/fuzzy_pair_judge.yaml`. For each pair, the judge scores several rubric fields (e.g. `relation_type` -- is this pair `exact`, `near_surface`, `containment`, `version_related`, `unrelated`, etc. -- plus supporting fields like `material_difference` and `confidence_tier`) and returns its reasoning for each. `relation_type` is the main verdict step 7 evaluates. Before running this step, edit `judge_config/fuzzy_pair_judge.yaml`: set `models[0].model` to a local model path or HF repo id, and size `num_replicas`/`tensor_parallel_size` to the GPUs you have available. `LLMJudgeWorkflow` only supports locally-served models -- there's no hosted-inference-API backend.
+
+**6. `6_run_critics.py`** optionally reviews saved main results using the coverage critic. It reuses the main YAML's model/server settings and source-stage worker settings, and runs prepare → Data Designer with native `SkipConfig` → apply inside one Pipeline. It starts its own inference service; steps 5 and 6 do not share a running server. It does not rerun main judges or their score filters, so coverage can be rerun against fixed main results.
+
+**7. `7_analyze_results.py`** is where you actually find out how fuzzy dedup did. It takes the judge's `relation_type` verdicts and buckets them into duplicate / not_duplicate / unresolved, then compares that against each pair's `expected_duplicate` label from step 3 to compute a disagreement rate per pairing strategy -- e.g. what fraction of `keeper_removed` pairs the judge thinks *aren't* actually duplicates (candidate wrong removals), or what fraction of `cross_group_sample` pairs the judge thinks *are* duplicates (candidate missed duplicates). It writes every disagreeing pair to a JSONL file for manual review, since a disagreement is a signal to look at the pair yourself, not a confirmed fuzzy-dedup error.
+
+By default, analysis reads the saved decision unchanged: `--decision-source main` selects the original judge result, while `--decision-source final` selects `final_decision` from step 6. Both modes export supporting fields such as materiality, confidence and risk from the selected decision, alongside the original main result and any coverage audit fields. Use these default modes to compare main and coverage on the same records.
+
+For a separate main-only diagnostic report, `--apply-main-corrections` enables two analysis rules: (1) classify complete, untruncated, nonempty, strictly equal original texts as `exact`; (2) reclassify `containment` as `related_non_duplicate` when main reports mismatched content profiles, both sides `non_main_only`, or no shared basis. Zero unique spans alone do not prove raw-text equality because alignment normalizes tokens. Corrections are counted in the logs; disagreement exports retain `relation_type_raw` and the flags `relation_type_corrected` / `relation_type_containment_corrected`. This option changes only the analysis report, not saved judgments, and cannot be combined with `--decision-source final`. Do not compare a corrected main report with a raw final report to measure coverage's effect.
+
+**Prerequisites:** step 1 needs network access to Common Crawl; steps 2-3 need the GPU stages (RAPIDS/cuGraph) that `FuzzyDeduplicationWorkflow` normally uses for MinHash/LSH/connected components; step 4 is CPU-only; steps 5 and 6 need GPU(s) to serve the judge model. Run the scripts with Curator and its evaluation dependencies installed. Step 6 imports its neighboring `critics` package and distributes it to Ray workers; no tutorial-specific `PYTHONPATH` is needed.
 
 ## Quick start
-
-Each script runs standalone -- see the docstring at the top of each file for
-a full example invocation.
 
 ```bash
 # Step 1: download & extract a Common Crawl sample.
@@ -59,11 +49,9 @@ python tutorials/eval/dedup/2_run_fuzzy_dedup.py \
   --cache-dir output/dedup_eval/fuzzy_cache \
   --output-dir output/dedup_eval/fuzzy_ids
 
-# Step 3: build the labeled pair dataset -- one strategy per run, one
-# --output-path per strategy (see "Pairing strategies" below).
-# --input-path/--input-filetype/--input-blocksize MUST match step 2 exactly
-# -- see "Keep step 2 and step 3 inputs matched" below.
-# These are raw pairs -- no semantic_diff/truncated yet, see step 4.
+# Step 3: build the labeled pair dataset. Choose one --pair-strategy (see
+# above), and make sure --input-path/--input-filetype/--input-blocksize
+# match step 2 exactly.
 python tutorials/eval/dedup/3_build_pair_dataset.py \
   --input-path output/dedup_eval/raw_corpus \
   --input-filetype jsonl \
@@ -72,312 +60,53 @@ python tutorials/eval/dedup/3_build_pair_dataset.py \
   --output-path output/dedup_eval/keeper_removed_pairs_raw \
   --pair-strategy keeper_removed
 
-# Step 4: add span-alignment evidence (semantic_diff/truncated) to each pair --
-# see "Span alignment and truncation" below.
+# Step 4: add span-alignment evidence to each pair.
 python tutorials/eval/dedup/4_span_alignment.py \
   --input-path output/dedup_eval/keeper_removed_pairs_raw \
   --output-path output/dedup_eval/keeper_removed_pairs
 
-# Step 5: judge each pair. Edit judge_config/fuzzy_pair_judge.yaml first --
+# Step 5: judge each pair. First edit judge_config/fuzzy_pair_judge.yaml --
 # set models[0].model to a local model path or HF repo id, and size
-# num_replicas/tensor_parallel_size to your GPUs (set num_replicas: 1 for a single-GPU run).
-# --input-path accepts a glob, so point it at one strategy's directory, or at
-# several (e.g. output/dedup_eval/*_pairs) to judge them together.
+# num_replicas/tensor_parallel_size to your GPUs.
 python tutorials/eval/dedup/5_run_llm_judge.py \
   --input-path output/dedup_eval/keeper_removed_pairs \
   --output-path output/dedup_eval/judged_pairs
 
-# Step 6 (optional): review saved main results. Run from the repository root;
-# keep the checkout on PYTHONPATH for both the driver and Ray workers.
-PYTHONPATH="$PWD" python tutorials/eval/dedup/6_run_critics.py \
+# Step 6 (optional): review saved main results with coverage.
+python tutorials/eval/dedup/6_run_critics.py \
   --input-path output/dedup_eval/judged_pairs \
   --output-path output/dedup_eval/reviewed_pairs
 
-# Step 7: summarize main-only results, and write disagreements for manual review.
-# To analyze coverage instead, use reviewed_pairs and --decision-source final.
+# Step 7: compare the saved main and final decisions on the same records.
+# If step 6 was skipped, use judged_pairs and --decision-source main only.
 python tutorials/eval/dedup/7_analyze_results.py \
-  --judge-output-path output/dedup_eval/judged_pairs \
-  --disagreements-output output/dedup_eval/disagreements.jsonl
+  --judge-output-path output/dedup_eval/reviewed_pairs --decision-source main \
+  --disagreements-output output/dedup_eval/main_disagreements.jsonl
+python tutorials/eval/dedup/7_analyze_results.py \
+  --judge-output-path output/dedup_eval/reviewed_pairs --decision-source final \
+  --disagreements-output output/dedup_eval/final_disagreements.jsonl
+
+# Optional: a separate report with main-only analysis corrections.
+python tutorials/eval/dedup/7_analyze_results.py \
+  --judge-output-path output/dedup_eval/reviewed_pairs --apply-main-corrections \
+  --disagreements-output output/dedup_eval/corrected_main_disagreements.jsonl
 ```
 
-## Pairing strategies
+## Coverage critic
 
-`3_build_pair_dataset.py --pair-strategy` takes exactly one of the following.
-Run the script once per strategy you want, each with its own `--output-path`
-(they all read the same step-2 outputs, so re-running is cheap) -- keeping
-one strategy per directory avoids ambiguity about which pairs came from
-which strategy once they reach the judge.
+Each critic lives in a tutorial module; `critics/coverage.py` owns coverage's routing, schema and rules, while `critics/stages.py` prepares and applies records. Step 6 defaults to source judge `pair_semantic_judgment` and the YAML's first model alias; override them with `--source-judge` and `--model-alias`. Prompts live in `judge_config/critics/coverage/`. Main results must contain the eight decision fields required by `critics/dedup_adapter.py`. Unique spans need `delta_start_char` / `delta_end_char` to separate core evidence (at most 240 characters) from padded reading context; incompatible inputs fail validation.
 
-- `keeper_removed`: pairs the document fuzzy dedup kept in a group against
-  each document it marked for removal from that group. Directly answers
-  "was this removal decision correct?" with one pair per removed document.
-- `all_pairwise`: every pair of distinct documents within a group, including
-  removed-vs-removed pairs `keeper_removed` skips. Costs more LLM calls
-  (`C(n, 2)` per group of size `n`) but catches within-group grouping errors
-  that keeper-vs-removed comparisons alone would miss.
-- `cross_group_sample` (size it with `--cross-group-samples N`): samples `N`
-  pairs of documents from *different* groups (including singleton documents
-  with no group). These are pairs fuzzy dedup did **not** treat as
-  duplicates -- a check for missed duplicates / false negatives, mirroring
-  what `keeper_removed`/`all_pairwise` check for false positives.
+Coverage skips negative/unresolved main decisions and complete, untruncated, nonempty, strictly equal texts. Other positive replacement decisions are reviewed using evidence without the main prediction or pair label. Python validates references and applies keep, directional veto or abstention rules. A veto can only revoke an existing positive direction and requires complete, untruncated evidence. Missing required reviews or invalid references fail validation rather than counting as skips.
 
-Each pair is stamped with `pair_type` and `expected_duplicate`: `true` for
-`keeper_removed`/`all_pairwise` (fuzzy dedup grouped them together) and
-`false` for `cross_group_sample` (fuzzy dedup did not). `7_analyze_results.py`
-compares the judge's verdict against this label.
-
-## Keep step 2 and step 3 inputs matched
-
-`3_build_pair_dataset.py` recovers each document's text by re-reading the
-*original* input corpus and replaying `fuzzy_id_generator.json` (written by
-`2_run_fuzzy_dedup.py`) to reassign the exact same `_curator_dedup_id` values
-fuzzy dedup used. That replay is keyed by a hash of the exact set of files
-grouped into each reader batch, which depends on `--input-path`,
-`--input-filetype`, and `--input-blocksize`. Passing different values for any
-of these to `3_build_pair_dataset.py` than you passed to `2_run_fuzzy_dedup.py`
-raises a `KeyError` during id reassignment -- it fails loudly rather than
-silently pairing the wrong text with an id. Keep the flags above matched
-between steps 2 and 3.
-
-The re-read result is cached as sharded Parquet under
-`--cache-dir/CorpusWithIds/` and reused across `--pair-strategy` re-runs
-against the same `--cache-dir` (delete `CorpusWithIds/` to force a re-read).
-The cache records which `--input-path`/`--input-filetype`/`--input-blocksize`
-built it and raises if a later run requests different ones, instead of
-silently reusing a stale cache built from different inputs.
-
-## Output shape
-
-`pairs/*.jsonl` (step 3): `pair_id`, `pair_type`, `expected_duplicate`,
-`group_id_a`/`group_id_b`, `id_a`/`id_b` (`_curator_dedup_id` values),
-`doc_id_a`/`doc_id_b` (original `url` field), `text_a`/`text_b` (full,
-untruncated -- kept for manual review; the judge is not shown these
-directly). No `semantic_diff`/`truncated` yet -- step 4 adds those (see
-below). Filenames and shard count differ by `--pair-strategy` (see
-"Scaling" below): `keeper_removed`/`all_pairwise` are written by Ray Data's
-own distributed `Dataset.write_json()`, so file count follows Ray's
-partitioning, not `--pairs-per-file`; `cross_group_sample` still writes
-`part_*.jsonl` files sized by `--pairs-per-file`, since step 4 can
-parallelize across whatever files land here either way.
-
-### Span alignment and truncation
-
-`4_span_alignment.py`'s `build_semantic_diff()` aligns each pair's visible
-text (the same `--max-visible-chars`-truncated view the judge is shown,
-currently 6000 characters per side -- keep this in sync with
-`judge_config/fuzzy_pair_judge.yaml`'s `max_model_len`) into `SHARED`/
-`A_ONLY`/`B_ONLY` spans with stable IDs (`S001`, `A001`, `B001`, ...), using
-`difflib.SequenceMatcher` over normalized word/punctuation tokens. It runs as
-three Curator `ProcessingStage`s -- `TokenizerStage` (tokenizes `text_a`/
-`text_b` once), `SpanAlignmentStage` (diffs the token streams into segments),
-`SpanChunkingStage` (splits any segment longer than `_MAX_SPAN_CHUNK_CHARS`
-characters into multiple spans, re-slicing `TokenizerStage`'s token lists
-instead of re-tokenizing, and assembles the final packet) -- so alignment
-happens per reader task via Ray Data -- one raw pairs file from step 3
-becomes one task -- instead of a
-single-process Python loop over every pair. Each core span is bounded by
-`_MAX_SPAN_CHUNK_CHARS` characters before context padding, so one long run of unchanged text or one
-long difference doesn't become a single undifferentiated block. Side-only
-spans are additionally padded, at their outer edges only (not between
-chunks), with a little neighboring shared text (`_SPAN_CONTEXT_CHARS`) so a
-short changed value isn't shown in isolation -- e.g. for
-
-```text
-A: Applicable to Model X100
-B: Applicable to Model X200
-```
-
-the packet includes an `A_ONLY`/`B_ONLY` pair covering "Applicable to Model
-X100"/"...X200" rather than just the bare `X100`/`X200` tokens, so the judge
-sees what the changed value actually refers to. Side-only spans also retain
-`delta_start_char`/`delta_end_char`, the core boundaries before padding.
-This is stored as the
-`semantic_diff` field (`status`, `truncated`, `truncated_a`, `truncated_b`,
-`span_counts`, `spans`) and is what `judge_config/pair.jinja` renders to the
-judge -- the judge never sees raw `text_a`/`text_b` directly. `status` is
-`INCOMPLETE_LIMIT` instead of `COMPLETE` if a pair produces more than
-`_MAX_SPANS_PER_KIND` spans of one kind; `system.jinja` treats an incomplete
-packet as unresolved rather than trusting a silently-clipped span list.
-
-Truncation is explicit rather than silent: if either document exceeded the
-visible-character limit, `pair.jinja` renders a `<truncation_notice>` telling
-the judge a decisive difference could exist only in the cut-off portion, and
-`system.jinja`'s deterministic policy requires `unresolved`/low confidence
-rather than a conclusive verdict built only on "no difference was visible."
-`7_analyze_results.py` excludes truncated pairs from the headline
-disagreement rate for the same reason, reporting them as `num_truncated`
-instead.
-
-`judged_pairs/*.jsonl` (step 5): the same fields (now including
-`semantic_diff`/`truncated` from step 4) plus a `pair_semantic_judgment`
-column holding one nested `{"score": ..., "reasoning": ...}` result per
-rubric field -- `span_content_profile_a`/`span_content_profile_b`,
-`span_shared_basis`, `span_a_delta`/`span_b_delta`, `span_hard_conflict`,
-`span_translation_status`, `a_can_replace_b`/`b_can_replace_a`,
-`relation_type`, `material_difference`, `primary_material_difference`,
-`dominant_overlap_source`, `primary_risk_factor`, `confidence_tier`. See
-`judge_config/fuzzy_pair_judge.yaml` for the full rubric and
-`nemo_curator/eval/llm_judge/LLM_JUDGE_CONFIG_SKILL.md` for how to change it.
-
-Before bucketing, `7_analyze_results.py` also deterministically corrects
-`relation_type` to `exact` for any untruncated, `COMPLETE` pair whose
-nonempty original `text_a` and `text_b` are exactly equal -- since the judge sometimes returns `near_surface`
-for this instead (`_correct_identical_text_relation()`; corrected rows are
-flagged with `relation_type_corrected` in the disagreements output).
-Zero side-only span counts alone are insufficient: alignment normalizes case
-and Unicode, which can hide meaningful differences such as code identifiers.
-
-### Optional coverage critic
-
-Coverage reviews positive main replacement directions using span evidence. It
-is optional: run `6_run_critics.py` after step 5, or skip directly to analysis.
-Step 6 reads saved main results and writes to a separate output directory, so
-coverage can be rerun without repeating main inference. Do not add an
-`execution.critics` block to the main judge configuration.
-
-The script reuses `--judge-config` (default: `judge_config/fuzzy_pair_judge.yaml`)
-for model and server settings. `--model-alias` defaults to the first configured
-model, and `--source-judge` defaults to `pair_semantic_judgment`. The source
-judge's worker settings are reused; its judges and score filters are not run.
-Prompts live in `judge_config/critics/coverage/`.
-
-The tutorial's `CoverageWorkflow` is a small `LLMJudgeWorkflow` subclass that
-builds the existing structured coverage column instead of scoring columns.
-It supplies tutorial-owned prepare/apply stages through the generic
-`preprocessing_stages` / `postprocessing_stages` Python arguments:
-
-```text
-Reader → prepare coverage → NDD coverage + SkipConfig → apply coverage → Writer
-```
-
-Step 6 uses one Pipeline and one model-service lifecycle. Steps 5 and 6 each
-start and stop their own service; they do not share a running model across
-steps. The base workflow keeps its existing language and score filters:
-preprocessing runs after the language gate, before all NDD stages;
-postprocessing runs after all NDD stages and score filters, before the writer.
-
-The adapter preserves the original alignment packet and separates each unique
-span's core delta from its padded reading context. The model sees those spans,
-not the main prediction or dedup labels, and selects IDs in an eight-field
-structured review. Python validates references and original offsets, then
-applies the retained-coverage v4 veto rules. Coverage can remove an existing
-positive replacement direction; it cannot create one. Empty-anchor objections
-only affect containment, and explicit abstention produces an unresolved result.
-
-Negative/unresolved main decisions and complete, untruncated, exactly equal
-nonempty texts bypass review. Preparation writes `coverage_should_run`; the
-NDD structured column uses `SkipConfig(when="{{ not coverage_should_run }}")`.
-All rows enter the stage; skipped reviews serialize as `null`. Do not attach
-score filters that remove rows if comparing complete input/output populations.
-
-Input must use step 4's current schema, including delta boundaries on side-only
-spans and boolean truncation flags. Invalid main summaries, missing boundaries,
-invalid review references, or empty results on rows requiring review fail
-validation. An incomplete/truncated packet cannot support a conclusive veto.
-The adapter does not run the historical evaluator's main-decision arbitration;
-compatibility covers coverage rules for a fixed valid main decision and review,
-not equivalence of the complete v0.7.1 evaluator.
-
-The original main result remains in `pair_semantic_judgment`. Added columns are:
-
-| Column | Meaning |
-| --- | --- |
-| `coverage_should_run` | Boolean routing decision |
-| `coverage_review` | Raw structured review, or `null` for skipped rows |
-| `coverage_action`, `coverage_reason` | Applied action and explanation code |
-| `coverage_evidence` | Validated original quotes and offsets |
-| `final_decision` | Eight scalar summary fields, using the main rubric's lowercase enums |
-
-`final_decision` contains the two replacement directions, `relation_type`,
-`material_difference`, `primary_material_difference`, `dominant_overlap_source`,
-`primary_risk_factor`, and `confidence_tier`. Skips and keeps preserve those main
-values; applied vetoes update the related summary fields consistently. Temporary
-prompt payloads are removed. Reserved output-column collisions fail rather than
-overwriting previous results.
-
-Compare both decisions from the same output:
-
-```bash
-python tutorials/eval/dedup/7_analyze_results.py --judge-output-path output/dedup_eval/reviewed_pairs --decision-source main
-python tutorials/eval/dedup/7_analyze_results.py --judge-output-path output/dedup_eval/reviewed_pairs --decision-source final
-```
-
-`main` remains the default. `final` requires `final_decision` and does not apply
-the analysis-only exact-text correction. Check input/output IDs when accepting a
-run: record loss from an upstream generation failure cannot be detected by an
-apply stage that only receives surviving records. Routing counts describe rows,
-not HTTP requests, which may include retries.
-
-`7_analyze_results.py` (step 7) buckets `relation_type` into a coarse
-duplicate/not_duplicate/unresolved verdict (`exact`/`canonical_exact`/
-`near_surface`/`containment` -> duplicate; `version_related`/
-`related_non_duplicate`/`unrelated` -> not_duplicate -- see the bucketing
-rationale in the script's docstring) and prints, per `pair_type`: relation
-counts and a disagreement rate against `expected_duplicate` -- for
-`keeper_removed`/`all_pairwise`, the share bucketed `not_duplicate` despite
-fuzzy dedup grouping them (candidate wrong-grouping rate); for
-`cross_group_sample`, the share bucketed `duplicate` despite fuzzy dedup
-keeping them apart (candidate missed-duplicate rate). These are diagnostics
-from one unvalidated judge, not accuracy numbers -- for anything more than a
-coarse rate, read `relation_type`/`material_difference`/
-`primary_material_difference` directly rather than the bucketed verdict.
-
-## Scaling `3_build_pair_dataset.py`
-
-- `keeper_removed`/`all_pairwise` build pairs as a distributed Ray Data
-  pipeline (`build_grouped_pairs_distributed()`): `ray.data.read_parquet()`
-  streams `CorpusWithIds/` across the cluster, `map_batches()` tags each
-  document with its duplicate-group id from a broadcast lookup, and
-  `groupby(...).map_groups(...)` builds pairs one group at a time, distributed
-  -- no single task ever loads every duplicate group's documents into one
-  process, so this scales with cluster size rather than driver memory.
-- `all_pairwise` still generates `C(n, 2)` pairs per duplicate group, and real
-  web corpora routinely produce one oversized cluster (cookie banners, empty
-  pages, templated legal boilerplate). `--max-group-size` (default 200) skips
-  and warns about any group larger than that instead of letting one cluster
-  generate an unbounded number of pairs -- raise it deliberately if you want
-  larger groups included.
-- `cross_group_sample` draws a bounded, approximately-uniform sample instead
-  of materializing every document -- each Parquet part file contributes a
-  subsample sized by its share of the total row count (from Parquet
-  metadata, without reading the data first), capped around
-  `max(cross_group_samples * 10, 2000)` documents regardless of corpus size.
-  It stays driver-side (`build_cross_group_sample_pairs()`): it compares
-  documents *across* groups, so there's no per-group unit of work to
-  distribute, and its input is already bounded independent of corpus size --
-  it isn't the bottleneck the Ray Data rewrite above targets.
-
-What's still loaded fully into memory for every strategy: `group_labels_df`
-(`ConnectedComponentsStage`'s output) and `removed_ids` (`FuzzyDuplicateIds`)
--- both scoped to documents that are part of *some* duplicate group, not the
-full corpus, so they're bounded by your corpus's duplicate rate rather than
-its total size. This is what `map_batches()`'s broadcast lookup above is
-built from, and it's also `keeper_removed`/`all_pairwise`'s only remaining
-non-distributed step. If your corpus is pathological enough that most of it
-ends up in one enormous duplicate group, that assumption breaks down -- at
-that point, sample duplicate groups before loading.
-
-`4_span_alignment.py` doesn't share this limitation either: it's a `Pipeline`
-of `JsonlReader -> TokenizerStage -> SpanAlignmentStage -> SpanChunkingStage ->
-JsonlWriter` stages, so span alignment itself already runs distributed across
-reader tasks via Ray Data rather than loading pairs into driver memory -- the
-each input file forms one reader task in step 4.
+Original fields and the main result are preserved. Step 6 adds `coverage_should_run`, `coverage_review` (null when skipped), `coverage_action`, `coverage_reason`, `coverage_evidence` and the eight-field `final_decision`; temporary payloads are removed. Check input/output IDs when accepting a run, since an apply stage cannot detect records lost upstream. Routing counts describe rows, not HTTP request counts, which may include retries. `--decision-source final` requires `final_decision` and never overrides it.
 
 ## Files
 
 - `1_data_prep.py` -- downloads and extracts a Common Crawl sample with jusText.
-- `2_run_fuzzy_dedup.py` -- `FuzzyDeduplicationWorkflow(perform_removal=False)`.
-- `3_build_pair_dataset.py` -- re-reads the corpus with replayed ids (cached
-  under `--cache-dir/CorpusWithIds/`), joins duplicate-group labels and
-  removal decisions, emits raw labeled pairs (no `semantic_diff`/`truncated` yet).
-- `4_span_alignment.py` -- `build_semantic_diff()` and the `TokenizerStage`/
-  `SpanAlignmentStage`/`SpanChunkingStage` Curator stages that add
-  `semantic_diff`/`truncated` to each pair, run through a `JsonlReader ->
-  TokenizerStage -> SpanAlignmentStage -> SpanChunkingStage -> JsonlWriter`
-  `Pipeline`.
-- `judge_config/fuzzy_pair_judge.yaml`, `judge_config/system.jinja`,
-  `judge_config/pair.jinja` -- the LLM judge config for step 5, a
-  semantic-retention rubric.
-- `5_run_llm_judge.py` -- runs `LLMJudgeWorkflow` over the span-aligned pairs
-  part files with this example's judge config.
-- `7_analyze_results.py` -- summarizes step 5's output.
+- `2_run_fuzzy_dedup.py` -- runs `FuzzyDeduplicationWorkflow(perform_removal=False)`.
+- `3_build_pair_dataset.py` -- builds labeled document pairs from fuzzy dedup's groups and removal decisions.
+- `4_span_alignment.py` -- diffs each pair's visible text into `SHARED`/`A_ONLY`/`B_ONLY` spans for the judge.
+- `judge_config/fuzzy_pair_judge.yaml`, `judge_config/system.jinja`, `judge_config/pair.jinja` -- the LLM judge config for step 5, a semantic-retention rubric.
+- `5_run_llm_judge.py` -- runs `LLMJudgeWorkflow` over the span-aligned pairs using this example's judge config.
+- `6_run_critics.py`, `critics/`, `judge_config/critics/coverage/` -- optional coverage review of saved main results.
+- `7_analyze_results.py` -- buckets main or final verdicts and reports disagreement rates against fuzzy dedup's decisions.

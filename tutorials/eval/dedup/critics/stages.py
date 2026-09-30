@@ -17,7 +17,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 import pandas as pd
 import pyarrow as pa
@@ -27,30 +27,7 @@ from nemo_curator.stages.resources import Resources
 from nemo_curator.tasks import DocumentBatch
 
 if TYPE_CHECKING:
-    from collections.abc import Callable
-
-    from tutorials.eval.dedup.critics.coverage import CoverageCritic
-
-
-def _update_batch(
-    batch: DocumentBatch,
-    transform: Callable[[dict[str, Any]], dict[str, Any]],
-    columns: tuple[str, ...],
-    drop: tuple[str, ...] = (),
-) -> DocumentBatch:
-    frame = batch.to_pandas().copy()
-    # Arrow restores nested lists, nullable integers and skipped cells to Python values.
-    updates = [transform(record) for record in batch.to_pyarrow().to_pylist()]
-    for column in columns:
-        frame[column] = pd.Series([update[column] for update in updates], index=frame.index, dtype=object)
-    # Materialize a uniform struct schema before NDD reads nested records through DuckDB.
-    data = pa.Table.from_pandas(frame.drop(columns=list(drop)), preserve_index=False)
-    return DocumentBatch(
-        dataset_name=batch.dataset_name,
-        data=data,
-        _metadata=batch._metadata,
-        _stage_perf=batch._stage_perf,
-    )
+    from .coverage import CoverageCritic
 
 
 @dataclass
@@ -72,7 +49,19 @@ class CriticPrepareStage(ProcessingStage[DocumentBatch, DocumentBatch]):
         if collisions:
             message = f"Critic {self.critic.name!r} would overwrite input columns: {sorted(collisions)}"
             raise ValueError(message)
-        return _update_batch(batch, self.critic.prepare, self.critic.prepared_columns)
+        frame = batch.to_pandas().copy()
+        # Arrow restores nested lists, nullable integers and skipped cells to Python values.
+        updates = [self.critic.prepare(record) for record in batch.to_pyarrow().to_pylist()]
+        for column in self.critic.prepared_columns:
+            frame[column] = pd.Series([update[column] for update in updates], index=frame.index, dtype=object)
+        # Materialize a uniform struct schema before NDD reads nested records through DuckDB.
+        data = pa.Table.from_pandas(frame, preserve_index=False)
+        return DocumentBatch(
+            dataset_name=batch.dataset_name,
+            data=data,
+            _metadata=batch._metadata,
+            _stage_perf=batch._stage_perf,
+        )
 
 
 @dataclass
@@ -90,4 +79,14 @@ class CriticApplyStage(ProcessingStage[DocumentBatch, DocumentBatch]):
         return ["data"], list(self.critic.output_columns)
 
     def process(self, batch: DocumentBatch) -> DocumentBatch:
-        return _update_batch(batch, self.critic.apply, self.critic.applied_columns, self.critic.temporary_columns)
+        frame = batch.to_pandas().copy()
+        updates = [self.critic.apply(record) for record in batch.to_pyarrow().to_pylist()]
+        for column in self.critic.applied_columns:
+            frame[column] = pd.Series([update[column] for update in updates], index=frame.index, dtype=object)
+        data = pa.Table.from_pandas(frame.drop(columns=list(self.critic.temporary_columns)), preserve_index=False)
+        return DocumentBatch(
+            dataset_name=batch.dataset_name,
+            data=data,
+            _metadata=batch._metadata,
+            _stage_perf=batch._stage_perf,
+        )

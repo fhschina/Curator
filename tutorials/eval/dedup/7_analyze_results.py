@@ -18,9 +18,6 @@ Summarize the fuzzy-dedup-eval LLM judge output (step 7): bucket the judge's
 it against what each pair's `pair_type` implied fuzzy dedup decided
 (`expected_duplicate`, written by 3_build_pair_dataset.py).
 
-See README.md's "Output shape" section for the bucketing rationale and
-disagreement-rate definitions.
-
 Example:
     python tutorials/eval/dedup/7_analyze_results.py \
         --judge-output-path output/dedup_eval/judged_pairs \
@@ -40,33 +37,37 @@ JUDGE_COLUMN = "pair_semantic_judgment"
 SCORE_NAME = "relation_type"
 DUPLICATE_RELATIONS = {"exact", "canonical_exact", "near_surface", "containment"}
 NOT_DUPLICATE_RELATIONS = {"version_related", "related_non_duplicate", "unrelated"}
+_DISAGREEMENT_COLUMNS = [
+    "pair_id",
+    "pair_type",
+    "expected_duplicate",
+    "doc_id_a",
+    "doc_id_b",
+    "truncated",
+    "decision_source",
+    "relation_type_raw",
+    "relation_type",
+    "relation_type_corrected",
+    "relation_type_containment_corrected",
+    "material_difference",
+    "primary_material_difference",
+    "confidence_tier",
+    "primary_risk_factor",
+    "dominant_overlap_source",
+    JUDGE_COLUMN,
+    "final_decision",
+    "coverage_should_run",
+    "coverage_review",
+    "coverage_action",
+    "coverage_reason",
+    "coverage_evidence",
+]
 
 
-def _load_judge_output(judge_output_path: str) -> pd.DataFrame:
-    jsonl_files = sorted(glob.glob(str(Path(judge_output_path) / "*.jsonl")))
-    parquet_files = sorted(glob.glob(str(Path(judge_output_path) / "*.parquet")))
-    if jsonl_files:
-        frames = [pd.read_json(f, lines=True) for f in jsonl_files]
-    elif parquet_files:
-        frames = [pd.read_parquet(f) for f in parquet_files]
-    else:
-        msg = f"No .jsonl or .parquet part files found under {judge_output_path}"
-        raise FileNotFoundError(msg)
-    return pd.concat(frames, ignore_index=True)
-
-
-def _extract_relation(row: dict | None) -> str | None:
+def _extract_field(row: dict | None, field_name: str) -> str | None:
     if not isinstance(row, dict):
         return None
-    return row.get(SCORE_NAME, {}).get("score")
-
-
-def _bucket_relation(relation: str | None) -> str:
-    if relation in DUPLICATE_RELATIONS:
-        return "duplicate"
-    if relation in NOT_DUPLICATE_RELATIONS:
-        return "not_duplicate"
-    return "unresolved"
+    return row.get(field_name, {}).get("score")
 
 
 def _correct_identical_text_relation(df: pd.DataFrame) -> pd.DataFrame:
@@ -89,10 +90,32 @@ def _correct_identical_text_relation(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def annotate(df: pd.DataFrame, *, decision_source: str = "main") -> pd.DataFrame:
+def _correct_invalid_containment_relation(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Deterministically correct `relation_type` away from `containment` when the judge violated
+    one of its own preconditions for that verdict.
+    """
+    profile_a = df[JUDGE_COLUMN].map(lambda row: _extract_field(row, "span_content_profile_a"))
+    profile_b = df[JUDGE_COLUMN].map(lambda row: _extract_field(row, "span_content_profile_b"))
+    shared_basis = df[JUDGE_COLUMN].map(lambda row: _extract_field(row, "span_shared_basis"))
+    profile_mismatch = profile_a.notna() & profile_b.notna() & (profile_a != profile_b)
+    both_non_main = (profile_a == "non_main_only") & (profile_b == "non_main_only")
+    no_shared_basis = shared_basis == "none"
+    invalid_containment = profile_mismatch | both_non_main | no_shared_basis
+    eligible = invalid_containment & (df["relation_type"] == "containment")
+    df["relation_type_containment_corrected"] = eligible
+    df.loc[eligible, "relation_type"] = "related_non_duplicate"
+    return df
+
+
+def annotate(df: pd.DataFrame, *, decision_source: str = "main", apply_main_corrections: bool = False) -> pd.DataFrame:
     """Add `relation_type`, `verdict`, and `is_disagreement` columns to the raw judge output."""
+
     if decision_source not in {"main", "final"}:
         msg = "decision_source must be 'main' or 'final'."
+        raise ValueError(msg)
+    if apply_main_corrections and decision_source != "main":
+        msg = "Main analysis corrections cannot be applied to final decisions."
         raise ValueError(msg)
     decision_column = JUDGE_COLUMN if decision_source == "main" else "final_decision"
     if decision_column not in df.columns:
@@ -107,35 +130,58 @@ def annotate(df: pd.DataFrame, *, decision_source: str = "main") -> pd.DataFrame
         raise KeyError(msg)
 
     df = df.copy()
-    df["relation_type"] = df[decision_column].map(
-        _extract_relation
-        if decision_source == "main"
-        else lambda row: row.get(SCORE_NAME) if isinstance(row, dict) else None
-    )
-    # Older pairs files predate build_semantic_diff()/the `truncated` column -- treat those as
-    # not truncated rather than dropping them, since we have no truncation info for them either way.
+    df["decision_source"] = decision_source
+    for field_name in (
+        SCORE_NAME,
+        "material_difference",
+        "primary_material_difference",
+        "confidence_tier",
+        "primary_risk_factor",
+        "dominant_overlap_source",
+    ):
+        df[field_name] = df[decision_column].map(
+            lambda row, f=field_name: (
+                _extract_field(row, f) if decision_source == "main" else row.get(f) if isinstance(row, dict) else None
+            )
+        )
+    df["relation_type_raw"] = df["relation_type"]
+
     df["truncated"] = df["truncated"].fillna(False).astype(bool) if "truncated" in df.columns else False
-    if decision_source == "main" and "semantic_diff" in df.columns:
-        df = _correct_identical_text_relation(df)
-    else:
-        df["relation_type_corrected"] = False
-    df["verdict"] = df["relation_type"].map(_bucket_relation)
+
+    df["relation_type_corrected"] = False
+    df["relation_type_containment_corrected"] = False
+    if apply_main_corrections:
+        if "semantic_diff" in df.columns:
+            df = _correct_identical_text_relation(df)
+        df = _correct_invalid_containment_relation(df)
+
+    df["verdict"] = df["relation_type"].map(
+        lambda relation: (
+            "duplicate"
+            if relation in DUPLICATE_RELATIONS
+            else "not_duplicate"
+            if relation in NOT_DUPLICATE_RELATIONS
+            else "unresolved"
+        )
+    )
+
     duplicate_expected = df["expected_duplicate"].astype(bool)
     df["is_disagreement"] = (duplicate_expected & (df["verdict"] != "duplicate")) | (
         ~duplicate_expected & (df["verdict"] == "duplicate")
     )
+
     return df
 
 
 def summarize(df: pd.DataFrame) -> pd.DataFrame:
-    """Aggregate an already-`annotate`d dataframe into one row per `pair_type`.
+    """
+    Aggregate an already-`annotate`d dataframe into one row per `pair_type`.
 
     Truncated pairs are counted but excluded from the disagreement rate: a judge verdict on a
-    pair where the judge never saw the full document isn't conclusive about the full documents
-    (see README.md's "Span alignment and truncation" section), so pooling them with untruncated
-    verdicts would understate or overstate the rate depending on how the cut-off half breaks.
+    pair where the judge never saw the full document isn't conclusive about the full documents.
     """
     rows = []
+
     for pair_type, group in df.groupby("pair_type"):
         total = len(group)
         num_truncated = int(group["truncated"].sum())
@@ -156,44 +202,8 @@ def summarize(df: pd.DataFrame) -> pd.DataFrame:
                 else float("nan"),
             }
         )
+
     return pd.DataFrame(rows)
-
-
-_DISAGREEMENT_COLUMNS = [
-    "pair_id",
-    "pair_type",
-    "expected_duplicate",
-    "doc_id_a",
-    "doc_id_b",
-    "truncated",
-    "relation_type",
-    "relation_type_corrected",
-    "material_difference",
-    "primary_material_difference",
-    "confidence_tier",
-    "primary_risk_factor",
-    "dominant_overlap_source",
-    JUDGE_COLUMN,
-    "final_decision",
-    "coverage_should_run",
-    "coverage_review",
-    "coverage_action",
-    "coverage_reason",
-    "coverage_evidence",
-]
-
-
-def write_disagreements(df: pd.DataFrame, output_path: str) -> int:
-    """Write every disagreeing pair, with the full rubric output, to a JSONL file for manual review.
-
-    Includes truncated pairs -- excluded from the headline rate in `summarize()`, but still worth a
-    human look, so they're kept here with `truncated` set for the reviewer to see.
-    """
-    disagreements = df[df["is_disagreement"]]
-    columns = [c for c in _DISAGREEMENT_COLUMNS if c in disagreements.columns]
-    Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-    disagreements[columns].to_json(output_path, orient="records", lines=True, force_ascii=False)
-    return len(disagreements)
 
 
 def _parse_args() -> argparse.Namespace:
@@ -201,13 +211,18 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--judge-output-path",
         required=True,
-        help="Directory of JSONL or Parquet part files written by 5_run_llm_judge.py (step 5).",
+        help="Directory of JSONL or Parquet part files written by step 5 or step 6.",
     )
     parser.add_argument(
         "--decision-source",
         choices=("main", "final"),
         default="main",
         help="Analyze the original main judgment or the coverage-adjusted final decision.",
+    )
+    parser.add_argument(
+        "--apply-main-corrections",
+        action="store_true",
+        help="Opt in to exact-text and containment corrections for a separate main-only diagnostic report.",
     )
     parser.add_argument(
         "--disagreements-output",
@@ -217,26 +232,54 @@ def _parse_args() -> argparse.Namespace:
             "review. Without this, the aggregate rate alone doesn't tell you which pairs to go read."
         ),
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.apply_main_corrections and args.decision_source != "main":
+        parser.error("--apply-main-corrections requires --decision-source main")
+    return args
 
 
 def main() -> None:
     args = _parse_args()
-    df = _load_judge_output(args.judge_output_path)
+
+    jsonl_files = sorted(glob.glob(str(Path(args.judge_output_path) / "*.jsonl")))
+    parquet_files = sorted(glob.glob(str(Path(args.judge_output_path) / "*.parquet")))
+    if jsonl_files:
+        frames = [pd.read_json(f, lines=True) for f in jsonl_files]
+    elif parquet_files:
+        frames = [pd.read_parquet(f) for f in parquet_files]
+    else:
+        msg = f"No .jsonl or .parquet part files found under {args.judge_output_path}"
+        raise FileNotFoundError(msg)
+    df = pd.concat(frames, ignore_index=True)
     logger.info(f"Loaded {len(df)} judged pairs from {args.judge_output_path}")
 
-    df = annotate(df, decision_source=args.decision_source)
+    df = annotate(df, decision_source=args.decision_source, apply_main_corrections=args.apply_main_corrections)
+    logger.info(
+        f"Analyzing {args.decision_source} decisions; main analysis corrections "
+        f"{'enabled (do not use for raw main/final comparisons)' if args.apply_main_corrections else 'disabled'}."
+    )
+
     num_corrected = int(df["relation_type_corrected"].sum())
     if num_corrected:
         logger.info(
             f"Deterministically corrected relation_type to 'exact' for {num_corrected}/{len(df)} pairs where "
             "the complete, untruncated original texts were identical but the judge said otherwise."
         )
+
+    num_containment_corrected = int(df["relation_type_containment_corrected"].sum())
+    if num_containment_corrected:
+        logger.info(
+            f"Deterministically corrected relation_type from 'containment' to 'related_non_duplicate' for "
+            f"{num_containment_corrected}/{len(df)} pairs where the judge violated one of containment's own "
+            "preconditions (profile mismatch, both sides non_main_only, or no verified shared basis)."
+        )
+
     summary = summarize(df)
     logger.warning(
         "These rates are diagnostics from one unvalidated LLM judge on a minimal example config -- "
         "not calibrated fuzzy-dedup accuracy. Read a sample of disagreements before drawing conclusions."
     )
+
     num_truncated = int(df["truncated"].sum())
     if num_truncated:
         logger.warning(
@@ -248,7 +291,11 @@ def main() -> None:
         print(summary.to_string(index=False))
 
     if args.disagreements_output:
-        num_written = write_disagreements(df, args.disagreements_output)
+        disagreements = df[df["is_disagreement"]]
+        columns = [c for c in _DISAGREEMENT_COLUMNS if c in disagreements.columns]
+        Path(args.disagreements_output).parent.mkdir(parents=True, exist_ok=True)
+        disagreements[columns].to_json(args.disagreements_output, orient="records", lines=True, force_ascii=False)
+        num_written = len(disagreements)
         logger.info(f"Wrote {num_written} disagreeing pairs to {args.disagreements_output}")
 
 
