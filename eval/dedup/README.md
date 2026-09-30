@@ -123,7 +123,8 @@ population, preferring 12 per track. The gate requires valid results and exact
 offline replay; conditional critics need not all trigger on a new population.
 Judge prompts, critic routing, transport limits, and recovery are unchanged.
 
-All four paths are required together and are mutually exclusive with
+Keep the run root outside all input shard directories. All four paths are
+required together and are mutually exclusive with
 `--source-run`. Supplying new paths ignores `CURATOR_V07_SOURCE_RUN`; no old
 pairs or answers are used. `--smoke-only` prepares the new full population but
 freezes only its smoke subset for execution, as in the legacy execution mode.

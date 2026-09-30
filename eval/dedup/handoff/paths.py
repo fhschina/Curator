@@ -83,6 +83,16 @@ def adapt_inputs(root: Path, **paths: Path) -> tuple[DatasetConfig, dict, dict, 
     import pyarrow.parquet as pq
 
     require(set(paths) == set(REQUIRED_COLUMNS), "INPUT_PATHS_REQUIRED", "all four input paths are required")
+    root = root.expanduser().resolve()
+    for path in paths.values():
+        source = path.expanduser().resolve()
+        require(
+            not (source.is_dir() and root.is_relative_to(source)),
+            "OUTPUT_WITHIN_INPUT",
+            "the run directory must be outside input shard directories",
+            input=str(source),
+            output=str(root),
+        )
     files = {kind: parquet_files(path) for kind, path in paths.items()}
     counts = {}
     for kind, shards in files.items():

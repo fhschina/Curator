@@ -74,7 +74,8 @@ preference for 12 per track. It checks structural validity and identical offline
 replay without requiring every conditional critic to trigger. Judge prompts,
 critic routing, rate limits, and execution commands remain unchanged.
 
-Supply all four paths together, without `--source-run`. This mode ignores the
+Keep the run root outside all input shard directories. Supply all four paths
+together, without `--source-run`. This mode ignores the
 legacy `CURATOR_V07_SOURCE_RUN` variable. An unfillable sample budget or a
 retrieval-limit failure is reported explicitly; parameters are not automatically
 changed. Use a fresh run root after a failed preparation. To use the local Judge,

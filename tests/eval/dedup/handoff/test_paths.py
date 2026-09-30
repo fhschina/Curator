@@ -137,3 +137,11 @@ def test_disk_preflight_precedes_workspace_writes(tmp_path: Path, monkeypatch: p
     with pytest.raises(DedupEvaluationError, match="INSUFFICIENT_DISK_SPACE"):
         adapt_inputs(tmp_path / "work", **paths)
     assert not (tmp_path / "work").exists()
+
+
+def test_output_cannot_be_discovered_as_an_input_shard(tmp_path: Path) -> None:
+    paths = make_inputs(tmp_path / "input")
+    output = paths["documents"] / "new-run/preparation"
+    with pytest.raises(DedupEvaluationError, match="OUTPUT_WITHIN_INPUT"):
+        adapt_inputs(output, **paths)
+    assert not output.parent.exists()
