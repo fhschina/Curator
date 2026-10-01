@@ -116,11 +116,15 @@ SHA-256 checksums, derived counts, tokenizer revision, and preparation settings
 are recorded in the run artifacts.
 
 The existing seeds, retrieval pilot, anchor quotas, and budgets remain fixed:
-10K keeper/removal pairs (5a) and 10K cross-group pairs (5b). The raw lexical
-candidate safety limit is 500,000 per anchor; lexical ranking still retains
-the top 50. A corpus that cannot fill these quotas, or that exceeds the retrieval
-limits, stops with a named error and diagnostic details. Preparation does not
-retune the method.
+10K keeper/removal pairs (5a) and 10K cross-group pairs (5b). Lexical retrieval
+streams all LSH candidates in batches and keeps an exact global top 50 per
+anchor using Jaccard, containment, and then document ID to break ties. Candidates
+matching multiple bands are scored only once per anchor. There is no candidate
+count cap or random candidate subsampling; the legacy `max_candidates_per_anchor`
+configuration field is accepted for compatibility but is unused. Large candidate
+pools still require scoring every candidate. Pilot candidate counts and the
+20–50 median target are unchanged. An unfillable budget or failed pilot stops
+with a named error and diagnostic details; preparation does not retune the method.
 Each new run deterministically selects up to 24 smoke pairs from its own
 population, preferring 12 per track. The gate requires valid results and exact
 offline replay; conditional critics need not all trigger on a new population.

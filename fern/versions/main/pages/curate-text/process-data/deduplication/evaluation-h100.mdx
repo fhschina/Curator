@@ -79,8 +79,13 @@ Keep the run root outside all input shard directories. Supply all four paths
 together, without `--source-run`. This mode ignores the
 legacy `CURATOR_V07_SOURCE_RUN` variable. An unfillable sample budget or a
 retrieval-limit failure is reported explicitly; parameters are not automatically
-changed. The raw lexical candidate safety limit is 500,000 per anchor; ranking
-still retains the top 50. Use a fresh run root after a failed preparation. To use
+changed. Lexical retrieval scores all LSH candidates in batches and maintains an
+exact global top 50 per anchor, preserving Jaccard, containment, and document-ID
+tie breaking. Candidates are deduplicated across bands; there is no candidate
+count cap or random subsampling. The legacy `max_candidates_per_anchor` setting
+is accepted but unused. This bounds retained ranking state, while scoring time
+still grows with candidate count. The pilot's 20–50 median target is unchanged.
+Use a fresh run root after a failed preparation. To use
 the local Judge, add `--backend local` and the local deployment options described below.
 
 ## Validation scope
