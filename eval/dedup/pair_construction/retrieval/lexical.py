@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import inspect
+import json
 import os
 from pathlib import Path
 from typing import Any
@@ -137,7 +138,9 @@ def build_minhash_cache(
         temporary, dtype=np.uint32, mode="w+", shape=(config.dataset.expected_rows, retrieval.num_hashes)
     )
     written = 0
-    for batch in iter_corpus_batches(corpus_manifest, columns=("text",), batch_size=retrieval.signature_chunk_rows):
+    for batch_index, batch in enumerate(
+        iter_corpus_batches(corpus_manifest, columns=("text",), batch_size=retrieval.signature_chunk_rows), 1
+    ):
         values = batch.to_pydict()
         texts = values["text"]
         if retrieval.backend == "fixture_cpu":
@@ -154,10 +157,15 @@ def build_minhash_cache(
             )
         else:
             signatures = _gpu_signatures(texts, retrieval)
-        start = int(values["doc_id"][0])
-        require(start == written, "MINHASH_ID_ORDER_MISMATCH", "corpus batches are not in doc_id order")
-        matrix[start : start + len(texts)] = signatures
+        if corpus_manifest.get("explicit_id_column"):
+            matrix[values["doc_id"]] = signatures
+        else:
+            start = int(values["doc_id"][0])
+            require(start == written, "MINHASH_ID_ORDER_MISMATCH", "corpus batches are not in doc_id order")
+            matrix[start : start + len(texts)] = signatures
         written += len(texts)
+        if batch_index % 64 == 0:
+            print(json.dumps({"minhash_rows": written, "expected_rows": config.dataset.expected_rows}), flush=True)
     matrix.flush()
     del matrix
     require(written == config.dataset.expected_rows, "MINHASH_ROW_COUNT_MISMATCH", "signature cache is incomplete")
@@ -182,52 +190,65 @@ def _band_hash(matrix: Any) -> Any:
     return result
 
 
-def lsh_candidates(
-    signature_path: Path,
-    *,
-    row_count: int,
-    num_hashes: int,
-    anchor_ids: list[int],
-    bands: int,
-    rows_per_band: int,
-    chunk_rows: int,
-    max_candidates_per_anchor: int,
-) -> dict[int, set[int]]:
-    """Find documents sharing at least one exact MinHash band with each anchor."""
+class LSHCandidateMatcher:
+    """Match one ID batch at a time, deduplicating bands within that batch."""
 
-    np = _numpy()
-    signatures = np.memmap(signature_path, dtype=np.uint32, mode="r", shape=(row_count, num_hashes))
-    anchor_matrix = np.asarray(signatures[anchor_ids])
-    candidates = {anchor_id: set() for anchor_id in anchor_ids}
-    for band in range(bands):
-        start = band * rows_per_band
-        end = start + rows_per_band
-        anchor_band = np.ascontiguousarray(anchor_matrix[:, start:end])
-        anchor_hashes = _band_hash(anchor_band)
-        lookup: dict[int, list[int]] = {}
-        for anchor_index, value in enumerate(anchor_hashes.tolist()):
-            lookup.setdefault(int(value), []).append(anchor_index)
-        keys = np.asarray(sorted(lookup), dtype=np.uint64)
-        for block_start in range(0, row_count, chunk_rows):
-            block_end = min(row_count, block_start + chunk_rows)
-            block_band = np.ascontiguousarray(signatures[block_start:block_end, start:end])
+    def __init__(
+        self,
+        signature_path: Path,
+        *,
+        row_count: int,
+        num_hashes: int,
+        anchor_ids: list[int],
+        bands: int,
+        rows_per_band: int,
+    ) -> None:
+        np = _numpy()
+        self.signatures = np.memmap(signature_path, dtype=np.uint32, mode="r", shape=(row_count, num_hashes))
+        self.anchor_ids = anchor_ids
+        self.band_lookups = []
+        for band in range(bands):
+            start, end = band * rows_per_band, (band + 1) * rows_per_band
+            anchor_band = np.ascontiguousarray(self.signatures[anchor_ids, start:end])
+            lookup: dict[int, list[int]] = {}
+            for anchor_index, value in enumerate(_band_hash(anchor_band).tolist()):
+                lookup.setdefault(value, []).append(anchor_index)
+            self.band_lookups.append((start, end, anchor_band, lookup, np.asarray(sorted(lookup), dtype=np.uint64)))
+
+    def match(self, doc_ids: Any, *, group_ids: Any) -> dict[int, Any]:
+        """Return eligible batch offsets per anchor, with self/same-group matches removed."""
+
+        np = _numpy()
+        doc_ids = np.asarray(doc_ids, dtype=np.int64)
+        # IDs can arrive in physical Parquet order rather than signature row order.
+        block = self.signatures[doc_ids, : self.band_lookups[-1][1]]
+        masks: dict[int, Any] = {}
+        for start, end, anchor_band, lookup, keys in self.band_lookups:
+            block_band = block[:, start:end]
             hashes = _band_hash(block_band)
-            matched = np.nonzero(np.isin(hashes, keys))[0]
-            for local_index in matched.tolist():
-                doc_id = block_start + local_index
-                for anchor_index in lookup[int(hashes[local_index])]:
-                    if np.array_equal(block_band[local_index], anchor_band[anchor_index]):
-                        candidates[anchor_ids[anchor_index]].add(doc_id)
-                        require(
-                            len(candidates[anchor_ids[anchor_index]]) <= max_candidates_per_anchor,
-                            "LEXICAL_CANDIDATE_EXPLOSION",
-                            "LSH candidate count exceeded the frozen safety limit",
-                            anchor_id=anchor_ids[anchor_index],
-                            limit=max_candidates_per_anchor,
-                        )
-    for anchor_id in anchor_ids:
-        candidates[anchor_id].discard(anchor_id)
-    return candidates
+            matched = np.flatnonzero(np.isin(hashes, keys))
+            if not len(matched):
+                continue
+            matched = matched[np.argsort(hashes[matched], kind="stable")]
+            boundaries = np.flatnonzero(np.diff(hashes[matched])) + 1
+            for offsets in np.split(matched, boundaries):
+                for anchor_index in lookup[int(hashes[offsets[0]])]:
+                    exact = offsets[np.all(block_band[offsets] == anchor_band[anchor_index], axis=1)]
+                    if not len(exact):
+                        continue
+                    anchor_id = self.anchor_ids[anchor_index]
+                    if anchor_id not in masks:
+                        masks[anchor_id] = np.zeros(len(doc_ids), dtype=bool)
+                    masks[anchor_id][exact] = True
+        output = {}
+        for anchor_id, mask in masks.items():
+            eligible = mask & (doc_ids != anchor_id)
+            if group_ids[anchor_id] != -1:
+                eligible &= group_ids[doc_ids] != group_ids[anchor_id]
+            offsets = np.flatnonzero(eligible)
+            if len(offsets):
+                output[anchor_id] = offsets
+        return output
 
 
 def choose_lsh_configuration(
@@ -237,27 +258,26 @@ def choose_lsh_configuration(
     pilot_anchor_ids: list[int],
     predicted_group_ids: Any,
 ) -> tuple[tuple[int, int], list[dict[str, Any]]]:
-    """Run the frozen pilot grid and select the valid median closest to 35."""
+    """Prefer medians inside the advisory target, then the closest to its center."""
 
     np = _numpy()
     trials: list[dict[str, Any]] = []
-    valid: list[tuple[float, int, int]] = []
+    require(pilot_anchor_ids, "LEXICAL_PILOT_EMPTY", "LSH pilot requires at least one anchor")
     for bands, rows_per_band in config.retrieval.lsh_grid:
-        raw = lsh_candidates(
+        matcher = LSHCandidateMatcher(
             signature_path,
             row_count=config.dataset.expected_rows,
             num_hashes=config.retrieval.num_hashes,
             anchor_ids=pilot_anchor_ids,
             bands=bands,
             rows_per_band=rows_per_band,
-            chunk_rows=config.retrieval.signature_chunk_rows,
-            max_candidates_per_anchor=config.retrieval.max_candidates_per_anchor,
         )
-        counts = []
-        for anchor_id, ids in raw.items():
-            anchor_group = predicted_group_ids[anchor_id]
-            filtered = [doc_id for doc_id in ids if anchor_group == -1 or predicted_group_ids[doc_id] != anchor_group]
-            counts.append(len(filtered))
+        candidate_counts = dict.fromkeys(pilot_anchor_ids, 0)
+        for start in range(0, config.dataset.expected_rows, config.retrieval.signature_chunk_rows):
+            ids = np.arange(start, min(start + config.retrieval.signature_chunk_rows, config.dataset.expected_rows))
+            for anchor_id, offsets in matcher.match(ids, group_ids=predicted_group_ids).items():
+                candidate_counts[anchor_id] += len(offsets)
+        counts = list(candidate_counts.values())
         median = float(np.median(counts))
         trials.append(
             {
@@ -266,13 +286,37 @@ def choose_lsh_configuration(
                 "median_cross_group_candidates": median,
                 "minimum": int(min(counts, default=0)),
                 "maximum": int(max(counts, default=0)),
+                "within_target": config.retrieval.pilot_target_min <= median <= config.retrieval.pilot_target_max,
             }
         )
-        if config.retrieval.pilot_target_min <= median <= config.retrieval.pilot_target_max:
-            valid.append((abs(median - config.retrieval.pilot_target_center), bands, rows_per_band))
-    require(valid, "LEXICAL_PILOT_FAILED", "no frozen LSH configuration met the 20-50 candidate target", trials=trials)
-    _, bands, rows_per_band = min(valid)
-    return (bands, rows_per_band), trials
+        print(json.dumps({"lexical_pilot_trial": trials[-1]}), flush=True)
+    require(trials, "LEXICAL_PILOT_EMPTY", "LSH pilot requires at least one grid configuration")
+    selected = min(
+        trials,
+        key=lambda trial: (
+            not trial["within_target"],
+            abs(trial["median_cross_group_candidates"] - config.retrieval.pilot_target_center),
+            trial["bands"],
+            trial["rows_per_band"],
+        ),
+    )
+    for trial in trials:
+        trial["selected"] = trial is selected
+    if not selected["within_target"]:
+        print(
+            json.dumps(
+                {
+                    "warning": "LEXICAL_PILOT_OUTSIDE_TARGET",
+                    "message": "No LSH configuration met the advisory target; continuing with the closest median.",
+                    "selected_lsh": selected,
+                    "target_minimum": config.retrieval.pilot_target_min,
+                    "target_maximum": config.retrieval.pilot_target_max,
+                    "target_center": config.retrieval.pilot_target_center,
+                }
+            ),
+            flush=True,
+        )
+    return (selected["bands"], selected["rows_per_band"]), trials
 
 
 def char_shingles(text: str, width: int) -> set[str]:

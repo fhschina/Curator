@@ -36,10 +36,23 @@ def _arrow() -> tuple[Any, Any]:
     return pa, pq
 
 
+def _available_columns(schema: Any, *, explicit_id: str | None) -> set[str]:
+    pa, _ = _arrow()
+    if not explicit_id:
+        return set(schema.names)
+    return {
+        field.name
+        for field in schema
+        if field.name in {explicit_id, "text"}
+        or pa.types.is_string(field.type)
+        or pa.types.is_large_string(field.type)
+    }
+
+
 class TokenCounter:
     """Frozen tokenizer adapter used for lengths and long-document windows."""
 
-    def __init__(self, config: TokenizerConfig) -> None:
+    def __init__(self, config: TokenizerConfig, *, local_files_only: bool = False) -> None:
         self.config = config
         self.tokenizer: Any | None = None
         self.resolved_revision = config.revision
@@ -60,6 +73,7 @@ class TokenCounter:
                 repo_id=config.model_id,
                 revision=config.revision,
                 cache_dir=config.cache_root,
+                local_files_only=local_files_only,
                 allow_patterns=[
                     "tokenizer*",
                     "vocab*",
@@ -97,6 +111,15 @@ class TokenCounter:
         if self.tokenizer is None:
             return [len(text.split()) for text in texts]
         lengths: list[int] = []
+        backend = getattr(self.tokenizer, "backend_tokenizer", None)
+        if backend is not None:
+            # Length-only scans need no Python copies of every token ID and attention mask.
+            backend.no_truncation()
+            backend.no_padding()
+            for start in range(0, len(texts), batch_size):
+                encodings = backend.encode_batch(list(texts[start : start + batch_size]), add_special_tokens=False)
+                lengths.extend(len(encoding) for encoding in encodings)
+            return lengths
         for start in range(0, len(texts), batch_size):
             encoded = self.tokenizer(
                 list(texts[start : start + batch_size]),
@@ -127,19 +150,28 @@ def iter_corpus_batches(
     """Yield Arrow record batches with stable global and physical row IDs."""
 
     pa, pq = _arrow()
+    explicit_id = corpus_manifest.get("explicit_id_column")
     for shard in corpus_manifest["shards"]:
         physical_offset = 0
         parquet_file = pq.ParquetFile(shard["resolved_path"])
-        for batch in parquet_file.iter_batches(batch_size=batch_size, columns=list(columns)):
+        available = _available_columns(parquet_file.schema_arrow, explicit_id=explicit_id)
+        selected = [column for column in columns if column in available]
+        selected = list(dict.fromkeys([explicit_id, *selected])) if explicit_id else list(columns)
+        for batch in parquet_file.iter_batches(batch_size=batch_size, columns=selected):
             length = batch.num_rows
-            doc_ids = pa.array(
-                range(int(shard["start_id"]) + physical_offset, int(shard["start_id"]) + physical_offset + length),
-                type=pa.int64(),
+            doc_ids = (
+                batch[explicit_id].cast(pa.int64())
+                if explicit_id
+                else pa.array(
+                    range(int(shard["start_id"]) + physical_offset, int(shard["start_id"]) + physical_offset + length),
+                    type=pa.int64(),
+                )
             )
             shard_indices = pa.array([int(shard["shard_index"])] * length, type=pa.int32())
-            row_indices = pa.array(range(physical_offset, physical_offset + length), type=pa.int32())
-            arrays = [doc_ids, shard_indices, row_indices, *batch.columns]
-            names = ["doc_id", "shard_index", "physical_row_index", *batch.schema.names]
+            row_indices = pa.array(range(physical_offset, physical_offset + length), type=pa.int64())
+            values = [batch[name] if name in available else pa.nulls(length, pa.string()) for name in columns]
+            arrays = [doc_ids, shard_indices, row_indices, *values]
+            names = ["doc_id", "shard_index", "physical_row_index", *columns]
             yield pa.RecordBatch.from_arrays(arrays, names=names)
             physical_offset += length
 
@@ -152,33 +184,60 @@ def load_documents_by_ids(
 ) -> dict[int, dict[str, Any]]:
     """Load selected documents by grouping reads by their manifest shard."""
 
-    _, pq = _arrow()
+    import numpy as np
+
+    pa, pq = _arrow()
     sorted_ids = sorted({int(value) for value in doc_ids})
     require(len(sorted_ids) == len(set(sorted_ids)), "DUPLICATE_LOOKUP_ID", "document lookup IDs must be unique")
     shards = corpus_manifest["shards"]
-    by_shard: dict[int, list[int]] = defaultdict(list)
+    by_shard: dict[int, list[tuple[int, int]]] = defaultdict(list)
+    locations = None
+    if corpus_manifest.get("explicit_id_column"):
+        rows = corpus_manifest["rows"]
+        require(all(0 <= value < rows for value in sorted_ids), "DOC_ID_OUT_OF_RANGE", "document ID is outside corpus")
+        locations = np.memmap(corpus_manifest["document_locations"], dtype=np.int64, mode="r", shape=(rows, 2))
     shard_index = 0
     for doc_id in sorted_ids:
+        if locations is not None:
+            index, offset = locations[doc_id]
+            by_shard[int(index)].append((doc_id, int(offset)))
+            continue
         while shard_index < len(shards) and doc_id > int(shards[shard_index]["end_id"]):
             shard_index += 1
         require(shard_index < len(shards), "DOC_ID_OUT_OF_RANGE", "document ID is outside corpus", doc_id=doc_id)
         shard = shards[shard_index]
         require(doc_id >= int(shard["start_id"]), "DOC_ID_GAP", "document ID falls in a manifest gap", doc_id=doc_id)
-        by_shard[shard_index].append(doc_id)
+        by_shard[shard_index].append((doc_id, doc_id - int(shard["start_id"])))
     result: dict[int, dict[str, Any]] = {}
     for index, ids in by_shard.items():
         shard = shards[index]
-        table = pq.read_table(shard["resolved_path"], columns=list(columns))
-        values = {name: table[name].to_pylist() for name in columns}
-        start_id = int(shard["start_id"])
-        for doc_id in ids:
-            offset = doc_id - start_id
-            result[doc_id] = {
-                "doc_id": doc_id,
-                "shard_index": index,
-                "physical_row_index": offset,
-                **{name: values[name][offset] for name in columns},
-            }
+        parquet = pq.ParquetFile(shard["resolved_path"])
+        available = _available_columns(parquet.schema_arrow, explicit_id=corpus_manifest.get("explicit_id_column"))
+        selected = [name for name in columns if name in available]
+        ordered = sorted(ids, key=lambda item: item[1])
+        cursor, start = 0, 0
+        for row_group in range(parquet.num_row_groups):
+            end = start + parquet.metadata.row_group(row_group).num_rows
+            stop = cursor
+            while stop < len(ordered) and ordered[stop][1] < end:
+                stop += 1
+            if stop > cursor:
+                requested = ordered[cursor:stop]
+                if selected:
+                    table = parquet.read_row_group(row_group, columns=selected)
+                    values = table.take(pa.array([offset - start for _, offset in requested])).to_pylist()
+                else:
+                    values = [{} for _ in requested]
+                for (doc_id, offset), value in zip(requested, values, strict=True):
+                    result[doc_id] = {
+                        "doc_id": doc_id,
+                        "shard_index": index,
+                        "physical_row_index": offset,
+                        **{name: value.get(name) for name in columns},
+                    }
+            cursor, start = stop, end
+            if cursor == len(ordered):
+                break
     require(len(result) == len(sorted_ids), "DOCUMENT_JOIN_INCOMPLETE", "not all selected documents could be loaded")
     return result
 

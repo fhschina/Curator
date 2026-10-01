@@ -128,7 +128,7 @@ def _endpoint_metadata(
         "hostname": row.get(f"hostname_{suffix}"),
         "language": row.get(f"language_{suffix}"),
         "length_bucket": row.get(f"length_bucket_{suffix}"),
-        "token_count": int(row.get(f"token_count_{suffix}") or 0),
+        "token_count": int(row[f"token_count_{suffix}"]),
         "excerpt": "",
         "sut_action": str(outcome["action"]),
         "predicted_group_id": int(outcome["predicted_group_id"]),
@@ -336,7 +336,7 @@ def build_pair_explorer_records(run_root: Path, rows: list[dict[str, Any]]) -> l
             "sut_grouping_result": "SAME_GROUP" if bool(row["predicted_same_group"]) else "DIFFERENT_GROUPS",
             "token_length_ratio": round(float(row["token_length_ratio"]), 6),
             "token_length_ratio_bucket": row["report_ratio_bucket"],
-            "same_hostname": bool(row["same_hostname"]),
+            "same_hostname": row["same_hostname"],
             "retriever_category": row.get("retriever_category"),
             "left_role": left_role,
             "right_role": right_role,
@@ -452,6 +452,7 @@ def _group_context_summary(
     group_id: int,
     rows: list[dict[str, Any]],
     required_doc_ids: set[int],
+    group_size: int,
 ) -> dict[str, Any]:
     hostnames = Counter(str(row.get("hostname") or "(missing)") for row in rows)
     languages = Counter(str(row.get("language") or "(missing)") for row in rows)
@@ -460,7 +461,9 @@ def _group_context_summary(
     return {
         "group_id": group_id,
         "cluster_key": str(first["predicted_cluster_key"]),
-        "group_size": len(rows),
+        "group_size": group_size,
+        "sample_member_count": len(rows),
+        "statistics_scope": "evaluation_sample_documents",
         "hostname_count": len(hostnames),
         "top_hostnames": [{"value": value, "count": count} for value, count in hostnames.most_common(8)],
         "languages": [{"value": value, "count": count} for value, count in languages.most_common()],
@@ -479,11 +482,13 @@ def attach_group_context(
     """Attach bounded group references and return de-duplicated group summaries."""
 
     required_by_group: dict[int, set[int]] = {}
+    group_sizes: dict[int, int] = {}
     for record in records:
         for endpoint in (record["left"], record["right"]):
             group_id = int(endpoint["predicted_group_id"])
             if group_id >= 0 and int(endpoint["predicted_group_size"]) > 1:
                 required_by_group.setdefault(group_id, set()).add(int(endpoint["doc_id"]))
+                group_sizes[group_id] = int(endpoint["predicted_group_size"])
     if not required_by_group:
         return {}
     try:
@@ -505,11 +510,24 @@ def attach_group_context(
     table = pq.read_table(
         run_root / "data" / "document_outcomes.parquet",
         columns=columns,
-        filters=[("predicted_group_id", "in", sorted(required_by_group))],
+        filters=[
+            (
+                "doc_id",
+                "in",
+                sorted(
+                    {
+                        doc_id
+                        for record in records
+                        for doc_id in (int(record["left"]["doc_id"]), int(record["right"]["doc_id"]))
+                    }
+                ),
+            )
+        ],
     )
     by_group: dict[int, list[dict[str, Any]]] = {}
     for row in table.to_pylist():
-        by_group.setdefault(int(row["predicted_group_id"]), []).append(row)
+        if int(row["predicted_group_id"]) in required_by_group:
+            by_group.setdefault(int(row["predicted_group_id"]), []).append(row)
     require(
         set(by_group) == set(required_by_group),
         "PAIR_EXPLORER_GROUP_JOIN_INCOMPLETE",
@@ -518,7 +536,7 @@ def attach_group_context(
         actual=len(by_group),
     )
     contexts = {
-        str(group_id): _group_context_summary(group_id, rows, required_by_group[group_id])
+        str(group_id): _group_context_summary(group_id, rows, required_by_group[group_id], group_sizes[group_id])
         for group_id, rows in sorted(by_group.items())
     }
     for record in records:
@@ -540,7 +558,9 @@ def attach_group_context(
             },
             {
                 "label": "Cross-host pair",
-                "value": "YES" if not record["same_hostname"] else "NO",
+                "value": (
+                    "UNAVAILABLE" if record["same_hostname"] is None else "NO" if record["same_hostname"] else "YES"
+                ),
                 "note": "Cross-host overlap can be legitimate duplication or shared boilerplate.",
             },
             {
@@ -554,7 +574,7 @@ def attach_group_context(
                     "POSSIBLE"
                     if maximum_group_size >= 21
                     and (
-                        not record["same_hostname"]
+                        record["same_hostname"] is False
                         or any(
                             code
                             in {
@@ -629,7 +649,7 @@ const ids=["search","track","language","outcome","relation","material","scope","
 const create=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined&&text!==null)n.textContent=String(text);return n},value=v=>v===undefined||v===null||v===""?"—":String(v),number=v=>v===undefined||v===null?"—":Number(v).toFixed(3),raw=r=>r.outcomes.join(" + ")||r.judge_status,priority=r=>r.outcomes.includes("wrong_removal")?0:r.outcomes.includes("discovered_candidate_fn")?1:r.judge_status!=="valid"?2:3;
 function fill(id,field){for(const v of[...new Set(PAIRS.map(r=>r[field]).filter(Boolean))].sort()){const o=create("option","",v);o.value=v;controls[id].appendChild(o)}}function fillLanguages(){const counts=new Map();for(const r of PAIRS)for(const v of new Set([r.left.language,r.right.language].filter(Boolean)))counts.set(v,(counts.get(v)||0)+1);for(const[v,count]of[...counts].sort((a,b)=>a[0].localeCompare(b[0]))){const o=create("option","",`${v} (${count.toLocaleString()})`);o.value=v;controls.language.appendChild(o)}}for(const v of[...new Set(PAIRS.flatMap(r=>r.outcomes))].sort()){const o=create("option","",v);o.value=v;controls.outcome.appendChild(o)}for(const r of PAIRS)r.scope_filter=r.fuzzy_scope||r.surface_evidence_sufficiency;fillLanguages();fill("relation","relation_type");fill("material","material_difference");fill("scope","scope_filter");fill("group","group_size_bucket");fill("retriever","retriever_category");
 function loadReviews(){try{return JSON.parse(localStorage.getItem(STORE)||localStorage.getItem(LEGACY_STORE)||"{}")}catch(_){return{}}}function persist(){try{localStorage.setItem(STORE,JSON.stringify(reviews));document.getElementById("storage-status").textContent="Reviews saved in this browser."}catch(_){document.getElementById("storage-status").textContent="Storage unavailable; export before closing."}}function review(id){return reviews[id]||{review_status:"",human_verdict:"",notes:"",updated_at:""}}function reviewed(id){return VALID_STATUS.has(review(id).review_status)}
-function matches(r,{includeReason=true}={}){const q=controls.search.value.trim().toLowerCase(),lv=controls.language.value,rv=review(r.pair_id),search=[r.pair_id,r.left.doc_id,r.right.doc_id,r.left.predicted_cluster_key,r.right.predicted_cluster_key,r.left.hostname,r.right.hostname,r.left.language,r.right.language,...r.reason_codes,...r.error_types].join(" ").toLowerCase(),rm=!controls.review.value||(controls.review.value==="UNREVIEWED"?!reviewed(r.pair_id):controls.review.value==="REVIEWED"?reviewed(r.pair_id):rv.review_status===controls.review.value),lm=!lv||(lv==="__same__"?r.left.language===r.right.language:lv==="__cross__"?r.left.language!==r.right.language:r.left.language===lv||r.right.language===lv);return(!q||search.includes(q))&&(!controls.track.value||(controls.track.value==="5a"?r.has_5a:r.has_5b))&&lm&&(!controls.outcome.value||r.outcomes.includes(controls.outcome.value))&&(!controls.relation.value||r.relation_type===controls.relation.value)&&(!controls.material.value||r.material_difference===controls.material.value)&&(!controls.scope.value||r.scope_filter===controls.scope.value)&&(!controls.group.value||r.group_size_bucket===controls.group.value)&&(!controls.retriever.value||r.retriever_category===controls.retriever.value)&&(!controls.evidence.value||r.judge_evidence_status.coverage===controls.evidence.value)&&rm&&(!controls.hostname.value||(controls.hostname.value==="same")===r.same_hostname)&&(!includeReason||!state.reason||r.reason_codes.includes(state.reason))}
+function matches(r,{includeReason=true}={}){const q=controls.search.value.trim().toLowerCase(),lv=controls.language.value,rv=review(r.pair_id),search=[r.pair_id,r.left.doc_id,r.right.doc_id,r.left.predicted_cluster_key,r.right.predicted_cluster_key,r.left.hostname,r.right.hostname,r.left.language,r.right.language,...r.reason_codes,...r.error_types].join(" ").toLowerCase(),rm=!controls.review.value||(controls.review.value==="UNREVIEWED"?!reviewed(r.pair_id):controls.review.value==="REVIEWED"?reviewed(r.pair_id):rv.review_status===controls.review.value),lm=!lv||(lv==="__same__"?!!(r.left.language&&r.right.language)&&r.left.language===r.right.language:lv==="__cross__"?!!(r.left.language&&r.right.language)&&r.left.language!==r.right.language:r.left.language===lv||r.right.language===lv);return(!q||search.includes(q))&&(!controls.track.value||(controls.track.value==="5a"?r.has_5a:r.has_5b))&&lm&&(!controls.outcome.value||r.outcomes.includes(controls.outcome.value))&&(!controls.relation.value||r.relation_type===controls.relation.value)&&(!controls.material.value||r.material_difference===controls.material.value)&&(!controls.scope.value||r.scope_filter===controls.scope.value)&&(!controls.group.value||r.group_size_bucket===controls.group.value)&&(!controls.retriever.value||r.retriever_category===controls.retriever.value)&&(!controls.evidence.value||r.judge_evidence_status.coverage===controls.evidence.value)&&rm&&(!controls.hostname.value||(controls.hostname.value==="same")===r.same_hostname)&&(!includeReason||!state.reason||r.reason_codes.includes(state.reason))}
 function stats(rows){for(const[id,count]of[["stat-total",rows.length],["stat-wrong",rows.filter(r=>r.outcomes.includes("wrong_removal")).length],["stat-safe",rows.filter(r=>r.outcomes.includes("safe_removal")).length],["stat-positive",rows.filter(r=>r.outcomes.includes("discovered_candidate_fn")).length],["stat-reviewed",rows.filter(r=>reviewed(r.pair_id)).length]])document.getElementById(id).textContent=count.toLocaleString()}
 function renderReasonChart(){const rows=PAIRS.filter(r=>matches(r,{includeReason:false})),counts=new Map();for(const r of rows)for(const code of new Set(r.reason_codes))counts.set(code,(counts.get(code)||0)+1);const sorted=[...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])),maximum=sorted[0]?.[1]||1;let visible=state.reasonExpanded?sorted:sorted.slice(0,REASON_LIMIT);if(state.reason&&!visible.some(([code])=>code===state.reason)){const selected=sorted.find(([code])=>code===state.reason);if(selected)visible=[...visible.slice(0,Math.max(0,REASON_LIMIT-1)),selected]}reasonGrid.replaceChildren();for(const[code,count]of visible){const row=create("button",`reason-row${code===state.reason?" active":""}`),label=create("span","reason-label",code),track=create("span","reason-track"),fill=create("span","reason-fill"),amount=create("span","reason-count",count.toLocaleString());row.type="button";row.title=`Filter pairs by ${code}`;row.setAttribute("aria-pressed",String(code===state.reason));fill.style.width=`${Math.max(2,count/maximum*100)}%`;track.appendChild(fill);row.append(label,track,amount);row.onclick=()=>{state.reason=state.reason===code?"":code;applyFilters()};reasonGrid.appendChild(row)}const empty=document.getElementById("reason-empty"),toggle=document.getElementById("reason-toggle");empty.hidden=sorted.length!==0;reasonGrid.hidden=sorted.length===0;toggle.hidden=sorted.length<=REASON_LIMIT;toggle.textContent=state.reasonExpanded?`Show top ${REASON_LIMIT}`:`Show all (${sorted.length})`;toggle.setAttribute("aria-expanded",String(state.reasonExpanded));document.getElementById("reason-summary").textContent=`${rows.length.toLocaleString()} pairs after other filters · ${sorted.length} reason codes${state.reason?` · filtering by ${state.reason}`:""} · multi-label counts`}
 function renderRows(){tbody.replaceChildren();const pages=Math.max(1,Math.ceil(state.filtered.length/PAGE_SIZE));state.page=Math.min(state.page,pages-1);for(const r of state.filtered.slice(state.page*PAGE_SIZE,(state.page+1)*PAGE_SIZE)){const tr=create("tr",`${r.pair_id===state.selected?"selected ":""}pair-row`),rv=review(r.pair_id);tr.append(create("td","",r.track),create("td",`outcome-${r.outcomes[0]||"other"}`,r.evaluation_outcome),create("td","",r.judge_group_verdict),create("td","",r.judge_evidence_status.coverage),create("td","",rv.review_status||"UNREVIEWED"),create("td","pair-id",r.pair_id));tr.onclick=()=>selectPair(r.pair_id);tbody.appendChild(tr)}document.getElementById("no-results").hidden=state.filtered.length!==0;document.getElementById("page-label").textContent=`${state.page+1} / ${pages}`;document.getElementById("previous").disabled=state.page===0;document.getElementById("next").disabled=state.page+1>=pages}
@@ -641,7 +661,7 @@ function judge(r){const s=section("Judge verdict","Primary duplicate/replacement
 function safeLink(c,url,text){try{const u=new URL(url);if(["http:","https:"].includes(u.protocol)){const a=create("a","",text||url);a.href=u.href;a.target="_blank";a.rel="noopener noreferrer";c.appendChild(a);return}}catch(_){}c.appendChild(create("span","",url||"—"))}function documentCard(c,role,d){const x=create("div","document");x.append(create("h3","",`${role} · doc ${d.doc_id}`),create("div","metadata",`${d.length_bucket} · ${d.token_count.toLocaleString()} tokens · ${d.language}`));safeLink(x,d.url,d.url);x.appendChild(create("pre","",d.excerpt||"No excerpt available."));c.appendChild(x)}function documents(r){const s=section("Documents","Judge-visible excerpts; not necessarily complete documents."),grid=create("div","detail-grid"),f=create("div","facts");documentCard(grid,r.left_role,r.left);documentCard(grid,r.right_role,r.right);s.appendChild(grid);for(const x of[["Token ratio",r.token_length_ratio.toFixed(3)],["Same hostname",r.same_hostname],[`${r.left_role} group size`,r.left.predicted_group_size],[`${r.right_role} group size`,r.right.predicted_group_size]])fact(f,...x);s.appendChild(f)}
 function evidence(r){const s=section("Judge evidence","Judge-selected quotes; not SUT matching evidence or chain-of-thought."),e=r.judge_evidence_status,f=create("div","facts");for(const x of[["Coverage",e.coverage],["Returned by Judge",e.returned],["Retained",e.retained],["Realigned",e.realigned],["Dropped",e.dropped]])fact(f,...x);s.appendChild(f);if(r.evidence.length)for(const item of r.evidence){const q=create("div","quote");q.append(create("strong","",`${item.role}: `),document.createTextNode(item.quote),create("div","metadata",`Judge side ${item.side} · chars ${item.start_char}-${item.end_char}`));s.appendChild(q)}else s.appendChild(create("div","notice muted","No aligned quote spans were retained; the verdict may still be schema-valid."))}
 function provenance(r){if(r.has_5b){const s=section("Evaluation candidate discovery","Evaluation retrieval, not original SUT fuzzy scores."),d=r.evaluation_provenance.retrieval,f=create("div","facts");for(const x of[["Retriever",d.sources.join(" + ")||r.retriever_category],["Cosine",number(d.cosine)],["Jaccard",number(d.jaccard)],["Containment",number(d.containment)],["Semantic rank",d.semantic_rank],["Lexical rank",d.lexical_rank],["Selection rule",d.selection_rules.join(", ")]])fact(f,...x);s.appendChild(f)}if(r.has_5a){const s=section("Evaluation removal sampling","Actual removal sample; not necessarily a direct SUT edge."),d=r.evaluation_provenance.removal_sampling,f=create("div","facts");for(const x of[["Selection rule",d.selection_rules.join(", ")],["Frame size",d.frame_size],["Selection probability",d.selection_probability],["Pair seed",d.pair_seed]])fact(f,...x);s.appendChild(f)}}
-function groups(r){if(!r.group_context_ids.length)return;const s=section("SUT group context","Bounded deterministic member samples; not an edge graph.");for(const id of r.group_context_ids){const g=GROUPS[id],d=create("details","context-card"),f=create("div","facts");if(!g)continue;d.appendChild(create("summary","",`Group ${g.group_id} · ${g.group_size} docs · ${g.hostname_count} hosts`));for(const x of[["Cluster key",g.cluster_key],["Group size",g.group_size],["Hostname count",g.hostname_count],["Token min/median/max",`${g.token_count_min}/${g.token_count_median}/${g.token_count_max}`],["Top hostnames",g.top_hostnames.map(x=>`${x.value} (${x.count})`).join(", ")],["Languages",g.languages.map(x=>`${x.value} (${x.count})`).join(", ")]])fact(f,...x);d.appendChild(f);const table=create("table","context-table"),head=create("tr");for(const h of["Doc","Action","Keeper","Host","Lang","Tokens","URL"])head.appendChild(create("th","",h));table.appendChild(head);for(const m of g.members){const tr=create("tr");for(const v of[m.doc_id,m.action,m.final_keeper_id,m.hostname,m.language,m.token_count])tr.appendChild(create("td","",value(v)));const link=create("td");safeLink(link,m.url,"open");tr.appendChild(link);table.appendChild(tr)}d.append(table,create("div","metadata",`Showing up to ${g.member_sample_limit} deterministic members.`));s.appendChild(d)}}function risks(r){if(!r.risk_indicators.length)return;const s=section("Group risk signals","Heuristics for triage, not reconstructed SUT reasons."),grid=create("div","risk-grid");for(const x of r.risk_indicators){const d=create("div","risk");d.append(create("span","muted",x.label),create("strong","",x.value),create("div","metadata",x.note));grid.appendChild(d)}s.appendChild(grid)}
+function groups(r){if(!r.group_context_ids.length)return;const s=section("SUT group context","Evaluated members only; group size comes from the SUT.");for(const id of r.group_context_ids){const g=GROUPS[id],d=create("details","context-card"),f=create("div","facts");if(!g)continue;d.appendChild(create("summary","",`Group ${g.group_id} · ${g.group_size} docs · ${g.sample_member_count} evaluated members · ${g.hostname_count} sample hosts`));for(const x of[["Cluster key",g.cluster_key],["Group size",g.group_size],["Sample hostname count",g.hostname_count],["Sample token min/median/max",`${g.token_count_min}/${g.token_count_median}/${g.token_count_max}`],["Sample top hostnames",g.top_hostnames.map(x=>`${x.value} (${x.count})`).join(", ")],["Sample languages",g.languages.map(x=>`${x.value} (${x.count})`).join(", ")]])fact(f,...x);d.appendChild(f);const table=create("table","context-table"),head=create("tr");for(const h of["Doc","Action","Keeper","Host","Lang","Tokens","URL"])head.appendChild(create("th","",h));table.appendChild(head);for(const m of g.members){const tr=create("tr");for(const v of[m.doc_id,m.action,m.final_keeper_id,m.hostname,m.language,m.token_count])tr.appendChild(create("td","",value(v)));const link=create("td");safeLink(link,m.url,"open");tr.appendChild(link);table.appendChild(tr)}d.append(table,create("div","metadata",`Showing up to ${g.member_sample_limit} deterministic members.`));s.appendChild(d)}}function risks(r){if(!r.risk_indicators.length)return;const s=section("Group risk signals","Heuristics for triage, not reconstructed SUT reasons."),grid=create("div","risk-grid");for(const x of r.risk_indicators){const d=create("div","risk");d.append(create("span","muted",x.label),create("strong","",x.value),create("div","metadata",x.note));grid.appendChild(d)}s.appendChild(grid)}
 function saveReview(id,patch){reviews[id]={...review(id),...patch,updated_at:new Date().toISOString()};if(!reviews[id].review_status&&!reviews[id].human_verdict&&!reviews[id].notes)delete reviews[id];persist();stats(state.filtered);renderRows()}function reviewSection(r){const s=section("Human review","Stored in this browser until exported."),card=create("div","review-card"),grid=create("div","review-grid"),rv=review(r.pair_id),status=create("select"),verdict=create("select");for(const x of[["","Unreviewed"],["AGREE_WITH_JUDGE","Agree"],["DISAGREE_WITH_JUDGE","Disagree"],["UNSURE","Unsure"]]){const o=create("option","",x[1]);o.value=x[0];o.selected=rv.review_status===x[0];status.appendChild(o)}for(const x of[["","Not labeled"],["DUPLICATE","Duplicate"],["NOT_DUPLICATE","Not duplicate"],["UNRESOLVED","Unresolved"]]){const o=create("option","",x[1]);o.value=x[0];o.selected=rv.human_verdict===x[0];verdict.appendChild(o)}status.onchange=()=>saveReview(r.pair_id,{review_status:status.value});verdict.onchange=()=>saveReview(r.pair_id,{human_verdict:verdict.value});const a=create("label"),b=create("label");a.append(create("span","metadata","Agreement with Judge"),status);b.append(create("span","metadata","Human group verdict"),verdict);grid.append(a,b);card.appendChild(grid);const notes=create("textarea");notes.value=rv.notes||"";notes.placeholder="Notes, missing evidence, suspected SUT root cause…";notes.onchange=()=>saveReview(r.pair_id,{notes:notes.value});card.appendChild(notes);const actions=create("div","review-actions"),clear=create("button","","Clear review");clear.onclick=()=>{delete reviews[r.pair_id];persist();selectPair(r.pair_id,false);applyFilters()};actions.append(clear,create("span","muted",rv.updated_at||"Not saved"));card.appendChild(actions);s.appendChild(card)}
 function glossary(){const d=create("details","glossary");d.append(create("summary","","How to read this page"),create("p","","SUT decision shows observed grouping/action. Judge verdict shows duplicate-group and directional replacement judgments. Evaluation discovery scores are separate from unavailable SUT fuzzy edges. AVAILABLE, NOT APPLICABLE, and NOT PRESERVED are intentionally distinct."));detail.appendChild(d)}function selectPair(id,hash=true){const r=PAIRS.find(x=>x.pair_id===id);if(!r)return;state.selected=id;detail.replaceChildren();detail.append(create("h2","pair-heading",r.pair_id),create("div","muted",`${r.track} · ${raw(r)}`));summary(r);sut(r);judge(r);documents(r);evidence(r);provenance(r);groups(r);risks(r);reviewSection(r);glossary();document.getElementById("copy-id").disabled=false;if(hash)history.replaceState(null,"",`#pair=${encodeURIComponent(id)}`);renderRows()}function applyFilters(){state.page=0;state.filtered=PAIRS.filter(r=>matches(r)).sort((a,b)=>priority(a)-priority(b)||a.pair_id.localeCompare(b.pair_id));stats(state.filtered);renderReasonChart();renderRows()}
 function csvEscape(v){const t=String(v??"");return/[",\\n\\r]/.test(t)?`"${t.replaceAll('"','""')}"`:t}function rowsForExport(){return PAIRS.filter(r=>reviews[r.pair_id]).map(r=>({pair_id:r.pair_id,track:r.track,evaluation_outcome:r.evaluation_outcome,judge_verdict:r.judge_group_verdict,...review(r.pair_id)}))}function download(name,type,text){const u=URL.createObjectURL(new Blob([text],{type})),a=create("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),0)}function exportCsv(){const fields=["pair_id","track","evaluation_outcome","judge_verdict","review_status","human_verdict","notes","updated_at"],lines=[fields.join(","),...rowsForExport().map(r=>fields.map(f=>csvEscape(r[f])).join(","))];download(`dedup_reviews_${RUN_ID}.csv`,"text/csv",lines.join("\\n")+"\\n")}function exportJson(){download(`dedup_reviews_${RUN_ID}.json`,"application/json",JSON.stringify({run_id:RUN_ID,dashboard_version:VERSION,reviews:rowsForExport()},null,2))}function parseCsv(text){const lines=text.trim().split(/\\r?\\n/),headers=lines.shift().split(",");return lines.map(line=>{const fields=line.match(/("(?:[^"]|"")*"|[^,]*)(?:,|$)/g).slice(0,-1).map(x=>x.replace(/,$/,"").replace(/^"|"$/g,"").replaceAll('""','"'));return Object.fromEntries(headers.map((h,i)=>[h,fields[i]||""]))})}function importRows(items){let n=0;for(const x of items){if(PAIR_IDS.has(x.pair_id)&&VALID_STATUS.has(x.review_status)&&VALID_VERDICT.has(x.human_verdict||"")){reviews[x.pair_id]={review_status:x.review_status,human_verdict:x.human_verdict||"",notes:x.notes||"",updated_at:x.updated_at||new Date().toISOString()};n++}}persist();applyFilters();document.getElementById("storage-status").textContent=`Imported ${n} reviews.`}async function importFile(file){try{const text=await file.text(),parsed=file.name.endsWith(".json")?JSON.parse(text):parseCsv(text);importRows(Array.isArray(parsed)?parsed:parsed.reviews||[])}catch(e){document.getElementById("storage-status").textContent=`Import failed: ${e.message}`}}

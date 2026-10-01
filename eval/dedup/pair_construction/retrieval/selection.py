@@ -16,18 +16,20 @@
 
 from __future__ import annotations
 
+import heapq
+import json
 from pathlib import Path
 from typing import Any
 
 from eval.dedup.core.config import EvaluationConfig, ProfileConfig
 from eval.dedup.core.contracts import Track, cp1_pair, stable_record_id
 from eval.dedup.core.validation import require, write_json_atomic
-from eval.dedup.handoff.corpus import load_documents_by_ids
+from eval.dedup.handoff.corpus import iter_corpus_batches, load_documents_by_ids
 from eval.dedup.pair_construction.anchors import GROUP_BUCKETS, group_size_bucket, redistribute_group_quotas
 from eval.dedup.pair_construction.retrieval.lexical import (
+    LSHCandidateMatcher,
     char_shingles,
     choose_lsh_configuration,
-    lsh_candidates,
     pair_features,
     pair_features_from_shingles,
 )
@@ -49,6 +51,9 @@ def _outcome_arrays(outcomes_path: Path, expected_rows: int) -> tuple[Any, Any, 
     np, _, pq = _dependencies()
     table = pq.read_table(outcomes_path, columns=["doc_id", "predicted_group_id", "predicted_group_size"])
     doc_ids = table["doc_id"].to_numpy(zero_copy_only=False).astype(np.int64, copy=False)
+    if len(doc_ids) > 1 and not np.all(doc_ids[1:] > doc_ids[:-1]):
+        table = table.take(np.argsort(doc_ids, kind="stable"))
+        doc_ids = table["doc_id"].to_numpy(zero_copy_only=False).astype(np.int64, copy=False)
     require(
         len(doc_ids) == expected_rows and np.array_equal(doc_ids, np.arange(expected_rows, dtype=np.int64)),
         "OUTCOME_ID_ORDER_MISMATCH",
@@ -100,47 +105,70 @@ def _pilot_anchor_ids(
     return sorted(selected)
 
 
-def _filter_cross_group(raw: dict[int, set[int]], group_ids: Any) -> dict[int, set[int]]:
-    filtered: dict[int, set[int]] = {}
-    for anchor_id, candidates in raw.items():
-        anchor_group = group_ids[anchor_id]
-        filtered[anchor_id] = {
-            candidate
-            for candidate in candidates
-            if candidate != anchor_id and (anchor_group == -1 or group_ids[candidate] != anchor_group)
-        }
-    return filtered
-
-
 def _lexical_records(
-    candidate_ids: dict[int, set[int]],
+    matcher: LSHCandidateMatcher,
     *,
+    group_ids: Any,
     corpus_manifest: dict[str, Any],
     feature_width: int,
     top_k: int,
-) -> list[dict[str, Any]]:
-    all_ids = set(candidate_ids)
-    for values in candidate_ids.values():
-        all_ids.update(values)
-    documents = load_documents_by_ids(corpus_manifest, sorted(all_ids), columns=("text",))
-    output: list[dict[str, Any]] = []
-    for anchor_id, candidates in candidate_ids.items():
-        anchor_text = documents[anchor_id]["text"]
-        anchor_shingles = char_shingles(anchor_text, feature_width)
-        rows = []
-        for candidate_id in candidates:
-            candidate_text = documents[candidate_id]["text"]
-            features = pair_features_from_shingles(
-                anchor_shingles,
-                char_shingles(candidate_text, feature_width),
-                left_text_length=len(anchor_text),
-                right_text_length=len(candidate_text),
+    chunk_rows: int,
+) -> tuple[list[dict[str, Any]], dict[int, int]]:
+    """Score every cross-group LSH candidate while retaining only exact global Top K."""
+
+    require(top_k > 0, "INVALID_TOP_K", "lexical top_k must be positive")
+    documents = load_documents_by_ids(corpus_manifest, matcher.anchor_ids, columns=("text",))
+    anchors = {
+        anchor_id: (char_shingles(row["text"], feature_width), len(row["text"]))
+        for anchor_id, row in documents.items()
+    }
+    heaps: dict[int, list[tuple[float, float, int, float]]] = {anchor_id: [] for anchor_id in matcher.anchor_ids}
+    counts = dict.fromkeys(matcher.anchor_ids, 0)
+    processed = 0
+    for batch_index, batch in enumerate(
+        iter_corpus_batches(corpus_manifest, columns=("text",), batch_size=chunk_rows), 1
+    ):
+        doc_ids = batch["doc_id"].to_numpy(zero_copy_only=False)
+        by_candidate: dict[int, list[int]] = {}
+        for anchor_id, offsets in matcher.match(doc_ids, group_ids=group_ids).items():
+            counts[anchor_id] += len(offsets)
+            for offset in offsets.tolist():
+                by_candidate.setdefault(offset, []).append(anchor_id)
+        for offset, anchor_ids in by_candidate.items():
+            candidate_id = int(doc_ids[offset])
+            text = batch["text"][offset].as_py()
+            shingles = char_shingles(text, feature_width)
+            for anchor_id in anchor_ids:
+                anchor_shingles, anchor_length = anchors[anchor_id]
+                features = pair_features_from_shingles(
+                    anchor_shingles, shingles, left_text_length=anchor_length, right_text_length=len(text)
+                )
+                # The worst retained score is at the root; smaller IDs win ties.
+                item = (features["jaccard"], features["containment"], -candidate_id, features["length_ratio"])
+                heap = heaps[anchor_id]
+                if len(heap) < top_k:
+                    heapq.heappush(heap, item)
+                elif item > heap[0]:
+                    heapq.heapreplace(heap, item)
+        processed += batch.num_rows
+        if batch_index % 64 == 0:
+            print(
+                json.dumps({"lexical_rows": processed, "lexical_candidates_scored": sum(counts.values())}), flush=True
             )
-            rows.append({"anchor_id": anchor_id, "candidate_id": candidate_id, **features})
-        rows.sort(key=lambda row: (-row["jaccard"], -row["containment"], row["candidate_id"]))
-        for rank, row in enumerate(rows[:top_k], start=1):
-            output.append({**row, "lexical_rank": rank})
-    return output
+    output = []
+    for anchor_id, heap in heaps.items():
+        for rank, (jaccard, containment, negative_id, length_ratio) in enumerate(sorted(heap, reverse=True), 1):
+            output.append(
+                {
+                    "anchor_id": anchor_id,
+                    "candidate_id": -negative_id,
+                    "jaccard": jaccard,
+                    "containment": containment,
+                    "length_ratio": length_ratio,
+                    "lexical_rank": rank,
+                }
+            )
+    return output, counts
 
 
 def _semantic_records(
@@ -281,6 +309,7 @@ def retrieve_and_select_cross_group_pairs(
     signature_manifest: dict[str, Any],
     destination: Path,
     retrieval_config_destination: Path,
+    lexical_pilot: tuple[list[int], tuple[int, int], list[dict[str, Any]]] | None = None,
 ) -> dict[str, int]:
     """Execute both retrieval channels and write selected provenance memberships."""
 
@@ -288,12 +317,18 @@ def retrieve_and_select_cross_group_pairs(
     doc_ids, group_ids, group_sizes = _outcome_arrays(outcomes_path, config.dataset.expected_rows)
     pilot_count = min(100, config.dataset.expected_rows)
     pilot_ids = _pilot_anchor_ids(doc_ids, group_ids, group_sizes, seed=config.seeds["pilot_seed"], target=pilot_count)
-    (bands, rows_per_band), trials = choose_lsh_configuration(
-        signature_path,
-        config=config,
-        pilot_anchor_ids=pilot_ids,
-        predicted_group_ids=group_ids,
-    )
+    if lexical_pilot is None:
+        (bands, rows_per_band), trials = choose_lsh_configuration(
+            signature_path,
+            config=config,
+            pilot_anchor_ids=pilot_ids,
+            predicted_group_ids=group_ids,
+        )
+    else:
+        preflight_ids, (bands, rows_per_band), trials = lexical_pilot
+        require(
+            preflight_ids == pilot_ids, "PILOT_POPULATION_CHANGED", "preflight and outcome pilot anchors must match"
+        )
     pilot_semantic = exact_cosine_topk(
         Path(corpus_manifest["embedding"]["path"]),
         rows=config.dataset.embedding_rows,
@@ -315,22 +350,21 @@ def retrieve_and_select_cross_group_pairs(
 
     anchor_table = pq.read_table(anchors_path, columns=["anchor_id", "evaluation_run_id", "sut_run_id"])
     anchor_ids = [int(value) for value in anchor_table["anchor_id"].to_pylist()]
-    raw_lexical = lsh_candidates(
+    matcher = LSHCandidateMatcher(
         signature_path,
         row_count=config.dataset.expected_rows,
         num_hashes=config.retrieval.num_hashes,
         anchor_ids=anchor_ids,
         bands=bands,
         rows_per_band=rows_per_band,
-        chunk_rows=config.retrieval.signature_chunk_rows,
-        max_candidates_per_anchor=config.retrieval.max_candidates_per_anchor,
     )
-    filtered_lexical = _filter_cross_group(raw_lexical, group_ids)
-    lexical_records = _lexical_records(
-        filtered_lexical,
+    lexical_records, lexical_counts = _lexical_records(
+        matcher,
+        group_ids=group_ids,
         corpus_manifest=corpus_manifest,
         feature_width=config.retrieval.feature_ngram_width,
         top_k=config.retrieval.top_k,
+        chunk_rows=config.retrieval.signature_chunk_rows,
     )
     semantic_neighbors = exact_cosine_topk(
         Path(corpus_manifest["embedding"]["path"]),
@@ -423,12 +457,17 @@ def retrieve_and_select_cross_group_pairs(
             "pilot_seed": config.seeds["pilot_seed"],
             "pilot_anchor_ids": pilot_ids,
             "lexical_trials": trials,
+            "pilot_selection_policy": "prefer_target_then_closest_center",
             "pilot_candidate_count_target": {
+                "advisory": True,
                 "minimum": config.retrieval.pilot_target_min,
                 "maximum": config.retrieval.pilot_target_max,
                 "center": config.retrieval.pilot_target_center,
             },
-            "candidate_safety_limit_per_anchor": config.retrieval.max_candidates_per_anchor,
+            "candidate_safety_limit_per_anchor": None,
+            "lexical_execution": "streaming_exact_topk",
+            "lexical_chunk_rows": config.retrieval.signature_chunk_rows,
+            "lexical_cross_group_candidate_counts": lexical_counts,
             "selected_lsh": {"bands": bands, "rows_per_band": rows_per_band},
             "semantic_cosine_p90": cosine_cutoff,
             "semantic_jaccard_median": jaccard_cutoff,

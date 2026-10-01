@@ -154,17 +154,22 @@ def build_visible_payload(
     *,
     counter: TokenCounter,
     config: AnyJudgeConfig,
+    token_counts: tuple[int, int] | None = None,
 ) -> tuple[dict[str, Any], str]:
     evidence = prepare_long_document_evidence(
         document_a["text"],
         document_b["text"],
         counter=counter,
         config=config,
+        token_counts=token_counts,
     )
     payload_version = getattr(
         config,
         "visible_payload_version",
-        VISIBLE_PAYLOAD_V0 if config.schema_version == "dedup-judge-output-v0" else VISIBLE_PAYLOAD_V1,
+        {
+            "dedup-judge-output-v0": VISIBLE_PAYLOAD_V0,
+            "dedup-judge-output-v3": VISIBLE_PAYLOAD_V2,
+        }.get(config.schema_version, VISIBLE_PAYLOAD_V1),
     )
     if payload_version == VISIBLE_PAYLOAD_V0:
         payload = {

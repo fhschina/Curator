@@ -71,7 +71,7 @@ def sample_anchors(
     anchor_seed: int,
     destination: Path,
 ) -> dict[str, int]:
-    """Write the frozen ``anchors.parquet`` sample without loading text metadata for all 10M rows."""
+    """Write the frozen ``anchors.parquet`` sample without loading all text metadata."""
 
     try:
         import numpy as np
@@ -83,6 +83,9 @@ def sample_anchors(
     selection_columns = ["doc_id", "predicted_group_id", "predicted_group_size"]
     table = pq.read_table(outcomes_path, columns=selection_columns)
     doc_ids = table["doc_id"].to_numpy(zero_copy_only=False)
+    if len(doc_ids) > 1 and not np.all(doc_ids[1:] > doc_ids[:-1]):
+        table = table.take(np.argsort(doc_ids, kind="stable"))
+        doc_ids = table["doc_id"].to_numpy(zero_copy_only=False)
     group_ids = table["predicted_group_id"].to_numpy(zero_copy_only=False)
     group_sizes = table["predicted_group_size"].to_numpy(zero_copy_only=False)
     rng = np.random.default_rng(anchor_seed)
@@ -129,9 +132,6 @@ def sample_anchors(
         "predicted_cluster_key",
         "predicted_group_size",
         "action",
-        "language",
-        "length_bucket",
-        "hostname",
     ]
     details = pq.read_table(outcomes_path, columns=detail_columns, filters=[("doc_id", "in", selected_ids)])
     row_by_doc = {int(row["doc_id"]): row for row in details.to_pylist()}
