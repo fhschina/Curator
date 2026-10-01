@@ -78,13 +78,17 @@ critic routing, rate limits, and execution commands remain unchanged.
 Keep the run root outside all input shard directories. Supply all four paths
 together, without `--source-run`. This mode ignores the
 legacy `CURATOR_V07_SOURCE_RUN` variable. An unfillable sample budget or a
-retrieval-limit failure is reported explicitly; parameters are not automatically
-changed. Lexical retrieval scores all LSH candidates in batches and maintains an
+retrieval error is reported explicitly. Lexical retrieval scores all LSH candidates in batches and maintains an
 exact global top 50 per anchor, preserving Jaccard, containment, and document-ID
 tie breaking. Candidates are deduplicated across bands; there is no candidate
 count cap or random subsampling. The legacy `max_candidates_per_anchor` setting
 is accepted but unused. This bounds retained ranking state, while scoring time
-still grows with candidate count. The pilot's 20–50 median target is unchanged.
+still grows with candidate count. The pilot prefers configurations whose median
+candidate count is 20–50, choosing the one closest to 35. If none meets that
+advisory target, it logs `LEXICAL_PILOT_OUTSIDE_TARGET` and continues with the
+existing grid configuration closest to 35 (ties use bands, then rows per band).
+Trial counts, target membership, the selection, and policy are recorded for audit.
+Scoring, top 50, and sample budgets remain unchanged.
 Use a fresh run root after a failed preparation. To use
 the local Judge, add `--backend local` and the local deployment options described below.
 

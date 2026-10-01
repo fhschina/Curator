@@ -258,11 +258,11 @@ def choose_lsh_configuration(
     pilot_anchor_ids: list[int],
     predicted_group_ids: Any,
 ) -> tuple[tuple[int, int], list[dict[str, Any]]]:
-    """Run the frozen pilot grid and select the valid median closest to 35."""
+    """Prefer medians inside the advisory target, then the closest to its center."""
 
     np = _numpy()
     trials: list[dict[str, Any]] = []
-    valid: list[tuple[float, int, int]] = []
+    require(pilot_anchor_ids, "LEXICAL_PILOT_EMPTY", "LSH pilot requires at least one anchor")
     for bands, rows_per_band in config.retrieval.lsh_grid:
         matcher = LSHCandidateMatcher(
             signature_path,
@@ -286,14 +286,37 @@ def choose_lsh_configuration(
                 "median_cross_group_candidates": median,
                 "minimum": int(min(counts, default=0)),
                 "maximum": int(max(counts, default=0)),
+                "within_target": config.retrieval.pilot_target_min <= median <= config.retrieval.pilot_target_max,
             }
         )
         print(json.dumps({"lexical_pilot_trial": trials[-1]}), flush=True)
-        if config.retrieval.pilot_target_min <= median <= config.retrieval.pilot_target_max:
-            valid.append((abs(median - config.retrieval.pilot_target_center), bands, rows_per_band))
-    require(valid, "LEXICAL_PILOT_FAILED", "no frozen LSH configuration met the 20-50 candidate target", trials=trials)
-    _, bands, rows_per_band = min(valid)
-    return (bands, rows_per_band), trials
+    require(trials, "LEXICAL_PILOT_EMPTY", "LSH pilot requires at least one grid configuration")
+    selected = min(
+        trials,
+        key=lambda trial: (
+            not trial["within_target"],
+            abs(trial["median_cross_group_candidates"] - config.retrieval.pilot_target_center),
+            trial["bands"],
+            trial["rows_per_band"],
+        ),
+    )
+    for trial in trials:
+        trial["selected"] = trial is selected
+    if not selected["within_target"]:
+        print(
+            json.dumps(
+                {
+                    "warning": "LEXICAL_PILOT_OUTSIDE_TARGET",
+                    "message": "No LSH configuration met the advisory target; continuing with the closest median.",
+                    "selected_lsh": selected,
+                    "target_minimum": config.retrieval.pilot_target_min,
+                    "target_maximum": config.retrieval.pilot_target_max,
+                    "target_center": config.retrieval.pilot_target_center,
+                }
+            ),
+            flush=True,
+        )
+    return (selected["bands"], selected["rows_per_band"]), trials
 
 
 def char_shingles(text: str, width: int) -> set[str]:

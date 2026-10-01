@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
@@ -100,20 +101,23 @@ def test_pilot_counts_and_choice_match_full_union(tmp_path: Path) -> None:
                 "median_cross_group_candidates": float(np.median(counts)),
                 "minimum": min(counts),
                 "maximum": max(counts),
+                "within_target": True,
             }
         )
     selected, trials = choose_lsh_configuration(
         path, config=config, pilot_anchor_ids=anchors, predicted_group_ids=groups
     )
-    assert trials == expected_trials
     best = min(
         expected_trials,
         key=lambda row: (abs(row["median_cross_group_candidates"] - 12), row["bands"], row["rows_per_band"]),
     )
+    for trial in expected_trials:
+        trial["selected"] = trial is best
+    assert trials == expected_trials
     assert selected == (best["bands"], best["rows_per_band"])
 
 
-def test_pilot_counts_over_500k_without_candidate_cap(tmp_path: Path) -> None:
+def test_pilot_counts_over_500k_without_candidate_cap(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
     dataset, _, _, _ = adapt_inputs(tmp_path / "work", **make_inputs(tmp_path / "input"))
     config = preparation_config(tmp_path / "run", dataset)
     rows = 500_002
@@ -124,15 +128,79 @@ def test_pilot_counts_over_500k_without_candidate_cap(tmp_path: Path) -> None:
     )
     path = tmp_path / "signatures.u32"
     np.ones((rows, 1), dtype=np.uint32).tofile(path)
-    with pytest.raises(DedupEvaluationError) as error:
-        choose_lsh_configuration(path, config=config, pilot_anchor_ids=[0], predicted_group_ids=np.full(rows, -1))
-    assert error.value.issue.code == "LEXICAL_PILOT_FAILED"
-    assert error.value.issue.details["trials"] == [
+    selected, trials = choose_lsh_configuration(
+        path, config=config, pilot_anchor_ids=[0], predicted_group_ids=np.full(rows, -1)
+    )
+    assert selected == (1, 1)
+    assert trials == [
         {
             "bands": 1,
             "rows_per_band": 1,
             "median_cross_group_candidates": 500001.0,
             "minimum": 500001,
             "maximum": 500001,
+            "within_target": False,
+            "selected": True,
         }
     ]
+    warning = json.loads(capsys.readouterr().out.splitlines()[-1])
+    assert warning["warning"] == "LEXICAL_PILOT_OUTSIDE_TARGET"
+    assert warning["selected_lsh"] == trials[0]
+
+
+@pytest.mark.parametrize(
+    ("target", "expected_bands", "within_target"),
+    [((5, 12, 5), 2, True), ((0, 3, 2), 1, False), ((13, 20, 16), 3, False), ((5, 7, 6), 1, False)],
+)
+def test_pilot_prefers_target_then_closest_median(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    target: tuple[int, int, int],
+    expected_bands: int,
+    within_target: bool,
+) -> None:
+    dataset, _, _, _ = adapt_inputs(tmp_path / "work", **make_inputs(tmp_path / "input"))
+    config = preparation_config(tmp_path / "run", dataset)
+    config = replace(
+        config,
+        retrieval=replace(
+            config.retrieval,
+            num_hashes=3,
+            lsh_grid=((3, 1), (2, 1), (1, 1)),
+            pilot_target_min=target[0],
+            pilot_target_max=target[1],
+            pilot_target_center=target[2],
+        ),
+    )
+    signatures = np.arange(24 * 3, dtype=np.uint32).reshape(24, 3)
+    for column in range(3):
+        signatures[1 + column * 4 : 5 + column * 4, column] = signatures[0, column]
+    path = tmp_path / "signatures.u32"
+    signatures.tofile(path)
+    selected, trials = choose_lsh_configuration(
+        path, config=config, pilot_anchor_ids=[0], predicted_group_ids=np.full(24, -1)
+    )
+    assert selected == (expected_bands, 1)
+    chosen = [trial for trial in trials if trial["selected"]]
+    assert len(chosen) == 1
+    assert chosen[0]["within_target"] is within_target
+    assert chosen[0]["median_cross_group_candidates"] == expected_bands * 4
+    assert ("LEXICAL_PILOT_OUTSIDE_TARGET" in capsys.readouterr().out) is not within_target
+
+
+@pytest.mark.parametrize("empty", ["anchors", "grid"])
+def test_empty_pilot_cannot_select_a_fallback(tmp_path: Path, empty: str) -> None:
+    dataset, _, _, _ = adapt_inputs(tmp_path / "work", **make_inputs(tmp_path / "input"))
+    config = preparation_config(tmp_path / "run", dataset)
+    config = replace(
+        config, retrieval=replace(config.retrieval, num_hashes=1, lsh_grid=() if empty == "grid" else ((1, 1),))
+    )
+    path = tmp_path / "signatures.u32"
+    np.ones((24, 1), dtype=np.uint32).tofile(path)
+    with pytest.raises(DedupEvaluationError, match="LEXICAL_PILOT_EMPTY"):
+        choose_lsh_configuration(
+            path,
+            config=config,
+            pilot_anchor_ids=[] if empty == "anchors" else [0],
+            predicted_group_ids=np.full(24, -1),
+        )

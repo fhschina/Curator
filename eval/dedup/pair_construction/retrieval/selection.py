@@ -457,7 +457,9 @@ def retrieve_and_select_cross_group_pairs(
             "pilot_seed": config.seeds["pilot_seed"],
             "pilot_anchor_ids": pilot_ids,
             "lexical_trials": trials,
+            "pilot_selection_policy": "prefer_target_then_closest_center",
             "pilot_candidate_count_target": {
+                "advisory": True,
                 "minimum": config.retrieval.pilot_target_min,
                 "maximum": config.retrieval.pilot_target_max,
                 "center": config.retrieval.pilot_target_center,

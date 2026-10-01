@@ -129,7 +129,7 @@ def build_population(config: EvaluationConfig, corpus: dict, sut: dict, tokenize
     )
     signature, signature_manifest = build_minhash_cache(config, corpus_manifest=corpus, cache_dir=config.cache_root)
     record("minhash", signature_manifest)
-    # Check retrieval limits before spending hours tokenizing the whole corpus.
+    # Record pilot diagnostics before the expensive full-corpus tokenization pass.
     lexical_pilot = _preflight_lexical_pilot(config, sut, signature)
     record(
         "lexical_pilot", {"anchor_ids": lexical_pilot[0], "selected_lsh": lexical_pilot[1], "trials": lexical_pilot[2]}
