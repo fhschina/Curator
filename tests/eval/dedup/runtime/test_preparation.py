@@ -144,6 +144,19 @@ def test_new_smoke_replays_without_requiring_untriggered_critics(tmp_path: Path)
     root = tmp_path / "run"
     preparation.prepare(root, input_paths=paths)
     manifest = release.verify(root)
+    collect = offline_collector(root)
+    with state.use_collector(collect):
+        for row in release.read(root / "smoke_panel.json"):
+            result = release.execute(root, row, "fixture://judge", contract.coverage_renderer())
+            assert result["status"] == "VALID"
+    report = release.check_smoke(root, manifest)
+    assert report["passed"]
+    assert report["offline_replay_identical"]
+    assert report["stages"] == {"main": 12}
+    assert report["saved_calls_replayed"] == 12
+
+
+def offline_collector(root: Path):
     scores = yaml.safe_load(contract.MAIN_CONFIG.read_text())["execution"]["stages"][0]["judges"][0]["scores"]
     raw = {}
     for score in scores:
@@ -183,12 +196,28 @@ def test_new_smoke_replays_without_requiring_untriggered_critics(tmp_path: Path)
         write_json_atomic(root / "responses" / (key + ".json"), receipt)
         return receipt
 
-    with state.use_collector(collect):
-        for row in release.read(root / "smoke_panel.json"):
-            result = release.execute(root, row, "fixture://judge", contract.coverage_renderer())
-            assert result["status"] == "VALID"
-    report = release.check_smoke(root, manifest)
-    assert report["passed"]
-    assert report["offline_replay_identical"]
-    assert report["stages"] == {"main": 12}
-    assert report["saved_calls_replayed"] == 12
+    return collect
+
+
+@pytest.mark.usefixtures("small_config")
+def test_smoke_only_freezes_only_its_endpoint_metadata(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    def smoke(rows: list[dict]) -> list[dict]:
+        return [next(row for row in rows if row["track"] == track) for track in ("5a", "5b")]
+
+    monkeypatch.setattr(preparation, "population_smoke", smoke)
+    root = tmp_path / "run"
+    preparation.prepare(root, input_paths=make_inputs(tmp_path / "input"), smoke_only=True)
+    manifest = release.verify(root)
+    assert manifest["population"] == 2
+    assert manifest["source_population"] == 12
+    keys = [row["canonical_pair_id"] for row in release.read(root / "panel_index.json")]
+    pairs = pq.read_table(
+        root / "preparation/data/candidate_pairs.parquet", filters=[("canonical_pair_id", "in", keys)]
+    ).to_pylist()
+    expected = {row[side] for row in pairs for side in ("doc_id_low", "doc_id_high")}
+    assert set(pq.read_table(root / "sample_documents.parquet")["doc_id"].to_pylist()) == expected
+    assert manifest["sample_document_count"] == len(expected)
+    with state.use_collector(offline_collector(root)):
+        for row in release.read(root / "panel_index.json"):
+            release.execute(root, row, "fixture://judge", contract.coverage_renderer())
+    assert release.audit(root)["sample_report"]["documents"] == len(expected)

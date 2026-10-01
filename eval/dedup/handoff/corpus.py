@@ -52,7 +52,7 @@ def _available_columns(schema: Any, *, explicit_id: str | None) -> set[str]:
 class TokenCounter:
     """Frozen tokenizer adapter used for lengths and long-document windows."""
 
-    def __init__(self, config: TokenizerConfig) -> None:
+    def __init__(self, config: TokenizerConfig, *, local_files_only: bool = False) -> None:
         self.config = config
         self.tokenizer: Any | None = None
         self.resolved_revision = config.revision
@@ -73,6 +73,7 @@ class TokenCounter:
                 repo_id=config.model_id,
                 revision=config.revision,
                 cache_dir=config.cache_root,
+                local_files_only=local_files_only,
                 allow_patterns=[
                     "tokenizer*",
                     "vocab*",

@@ -20,7 +20,15 @@ from pathlib import Path
 from eval.dedup.core.validation import require, sha256_file, sha256_json, write_json_atomic, write_text_atomic
 from eval.dedup.judging.paced_relay import TransportProfile
 from eval.dedup.judging.request_relay import RelayContext
-from eval.dedup.runtime import JUDGE_CONTRACT_VERSION, TOOL_VERSION, contract, execution, state, transport
+from eval.dedup.runtime import (
+    JUDGE_CONTRACT_VERSION,
+    TOOL_VERSION,
+    background_tokens,
+    contract,
+    execution,
+    state,
+    transport,
+)
 
 HERE = Path(__file__).resolve()
 RELEASE = HERE.parents[1] / "release"
@@ -394,6 +402,10 @@ def audit(root: Path) -> dict:
         "external_attempts": len(transport),
         "http_statuses": dict(Counter(e.get("http_status") for e in transport)),
     }
+    if manifest.get("preparation_flow") == background_tokens.FLOW:
+        from eval.dedup.reporting.sample_report import build
+
+        value["sample_report"] = build(root, manifest, report)
     path = root / "complete.json"
     if path.exists():
         existing = read(path)
@@ -421,6 +433,8 @@ def collect_rows(
     collector: transport.RateLimitCollector,
     workers: int,
     phase: str,
+    *,
+    on_abort: Callable[[], None] | None = None,
 ) -> None:
     pending = iter(r for r in rows if not (root / "results" / (r["canonical_pair_id"] + ".json")).exists())
     render = contract.coverage_renderer()
@@ -432,24 +446,29 @@ def collect_rows(
             if row is not None:
                 active.add(pool.submit(execute, root, row, relay.endpoint, render))
 
-        for _ in range(workers):
-            submit()
-        while active:
-            ready, active = wait(active, return_when=FIRST_COMPLETED)
-            for future in ready:
-                result = future.result()
-                progress = {
-                    "at_utc": state.now(),
-                    "phase": phase,
-                    "review_id": result["review_id"],
-                    "status": result["status"],
-                    "completed": len(list((root / "results").glob("*.json"))),
-                }
-                write_json_atomic(session / "progress" / (result["canonical_pair_id"] + ".json"), progress)
-                print(json.dumps(progress), flush=True)
-            require(relay._circuit_reason is None, "V07_CIRCUIT", "stop without consuming remaining pairs")
-            for _ in ready:
+        try:
+            for _ in range(workers):
                 submit()
+            while active:
+                ready, active = wait(active, return_when=FIRST_COMPLETED)
+                for future in ready:
+                    result = future.result()
+                    progress = {
+                        "at_utc": state.now(),
+                        "phase": phase,
+                        "review_id": result["review_id"],
+                        "status": result["status"],
+                        "completed": len(list((root / "results").glob("*.json"))),
+                    }
+                    write_json_atomic(session / "progress" / (result["canonical_pair_id"] + ".json"), progress)
+                    print(json.dumps(progress), flush=True)
+                require(relay._circuit_reason is None, "V07_CIRCUIT", "stop without consuming remaining pairs")
+                for _ in ready:
+                    submit()
+        except BaseException:
+            if on_abort is not None:
+                on_abort()
+            raise
 
 
 def run(root: Path, env_file: Path, session: Path, *, smoke_only: bool = False) -> None:
@@ -500,21 +519,28 @@ def run(root: Path, env_file: Path, session: Path, *, smoke_only: bool = False) 
                 request_deadline_seconds=640,
                 max_external_attempts=budget,
             )
-            with transport.RateLimitRelay(
-                profile=profile,
-                logical_model=contract.LOGICAL_MODEL,
-                upstream_base_url=manifest["endpoint"],
-                upstream_model=manifest["model"],
-                upstream_api_key=credential,
-                timeout_seconds=600,
-                expected_generation_parameters=contract.GENERATION,
-            ) as relay:
+            with (
+                transport.RateLimitRelay(
+                    profile=profile,
+                    logical_model=contract.LOGICAL_MODEL,
+                    upstream_base_url=manifest["endpoint"],
+                    upstream_model=manifest["model"],
+                    upstream_api_key=credential,
+                    timeout_seconds=600,
+                    expected_generation_parameters=contract.GENERATION,
+                ) as relay,
+                background_tokens.supervise(root, session, manifest) as statistics,
+            ):
                 relay.set_context(RelayContext("v07-" + session.name, 0, root / "transport_events.jsonl"))
                 smoke = read(root / "smoke_panel.json")
                 smoke_ids = {r["canonical_pair_id"] for r in smoke}
                 if not (root / "smoke_complete.json").exists():
                     state.intact({p.stem for p in (root / "results").glob("*.json")} <= smoke_ids)
-                    collect_rows(root, session, smoke, relay, collector, manifest["workers"], "SMOKE")
+                    collect_rows(
+                        root, session, smoke, relay, collector, manifest["workers"], "SMOKE", on_abort=statistics.stop
+                    )
+                if smoke_only:
+                    statistics.stop()
                 print(json.dumps({"event": "SMOKE_GATE_PASSED", **check_smoke(root, manifest)}), flush=True)
                 if not smoke_only:
                     print(
@@ -529,7 +555,9 @@ def run(root: Path, env_file: Path, session: Path, *, smoke_only: bool = False) 
                         collector,
                         manifest["workers"],
                         "FULL20K",
+                        on_abort=statistics.stop,
                     )
+                statistics.stop()
             if not smoke_only:
                 print(json.dumps(audit(root)), flush=True)
             write_json_atomic(
@@ -566,6 +594,8 @@ def status(root: Path) -> dict:
             )
     if (root / "smoke_complete.json").exists():
         info["smoke_passed"] = read(root / "smoke_complete.json")["passed"]
+    if "session" in info and (background := background_tokens.status(root, Path(info["session"]))):
+        info["background_tokens"] = background
     return info
 
 

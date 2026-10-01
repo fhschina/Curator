@@ -108,7 +108,8 @@ metadata. Common Crawl schema metadata is not required.
 Preparation needs the existing CUDA MinHash dependencies and a GPU, even when
 the Judge runs on Hub. It checks free disk space before conversion, streams
 inputs, and writes the ID lookup, float32 embedding matrix, MinHash matrix,
-outcomes, and pair provenance under the new run's `preparation/` directory.
+basic document relations, selected-document outcomes, and pair provenance under
+the new run's `preparation/` directory.
 For 100M documents and 768-dimensional vectors, the two matrices alone need
 about 411 GB (383 GiB); the preflight also reserves space for outcomes and
 intermediate files. Keep inputs immutable while preparing. Input inventories,
@@ -133,6 +134,45 @@ Each new run deterministically selects up to 24 smoke pairs from its own
 population, preferring 12 per track. The gate requires valid results and exact
 offline replay; conditional critics need not all trigger on a new population.
 Judge prompts, critic routing, transport limits, and recovery are unchanged.
+
+Preparation builds the sampling frame from the validated document IDs, location
+index, groups, removal list, and keeper relations. It does not read all document
+texts or tokenize the full corpus for outcomes. After selecting 5a and 5b pairs,
+it deduplicates their endpoints and computes exact token counts and metadata only
+for those documents: at most 40K distinct documents for the core 20K pairs.
+Lengths that have not been computed are absent from the relation table; zero is
+reserved for an actual zero-token document. The original tokenizer, long-document
+windows, input budget, and Judge payload are preserved. The frozen
+`sample_documents.parquet` contains exactly the executed population's endpoints,
+including when preparing a smoke-only root.
+
+During `launch` or `run`, a new-data evaluation starts one optional statistics
+child for other documents. It uses one CPU, no GPU, single-threaded tokenization
+and Arrow reads, low CPU/I/O priority, and a small batch size. It reuses the
+sample counts, uses only cached tokenizer assets, bounds additional virtual
+memory allocation to 1 GiB after tokenizer setup, and gives up after one hour
+or one million counted documents. Input, resource, and performance failures may
+abandon this task; there are no retries or resumable backfill requirements.
+`status` shows its worker and supervisor states separately. If the execution host
+cannot access the original inputs or tokenizer cache, the child abandons statistics
+while the frozen evaluation proceeds.
+
+The child stops immediately after the last executed pair and its conditional
+critics finish, before offline audit. A smoke-only execution also stops its child.
+Failure or cancellation triggers the same cleanup; an unresponsive child is
+terminated and then killed, with at most five seconds of waiting. On Linux the
+child also receives a kill signal if its parent dies. A later Judge session can
+start a fresh optional child; Judge recovery still skips saved pair results and
+reuses its existing request/response ledger.
+
+For new-data runs, the final audit also generates `reports/final_report.md`,
+`metrics.json`, `slices.csv`, `accounting.csv`, `sample_statistics.json`, and
+`pair_explorer.html`. Run `audit` again to verify the saved calls and rebuild missing
+reports offline. All evaluation statistics use the frozen pairs and distinct
+sample endpoints. Group size comes from the SUT, while group token, language, and
+hostname distributions describe only evaluated members. No complete-group or
+corpus length analysis is required. Reports and completion never wait for the
+optional child or consume its partial results.
 
 Keep the run root outside all input shard directories. All four paths are
 required together and are mutually exclusive with
@@ -383,7 +423,10 @@ All runtime artifacts stay below the user-selected `V07_RUN_ROOT`:
 | `requests/`, `responses/` | Hash-bound model-call ledger. |
 | `results/` | One validated public Judge result per canonical pair. |
 | `recovery/sessions/` | Detached launch records, heartbeats, exits, and logs. |
-| `complete.json` | Final population accounting and offline replay proof. |
+| `complete.json` | Final population accounting, sample-report hashes, and offline replay proof. |
+| `sample_documents.parquet` | Frozen exact outcomes for the distinct evaluated endpoints in a new-data run. |
+| `reports/`, `analysis/` | Sample-only statistics, comparison rows, and Pair Explorer after audit. |
+| `background_tokens/<session>/` | Disposable optional statistics; outside the frozen artifact set and report inputs. |
 | `provenance/` | Copied source manifests needed to reproduce the input binding. |
 
 Commands do not write runtime files into `eval/dedup`.

@@ -23,7 +23,15 @@ import yaml
 from eval.dedup.core.validation import require, sha256_file, sha256_json, write_json_atomic
 from eval.dedup.judging.paced_relay import TransportProfile
 from eval.dedup.judging.request_relay import RelayContext
-from eval.dedup.runtime import JUDGE_CONTRACT_VERSION, TOOL_VERSION, contract, release, state, transport
+from eval.dedup.runtime import (
+    JUDGE_CONTRACT_VERSION,
+    TOOL_VERSION,
+    background_tokens,
+    contract,
+    release,
+    state,
+    transport,
+)
 
 VERSION = TOOL_VERSION
 HERE = Path(__file__).resolve()
@@ -430,6 +438,7 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
                     timeout_seconds=600,
                     expected_generation_parameters=contract.GENERATION,
                 ) as relay,
+                background_tokens.supervise(root, session, manifest) as statistics,
             ):
                 relay.set_context(
                     RelayContext(
@@ -450,7 +459,10 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
                         collector,
                         manifest["workers"],
                         "SMOKE",
+                        on_abort=statistics.stop,
                     )
+                if smoke_only:
+                    statistics.stop()
                 print(json.dumps({"event": "SMOKE_GATE_PASSED", **release.check_smoke(root, manifest)}), flush=True)
                 if not smoke_only:
                     print(
@@ -471,7 +483,9 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
                         collector,
                         manifest["workers"],
                         "FULL20K",
+                        on_abort=statistics.stop,
                     )
+                statistics.stop()
             if not smoke_only:
                 print(json.dumps(audit(root)), flush=True)
             write_json_atomic(

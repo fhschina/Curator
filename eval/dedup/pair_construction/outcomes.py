@@ -16,7 +16,7 @@
 
 from __future__ import annotations
 
-import json
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit, urlunsplit
@@ -24,7 +24,7 @@ from urllib.parse import urlsplit, urlunsplit
 from eval.dedup.core.config import EvaluationConfig
 from eval.dedup.core.contracts import DOCUMENT_OUTCOME_COLUMNS, Action
 from eval.dedup.core.validation import require
-from eval.dedup.handoff.corpus import TokenCounter, iter_corpus_batches
+from eval.dedup.handoff.corpus import TokenCounter, load_documents_by_ids
 from eval.dedup.handoff.sut import load_sut_arrays
 
 
@@ -73,6 +73,79 @@ def _length_bucket(count: int) -> str:
     return "long"
 
 
+def _relations(doc_ids: Any, sut: Any, evaluation_run_id: str, sut_run_id: str) -> dict[str, Any]:
+    groups, sizes, keepers, removed = sut.lookup(doc_ids)
+    return {
+        "evaluation_run_id": [evaluation_run_id] * len(doc_ids),
+        "sut_run_id": [sut_run_id] * len(doc_ids),
+        "doc_id": doc_ids,
+        "predicted_group_id": groups,
+        "predicted_cluster_key": [
+            f"singleton:{int(doc_id)}" if group == -1 else f"group:{sut_run_id}:{int(group)}"
+            for doc_id, group in zip(doc_ids, groups, strict=True)
+        ],
+        "predicted_group_size": sizes,
+        "action": [Action.REMOVE if flag else Action.KEEP for flag in removed],
+        "final_keeper_id": keepers,
+    }
+
+
+def build_document_relations(
+    config: EvaluationConfig,
+    *,
+    evaluation_manifest: dict[str, Any],
+    corpus_manifest: dict[str, Any],
+    sut_manifest: dict[str, Any],
+    destination: Path,
+) -> dict[str, int]:
+    """Build the sampling frame from validated IDs and SUT relations, without text I/O."""
+    np, (pa, pq) = _dependencies()
+    sut = load_sut_arrays(
+        config,
+        groups_path=Path(sut_manifest["duplicate_groups"]["path"]),
+        removals_path=Path(sut_manifest["removal_ids"]["path"]),
+    )
+    rows = config.dataset.expected_rows
+    locations = (
+        np.memmap(corpus_manifest["document_locations"], dtype=np.int64, mode="r", shape=(rows, 2))
+        if corpus_manifest.get("explicit_id_column")
+        else None
+    )
+    ends = np.asarray([shard.get("end_id", -1) for shard in corpus_manifest["shards"]])
+    starts = np.asarray([shard.get("start_id", 0) for shard in corpus_manifest["shards"]])
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    removed = singletons = 0
+    writer = None
+    try:
+        for start in range(0, rows, 16384):
+            ids = np.arange(start, min(start + 16384, rows), dtype=np.int64)
+            values = _relations(ids, sut, evaluation_manifest["evaluation_run_id"], sut_manifest["sut_run_id"])
+            if locations is not None:
+                values["shard_index"] = pa.array(locations[ids, 0], type=pa.int32())
+                values["physical_row_index"] = locations[ids, 1]
+            else:
+                indices = np.searchsorted(ends, ids)
+                values["shard_index"] = pa.array(indices, type=pa.int32())
+                values["physical_row_index"] = ids - starts[indices]
+            removed += sum(action == Action.REMOVE for action in values["action"])
+            singletons += int((values["predicted_group_id"] == -1).sum())
+            table = pa.table(values)
+            if writer is None:
+                writer = pq.ParquetWriter(destination, table.schema, compression="zstd")
+            writer.write_table(table)
+    finally:
+        if writer is not None:
+            writer.close()
+    require(removed == config.dataset.expected_removals, "OUTCOME_REMOVAL_COUNT_MISMATCH", "removal count differs")
+    require(
+        singletons == config.dataset.expected_singletons, "OUTCOME_SINGLETON_COUNT_MISMATCH", "singleton count differs"
+    )
+    require(
+        rows - removed == config.dataset.expected_retained, "OUTCOME_RETAINED_COUNT_MISMATCH", "retained count differs"
+    )
+    return {"rows": rows, "removals": removed, "singletons": singletons, "logical_retained": rows - removed}
+
+
 def build_document_outcomes(
     config: EvaluationConfig,
     *,
@@ -81,125 +154,79 @@ def build_document_outcomes(
     sut_manifest: dict[str, Any],
     destination: Path,
     tokenizer: TokenCounter,
-) -> dict[str, int]:
-    """Stream the entire corpus and materialize ``document_outcomes.parquet``."""
-
+    doc_ids: Sequence[int],
+) -> dict[str, Any]:
+    """Enrich only selected pair endpoints with exact lengths and optional metadata."""
     np, (pa, pq) = _dependencies()
     sut = load_sut_arrays(
         config,
         groups_path=Path(sut_manifest["duplicate_groups"]["path"]),
         removals_path=Path(sut_manifest["removal_ids"]["path"]),
     )
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    writer: Any | None = None
-    total_rows = 0
-    removal_count = 0
-    singleton_count = 0
-    url_null_count = 0
-    url_failure_count = 0
-    empty_text_count = 0
+    ids = sorted({int(doc_id) for doc_id in doc_ids})
+    require(bool(ids), "EMPTY_ENDPOINTS", "selected pair endpoints must not be empty")
     input_columns = ("source_id", "warc_path", "warc_record_id", "url", "timestamp", "language", "text")
-    for batch_index, batch in enumerate(iter_corpus_batches(corpus_manifest, columns=input_columns), 1):
-        values = batch.to_pydict()
-        doc_ids = np.asarray(values["doc_id"], dtype=np.int64)
-        raw_group, group_sizes, keepers, is_removal = sut.lookup(doc_ids)
-        texts = values["text"]
-        null_indexes = [index for index, text in enumerate(texts) if text is None]
-        require(
-            not null_indexes,
-            "NULL_TEXT",
-            "frozen corpus contains null text",
-            first_doc_id=int(doc_ids[null_indexes[0]]) if null_indexes else None,
-        )
-        empty_text_count += sum(not text for text in texts)
-        token_counts = tokenizer.count_many(texts)
-        hostnames: list[str | None] = []
-        canonical_urls: list[str | None] = []
-        for url in values["url"]:
-            hostname, canonical, ok = canonicalize_url_v0(url)
-            hostnames.append(hostname)
-            canonical_urls.append(canonical)
-            url_null_count += int(not url)
-            url_failure_count += int(bool(url) and not ok)
-        cluster_keys = [
-            f"singleton:{int(doc_id)}" if group_id == -1 else f"group:{sut_manifest['sut_run_id']}:{int(group_id)}"
-            for doc_id, group_id in zip(doc_ids, raw_group, strict=True)
-        ]
-        output = {
-            "evaluation_run_id": [evaluation_manifest["evaluation_run_id"]] * len(doc_ids),
-            "sut_run_id": [sut_manifest["sut_run_id"]] * len(doc_ids),
-            "doc_id": doc_ids,
-            "predicted_group_id": raw_group,
-            "predicted_cluster_key": cluster_keys,
-            "predicted_group_size": group_sizes,
-            "action": [Action.REMOVE if flag else Action.KEEP for flag in is_removal],
-            "final_keeper_id": keepers,
-            "char_count": [len(text) for text in texts],
-            "token_count": token_counts,
-            "length_bucket": [_length_bucket(count) for count in token_counts],
-            "source_id": values["source_id"],
-            "warc_path": values["warc_path"],
-            "warc_id": values["warc_record_id"],
-            "url": values["url"],
-            "crawl_timestamp": values["timestamp"],
-            "language": values["language"],
-            "hostname": hostnames,
-            "canonical_url_v0": canonical_urls,
-            "shard_index": values["shard_index"],
-            "physical_row_index": values["physical_row_index"],
-        }
-        for column in (
-            "source_id",
-            "warc_path",
-            "warc_id",
-            "url",
-            "crawl_timestamp",
-            "language",
-            "hostname",
-            "canonical_url_v0",
-        ):
-            output[column] = pa.array(output[column], type=pa.string())
-        table = pa.table(output)
-        require(
-            tuple(table.column_names) == DOCUMENT_OUTCOME_COLUMNS, "INTERNAL_SCHEMA_ERROR", "outcome columns changed"
-        )
-        if writer is None:
-            writer = pq.ParquetWriter(destination, table.schema, compression="zstd")
-        writer.write_table(table)
-        total_rows += len(doc_ids)
-        removal_count += int(is_removal.sum())
-        singleton_count += int((raw_group == -1).sum())
-        if batch_index % 64 == 0:
-            print(json.dumps({"outcome_rows": total_rows, "expected_rows": config.dataset.expected_rows}), flush=True)
-    if writer is not None:
-        writer.close()
-    retained_count = total_rows - removal_count
-    require(
-        total_rows == config.dataset.expected_rows,
-        "OUTCOME_ROW_COUNT_MISMATCH",
-        "Step 3 did not emit one row per document",
-    )
-    require(
-        removal_count == config.dataset.expected_removals,
-        "OUTCOME_REMOVAL_COUNT_MISMATCH",
-        "Step 3 removal count differs",
-    )
-    require(
-        singleton_count == config.dataset.expected_singletons,
-        "OUTCOME_SINGLETON_COUNT_MISMATCH",
-        "Step 3 singleton count differs",
-    )
-    require(
-        retained_count == config.dataset.expected_retained,
-        "OUTCOME_RETAINED_COUNT_MISMATCH",
-        "Step 3 logical retained count differs",
-    )
+    strings = {
+        "source_id",
+        "warc_path",
+        "warc_id",
+        "url",
+        "crawl_timestamp",
+        "language",
+        "hostname",
+        "canonical_url_v0",
+    }
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    documents = load_documents_by_ids(corpus_manifest, ids, columns=input_columns)
+    writer = None
+    url_nulls = url_failures = empty_texts = 0
+    try:
+        for start in range(0, len(ids), 256):
+            batch_ids = ids[start : start + 256]
+            rows = [documents[doc_id] for doc_id in batch_ids]
+            texts = [row["text"] for row in rows]
+            require(all(text is not None for text in texts), "NULL_TEXT", "selected text must not be null")
+            counts = tokenizer.count_many(texts)
+            values = _relations(
+                np.asarray(batch_ids, dtype=np.int64),
+                sut,
+                evaluation_manifest["evaluation_run_id"],
+                sut_manifest["sut_run_id"],
+            )
+            urls = [canonicalize_url_v0(row["url"]) for row in rows]
+            empty_texts += sum(not text for text in texts)
+            url_nulls += sum(not row["url"] for row in rows)
+            url_failures += sum(bool(row["url"]) and not url[2] for row, url in zip(rows, urls, strict=True))
+            values.update(
+                {
+                    "char_count": [len(text) for text in texts],
+                    "token_count": counts,
+                    "length_bucket": [_length_bucket(count) for count in counts],
+                    **{name: [row[name] for row in rows] for name in ("source_id", "warc_path", "url", "language")},
+                    "warc_id": [row["warc_record_id"] for row in rows],
+                    "crawl_timestamp": [row["timestamp"] for row in rows],
+                    "hostname": [url[0] for url in urls],
+                    "canonical_url_v0": [url[1] for url in urls],
+                    "shard_index": pa.array([row["shard_index"] for row in rows], type=pa.int32()),
+                    "physical_row_index": [row["physical_row_index"] for row in rows],
+                }
+            )
+            table = pa.table(
+                {
+                    name: pa.array(values[name], type=pa.string()) if name in strings else values[name]
+                    for name in DOCUMENT_OUTCOME_COLUMNS
+                }
+            )
+            if writer is None:
+                writer = pq.ParquetWriter(destination, table.schema, compression="zstd")
+            writer.write_table(table)
+    finally:
+        if writer is not None:
+            writer.close()
     return {
-        "rows": total_rows,
-        "removals": removal_count,
-        "singletons": singleton_count,
-        "logical_retained": retained_count,
-        "url_nulls": url_null_count,
-        "url_parse_failures": url_failure_count,
-        "empty_texts": empty_text_count,
+        "rows": len(ids),
+        "scope": "selected_pair_endpoints",
+        "url_nulls": url_nulls,
+        "url_parse_failures": url_failures,
+        "empty_texts": empty_texts,
     }

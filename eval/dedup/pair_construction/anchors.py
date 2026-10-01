@@ -132,9 +132,6 @@ def sample_anchors(
         "predicted_cluster_key",
         "predicted_group_size",
         "action",
-        "language",
-        "length_bucket",
-        "hostname",
     ]
     details = pq.read_table(outcomes_path, columns=detail_columns, filters=[("doc_id", "in", selected_ids)])
     row_by_doc = {int(row["doc_id"]): row for row in details.to_pylist()}

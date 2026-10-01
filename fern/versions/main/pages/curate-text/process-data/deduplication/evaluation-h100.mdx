@@ -75,6 +75,36 @@ preference for 12 per track. It checks structural validity and identical offline
 replay without requiring every conditional critic to trigger. Judge prompts,
 critic routing, rate limits, and execution commands remain unchanged.
 
+Preparation now builds only basic document relations before sampling. After the
+unchanged 5a/5b selection, it deduplicates pair endpoints and computes their exact
+token counts and metadata, preserving the tokenizer and long-document input
+budget. The core 20K pairs require at most 40K distinct documents. Unknown lengths
+are not represented as zero. `sample_documents.parquet`, payloads, and requests
+are frozen before execution; full-corpus token statistics are not required.
+
+A new-data `launch` starts one optional CPU statistics child alongside Judge.
+It skips the already-counted sample, uses cached tokenizer assets, no GPU, low
+CPU/I/O priority, one CPU, and small batches. Additional virtual memory allocation
+is bounded to 1 GiB after tokenizer setup, and its effort is limited to one hour
+or one million counted documents. Errors, inaccessible inputs, or performance
+limits can abandon it without affecting evaluation. It writes only beneath
+`background_tokens/<session>/`, which is excluded from frozen artifacts and final
+statistics. This task has no retry or backfill recovery requirement.
+
+After the last pair's required critics finish, the child is stopped before
+audit. Failure, cancellation, and smoke-only completion also stop it. Cleanup
+waits at most five seconds before giving up on an unresponsive child after a kill
+signal; Linux additionally kills it when its parent dies. `status` reports its
+worker and supervisor state independently from Judge completion.
+
+For a new-data run, `audit` produces `reports/final_report.md`, metrics, slices,
+sample statistics, and Pair Explorer. Re-running `audit` verifies saved calls and
+rebuilds missing reports offline. All distributions use the frozen pairs and
+their distinct endpoints; group size remains the SUT size, and group distributions
+cover only evaluated members. Audit, reports, and completion do not wait for or
+read background statistics. The existing four-path and `--source-run` commands
+remain supported.
+
 Keep the run root outside all input shard directories. Supply all four paths
 together, without `--source-run`. This mode ignores the
 legacy `CURATOR_V07_SOURCE_RUN` variable. An unfillable sample budget or a

@@ -105,6 +105,11 @@ def freeze_population(
             for side in ("presented_doc_a", "presented_doc_b")
         }
     )
+    sample_path = root / "sample_documents.parquet"
+    sample = pq.read_table(config.output_root / "document_outcomes.parquet", filters=[("doc_id", "in", endpoint_ids)])
+    require(sample.num_rows == len(endpoint_ids), "SAMPLE_DOCUMENT_JOIN", "one exact outcome per frozen endpoint")
+    pq.write_table(sample, sample_path, compression="zstd")
+    counts = {int(row["doc_id"]): int(row["token_count"]) for row in sample.to_pylist()}
     documents = load_documents_by_ids(corpus, endpoint_ids, columns=("text",))
     artifacts = {}
     for index, row in enumerate(rows, 1):
@@ -115,6 +120,7 @@ def freeze_population(
             documents[int(candidate["presented_doc_b"])],
             counter=tokenizer,
             config=config.judge,
+            token_counts=(counts[int(candidate["presented_doc_a"])], counts[int(candidate["presented_doc_b"])]),
         )
         assert_blind_payload(payload)
         require(
@@ -151,6 +157,7 @@ def freeze_population(
     write_json_atomic(root / "smoke_panel.json", smoke)
     write_text_atomic(root / "protocol.md", release.PROTOCOL.read_text())
     for path in (
+        sample_path,
         root / "panel_index.json",
         root / "smoke_panel.json",
         root / "protocol.md",
@@ -178,6 +185,10 @@ def freeze_population(
         "judge_contract_version": JUDGE_CONTRACT_VERSION,
         "mode": release.SMOKE_ONLY_MODE if smoke_only else release.FULL_MODE,
         "input_mode": "parquet_paths",
+        "preparation_flow": "selected_documents_v1",
+        "statistics_scope": "frozen_pairs",
+        "sample_documents": "sample_documents.parquet",
+        "sample_document_count": len(endpoint_ids),
         "artifact_root": str(root),
         "backend": "hub",
         "at_utc": state.now(),

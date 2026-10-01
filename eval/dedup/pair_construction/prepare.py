@@ -14,7 +14,7 @@ from eval.dedup.handoff.corpus import TokenCounter
 from eval.dedup.handoff.sut import load_sut_arrays
 from eval.dedup.pair_construction.anchors import sample_anchors
 from eval.dedup.pair_construction.canonicalize import canonicalize_selected_pairs
-from eval.dedup.pair_construction.outcomes import build_document_outcomes
+from eval.dedup.pair_construction.outcomes import build_document_outcomes, build_document_relations
 from eval.dedup.pair_construction.removal_pairs import sample_removal_pairs
 from eval.dedup.pair_construction.retrieval.lexical import build_minhash_cache, choose_lsh_configuration
 from eval.dedup.pair_construction.retrieval.selection import _pilot_anchor_ids, retrieve_and_select_cross_group_pairs
@@ -112,6 +112,7 @@ def build_population(config: EvaluationConfig, corpus: dict, sut: dict, tokenize
     profile = config.profile("full")
     output = config.output_root
     outcomes, anchors = output / "document_outcomes.parquet", output / "anchors.parquet"
+    relations = output / "document_relations.parquet"
     removal, cross = output / "removal_pairs.parquet", output / "cross_group_pairs.parquet"
     summary = {}
 
@@ -127,31 +128,29 @@ def build_population(config: EvaluationConfig, corpus: dict, sut: dict, tokenize
         available=config.dataset.expected_removals,
         required=profile.removal_pair_budget,
     )
+    record(
+        "relations",
+        build_document_relations(
+            config,
+            evaluation_manifest={"evaluation_run_id": config.dataset.dataset_version},
+            corpus_manifest=corpus,
+            sut_manifest=sut,
+            destination=relations,
+        ),
+    )
     signature, signature_manifest = build_minhash_cache(config, corpus_manifest=corpus, cache_dir=config.cache_root)
     record("minhash", signature_manifest)
-    # Record pilot diagnostics before the expensive full-corpus tokenization pass.
     lexical_pilot = _preflight_lexical_pilot(config, sut, signature)
     record(
         "lexical_pilot", {"anchor_ids": lexical_pilot[0], "selected_lsh": lexical_pilot[1], "trials": lexical_pilot[2]}
     )
     record(
-        "outcomes",
-        build_document_outcomes(
-            config,
-            evaluation_manifest={"evaluation_run_id": config.dataset.dataset_version},
-            corpus_manifest=corpus,
-            sut_manifest=sut,
-            destination=outcomes,
-            tokenizer=tokenizer,
-        ),
-    )
-    record(
         "anchors",
-        sample_anchors(outcomes, profile=profile, anchor_seed=config.seeds["anchor_seed"], destination=anchors),
+        sample_anchors(relations, profile=profile, anchor_seed=config.seeds["anchor_seed"], destination=anchors),
     )
     record(
         "removal",
-        sample_removal_pairs(outcomes, profile=profile, pair_seed=config.seeds["pair_seed"], destination=removal),
+        sample_removal_pairs(relations, profile=profile, pair_seed=config.seeds["pair_seed"], destination=removal),
     )
     require(
         summary["removal"]["rows"] == profile.removal_pair_budget,
@@ -166,7 +165,7 @@ def build_population(config: EvaluationConfig, corpus: dict, sut: dict, tokenize
             config,
             profile=profile,
             corpus_manifest=corpus,
-            outcomes_path=outcomes,
+            outcomes_path=relations,
             anchors_path=anchors,
             signature_path=signature,
             signature_manifest=signature_manifest,
@@ -181,6 +180,28 @@ def build_population(config: EvaluationConfig, corpus: dict, sut: dict, tokenize
         "new corpus cannot fill the unchanged cross-group budget",
         available=summary["cross_group"]["unique_selected_pairs"],
         required=profile.cross_group_pair_budget,
+    )
+    import pyarrow.parquet as pq
+
+    endpoint_ids = sorted(
+        {
+            int(row[side])
+            for path in (removal, cross)
+            for row in pq.read_table(path, columns=["doc_i", "doc_j"]).to_pylist()
+            for side in ("doc_i", "doc_j")
+        }
+    )
+    record(
+        "outcomes",
+        build_document_outcomes(
+            config,
+            evaluation_manifest={"evaluation_run_id": config.dataset.dataset_version},
+            corpus_manifest=corpus,
+            sut_manifest=sut,
+            destination=outcomes,
+            tokenizer=tokenizer,
+            doc_ids=endpoint_ids,
+        ),
     )
     record(
         "pairs",

@@ -132,7 +132,11 @@ def canonicalize_selected_pairs(
         order_value = int(stable_record_id("judge-order-v1", config.seeds["judge_order_seed"], pair_id), 16) & 1
         doc_a, doc_b = (low, high) if order_value == 0 else (high, low)
         payload, payload_hash = build_visible_payload(
-            documents[doc_a], documents[doc_b], counter=tokenizer, config=config.judge
+            documents[doc_a],
+            documents[doc_b],
+            counter=tokenizer,
+            config=config.judge,
+            token_counts=(outcome_details[doc_a]["token_count"], outcome_details[doc_b]["token_count"]),
         )
         assert_blind_payload(payload)
         first_event = pair_events[pair_id][0]

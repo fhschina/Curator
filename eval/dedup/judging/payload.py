@@ -154,12 +154,14 @@ def build_visible_payload(
     *,
     counter: TokenCounter,
     config: AnyJudgeConfig,
+    token_counts: tuple[int, int] | None = None,
 ) -> tuple[dict[str, Any], str]:
     evidence = prepare_long_document_evidence(
         document_a["text"],
         document_b["text"],
         counter=counter,
         config=config,
+        token_counts=token_counts,
     )
     payload_version = getattr(
         config,

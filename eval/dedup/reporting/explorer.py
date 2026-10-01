@@ -128,7 +128,7 @@ def _endpoint_metadata(
         "hostname": row.get(f"hostname_{suffix}"),
         "language": row.get(f"language_{suffix}"),
         "length_bucket": row.get(f"length_bucket_{suffix}"),
-        "token_count": int(row.get(f"token_count_{suffix}") or 0),
+        "token_count": int(row[f"token_count_{suffix}"]),
         "excerpt": "",
         "sut_action": str(outcome["action"]),
         "predicted_group_id": int(outcome["predicted_group_id"]),
@@ -452,6 +452,7 @@ def _group_context_summary(
     group_id: int,
     rows: list[dict[str, Any]],
     required_doc_ids: set[int],
+    group_size: int,
 ) -> dict[str, Any]:
     hostnames = Counter(str(row.get("hostname") or "(missing)") for row in rows)
     languages = Counter(str(row.get("language") or "(missing)") for row in rows)
@@ -460,7 +461,9 @@ def _group_context_summary(
     return {
         "group_id": group_id,
         "cluster_key": str(first["predicted_cluster_key"]),
-        "group_size": len(rows),
+        "group_size": group_size,
+        "sample_member_count": len(rows),
+        "statistics_scope": "evaluation_sample_documents",
         "hostname_count": len(hostnames),
         "top_hostnames": [{"value": value, "count": count} for value, count in hostnames.most_common(8)],
         "languages": [{"value": value, "count": count} for value, count in languages.most_common()],
@@ -479,11 +482,13 @@ def attach_group_context(
     """Attach bounded group references and return de-duplicated group summaries."""
 
     required_by_group: dict[int, set[int]] = {}
+    group_sizes: dict[int, int] = {}
     for record in records:
         for endpoint in (record["left"], record["right"]):
             group_id = int(endpoint["predicted_group_id"])
             if group_id >= 0 and int(endpoint["predicted_group_size"]) > 1:
                 required_by_group.setdefault(group_id, set()).add(int(endpoint["doc_id"]))
+                group_sizes[group_id] = int(endpoint["predicted_group_size"])
     if not required_by_group:
         return {}
     try:
@@ -505,11 +510,24 @@ def attach_group_context(
     table = pq.read_table(
         run_root / "data" / "document_outcomes.parquet",
         columns=columns,
-        filters=[("predicted_group_id", "in", sorted(required_by_group))],
+        filters=[
+            (
+                "doc_id",
+                "in",
+                sorted(
+                    {
+                        doc_id
+                        for record in records
+                        for doc_id in (int(record["left"]["doc_id"]), int(record["right"]["doc_id"]))
+                    }
+                ),
+            )
+        ],
     )
     by_group: dict[int, list[dict[str, Any]]] = {}
     for row in table.to_pylist():
-        by_group.setdefault(int(row["predicted_group_id"]), []).append(row)
+        if int(row["predicted_group_id"]) in required_by_group:
+            by_group.setdefault(int(row["predicted_group_id"]), []).append(row)
     require(
         set(by_group) == set(required_by_group),
         "PAIR_EXPLORER_GROUP_JOIN_INCOMPLETE",
@@ -518,7 +536,7 @@ def attach_group_context(
         actual=len(by_group),
     )
     contexts = {
-        str(group_id): _group_context_summary(group_id, rows, required_by_group[group_id])
+        str(group_id): _group_context_summary(group_id, rows, required_by_group[group_id], group_sizes[group_id])
         for group_id, rows in sorted(by_group.items())
     }
     for record in records:
@@ -643,7 +661,7 @@ function judge(r){const s=section("Judge verdict","Primary duplicate/replacement
 function safeLink(c,url,text){try{const u=new URL(url);if(["http:","https:"].includes(u.protocol)){const a=create("a","",text||url);a.href=u.href;a.target="_blank";a.rel="noopener noreferrer";c.appendChild(a);return}}catch(_){}c.appendChild(create("span","",url||"—"))}function documentCard(c,role,d){const x=create("div","document");x.append(create("h3","",`${role} · doc ${d.doc_id}`),create("div","metadata",`${d.length_bucket} · ${d.token_count.toLocaleString()} tokens · ${d.language}`));safeLink(x,d.url,d.url);x.appendChild(create("pre","",d.excerpt||"No excerpt available."));c.appendChild(x)}function documents(r){const s=section("Documents","Judge-visible excerpts; not necessarily complete documents."),grid=create("div","detail-grid"),f=create("div","facts");documentCard(grid,r.left_role,r.left);documentCard(grid,r.right_role,r.right);s.appendChild(grid);for(const x of[["Token ratio",r.token_length_ratio.toFixed(3)],["Same hostname",r.same_hostname],[`${r.left_role} group size`,r.left.predicted_group_size],[`${r.right_role} group size`,r.right.predicted_group_size]])fact(f,...x);s.appendChild(f)}
 function evidence(r){const s=section("Judge evidence","Judge-selected quotes; not SUT matching evidence or chain-of-thought."),e=r.judge_evidence_status,f=create("div","facts");for(const x of[["Coverage",e.coverage],["Returned by Judge",e.returned],["Retained",e.retained],["Realigned",e.realigned],["Dropped",e.dropped]])fact(f,...x);s.appendChild(f);if(r.evidence.length)for(const item of r.evidence){const q=create("div","quote");q.append(create("strong","",`${item.role}: `),document.createTextNode(item.quote),create("div","metadata",`Judge side ${item.side} · chars ${item.start_char}-${item.end_char}`));s.appendChild(q)}else s.appendChild(create("div","notice muted","No aligned quote spans were retained; the verdict may still be schema-valid."))}
 function provenance(r){if(r.has_5b){const s=section("Evaluation candidate discovery","Evaluation retrieval, not original SUT fuzzy scores."),d=r.evaluation_provenance.retrieval,f=create("div","facts");for(const x of[["Retriever",d.sources.join(" + ")||r.retriever_category],["Cosine",number(d.cosine)],["Jaccard",number(d.jaccard)],["Containment",number(d.containment)],["Semantic rank",d.semantic_rank],["Lexical rank",d.lexical_rank],["Selection rule",d.selection_rules.join(", ")]])fact(f,...x);s.appendChild(f)}if(r.has_5a){const s=section("Evaluation removal sampling","Actual removal sample; not necessarily a direct SUT edge."),d=r.evaluation_provenance.removal_sampling,f=create("div","facts");for(const x of[["Selection rule",d.selection_rules.join(", ")],["Frame size",d.frame_size],["Selection probability",d.selection_probability],["Pair seed",d.pair_seed]])fact(f,...x);s.appendChild(f)}}
-function groups(r){if(!r.group_context_ids.length)return;const s=section("SUT group context","Bounded deterministic member samples; not an edge graph.");for(const id of r.group_context_ids){const g=GROUPS[id],d=create("details","context-card"),f=create("div","facts");if(!g)continue;d.appendChild(create("summary","",`Group ${g.group_id} · ${g.group_size} docs · ${g.hostname_count} hosts`));for(const x of[["Cluster key",g.cluster_key],["Group size",g.group_size],["Hostname count",g.hostname_count],["Token min/median/max",`${g.token_count_min}/${g.token_count_median}/${g.token_count_max}`],["Top hostnames",g.top_hostnames.map(x=>`${x.value} (${x.count})`).join(", ")],["Languages",g.languages.map(x=>`${x.value} (${x.count})`).join(", ")]])fact(f,...x);d.appendChild(f);const table=create("table","context-table"),head=create("tr");for(const h of["Doc","Action","Keeper","Host","Lang","Tokens","URL"])head.appendChild(create("th","",h));table.appendChild(head);for(const m of g.members){const tr=create("tr");for(const v of[m.doc_id,m.action,m.final_keeper_id,m.hostname,m.language,m.token_count])tr.appendChild(create("td","",value(v)));const link=create("td");safeLink(link,m.url,"open");tr.appendChild(link);table.appendChild(tr)}d.append(table,create("div","metadata",`Showing up to ${g.member_sample_limit} deterministic members.`));s.appendChild(d)}}function risks(r){if(!r.risk_indicators.length)return;const s=section("Group risk signals","Heuristics for triage, not reconstructed SUT reasons."),grid=create("div","risk-grid");for(const x of r.risk_indicators){const d=create("div","risk");d.append(create("span","muted",x.label),create("strong","",x.value),create("div","metadata",x.note));grid.appendChild(d)}s.appendChild(grid)}
+function groups(r){if(!r.group_context_ids.length)return;const s=section("SUT group context","Evaluated members only; group size comes from the SUT.");for(const id of r.group_context_ids){const g=GROUPS[id],d=create("details","context-card"),f=create("div","facts");if(!g)continue;d.appendChild(create("summary","",`Group ${g.group_id} · ${g.group_size} docs · ${g.sample_member_count} evaluated members · ${g.hostname_count} sample hosts`));for(const x of[["Cluster key",g.cluster_key],["Group size",g.group_size],["Sample hostname count",g.hostname_count],["Sample token min/median/max",`${g.token_count_min}/${g.token_count_median}/${g.token_count_max}`],["Sample top hostnames",g.top_hostnames.map(x=>`${x.value} (${x.count})`).join(", ")],["Sample languages",g.languages.map(x=>`${x.value} (${x.count})`).join(", ")]])fact(f,...x);d.appendChild(f);const table=create("table","context-table"),head=create("tr");for(const h of["Doc","Action","Keeper","Host","Lang","Tokens","URL"])head.appendChild(create("th","",h));table.appendChild(head);for(const m of g.members){const tr=create("tr");for(const v of[m.doc_id,m.action,m.final_keeper_id,m.hostname,m.language,m.token_count])tr.appendChild(create("td","",value(v)));const link=create("td");safeLink(link,m.url,"open");tr.appendChild(link);table.appendChild(tr)}d.append(table,create("div","metadata",`Showing up to ${g.member_sample_limit} deterministic members.`));s.appendChild(d)}}function risks(r){if(!r.risk_indicators.length)return;const s=section("Group risk signals","Heuristics for triage, not reconstructed SUT reasons."),grid=create("div","risk-grid");for(const x of r.risk_indicators){const d=create("div","risk");d.append(create("span","muted",x.label),create("strong","",x.value),create("div","metadata",x.note));grid.appendChild(d)}s.appendChild(grid)}
 function saveReview(id,patch){reviews[id]={...review(id),...patch,updated_at:new Date().toISOString()};if(!reviews[id].review_status&&!reviews[id].human_verdict&&!reviews[id].notes)delete reviews[id];persist();stats(state.filtered);renderRows()}function reviewSection(r){const s=section("Human review","Stored in this browser until exported."),card=create("div","review-card"),grid=create("div","review-grid"),rv=review(r.pair_id),status=create("select"),verdict=create("select");for(const x of[["","Unreviewed"],["AGREE_WITH_JUDGE","Agree"],["DISAGREE_WITH_JUDGE","Disagree"],["UNSURE","Unsure"]]){const o=create("option","",x[1]);o.value=x[0];o.selected=rv.review_status===x[0];status.appendChild(o)}for(const x of[["","Not labeled"],["DUPLICATE","Duplicate"],["NOT_DUPLICATE","Not duplicate"],["UNRESOLVED","Unresolved"]]){const o=create("option","",x[1]);o.value=x[0];o.selected=rv.human_verdict===x[0];verdict.appendChild(o)}status.onchange=()=>saveReview(r.pair_id,{review_status:status.value});verdict.onchange=()=>saveReview(r.pair_id,{human_verdict:verdict.value});const a=create("label"),b=create("label");a.append(create("span","metadata","Agreement with Judge"),status);b.append(create("span","metadata","Human group verdict"),verdict);grid.append(a,b);card.appendChild(grid);const notes=create("textarea");notes.value=rv.notes||"";notes.placeholder="Notes, missing evidence, suspected SUT root cause…";notes.onchange=()=>saveReview(r.pair_id,{notes:notes.value});card.appendChild(notes);const actions=create("div","review-actions"),clear=create("button","","Clear review");clear.onclick=()=>{delete reviews[r.pair_id];persist();selectPair(r.pair_id,false);applyFilters()};actions.append(clear,create("span","muted",rv.updated_at||"Not saved"));card.appendChild(actions);s.appendChild(card)}
 function glossary(){const d=create("details","glossary");d.append(create("summary","","How to read this page"),create("p","","SUT decision shows observed grouping/action. Judge verdict shows duplicate-group and directional replacement judgments. Evaluation discovery scores are separate from unavailable SUT fuzzy edges. AVAILABLE, NOT APPLICABLE, and NOT PRESERVED are intentionally distinct."));detail.appendChild(d)}function selectPair(id,hash=true){const r=PAIRS.find(x=>x.pair_id===id);if(!r)return;state.selected=id;detail.replaceChildren();detail.append(create("h2","pair-heading",r.pair_id),create("div","muted",`${r.track} · ${raw(r)}`));summary(r);sut(r);judge(r);documents(r);evidence(r);provenance(r);groups(r);risks(r);reviewSection(r);glossary();document.getElementById("copy-id").disabled=false;if(hash)history.replaceState(null,"",`#pair=${encodeURIComponent(id)}`);renderRows()}function applyFilters(){state.page=0;state.filtered=PAIRS.filter(r=>matches(r)).sort((a,b)=>priority(a)-priority(b)||a.pair_id.localeCompare(b.pair_id));stats(state.filtered);renderReasonChart();renderRows()}
 function csvEscape(v){const t=String(v??"");return/[",\\n\\r]/.test(t)?`"${t.replaceAll('"','""')}"`:t}function rowsForExport(){return PAIRS.filter(r=>reviews[r.pair_id]).map(r=>({pair_id:r.pair_id,track:r.track,evaluation_outcome:r.evaluation_outcome,judge_verdict:r.judge_group_verdict,...review(r.pair_id)}))}function download(name,type,text){const u=URL.createObjectURL(new Blob([text],{type})),a=create("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),0)}function exportCsv(){const fields=["pair_id","track","evaluation_outcome","judge_verdict","review_status","human_verdict","notes","updated_at"],lines=[fields.join(","),...rowsForExport().map(r=>fields.map(f=>csvEscape(r[f])).join(","))];download(`dedup_reviews_${RUN_ID}.csv`,"text/csv",lines.join("\\n")+"\\n")}function exportJson(){download(`dedup_reviews_${RUN_ID}.json`,"application/json",JSON.stringify({run_id:RUN_ID,dashboard_version:VERSION,reviews:rowsForExport()},null,2))}function parseCsv(text){const lines=text.trim().split(/\\r?\\n/),headers=lines.shift().split(",");return lines.map(line=>{const fields=line.match(/("(?:[^"]|"")*"|[^,]*)(?:,|$)/g).slice(0,-1).map(x=>x.replace(/,$/,"").replace(/^"|"$/g,"").replaceAll('""','"'));return Object.fromEntries(headers.map((h,i)=>[h,fields[i]||""]))})}function importRows(items){let n=0;for(const x of items){if(PAIR_IDS.has(x.pair_id)&&VALID_STATUS.has(x.review_status)&&VALID_VERDICT.has(x.human_verdict||"")){reviews[x.pair_id]={review_status:x.review_status,human_verdict:x.human_verdict||"",notes:x.notes||"",updated_at:x.updated_at||new Date().toISOString()};n++}}persist();applyFilters();document.getElementById("storage-status").textContent=`Imported ${n} reviews.`}async function importFile(file){try{const text=await file.text(),parsed=file.name.endsWith(".json")?JSON.parse(text):parseCsv(text);importRows(Array.isArray(parsed)?parsed:parsed.reviews||[])}catch(e){document.getElementById("storage-status").textContent=`Import failed: ${e.message}`}}
