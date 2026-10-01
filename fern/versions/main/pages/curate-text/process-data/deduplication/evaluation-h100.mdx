@@ -79,8 +79,9 @@ Keep the run root outside all input shard directories. Supply all four paths
 together, without `--source-run`. This mode ignores the
 legacy `CURATOR_V07_SOURCE_RUN` variable. An unfillable sample budget or a
 retrieval-limit failure is reported explicitly; parameters are not automatically
-changed. Use a fresh run root after a failed preparation. To use the local Judge,
-add `--backend local` and the local deployment options described below.
+changed. The raw lexical candidate safety limit is 500,000 per anchor; ranking
+still retains the top 50. Use a fresh run root after a failed preparation. To use
+the local Judge, add `--backend local` and the local deployment options described below.
 
 ## Validation scope
 

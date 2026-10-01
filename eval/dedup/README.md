@@ -116,9 +116,11 @@ SHA-256 checksums, derived counts, tokenizer revision, and preparation settings
 are recorded in the run artifacts.
 
 The existing seeds, retrieval pilot, anchor quotas, and budgets remain fixed:
-10K keeper/removal pairs (5a) and 10K cross-group pairs (5b). A corpus that cannot
-fill these quotas, or that exceeds the existing retrieval limits, stops with a
-named error and diagnostic details. Preparation does not retune the method.
+10K keeper/removal pairs (5a) and 10K cross-group pairs (5b). The raw lexical
+candidate safety limit is 500,000 per anchor; lexical ranking still retains
+the top 50. A corpus that cannot fill these quotas, or that exceeds the retrieval
+limits, stops with a named error and diagnostic details. Preparation does not
+retune the method.
 Each new run deterministically selects up to 24 smoke pairs from its own
 population, preferring 12 per track. The gate requires valid results and exact
 offline replay; conditional critics need not all trigger on a new population.

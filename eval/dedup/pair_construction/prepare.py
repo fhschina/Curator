@@ -70,7 +70,7 @@ def preparation_config(root: Path, dataset: DatasetConfig) -> EvaluationConfig:
             "top_k": 50,
             "signature_chunk_rows": 16384,
             "semantic_chunk_rows": 32768,
-            "max_candidates_per_anchor": 250000,
+            "max_candidates_per_anchor": 500000,
         },
         "seeds": {
             name + "_seed": 26081200 + index
@@ -129,7 +129,7 @@ def build_population(config: EvaluationConfig, corpus: dict, sut: dict, tokenize
     )
     signature, signature_manifest = build_minhash_cache(config, corpus_manifest=corpus, cache_dir=config.cache_root)
     record("minhash", signature_manifest)
-    # Check the unchanged retrieval limit before spending hours tokenizing the whole corpus.
+    # Check retrieval limits before spending hours tokenizing the whole corpus.
     lexical_pilot = _preflight_lexical_pilot(config, sut, signature)
     record(
         "lexical_pilot", {"anchor_ids": lexical_pilot[0], "selected_lsh": lexical_pilot[1], "trials": lexical_pilot[2]}
