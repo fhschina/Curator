@@ -4,6 +4,8 @@
 > [`fhschina/Curator:dedup-eval`](https://github.com/fhschina/Curator/tree/dedup-eval).
 > This is not an NVIDIA-NeMo/Curator upstream release.
 
+**Team update:** [October 19, 2026 — evaluation results and next steps (Google Slides)](https://docs.google.com/presentation/d/1zPQWrHLJegJS1Q3ENv3NV_G-AFzX4SLANYPIhLs2huU/edit)
+
 This package evaluates the decisions produced by a completed fuzzy-deduplication
 run. It applies a schema-constrained LLM Judge to a frozen population of
 keeper-to-removed and cross-group pairs, records every request and response, and
