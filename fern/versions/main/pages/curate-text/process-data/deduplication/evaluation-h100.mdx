@@ -12,13 +12,115 @@ modality: "text-only"
 
 This guide applies to the internal `fhschina/Curator:dedup-eval` v0.7.1
 source-checkout tool. It is not an NVIDIA-NeMo/Curator upstream release.
-The tool evaluates the frozen 20,000-pair Judge v0.7 population using
+The tool evaluates a frozen 20,000-pair Judge v0.7 population using
 `Qwen/Qwen3.8-27B-FP8`, with one tensor-parallel-1 replica per selected GPU.
-It does not rerun deduplication or construct a new evaluation population.
+It can construct new pairs from supplied Parquet inputs or reuse the historical
+frozen input bundle. It does not rerun deduplication.
 
 The scripts in `eval/dedup/deploy/` accept deployment paths and the Slurm account
 from the caller. Keep environments, model weights, input bundles, generated
 runner profiles, and run outputs outside the checkout.
+
+## Use a new dataset
+
+Provide four local or mounted Parquet paths, each a file or shard directory:
+
+| Argument | Required columns |
+| --- | --- |
+| `--documents` | `_curator_dedup_id`, `text` |
+| `--groups` | `_curator_dedup_id`, `_duplicate_group_id` |
+| `--removals` | `_curator_dedup_id` |
+| `--embeddings` | `_curator_dedup_id`, `embeddings` |
+
+Document and embedding IDs must each uniquely cover the integers `0..N-1`.
+Text must be a non-null string. Group IDs must be nonnegative integers; every
+group has at least two documents and exactly one keeper, determined by absence
+from the removal list. Every removal must join to a group. Ungrouped documents
+are singletons. No singleton file or Common Crawl metadata is required.
+
+Embeddings must cover all documents, use one consistent nonzero dimension, and
+contain finite numbers with unit L2 norm (`rtol=atol=1e-3`). There is no fixed
+embedding model or dimension. Optional string metadata such as `url` and `language`
+may be absent; the corresponding analysis fields remain unavailable. Extra columns
+with other types are ignored. Files and
+rows may be shuffled because text and embeddings are always aligned by ID.
+The documents and embeddings paths may point to the same directory.
+
+Run preparation in an existing Curator environment with the CUDA MinHash
+dependencies and an allocated GPU. For a Hub evaluation:
+
+```bash
+python -m eval.dedup prepare \
+  --documents /data/documents \
+  --groups /data/duplicate_groups \
+  --removals /data/removal_ids \
+  --embeddings /data/embeddings \
+  --root /runs/new-dataset
+python -m eval.dedup launch --root /runs/new-dataset --env-file /private/nvidia.env
+python -m eval.dedup status --root /runs/new-dataset
+python -m eval.dedup audit --root /runs/new-dataset
+```
+
+Preparation creates fresh 5a and 5b pairs using the existing seeds, retrieval
+parameters, and 10K-per-track budgets. It streams the input conversion into the
+new run directory, checks free disk space first, and records the file inventory,
+checksums, derived dataset counts, and embedding dimension. Keep the input files
+immutable until preparation finishes. The float32 embedding matrix and the
+260-column MinHash matrix alone require roughly 411 GB for 100M documents with
+768-dimensional embeddings; outcomes and intermediate artifacts need additional
+space, included in the disk preflight estimate.
+
+The smoke panel comes from the new population, with up to 24 pairs and a
+preference for 12 per track. It checks structural validity and identical offline
+replay without requiring every conditional critic to trigger. Judge prompts,
+critic routing, rate limits, and execution commands remain unchanged.
+
+Preparation now builds only basic document relations before sampling. After the
+unchanged 5a/5b selection, it deduplicates pair endpoints and computes their exact
+token counts and metadata, preserving the tokenizer and long-document input
+budget. The core 20K pairs require at most 40K distinct documents. Unknown lengths
+are not represented as zero. `sample_documents.parquet`, payloads, and requests
+are frozen before execution; full-corpus token statistics are not required.
+
+A new-data `launch` starts one optional CPU statistics child alongside Judge.
+It skips the already-counted sample, uses cached tokenizer assets, no GPU, low
+CPU/I/O priority, one CPU, and small batches. Additional virtual memory allocation
+is bounded to 1 GiB after tokenizer setup, and its effort is limited to one hour
+or one million counted documents. Errors, inaccessible inputs, or performance
+limits can abandon it without affecting evaluation. It writes only beneath
+`background_tokens/<session>/`, which is excluded from frozen artifacts and final
+statistics. This task has no retry or backfill recovery requirement.
+
+After the last pair's required critics finish, the child is stopped before
+audit. Failure, cancellation, and smoke-only completion also stop it. Cleanup
+waits at most five seconds before giving up on an unresponsive child after a kill
+signal; Linux additionally kills it when its parent dies. `status` reports its
+worker and supervisor state independently from Judge completion.
+
+For a new-data run, `audit` produces `reports/final_report.md`, metrics, slices,
+sample statistics, and Pair Explorer. Re-running `audit` verifies saved calls and
+rebuilds missing reports offline. All distributions use the frozen pairs and
+their distinct endpoints; group size remains the SUT size, and group distributions
+cover only evaluated members. Audit, reports, and completion do not wait for or
+read background statistics. The existing four-path and `--source-run` commands
+remain supported.
+
+Keep the run root outside all input shard directories. Supply all four paths
+together, without `--source-run`. This mode ignores the
+legacy `CURATOR_V07_SOURCE_RUN` variable. An unfillable sample budget or a
+retrieval error is reported explicitly. Lexical retrieval scores all LSH candidates in batches and maintains an
+exact global top 50 per anchor, preserving Jaccard, containment, and document-ID
+tie breaking. Candidates are deduplicated across bands; there is no candidate
+count cap or random subsampling. The legacy `max_candidates_per_anchor` setting
+is accepted but unused. This bounds retained ranking state, while scoring time
+still grows with candidate count. The pilot prefers configurations whose median
+candidate count is 20–50, choosing the one closest to 35. If none meets that
+advisory target, it logs `LEXICAL_PILOT_OUTSIDE_TARGET` and continues with the
+existing grid configuration closest to 35 (ties use bands, then rows per band).
+Trial counts, target membership, the selection, and policy are recorded for audit.
+Scoring, top 50, and sample budgets remain unchanged.
+Use a fresh run root after a failed preparation. To use
+the local Judge, add `--backend local` and the local deployment options described below.
 
 ## Validation scope
 

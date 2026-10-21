@@ -157,8 +157,16 @@ def build_pair_comparisons(
                 "predicted_same_group": predicted_same,
                 "predicted_group_size_low": outcomes[low]["predicted_group_size"],
                 "predicted_group_size_high": outcomes[high]["predicted_group_size"],
-                "same_language": bool(pair["language_low"] and pair["language_low"] == pair["language_high"]),
-                "same_hostname": bool(pair["hostname_low"] and pair["hostname_low"] == pair["hostname_high"]),
+                "same_language": (
+                    pair["language_low"] == pair["language_high"]
+                    if pair["language_low"] and pair["language_high"]
+                    else None
+                ),
+                "same_hostname": (
+                    pair["hostname_low"] == pair["hostname_high"]
+                    if pair["hostname_low"] and pair["hostname_high"]
+                    else None
+                ),
                 "token_length_ratio": token_length_ratio,
                 "has_track_5a": bool(removal_events),
                 "has_track_5b": bool(cross_events),

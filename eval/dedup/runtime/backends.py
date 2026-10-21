@@ -23,14 +23,22 @@ import yaml
 from eval.dedup.core.validation import require, sha256_file, sha256_json, write_json_atomic
 from eval.dedup.judging.paced_relay import TransportProfile
 from eval.dedup.judging.request_relay import RelayContext
-from eval.dedup.runtime import JUDGE_CONTRACT_VERSION, TOOL_VERSION, contract, release, state, transport
+from eval.dedup.runtime import (
+    JUDGE_CONTRACT_VERSION,
+    TOOL_VERSION,
+    background_tokens,
+    contract,
+    release,
+    state,
+    transport,
+)
 
 VERSION = TOOL_VERSION
 HERE = Path(__file__).resolve()
 PROTOCOL = HERE.parents[1] / "release/README.md"
 DEFAULT_LOCAL_RUNNER_CONFIG = HERE.parents[1] / "release/local_runner/config.yaml"
 LOCAL_MODEL_ID = "Qwen/Qwen3.8-27B-FP8"
-LOCAL_MODEL_REVISION = "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a"
+LOCAL_MODEL_REVISION = "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a"  # pragma: allowlist secret - public model commit
 LOCAL_ENDPOINT = "local://ray-dynamo-vllm"
 LOCAL_BACKEND_SCHEMA = "dedup-local-backend-v1"
 LEGACY_LOCAL_BACKEND_SCHEMA = "v07-local-backend-v2"
@@ -211,7 +219,7 @@ def _local_contract(
 def prepare_local(
     root: Path,
     *,
-    source_run: Path,
+    source_run: Path | None,
     model_path: Path,
     runner_config: Path = DEFAULT_LOCAL_RUNNER_CONFIG,
     runtime_root: Path | None = None,
@@ -219,6 +227,7 @@ def prepare_local(
     devices: str = "0",
     replicas: int | None = None,
     smoke_only: bool = False,
+    input_paths: dict[str, Path] | None = None,
 ) -> dict:
     local = _local_contract(
         root,
@@ -229,7 +238,13 @@ def prepare_local(
         devices=devices,
         replicas=replicas,
     )
-    release.prepare(root, source=source_run, smoke_only=smoke_only)
+    if input_paths is not None:
+        from eval.dedup.runtime import preparation
+
+        preparation.prepare(root, input_paths=input_paths, smoke_only=smoke_only)
+    else:
+        require(source_run is not None, "V07_SOURCE_RUN", "a frozen source run is required")
+        release.prepare(root, source=source_run, smoke_only=smoke_only)
     manifest = release.read(root / "manifest.json")
     local_sources = [
         HERE,
@@ -423,6 +438,7 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
                     timeout_seconds=600,
                     expected_generation_parameters=contract.GENERATION,
                 ) as relay,
+                background_tokens.supervise(root, session, manifest) as statistics,
             ):
                 relay.set_context(
                     RelayContext(
@@ -443,7 +459,10 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
                         collector,
                         manifest["workers"],
                         "SMOKE",
+                        on_abort=statistics.stop,
                     )
+                if smoke_only:
+                    statistics.stop()
                 print(json.dumps({"event": "SMOKE_GATE_PASSED", **release.check_smoke(root, manifest)}), flush=True)
                 if not smoke_only:
                     print(
@@ -464,7 +483,9 @@ def run_local(root: Path, session: Path, *, smoke_only: bool = False) -> None:
                         collector,
                         manifest["workers"],
                         "FULL20K",
+                        on_abort=statistics.stop,
                     )
+                statistics.stop()
             if not smoke_only:
                 print(json.dumps(audit(root)), flush=True)
             write_json_atomic(
@@ -573,6 +594,10 @@ def _parser() -> argparse.ArgumentParser:
         help="Frozen 20K source bundle; defaults to CURATOR_V07_SOURCE_RUN.",
     )
     parser.add_argument("--env-file", type=Path)
+    for name in ("documents", "groups", "removals", "embeddings"):
+        parser.add_argument(
+            f"--{name}", type=Path, help=f"New {name}: a local Parquet file or shard directory (prepare only)."
+        )
     parser.add_argument("--session", type=Path)
     parser.add_argument("--smoke-only", action="store_true")
     parser.add_argument(
@@ -598,9 +623,27 @@ def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     root = args.root.resolve()
     try:
+        input_paths = {name: getattr(args, name) for name in ("documents", "groups", "removals", "embeddings")}
+        new_inputs = any(path is not None for path in input_paths.values())
+        if new_inputs:
+            require(args.command == "prepare", "INPUT_PATHS_COMMAND", "data paths are accepted only by prepare")
+            require(
+                all(path is not None for path in input_paths.values()),
+                "INPUT_PATHS_REQUIRED",
+                "provide --documents, --groups, --removals, and --embeddings together",
+            )
+            require(
+                args.source_run is None,
+                "INPUT_PATHS_CONFLICT",
+                "new data paths and --source-run are mutually exclusive",
+            )
         if args.command == "prepare":
-            source = release._configured_path(args.source_run, "CURATOR_V07_SOURCE_RUN")
-            require(source is not None, "V07_SOURCE_RUN", "--source-run or CURATOR_V07_SOURCE_RUN")
+            source = None if new_inputs else release._configured_path(args.source_run, "CURATOR_V07_SOURCE_RUN")
+            require(
+                new_inputs or source is not None,
+                "V07_SOURCE_RUN",
+                "four data paths, --source-run, or CURATOR_V07_SOURCE_RUN",
+            )
             backend = args.backend or "hub"
             if backend == "local":
                 model_path = release._configured_path(args.local_model_path, "CURATOR_V07_LOCAL_MODEL_PATH")
@@ -625,7 +668,12 @@ def main(argv: list[str] | None = None) -> int:
                     devices=args.local_devices or args.local_device or "0",
                     replicas=args.local_replicas,
                     smoke_only=args.smoke_only,
+                    **({"input_paths": input_paths} if new_inputs else {}),
                 )
+            elif new_inputs:
+                from eval.dedup.runtime import preparation
+
+                value = preparation.prepare(root, input_paths=input_paths, smoke_only=args.smoke_only)
             else:
                 value = release.prepare(root, source=source, smoke_only=args.smoke_only)
         else:
@@ -660,7 +708,10 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(value), flush=True)
         return 0
     except BaseException as exc:  # noqa: BLE001 - do not print potentially credential-bearing exceptions
-        print(json.dumps({"error_code": state.error_code(exc)}), flush=True)
+        error = {"error_code": state.error_code(exc)}
+        if args.command == "prepare" and new_inputs and hasattr(exc, "issue"):
+            error.update(message=exc.issue.message, details=exc.issue.details)
+        print(json.dumps(error), flush=True)
         return 1
 
 

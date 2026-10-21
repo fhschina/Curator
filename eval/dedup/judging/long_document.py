@@ -59,10 +59,11 @@ def prepare_long_document_evidence(
     *,
     counter: TokenCounter,
     config: AnyJudgeConfig,
+    token_counts: tuple[int, int] | None = None,
 ) -> dict[str, Any]:
     """Return full texts when they fit, otherwise deterministic aligned windows."""
 
-    counts = counter.count_many([text_a, text_b])
+    counts = token_counts if token_counts is not None else counter.count_many([text_a, text_b])
     if sum(counts) <= config.max_visible_tokens:
         return {
             "truncated": False,

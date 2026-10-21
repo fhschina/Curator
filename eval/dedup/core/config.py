@@ -105,7 +105,7 @@ class RetrievalConfig:
     top_k: int
     signature_chunk_rows: int
     semantic_chunk_rows: int
-    max_candidates_per_anchor: int
+    max_candidates_per_anchor: int  # Legacy manifest field; streaming retrieval has no candidate-count cap.
 
 
 @dataclass(frozen=True, slots=True)

@@ -52,7 +52,7 @@ jobs:
           enable-cache: false
           python-version: "3.11"
       - name: Install CPU test dependencies
-        run: uv sync --locked --extra sdg_cpu --group test
+        run: uv sync --locked --extra sdg_cpu --extra text_cpu --group test
       - name: Run dedup contracts without changing the checkout
         shell: bash
         run: |

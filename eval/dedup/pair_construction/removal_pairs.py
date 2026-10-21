@@ -33,32 +33,22 @@ def sample_removal_pairs(
     try:
         import numpy as np
         import pyarrow as pa
-        import pyarrow.compute as pc
         import pyarrow.parquet as pq
     except ImportError as exc:
         msg = "numpy and pyarrow are required for removal-pair sampling"
         raise RuntimeError(msg) from exc
-    columns = [
-        "evaluation_run_id",
-        "sut_run_id",
-        "doc_id",
-        "predicted_cluster_key",
-        "predicted_group_size",
-        "action",
-        "final_keeper_id",
-        "language",
-        "length_bucket",
-        "token_count",
-        "hostname",
-        "canonical_url_v0",
-    ]
-    all_rows = pq.read_table(outcomes_path, columns=columns)
-    removals = all_rows.filter(pc.equal(all_rows["action"], Action.REMOVE))
-    frame_size = removals.num_rows
+    removals = pq.read_table(outcomes_path, columns=["doc_id"], filters=[("action", "=", Action.REMOVE)])
+    removal_ids = np.sort(removals["doc_id"].to_numpy(zero_copy_only=False))
+    frame_size = len(removal_ids)
     sample_size = min(profile.removal_pair_budget, frame_size)
     rng = np.random.default_rng(pair_seed)
     selected_indices = np.sort(rng.choice(frame_size, size=sample_size, replace=False))
-    selected = removals.take(pa.array(selected_indices))
+    selected_ids = removal_ids[selected_indices].tolist()
+    selected = pq.read_table(
+        outcomes_path,
+        columns=["evaluation_run_id", "sut_run_id", "doc_id", "predicted_cluster_key", "final_keeper_id"],
+        filters=[("doc_id", "in", selected_ids)],
+    ).sort_by("doc_id")
     output_rows = []
     for row in selected.to_pylist():
         keeper_id = int(row["final_keeper_id"])
