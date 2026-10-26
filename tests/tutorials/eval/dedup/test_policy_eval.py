@@ -4,8 +4,18 @@ import copy
 from pathlib import Path
 
 import pytest
-from policy_cases import aligned, controlled
-from policy_eval import audit, exact_index, metrics, review_page, stage_effects, verify_files
+from policy_cases import aligned, controlled, digest
+from policy_eval import (
+    acceptance_state,
+    audit,
+    exact_index,
+    metrics,
+    review_page,
+    stage_effects,
+    verify_files,
+    write_json,
+    write_rows,
+)
 
 
 def example():
@@ -48,6 +58,49 @@ def test_invalid_critic_cannot_count_as_a_passing_case():
     assert report["layers"]["main"]["direction_accuracy"] == 1
     assert report["layers"]["coverage"]["direction_accuracy"] == 0
     assert report["layers"]["final"]["direction_accuracy"] == 0
+
+
+def test_unvalidated_yes_still_counts_as_an_unsafe_allow():
+    source, row = example()
+    label = {**source, "a_can_replace_b": "no", "b_can_replace_a": "no"}
+    row["subject_action"] = "UNVALIDATED_KEEP_COVERAGE"
+    row["subject_reason"] = "INVALID_VERIFIER_OUTPUT"
+    result = metrics([row], [label], [source])
+    assert result["layers"]["final"]["unsafe_allows"] == 2
+    assert result["layers"]["final"]["direction_accuracy"] == 0
+    assert not result["gate_passed"]
+
+
+def test_acceptance_rejects_changed_audited_outputs(tmp_path: Path):
+    import policy_eval
+
+    source, row = example()
+    write_json(tmp_path / "manifest.json", {})
+    write_rows(tmp_path / "panels/gate/input.jsonl", [source])
+    run_dir = tmp_path / "runs/candidate-gate-1"
+    output = run_dir / "critics/output.jsonl"
+    write_rows(output, [row])
+    receipt = {
+        "status": "complete",
+        "experiment_manifest_sha256": digest((tmp_path / "manifest.json").read_bytes()),
+    }
+    write_json(run_dir / "run_manifest.json", receipt)
+    result = {
+        **metrics([row], [source], [source]),
+        "panel": "gate",
+        "execution_manifest_sha256": digest((run_dir / "run_manifest.json").read_bytes()),
+        "experiment_manifest_sha256": receipt["experiment_manifest_sha256"],
+        "audit_code_sha256": digest(Path(policy_eval.__file__).read_bytes()),
+        "output_files": {str(output): digest(output.read_bytes())},
+    }
+    write_json(run_dir / "report.json", result)
+    assert acceptance_state(tmp_path)["candidate_gate_repeats"] == [True, False, False]
+    row["final_decision"]["a_can_replace_b"] = "no"
+    write_rows(output, [row])
+    state = acceptance_state(tmp_path)
+    assert state["candidate_gate_repeats"] == [False, False, False]
+    assert "Audited outputs changed" in state["provenance_problems"]["candidate-gate-1"]
+    assert not state["passed"]
 
 
 def test_expected_skips_of_invalid_main_are_not_critic_generation_failures():

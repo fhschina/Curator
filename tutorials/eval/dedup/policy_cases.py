@@ -132,6 +132,7 @@ def controlled() -> list[dict]:
     service = "The consultation in {city} follows the same procedure. The price is {price} dollars."
     cart = "Cart: no products. Tax: 0 {currency}. Total: 0 {currency}. Delivery terms: standard delivery."
     license_text = "You may redistribute and modify this software under the same terms as Perl itself."
+    cookie_policy = "This site uses cookies to remember your display preferences. You can disable them in Settings."
     cases = [
         (
             "service_slot",
@@ -167,11 +168,17 @@ def controlled() -> list[dict]:
             "no",
             "no",
         ),
-        ("one_extension", article + " The same museum offers guided tours at 10:00.", article, "yes", "no"),
+        (
+            "one_extension",
+            cookie_policy + " Explicit consent is required before analytics cookies are set.",
+            cookie_policy,
+            "yes",
+            "no",
+        ),
         (
             "two_extensions",
-            article + " The museum offers tours at 10:00.",
-            article + " The museum offers workshops at 11:00.",
+            cookie_policy + " Explicit consent is required before analytics cookies are set.",
+            cookie_policy + " Analytics records are retained for 30 days.",
             "no",
             "no",
         ),

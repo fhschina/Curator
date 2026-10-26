@@ -16,7 +16,17 @@ from pathlib import Path
 import requests
 from jinja2 import Environment, StrictUndefined
 from policy_cases import digest
-from policy_eval import FIELDS, decision, exact_index, read_json, read_rows, verify_files, write_json
+from policy_eval import (
+    FIELDS,
+    acceptance_state,
+    checked_report,
+    decision,
+    exact_index,
+    read_json,
+    read_rows,
+    verify_files,
+    write_json,
+)
 
 MODEL_ID = "nemotron-deciffusion/Nemotron-Deciffusion-8B-v2"
 MODEL_REVISION = "1dea38015e86e101eb978a33fa493818fc71e366"
@@ -102,15 +112,21 @@ def verify_service(receipt: dict) -> None:
         raise ValueError(msg)
 
 
+def require_qwen_acceptance(root: Path) -> None:
+    if not acceptance_state(root)["passed"]:
+        msg = "Deciffusion comparison follows Qwen human acceptance and the complete 20K run"
+        raise ValueError(msg)
+    for variant in ("baseline", "candidate"):
+        result = checked_report(root, f"{variant}-full20k-1")
+        if result["issues"] or result["unmapped_attempts"]:
+            msg = "Qwen 20K provenance and engineering checks must pass before comparison"
+            raise ValueError(msg)
+
+
 def compare(args: argparse.Namespace) -> dict:  # noqa: PLR0915
     root = args.root.resolve()
     verify_files(root, read_json(root / "manifest.json")["files"])
-    if (
-        not read_json(root / "acceptance.json")["passed"]
-        or not (root / "runs/candidate-full20k-1/report.json").exists()
-    ):
-        msg = "Deciffusion comparison follows Qwen human acceptance and the complete 20K run"
-        raise ValueError(msg)
+    require_qwen_acceptance(root)
     service = read_json(args.service_receipt)
     verify_service(service)
     output = root / "deciffusion" / args.panel

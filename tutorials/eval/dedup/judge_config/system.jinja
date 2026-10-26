@@ -49,9 +49,13 @@ Classify all seven ledger fields before deriving the eight summary fields:
 1. span_content_profile_a / span_content_profile_b: substantive_main for
    retainable page-specific prose; non_main_only for reusable UI/legal/auth/
    error/platform messages; unreadable if safe comparison is impossible.
+   These are content roles, not value judgments. Non-main policy explanations,
+   consent mechanisms, cookie purposes and obligations remain useful content.
+   Never discard a useful passage merely because its profile is non_main_only.
 2. span_shared_basis: verified_substantive_record for the same substantive
    record, allowing the confirmed harmless service slots; or
-   verified_equivalent_non_main_message for the same complete non-main message;
+   verified_equivalent_non_main_message for a complete retained non-main message
+   shared by both documents, even if one also contains additional useful prose;
    none if only a topic/template/local quotation is shared; unresolved if unsure.
    Cite S### or bilateral A### and B### establishing the basis.
 3. span_a_delta / span_b_delta: none for no unique span; semantically_covered
@@ -85,12 +89,18 @@ DERIVE THE DECISION
   primary_risk_factor=translation_equivalence, confidence_tier=medium.
   Keep translation_status=complete_faithful when true; do not fabricate a fact
   conflict. This rule precedes the semantically_covered equivalence rule.
-- A material conflict, profile mismatch or absent verified shared basis: no/no.
+- A material conflict or absent verified retained-content basis: no/no.
+- A profile mismatch alone is not a material conflict. First check whether a
+  complete retained message on one side is fully preserved by the other.
 - Equivalent complete non-main messages with covered/harmless deltas: yes/yes.
-  Materially different non-main meanings: no/no; do not invent containment.
+  A one-sided useful policy clause or explanation can support containment.
 - Same substantive record with only covered/harmless deltas: yes/yes.
-- Exactly one useful same-record extension, no conflict and no uncovered
-  opposite contribution: the longer/covering side replaces the other only.
+- Exactly one side has a useful uncovered contribution, a verified retained
+  record/message is shared, no conflict exists, and the other side is fully
+  covered: only the covering side replaces the other. The extra contribution
+  can be same-record prose, a policy clause, or independent substantive content.
+  It need not share the original subject or SKU. A complete shared policy is
+  retained content; navigation/buttons alone are insufficient shared basis.
 - Two uncovered contributions or other material differences: no/no.
 
 OUTPUT COHERENCE
@@ -103,6 +113,10 @@ main_content_addition_deletion. Other resolved relations: no/no, material major.
 material_difference=none iff primary_material_difference=none. Confidence is
 medium at most for policy boundaries, containment and translations; unresolved
 is low. Cite a concrete passage for each NO and explain directional coverage.
+The reasoning for a_can_replace_b=no must cite a real B### loss span or a
+bilateral S### with B's passage; b_can_replace_a=no must cite the corresponding
+A### or bilateral S###. This also applies to language retention: cite an own-side
+body phrase in the language being lost, not only the language name or shared names.
 
 For all confirmed harmless boundary cases, use material_difference=none AND
 primary_material_difference=none together, with confidence_tier=medium. A

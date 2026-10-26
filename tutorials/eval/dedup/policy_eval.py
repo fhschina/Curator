@@ -438,16 +438,13 @@ def metrics(
     for layer in LAYERS:
         exact_pairs = correct = harmful = abstained = 0
         for label in scored:
-            value = (
-                decision(indexed[label["pair_id"]], layer)
-                if not layer_issues(issues.get(label["pair_id"], []), layer)
-                else None
-            )
+            raw_value = decision(indexed[label["pair_id"]], layer)
+            value = raw_value if not layer_issues(issues.get(label["pair_id"], []), layer) else None
             answers = [getattr(value, f) if value else "invalid" for f in FIELDS]
             matches = [answer == label[f] for f, answer in zip(FIELDS, answers, strict=True)]
             correct += sum(matches)
             exact_pairs += all(matches)
-            harmful += sum(answer == "yes" and label[f] == "no" for f, answer in zip(FIELDS, answers, strict=True))
+            harmful += sum(bool(raw_value) and getattr(raw_value, f) == "yes" and label[f] == "no" for f in FIELDS)
             abstained += any(answer in {"invalid", "unresolved"} for answer in answers)
         n = len(scored)
         layers[layer] = {
@@ -458,7 +455,7 @@ def metrics(
             "unresolved_pair_rate": abstained / n if n else None,
         }
     final = layers["final"]
-    gate_passed = bool(scored) and not issues and final["pair_accuracy"] == 1
+    gate_passed = bool(scored) and not issues and all(value["pair_accuracy"] == 1 for value in layers.values())
     holdout_passed = (
         all(label.get("label_status") == "human_independent" for label in labels)
         and len(scored) >= MIN_HUMAN_PAIRS
@@ -608,9 +605,10 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     manifest = read_json(root / "manifest.json")
     verify_files(root, manifest["files"])
     if args.panel == "full20k":
-        acceptance = read_json(root / "acceptance.json")
+        acceptance = acceptance_state(root)
+        write_json(root / "acceptance.json", acceptance)
         if not acceptance.get("passed"):
-            msg = "20K requires three passing candidate gates and independent human acceptance"
+            msg = "20K requires three passing candidate gates, diagnostic validation and independent human acceptance"
             raise ValueError(msg)
     label_source = getattr(args, "label_source", "human")
     labels_path = root / ("independent_votes.json" if label_source == "human" else "agent_votes.json")
@@ -871,28 +869,76 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
         + "</pre>"
         + "".join(review)
     )
-    gates = []
-    for repeat in (1, 2, 3):
-        p = root / "runs" / f"candidate-gate-{repeat}" / "report.json"
-        gates.append(p.exists() and read_json(p)["gate_passed"])
-    hold = root / "runs/candidate-holdout-1/report.json"
-    base = root / "runs/baseline-holdout-1/report.json"
-    hold_pass = (
-        hold.exists()
-        and base.exists()
-        and read_json(hold)["holdout_passed"]
-        and read_json(hold)["layers"]["final"]["direction_accuracy"]
-        >= read_json(base)["layers"]["final"]["direction_accuracy"]
-    )
-    write_json(
-        root / "acceptance.json",
-        {
-            "passed": all(gates) and bool(hold_pass),
-            "candidate_gate_repeats": gates,
-            "independent_holdout": bool(hold_pass),
-        },
-    )
+    write_json(root / "acceptance.json", acceptance_state(root))
     return result
+
+
+def checked_report(root: Path, name: str) -> dict:
+    run_dir = root / "runs" / name
+    result = read_json(run_dir / "report.json")
+    receipt_path = run_dir / "run_manifest.json"
+    receipt = read_json(receipt_path)
+    if (
+        receipt["status"] != "complete"
+        or result["execution_manifest_sha256"] != digest(receipt_path.read_bytes())
+        or result["experiment_manifest_sha256"] != digest((root / "manifest.json").read_bytes())
+        or receipt["experiment_manifest_sha256"] != digest((root / "manifest.json").read_bytes())
+        or result["audit_code_sha256"] != digest(Path(__file__).read_bytes())
+    ):
+        msg = "Report provenance changed; regenerate the audit"
+        raise ValueError(msg)
+    output_files = {str(p): digest(p.read_bytes()) for p in sorted((run_dir / "critics").rglob("*.jsonl"))}
+    if not output_files or result["output_files"] != output_files:
+        msg = "Audited outputs changed"
+        raise ValueError(msg)
+    inputs = read_rows(root / "panels" / result["panel"])
+    outputs = read_rows(run_dir / "critics")
+    exact_index(outputs, set(exact_index(inputs)))
+    if result["input_pairs"] != len(inputs) or result["output_pairs"] != len(outputs):
+        msg = "Audited row counts changed"
+        raise ValueError(msg)
+    if result["panel"] == "holdout":
+        labels_path = root / "independent_votes.json"
+        if receipt["label_source"] != "human" or receipt["labels_sha256"] != digest(labels_path.read_bytes()):
+            msg = "Independent human label provenance required"
+            raise ValueError(msg)
+        validate_review_votes(read_json(labels_path), inputs, "human")
+    return result
+
+
+def acceptance_state(root: Path) -> dict:
+    """Bind acceptance to the frozen inputs, labels, execution and audited outputs."""
+    problems = {}
+
+    def checked(name: str) -> dict:
+        run_dir = root / "runs" / name
+        if not (run_dir / "report.json").exists():
+            problems[name] = "missing_report"
+            return {}
+        try:
+            result = checked_report(root, name)
+        except (OSError, ValueError, KeyError) as exc:
+            problems[name] = str(exc)
+            return {}
+        return result
+
+    gates = [checked(f"candidate-gate-{repeat}").get("gate_passed", False) for repeat in (1, 2, 3)]
+    diagnostic = checked("candidate-diagnostic-1")
+    diagnostic_pass = bool(diagnostic) and diagnostic.get("gate_passed", False)
+    hold, base = checked("candidate-holdout-1"), checked("baseline-holdout-1")
+    hold_pass = bool(
+        hold
+        and base
+        and hold["holdout_passed"]
+        and hold["layers"]["final"]["direction_accuracy"] >= base["layers"]["final"]["direction_accuracy"]
+    )
+    return {
+        "passed": all(gates) and diagnostic_pass and hold_pass,
+        "candidate_gate_repeats": gates,
+        "candidate_diagnostic": diagnostic_pass,
+        "independent_holdout": hold_pass,
+        "provenance_problems": problems,
+    }
 
 
 def main() -> None:

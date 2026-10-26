@@ -88,7 +88,7 @@ python tutorials/eval/dedup/7_analyze_results.py \
 
 ## Retention-policy calibration
 
-`policy_eval.py` freezes and compares the pinned baseline and candidate prompts using the existing main/critic workflows. Run it in an existing Curator environment with Data Designer 0.9.1. Keep all experiment data outside the repository.
+`policy_eval.py` freezes and compares the pinned baseline and candidate prompts using the existing main/critic workflows. Run it in an existing Curator environment with Data Designer 0.9.1. Keep all experiment data outside the repository. Set `PYTHONPATH` to the absolute checkout being tested so Ray workers load that checkout; the runtime receipt verifies this in both driver and worker processes.
 
 ```bash
 python tutorials/eval/dedup/policy_eval.py prepare \

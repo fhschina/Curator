@@ -72,19 +72,19 @@ execution:
               description: Classify A by retained meaning. Protect useful actual records while allowing confirmed harmless service-slot substitutions; ordinary buttons/navigation alone do not establish a page role.
               options:
                 substantive_main: A contains retainable page-specific meaning.
-                non_main_only: A contains only reusable cookie, legal, auth, error, paywall, navigation, or platform messaging.
+                non_main_only: A contains reusable cookie, legal, auth, error, paywall, navigation or platform messaging. This profile does not make useful explanations or obligations disposable.
                 unreadable: A cannot be judged safely.
             - name: span_content_profile_b
               description: Classify B by retained meaning. Protect useful actual records while allowing confirmed harmless service-slot substitutions; ordinary buttons/navigation alone do not establish a page role.
               options:
                 substantive_main: B contains retainable page-specific meaning.
-                non_main_only: B contains only reusable cookie, legal, auth, error, paywall, navigation, or platform messaging.
+                non_main_only: B contains reusable cookie, legal, auth, error, paywall, navigation or platform messaging. This profile does not make useful explanations or obligations disposable.
                 unreadable: B cannot be judged safely.
             - name: span_shared_basis
               description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed city/destination labels, including titles. Apply that exception before deciding the basis is only a template.
               options:
                 verified_substantive_record: Cited spans establish the same retained substantive content; confirmed harmless service-location slots qualify even when the locations differ.
-                verified_equivalent_non_main_message: Cited spans establish the same complete non-main message, function, identity, target, role, and state.
+                verified_equivalent_non_main_message: Cited spans establish a complete retained non-main message shared by both sides; one side may additionally contain useful prose without invalidating this basis.
                 none: No qualifying retained-content or complete-message basis exists after applying conditional exceptions.
                 unresolved: Visible evidence is insufficient.
             - name: span_a_delta
@@ -128,13 +128,13 @@ execution:
                 not_translation: Translation is not the relationship.
                 unresolved: Visible evidence is insufficient.
             - name: a_can_replace_b
-              description: A is yes when B loses no useful contribution under the policy. A harmless city/destination label need not survive when the service, procedure, actual prices and conditions are the same. A name-only record identity claim cannot override this exception.
+              description: A is yes when B loses no useful contribution under the policy. Harmless service-location slots are excluded when procedure, actual prices and conditions match. A No must cite B-side loss evidence, including a body span for language loss. Truncated/incomplete evidence requires unresolved regardless of visible differences.
               options:
                 "yes": A safely replaces B.
                 "no": B has conflicting or uncovered retained meaning.
                 unresolved: The ledger is unresolved.
             - name: b_can_replace_a
-              description: B is yes when A loses no useful contribution under the policy. A harmless city/destination label need not survive when the service, procedure, actual prices and conditions are the same. A name-only record identity claim cannot override this exception.
+              description: B is yes when A loses no useful contribution under the policy. Harmless service-location slots are excluded when procedure, actual prices and conditions match. A No must cite A-side loss evidence, including a body span for language loss. Truncated/incomplete evidence requires unresolved regardless of visible differences.
               options:
                 "yes": B safely replaces A.
                 "no": A has conflicting or uncovered retained meaning.
@@ -145,7 +145,7 @@ execution:
                 exact: Complete visible cleaned texts are identical.
                 canonical_exact: Only normalization, whitespace, punctuation, encoding, or formatting differs.
                 near_surface: Useful content is bidirectionally replaceable after harmless differences; different-language substantive body versions are protected.
-                containment: Exactly one side adds retained content to the same verified substantive record.
+                containment: Exactly one side adds useful uncovered content while preserving the other's complete retained record or message, including non-main policy text. Profile differences alone do not prevent containment.
                 version_related: The same evolving record has a conflicting state or version.
                 related_non_duplicate: Related records or different-language substantive body versions must remain separate; confirmed harmless service slots are allowed.
                 unrelated: No meaningful main-content relationship exists.
@@ -161,7 +161,7 @@ execution:
               description: Select the single decisive retained-content difference, consistent with the ledger fields above.
               options:
                 none: No material difference exists.
-                main_content_addition_deletion: Retained content is present on only one side of the same record.
+                main_content_addition_deletion: Useful retained prose, explanations or obligations occur on one side only, and the other side is fully covered without conflict. This includes additions beyond a complete shared policy message.
                 entity_slot_change: A retained person, organization, product, service, site, brand, controller or location conflicts after conditional exceptions; harmless service-location slots are excluded.
                 document_identity_change: A title, SKU, record, page, image, profile, target, or category identity conflicts.
                 number_change: A material number, price, quantity, count, or measurement conflicts.

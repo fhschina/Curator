@@ -1,10 +1,12 @@
 # Copyright (c) 2026, NVIDIA CORPORATION. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 import copy
+from pathlib import Path
 
 import pytest
 from policy_cases import aligned, controlled
-from policy_deciffusion import FIELDS, parse_response, request_body
+from policy_deciffusion import FIELDS, parse_response, request_body, require_qwen_acceptance
+from policy_eval import write_json
 
 
 def response():
@@ -13,6 +15,13 @@ def response():
 
 def test_native_tied_probability_is_unresolved():
     assert set(parse_response(response()).values()) == {"unresolved"}
+
+
+def test_stale_acceptance_flag_cannot_bypass_qwen_validation(tmp_path: Path):
+    write_json(tmp_path / "manifest.json", {})
+    write_json(tmp_path / "acceptance.json", {"passed": True})
+    with pytest.raises(ValueError, match="Qwen human acceptance"):
+        require_qwen_acceptance(tmp_path)
 
 
 @pytest.mark.parametrize("bad", [float("nan"), float("inf"), -0.1, True, 1.1])
