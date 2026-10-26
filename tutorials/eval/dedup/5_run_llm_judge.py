@@ -78,6 +78,8 @@ def main() -> None:
         input_format="jsonl",
         output_format=args.output_format,
         checkpoint_path=args.checkpoint_path,
+        keep_failed_rows=True,
+        row_id_column="pair_id",
     )
 
     ray_client = RayClient(ray_temp_dir=args.ray_temp_dir)

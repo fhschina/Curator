@@ -237,7 +237,7 @@ def test_build_pipeline_passes_data_designer_options_to_every_ndd_stage(monkeypa
     ndd_stages = [stage for stage in pipeline.stages if stage.name.startswith("ndd_")]
     assert len(ndd_stages) == 2
     for stage in ndd_stages:
-        assert stage.run_config is run_config
+        assert stage.run_config == run_config
         assert stage.keep_failed_rows is True
         assert stage.row_id_column == "pair_id"
 
@@ -317,6 +317,24 @@ def test_workflow_run_builds_pipeline_and_returns_result(monkeypatch: pytest.Mon
     assert result.workflow_name == "llm_judge"
     assert result.pipeline_tasks == {"llm_judge": ["task-a", "task-b"]}
     assert result.get_metadata("total_time") >= 0
+
+
+@pytest.mark.parametrize("fails", [False, True])
+def test_existing_endpoint_is_used_without_starting_or_stopping_a_server(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, fails: bool
+) -> None:
+    kwargs = {"inference_endpoint": "http://127.0.0.1:9000/v1"}
+    if fails:
+        with pytest.raises(RuntimeError, match="pipeline exploded"):
+            _run_workflow_with_fakes(
+                monkeypatch,
+                tmp_path,
+                workflow_kwargs=kwargs,
+                pipeline_run_error=RuntimeError("pipeline exploded"),
+            )
+    else:
+        captured, _ = _run_workflow_with_fakes(monkeypatch, tmp_path, workflow_kwargs=kwargs)
+        assert captured["builder_endpoints"] == [kwargs["inference_endpoint"]] * 2
 
 
 def test_workflow_run_builds_language_filter_stage_when_configured(
@@ -407,7 +425,12 @@ def _run_workflow_with_fakes(
 
     def fake_builder(*args: object, **kwargs: object) -> tuple[str, list[str]]:  # noqa: ARG001
         captured["builder_judges"].append([judge["name"] for judge in kwargs["judges"]])
+        captured.setdefault("builder_endpoints", []).append(kwargs["endpoint"])
         return "builder", ["provider"]
+
+    def fake_server(*args: object, **kwargs: object) -> FakeServer:  # noqa: ARG001
+        captured["server_started"] = True
+        return FakeServer()
 
     def fake_build_pipeline(**kwargs: object) -> FakePipeline:
         captured["judge_stages"] = kwargs["judge_stages"]
@@ -415,7 +438,7 @@ def _run_workflow_with_fakes(
         return FakePipeline()
 
     monkeypatch.setattr(subject, "_load_yaml", lambda path: config)  # noqa: ARG005
-    monkeypatch.setattr(subject, "_start_inference_server", lambda *args, **kwargs: FakeServer())  # noqa: ARG005
+    monkeypatch.setattr(subject, "_start_inference_server", fake_server)
     monkeypatch.setattr(subject, "build_config_builder", fake_builder)
     monkeypatch.setattr(subject, "build_pipeline", fake_build_pipeline)
     monkeypatch.setattr(subject, "RayDataExecutor", lambda: "executor")
@@ -432,5 +455,9 @@ def _run_workflow_with_fakes(
     try:
         result = workflow.run()
     finally:
-        assert captured.get("server_stopped") is True
+        if (workflow_kwargs or {}).get("inference_endpoint"):
+            assert "server_started" not in captured
+            assert "server_stopped" not in captured
+        else:
+            assert captured.get("server_stopped") is True
     return captured, result

@@ -255,6 +255,9 @@ navigation:
                   - page: Semantic Deduplication
                     path: ./main/pages/curate-text/process-data/deduplication/semdedup.mdx
                     slug: semdedup
+                  - page: Validate a Retention Policy
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-policy.mdx
+                    slug: retention-policy
               - section: Language Management
                 slug: language-management
                 contents:

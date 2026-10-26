@@ -77,13 +77,16 @@ class TokenizerStage(ProcessingStage[DocumentBatch, DocumentBatch]):
         ]
 
     def _tokenize_pair(self, text_a: str | None, text_b: str | None, *, max_chars: int) -> dict[str, Any]:
-        text_a, text_b = text_a or "", text_b or ""
+        missing_a = not isinstance(text_a, str) or not text_a.strip()
+        missing_b = not isinstance(text_b, str) or not text_b.strip()
+        text_a = text_a if isinstance(text_a, str) else ""
+        text_b = text_b if isinstance(text_b, str) else ""
         visible_a, visible_b = text_a[:max_chars], text_b[:max_chars]
         return {
             "tokens_a": self._normalized_diff_tokens(visible_a),
             "tokens_b": self._normalized_diff_tokens(visible_b),
-            "truncated_a": len(text_a) > max_chars,
-            "truncated_b": len(text_b) > max_chars,
+            "truncated_a": missing_a or len(text_a) > max_chars,
+            "truncated_b": missing_b or len(text_b) > max_chars,
         }
 
     def process(self, batch: DocumentBatch) -> DocumentBatch:
@@ -224,7 +227,8 @@ class SpanChunkingStage(ProcessingStage[DocumentBatch, DocumentBatch]):
         max_chars: int,
     ) -> dict[str, Any]:
         """Chunk/pad diff segments into the final SHARED/A_ONLY/B_ONLY spans and assemble the packet."""
-        text_a, text_b = text_a or "", text_b or ""
+        text_a = text_a if isinstance(text_a, str) else ""
+        text_b = text_b if isinstance(text_b, str) else ""
         visible_len_a, visible_len_b = min(max_chars, len(text_a)), min(max_chars, len(text_b))
         raw_spans: dict[str, list[dict[str, Any]]] = {"SHARED": [], "A_ONLY": [], "B_ONLY": []}
 

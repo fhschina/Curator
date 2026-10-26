@@ -1,0 +1,53 @@
+---
+title: Validate a retention policy
+description: Calibrate directional deduplication judgments against explicit retention rules and independent human review.
+---
+
+Deduplication retention asks two separate questions: can A replace B, and can B replace A? A replacement is acceptable only when the removed document's useful contribution survives in the keeper. Identify concrete passages, including substantive explanations, facts, instructions, limits and obligations. A lexical difference or a high similarity score alone does not decide this.
+
+## Retention policy v1
+
+This version implements the conditional boundaries confirmed in the [October 24 policy discussion](https://nvidia.enterprise.slack.com/archives/C0C9ERP1YA1/p1792904190754399):
+
+| Difference | Retention decision |
+| --- | --- |
+| Only the city or calling destination in a repeated service description | Either can replace the other when procedures, actual prices and conditions are unchanged and there is no destination-specific explanation. |
+| Coherent substantive body versions in different languages | Keep both for multilingual training, including faithful translations. Localized interface controls alone do not trigger this protection. |
+| Currency in an empty, zero-value cart | Either can replace the other when there are no products or actual prices and the terms are unchanged. |
+| Incidental publication metadata on an otherwise complete article | Dates, bylines and advertising placeholders do not block replacement. Facts and dates within the article remain substantive. |
+| An additional license-reference URL | Either can replace the other only when the URL references already stated terms and adds no condition. Do not infer unseen linked-page content. |
+| A useful same-record passage present on only one side | Check each direction separately; preserve the extra useful passage. |
+
+These exceptions do not allow arbitrary changes to products, facts, prices, identities or obligations. Unsettled policy questions remain unresolved. Quality filtering and keeper preference are separate decisions.
+
+## Trace the complete workflow
+
+The main judge produces its structured judgment. Coverage can revoke positive directions with verified span evidence; subject proposals require fixed-proof verification before revoking directions. Critics cannot change a negative direction to positive.
+
+Save the main judgment, `coverage_decision`, and `final_decision` separately. Analyze them using `--decision-source main`, `coverage`, or `final`. Analysis corrections are disabled by default. The optional `--apply-main-corrections` is a historical main-only diagnostic and cannot be combined with coverage or final analysis.
+
+Incomplete evidence, invalid citations, missing answers and failed requests must remain explicit. Retaining a failed row does not validate its judgment. Human labels, historical answers and keeper identities must stay outside model prompts. Missing input text is retained and flagged as incomplete evidence.
+
+## Reproduce an experiment
+
+Use `policy_sampling.py` to build fresh candidate pairs from the existing dense manifest and completed fuzzy outputs. It verifies touched shard hashes, resolves IDs using the manifest's physical row offsets, and records exclusions. It does not rerun deduplication.
+
+`policy_eval.py` provides three commands:
+
+- `prepare` freezes the discussion snapshot, blind input panels, conditional regression cases, variant prompts and source hashes. Fresh holdout selection excludes shared document IDs, individual normalized document texts, unordered text pairs and known fuzzy groups. Include all previously exposed populations through the sampler's repeatable `--additional-exposure-run` option.
+- `run` invokes the existing main and critic workflows, records every inference HTTP attempt and native Data Designer message trace, and checks the checkout loaded by driver and workers. It requires fresh run directories.
+- `report` checks input/output identities and evidence, exports decisions by layer, and computes metrics using explicitly identified label sources.
+
+The 36-case regression panel contains six confirmed cases and twelve controlled prototypes, each presented in both orders. Run the candidate three times. Preserve the 150-case discussion set as diagnostics: provisional votes and cases needing discussion are not independent gold labels. Cases exceeding the 6,000-character window are reported separately.
+
+The independent review page contains 100 fresh complete-window pairs, 50 removals and 50 cross-group candidates. It contains no model predictions. Browser saves and exported votes are bound to the exact texts and A/B ordering. Export all votes, provide concrete reasons, and copy the resulting `independent_votes.json` into the experiment root before holdout inference.
+
+When a reviewer requests agent-assisted annotation, save those proposals in `agent_votes.json` with `label_status=agent_assisted_blind` and run with `--label-source agent-assisted`. Reports show their source and compute agreement separately from independent human acceptance. Agent proposals cannot silently satisfy a human acceptance gate.
+
+To reuse an already running local service without creating a Dynamo actor environment, supply `--inference-endpoint http://127.0.0.1:PORT/v1 --service-container CONTAINER`. This records the container and uses the same native Data Designer and critic stages. The existing-service path currently supports one replica; the caller owns service startup and shutdown. Baseline and candidate must use identical serving settings.
+
+Acceptance requires at least 80 policy-resolved human cases, 95% directional accuracy, 90% pair accuracy, zero observed unsafe allows, at most 5% unresolved pairs, and final accuracy no lower than the baseline. All records must survive without duplicate IDs. These are pilot acceptance thresholds, not estimates of corpus-wide error rates. Revising the prompt after inspecting holdout failures makes that panel development data; independent acceptance then needs new samples.
+
+Only after three passing candidate regression runs and independent acceptance can the fixed 20K experiment run. Report actual keeper-direction risk and cross-group duplicate candidates separately. The 20K is not human-labeled accuracy evidence.
+
+`policy_deciffusion.py` then compares the same small panels through the native SystemOne choice interface. It pins the BF16 v2 service, records probabilities and attempts, and compares replacement directions against the Qwen main judgment and confirmed human labels. Its interface and precision differ from Qwen's FP8 structured judge; it does not validate a Deciffusion critic pipeline.

@@ -382,6 +382,8 @@ class LLMJudgeWorkflow(WorkflowBase):
 
     # execution
     checkpoint_path: str | None = None
+    # The caller owns the lifecycle of an explicitly supplied inference service.
+    inference_endpoint: str | None = None
 
     # Passed to every NDD ``DataDesignerStage``; see its docstring.
     run_config: dd.RunConfig | None = None
@@ -455,10 +457,13 @@ class LLMJudgeWorkflow(WorkflowBase):
         inference_server: InferenceServer | None = None
         start_time = time.time()
         try:
-            inference_server = _start_inference_server(
-                self.config, self.config["models"], config_path=self.config_path
-            )
-            judge_stages = self._build_judge_stages(endpoint=inference_server.endpoint)
+            endpoint = self.inference_endpoint
+            if endpoint is None:
+                inference_server = _start_inference_server(
+                    self.config, self.config["models"], config_path=self.config_path
+                )
+                endpoint = inference_server.endpoint
+            judge_stages = self._build_judge_stages(endpoint=endpoint)
             pipeline = build_pipeline(
                 input_path=self.input_path,
                 input_format=self.input_format,

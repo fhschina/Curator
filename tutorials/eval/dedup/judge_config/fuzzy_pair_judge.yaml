@@ -69,13 +69,13 @@ execution:
           prompt_path: pair.jinja
           scores:
             - name: span_content_profile_a
-              description: Classify A by retained meaning. A service target, product heading, or specific record is not generic chrome; ordinary buttons/navigation alone do not establish a page role.
+              description: Classify A by retained meaning. Protect useful actual records while allowing confirmed harmless service-slot substitutions; ordinary buttons/navigation alone do not establish a page role.
               options:
                 substantive_main: A contains retainable page-specific meaning.
                 non_main_only: A contains only reusable cookie, legal, auth, error, paywall, navigation, or platform messaging.
                 unreadable: A cannot be judged safely.
             - name: span_content_profile_b
-              description: Classify B by retained meaning. A service target, product heading, or specific record is not generic chrome; ordinary buttons/navigation alone do not establish a page role.
+              description: Classify B by retained meaning. Protect useful actual records while allowing confirmed harmless service-slot substitutions; ordinary buttons/navigation alone do not establish a page role.
               options:
                 substantive_main: B contains retainable page-specific meaning.
                 non_main_only: B contains only reusable cookie, legal, auth, error, paywall, navigation, or platform messaging.
@@ -92,7 +92,7 @@ execution:
               options:
                 none: No A-only span exists.
                 semantically_covered: Every A-only span is formatting, faithful paraphrase, or translation already preserved by B.
-                universal_ui_or_repetition: Every A-only span is harmless UI, redundant heading/byline, parser noise, or repetition, with no new subject, service target, state, or role.
+                universal_ui_or_repetition: Every A-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs.
                 same_record_content_extension: A alone adds retained content to the verified same substantive record.
                 record_identity_role_or_state_change: A-only identity, target, title, SKU, date, count, list, state, or page-role content changes the record.
                 material_non_main_message_change: A-only cookie, legal, auth, error, paywall, or platform meaning changes the complete message.
@@ -103,7 +103,7 @@ execution:
               options:
                 none: No B-only span exists.
                 semantically_covered: Every B-only span is formatting, faithful paraphrase, or translation already preserved by A.
-                universal_ui_or_repetition: Every B-only span is harmless UI, redundant heading/byline, parser noise, or repetition, with no new subject, service target, state, or role.
+                universal_ui_or_repetition: Every B-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs.
                 same_record_content_extension: B alone adds retained content to the verified same substantive record.
                 record_identity_role_or_state_change: B-only identity, target, title, SKU, date, count, list, state, or page-role content changes the record.
                 material_non_main_message_change: B-only cookie, legal, auth, error, paywall, or platform meaning changes the complete message.
@@ -113,7 +113,7 @@ execution:
               description: Cite incompatible A### and B### IDs. Absence alone is not a conflict after same-record identity is proved.
               options:
                 none: No conflicting material value or role is visible.
-                identity_or_slot: Record identity, title, SKU, entity, target, or defining slot conflicts.
+                identity_or_slot: Material record identity or defining claim conflicts; confirmed harmless service slots do not conflict.
                 state_or_version: Date, count, price, version, availability, status, or result conflicts.
                 page_role: Page functions conflict.
                 list_membership: List members, rankings, results, or snapshot contents conflict.
@@ -121,7 +121,7 @@ execution:
                 other_material: Another explicit material conflict exists.
                 unresolved: Visible evidence is insufficient.
             - name: span_translation_status
-              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Every unique span must be covered or harmless UI; language alone is not identity, role, or state.
+              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict.
               options:
                 complete_faithful: Both sides express the same complete substantive record OR equivalent complete non-main message in different languages; no retained delta remains.
                 partial_or_additive: Translation is incomplete, additive, or changes retained meaning.
@@ -140,20 +140,20 @@ execution:
                 "no": A has conflicting or uncovered retained meaning.
                 unresolved: The ledger is unresolved.
             - name: relation_type
-              description: Containment is only a verified one-sided same-record extension. Complete translation and benign equivalence are near-surface.
+              description: Containment is only a verified one-sided same-record extension. Faithful substantive translations are related_non_duplicate for multilingual retention; benign same-language equivalence is near-surface.
               options:
                 exact: Complete visible cleaned texts are identical.
                 canonical_exact: Only normalization, whitespace, punctuation, encoding, or formatting differs.
-                near_surface: Meaning is bidirectionally replaceable after benign surface, paraphrase, or translation differences.
+                near_surface: Useful content is bidirectionally replaceable after harmless differences; different-language substantive body versions are protected.
                 containment: Exactly one side adds retained content to the same verified substantive record.
                 version_related: The same evolving record has a conflicting state or version.
-                related_non_duplicate: Related records or template siblings must remain separate.
+                related_non_duplicate: Related records or different-language substantive body versions must remain separate; confirmed harmless service slots are allowed.
                 unrelated: No meaningful main-content relationship exists.
                 unresolved: The ledger is unresolved.
             - name: material_difference
-              description: Containment and no/no are major; faithful translation is none; harmless non-core UI can be minor.
+              description: Containment and no/no are major, including linguistic loss from substantive translations; harmless non-core UI can be minor.
               options:
-                none: No materially relevant meaning or identity differs.
+                none: No useful substantive or linguistic contribution is lost.
                 minor: Only a genuine harmless non-core difference remains.
                 major: Retained identity, state, role, list, legal meaning, content, or addition differs.
                 unresolved: The ledger is unresolved.

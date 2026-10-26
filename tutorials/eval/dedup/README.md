@@ -24,7 +24,7 @@ Run the script once per strategy you want to evaluate, each with its own `--outp
 
 **5. `5_run_llm_judge.py`** is the actual evaluation step, and the main point of this example: it runs `LLMJudgeWorkflow` to have a locally-served LLM judge each pair against the rubric in `judge_config/fuzzy_pair_judge.yaml`. For each pair, the judge scores several rubric fields (e.g. `relation_type` -- is this pair `exact`, `near_surface`, `containment`, `version_related`, `unrelated`, etc. -- plus supporting fields like `material_difference` and `confidence_tier`) and returns its reasoning for each. `relation_type` is the main verdict step 6 evaluates. Before running this step, edit `judge_config/fuzzy_pair_judge.yaml`: set `models[0].model` to a local model path or HF repo id, and size `num_replicas`/`tensor_parallel_size` to the GPUs you have available. `LLMJudgeWorkflow` only supports locally-served models -- there's no hosted-inference-API backend.
 
-**6. `6_analyze_results.py`** is where you actually find out how fuzzy dedup did. It takes the judge's `relation_type` verdicts and buckets them into duplicate / not_duplicate / unresolved, then compares that against each pair's `expected_duplicate` label from step 3 to compute a disagreement rate per pairing strategy -- e.g. what fraction of `keeper_removed` pairs the judge thinks *aren't* actually duplicates (candidate wrong removals). It writes every disagreeing pair to a JSONL file for manual review, since a disagreement is a signal to look at the pair yourself, not a confirmed fuzzy-dedup error.
+**6. `7_analyze_results.py`** is where you actually find out how fuzzy dedup did. It takes the judge's `relation_type` verdicts and buckets them into duplicate / not_duplicate / unresolved, then compares that against each pair's `expected_duplicate` label from step 3 to compute a disagreement rate per pairing strategy -- e.g. what fraction of `keeper_removed` pairs the judge thinks *aren't* actually duplicates (candidate wrong removals). It writes every disagreeing pair to a JSONL file for manual review, since a disagreement is a signal to look at the pair yourself, not a confirmed fuzzy-dedup error.
 
 Before bucketing, this step also overrides the judge's `relation_type` in two cases where it's checkable independently of the judge's opinion, rather than trusting a wrong call: (1) if step 4's span packet is untruncated and `COMPLETE` with zero `A_ONLY`/`B_ONLY` spans, the visible text on both sides is objectively identical, so `relation_type` is forced to `exact` even if the judge said something else (e.g. `near_surface`); (2) if the judge returned `containment` for a pair that violates one of containment's own rubric preconditions (a content-profile mismatch between the two sides, both sides being `non_main_only`, or no verified shared basis), it's reclassified to `related_non_duplicate` instead, since an uncorrected wrong `containment` call would otherwise inflate the duplicate count. Both corrections are logged with a count, and corrected rows are flagged in the disagreements output (`relation_type_corrected` / `relation_type_containment_corrected`) so you can see exactly which ones were overridden.
 
@@ -70,7 +70,7 @@ python tutorials/eval/dedup/5_run_llm_judge.py \
 
 # Step 6: summarize the results, and write disagreeing pairs out for
 # manual review.
-python tutorials/eval/dedup/6_analyze_results.py \
+python tutorials/eval/dedup/7_analyze_results.py \
   --judge-output-path output/dedup_eval/judged_pairs \
   --disagreements-output output/dedup_eval/disagreements.jsonl
 ```
@@ -83,4 +83,28 @@ python tutorials/eval/dedup/6_analyze_results.py \
 - `4_span_alignment.py` -- diffs each pair's visible text into `SHARED`/`A_ONLY`/`B_ONLY` spans for the judge.
 - `judge_config/fuzzy_pair_judge.yaml`, `judge_config/system.jinja`, `judge_config/pair.jinja` -- the LLM judge config for step 5, a semantic-retention rubric.
 - `5_run_llm_judge.py` -- runs `LLMJudgeWorkflow` over the span-aligned pairs using this example's judge config.
-- `6_analyze_results.py` -- buckets the judge's verdicts and reports disagreement rates against fuzzy dedup's decisions.
+- `7_analyze_results.py` -- buckets the judge's verdicts and reports disagreement rates against fuzzy dedup's decisions.
+
+
+## Retention-policy calibration
+
+`policy_eval.py` freezes and compares the pinned baseline and candidate prompts using the existing main/critic workflows. Run it in an existing Curator environment with Data Designer 0.9.1. Keep all experiment data outside the repository.
+
+```bash
+python tutorials/eval/dedup/policy_eval.py prepare \
+  --root /absolute/path/to/new-experiment \
+  --discussion-snapshot /absolute/path/to/discussion_snapshot.json \
+  --runs-root /absolute/path/to/frozen-source-runs \
+  --baseline-repo /absolute/path/to/pinned-baseline-checkout \
+  --holdout-candidates /absolute/path/to/candidates.jsonl \
+  --exclusions /absolute/path/to/exclusions.jsonl
+
+python tutorials/eval/dedup/policy_eval.py run \
+  --root /absolute/path/to/new-experiment --variant candidate --panel gate --repeat 1
+```
+
+Run all three candidate repetitions and a baseline repetition. Use `--panel diagnostic` for the existing discussion cases. Open `blind_review.html`, independently label the 100 new pairs, and export `independent_votes.json` into the experiment root before `--panel holdout`. `report` accepts the same variant/panel/repeat selectors without invoking inference. Native message traces and HTTP-attempt receipts accompany each run.
+
+`coverage_decision` is the immutable coverage snapshot; `final_decision` includes the enabled subject/verifier result. Step 7 supports `--decision-source main|coverage|final`. Raw saved decisions are the default; historical corrections require `--apply-main-corrections` and only apply to main. Missing decision layers never fall back silently.
+
+The full 20K panel requires `prepare --full-source` and `--provenance`, and `run --panel full20k --replicas 8` is gated on independent human acceptance. `policy_deciffusion.py` compares small panels only after that gate and the Qwen 20K run. See the Fern retention-policy page for the conditional rules and acceptance contract.

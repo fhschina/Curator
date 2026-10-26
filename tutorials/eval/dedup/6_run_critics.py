@@ -74,6 +74,7 @@ class CriticWorkflow(LLMJudgeWorkflow):
     model_alias: str | None = None
     source_judge: str = "pair_semantic_judgment"
     subject: bool = False
+    critic_prompt_dir: Path | None = None
     max_evidence_chars: int = DEFAULT_MAX_EVIDENCE_CHARS
 
     # A row whose critic answer cannot be parsed is dropped by Data Designer, and a burst of such rows
@@ -140,16 +141,16 @@ class CriticWorkflow(LLMJudgeWorkflow):
             self.postprocessing_stages = [
                 CoverageApplyStage(self.source_judge, self.max_evidence_chars),
                 SubjectPrepareStage(self.max_evidence_chars),
-                llm_stage(subject_column(self.model_alias)),
+                llm_stage(subject_column(self.model_alias, self.critic_prompt_dir)),
                 SubjectApplyStage(self.max_evidence_chars),
-                llm_stage(verifier_column(self.model_alias)),
+                llm_stage(verifier_column(self.model_alias, self.critic_prompt_dir)),
                 SubjectVerifierApplyStage(),
                 *self._user_postprocessing,
             ]
 
         # Dynamo startup detaches from Ray, so ship this package to the workers of the pipeline job that follows.
         ray.init(ignore_reinit_error=True, runtime_env={"py_modules": [critics]})
-        builder, providers = llm_config(coverage_column(self.model_alias))
+        builder, providers = llm_config(coverage_column(self.model_alias, self.critic_prompt_dir))
         return [("coverage", builder, providers, stage.get("runtime_env"), stage.get("num_workers"), [])]
 
 
@@ -163,6 +164,9 @@ def main() -> None:
     parser.add_argument("--source-judge", default="pair_semantic_judgment", help="Judge column to review.")
     parser.add_argument("--model-alias", default=None, help="Model alias from the YAML; defaults to the first model.")
     parser.add_argument("--subject", action="store_true", help="Verify subject-conflict proposals after coverage.")
+    parser.add_argument(
+        "--critic-prompt-dir", type=Path, help="Frozen critic templates; defaults to the bundled policy."
+    )
     parser.add_argument(
         "--max-evidence-chars",
         type=int,
@@ -183,6 +187,7 @@ def main() -> None:
         model_alias=args.model_alias,
         source_judge=args.source_judge,
         subject=args.subject,
+        critic_prompt_dir=args.critic_prompt_dir,
         max_evidence_chars=args.max_evidence_chars,
     )
     with RayClient(ray_temp_dir=args.ray_temp_dir):
