@@ -61,6 +61,8 @@ def test_invalid_critic_cannot_count_as_a_passing_case():
     assert report["layers"]["main"]["direction_accuracy"] == 1
     assert report["layers"]["coverage"]["direction_accuracy"] == 0
     assert report["layers"]["final"]["direction_accuracy"] == 0
+    assert report["layers"]["final"]["invalid_pair_rate"] == 1
+    assert report["layers"]["final"]["unresolved_pair_rate"] == 0
 
 
 def test_unvalidated_yes_still_counts_as_an_unsafe_allow():
@@ -176,6 +178,22 @@ def test_agent_agreement_never_satisfies_independent_human_acceptance():
     for label in labels:
         label["label_status"] = "human_independent"
     assert metrics(outputs, labels, inputs)["holdout_passed"]
+
+
+def test_human_thresholds_count_invalid_rows_as_wrong_without_calling_them_unresolved():
+    source, row = example()
+    inputs = [{**source, "pair_id": str(i)} for i in range(100)]
+    outputs = [{**copy.deepcopy(row), "pair_id": str(i)} for i in range(100)]
+    labels = [{**r, "label_status": "human_independent"} for r in inputs]
+    outputs[0]["subject_action"] = "UNVALIDATED_KEEP_COVERAGE"
+    result = metrics(outputs, labels, inputs)
+    assert result["layers"]["final"]["pair_accuracy"] == 0.99
+    assert result["layers"]["final"]["invalid_pair_rate"] == 0.01
+    assert result["layers"]["final"]["unresolved_pair_rate"] == 0
+    assert result["failure_counts"] == {"SUBJECT_UNVALIDATED": 1}
+    assert result["holdout_passed"]
+    outputs[1]["text_a"] = "Different source text"
+    assert not metrics(outputs, labels, inputs)["holdout_passed"]
 
 
 def test_diagnostic_reference_agreement_preserves_provisional_status_and_excludes_truncation():

@@ -48,6 +48,8 @@ To reuse an already running local service without creating a Dynamo actor enviro
 
 Acceptance requires at least 80 policy-resolved human cases, 95% directional accuracy, 90% pair accuracy, zero observed unsafe allows, at most 5% unresolved pairs, and final accuracy no lower than the baseline. All records must survive without duplicate IDs. These are pilot acceptance thresholds, not estimates of corpus-wide error rates. Revising the prompt after inspecting holdout failures makes that panel development data; independent acceptance then needs new samples.
 
+Invalid judgments count as incorrect in the adjudicable denominator. Their failure rate is separate from the rate of valid unresolved judgments. Source changes, missing inference receipts and unauthorized critic promotions always stop acceptance. The 36-case regression requires every row to pass; the 150-case diagnostic preserves failures separately while checking confirmed cases and source integrity.
+
 Only after three passing candidate regression runs and independent acceptance can the fixed 20K experiment run. Report actual keeper-direction risk and cross-group duplicate candidates separately. The 20K is not human-labeled accuracy evidence.
 
 `policy_deciffusion.py` then compares the same small panels through the native SystemOne choice interface. It pins the BF16 v2 service, records probabilities and attempts, and compares replacement directions against the Qwen main judgment and confirmed human labels. Its interface and precision differ from Qwen's FP8 structured judge; it does not validate a Deciffusion critic pipeline.

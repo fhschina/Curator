@@ -118,7 +118,7 @@ def require_qwen_acceptance(root: Path) -> None:
         raise ValueError(msg)
     for variant in ("baseline", "candidate"):
         result = checked_report(root, f"{variant}-full20k-1")
-        if result["issues"] or result["unmapped_attempts"]:
+        if result["integrity_failures"] or result["unmapped_attempts"]:
             msg = "Qwen 20K provenance and engineering checks must pass before comparison"
             raise ValueError(msg)
 

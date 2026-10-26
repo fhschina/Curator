@@ -419,6 +419,23 @@ def layer_issues(issues: list[str], layer: str) -> list[str]:
     return issues
 
 
+def integrity_failures(issues: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Source corruption, missing audit traces and unauthorized promotions stop a run."""
+    return {
+        key: fatal
+        for key, found in issues.items()
+        if (
+            fatal := [
+                issue
+                for issue in found
+                if issue.startswith(("INPUT_CHANGED:", "CRITIC_PROMOTED_NEGATIVE:"))
+                or issue.endswith("MISSING_INFERENCE_RECEIPT")
+                or issue in {"INVALID_INPUT_PACKET", "CONCLUSIVE_INCOMPLETE_EVIDENCE"}
+            ]
+        )
+    }
+
+
 def metrics(
     rows: list[dict], labels: list[dict], inputs: list[dict], extra_issues: dict[str, list[str]] | None = None
 ) -> dict:
@@ -436,7 +453,7 @@ def metrics(
         issues[key] = sorted(set(issues.get(key, []) + found))
     layers = {}
     for layer in LAYERS:
-        exact_pairs = correct = harmful = abstained = 0
+        exact_pairs = correct = harmful = abstained = failed = 0
         for label in scored:
             raw_value = decision(indexed[label["pair_id"]], layer)
             value = raw_value if not layer_issues(issues.get(label["pair_id"], []), layer) else None
@@ -445,7 +462,8 @@ def metrics(
             correct += sum(matches)
             exact_pairs += all(matches)
             harmful += sum(bool(raw_value) and getattr(raw_value, f) == "yes" and label[f] == "no" for f in FIELDS)
-            abstained += any(answer in {"invalid", "unresolved"} for answer in answers)
+            failed += value is None
+            abstained += value is not None and any(answer == "unresolved" for answer in answers)
         n = len(scored)
         layers[layer] = {
             "scored_pairs": n,
@@ -453,13 +471,14 @@ def metrics(
             "pair_accuracy": exact_pairs / n if n else None,
             "unsafe_allows": harmful,
             "unresolved_pair_rate": abstained / n if n else None,
+            "invalid_pair_rate": failed / n if n else None,
         }
     final = layers["final"]
     gate_passed = bool(scored) and not issues and all(value["pair_accuracy"] == 1 for value in layers.values())
     holdout_passed = (
         all(label.get("label_status") == "human_independent" for label in labels)
         and len(scored) >= MIN_HUMAN_PAIRS
-        and not issues
+        and not integrity_failures(issues)
         and final["direction_accuracy"] >= MIN_DIRECTION_ACCURACY
         and final["pair_accuracy"] >= MIN_PAIR_ACCURACY
         and final["unsafe_allows"] == 0
@@ -473,6 +492,7 @@ def metrics(
         "unscored_labels": len(labels) - len(scored),
         "truncated_pairs": sum(row["truncated"] for row in inputs),
         "issues": issues,
+        "integrity_failures": integrity_failures(issues),
         "failure_counts": dict(Counter(issue for found in issues.values() for issue in found)),
         "skip_reasons": {
             prefix: dict(
@@ -924,7 +944,11 @@ def acceptance_state(root: Path) -> dict:
 
     gates = [checked(f"candidate-gate-{repeat}").get("gate_passed", False) for repeat in (1, 2, 3)]
     diagnostic = checked("candidate-diagnostic-1")
-    diagnostic_pass = bool(diagnostic) and diagnostic.get("gate_passed", False)
+    diagnostic_pass = bool(diagnostic) and (
+        not diagnostic["integrity_failures"]
+        and not diagnostic.get("unmapped_attempts")
+        and all(layer["scored_pairs"] and layer["pair_accuracy"] == 1 for layer in diagnostic["layers"].values())
+    )
     hold, base = checked("candidate-holdout-1"), checked("baseline-holdout-1")
     hold_pass = bool(
         hold
@@ -936,6 +960,7 @@ def acceptance_state(root: Path) -> dict:
         "passed": all(gates) and diagnostic_pass and hold_pass,
         "candidate_gate_repeats": gates,
         "candidate_diagnostic": diagnostic_pass,
+        "candidate_diagnostic_all_rows_valid": bool(diagnostic) and not diagnostic["issues"],
         "independent_holdout": hold_pass,
         "provenance_problems": problems,
     }
