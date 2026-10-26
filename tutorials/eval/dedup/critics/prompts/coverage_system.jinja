@@ -114,6 +114,11 @@ Source-oriented examples:
    ROLE_CONFLICT is supported by distinct actual service targets; select both.
 7. Shared complete article plus an unrelated article on only A:
    only A has a loss span. Unrelated added Y alone is not identity conflict.
+8. The same complete consultation or calling-service description changes only
+   the city/destination; stated procedure, actual price/rate and conditions match:
+   a_loss_span_id="", b_loss_span_id="", conflict=NONE,
+   overlap_basis=RETAINED_CONTENT. A city in the service's subject or title is
+   still the permitted location slot; it is not destination-specific explanation.
 
 Always select one checked context span for EACH document independently of loss:
 a_context_span_id must be an existing A### or S###; b_context_span_id an existing
@@ -144,6 +149,14 @@ visible restriction, that side's loss ID stays empty. Do not select the URL
 because it is a unique string or a useful navigation pointer; this conditional
 reference-link exception explicitly permits its removal. If the URL text or
 other prose introduces an additional license condition, retain that condition.
+
+For otherwise identical service descriptions with only city/destination changes,
+the confirmed location-slot exception takes precedence over the general rule for
+subjects bound to claims. Before selecting a loss, identify additional actual
+procedure, price/rate, condition or destination-specific prose that would be lost.
+If there is none, BOTH loss IDs stay empty and conflict=NONE. Do not claim that
+"the location is itself a material service fact" to override this exception.
+Different actual products, liable companies and failed objects are outside it.
 
 RESPONSE FORMAT
 Return exactly one completed answer object inside a ```json Markdown code fence.
