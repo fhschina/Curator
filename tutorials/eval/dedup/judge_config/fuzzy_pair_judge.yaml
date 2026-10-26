@@ -110,7 +110,7 @@ execution:
                 other_substantive_content: B has another uncovered retained proposition.
                 unresolved: The full B-only delta cannot be classified safely.
             - name: span_hard_conflict
-              description: Cite incompatible A### and B### IDs. Absence alone is not a conflict after same-record identity is proved.
+              description: Cite incompatible A### and B### claims. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved.
               options:
                 none: No conflicting material value or role is visible.
                 identity_or_slot: Material record identity or defining claim conflicts; confirmed harmless service slots do not conflict.
@@ -140,7 +140,7 @@ execution:
                 "no": A has conflicting or uncovered retained meaning.
                 unresolved: The ledger is unresolved.
             - name: relation_type
-              description: Containment is only a verified one-sided same-record extension. Faithful substantive translations are related_non_duplicate for multilingual retention; benign same-language equivalence is near-surface.
+              description: Containment means one side fully preserves the other's retained record or complete message and adds useful content without conflict. Additions can include independent prose or policy clauses. Faithful substantive translations are related_non_duplicate for multilingual retention; benign same-language equivalence is near-surface.
               options:
                 exact: Complete visible cleaned texts are identical.
                 canonical_exact: Only normalization, whitespace, punctuation, encoding, or formatting differs.
