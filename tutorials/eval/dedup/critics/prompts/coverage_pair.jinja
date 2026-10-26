@@ -30,3 +30,8 @@ Return the concrete eight-field judgment inside a Markdown JSON code fence.
 The first response line must be ```json and the last must be ```.
 Do not return a bare JSON object. Do not copy the response schema.
 Select a checked context ID for each side even when there is no loss.
+Apply the conditional exceptions before choosing loss IDs. An extra URL merely
+referencing the same already stated license, with no new visible condition, is
+not a loss: leave its side's loss ID empty. A literal missing pointer does not
+override this rule. New license restrictions or obligations do require loss IDs.
+Likewise, a currency label alone in an empty zero-value cart is not a loss.

@@ -67,7 +67,7 @@ def audit_attempt(receipt: dict) -> dict:
     try:
         request = json.loads(receipt.get("request", "{}"))
         text = "\n".join(message_text(m) for m in request["messages"] if m.get("role") == "user")
-        schemas = re.findall(r"<response_schema>\s*(.*?)\s*</response_schema>", text, re.DOTALL)
+        schemas = re.findall(r"<response_schema>\s*(\{.*?\})\s*</response_schema>", text, re.DOTALL)
         if schemas:
             result["column"] = json.loads(schemas[-1]).get("title", "unknown")
     except (ValueError, KeyError, TypeError, AttributeError):

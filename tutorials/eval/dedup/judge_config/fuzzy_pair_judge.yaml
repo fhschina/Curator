@@ -81,20 +81,20 @@ execution:
                 non_main_only: B contains only reusable cookie, legal, auth, error, paywall, navigation, or platform messaging.
                 unreadable: B cannot be judged safely.
             - name: span_shared_basis
-              description: Cite S### or bilateral A### and B### IDs. Verify the identical substantive record or identical complete non-main message; template/topic/local overlap is none.
+              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed city/destination labels, including titles. Apply that exception before deciding the basis is only a template.
               options:
-                verified_substantive_record: Cited spans establish the identical page-specific substantive record.
+                verified_substantive_record: Cited spans establish the same retained substantive content; confirmed harmless service-location slots qualify even when the locations differ.
                 verified_equivalent_non_main_message: Cited spans establish the same complete non-main message, function, identity, target, role, and state.
-                none: No qualifying same-record or complete-message basis exists.
+                none: No qualifying retained-content or complete-message basis exists after applying conditional exceptions.
                 unresolved: Visible evidence is insufficient.
             - name: span_a_delta
               description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class.
               options:
                 none: No A-only span exists.
-                semantically_covered: Every A-only span is formatting, faithful paraphrase, or translation already preserved by B.
+                semantically_covered: A-only factual meaning is covered by B through paraphrase or translation; substantive different-language learning material still requires retention.
                 universal_ui_or_repetition: Every A-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs.
                 same_record_content_extension: A alone adds retained content to the verified same substantive record.
-                record_identity_role_or_state_change: A-only identity, target, title, SKU, date, count, list, state, or page-role content changes the record.
+                record_identity_role_or_state_change: A-only identity, target, title, SKU, date, count, list, state or role changes a useful contribution. A harmless city/destination label in an unchanged service is excluded, even in a title.
                 material_non_main_message_change: A-only cookie, legal, auth, error, paywall, or platform meaning changes the complete message.
                 other_substantive_content: A has another uncovered retained proposition.
                 unresolved: The full A-only delta cannot be classified safely.
@@ -102,10 +102,10 @@ execution:
               description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class.
               options:
                 none: No B-only span exists.
-                semantically_covered: Every B-only span is formatting, faithful paraphrase, or translation already preserved by A.
+                semantically_covered: B-only factual meaning is covered by A through paraphrase or translation; substantive different-language learning material still requires retention.
                 universal_ui_or_repetition: Every B-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs.
                 same_record_content_extension: B alone adds retained content to the verified same substantive record.
-                record_identity_role_or_state_change: B-only identity, target, title, SKU, date, count, list, state, or page-role content changes the record.
+                record_identity_role_or_state_change: B-only identity, target, title, SKU, date, count, list, state or role changes a useful contribution. A harmless city/destination label in an unchanged service is excluded, even in a title.
                 material_non_main_message_change: B-only cookie, legal, auth, error, paywall, or platform meaning changes the complete message.
                 other_substantive_content: B has another uncovered retained proposition.
                 unresolved: The full B-only delta cannot be classified safely.
@@ -123,18 +123,18 @@ execution:
             - name: span_translation_status
               description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict.
               options:
-                complete_faithful: Both sides express the same complete substantive record OR equivalent complete non-main message in different languages; no retained delta remains.
+                complete_faithful: Both sides express the same complete factual content in different languages. This does not remove the contribution of distinct-language substantive prose.
                 partial_or_additive: Translation is incomplete, additive, or changes retained meaning.
                 not_translation: Translation is not the relationship.
                 unresolved: Visible evidence is insufficient.
             - name: a_can_replace_b
-              description: A is yes only when A preserves every retained fact, identity, state, and role in B. Derive this yourself from the ledger fields above using the deterministic policy in the system prompt.
+              description: A is yes when B loses no useful contribution under the policy. A harmless city/destination label need not survive when the service, procedure, actual prices and conditions are the same. A name-only record identity claim cannot override this exception.
               options:
                 "yes": A safely replaces B.
                 "no": B has conflicting or uncovered retained meaning.
                 unresolved: The ledger is unresolved.
             - name: b_can_replace_a
-              description: B is yes only when B preserves every retained fact, identity, state, and role in A. Derive this yourself from the ledger fields above using the deterministic policy in the system prompt.
+              description: B is yes when A loses no useful contribution under the policy. A harmless city/destination label need not survive when the service, procedure, actual prices and conditions are the same. A name-only record identity claim cannot override this exception.
               options:
                 "yes": B safely replaces A.
                 "no": A has conflicting or uncovered retained meaning.
@@ -162,7 +162,7 @@ execution:
               options:
                 none: No material difference exists.
                 main_content_addition_deletion: Retained content is present on only one side of the same record.
-                entity_slot_change: A person, organization, product, service, site, brand, controller, or location conflicts.
+                entity_slot_change: A retained person, organization, product, service, site, brand, controller or location conflicts after conditional exceptions; harmless service-location slots are excluded.
                 document_identity_change: A title, SKU, record, page, image, profile, target, or category identity conflicts.
                 number_change: A material number, price, quantity, count, or measurement conflicts.
                 date_time_change: A material date or time conflicts.

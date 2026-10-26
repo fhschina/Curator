@@ -24,6 +24,7 @@ if TYPE_CHECKING:
     from critics.models import Decision
 from policy_cases import (
     CONSENSUS,
+    MAX_VISIBLE_CHARS,
     aligned,
     blind_row,
     controlled,
@@ -117,6 +118,13 @@ def full_population(source: Path, provenance: Path) -> tuple[list[dict], list[di
         payload = json.loads(content)["payload"]
         row = meta[key]
         a, b = str(row["presented_doc_a"]), str(row["presented_doc_b"])
+        if {a, b} != {str(row["doc_id_low"]), str(row["doc_id_high"])} or a == b:
+            msg = f"Presentation mapping mismatch: {key}"
+            raise ValueError(msg)
+        languages = {
+            str(row["doc_id_low"]): row.get("language_low") or "unknown",
+            str(row["doc_id_high"]): row.get("language_high") or "unknown",
+        }
         track = "keeper_removed" if row["has_track_5a"] else "cross_group_sample"
         keeper_direction = None
         if track == "keeper_removed":
@@ -126,7 +134,15 @@ def full_population(source: Path, provenance: Path) -> tuple[list[dict], list[di
             keeper_direction = FIELDS[0] if a == str(row["keeper_doc_id"]) else FIELDS[1]
         rows.append({"pair_id": key, "text_a": payload["document_a"]["text"], "text_b": payload["document_b"]["text"]})
         private.append(
-            {"pair_id": key, "doc_id_a": a, "doc_id_b": b, "pair_type": track, "keeper_direction": keeper_direction}
+            {
+                "pair_id": key,
+                "doc_id_a": a,
+                "doc_id_b": b,
+                "pair_type": track,
+                "keeper_direction": keeper_direction,
+                "language_a": languages[a],
+                "language_b": languages[b],
+            }
         )
     if Counter(row["pair_type"] for row in private) != {"keeper_removed": 10000, "cross_group_sample": 10000}:
         msg = "Expected 10K removals and 10K cross-group pairs"
@@ -239,6 +255,22 @@ def prepare(args: argparse.Namespace) -> dict:
         )
         exact_index(prepared)
         write_rows(root / "panels" / name / "input.jsonl", [blind_row(row) for row in prepared])
+        write_rows(
+            root / "input_indexes" / (name + ".jsonl"),
+            [
+                {
+                    "pair_id": row["pair_id"],
+                    **{
+                        key + "_sha256": digest(row[key]) if isinstance(row[key], str) else None
+                        for key in ("text_a", "text_b")
+                    },
+                    "evidence_sha256": digest(json.dumps(row["semantic_diff"], sort_keys=True)),
+                    "truncated": row["truncated"],
+                    "evidence_status": row["semantic_diff"]["status"],
+                }
+                for row in prepared
+            ],
+        )
     for name, records in panel_labels.items():
         write_json(
             root / "labels" / f"{name}.json",
@@ -254,6 +286,15 @@ def prepare(args: argparse.Namespace) -> dict:
             "exclusions": str(args.exclusions),
             "candidates_sha256": digest(args.holdout_candidates.read_bytes()) if args.holdout_candidates else None,
             "exclusions_sha256": digest(args.exclusions.read_bytes()) if args.exclusions else None,
+            "full_source": str(args.full_source) if args.full_source else None,
+            "full_source_index_sha256": digest((args.full_source / "panel_index.json").read_bytes())
+            if args.full_source
+            else None,
+            "full_source_manifest_sha256": digest((args.full_source / "manifest.json").read_bytes())
+            if args.full_source
+            else None,
+            "provenance": str(args.provenance) if args.provenance else None,
+            "provenance_sha256": digest(args.provenance.read_bytes()) if args.provenance else None,
         },
     )
     files = {
@@ -720,7 +761,9 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
     if result["unmapped_attempts"]:
         result.update(gate_passed=False, holdout_passed=False)
     result.update(variant=args.variant, panel=args.panel, repeat=args.repeat, model_revision=receipt["model_revision"])
-    private = read_json(root / "private_index.json").get(args.panel, [])
+    private = [
+        {**meta.get("source", {}), **meta} for meta in read_json(root / "private_index.json").get(args.panel, [])
+    ]
     indexed = exact_index(rows)
     risk = Counter()
     for meta in private:
@@ -740,6 +783,18 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
                 )
             ] += 1
     result["diagnostic_signals"] = dict(risk)
+    result["language_distribution"] = dict(
+        Counter(str(meta.get("language_" + side) or "unknown") for meta in private for side in ("a", "b"))
+    )
+    lengths = [len(row[field]) for row in inputs for field in ("text_a", "text_b") if isinstance(row[field], str)]
+    result["raw_document_length_chars"] = {
+        "documents": len(inputs) * 2,
+        "missing_documents": len(inputs) * 2 - len(lengths),
+        "min": min(lengths) if lengths else None,
+        "max": max(lengths) if lengths else None,
+        "visible_window_chars": MAX_VISIBLE_CHARS,
+        "over_window_documents": sum(length > MAX_VISIBLE_CHARS for length in lengths),
+    }
     effects = stage_effects(rows, labels, inputs, attempt_issues)
     result["reference_agreement_by_source"] = {
         status: {

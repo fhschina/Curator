@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 import requests
-from policy_runtime import RecordingRelay, audit_attempt, request_pair_id
+from policy_runtime import RecordingRelay, audit_attempt, request_pair_id, response_recipe
 
 
 def test_audit_identifier_cannot_be_spoofed_by_document_text():
@@ -42,11 +42,7 @@ def test_attempt_audit_uses_native_data_designer_parser_and_exact_schema(answer:
         "completed": True,
         "status": 200,
         "request": json.dumps(
-            {
-                "messages": [
-                    {"role": "user", "content": "<response_schema>" + json.dumps(schema) + "</response_schema>"}
-                ]
-            }
+            {"messages": [{"role": "user", "content": response_recipe(json.dumps(schema)).task_instructions}]}
         ),
         "response": json.dumps({"choices": [{"message": {"content": answer}}]}),
     }

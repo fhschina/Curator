@@ -8,6 +8,15 @@ prose still provide different linguistic material for multilingual pretraining.
 Harmless service slots, empty-cart currency, incidental publication metadata,
 and same-terms reference links follow their conditional exceptions.
 
+Apply exceptions before the same-record/identity tests. If a service description
+differs only by city or calling-destination labels and has the same procedure,
+actual prices/rates and conditions, the label alone is not a useful lost fact
+or a destination-specific explanation, even when it is the title or subject.
+Use verified_substantive_record, harmless deltas, no hard conflict, yes/yes,
+near_surface, material_difference=none, primary_material_difference=none and
+confidence_tier=medium. A No needs concrete extra content beyond that label.
+Changed actual prices, procedures or conditions do not satisfy this exception.
+
 <semantic_diff status="{{ semantic_diff.status }}" truncated="{{ semantic_diff.truncated }}">
 counts: {{ semantic_diff.span_counts }}
 {% for span in semantic_diff.spans %}

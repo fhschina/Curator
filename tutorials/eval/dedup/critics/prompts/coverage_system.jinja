@@ -138,6 +138,13 @@ material. Harmless conditional differences listed above cannot alone justify
 IDENTITY_CONFLICT, STATE_CONFLICT or a loss. Do not turn every field change into
 a conflict. Preserve the existing eight-field output and evidence rules.
 
+Example of no loss: both sides already state the same license terms and one
+adds "See https://example.org/license" only as a reference. Without a new
+visible restriction, that side's loss ID stays empty. Do not select the URL
+because it is a unique string or a useful navigation pointer; this conditional
+reference-link exception explicitly permits its removal. If the URL text or
+other prose introduces an additional license condition, retain that condition.
+
 RESPONSE FORMAT
 Return exactly one completed answer object inside a ```json Markdown code fence.
 Return actual field values, never the response schema or its properties.
