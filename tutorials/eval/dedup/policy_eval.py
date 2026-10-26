@@ -132,6 +132,22 @@ def freeze_variant(repo: Path, destination: Path) -> None:
     source = repo / "tutorials/eval/dedup"
     shutil.copytree(source / "judge_config", destination / "judge_config")
     shutil.copytree(source / "critics/prompts", destination / "critics")
+    contract = (
+        "\nRESPONSE FORMAT\n"
+        "Return exactly one completed answer object inside a ```json Markdown code fence.\n"
+        "Return actual field values, never the response schema or its properties.\n"
+    )
+    for path in (destination / "critics").glob("*system.jinja"):
+        text = path.read_text()
+        if contract.strip() not in text:
+            path.write_text(text.rstrip() + "\n" + contract)
+    for path in [destination / "judge_config/pair.jinja", *(destination / "critics").glob("*pair.jinja")]:
+        text = path.read_text()
+        if not text.startswith("Audit record:"):
+            path.write_text(
+                "Audit record: {{ pair_id }}\n"
+                "The record identifier is for tracing only, not evidence for classification.\n\n" + text
+            )
 
 
 def review_page(rows: list[dict]) -> str:
@@ -247,6 +263,7 @@ def prepare(args: argparse.Namespace) -> dict:
         ).strip(),
         "created_at": time.time(),
         "human_holdout_required": True,
+        "shared_format_adapter": "Native Data Designer Markdown JSON contract and audit record identifiers; no baseline retention-rule changes",
         "source_snapshot_sha256": digest(args.discussion_snapshot.read_bytes()),
     }
     write_json(root / "manifest.json", manifest)
@@ -460,6 +477,7 @@ def run_config(root: Path, variant: str, run_dir: Path, replicas: int) -> Path:
 
 
 def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
+    import data_designer.config as dd
     import ray
 
     from nemo_curator.core.client import RayClient
@@ -543,6 +561,7 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
                 input_path=incoming,
                 output_path=str(output),
                 keep_failed_rows=True,
+                run_config=dd.RunConfig(disable_early_shutdown=True),
                 row_id_column="pair_id",
                 inference_endpoint=getattr(args, "inference_endpoint", None),
                 checkpoint_path=str(run_dir / (stage + "-checkpoint")),

@@ -105,6 +105,10 @@ python tutorials/eval/dedup/policy_eval.py run \
 
 Run all three candidate repetitions and a baseline repetition. Use `--panel diagnostic` for the existing discussion cases. Open `blind_review.html`, independently label the 100 new pairs, and export `independent_votes.json` into the experiment root before `--panel holdout`. `report` accepts the same variant/panel/repeat selectors without invoking inference. Native message traces and HTTP-attempt receipts accompany each run.
 
+The frozen baseline receives the same Data Designer Markdown JSON response contract and audit-record header as the candidate; its retention rules remain pinned. Evidence packets are frozen after Arrow serialization so nullable span fields do not appear to change during execution. HTTP receipts live outside data directories and carry the audit pair ID.
+
+Requested agent-assisted reviews belong in `agent_votes.json` with `label_status=agent_assisted_blind`. Use `--label-source agent-assisted` for an explicitly sourced agreement report. These labels do not silently satisfy independent human acceptance. To reuse a local service without creating another actor environment, use `--inference-endpoint http://127.0.0.1:PORT/v1 --service-container CONTAINER` for a one-replica run.
+
 `coverage_decision` is the immutable coverage snapshot; `final_decision` includes the enabled subject/verifier result. Step 7 supports `--decision-source main|coverage|final`. Raw saved decisions are the default; historical corrections require `--apply-main-corrections` and only apply to main. Missing decision layers never fall back silently.
 
 The full 20K panel requires `prepare --full-source` and `--provenance`, and `run --panel full20k --replicas 8` is gated on independent human acceptance. `policy_deciffusion.py` compares small panels only after that gate and the Qwen 20K run. See the Fern retention-policy page for the conditional rules and acceptance contract.

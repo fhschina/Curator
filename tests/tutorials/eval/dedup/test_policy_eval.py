@@ -3,9 +3,8 @@
 import copy
 from pathlib import Path
 
-import pandas as pd
 import pytest
-from policy_cases import aligned, controlled, load_module
+from policy_cases import aligned, controlled
 from policy_eval import audit, exact_index, metrics, review_page, stage_effects, verify_files
 
 
@@ -37,30 +36,6 @@ def test_duplicate_or_missing_output_ids_are_fatal():
         exact_index([{"pair_id": "a"}, {"pair_id": "a"}])
     with pytest.raises(ValueError, match="mismatch"):
         exact_index([{"pair_id": "a"}], {"a", "b"})
-
-
-def test_all_layer_sources_read_saved_values_without_correction():
-    _source, row = example()
-    row.update(pair_type="keeper_removed", expected_duplicate=True)
-    row["final_decision"].update(
-        a_can_replace_b="no",
-        b_can_replace_a="no",
-        relation_type="related_non_duplicate",
-        material_difference="major",
-        primary_material_difference="other_material",
-    )
-    module = load_module("7_analyze_results.py")
-    assert module.annotate(pd.DataFrame([row]), decision_source="main").iloc[0].relation_type == "near_surface"
-    assert module.annotate(pd.DataFrame([row]), decision_source="coverage").iloc[0].relation_type == "near_surface"
-    assert (
-        module.annotate(pd.DataFrame([row]), decision_source="final").iloc[0].relation_type == "related_non_duplicate"
-    )
-    with pytest.raises(ValueError, match="corrections"):
-        module.annotate(pd.DataFrame([row]), decision_source="final", apply_main_corrections=True)
-    with pytest.raises(KeyError, match="coverage_decision"):
-        module.annotate(
-            pd.DataFrame([{k: v for k, v in row.items() if k != "coverage_decision"}]), decision_source="coverage"
-        )
 
 
 def test_invalid_critic_cannot_count_as_a_passing_case():

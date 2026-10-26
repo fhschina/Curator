@@ -29,6 +29,19 @@ from nemo_curator.tasks import DocumentBatch
 QWEN_CONTEXT_SIZE = 32768
 
 
+def request_pair_id(body: bytes) -> str | None:
+    try:
+        for message in json.loads(body).get("messages", []):
+            content = message.get("content", "")
+            if isinstance(content, list):
+                content = "".join(part.get("text", "") for part in content if isinstance(part, dict))
+            if message.get("role") == "user" and isinstance(content, str) and content.startswith("Audit record: "):
+                return content.splitlines()[0].removeprefix("Audit record: ").strip() or None
+    except (ValueError, TypeError, AttributeError):
+        return None
+    return None
+
+
 def environment_receipt(repo: Path) -> dict:
     """Reject an installed Curator masking the checkout on either driver or worker."""
     import data_designer.config as dd
@@ -159,6 +172,7 @@ class RecordingRelay:
                     response_body = json.dumps({"error": failure}).encode()
                 finally:
                     receipt = {
+                        "pair_id": request_pair_id(body),
                         "started": started,
                         "elapsed_s": time.time() - started,
                         "method": self.command,

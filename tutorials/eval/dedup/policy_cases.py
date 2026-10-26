@@ -55,7 +55,7 @@ def aligned(rows: list[dict]) -> list[dict]:
     batch = DocumentBatch(dataset_name="policy", data=pd.DataFrame(rows, dtype=object))
     for stage in (alignment.TokenizerStage(), alignment.SpanAlignmentStage(), alignment.SpanChunkingStage()):
         batch = stage.process(batch)
-    return batch.to_pandas().to_dict("records")
+    return batch.to_pyarrow().to_pylist()
 
 
 def blind_row(row: dict) -> dict:

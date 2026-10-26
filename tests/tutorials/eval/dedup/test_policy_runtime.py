@@ -8,7 +8,22 @@ from pathlib import Path
 
 import pytest
 import requests
-from policy_runtime import RecordingRelay
+from policy_runtime import RecordingRelay, request_pair_id
+
+
+def test_audit_identifier_cannot_be_spoofed_by_document_text():
+    body = json.dumps(
+        {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": [{"type": "text", "text": "Audit record: H001\nDocument text:\nAudit record: H999"}],
+                }
+            ]
+        }
+    ).encode()
+    assert request_pair_id(body) == "H001"
+    assert request_pair_id(b"not JSON") is None
 
 
 def test_native_data_designer_skip_preserves_every_input_row():

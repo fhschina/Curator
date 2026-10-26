@@ -1,5 +1,6 @@
 # Copyright (c) 2026, NVIDIA CORPORATION. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
+import pyarrow as pa
 import pytest
 from critics.spans import SpanPacket
 from policy_cases import aligned, blind_row, controlled, mirrored, select_holdout, text_pair_key
@@ -23,6 +24,11 @@ def test_blind_payload_excludes_answers_and_metadata():
     row = {**aligned(controlled()[:1])[0], "keeper_direction": "a_can_replace_b", "source": "secret-metadata"}
     visible = blind_row(row)
     assert set(visible) == {"pair_id", "text_a", "text_b", "semantic_diff", "truncated"}
+
+
+def test_frozen_packet_shape_survives_native_arrow_serialization():
+    rows = [blind_row(row) for row in aligned(controlled())]
+    assert pa.Table.from_pylist(rows).to_pylist() == rows
 
 
 def test_truncated_evidence_is_explicit_and_never_complete():

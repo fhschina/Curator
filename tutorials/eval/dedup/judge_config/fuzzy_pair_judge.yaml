@@ -151,10 +151,10 @@ execution:
                 unrelated: No meaningful main-content relationship exists.
                 unresolved: The ledger is unresolved.
             - name: material_difference
-              description: Containment and no/no are major, including linguistic loss from substantive translations; harmless non-core UI can be minor.
+              description: Containment and no/no are major, including linguistic loss from substantive translations. Confirmed harmless boundaries use none together with primary_material_difference=none. Never pair minor with primary none.
               options:
                 none: No useful substantive or linguistic contribution is lost.
-                minor: Only a genuine harmless non-core difference remains.
+                minor: A minor non-core attribute changes; requires a specific non-none primary difference. Do not use merely because harmless strings differ.
                 major: Retained identity, state, role, list, legal meaning, content, or addition differs.
                 unresolved: The ledger is unresolved.
             - name: primary_material_difference

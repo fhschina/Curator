@@ -100,6 +100,11 @@ material_difference=none iff primary_material_difference=none. Confidence is
 medium at most for policy boundaries, containment and translations; unresolved
 is low. Cite a concrete passage for each NO and explain directional coverage.
 
+For all confirmed harmless boundary cases, use material_difference=none AND
+primary_material_difference=none together, with confidence_tier=medium. A
+changed string does not require minor materiality. Never pair minor with none.
+Before returning, check all eight summary fields against these constraints.
+
 BOUNDARIES
 Identical article plus navigation/byline: yes/yes. Same service in two cities
 with unchanged procedure, prices and conditions: yes/yes. Changed actual price,
