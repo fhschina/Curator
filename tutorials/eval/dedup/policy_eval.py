@@ -436,6 +436,13 @@ def integrity_failures(issues: dict[str, list[str]]) -> dict[str, list[str]]:
     }
 
 
+def raw_directions(row: dict, layer: str) -> dict:
+    payload = row.get(LAYERS[layer])
+    if not isinstance(payload, dict):
+        return {}
+    return {field: value.get("score") if isinstance(value := payload.get(field), dict) else value for field in FIELDS}
+
+
 def metrics(
     rows: list[dict], labels: list[dict], inputs: list[dict], extra_issues: dict[str, list[str]] | None = None
 ) -> dict:
@@ -455,13 +462,17 @@ def metrics(
     for layer in LAYERS:
         exact_pairs = correct = harmful = abstained = failed = 0
         for label in scored:
-            raw_value = decision(indexed[label["pair_id"]], layer)
-            value = raw_value if not layer_issues(issues.get(label["pair_id"], []), layer) else None
+            raw_answers = raw_directions(indexed[label["pair_id"]], layer)
+            value = (
+                decision(indexed[label["pair_id"]], layer)
+                if not layer_issues(issues.get(label["pair_id"], []), layer)
+                else None
+            )
             answers = [getattr(value, f) if value else "invalid" for f in FIELDS]
             matches = [answer == label[f] for f, answer in zip(FIELDS, answers, strict=True)]
             correct += sum(matches)
             exact_pairs += all(matches)
-            harmful += sum(bool(raw_value) and getattr(raw_value, f) == "yes" and label[f] == "no" for f in FIELDS)
+            harmful += sum(str(raw_answers.get(f, "")).casefold() == "yes" and label[f] == "no" for f in FIELDS)
             failed += value is None
             abstained += value is not None and any(answer == "unresolved" for answer in answers)
         n = len(scored)
@@ -489,6 +500,7 @@ def metrics(
         "output_pairs": len(rows),
         "labels": len(labels),
         "label_sources": dict(Counter(label.get("label_status", "unknown") for label in labels)),
+        "unsafe_allow_definition": "Raw yes in a reference-no direction, including judgments with invalid schema or evidence; validity is reported separately.",
         "unscored_labels": len(labels) - len(scored),
         "truncated_pairs": sum(row["truncated"] for row in inputs),
         "issues": issues,

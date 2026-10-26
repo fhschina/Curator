@@ -77,6 +77,19 @@ def test_unvalidated_yes_still_counts_as_an_unsafe_allow():
     assert not result["gate_passed"]
 
 
+def test_inconsistent_schema_cannot_hide_explicit_yes_risk_signals():
+    source, row = example()
+    label = {**source, "a_can_replace_b": "no", "b_can_replace_a": "no"}
+    row["pair_semantic_judgment"]["relation_type"]["score"] = "unrelated"
+    row["coverage_decision"]["relation_type"] = "unrelated"
+    row["final_decision"]["relation_type"] = "unrelated"
+    result = metrics([row], [label], [source])
+    for layer in result["layers"].values():
+        assert layer["unsafe_allows"] == 2
+        assert layer["invalid_pair_rate"] == 1
+        assert layer["direction_accuracy"] == 0
+
+
 def test_cross_group_failure_is_separate_from_valid_unresolved():
     _, invalid = example()
     unresolved = copy.deepcopy(invalid)
