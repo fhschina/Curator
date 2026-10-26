@@ -128,13 +128,13 @@ execution:
                 not_translation: Translation is not the relationship.
                 unresolved: Visible evidence is insufficient.
             - name: a_can_replace_b
-              description: A is yes when B loses no useful contribution under the policy. Harmless service-location slots are excluded when procedure, actual prices and conditions match. A No must cite B-side loss evidence, including a body span for language loss. Truncated/incomplete evidence requires unresolved regardless of visible differences.
+              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B body span. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved.
               options:
                 "yes": A safely replaces B.
                 "no": B has conflicting or uncovered retained meaning.
                 unresolved: The ledger is unresolved.
             - name: b_can_replace_a
-              description: B is yes when A loses no useful contribution under the policy. Harmless service-location slots are excluded when procedure, actual prices and conditions match. A No must cite A-side loss evidence, including a body span for language loss. Truncated/incomplete evidence requires unresolved regardless of visible differences.
+              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A body span. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved.
               options:
                 "yes": B safely replaces A.
                 "no": A has conflicting or uncovered retained meaning.

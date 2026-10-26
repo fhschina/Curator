@@ -46,3 +46,13 @@ primary_risk_factor=extraction_or_payload_limit, confidence_tier=low.
 Explain the missing/truncated evidence. Do not return a conclusive Yes or No.
 </truncation_notice>
 {% endif %}
+
+Before returning the final object, check the two replacement scores separately:
+- If a_can_replace_b is no, THAT score's reasoning must start with one existing
+  B### (or S### explicitly for B), quote its actual lost phrase, and explain the
+  contribution A lacks. A language name alone is not a citation.
+- If b_can_replace_a is no, THAT score's reasoning must start with one existing
+  A### (or S### explicitly for A), quote its actual lost phrase, and explain the
+  contribution B lacks. Cite body prose for language retention.
+IDs mentioned only in content-profile, delta or translation fields do not satisfy
+these two score-specific evidence requirements. Do not omit them for translations.
