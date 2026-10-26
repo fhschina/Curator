@@ -34,7 +34,7 @@ B: {{ span.b_text }}
 {% endif %}
 {% endfor %}
 </semantic_diff>
-{% if semantic_diff.truncated or semantic_diff.status != "COMPLETE" %}
+{% if semantic_diff.truncated or not semantic_diff.status == "COMPLETE" %}
 <truncation_notice>
 {% if semantic_diff.truncated_a %}Document A evidence is missing or cut off; unseen content is unknown.
 {% endif %}{% if semantic_diff.truncated_b %}Document B evidence is missing or cut off; unseen content is unknown.

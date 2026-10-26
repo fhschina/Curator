@@ -8,7 +8,42 @@ from pathlib import Path
 
 import pytest
 import requests
+import yaml
 from policy_runtime import RecordingRelay, audit_attempt, request_pair_id, response_recipe
+
+
+def test_actual_judge_and_critic_templates_pass_native_compiler_validation():
+    from critics.coverage import coverage_column
+    from critics.subject import subject_column, verifier_column
+    from data_designer.engine.validation import validate_prompt_templates
+    from jinja2 import Environment, meta
+
+    from nemo_curator.eval.llm_judge.workflow import build_config_builder
+
+    config_path = Path(__file__).parents[4] / "tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml"
+    config = yaml.safe_load(config_path.read_text())
+    builder, _ = build_config_builder(
+        config_path,
+        endpoint="http://127.0.0.1:1/v1",
+        models=config["models"],
+        judges=config["execution"]["stages"][0]["judges"],
+    )
+    columns = [
+        *builder.get_column_configs(),
+        coverage_column("judge"),
+        subject_column("judge"),
+        verifier_column("judge"),
+    ]
+    env = Environment(autoescape=True)
+    references = sorted(
+        {
+            name
+            for column in columns
+            for template in (column.prompt, column.system_prompt)
+            for name in meta.find_undeclared_variables(env.parse(template or ""))
+        }
+    )
+    assert not validate_prompt_templates(columns, references)
 
 
 def test_audit_identifier_cannot_be_spoofed_by_document_text():
