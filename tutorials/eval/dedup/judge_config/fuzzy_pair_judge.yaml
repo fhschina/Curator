@@ -110,7 +110,7 @@ execution:
                 other_substantive_content: B has another uncovered retained proposition.
                 unresolved: The full B-only delta cannot be classified safely.
             - name: span_hard_conflict
-              description: Cite incompatible A### and B### claims. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved.
+              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved.
               options:
                 none: No conflicting material value or role is visible.
                 identity_or_slot: Material record identity or defining claim conflicts; confirmed harmless service slots do not conflict.
