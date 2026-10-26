@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 import requests
-from policy_runtime import RecordingRelay, request_pair_id
+from policy_runtime import RecordingRelay, audit_attempt, request_pair_id
 
 
 def test_audit_identifier_cannot_be_spoofed_by_document_text():
@@ -24,6 +24,39 @@ def test_audit_identifier_cannot_be_spoofed_by_document_text():
     ).encode()
     assert request_pair_id(body) == "H001"
     assert request_pair_id(b"not JSON") is None
+
+
+@pytest.mark.parametrize(
+    ("answer", "valid"),
+    [('```json\n{"ok":true}\n```', True), ('{"ok":true}', False), ('```json\n{"ok":"bad"}\n```', False)],
+)
+def test_attempt_audit_uses_native_data_designer_parser_and_exact_schema(answer: str, valid: bool):
+    schema = {
+        "title": "CoverageReview",
+        "type": "object",
+        "properties": {"ok": {"type": "boolean"}},
+        "required": ["ok"],
+    }
+    receipt = {
+        "pair_id": "H001",
+        "completed": True,
+        "status": 200,
+        "request": json.dumps(
+            {
+                "messages": [
+                    {"role": "user", "content": "<response_schema>" + json.dumps(schema) + "</response_schema>"}
+                ]
+            }
+        ),
+        "response": json.dumps({"choices": [{"message": {"content": answer}}]}),
+    }
+    result = audit_attempt(receipt)
+    assert (result["status"] == "valid") is valid
+    assert result["column"] == "CoverageReview"
+
+
+def test_incomplete_attempt_cannot_be_counted_as_success():
+    assert audit_attempt({"completed": False})["status"] == "incomplete"
 
 
 def test_native_data_designer_skip_preserves_every_input_row():

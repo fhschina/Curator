@@ -45,6 +45,25 @@ def test_invalid_critic_cannot_count_as_a_passing_case():
     report = metrics([row], [source], [source])
     assert not report["gate_passed"]
     assert "COVERAGE_UNVALIDATED" in report["issues"][row["pair_id"]]
+    assert report["layers"]["main"]["direction_accuracy"] == 1
+    assert report["layers"]["coverage"]["direction_accuracy"] == 0
+    assert report["layers"]["final"]["direction_accuracy"] == 0
+
+
+def test_expected_skips_of_invalid_main_are_not_critic_generation_failures():
+    source, row = example()
+    row.update(
+        pair_semantic_judgment=None,
+        coverage_decision=None,
+        final_decision=None,
+        coverage_action="SKIP",
+        coverage_reason="PRESERVE_INVALID_MAIN",
+        subject_action="SKIP",
+        subject_reason="PRESERVE_INVALID_MAIN",
+    )
+    issues = audit(row, source)
+    assert "INVALID_DECISION:main" in issues
+    assert not {"COVERAGE_UNVALIDATED", "SUBJECT_UNVALIDATED"} & set(issues)
 
 
 def test_critic_no_to_yes_is_detected():

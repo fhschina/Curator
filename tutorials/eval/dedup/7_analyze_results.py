@@ -31,6 +31,7 @@ import glob
 from pathlib import Path
 
 import pandas as pd
+from critics.models import Decision
 from loguru import logger
 
 JUDGE_COLUMN = "pair_semantic_judgment"
@@ -45,6 +46,8 @@ _DISAGREEMENT_COLUMNS = [
     "doc_id_b",
     "truncated",
     "decision_source",
+    "decision_status",
+    "analysis_eligible",
     "relation_type_raw",
     "relation_type",
     "relation_type_corrected",
@@ -76,7 +79,24 @@ _DISAGREEMENT_COLUMNS = [
 def _extract_field(row: dict | None, field_name: str) -> str | None:
     if not isinstance(row, dict):
         return None
-    return row.get(field_name, {}).get("score")
+    value = row.get(field_name)
+    return value.get("score") if isinstance(value, dict) else None
+
+
+def _decision_status(row: pd.Series, source: str, column: str) -> str:
+    raw = row[column]
+    if not isinstance(raw, dict):
+        return "missing"
+    try:
+        value = Decision.from_judge(raw) if source == "main" else Decision.model_validate(raw)
+        if value.inconsistencies():
+            return "invalid"
+    except ValueError:
+        return "invalid"
+    prefixes = () if source == "main" else ("coverage",) if source == "coverage" else ("coverage", "subject")
+    if any(str(row.get(prefix + "_action", "")).startswith("UNVALIDATED") for prefix in prefixes):
+        return "unvalidated"
+    return "unresolved" if value.relation_type == "unresolved" else "resolved"
 
 
 def _correct_identical_text_relation(df: pd.DataFrame) -> pd.DataFrame:
@@ -142,6 +162,7 @@ def annotate(df: pd.DataFrame, *, decision_source: str = "main", apply_main_corr
 
     df = df.copy()
     df["decision_source"] = decision_source
+    df["decision_status"] = df.apply(lambda row: _decision_status(row, decision_source, decision_column), axis=1)
     for field_name in (
         SCORE_NAME,
         "material_difference",
@@ -158,6 +179,7 @@ def annotate(df: pd.DataFrame, *, decision_source: str = "main", apply_main_corr
     df["relation_type_raw"] = df["relation_type"]
 
     df["truncated"] = df["truncated"].fillna(False).astype(bool) if "truncated" in df.columns else False
+    df["analysis_eligible"] = (df["decision_status"] == "resolved") & ~df["truncated"]
 
     df["relation_type_corrected"] = False
     df["relation_type_containment_corrected"] = False
@@ -175,10 +197,11 @@ def annotate(df: pd.DataFrame, *, decision_source: str = "main", apply_main_corr
             else "unresolved"
         )
     )
+    df.loc[df["decision_status"].isin(["missing", "invalid", "unvalidated"]), "verdict"] = "invalid"
 
     duplicate_expected = df["expected_duplicate"].astype(bool)
-    df["is_disagreement"] = (duplicate_expected & (df["verdict"] != "duplicate")) | (
-        ~duplicate_expected & (df["verdict"] == "duplicate")
+    df["is_disagreement"] = df["analysis_eligible"] & (
+        (duplicate_expected & (df["verdict"] != "duplicate")) | (~duplicate_expected & (df["verdict"] == "duplicate"))
     )
 
     return df
@@ -196,7 +219,7 @@ def summarize(df: pd.DataFrame) -> pd.DataFrame:
     for pair_type, group in df.groupby("pair_type"):
         total = len(group)
         num_truncated = int(group["truncated"].sum())
-        conclusive = group[~group["truncated"]]
+        conclusive = group[group["analysis_eligible"]]
         relation_counts = conclusive["relation_type"].value_counts().to_dict()
         expected = bool(group["expected_duplicate"].iloc[0])
         disagreement_label = "judge_says_not_duplicate_rate" if expected else "judge_says_duplicate_rate"
@@ -206,6 +229,11 @@ def summarize(df: pd.DataFrame) -> pd.DataFrame:
                 "pair_type": pair_type,
                 "num_pairs": total,
                 "num_truncated": num_truncated,
+                "num_conclusive": num_conclusive,
+                **{
+                    f"num_{status}": int((group["decision_status"] == status).sum())
+                    for status in ("missing", "invalid", "unvalidated", "unresolved")
+                },
                 "expected_duplicate": expected,
                 **{f"relation_{k}": v for k, v in relation_counts.items()},
                 disagreement_label: conclusive["is_disagreement"].sum() / num_conclusive

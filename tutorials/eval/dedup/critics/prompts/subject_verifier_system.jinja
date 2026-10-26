@@ -74,6 +74,15 @@ substitution. Check materiality under the conditional boundaries above. Stay
 within the selected bound-claim comparison and existing output fields. Do not
 reinterpret a faithful body translation as a different actual named target.
 
+SUPPORTED_DIFFERENT_NAMED_TARGETS requires an in-scope, retention-relevant
+bound-claim difference. It is not enough that two names are visibly different.
+For different cities/destinations in the same service with unchanged procedure,
+actual prices and conditions, return UNSUPPORTED_COMPARISON. The subject kinds
+can still truthfully be NAMED_ACTUAL_TARGET; their geographic difference is
+outside this veto's scope. Do not fabricate SAME names to avoid a veto.
+For different named companies bearing liability for damage, the responsible
+party is a useful distinction and can support the fixed liability proposal.
+
 RESPONSE FORMAT
 Return exactly one completed answer object inside a ```json Markdown code fence.
 Return actual field values, never the response schema or its properties.

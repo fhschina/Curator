@@ -6,12 +6,15 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import threading
 import time
 import uuid
 from dataclasses import dataclass
+from functools import lru_cache
+from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from importlib.metadata import version
 from itertools import pairwise
@@ -22,6 +25,8 @@ from urllib.parse import urlparse
 import requests
 
 if TYPE_CHECKING:
+    from data_designer.engine.models.recipes.response_recipes import StructuredResponseRecipe
+
     from nemo_curator.pipeline.workflow import WorkflowRunResult
 from nemo_curator.stages.base import ProcessingStage
 from nemo_curator.tasks import DocumentBatch
@@ -29,17 +34,64 @@ from nemo_curator.tasks import DocumentBatch
 QWEN_CONTEXT_SIZE = 32768
 
 
+def message_text(message: dict) -> str:
+    content = message.get("content", "")
+    if isinstance(content, list):
+        return "".join(part.get("text", "") for part in content if isinstance(part, dict))
+    return content if isinstance(content, str) else ""
+
+
 def request_pair_id(body: bytes) -> str | None:
     try:
         for message in json.loads(body).get("messages", []):
-            content = message.get("content", "")
-            if isinstance(content, list):
-                content = "".join(part.get("text", "") for part in content if isinstance(part, dict))
+            content = message_text(message)
             if message.get("role") == "user" and isinstance(content, str) and content.startswith("Audit record: "):
                 return content.splitlines()[0].removeprefix("Audit record: ").strip() or None
     except (ValueError, TypeError, AttributeError):
         return None
     return None
+
+
+@lru_cache(maxsize=32)
+def response_recipe(schema: str) -> StructuredResponseRecipe:
+    from data_designer.engine.models.recipes.response_recipes import StructuredResponseRecipe
+
+    return StructuredResponseRecipe(json_schema=json.loads(schema))
+
+
+def audit_attempt(receipt: dict) -> dict:
+    """Replay the native parser against the exact schema sent on this HTTP attempt."""
+    from data_designer.engine.models.parsers.errors import ParserException
+
+    result = {"pair_id": receipt.get("pair_id"), "column": "unknown", "status": "incomplete", "error": None}
+    try:
+        request = json.loads(receipt.get("request", "{}"))
+        text = "\n".join(message_text(m) for m in request["messages"] if m.get("role") == "user")
+        schemas = re.findall(r"<response_schema>\s*(.*?)\s*</response_schema>", text, re.DOTALL)
+        if schemas:
+            result["column"] = json.loads(schemas[-1]).get("title", "unknown")
+    except (ValueError, KeyError, TypeError, AttributeError):
+        schemas = []
+    if not receipt.get("completed", receipt.get("status") is not None):
+        return result
+    if receipt.get("transport_error") or receipt.get("status") != HTTPStatus.OK:
+        return {
+            **result,
+            "status": "transport_error",
+            "error": receipt.get("transport_error") or str(receipt.get("status")),
+        }
+    if not schemas:
+        return {**result, "status": "missing_schema"}
+    try:
+        response = json.loads(receipt["response"])
+        choice = response["choices"][0]
+        if choice.get("finish_reason", "stop") != "stop":
+            return {**result, "status": "output_incomplete", "error": str(choice.get("finish_reason"))}
+        answer = message_text(choice["message"])
+        response_recipe(schemas[-1]).parse(answer)
+    except (ValueError, KeyError, TypeError, IndexError, AttributeError, ParserException) as error:
+        return {**result, "status": "parse_error", "error": str(error)[:400]}
+    return {**result, "status": "valid"}
 
 
 def environment_receipt(repo: Path) -> dict:
@@ -158,6 +210,19 @@ class RecordingRelay:
                 body = self.rfile.read(int(self.headers.get("Content-Length", 0)))
                 status, response_body = 502, b""
                 failure = None
+                receipt_path = receipt_dir / f"{uuid.uuid4().hex}.json"
+                receipt = {
+                    "pair_id": request_pair_id(body),
+                    "started": started,
+                    "method": self.command,
+                    "path": self.path,
+                    "request": body.decode("utf-8", errors="replace"),
+                    "status": None,
+                    "response": "",
+                    "transport_error": None,
+                    "completed": False,
+                }
+                receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
                 try:
                     response = requests.request(
                         self.command,
@@ -171,18 +236,16 @@ class RecordingRelay:
                     failure = str(error)
                     response_body = json.dumps({"error": failure}).encode()
                 finally:
-                    receipt = {
-                        "pair_id": request_pair_id(body),
-                        "started": started,
-                        "elapsed_s": time.time() - started,
-                        "method": self.command,
-                        "path": self.path,
-                        "request": body.decode("utf-8", errors="replace"),
-                        "status": status,
-                        "response": response_body.decode("utf-8", errors="replace"),
-                        "transport_error": failure,
-                    }
-                    (receipt_dir / f"{uuid.uuid4().hex}.json").write_text(json.dumps(receipt), encoding="utf-8")
+                    receipt.update(
+                        {
+                            "elapsed_s": time.time() - started,
+                            "status": status,
+                            "response": response_body.decode("utf-8", errors="replace"),
+                            "transport_error": failure,
+                            "completed": True,
+                        }
+                    )
+                    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
                 self.send_response(status)
                 self.send_header("Content-Type", "application/json")
                 self.send_header("Content-Length", str(len(response_body)))

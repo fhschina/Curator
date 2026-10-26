@@ -33,7 +33,13 @@ from policy_cases import (
     mirrored,
     select_holdout,
 )
-from policy_runtime import EnvironmentAuditStage, RecordedWorkflowMixin, environment_receipt, existing_qwen_service
+from policy_runtime import (
+    EnvironmentAuditStage,
+    RecordedWorkflowMixin,
+    audit_attempt,
+    environment_receipt,
+    existing_qwen_service,
+)
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
@@ -136,18 +142,23 @@ def freeze_variant(repo: Path, destination: Path) -> None:
         "\nRESPONSE FORMAT\n"
         "Return exactly one completed answer object inside a ```json Markdown code fence.\n"
         "Return actual field values, never the response schema or its properties.\n"
+        "The first response line must be ```json and the last must be ```. Do not return bare JSON.\n"
     )
     for path in (destination / "critics").glob("*system.jinja"):
         text = path.read_text()
         if contract.strip() not in text:
             path.write_text(text.rstrip() + "\n" + contract)
     for path in [destination / "judge_config/pair.jinja", *(destination / "critics").glob("*pair.jinja")]:
-        text = path.read_text()
+        text = path.read_text().replace('starting with {"a_loss_span_id": ...}', "inside a Markdown JSON code fence")
+        path.write_text(text)
         if not text.startswith("Audit record:"):
             path.write_text(
                 "Audit record: {{ pair_id }}\n"
                 "The record identifier is for tracing only, not evidence for classification.\n\n" + text
             )
+        text = path.read_text()
+        if contract.strip() not in text:
+            path.write_text(text.rstrip() + "\n" + contract)
 
 
 def review_page(rows: list[dict]) -> str:
@@ -325,14 +336,14 @@ def audit(row: dict, original: dict) -> list[str]:  # noqa: C901, PLR0912
         issues.append("INVALID_DECISION:main")
     for prefix in ("coverage", "subject"):
         reason, action = str(row.get(prefix + "_reason", "")), str(row.get(prefix + "_action", ""))
-        if "INVALID" in reason or "UNVALIDATED" in action:
+        if reason.startswith("INVALID_CRITIC_OUTPUT") or "UNVALIDATED" in action:
             issues.append(prefix.upper() + "_UNVALIDATED")
         if action.startswith("REJECT") and not row.get(prefix + "_evidence"):
             issues.append(prefix.upper() + "_MISSING_VETO_EVIDENCE")
         for evidence in row.get(prefix + "_evidence") or []:
             side = evidence["side"].lower()
             if original["text_" + side][evidence["start_char"] : evidence["end_char"]] != evidence["quote"]:
-                issues.append("VETO_QUOTE_MISMATCH")
+                issues.append(prefix.upper() + "_VETO_QUOTE_MISMATCH")
     if original["truncated"] or original["semantic_diff"]["status"] != "COMPLETE":
         final = decision(row, "final")
         if final and any(getattr(final, f) != "unresolved" for f in FIELDS):
@@ -340,7 +351,36 @@ def audit(row: dict, original: dict) -> list[str]:  # noqa: C901, PLR0912
     return sorted(set(issues))
 
 
-def metrics(rows: list[dict], labels: list[dict], inputs: list[dict]) -> dict:
+def layer_issues(issues: list[str], layer: str) -> list[str]:
+    if layer == "main":
+        return [
+            issue
+            for issue in issues
+            if not (
+                issue.startswith(("COVERAGE_", "SUBJECT_", "CRITIC_PROMOTED_NEGATIVE:"))
+                or issue in {"INVALID_DECISION:coverage", "INVALID_DECISION:final", "CONCLUSIVE_INCOMPLETE_EVIDENCE"}
+            )
+        ]
+    if layer == "coverage":
+        return [
+            issue
+            for issue in issues
+            if not (
+                issue.startswith("SUBJECT_")
+                or issue
+                in {
+                    "INVALID_DECISION:final",
+                    "CRITIC_PROMOTED_NEGATIVE:final",
+                    "CONCLUSIVE_INCOMPLETE_EVIDENCE",
+                }
+            )
+        ]
+    return issues
+
+
+def metrics(
+    rows: list[dict], labels: list[dict], inputs: list[dict], extra_issues: dict[str, list[str]] | None = None
+) -> dict:
     expected = exact_index(inputs)
     indexed = exact_index(rows, set(expected))
     scored = [
@@ -351,11 +391,17 @@ def metrics(rows: list[dict], labels: list[dict], inputs: list[dict]) -> dict:
         and not expected[label["pair_id"]]["truncated"]
     ]
     issues = {key: found for key, row in indexed.items() if (found := audit(row, expected[key]))}
+    for key, found in (extra_issues or {}).items():
+        issues[key] = sorted(set(issues.get(key, []) + found))
     layers = {}
     for layer in LAYERS:
         exact_pairs = correct = harmful = abstained = 0
         for label in scored:
-            value = decision(indexed[label["pair_id"]], layer) if label["pair_id"] not in issues else None
+            value = (
+                decision(indexed[label["pair_id"]], layer)
+                if not layer_issues(issues.get(label["pair_id"], []), layer)
+                else None
+            )
             answers = [getattr(value, f) if value else "invalid" for f in FIELDS]
             matches = [answer == label[f] for f, answer in zip(FIELDS, answers, strict=True)]
             correct += sum(matches)
@@ -402,7 +448,9 @@ def metrics(rows: list[dict], labels: list[dict], inputs: list[dict]) -> dict:
     }
 
 
-def stage_effects(rows: list[dict], labels: list[dict], inputs: list[dict]) -> list[dict]:
+def stage_effects(
+    rows: list[dict], labels: list[dict], inputs: list[dict], extra_issues: dict[str, list[str]] | None = None
+) -> list[dict]:
     """Keep provisional disagreement separate from errors against confirmed labels."""
     expected, visible = exact_index(labels), exact_index(inputs)
     result = []
@@ -410,7 +458,7 @@ def stage_effects(rows: list[dict], labels: list[dict], inputs: list[dict]) -> l
         key = row["pair_id"]
         label = expected.get(key, {})
         eligible = not visible[key]["truncated"] and all(label.get(f) in {"yes", "no"} for f in FIELDS)
-        technical_issues = ";".join(audit(row, visible[key]))
+        technical_issues = sorted(set(audit(row, visible[key]) + (extra_issues or {}).get(key, [])))
         for layer in LAYERS:
             value = decision(row, layer)
             result.append(
@@ -423,10 +471,42 @@ def stage_effects(rows: list[dict], labels: list[dict], inputs: list[dict]) -> l
                     "reference_agrees": all(value and getattr(value, f) == label[f] for f in FIELDS)
                     if eligible
                     else None,
-                    "technical_issues": technical_issues,
+                    "technical_issues": ";".join(layer_issues(technical_issues, layer)),
                 }
             )
     return result
+
+
+def inference_attempts(run_dir: Path) -> tuple[list[dict], dict[str, list[str]]]:
+    attempts, issues = [], {}
+    for path in sorted((run_dir / "receipts").rglob("*.json")):
+        try:
+            receipt = read_json(path)
+        except (OSError, ValueError) as error:
+            attempts.append(
+                {
+                    "pair_id": None,
+                    "column": "unknown",
+                    "status": "malformed_receipt",
+                    "error": str(error),
+                    "receipt": str(path),
+                }
+            )
+            continue
+        if receipt.get("method") != "POST":
+            continue
+        result = {
+            **audit_attempt(receipt),
+            "stage": path.relative_to(run_dir / "receipts").parts[0],
+            "receipt": str(path),
+        }
+        attempts.append(result)
+        if result["status"] != "valid" and result["pair_id"]:
+            prefix = {"CoverageReview": "COVERAGE", "SubjectReview": "SUBJECT", "SubjectVerification": "SUBJECT"}.get(
+                result["column"], "MAIN"
+            )
+            issues.setdefault(result["pair_id"], []).append(prefix + "_ATTEMPT_" + result["status"].upper())
+    return attempts, issues
 
 
 def validate_human_votes(labels: list[dict], inputs: list[dict]) -> None:
@@ -592,7 +672,7 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     return report(args)
 
 
-def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
+def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
     root = args.root.resolve()
     manifest = read_json(root / "manifest.json")
     verify_files(root, manifest["files"])
@@ -618,7 +698,27 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
             msg = "Review labels changed after the inference run was started"
             raise ValueError(msg)
     rows = read_rows(run_dir / "critics")
-    result = metrics(rows, labels, inputs)
+    attempts, attempt_issues = inference_attempts(run_dir)
+    seen = {(a["pair_id"], a["column"]) for a in attempts}
+    for row in rows:
+        for prefix, column, required in (
+            ("MAIN", "JudgeStructuredOutput", True),
+            ("COVERAGE", "CoverageReview", row.get("coverage_should_run")),
+            ("SUBJECT", "SubjectReview", row.get("subject_should_run")),
+            ("SUBJECT", "SubjectVerification", row.get("subject_verifier_should_run")),
+        ):
+            if required and (row["pair_id"], column) not in seen:
+                attempt_issues.setdefault(row["pair_id"], []).append(prefix + "_MISSING_INFERENCE_RECEIPT")
+    result = metrics(rows, labels, inputs, attempt_issues)
+    write_rows(run_dir / "attempt_audit.jsonl", attempts)
+    result["attempt_status_counts"] = dict(Counter(a["status"] for a in attempts))
+    result["attempt_retries"] = sum(
+        max(0, count - 1) for count in Counter((a["pair_id"], a["column"]) for a in attempts).values()
+    )
+    expected_ids = {r["pair_id"] for r in inputs}
+    result["unmapped_attempts"] = sum(a["pair_id"] not in expected_ids for a in attempts)
+    if result["unmapped_attempts"]:
+        result.update(gate_passed=False, holdout_passed=False)
     result.update(variant=args.variant, panel=args.panel, repeat=args.repeat, model_revision=receipt["model_revision"])
     private = read_json(root / "private_index.json").get(args.panel, [])
     indexed = exact_index(rows)
@@ -640,7 +740,7 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
                 )
             ] += 1
     result["diagnostic_signals"] = dict(risk)
-    effects = stage_effects(rows, labels, inputs)
+    effects = stage_effects(rows, labels, inputs, attempt_issues)
     result["reference_agreement_by_source"] = {
         status: {
             layer: {
@@ -668,6 +768,7 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     }
     result["truncated_ids"] = [row["pair_id"] for row in inputs if row["truncated"]]
     result["execution_manifest_sha256"] = digest((run_dir / "run_manifest.json").read_bytes())
+    result["audit_code_sha256"] = digest(Path(__file__).read_bytes())
     result["experiment_manifest_sha256"] = digest((root / "manifest.json").read_bytes())
     result["output_files"] = {str(p): digest(p.read_bytes()) for p in sorted((run_dir / "critics").rglob("*.jsonl"))}
     result["interpretation"] = "Purpose-selected diagnostics and automated judgments; not corpus-wide error rates."
