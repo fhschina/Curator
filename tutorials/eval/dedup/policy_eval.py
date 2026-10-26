@@ -506,6 +506,28 @@ def metrics(
     }
 
 
+def diagnostic_signals(rows: list[dict], private: list[dict], issues: dict[str, list[str]]) -> dict[str, int]:
+    indexed = exact_index(rows)
+    risk = Counter()
+    for meta in private:
+        value = decision(indexed[meta["pair_id"]], "final") if meta["pair_id"] not in issues else None
+        if meta.get("keeper_direction"):
+            risk["keeper_direction_" + (getattr(value, meta["keeper_direction"]) if value else "invalid")] += 1
+        elif meta.get("pair_type") == "cross_group_sample":
+            directions = [getattr(value, field) for field in FIELDS] if value else []
+            category = (
+                "invalid"
+                if value is None
+                else "yes"
+                if "yes" in directions
+                else "unresolved"
+                if "unresolved" in directions
+                else "no"
+            )
+            risk["cross_group_" + category] += 1
+    return dict(risk)
+
+
 def stage_effects(
     rows: list[dict], labels: list[dict], inputs: list[dict], extra_issues: dict[str, list[str]] | None = None
 ) -> list[dict]:
@@ -731,7 +753,7 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     return report(args)
 
 
-def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
+def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     root = args.root.resolve()
     manifest = read_json(root / "manifest.json")
     verify_files(root, manifest["files"])
@@ -782,25 +804,7 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
     private = [
         {**meta.get("source", {}), **meta} for meta in read_json(root / "private_index.json").get(args.panel, [])
     ]
-    indexed = exact_index(rows)
-    risk = Counter()
-    for meta in private:
-        value = decision(indexed[meta["pair_id"]], "final") if meta["pair_id"] not in result["issues"] else None
-        if meta.get("keeper_direction"):
-            risk["keeper_direction_" + (getattr(value, meta["keeper_direction"]) if value else "invalid")] += 1
-        elif meta.get("pair_type") == "cross_group_sample":
-            directions = [getattr(value, f) for f in FIELDS] if value else []
-            risk[
-                "cross_group_"
-                + (
-                    "yes"
-                    if "yes" in directions
-                    else "unresolved"
-                    if not directions or "unresolved" in directions
-                    else "no"
-                )
-            ] += 1
-    result["diagnostic_signals"] = dict(risk)
+    result["diagnostic_signals"] = diagnostic_signals(rows, private, result["issues"])
     result["language_distribution"] = dict(
         Counter(str(meta.get("language_" + side) or "unknown") for meta in private for side in ("a", "b"))
     )

@@ -11,6 +11,7 @@ from policy_eval import (
     acceptance_state,
     audit,
     decision,
+    diagnostic_signals,
     exact_index,
     metrics,
     review_page,
@@ -74,6 +75,20 @@ def test_unvalidated_yes_still_counts_as_an_unsafe_allow():
     assert result["layers"]["final"]["unsafe_allows"] == 2
     assert result["layers"]["final"]["direction_accuracy"] == 0
     assert not result["gate_passed"]
+
+
+def test_cross_group_failure_is_separate_from_valid_unresolved():
+    _, invalid = example()
+    unresolved = copy.deepcopy(invalid)
+    unresolved["pair_id"] = "uncertain"
+    unresolved["final_decision"] = {
+        **dict.fromkeys(unresolved["final_decision"], "unresolved"),
+        "confidence_tier": "low",
+        "primary_risk_factor": "extraction_or_payload_limit",
+    }
+    private = [{"pair_id": row["pair_id"], "pair_type": "cross_group_sample"} for row in (invalid, unresolved)]
+    result = diagnostic_signals([invalid, unresolved], private, {invalid["pair_id"]: ["SUBJECT_UNVALIDATED"]})
+    assert result == {"cross_group_invalid": 1, "cross_group_unresolved": 1}
 
 
 def test_acceptance_rejects_changed_audited_outputs(tmp_path: Path):
