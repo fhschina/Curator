@@ -378,3 +378,17 @@ def test_post_adjudicated_statistics_preserve_attempt_failures_for_retained_labe
     assert result["layers"]["final"]["scored_pairs"] == 1
     assert result["layers"]["final"]["invalid_pair_rate"] == 1
     assert result["layers"]["final"]["direction_accuracy"] == 0
+
+
+def test_diagnostic_model_failures_remain_invalid_without_becoming_source_corruption():
+    from policy_eval import integrity_failures, validation
+
+    source, row = example()
+    source["truncated"] = row["truncated"] = True
+    source["semantic_diff"]["truncated"] = source["semantic_diff"]["truncated_a"] = True
+    issues = audit(row, source)
+    assert "CONCLUSIVE_INCOMPLETE_EVIDENCE" in issues
+    assert integrity_failures({row["pair_id"]: issues})
+    assert not integrity_failures({row["pair_id"]: issues}, model_errors_fatal=False)
+    assert validation(row, "final", issues)["a_can_replace_b"] == "invalid"
+    assert integrity_failures({row["pair_id"]: ["INPUT_CHANGED:text_a"]}, model_errors_fatal=False)

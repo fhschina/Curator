@@ -600,7 +600,7 @@ def layer_issues(issues: list[str], layer: str) -> list[str]:
     return issues
 
 
-def integrity_failures(issues: dict[str, list[str]]) -> dict[str, list[str]]:
+def integrity_failures(issues: dict[str, list[str]], *, model_errors_fatal: bool = True) -> dict[str, list[str]]:
     """Source corruption, missing audit traces and unauthorized promotions stop a run."""
     return {
         key: fatal
@@ -609,9 +609,10 @@ def integrity_failures(issues: dict[str, list[str]]) -> dict[str, list[str]]:
             fatal := [
                 issue
                 for issue in found
-                if issue.startswith(("INPUT_CHANGED:", "CRITIC_PROMOTED_NEGATIVE:", "CONCLUSIVE_INCOMPLETE_EVIDENCE:"))
+                if issue.startswith(("INPUT_CHANGED:", "CRITIC_PROMOTED_NEGATIVE:"))
                 or issue.endswith("MISSING_INFERENCE_RECEIPT")
-                or issue in {"INVALID_INPUT_PACKET", "CONCLUSIVE_INCOMPLETE_EVIDENCE"}
+                or issue == "INVALID_INPUT_PACKET"
+                or (model_errors_fatal and issue.startswith("CONCLUSIVE_INCOMPLETE_EVIDENCE"))
             ]
         )
     }
@@ -1017,6 +1018,9 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
             if required and (row["pair_id"], column) not in seen:
                 attempt_issues.setdefault(row["pair_id"], []).append(prefix + "_MISSING_INFERENCE_RECEIPT")
     result = metrics(rows, labels, inputs, attempt_issues)
+    result["integrity_failures"] = integrity_failures(
+        result["issues"], model_errors_fatal=manifest.get("purpose", "acceptance") != "diagnostic"
+    )
     write_rows(run_dir / "attempt_audit.jsonl", attempts)
     result["attempt_status_counts"] = dict(Counter(a["status"] for a in attempts))
     result["attempt_retries"] = sum(
