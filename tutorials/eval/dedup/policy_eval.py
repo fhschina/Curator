@@ -367,7 +367,7 @@ def adjudicated_view(
             continue
         entry = entries.get(label["pair_id"], {})
         revised.append({**label, **{f: entry[f] for f in FIELDS if f in entry}})
-    result = metrics(rows, revised, inputs)
+    result = metrics(rows, revised, inputs, issues)
     return {
         "reference": "post_result_adjudicated_agent_reference",
         "independent_human_accuracy": False,
@@ -734,14 +734,14 @@ def stage_effects(
         eligible = not visible[key]["truncated"] and all(label.get(f) in {"yes", "no"} for f in FIELDS)
         technical_issues = sorted(set(audit(row, visible[key]) + (extra_issues or {}).get(key, [])))
         for layer in LAYERS:
-            value = decision(row, layer)
+            value = decision(row, layer) if not layer_issues(technical_issues, layer) else None
             result.append(
                 {
                     "pair_id": key,
                     "layer": layer,
                     "label_status": label.get("label_status", "unlabeled"),
                     "complete_input": not visible[key]["truncated"],
-                    **{f: getattr(value, f) if value else "invalid" for f in FIELDS},
+                    **validation(row, layer, technical_issues),
                     "reference_agrees": all(value and getattr(value, f) == label[f] for f in FIELDS)
                     if eligible
                     else None,
@@ -1076,6 +1076,19 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     result["output_files"] = {str(p): digest(p.read_bytes()) for p in sorted((run_dir / "critics").rglob("*.jsonl"))}
     result["purpose"] = manifest.get("purpose", "acceptance")
     result["missing_source_pairs"] = sum(missing_source(row) for row in inputs)
+    result["layer_answer_counts"] = {
+        layer: {
+            "raw_yes_directions": sum(
+                raw_directions(row, layer).get(field) == "yes" for row in rows for field in FIELDS
+            ),
+            "validated_yes_directions": sum(
+                validation(row, layer, result["issues"].get(row["pair_id"], []))[field] == "yes"
+                for row in rows
+                for field in FIELDS
+            ),
+        }
+        for layer in LAYERS
+    }
     result["all_input_validation"] = {
         layer: dict(
             Counter(

@@ -367,3 +367,14 @@ def test_native_dispatch_shards_preserve_nulls_evidence_and_all_pair_identities(
     assert len(list(folder.glob("*.jsonl"))) == 8
     assert exact_index(read_rows(folder)) == exact_index(inputs)
     assert (tmp_path / "panels/preflight/input.jsonl").read_bytes() == original
+
+
+def test_post_adjudicated_statistics_preserve_attempt_failures_for_retained_labels():
+    from policy_eval import adjudicated_view
+
+    source, row = example()
+    issues = {row["pair_id"]: ["MAIN_ATTEMPT_PARSE_ERROR"]}
+    result = adjudicated_view([row], [source], [source], {"entries": []}, issues)
+    assert result["layers"]["final"]["scored_pairs"] == 1
+    assert result["layers"]["final"]["invalid_pair_rate"] == 1
+    assert result["layers"]["final"]["direction_accuracy"] == 0
