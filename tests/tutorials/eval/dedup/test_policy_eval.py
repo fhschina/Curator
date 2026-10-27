@@ -346,3 +346,24 @@ def test_post_result_ambiguity_excludes_labels_without_hiding_technical_failures
     assert result["layers"]["final"]["scored_pairs"] == 0
     assert result["all_input_failure_counts"] == {"SUBJECT_UNVALIDATED": 1}
     assert not result["independent_human_accuracy"]
+
+
+def test_native_dispatch_shards_preserve_nulls_evidence_and_all_pair_identities(tmp_path: Path):
+    from policy_eval import dispatch_inputs, read_rows
+
+    inputs = [
+        {
+            "pair_id": str(i),
+            "text_a": None if i == 0 else "A",
+            "text_b": "B",
+            "semantic_diff": {"status": "INCOMPLETE_LIMIT"},
+            "truncated": True,
+        }
+        for i in range(20)
+    ]
+    write_rows(tmp_path / "panels/preflight/input.jsonl", inputs)
+    original = (tmp_path / "panels/preflight/input.jsonl").read_bytes()
+    folder = Path(dispatch_inputs(tmp_path, "preflight", tmp_path / "runs/test", 8))
+    assert len(list(folder.glob("*.jsonl"))) == 8
+    assert exact_index(read_rows(folder)) == exact_index(inputs)
+    assert (tmp_path / "panels/preflight/input.jsonl").read_bytes() == original

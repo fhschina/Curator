@@ -830,6 +830,23 @@ def run_config(root: Path, variant: str, run_dir: Path, replicas: int) -> Path:
     return path
 
 
+def dispatch_inputs(root: Path, panel: str, run_dir: Path, replicas: int) -> str:
+    """Give native reader tasks separate shards without changing frozen pair identity."""
+    source = root / "panels" / panel
+    if replicas == 1:
+        return str(source)
+    rows = read_rows(source)
+    indexed = exact_index(rows)
+    destination = run_dir / "input_dispatch"
+    for index in range(replicas):
+        write_rows(destination / f"part-{index:02d}.jsonl", rows[index::replicas])
+    dispatched = exact_index(read_rows(destination), set(indexed))
+    if dispatched != indexed:
+        msg = "Dispatch sharding changed frozen pair content"
+        raise ValueError(msg)
+    return str(destination)
+
+
 def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
     import data_designer.config as dd
     import ray
@@ -911,7 +928,11 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
     class Critics(RecordedWorkflowMixin, load_module("6_run_critics.py").CriticWorkflow):
         pass
 
-    incoming = str(root / "panels" / args.panel)
+    incoming = dispatch_inputs(root, args.panel, run_dir, args.replicas)
+    receipt["input_dispatch_files"] = {
+        str(path): digest(path.read_bytes()) for path in sorted(Path(incoming).glob("*.jsonl"))
+    }
+    write_json(run_dir / "run_manifest.json", receipt)
     try:
         for stage, cls in (("main", Main), ("critics", Critics)):
             output = run_dir / stage
@@ -924,6 +945,7 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
                 judge_config=config,
                 input_path=incoming,
                 output_path=str(output),
+                files_per_partition=1,
                 keep_failed_rows=True,
                 run_config=dd.RunConfig(disable_early_shutdown=True),
                 row_id_column="pair_id",
