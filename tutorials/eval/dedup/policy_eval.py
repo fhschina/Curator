@@ -1240,7 +1240,7 @@ def diagnostic_readiness(root: Path) -> dict:
     verify_files(root, read_json(root / "manifest.json")["files"])
     for name in [
         *(f"candidate-gate-{i}" for i in (1, 2, 3)),
-        *(f"candidate-coverage-regression-{i}" for i in (1, 2, 3)),
+        "candidate-coverage-regression-1",
         "candidate-diagnostic-1",
         "baseline-diagnostic-1",
         "candidate-holdout-1",

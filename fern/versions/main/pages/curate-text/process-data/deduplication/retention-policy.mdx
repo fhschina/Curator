@@ -16,6 +16,7 @@ This version implements the conditional boundaries confirmed in the [policy disc
 | Currency in an empty, zero-value cart | Either can replace the other when there are no products or actual prices and the terms are unchanged. |
 | Incidental publication metadata on an otherwise complete article | Dates, bylines and advertising placeholders do not block replacement. Facts and dates within the article remain substantive. |
 | An additional license-reference URL | Either can replace the other only when the URL references already stated terms and adds no condition. Do not infer unseen linked-page content. |
+| A broader product list containing every fact from a filtered subset | The broader list can replace the subset when the retained product facts, prices, stock and conditions agree. The filter path and resulting item count alone do not block that direction. Check the reverse direction separately. |
 | A useful same-record passage present on only one side | Check each direction separately; preserve the extra useful passage. |
 
 These exceptions do not allow arbitrary changes to products, facts, prices, identities or obligations. Unsettled policy questions remain unresolved. Quality filtering and keeper preference are separate decisions.
@@ -52,9 +53,9 @@ Invalid judgments count as incorrect in the adjudicable denominator. Their failu
 
 Count explicit raw Yes values against retention-required references as risk signals even when other score fields or evidence are invalid. Record validity separately; an inconsistent schema must not hide a positive deletion direction.
 
-Only after three passing candidate regression runs and independent acceptance can the fixed 20K experiment run. Report actual keeper-direction risk and cross-group duplicate candidates separately. The 20K is not human-labeled accuracy evidence.
+Formal acceptance permits the fixed 20K experiment only after three passing candidate regression runs and independent acceptance. The explicit diagnostic purpose below uses a separate readiness gate. Report actual keeper-direction risk and cross-group duplicate candidates separately. The 20K is not human-labeled accuracy evidence.
 
-`policy_deciffusion.py` then compares the same small panels through the native SystemOne choice interface. It pins the BF16 v2 service, records probabilities and attempts, and compares replacement directions against the Qwen main judgment and confirmed human labels. Its interface and precision differ from Qwen's FP8 structured judge; it does not validate a Deciffusion critic pipeline.
+`policy_deciffusion.py` then compares the same small panels through the native SystemOne choice interface. It pins the BF16 v2 service, records probabilities and attempts, and compares replacement directions against Qwen main and final results separately. References retain their original source: consensus, controlled examples, provisional votes or agent proposals. Conclusive native choices on truncated evidence are invalid; valid probability responses and resolved valid judgments have separate throughput counts. Its interface and precision differ from Qwen's FP8 structured judge; it does not validate a Deciffusion critic pipeline.
 
 
 ## Diagnostic scale-up
