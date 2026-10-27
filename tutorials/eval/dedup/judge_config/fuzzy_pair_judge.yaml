@@ -88,7 +88,7 @@ execution:
                 none: No qualifying retained-content or complete-message basis exists after applying conditional exceptions.
                 unresolved: Visible evidence is insufficient.
             - name: span_a_delta
-              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class.
+              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material.
               options:
                 none: No A-only span exists.
                 semantically_covered: A-only factual meaning is covered by B through paraphrase or translation; substantive different-language learning material still requires retention.
@@ -99,7 +99,7 @@ execution:
                 other_substantive_content: A has another uncovered retained proposition.
                 unresolved: The full A-only delta cannot be classified safely.
             - name: span_b_delta
-              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class.
+              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material.
               options:
                 none: No B-only span exists.
                 semantically_covered: B-only factual meaning is covered by A through paraphrase or translation; substantive different-language learning material still requires retention.
@@ -110,7 +110,7 @@ execution:
                 other_substantive_content: B has another uncovered retained proposition.
                 unresolved: The full B-only delta cannot be classified safely.
             - name: span_hard_conflict
-              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved.
+              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material.
               options:
                 none: No conflicting material value or role is visible.
                 identity_or_slot: Material record identity or defining claim conflicts; confirmed harmless service slots do not conflict.

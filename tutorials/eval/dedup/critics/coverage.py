@@ -114,7 +114,7 @@ class CoveragePrepareStage(ProcessingStage[DocumentBatch, DocumentBatch]):
     def outputs(self) -> tuple[list[str], list[str]]:
         return ["data"], ["coverage_should_run", "coverage_reason", "coverage_packet"]
 
-    def _triage(self, record: dict) -> tuple[str, SpanPacket | None]:
+    def _triage(self, record: dict) -> tuple[str, SpanPacket | None]:  # noqa: PLR0911
         """Return why a row is or isn't reviewed, plus its span packet when one could be built."""
         try:
             main = Decision.from_judge(record.get(self.source_judge))
@@ -122,6 +122,8 @@ class CoveragePrepareStage(ProcessingStage[DocumentBatch, DocumentBatch]):
             return "PRESERVE_INVALID_MAIN", None
         if main.inconsistencies():
             return "PRESERVE_INVALID_MAIN", None
+        if any(not isinstance(record.get(key), str) or not record[key].strip() for key in ("text_a", "text_b")):
+            return "PRESERVE_MISSING_SOURCE", None
         try:
             packet = SpanPacket.from_record(record, max_evidence_chars=self.max_evidence_chars)
         except ValueError:

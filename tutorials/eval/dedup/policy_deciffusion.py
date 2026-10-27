@@ -20,10 +20,11 @@ from policy_eval import (
     FIELDS,
     acceptance_state,
     checked_report,
-    decision,
+    diagnostic_readiness,
     exact_index,
     read_json,
     read_rows,
+    validation,
     verify_files,
     write_json,
 )
@@ -113,8 +114,10 @@ def verify_service(receipt: dict) -> None:
 
 
 def require_qwen_acceptance(root: Path) -> None:
-    if not acceptance_state(root)["passed"]:
-        msg = "Deciffusion comparison follows Qwen human acceptance and the complete 20K run"
+    mode = read_json(root / "manifest.json").get("purpose", "acceptance")
+    readiness = diagnostic_readiness(root) if mode == "diagnostic" else acceptance_state(root)
+    if not readiness["passed"]:
+        msg = "Deciffusion comparison follows Qwen human acceptance or diagnostic readiness and the complete 20K run"
         raise ValueError(msg)
     for variant in ("baseline", "candidate"):
         result = checked_report(root, f"{variant}-full20k-1")
@@ -123,7 +126,7 @@ def require_qwen_acceptance(root: Path) -> None:
             raise ValueError(msg)
 
 
-def compare(args: argparse.Namespace) -> dict:  # noqa: PLR0915
+def compare(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     root = args.root.resolve()
     verify_files(root, read_json(root / "manifest.json")["files"])
     require_qwen_acceptance(root)
@@ -136,18 +139,27 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: PLR0915
         read_rows(root / "runs" / f"candidate-{args.panel}-1" / "critics"), {row["pair_id"] for row in inputs}
     )
     labels = (
-        read_json(root / "independent_votes.json")
+        read_json(
+            root
+            / (
+                "agent_votes.json"
+                if read_json(root / "manifest.json").get("purpose") == "diagnostic"
+                else "independent_votes.json"
+            )
+        )
         if args.panel == "holdout"
         else read_json(root / "labels" / f"{args.panel}.json")
     )
     confirmed = {
         row["pair_id"]: row
         for row in labels
-        if row.get("label_status") in {"consensus", "controlled", "human_independent"}
+        if row.get("label_status")
+        in {"consensus", "controlled", "human_adjudicated", "human_independent", "agent_assisted_blind"}
         and all(row.get(f) in {"yes", "no"} for f in FIELDS)
     }
     system = (root / "variants/candidate/judge_config/system.jinja").read_text()
     pair = (root / "variants/candidate/judge_config/pair.jinja").read_text()
+    qwen_report = checked_report(root, f"candidate-{args.panel}-1", require_independent=False)
     results = []
     started = time.time()
     for row in inputs:
@@ -180,8 +192,8 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: PLR0915
             write_json(folder / f"attempt-{attempt}.json", receipt)
             if result["status"] == "valid" or not retry:
                 break
-        main = decision(qwen[row["pair_id"]], "main")
-        result["qwen_main"] = {f: getattr(main, f) if main else "invalid" for f in FIELDS}
+        for layer, name in (("main", "qwen_main"), ("final", "qwen_final")):
+            result[name] = validation(qwen[row["pair_id"]], layer, qwen_report["issues"].get(row["pair_id"], []))
         results.append(result)
     exact_index(results, set(qwen))
     gold = [row for row in results if row["pair_id"] in confirmed]
@@ -198,7 +210,53 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: PLR0915
         "deciffusion_interface": "native SystemOne choice probabilities, BF16",
         "interpretation": "Shared policy and evidence; interfaces and precision differ. This does not validate a Deciffusion critic pipeline.",
     }
-    for model in ("deciffusion", "qwen_main"):
+    report["valid_pairs_per_second"] = report["valid"] / report["elapsed_s"]
+    report["reference_by_source"] = {}
+    for status in sorted({label.get("label_status", "unknown") for label in labels}):
+        group = {
+            label["pair_id"]: label
+            for label in labels
+            if label.get("label_status") == status and all(label.get(f) in {"yes", "no"} for f in FIELDS)
+        }
+        report["reference_by_source"][status] = {}
+        for model in ("deciffusion", "qwen_main", "qwen_final"):
+            considered = [
+                row
+                for row in results
+                if row["pair_id"] in group
+                and not next(i for i in inputs if i["pair_id"] == row["pair_id"])["truncated"]
+            ]
+            correct = sum(
+                (row if model == "deciffusion" else row[model]).get(f) == group[row["pair_id"]][f]
+                for row in considered
+                for f in FIELDS
+            )
+            report["reference_by_source"][status][model] = {
+                "pairs": len(considered),
+                "direction_agreement": correct / (2 * len(considered)) if considered else None,
+            }
+    if (root / "adjudications.json").exists() and args.panel == "holdout":
+        adjudications = read_json(root / "adjudications.json")
+        report["accepted_ambiguous_answers"] = {
+            e["pair_id"]: e["accepted_pair_decisions"]
+            for e in adjudications["entries"]
+            if e.get("strict_accuracy_eligible") is False
+        }
+        excluded = set(report["accepted_ambiguous_answers"])
+        report["post_adjudicated_agreement"] = {}
+        for model in ("deciffusion", "qwen_main", "qwen_final"):
+            considered = [row for row in gold if row["pair_id"] not in excluded]
+            correct = sum(
+                (row if model == "deciffusion" else row[model]).get(f) == confirmed[row["pair_id"]][f]
+                for row in considered
+                for f in FIELDS
+            )
+            report["post_adjudicated_agreement"][model] = {
+                "pairs": len(considered),
+                "direction_agreement": correct / (2 * len(considered)) if considered else None,
+                "independent_human_accuracy": False,
+            }
+    for model in ("deciffusion", "qwen_main", "qwen_final"):
         correct = harmful = unresolved = 0
         for row in gold:
             answers = row if model == "deciffusion" else row["qwen_main"]
@@ -220,7 +278,7 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: PLR0915
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
-    parser.add_argument("--panel", choices=("gate", "diagnostic", "holdout"), required=True)
+    parser.add_argument("--panel", choices=("gate", "coverage-regression", "diagnostic", "holdout"), required=True)
     parser.add_argument("--endpoint", required=True)
     parser.add_argument("--service-receipt", type=Path, required=True)
     print(json.dumps(compare(parser.parse_args()), indent=2))

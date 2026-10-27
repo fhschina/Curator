@@ -40,11 +40,13 @@ from policy_runtime import (
     audit_attempt,
     environment_receipt,
     existing_qwen_service,
+    service_pool,
 )
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
 FULL_POPULATION_SIZE = 20000
+POOL_REPLICAS = 8
 MIN_HUMAN_PAIRS = 80
 MIN_DIRECTION_ACCURACY = 0.95
 MIN_PAIR_ACCURACY = 0.90
@@ -207,7 +209,182 @@ document.addEventListener('input',store);document.addEventListener('change',stor
     return header + "\n".join(blocks) + script
 
 
+def missing_source(row: dict) -> bool:
+    return any(
+        row.get(key) is None or (isinstance(row.get(key), str) and not row[key].strip())
+        for key in ("text_a", "text_b")
+    )
+
+
+def prepare_from_source(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
+    source, root = args.source_experiment.resolve(), args.root.resolve()
+    original = read_json(source / "manifest.json")
+    verify_files(source, original["files"])
+    if root.exists():
+        msg = "prepare requires a new experiment directory"
+        raise ValueError(msg)
+    root.mkdir(parents=True)
+    for name in ("panels", "labels", "input_indexes"):
+        shutil.copytree(source / name, root / name)
+    for name in (
+        "discussion_snapshot.json",
+        "private_index.json",
+        "excluded_sources.json",
+        "agent_votes.json",
+        "independent_votes.json",
+    ):
+        if (source / name).exists():
+            shutil.copyfile(source / name, root / name)
+    if args.adjudications:
+        adjudications = read_json(args.adjudications)
+        inputs = exact_index(read_rows(root / "panels/holdout"))
+        for entry in adjudications["entries"]:
+            row = inputs[entry["pair_id"]]
+            if any(entry[key + "_sha256"] != digest(row[key]) for key in ("text_a", "text_b")):
+                msg = "Adjudication text or orientation mismatch"
+                raise ValueError(msg)
+        if adjudications["original_agent_votes_sha256"] != digest((root / "agent_votes.json").read_bytes()):
+            msg = "Adjudication references different frozen agent labels"
+            raise ValueError(msg)
+        write_json(root / "adjudications.json", adjudications)
+    else:
+        msg = "Reused development panels require explicit adjudications"
+        raise ValueError(msg)
+    h049 = exact_index(read_rows(root / "panels/holdout"))["H049"]
+    extra = [
+        {**h049, "a_can_replace_b": "yes", "b_can_replace_a": "no", "label_status": "human_adjudicated"},
+        {
+            "pair_id": "LIST_COVERAGE",
+            "text_a": "Products: X, price 71.50, in stock. Y, price 30.00, in stock. Total: 2.",
+            "text_b": "Filter: X. Products: X, price 71.50, in stock. Total: 1.",
+            "a_can_replace_b": "yes",
+            "b_can_replace_a": "no",
+            "label_status": "controlled",
+        },
+        {
+            "pair_id": "LIST_PRICE_CONFLICT",
+            "text_a": "Products: X, price 71.50, in stock. Y, price 30.00, in stock. Total: 2.",
+            "text_b": "Filter: X. Products: X, price 81.50, in stock. Total: 1.",
+            "a_can_replace_b": "no",
+            "b_can_replace_a": "no",
+            "label_status": "controlled",
+        },
+    ]
+    presentations = [item for row in extra for item in (row, mirrored(row))]
+    prepared = aligned([{k: row[k] for k in ("pair_id", "text_a", "text_b")} for row in presentations])
+    write_rows(root / "panels/coverage-regression/input.jsonl", [blind_row(row) for row in prepared])
+    write_json(
+        root / "labels/coverage-regression.json",
+        [{k: v for k, v in row.items() if k not in {"text_a", "text_b", "semantic_diff"}} for row in presentations],
+    )
+    diagnostic = read_rows(root / "panels/diagnostic")
+    absent = sorted(
+        [row for row in read_rows(root / "panels/full20k") if missing_source(row)], key=lambda row: row["pair_id"]
+    )[:8]
+    if len(absent) != POOL_REPLICAS:
+        msg = "Preflight requires eight source-missing pairs"
+        raise ValueError(msg)
+    write_rows(root / "panels/preflight/input.jsonl", diagnostic + absent)
+    write_json(root / "labels/preflight.json", read_json(root / "labels/diagnostic.json"))
+    for variant in ("baseline", "candidate"):
+        if variant == "baseline":
+            shutil.copytree(source / "variants/baseline", root / "variants/baseline")
+        else:
+            freeze_variant(REPO, root / "variants/candidate")
+    if not args.engineering_receipt:
+        msg = "Reused panels require an engineering receipt"
+        raise ValueError(msg)
+    for panel in ("coverage-regression", "preflight"):
+        write_rows(
+            root / "input_indexes" / (panel + ".jsonl"),
+            [
+                {
+                    "pair_id": row["pair_id"],
+                    **{
+                        key + "_sha256": digest(row[key]) if isinstance(row[key], str) else None
+                        for key in ("text_a", "text_b")
+                    },
+                    "evidence_sha256": digest(json.dumps(row["semantic_diff"], sort_keys=True)),
+                    "truncated": row["truncated"],
+                }
+                for row in read_rows(root / "panels" / panel)
+            ],
+        )
+    receipt = read_json(args.engineering_receipt)
+    if receipt.get("exit_code") != 0:
+        msg = "Engineering checks must pass"
+        raise ValueError(msg)
+    for path, checksum in receipt["files"].items():
+        if digest(Path(path).read_bytes()) != checksum:
+            msg = "Engineering log hash mismatch"
+            raise ValueError(msg)
+    write_json(root / "engineering_checks.json", receipt)
+    files = {str(path.relative_to(root)): digest(path.read_bytes()) for path in root.rglob("*") if path.is_file()}
+    manifest = {
+        **{k: v for k, v in original.items() if k != "files"},
+        "files": files,
+        "purpose": args.purpose,
+        "source_experiment": str(source),
+        "source_manifest_sha256": digest((source / "manifest.json").read_bytes()),
+        "created_at": time.time(),
+        "candidate_commit": subprocess.check_output(  # noqa: S603
+            [shutil.which("git"), "rev-parse", "HEAD"], cwd=REPO, text=True
+        ).strip(),
+        "panels": {**original["panels"], "coverage-regression": 6, "preflight": len(diagnostic) + len(absent)},
+        "holdout_usage": "development_after_review",
+        "formal_independent_human_acceptance": False,
+        "semantic_prompt_revision_budget": 1,
+    }
+    write_json(root / "manifest.json", manifest)
+    return manifest
+
+
+def validation(row: dict, layer: str, issues: list[str]) -> dict:
+    errors = layer_issues(issues, layer)
+    value = decision(row, layer) if not errors else None
+    status = (
+        "invalid"
+        if value is None
+        else "unresolved"
+        if "unresolved" in (value.a_can_replace_b, value.b_can_replace_a)
+        else "valid"
+    )
+    return {
+        "validation_status": status,
+        "validation_errors": ";".join(errors),
+        **{field: getattr(value, field) if value else "invalid" for field in FIELDS},
+    }
+
+
+def adjudicated_view(
+    rows: list[dict], labels: list[dict], inputs: list[dict], adjudications: dict, issues: dict
+) -> dict:
+    entries = {entry["pair_id"]: entry for entry in adjudications["entries"]}
+    excluded = {key for key, entry in entries.items() if entry.get("strict_accuracy_eligible") is False}
+    revised = []
+    for label in labels:
+        if label["pair_id"] in excluded:
+            continue
+        entry = entries.get(label["pair_id"], {})
+        revised.append({**label, **{f: entry[f] for f in FIELDS if f in entry}})
+    result = metrics(rows, revised, inputs)
+    return {
+        "reference": "post_result_adjudicated_agent_reference",
+        "independent_human_accuracy": False,
+        "excluded_ambiguous_ids": sorted(excluded),
+        "accepted_answers": {k: entries[k]["accepted_pair_decisions"] for k in sorted(excluded)},
+        "adjudicated_at": adjudications.get("updated_at_utc", adjudications.get("recorded_at_utc")),
+        "layers": result["layers"],
+        "all_input_failure_counts": dict(Counter(i for found in issues.values() for i in found)),
+    }
+
+
 def prepare(args: argparse.Namespace) -> dict:
+    if getattr(args, "source_experiment", None):
+        return prepare_from_source(args)
+    if not all(getattr(args, key, None) for key in ("discussion_snapshot", "runs_root", "baseline_repo")):
+        msg = "Fresh preparation requires discussion snapshot, runs root and baseline repo"
+        raise ValueError(msg)
     root = args.root.resolve()
     if root.exists():
         msg = "prepare requires a new experiment directory"
@@ -304,6 +481,7 @@ def prepare(args: argparse.Namespace) -> dict:
     }
     manifest = {
         "policy_version": POLICY_VERSION,
+        "purpose": getattr(args, "purpose", "acceptance"),
         "seed": 42,
         "panels": {k: len(v) for k, v in panels.items()},
         "files": files,
@@ -344,8 +522,8 @@ def audit(row: dict, original: dict) -> list[str]:  # noqa: C901, PLR0912
         if row.get(key) != original[key]:
             issues.append("INPUT_CHANGED:" + key)
     try:
-        packet = SpanPacket.from_record(original)
-        ids = set(packet.spans)
+        packet = None if missing_source(original) else SpanPacket.from_record(original)
+        ids = set(packet.spans) if packet else set()
     except ValueError:
         packet = None
         ids = set()
@@ -386,9 +564,12 @@ def audit(row: dict, original: dict) -> list[str]:  # noqa: C901, PLR0912
             if original["text_" + side][evidence["start_char"] : evidence["end_char"]] != evidence["quote"]:
                 issues.append(prefix.upper() + "_VETO_QUOTE_MISMATCH")
     if original["truncated"] or original["semantic_diff"]["status"] != "COMPLETE":
-        final = decision(row, "final")
-        if final and any(getattr(final, f) != "unresolved" for f in FIELDS):
-            issues.append("CONCLUSIVE_INCOMPLETE_EVIDENCE")
+        for layer in LAYERS:
+            current = decision(row, layer)
+            if current and any(getattr(current, f) != "unresolved" for f in FIELDS):
+                issues.append(
+                    "CONCLUSIVE_INCOMPLETE_EVIDENCE" if layer == "final" else "CONCLUSIVE_INCOMPLETE_EVIDENCE:" + layer
+                )
     return sorted(set(issues))
 
 
@@ -428,7 +609,7 @@ def integrity_failures(issues: dict[str, list[str]]) -> dict[str, list[str]]:
             fatal := [
                 issue
                 for issue in found
-                if issue.startswith(("INPUT_CHANGED:", "CRITIC_PROMOTED_NEGATIVE:"))
+                if issue.startswith(("INPUT_CHANGED:", "CRITIC_PROMOTED_NEGATIVE:", "CONCLUSIVE_INCOMPLETE_EVIDENCE:"))
                 or issue.endswith("MISSING_INFERENCE_RECEIPT")
                 or issue in {"INVALID_INPUT_PACKET", "CONCLUSIVE_INCOMPLETE_EVIDENCE"}
             ]
@@ -451,7 +632,8 @@ def metrics(
     scored = [
         label
         for label in labels
-        if label.get("label_status") in {"consensus", "controlled", "human_independent", "agent_assisted_blind"}
+        if label.get("label_status")
+        in {"consensus", "controlled", "human_adjudicated", "human_independent", "agent_assisted_blind"}
         and all(label.get(f) in {"yes", "no"} for f in FIELDS)
         and not expected[label["pair_id"]]["truncated"]
     ]
@@ -648,7 +830,7 @@ def run_config(root: Path, variant: str, run_dir: Path, replicas: int) -> Path:
     return path
 
 
-def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
+def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
     import data_designer.config as dd
     import ray
 
@@ -659,11 +841,11 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     manifest = read_json(root / "manifest.json")
     verify_files(root, manifest["files"])
     if args.panel == "full20k":
-        acceptance = acceptance_state(root)
-        write_json(root / "acceptance.json", acceptance)
-        if not acceptance.get("passed"):
-            msg = "20K requires three passing candidate gates, diagnostic validation and independent human acceptance"
-            raise ValueError(msg)
+        diagnostic_mode = manifest.get("purpose", "acceptance") == "diagnostic"
+        readiness = diagnostic_readiness(root) if diagnostic_mode else acceptance_state(root)
+        write_json(root / ("diagnostic_readiness.json" if diagnostic_mode else "acceptance.json"), readiness)
+        if not readiness.get("passed"):
+            raise ValueError("20K prerequisites failed: " + json.dumps(readiness))
     label_source = getattr(args, "label_source", "human")
     labels_path = root / ("independent_votes.json" if label_source == "human" else "agent_votes.json")
     if args.panel == "holdout":
@@ -696,12 +878,21 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
         "code_files": {str(p): digest(p.read_bytes()) for p in code_files},
         "started": time.time(),
         "status": "running",
-        "git_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO, text=True).strip(),  # noqa: S607
+        "git_commit": subprocess.check_output([shutil.which("git"), "rev-parse", "HEAD"], cwd=REPO, text=True).strip(),  # noqa: S603
         "ray_temp_dirs": {},
         "label_source": label_source,
         "labels_sha256": digest(labels_path.read_bytes()) if args.panel == "holdout" else None,
     }
-    if endpoint := getattr(args, "inference_endpoint", None):
+    verified_services = []
+    if getattr(args, "service_manifest", None):
+        if getattr(args, "inference_endpoint", None) or getattr(args, "service_container", None):
+            msg = "Use either a service manifest or a legacy single service"
+            raise ValueError(msg)
+        verified_services = service_pool(args.service_manifest, args.replicas)
+        receipt["serving_pool"] = verified_services
+        receipt["service_manifest_sha256"] = digest(args.service_manifest.read_bytes())
+        args.inference_endpoint = verified_services[0]["endpoint"]
+    elif endpoint := getattr(args, "inference_endpoint", None):
         if args.replicas != 1 or not getattr(args, "service_container", None):
             msg = "An existing service requires --service-container and currently supports one replica only"
             raise ValueError(msg)
@@ -742,6 +933,7 @@ def run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
                 **options,
             )
             workflow.receipt_dir = run_dir / "receipts" / stage
+            workflow.service_endpoints = [item["endpoint"] for item in verified_services]
             runtime = root.parent.parent / "runtime"
             runtime.mkdir(exist_ok=True)
             physical = Path(tempfile.mkdtemp(prefix="ray-", dir=runtime))
@@ -860,6 +1052,25 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     result["audit_code_sha256"] = digest(Path(__file__).read_bytes())
     result["experiment_manifest_sha256"] = digest((root / "manifest.json").read_bytes())
     result["output_files"] = {str(p): digest(p.read_bytes()) for p in sorted((run_dir / "critics").rglob("*.jsonl"))}
+    result["purpose"] = manifest.get("purpose", "acceptance")
+    result["missing_source_pairs"] = sum(missing_source(row) for row in inputs)
+    result["all_input_validation"] = {
+        layer: dict(
+            Counter(
+                validation(row, layer, result["issues"].get(row["pair_id"], []))["validation_status"] for row in rows
+            )
+        )
+        for layer in LAYERS
+    }
+    if (root / "adjudications.json").exists() and args.panel == "holdout":
+        result["adjudicated_view"] = adjudicated_view(
+            rows, labels, inputs, read_json(root / "adjudications.json"), result["issues"]
+        )
+    pool_attempts = [read_json(path) for path in (run_dir / "receipts").rglob("http/*.json")]
+    result["replica_requests"] = dict(
+        Counter(a.get("upstream", "unknown") for a in pool_attempts if a.get("method") == "POST")
+    )
+    result["replica_peak_concurrency"] = max((a.get("replica_active_requests", 0) for a in pool_attempts), default=0)
     result["interpretation"] = "Purpose-selected diagnostics and automated judgments; not corpus-wide error rates."
     write_json(run_dir / "report.json", result)
     with (run_dir / "stage_effects.csv").open("w", newline="") as out:
@@ -867,16 +1078,17 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
         writer.writeheader()
         writer.writerows(effects)
     with (run_dir / "decisions.csv").open("w", newline="") as out:
-        writer = csv.DictWriter(out, fieldnames=["pair_id", "layer", *FIELDS, "issues"])
+        writer = csv.DictWriter(
+            out, fieldnames=["pair_id", "layer", *FIELDS, "validation_status", "validation_errors", "issues"]
+        )
         writer.writeheader()
         for row in rows:
             for layer in LAYERS:
-                value = decision(row, layer)
                 writer.writerow(
                     {
                         "pair_id": row["pair_id"],
                         "layer": layer,
-                        **{f: getattr(value, f) if value else "invalid" for f in FIELDS},
+                        **validation(row, layer, result["issues"].get(row["pair_id"], [])),
                         "issues": ";".join(result["issues"].get(row["pair_id"], [])),
                     }
                 )
@@ -909,7 +1121,7 @@ def report(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     return result
 
 
-def checked_report(root: Path, name: str) -> dict:
+def checked_report(root: Path, name: str, *, require_independent: bool = True) -> dict:
     run_dir = root / "runs" / name
     result = read_json(run_dir / "report.json")
     receipt_path = run_dir / "run_manifest.json"
@@ -934,11 +1146,12 @@ def checked_report(root: Path, name: str) -> dict:
         msg = "Audited row counts changed"
         raise ValueError(msg)
     if result["panel"] == "holdout":
-        labels_path = root / "independent_votes.json"
-        if receipt["label_source"] != "human" or receipt["labels_sha256"] != digest(labels_path.read_bytes()):
+        source = receipt.get("label_source", "human")
+        labels_path = root / ("independent_votes.json" if source == "human" else "agent_votes.json")
+        if (require_independent and source != "human") or receipt["labels_sha256"] != digest(labels_path.read_bytes()):
             msg = "Independent human label provenance required"
             raise ValueError(msg)
-        validate_review_votes(read_json(labels_path), inputs, "human")
+        validate_review_votes(read_json(labels_path), inputs, source)
     return result
 
 
@@ -982,14 +1195,74 @@ def acceptance_state(root: Path) -> dict:
     }
 
 
+def diagnostic_readiness(root: Path) -> dict:
+    """Allow diagnostic scale-up without changing the independent acceptance gate."""
+    checks, problems = {}, {}
+    verify_files(root, read_json(root / "manifest.json")["files"])
+    for name in [
+        *(f"candidate-gate-{i}" for i in (1, 2, 3)),
+        *(f"candidate-coverage-regression-{i}" for i in (1, 2, 3)),
+        "candidate-diagnostic-1",
+        "baseline-diagnostic-1",
+        "candidate-holdout-1",
+        "baseline-holdout-1",
+        "candidate-preflight-1",
+        "baseline-preflight-1",
+    ]:
+        try:
+            report = checked_report(root, name, require_independent=False)
+            good = not report["integrity_failures"] and not report.get("unmapped_attempts")
+            if "-gate-" in name:
+                good = good and report["gate_passed"]
+            if name == "candidate-diagnostic-1":
+                good = good and all(
+                    layer["scored_pairs"] == len(CONSENSUS) and layer["pair_accuracy"] == 1
+                    for layer in report["layers"].values()
+                )
+            if "-coverage-regression-" in name:
+                rows = read_rows(root / "runs" / name / "critics")
+                good = good and all(
+                    validation(row, layer, report["issues"].get(row["pair_id"], []))[f] == "no"
+                    for row in rows
+                    if row["pair_id"].startswith("LIST_PRICE_CONFLICT")
+                    for layer in LAYERS
+                    for f in FIELDS
+                )
+            if "-preflight-" in name:
+                good = (
+                    good
+                    and len(report["replica_requests"]) == POOL_REPLICAS
+                    and report["replica_peak_concurrency"] <= POOL_REPLICAS
+                )
+            checks[name] = good
+        except (OSError, ValueError, KeyError) as error:
+            checks[name] = False
+            problems[name] = str(error)
+    receipt = read_json(root / "engineering_checks.json")
+    checks["engineering"] = receipt.get("exit_code") == 0 and all(
+        digest(Path(path).read_bytes()) == sha for path, sha in receipt["files"].items()
+    )
+    return {
+        "purpose": "diagnostic",
+        "passed": all(checks.values()),
+        "checks": checks,
+        "problems": problems,
+        "independent_human_acceptance": False,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     prep = commands.add_parser("prepare")
     prep.add_argument("--root", type=Path, required=True)
-    prep.add_argument("--discussion-snapshot", type=Path, required=True)
-    prep.add_argument("--runs-root", type=Path, required=True)
-    prep.add_argument("--baseline-repo", type=Path, required=True)
+    prep.add_argument("--discussion-snapshot", type=Path)
+    prep.add_argument("--runs-root", type=Path)
+    prep.add_argument("--baseline-repo", type=Path)
+    prep.add_argument("--purpose", choices=("acceptance", "diagnostic"), default="acceptance")
+    prep.add_argument("--source-experiment", type=Path)
+    prep.add_argument("--adjudications", type=Path)
+    prep.add_argument("--engineering-receipt", type=Path)
     prep.add_argument("--holdout-candidates", type=Path)
     prep.add_argument("--exclusions", type=Path)
     prep.add_argument("--full-source", type=Path)
@@ -998,11 +1271,16 @@ def main() -> None:
         command = commands.add_parser(name)
         command.add_argument("--root", type=Path, required=True)
         command.add_argument("--variant", choices=("baseline", "candidate"), required=True)
-        command.add_argument("--panel", choices=("gate", "diagnostic", "holdout", "full20k"), required=True)
+        command.add_argument(
+            "--panel",
+            choices=("gate", "coverage-regression", "diagnostic", "holdout", "preflight", "full20k"),
+            required=True,
+        )
         command.add_argument("--repeat", type=int, choices=(1, 2, 3), default=1)
         command.add_argument("--replicas", type=int, choices=(1, 8), default=1)
         command.add_argument("--label-source", choices=("human", "agent-assisted"), default="human")
         command.add_argument("--inference-endpoint", help="Existing local OpenAI-compatible base URL, including /v1")
+        command.add_argument("--service-manifest", type=Path)
         command.add_argument("--service-container", help="Existing container to record for serving provenance")
     args = parser.parse_args()
     print(json.dumps(globals()[args.command](args), ensure_ascii=False, indent=2))

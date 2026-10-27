@@ -221,3 +221,58 @@ def test_records_real_http_attempts_without_adding_retries(tmp_path: Path):
         server.shutdown()
         server.server_close()
         worker.join(timeout=5)
+
+
+def test_recording_pool_routes_real_http_attempts_and_records_each_target(tmp_path: Path):
+    servers = []
+
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, *_args: object) -> None:
+            pass
+
+        def do_POST(self) -> None:
+            self.rfile.read(int(self.headers.get("Content-Length", 0)))
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"{}")
+
+    for _ in range(2):
+        server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        servers.append(server)
+    endpoints = [f"http://127.0.0.1:{server.server_port}" for server in servers]
+    relay = RecordingRelay(endpoints, tmp_path)
+    try:
+        relay.start()
+        from concurrent.futures import ThreadPoolExecutor
+
+        with ThreadPoolExecutor(max_workers=24) as executor:
+            responses = list(
+                executor.map(
+                    lambda _: requests.post(relay.endpoint + "/chat/completions", json={"messages": []}, timeout=10),
+                    range(24),
+                )
+            )
+        for response in responses:
+            response.raise_for_status()
+        receipts = [json.loads(path.read_text()) for path in tmp_path.glob("*.json")]
+        assert len(receipts) == 24
+        assert {r["upstream"] for r in receipts} == set(endpoints)
+        assert all(r["replica_active_requests"] <= 8 and r["completed"] for r in receipts)
+    finally:
+        relay.close()
+        for server in servers:
+            server.shutdown()
+            server.server_close()
+
+
+@pytest.mark.gpu
+def test_live_eight_replica_pool_matches_frozen_configuration():
+    from policy_runtime import service_pool
+
+    path = os.environ.get("RETENTION_POLICY_POOL_MANIFEST")
+    if not path:
+        pytest.skip("Set RETENTION_POLICY_POOL_MANIFEST for the registered eight-GPU check")
+    verified = service_pool(Path(path), 8)
+    assert len(verified) == 8
+    assert len({item["devices"][0]["DeviceIDs"][0] for item in verified}) == 8

@@ -289,3 +289,60 @@ def test_actual_main_judge_treats_embedded_instructions_as_document_data():
     value = decision(output.to_pyarrow().to_pylist()[0], "main")
     assert value is not None
     assert value.a_can_replace_b == value.b_can_replace_a == "no"
+
+
+def test_expected_missing_source_is_not_input_corruption_but_cannot_allow_deletion():
+    from policy_eval import integrity_failures
+
+    source = aligned([{"pair_id": "missing", "text_a": None, "text_b": None}])[0]
+    _, row = example()
+    row.update(source)
+    for column in ("pair_semantic_judgment", "coverage_decision", "final_decision"):
+        values = dict.fromkeys(row[column], "unresolved")
+        values.update(confidence_tier="low", primary_risk_factor="extraction_or_payload_limit")
+        row[column] = (
+            {k: {"score": v, "reasoning": "Insufficient text"} for k, v in values.items()}
+            if column == "pair_semantic_judgment"
+            else values
+        )
+    assert not integrity_failures({"missing": audit(row, source)})
+    row["final_decision"].update(
+        a_can_replace_b="yes",
+        b_can_replace_a="yes",
+        relation_type="near_surface",
+        material_difference="none",
+        primary_material_difference="none",
+        dominant_overlap_source="none",
+    )
+    assert "CONCLUSIVE_INCOMPLETE_EVIDENCE" in audit(row, source)
+
+
+def test_export_invalidity_cannot_be_hidden_by_a_parseable_positive():
+    from policy_eval import validation
+
+    _, row = example()
+    projected = validation(row, "final", ["SUBJECT_UNVALIDATED"])
+    assert projected["validation_status"] == "invalid"
+    assert projected["a_can_replace_b"] == "invalid"
+    assert row["final_decision"]["a_can_replace_b"] == "yes"
+
+
+def test_post_result_ambiguity_excludes_labels_without_hiding_technical_failures():
+    from policy_eval import adjudicated_view
+
+    source, row = example()
+    row["subject_action"] = "UNVALIDATED_KEEP_COVERAGE"
+    issues = {row["pair_id"]: ["SUBJECT_UNVALIDATED"]}
+    adjudications = {
+        "entries": [
+            {
+                "pair_id": row["pair_id"],
+                "strict_accuracy_eligible": False,
+                "accepted_pair_decisions": [{"a_can_replace_b": "yes", "b_can_replace_a": "yes"}],
+            }
+        ]
+    }
+    result = adjudicated_view([row], [source], [source], adjudications, issues)
+    assert result["layers"]["final"]["scored_pairs"] == 0
+    assert result["all_input_failure_counts"] == {"SUBJECT_UNVALIDATED": 1}
+    assert not result["independent_human_accuracy"]

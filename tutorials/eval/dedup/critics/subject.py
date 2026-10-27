@@ -136,6 +136,8 @@ class SubjectPrepareStage(ProcessingStage[DocumentBatch, DocumentBatch]):
             return "PRESERVE_INVALID_MAIN", None
         if base.inconsistencies():
             return "PRESERVE_INVALID_MAIN", None
+        if any(not isinstance(record.get(key), str) or not record[key].strip() for key in ("text_a", "text_b")):
+            return "PRESERVE_MISSING_SOURCE", None
         try:
             packet = SpanPacket.from_record(record, max_evidence_chars=self.max_evidence_chars)
         except ValueError:

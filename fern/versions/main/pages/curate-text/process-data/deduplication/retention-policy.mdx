@@ -55,3 +55,27 @@ Count explicit raw Yes values against retention-required references as risk sign
 Only after three passing candidate regression runs and independent acceptance can the fixed 20K experiment run. Report actual keeper-direction risk and cross-group duplicate candidates separately. The 20K is not human-labeled accuracy evidence.
 
 `policy_deciffusion.py` then compares the same small panels through the native SystemOne choice interface. It pins the BF16 v2 service, records probabilities and attempts, and compares replacement directions against the Qwen main judgment and confirmed human labels. Its interface and precision differ from Qwen's FP8 structured judge; it does not validate a Deciffusion critic pipeline.
+
+
+## Diagnostic scale-up
+
+`policy_eval.py prepare --purpose diagnostic --source-experiment SOURCE
+--adjudications REVIEW --engineering-receipt CHECKS --root NEW` freezes an existing
+population and its review history without turning agent labels into independent
+human labels. The default purpose remains `acceptance`, with its original human
+acceptance requirements. Diagnostic readiness checks the three original regression
+runs, product-price counterexamples, source integrity, and both eight-replica
+preflight runs before permitting the fixed 20K comparison.
+
+Use `run --service-manifest SERVICES --replicas 8` for a verified external Qwen
+pool. The manifest pins the checkpoint revision and lists `container` and
+`endpoint` for each service. All services must have distinct GPUs and endpoints;
+each accepts at most eight concurrent requests. Every HTTP attempt records its
+upstream and active-request count without adding proxy retries.
+
+Reports preserve raw judgments and export each layer's `validation_status` and
+`validation_errors`. Invalid results never become effective replacement answers.
+Post-result adjudication is a separate diagnostic view: accepted ambiguous cases
+are excluded from its strict agreement denominator, while all-input technical
+failures remain counted. Missing source text remains missing in the frozen input;
+it is never silently replaced with an empty document or counted as safe deletion.

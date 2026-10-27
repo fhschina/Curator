@@ -32,6 +32,7 @@ from nemo_curator.stages.base import ProcessingStage
 from nemo_curator.tasks import DocumentBatch
 
 QWEN_CONTEXT_SIZE = 32768
+QWEN_IMAGE_ID = "sha256:3d8ebe07d1b64ceab33030e09a9076e77754d3ed70a19fb0c36b0168d6b94d6f"
 
 
 def message_text(message: dict) -> str:
@@ -135,6 +136,7 @@ def existing_qwen_service(container: str, endpoint: str) -> dict:
     devices = live["HostConfig"]["DeviceRequests"]
     if (
         not live["State"]["Running"]
+        or live["Image"] != QWEN_IMAGE_ID
         or command[:2] != ["serve", "/qwen"]
         or any(args.get(k) != v for k, v in required.items())
         or url.scheme != "http"
@@ -173,6 +175,24 @@ def existing_qwen_service(container: str, endpoint: str) -> dict:
     }
 
 
+def service_pool(path: Path, replicas: int) -> list[dict]:
+    """Validate every live endpoint before dispatching any judge request."""
+    manifest = json.loads(path.read_text())
+    if manifest.get("model_revision") != "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a":
+        msg = "Service pool checkpoint revision mismatch"
+        raise ValueError(msg)
+    services = manifest["services"]
+    if len(services) != replicas or replicas not in (1, 8):
+        msg = "Service pool size must match the requested one or eight replicas"
+        raise ValueError(msg)
+    verified = [existing_qwen_service(item["container"], item["endpoint"]) for item in services]
+    devices = [item["devices"][0]["DeviceIDs"][0] for item in verified]
+    if len(set(devices)) != replicas or len({item["endpoint"] for item in verified}) != replicas:
+        msg = "Every replica requires a distinct GPU and endpoint"
+        raise ValueError(msg)
+    return verified
+
+
 @dataclass
 class EnvironmentAuditStage(ProcessingStage[DocumentBatch, DocumentBatch]):
     repo: str
@@ -190,10 +210,17 @@ class EnvironmentAuditStage(ProcessingStage[DocumentBatch, DocumentBatch]):
 class RecordingRelay:
     """Loopback relay: one receipt for every actual HTTP attempt, with no added retries."""
 
-    def __init__(self, upstream: str, receipt_dir: Path):
+    def __init__(self, upstream: str | list[str], receipt_dir: Path):
         self.receipt_dir = receipt_dir
         receipt_dir.mkdir(parents=True, exist_ok=True)
-        target = upstream.rstrip("/")
+        targets = [u.rstrip("/") for u in ([upstream] if isinstance(upstream, str) else upstream)]
+        if not targets:
+            msg = "At least one upstream is required"
+            raise ValueError(msg)
+        lock = threading.Lock()
+        slots = [threading.BoundedSemaphore(8) for _ in targets]
+        active = [0 for _ in targets]
+        next_target = 0
 
         class Handler(BaseHTTPRequestHandler):
             def log_message(self, *_args: object) -> None:
@@ -206,6 +233,15 @@ class RecordingRelay:
                 self.forward()
 
             def forward(self) -> None:
+                nonlocal next_target
+                with lock:
+                    target_index = next_target % len(targets)
+                    next_target += 1
+                target = targets[target_index]
+                slots[target_index].acquire()
+                with lock:
+                    active[target_index] += 1
+                    concurrency = active[target_index]
                 started = time.time()
                 body = self.rfile.read(int(self.headers.get("Content-Length", 0)))
                 status, response_body = 502, b""
@@ -213,6 +249,9 @@ class RecordingRelay:
                 receipt_path = receipt_dir / f"{uuid.uuid4().hex}.json"
                 receipt = {
                     "pair_id": request_pair_id(body),
+                    "upstream": target,
+                    "replica_index": target_index,
+                    "replica_active_requests": concurrency,
                     "started": started,
                     "method": self.command,
                     "path": self.path,
@@ -246,6 +285,9 @@ class RecordingRelay:
                         }
                     )
                     receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+                    with lock:
+                        active[target_index] -= 1
+                    slots[target_index].release()
                 self.send_response(status)
                 self.send_header("Content-Type", "application/json")
                 self.send_header("Content-Length", str(len(response_body)))
@@ -277,7 +319,7 @@ class RecordedWorkflowMixin:
         import ray
 
         ray.init(ignore_reinit_error=True, runtime_env={"py_modules": [critics, policy_runtime]})
-        self._relay = RecordingRelay(endpoint, self.receipt_dir / "http")
+        self._relay = RecordingRelay(getattr(self, "service_endpoints", None) or endpoint, self.receipt_dir / "http")
         self._relay.start()
         return super()._build_judge_stages(endpoint=self._relay.endpoint)
 
