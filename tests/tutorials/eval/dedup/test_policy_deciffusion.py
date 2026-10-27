@@ -5,7 +5,14 @@ from pathlib import Path
 
 import pytest
 from policy_cases import aligned, controlled
-from policy_deciffusion import FIELDS, parse_response, request_body, require_qwen_acceptance
+from policy_deciffusion import (
+    FIELDS,
+    model_answers,
+    parse_response,
+    request_body,
+    require_qwen_acceptance,
+    validated_choices,
+)
 from policy_eval import write_json
 
 
@@ -15,6 +22,26 @@ def response():
 
 def test_native_tied_probability_is_unresolved():
     assert set(parse_response(response()).values()) == {"unresolved"}
+
+
+def test_native_conclusions_with_truncated_evidence_cannot_allow_deletion():
+    raw = {"status": "valid", "a_can_replace_b": "yes", "b_can_replace_a": "no"}
+    valid = validated_choices(raw, {"truncated": True})
+    assert valid["validation_status"] == "invalid"
+    assert valid["validation_errors"] == ["CONCLUSIVE_INCOMPLETE_EVIDENCE"]
+    assert all(valid[field] == "invalid" for field in FIELDS)
+    assert raw["a_can_replace_b"] == "yes"
+
+
+def test_model_comparison_uses_distinct_native_main_and_final_decisions():
+    row = {
+        "validated": {"a_can_replace_b": "yes"},
+        "qwen_main": {"a_can_replace_b": "yes"},
+        "qwen_final": {"a_can_replace_b": "no"},
+    }
+    assert model_answers(row, "deciffusion")["a_can_replace_b"] == "yes"
+    assert model_answers(row, "qwen_main")["a_can_replace_b"] == "yes"
+    assert model_answers(row, "qwen_final")["a_can_replace_b"] == "no"
 
 
 def test_stale_acceptance_flag_cannot_bypass_qwen_validation(tmp_path: Path):

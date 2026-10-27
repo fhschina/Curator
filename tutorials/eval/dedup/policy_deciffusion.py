@@ -59,6 +59,28 @@ def parse_response(response: dict) -> dict:
     return result
 
 
+def validated_choices(row: dict, source: dict) -> dict:
+    """Keep native probabilities intact; incomplete evidence cannot license deletion."""
+    errors = []
+    if row.get("status") != "valid":
+        errors.append("NATIVE_RESPONSE_FAILED")
+    if source["truncated"] and any(row.get(field) in {"yes", "no"} for field in FIELDS):
+        errors.append("CONCLUSIVE_INCOMPLETE_EVIDENCE")
+    return {
+        **{field: "invalid" if errors else row.get(field, "invalid") for field in FIELDS},
+        "validation_status": "invalid"
+        if errors
+        else "unresolved"
+        if any(row.get(f) == "unresolved" for f in FIELDS)
+        else "valid",
+        "validation_errors": errors,
+    }
+
+
+def model_answers(row: dict, model: str) -> dict:
+    return row["validated"] if model == "deciffusion" else row[model]
+
+
 def request_body(row: dict, system: str, pair: str) -> dict:
     material = Environment(undefined=StrictUndefined, autoescape=False).from_string(pair).render(**row)  # noqa: S701
     start, end = material.index("<semantic_diff "), material.index("</semantic_diff>") + len("</semantic_diff>")
@@ -194,6 +216,7 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
                 break
         for layer, name in (("main", "qwen_main"), ("final", "qwen_final")):
             result[name] = validation(qwen[row["pair_id"]], layer, qwen_report["issues"].get(row["pair_id"], []))
+        result["validated"] = validated_choices(result, row)
         results.append(result)
     exact_index(results, set(qwen))
     gold = [row for row in results if row["pair_id"] in confirmed]
@@ -211,6 +234,9 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
         "interpretation": "Shared policy and evidence; interfaces and precision differ. This does not validate a Deciffusion critic pipeline.",
     }
     report["valid_pairs_per_second"] = report["valid"] / report["elapsed_s"]
+    report["resolved_valid_pairs"] = sum(row["validated"]["validation_status"] == "valid" for row in results)
+    report["resolved_valid_pairs_per_second"] = report["resolved_valid_pairs"] / report["elapsed_s"]
+    report["truncated_pairs"] = sum(bool(row["truncated"]) for row in inputs)
     report["reference_by_source"] = {}
     for status in sorted({label.get("label_status", "unknown") for label in labels}):
         group = {
@@ -227,9 +253,7 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
                 and not next(i for i in inputs if i["pair_id"] == row["pair_id"])["truncated"]
             ]
             correct = sum(
-                (row if model == "deciffusion" else row[model]).get(f) == group[row["pair_id"]][f]
-                for row in considered
-                for f in FIELDS
+                model_answers(row, model).get(f) == group[row["pair_id"]][f] for row in considered for f in FIELDS
             )
             report["reference_by_source"][status][model] = {
                 "pairs": len(considered),
@@ -247,9 +271,7 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
         for model in ("deciffusion", "qwen_main", "qwen_final"):
             considered = [row for row in gold if row["pair_id"] not in excluded]
             correct = sum(
-                (row if model == "deciffusion" else row[model]).get(f) == confirmed[row["pair_id"]][f]
-                for row in considered
-                for f in FIELDS
+                model_answers(row, model).get(f) == confirmed[row["pair_id"]][f] for row in considered for f in FIELDS
             )
             report["post_adjudicated_agreement"][model] = {
                 "pairs": len(considered),
@@ -259,7 +281,7 @@ def compare(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0915
     for model in ("deciffusion", "qwen_main", "qwen_final"):
         correct = harmful = unresolved = 0
         for row in gold:
-            answers = row if model == "deciffusion" else row["qwen_main"]
+            answers = model_answers(row, model)
             label = confirmed[row["pair_id"]]
             for field in FIELDS:
                 correct += answers.get(field) == label[field]
