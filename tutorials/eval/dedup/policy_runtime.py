@@ -207,6 +207,12 @@ class EnvironmentAuditStage(ProcessingStage[DocumentBatch, DocumentBatch]):
         return batch
 
 
+class _RelayServer(ThreadingHTTPServer):
+    # Eight native workers can open 64 connections together. The stdlib backlog
+    # of five can reset connections before a handler can record the request.
+    request_queue_size = 1024
+
+
 class RecordingRelay:
     """Loopback relay: one receipt for every actual HTTP attempt, with no added retries."""
 
@@ -294,7 +300,7 @@ class RecordingRelay:
                 self.end_headers()
                 self.wfile.write(response_body)
 
-        self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+        self.server = _RelayServer(("127.0.0.1", 0), Handler)
         self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
         self.endpoint = f"http://127.0.0.1:{self.server.server_port}"
 

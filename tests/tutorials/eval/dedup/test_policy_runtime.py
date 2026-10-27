@@ -134,6 +134,94 @@ def test_native_data_designer_skip_preserves_every_input_row():
     assert output.answer.isna().all()
 
 
+def test_native_parallel_batches_retain_answers_skips_and_http_receipts(tmp_path: Path):
+    from concurrent.futures import ThreadPoolExecutor
+
+    import data_designer.config as dd
+    import pandas as pd
+
+    from nemo_curator.stages.synthetic.nemo_data_designer import DataDesignerStage
+    from nemo_curator.tasks import DocumentBatch
+
+    class Backend(BaseHTTPRequestHandler):
+        def log_message(self, *_args: object) -> None:
+            pass
+
+        def do_POST(self) -> None:
+            self.rfile.read(int(self.headers["Content-Length"]))
+            body = json.dumps(
+                {
+                    "choices": [
+                        {
+                            "message": {"role": "assistant", "content": '```json\n{"ok":true}\n```'},
+                            "finish_reason": "stop",
+                        }
+                    ],
+                    "usage": {"prompt_tokens": 1, "completion_tokens": 1, "total_tokens": 2},
+                }
+            ).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+    class BackendServer(ThreadingHTTPServer):
+        request_queue_size = 1024
+
+    backend = BackendServer(("127.0.0.1", 0), Backend)
+    threading.Thread(target=backend.serve_forever, daemon=True).start()
+    relay = RecordingRelay([f"http://127.0.0.1:{backend.server_port}"] * 8, tmp_path)
+    endpoint = relay.start()
+
+    def generate(shard: int) -> list[dict]:
+        builder = dd.DataDesignerConfigBuilder(
+            model_configs=[
+                dd.ModelConfig(
+                    alias="judge",
+                    model="local",
+                    provider="local",
+                    skip_health_check=True,
+                    inference_parameters={"max_parallel_requests": 8},
+                )
+            ]
+        )
+        builder.add_column(
+            dd.LLMStructuredColumnConfig(
+                name="answer",
+                model_alias="judge",
+                prompt="Audit record: {{ pair_id }}\n{{ text }}",
+                output_format={"type": "object", "properties": {"ok": {"type": "boolean"}}, "required": ["ok"]},
+                skip=dd.SkipConfig(when="{{ skip }}"),
+            )
+        )
+        stage = DataDesignerStage(
+            config_builder=builder,
+            model_providers=[dd.ModelProvider(name="local", endpoint=endpoint, api_key="unused")],
+            keep_failed_rows=True,
+            row_id_column="pair_id",
+        )
+        records = [{"pair_id": f"{shard}-{i}", "text": "payload " * 2000, "skip": i == 8} for i in range(9)]
+        table = stage.process(DocumentBatch(dataset_name=f"parallel-{shard}", data=pd.DataFrame(records))).to_pyarrow()
+        assert len(table) == 9
+        return table.to_pylist()
+
+    try:
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            rows = [row for batch in executor.map(generate, range(8)) for row in batch]
+        assert len({row["pair_id"] for row in rows}) == 72
+        assert all(row["answer"] == ({"ok": True} if not row["skip"] else None) for row in rows)
+        receipts = [json.loads(path.read_text()) for path in tmp_path.glob("*.json")]
+        assert len(receipts) == 64
+        assert {receipt["pair_id"] for receipt in receipts} == {row["pair_id"] for row in rows if not row["skip"]}
+        assert all(receipt["completed"] and receipt["status"] == 200 for receipt in receipts)
+        assert all(receipt["replica_active_requests"] <= 8 for receipt in receipts)
+    finally:
+        relay.close()
+        backend.shutdown()
+        backend.server_close()
+
+
 @pytest.mark.gpu
 def test_live_native_structured_generation_and_skip(tmp_path: Path):
     endpoint = os.environ.get("RETENTION_QWEN_ENDPOINT")
