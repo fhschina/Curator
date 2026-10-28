@@ -1,0 +1,34 @@
+{
+  "id": "engineering04-ledger-coherence",
+  "frozen_at": 1793163149.0108588,
+  "sources": {
+    "ledger_audit_core.py": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+    "compare_strict.py": "1764bc82f3edeef234075294a520a648ee02929c7cf0717bf927c103c0f3517d",
+    "test_ledger_audit_core.py": "e1617245269f8472f99228781fce2d1cdebe9296bd3a5dfe3cd173da6291faee"
+  },
+  "audit_plan": "audit-plan.json",
+  "tests": "engineering04-ledger-tests.log",
+  "tests_passed": 12,
+  "parent_audit_manifest": "engineering-03-ledger-audit/manifest.json",
+  "old_run_artifacts_preserved": true,
+  "new_artifact_subdirectory": "audits/engineering04-ledger-coherence",
+  "no_new_model_calls": true,
+  "native_generation_code_and_nine_prompt_files_unchanged": true,
+  "packaging": {
+    "ledger_audit_core.py": {
+      "audited_source_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+      "packaged_source_sha256": "faaf03a016d3ae7467da76e7359c2d49b50c14bf3c0d335151b1829befddb4c7",
+      "change": "Remove only repository-unneeded INP001 lint suppression; executable statements identical"
+    },
+    "compare_strict.py": {
+      "audited_source_sha256": "1764bc82f3edeef234075294a520a648ee02929c7cf0717bf927c103c0f3517d",
+      "packaged_source_sha256": "d63c5f3c029d2ec0c211b69d6c8e4cbf5509bceda9ce784bea27d4ed19b63fb6",
+      "change": "Remove only repository-unneeded INP001 lint suppression; executable statements identical"
+    },
+    "test_ledger_audit_core.py": {
+      "audited_source_sha256": "e1617245269f8472f99228781fce2d1cdebe9296bd3a5dfe3cd173da6291faee",
+      "packaged_source_sha256": "15efdc4e08fb80f2cfd22f3f614fcf84f5dbb11894a7625daaaf37f658c037f1",
+      "change": "Remove only repository-unneeded INP001 lint suppression; executable statements identical"
+    }
+  }
+}

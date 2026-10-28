@@ -1,0 +1,9 @@
+{
+  "time": 1793162395.3203478,
+  "inference_calls": 0,
+  "status": "REJECTED_BEFORE_INFERENCE",
+  "native_compiler": "PASS",
+  "evidence_window_test": "FAIL",
+  "reason": "The reader regression test expects the existing span marker followed by a space; the proposal put CORE on a new line, so the presentation index was empty. Preserve this frozen failed version; recover only the header separator in a distinct core2 root.",
+  "log": "core01-native-tests.log"
+}

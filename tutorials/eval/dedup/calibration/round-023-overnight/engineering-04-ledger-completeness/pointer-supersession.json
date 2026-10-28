@@ -1,0 +1,31 @@
+{
+  "time": 1793163167.2798657,
+  "event": "audit_supersession_recompute_current_pointers",
+  "previous": {
+    "milestone_85_80": null,
+    "target_90_85": null,
+    "best_metric": {
+      "path": "snapshots/1793161960676733482-best_metric-candidate-02-provisional.json",
+      "sha256": "18267731add98b2ae1b3b975c9dd60a04b791823bf0cfc604e6c5ec98773b238",
+      "signature": [
+        "candidate-02",
+        "provisional",
+        199,
+        94,
+        1
+      ],
+      "candidate": "candidate-02",
+      "status": "provisional",
+      "metric": {
+        "correct_directions": 199,
+        "directions": 240,
+        "correct_pairs": 94,
+        "pairs": 120,
+        "repeats": 1
+      }
+    },
+    "best_eligible": null
+  },
+  "new_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "reason": "Use the same no-field-contradiction requirement in both directions. Preserve all prior snapshot files and original audit artifacts; recompute current pointers uniformly under engineering04, with no resampling."
+}

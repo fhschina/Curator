@@ -1,0 +1,11 @@
+{
+  "frozen_at": 1793163105.5450926,
+  "basis": "Existing frozen no-field-contradiction requirement, no new semantic reference or label",
+  "new_constraint": "A negative with harmless/covered removed-side delta, no conflict, verified retained basis and explicitly not_translation contradicts its own ledger",
+  "exclude": "Translation-status other than not_translation is not inferred to be harmless; actual body-language protection remains unchanged",
+  "all_versions_identical": true,
+  "no_new_model_calls": true,
+  "no_credit_increase": true,
+  "new_artifact_directory": "audits/engineering04-ledger-coherence",
+  "old_strict_files_preserved": true
+}

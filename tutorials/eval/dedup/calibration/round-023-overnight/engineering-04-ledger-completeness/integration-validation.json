@@ -1,0 +1,11 @@
+{
+  "created": 1793163184.9674575,
+  "status": "PASS",
+  "native_files_unchanged": 78,
+  "group_layer_projections_verified": 312,
+  "unchanged_denominators": true,
+  "unchanged_raw_error_signals": true,
+  "credit_never_increases_vs_native_and_v1": true,
+  "prior_snapshots_and_audit_files_preserved": true,
+  "new_model_calls": 0
+}

@@ -1,0 +1,6 @@
+{
+  "number": 2,
+  "hypothesis": "Engineering-only prompt presentation revision of candidate02: show the existing exact unique CORE separately from its unchanged padded reading context in the main pair template. No semantic retention rule, raw source text,6000character window,model,parameters,fields,enums,validation or executor change. This isolates the remaining clause-language attribution failure after functional-role clarification; earlier round022candidate03 combined CORE,full contiguous windows and semantic priorities. Complete address assertions remain visible in unchanged context; actual endpoint/body-language regressions remain mandatory. Baseline and starting original prompts, immutable inputs and execution settings remain fixed; the sole intended experimental difference is the candidate pair presentation.",
+  "created": 1793162319.8708308,
+  "diff_sha256": "e8542a48cd0d49188e97437a7c8ba37f339ad4e3118f7b656a984d44792dd2ca"
+}
