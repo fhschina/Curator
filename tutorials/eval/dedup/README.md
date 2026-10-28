@@ -88,7 +88,29 @@ python tutorials/eval/dedup/7_analyze_results.py \
 
 ## Retention-policy calibration
 
-`policy_eval.py` freezes and compares the pinned baseline and candidate prompts using the existing main/critic workflows. Run it in an existing Curator environment with Data Designer 0.9.1. Keep all experiment data outside the repository. Set `PYTHONPATH` to the absolute checkout being tested so Ray workers load that checkout; the runtime receipt verifies this in both driver and worker processes.
+`policy_eval.py` freezes and compares the pinned baseline and candidate prompts using the existing main/critic workflows. Run it in an existing Curator environment with Data Designer 0.9.1. Keep raw experiment inputs and inference traces outside the repository. Set `PYTHONPATH` to the absolute checkout being tested so Ray workers load that checkout; the runtime receipt verifies this in both driver and worker processes.
+
+`policy_tuning.py` supports a bounded follow-up search against commit `6715574e`.
+Its `prepare` command reuses the native evaluator's preparation, freezes the latest
+explicit review separately from historical references, and fixes the regression
+and development denominators before inference. `candidate` snapshots each prompt
+hypothesis into a fresh directory. `execute` calls `policy_eval.py run` with the
+recorded single-GPU service, unchanged model parameters, and fresh checkpoints.
+`audit` and `compare` preserve failed rows, distinguish accepted whole-pair
+alternatives from strict references, and report individual repetitions, means,
+and worst values. A session's persisted deadline limits new experiments and
+reserves its final hour for delivery. The bounded v2 protocol uses three full
+diagnostic and development repetitions for both the baseline and selected
+candidate. Repetition means use exact count ratios so equal totals compare
+equally. These are development-reference results;
+they do not satisfy the separate independent-human acceptance requirements.
+
+The [round-022 v2 delivery](calibration/round-022-v2/README.md) contains the frozen
+run manifest, per-version results and reproduction commands. The
+[English report](../../../fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-en.mdx)
+and [Chinese translation](../../../fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx)
+share the same tables and conclusions. Development improvements do not override
+failed hard regressions.
 
 ```bash
 python tutorials/eval/dedup/policy_eval.py prepare \
@@ -103,7 +125,7 @@ python tutorials/eval/dedup/policy_eval.py run \
   --root /absolute/path/to/new-experiment --variant candidate --panel gate --repeat 1
 ```
 
-Run all three candidate repetitions and a baseline repetition. Use `--panel diagnostic` for the existing discussion cases. Open `blind_review.html`, independently label the 100 new pairs, and export `independent_votes.json` into the experiment root before `--panel holdout`. `report` accepts the same variant/panel/repeat selectors without invoking inference. Native message traces and HTTP-attempt receipts accompany each run.
+Run all three candidate regression repetitions. Compare baseline and candidate panels using the same repetition count. Use `--panel diagnostic` for the existing discussion cases. Open `blind_review.html`, independently label the 100 new pairs, and export `independent_votes.json` into the experiment root before `--panel holdout`. `report` accepts the same variant/panel/repeat selectors without invoking inference. Native message traces and HTTP-attempt receipts accompany each run.
 
 The frozen baseline receives the same Data Designer Markdown JSON response contract and audit-record header as the candidate; its retention rules remain pinned. Evidence packets are frozen after Arrow serialization so nullable span fields do not appear to change during execution. HTTP receipts live outside data directories and carry the audit pair ID.
 

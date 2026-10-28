@@ -1,0 +1,11 @@
+{
+  "common_table_data_sha256": "a9e833f3b53bdd3748e791079d674ac37b0517cace10b5873e3e3d3dbd133839",
+  "shared_table_data": true,
+  "table_shapes_verified": true,
+  "same_number_of_tables_and_rows": true,
+  "numeric_table_values_identical": true,
+  "english_sha256": "834994998230d459f41e027bbd112eb215f8e71d5acda5a3f68cdacf238298a8",
+  "chinese_sha256": "6933df7fac3a2e75482854dae9186fea715cb6d5eed0a45eb3b2317c70816d83",
+  "comparison_sha256": "4bbc9e51158d91582671d37a48b1d8dfe6de5c1f1ea8ecf2cdcdf4a983f88968",
+  "same_ordered_sections": true
+}

@@ -1,0 +1,16 @@
+{
+  "baseline_commit": "6715574e4e553f7b36f263d755f6cebe198e7b11",
+  "shared_native_format_adapter_only": true,
+  "exact_frozen_variant_match": true,
+  "files": {
+    "judge_config/system.jinja": "bc19ade031c8f56a43076c1c4fb07fcfdf2c3b6f2b86aa947bd915a6bc822b5e",
+    "judge_config/fuzzy_pair_judge.yaml": "6e0bfb94c00bf58c6ef137580f0def54b4d1d99d5e109e92197a6801c3cdc7bd",
+    "judge_config/pair.jinja": "cbc24a640d13deadaaf7168cfe534e20240f9db599e333e398960c1684fee4c5",
+    "critics/coverage_system.jinja": "b935b307c859ce98d1ab3caa86e8a9aab442f85ea069c99d250a5c61c63f0326",
+    "critics/subject_verifier_pair.jinja": "811a9ae77bacc626115ee331255bf5980c09c701734e546f8c6acfe9a53e0cf5",
+    "critics/subject_system.jinja": "b3636ca156e77d9865baf008dfe669cb95196dfb1086e00a3625d012fae5f10a",
+    "critics/coverage_pair.jinja": "7f5ad88d5b8693b81232ff0ffd516a0a2b3def10e5f70938a1d3ea88ff2b7309",
+    "critics/subject_pair.jinja": "24eda65e87ed8346ab0c5f4989d330cbc4858936338243f44df9dc90c67be40e",
+    "critics/subject_verifier_system.jinja": "0712f0e476b0416f4584fc50a44c59de6f352c1fd1e43d8e145c38bfae6c051c"
+  }
+}

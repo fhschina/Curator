@@ -1,0 +1,7 @@
+{
+  "pair_id": "D146",
+  "frozen_prompt_tokens": 26174,
+  "max_tokens": 6144,
+  "context": 32768,
+  "headroom": 450
+}

@@ -1,0 +1,83 @@
+{
+  "semantic_changes": [
+    {
+      "candidate": 1,
+      "hypothesis": "Two rules: equivalent heading/short authentication localization is harmless while factual body languages survive; actual operational destinations require exact semantic coverage. Separate format guard: primary_material_difference cannot use state_or_version.",
+      "diff_sha256": "1d9743ac3768e674b7576abaf07cbdfce41b04c5811991742aba43fd6c7875be"
+    },
+    {
+      "candidate": 2,
+      "hypothesis": "Two rules: complete shared cookie definitions and already-covered stock paragraphs make generic introductions/repetition harmless, while concrete additions remain directional; permitted name/category slots in otherwise equivalent citation, marketing and generic cookie templates do not alone establish a loss. Structural-only clarification: incomplete dominant_overlap_source must use unresolved. Localization and actual operational destinations retain candidate01 boundaries.",
+      "diff_sha256": "e30e98ee2ed0be17473622d10d55bb3f462ff41d57bc432a4693264ba47adf14"
+    },
+    {
+      "candidate": 3,
+      "hypothesis": "Two refinements: apply the permitted template slot/repetition boundary before alleging a new predicate, with any genuine extra detail still retained; classify equivalent short authentication messages by interface function before applying substantive body-language retention. Separate structural changes: contiguous original6000-character windows, exact delta CORE vs padded context labels, and concise settled reasoning. Source texts, window, input list, native executor, enums and critic authority unchanged.",
+      "diff_sha256": "d928701ba15205145b1e4cd8f1c4a91977a07263449882c0892e3f07adbfc5be"
+    },
+    {
+      "candidate": 4,
+      "hypothesis": "Two refinements: real operational addresses are checked for whole-keeper coverage before any city-slot exception; retained concreteness must add a property/behavior beyond the permitted generic category/provider slot or listed stock cookie-introduction/repetition component. Structural refactor removes repeated/conflicting policy text, keeps existing functional localization and all other boundaries, native15 fields, fixed6000 windows/CORE evidence, and veto-only critics.",
+      "diff_sha256": "1757de5d0397e3b8d7ef75d64ab93796e52ea44a485dd00d947157248f350dc1"
+    },
+    {
+      "candidate": 5,
+      "hypothesis": "One semantic rule: jointly normalize repeated permitted template-slot occurrences before identity/materiality; a material loss needs a genuinely different non-slot property rather than counting repeated category/provider/city occurrences as separate facts. Separate structural repairs: mandatory fenced-JSON wrapper example at start, explicit ledger-to-summary coherence and restored same-terms license-reference reminder. No parser rewriting, schema relaxation, source/window change or critic promotion.",
+      "diff_sha256": "5e4aa6cd25ece480830e0375acd9af5024b1f12bf03562f427698e96a4ad7bf7"
+    },
+    {
+      "candidate": 6,
+      "hypothesis": "FINAL semantic candidate, two rules: routine UI equivalence requires identical stated operation steps/channel/triggers, not just the same goal; evaluate retained propositions using whole-keeper cross-section coverage and exclude permitted stock/template components from ALL material delta classes. Separate structural fixes: role-specific fenced schema contract, correct containment primary category including list extensions, deduplicated rubric descriptions to preserve fixed6000 window and32768/6144 context budget. Native executor/validation/critic authority unchanged.",
+      "diff_sha256": "de7fc88fd36faff0061ec0e2be988c593ea60378c8329a0fe9a6592d4eba6ed9"
+    }
+  ],
+  "structural_changes": [
+    {
+      "candidate": 1,
+      "change": "Field-specific enum reminder, without adding enums, changing native parsing, or forgiving historical attempts",
+      "trigger": "D074 invalid primary_material_difference=state_or_version; baseline three repeats reproduce this failure",
+      "validation_scope": "The inherited enum guard is evaluated on D074 in candidate06 and the final selected variant full diagnostic repetitions. Candidate01 itself stopped after its failed hard screen; no candidate01 D074 result is claimed."
+    },
+    {
+      "candidate": 2,
+      "change": "Rubric clarifies dominant_overlap_source must be unresolved on incomplete evidence",
+      "trigger": "Baseline truncated rows sometimes provide a visible overlap type while other summary fields are unresolved",
+      "validation_scope": "five frozen truncated cases retained in150"
+    },
+    {
+      "candidate": 3,
+      "change": "Same6000-char originals as contiguous windows; actual delta CORE distinguished from shared padded context; concise settled rationales",
+      "validation": "672 native secure-engine renders/token counts pass; frozen worst26174+6144<32768;7 tuning tests pass, including true source-delta and cutoff validation; tokenizer count matches actual baseline HTTP usage exactly",
+      "native_executor_changed": false,
+      "new_fields_or_enums": false
+    },
+    {
+      "candidate": 5,
+      "change": "Fenced JSON wrapper example and ledger-summary coherence; then one unmatched literal opening brace removed to satisfy native compiler",
+      "initial_run": "candidate-05 failed native template compiler before any HTTP inference request;44expected inputs,0modelcalls,0judgments; preserved failed run_manifest andlogs",
+      "recovery": "candidate-05-format1 with same semantic rules and fresh directory/checkpoints; native compiler validation added across actual four column types",
+      "semantic_budget_consumed": false
+    },
+    {
+      "candidate": 6,
+      "change": "Role-specific fenced response contract, containment summary metadata clarification, and deduplicated rubric descriptions to keep the unchanged6000-character window within the fixed32768/6144 context/output profile",
+      "validation": "Frozen worst main request26430+6144=32574; actual native three-repeat results retained, including format failures; no native parser/schema/critic-authority relaxation"
+    }
+  ],
+  "audit_changes": "Development-only agreement wrapper fixes explicit source eligibility, accepted whole-pair alternatives, all-layer validity, means/worst and immutable input checks. Native policy_eval, policy_runtime, critics Python and Data Designer executor remain unchanged.",
+  "initial_test_environment": {
+    "initial_failure": "Initial CPU fixture setup could not find the Ray CLI on PATH",
+    "correction": "Added the existing /raid/hfang/llm_judge_env_pr2324_latest/bin to PATH; no environment creation or synchronization",
+    "initial_log": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/initial-tests.log",
+    "initial_log_sha256": "834ad13751796249d13ce1682b68d1ee6c015cbfd9e4842ab66e55f894f21968",
+    "corrected_log": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/initial-tests-corrected.log",
+    "corrected_log_sha256": "3e1302f4999f5bbd0e84b3fe1785442fc35c8a4aca0a1df400b8e785d52bddfb"
+  },
+  "reporting_repairs": [
+    {
+      "change": "Exact Fraction aggregation of count ratios before float presentation",
+      "reproduced_bug": "Three strict97 direction counts [184,184,190] and baseline [186,186,186] both total558/582, but averaging their already-rounded floats produced0.9587628865979381 vs0.9587628865979382, falsely failing non-regression",
+      "validation": "New public aggregate test generates the fixed97 reference counts through agreement;70 selected tutorial CPU tests pass. All raw native outputs are reaudited uniformly with the final analysis hash; no model inputs, labels, denominators, evidence validation or critic authority changed."
+    }
+  ]
+}

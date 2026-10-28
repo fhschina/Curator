@@ -1,0 +1,7 @@
+{
+  "result": "PASS",
+  "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/precommit-final-pass.log",
+  "sha256": "b500531b00f60a10417fe9988124893e66360f667ae5bbb3390835d1938dbada",
+  "scope": "All staged changed source and delivery files before the receipt/checksum refresh; a final full hook rerun verifies the refreshed metadata as well",
+  "checked_at": 1793151149.9561944
+}

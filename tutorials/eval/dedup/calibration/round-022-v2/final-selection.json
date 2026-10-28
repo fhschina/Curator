@@ -1,0 +1,148 @@
+{
+  "best_candidate": "candidate-02",
+  "acceptance_passed": false,
+  "created": 1793148388.145539,
+  "based_on": "Repeated hard evidence only; development scores excluded from ranking",
+  "reason_en": "candidate-02 was selected from the frozen alternatives because it preserved complete technical validity and zero observed reference-required wrong allows at every layer across all 258 hard presentations. Among variants meeting those two conditions, it had the greatest correct directional coverage. Other required-Yes mistakes still fail the hard gate; no version is promoted by majority vote. The ranking uses hard evidence only; development-reference improvement cannot excuse hard failures.",
+  "reason_zh": "选择冻结的 candidate-02，是因为它在全部 258 个硬性呈现样本的每层中保持技术有效，且相对明确应保留参考的错误允许为零。在满足这两个条件的版本中，它的正确方向覆盖最多。其余必须为 Yes 的判断仍有错误，因此硬性条件未通过；不以多数投票宣布通过。选优排序只使用硬性证据；开发参考分数改善不能免除硬性失败。",
+  "selection_protocol_sha256": "bf1412e5c9dd294ebaa91422c06c36dfcac7736cdd8b8f616ed607d667ba1635",
+  "metrics": {
+    "candidate-02": {
+      "layers": {
+        "main": {
+          "pairs": 258,
+          "correct_directions": 483,
+          "correct_pairs": 240,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 33
+        },
+        "coverage": {
+          "pairs": 258,
+          "correct_directions": 481,
+          "correct_pairs": 238,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 35
+        },
+        "final": {
+          "pairs": 258,
+          "correct_directions": 481,
+          "correct_pairs": 238,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 35
+        }
+      },
+      "valid_and_zero_wrong_allows": true,
+      "correct_all_layer_directions": 1445,
+      "hard_passed": false
+    },
+    "candidate-03": {
+      "layers": {
+        "main": {
+          "pairs": 258,
+          "correct_directions": 509,
+          "correct_pairs": 254,
+          "invalid_pairs": 1,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 2,
+          "reference_wrong_blocks": 3
+        },
+        "coverage": {
+          "pairs": 258,
+          "correct_directions": 511,
+          "correct_pairs": 255,
+          "invalid_pairs": 1,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 3
+        },
+        "final": {
+          "pairs": 258,
+          "correct_directions": 511,
+          "correct_pairs": 255,
+          "invalid_pairs": 1,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 3
+        }
+      },
+      "valid_and_zero_wrong_allows": false,
+      "correct_all_layer_directions": 1531,
+      "hard_passed": false
+    },
+    "candidate-04": {
+      "layers": {
+        "main": {
+          "pairs": 258,
+          "correct_directions": 494,
+          "correct_pairs": 246,
+          "invalid_pairs": 4,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 15
+        },
+        "coverage": {
+          "pairs": 258,
+          "correct_directions": 457,
+          "correct_pairs": 227,
+          "invalid_pairs": 22,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 17
+        },
+        "final": {
+          "pairs": 258,
+          "correct_directions": 457,
+          "correct_pairs": 227,
+          "invalid_pairs": 22,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 17
+        }
+      },
+      "valid_and_zero_wrong_allows": false,
+      "correct_all_layer_directions": 1408,
+      "hard_passed": false
+    },
+    "candidate-06": {
+      "layers": {
+        "main": {
+          "pairs": 258,
+          "correct_directions": 502,
+          "correct_pairs": 249,
+          "invalid_pairs": 2,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 2,
+          "reference_wrong_blocks": 8
+        },
+        "coverage": {
+          "pairs": 258,
+          "correct_directions": 501,
+          "correct_pairs": 248,
+          "invalid_pairs": 2,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 2,
+          "reference_wrong_blocks": 9
+        },
+        "final": {
+          "pairs": 258,
+          "correct_directions": 501,
+          "correct_pairs": 248,
+          "invalid_pairs": 2,
+          "unresolved_pairs": 0,
+          "reference_wrong_allows": 2,
+          "reference_wrong_blocks": 9
+        }
+      },
+      "valid_and_zero_wrong_allows": false,
+      "correct_all_layer_directions": 1504,
+      "hard_passed": false
+    }
+  },
+  "new_semantic_candidates": 0
+}

@@ -5,6 +5,12 @@ description: Calibrate directional deduplication judgments against explicit rete
 
 Deduplication retention asks two separate questions: can A replace B, and can B replace A? A replacement is acceptable only when the removed document's useful contribution survives in the keeper. Identify concrete passages, including substantive explanations, facts, instructions, limits and obligations. A lexical difference or a high similarity score alone does not decide this.
 
+The bounded Qwen v2 follow-up is documented in the [English report](/curate-text/process-data/deduplication/retention-policy-v2-report)
+and its [Chinese translation](/curate-text/process-data/deduplication/retention-policy-v2-report-zh). It compares six
+prompt candidates with the fixed v1 commit using exposed development references.
+Its remaining failures and acceptance status are reported separately from the
+independent-human acceptance contract below.
+
 ## Retention policy v1
 
 This version implements the conditional boundaries confirmed in the [policy discussion](https://nvidia.enterprise.slack.com/archives/C0C9ERP1YA1/p1792904190754399):

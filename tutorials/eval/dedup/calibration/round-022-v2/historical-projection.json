@@ -1,0 +1,14 @@
+{
+  "pairs": 120,
+  "directions": 240,
+  "correct_directions": 176,
+  "correct_pairs": 82,
+  "direction_agreement": 0.7333333333333333,
+  "pair_agreement": 0.6833333333333333,
+  "reference_wrong_allows": 3,
+  "reference_wrong_blocks": 59,
+  "invalid_pairs": 1,
+  "unresolved_pairs": 0,
+  "valid_pairs": 119,
+  "valid_judgment_coverage": 0.9916666666666667
+}

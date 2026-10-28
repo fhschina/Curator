@@ -1,0 +1,24 @@
+{
+  "started": 1793150331.916333,
+  "completed": 1793150352.575588,
+  "exit_code": 0,
+  "passed": 4,
+  "command": [
+    "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+    "-m",
+    "pytest",
+    "tests/tutorials/eval/dedup",
+    "--confcutdir=tests/tutorials/eval/dedup",
+    "-m",
+    "gpu",
+    "-k",
+    "not eight_replica",
+    "-q"
+  ],
+  "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/registered-single-gpu-checks.log",
+  "sha256": "adf0f65a0ddf44f2185f2d7e6bd0f55c0eaa8ccf245588cfe557dd2073c9c917",
+  "selected": "candidate-02",
+  "prompt_roundtrip_receipt_sha256": "3e94198bc9e0bfc5dbabdc78fef5df79df7a10808bd60468eaeeb4d6d0d1da1c",
+  "data_designer": "0.9.1",
+  "gpu_scope": "Single owned GPU0 service; registered eight-replica check excluded"
+}

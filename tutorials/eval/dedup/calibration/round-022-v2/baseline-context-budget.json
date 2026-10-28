@@ -1,0 +1,11 @@
+{
+  "requests": 993,
+  "longest": [
+    15881,
+    "D146",
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/baseline/runs/baseline-diagnostic-2/receipts/main/http/853447fd46de40bd81b69de065113734.json"
+  ],
+  "maximum_prompt_tokens": 15881,
+  "fixed_max_tokens": 6144,
+  "context": 32768
+}

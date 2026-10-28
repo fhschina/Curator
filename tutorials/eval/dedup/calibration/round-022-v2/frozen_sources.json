@@ -1,0 +1,9 @@
+{
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-021/delivery/summary.json": "ef0ae08ed1a6d23f347fe9e54a5de5c547577eee63e556b4897be580ce0eabcd",
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-021/manifest.json": "e3955866b66c7e3beebca8e0254d17886a5e007d2bb10cc774c038c313b70dbb",
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-021/labels/diagnostic.json": "f03221c0769f868e0c31680b70fb42456b9603a57e23a8e4966f8a4bee6eaaa3",
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-021/labels/holdout.json": "d02944c8143f84aeecd5b7d60e7c651360955015910c0487fd5fe20ddd63ea4f",
+  "/raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/adjudications.json": "28053e1c5886a9c0b16cd188f974369ed73a59dbe577c6e39101b64a89568f05",
+  "/raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/cases.json": "27c244bebec483fcab6634038cb27e6735425abbe821efb47ee542747e1c2603",
+  "/raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/goal_prompt_tuning_10h_instructions.txt": "08b713eec33de45598458a015133f0b461639294f9b2852417d8730025998fd2"
+}

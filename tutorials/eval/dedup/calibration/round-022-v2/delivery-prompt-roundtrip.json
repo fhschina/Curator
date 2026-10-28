@@ -1,0 +1,16 @@
+{
+  "selected": "candidate-02",
+  "files": {
+    "judge_config/system.jinja": "bd055a339dfb6210d25839bfb39604d9d1546fec8d740167c791233b0678d1ca",
+    "judge_config/fuzzy_pair_judge.yaml": "8a7e52760cbee391b26fafee1972e0d9e07507ae912709311b1d7c2841795fc8",
+    "judge_config/pair.jinja": "a9acb6fe1bc729baaaa787299259b996482930b6646f2d432fdedb6d0369e802",
+    "critics/coverage_system.jinja": "94544a2617c326d5eab2c7bd4814a361feb92a078da34fabe81c2dcab7e261a6",
+    "critics/subject_verifier_pair.jinja": "28edd05ee5bbf084a27c4b35fbe28fb0eab84c6dbdf456b5ca22a10bcd069da3",
+    "critics/subject_system.jinja": "e6dbc696b26cb2e3559d4ea46021409d016bc585debabc8137074cc0ab0e50c7",
+    "critics/coverage_pair.jinja": "dc705b60746baa1fb005d6fe8a1b361b8c0f8d003040379ed01629b822e6fdea",
+    "critics/subject_pair.jinja": "24b391ea11464e79e81d832f5cf98e2b14dc6427f70b2d43af4cc054e007a8a9",
+    "critics/subject_verifier_system.jinja": "2089caa90867c4f1357f6fdd40c8d615eb33ebe0799936a751a57cd51371932d"
+  },
+  "effective_prompt_change": false,
+  "source_synced_to_exact_evaluated_frozen_variant": true
+}

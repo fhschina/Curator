@@ -1,0 +1,394 @@
+{
+  "direction_order": [
+    "a_can_replace_b",
+    "b_can_replace_a"
+  ],
+  "source_sha256": "27c244bebec483fcab6634038cb27e6735425abbe821efb47ee542747e1c2603",
+  "cases": [
+    {
+      "case_id": "R11",
+      "pair_id": "cp1_acab7f80f8de48831bcb2f5af2b890994e7b2eb2815663d7d9053ddaa757279d",
+      "title": "引用模板中的站点目标",
+      "text_hashes": {
+        "a": "96a992347f4434e1e7cc834855378fe73ee7606c054c3bebedbc0db13c21f9b7",
+        "b": "9eab68f43c97b816f46cef43f742c9df1b80f4cefff1c3dd06043d40e586bf4b"
+      },
+      "original_reference": {
+        "type": "prior_agent_proposal",
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no",
+        "reason": "正文要求引用者必须链接到特定来源。A明确要求04597.com.ua（伊尔平），B要求敖德萨城市网站；这改变了署名/链接义务的目标，不能按城市服务模板的无害地点替换放行。建议双向保留；这是candidate将例外扩大到许可条件的执行风险，尚非团队逐条确认标签。"
+      },
+      "assistant_proposal": {
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no"
+      },
+      "latest_user_decision": {
+        "case_id": "R11",
+        "pair_id": "cp1_acab7f80f8de48831bcb2f5af2b890994e7b2eb2815663d7d9053ddaa757279d",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "Yes/Yes：视为可忽略的模板站点变化",
+        "scope": "This citation-template pair with unchanged citation terms and a changed city-site reference. No additional scope inferred.",
+        "recorded_at_utc": "2026-10-27T20:51:48.777613+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {
+        "review_status": "reviewed",
+        "proposed_a_can_replace_b": "no",
+        "proposed_b_can_replace_a": "no",
+        "reason": "正文要求引用者必须链接到特定来源。A明确要求04597.com.ua（伊尔平），B要求敖德萨城市网站；这改变了署名/链接义务的目标，不能按城市服务模板的无害地点替换放行。建议双向保留；这是candidate将例外扩大到许可条件的执行风险，尚非团队逐条确认标签。",
+        "review_scope": "complete_frozen_text",
+        "independent_human_validation": false
+      },
+      "eligible_as_latest_confirmed_label": true
+    },
+    {
+      "case_id": "R18",
+      "pair_id": "cp1_230b143772066af635c4ec045865b5845a5496dadd4e3b874e308aff894ef598",
+      "title": "营销模板中的商品类别槽位",
+      "text_hashes": {
+        "a": "ffddf7da1f909fbb3e79bdb27905686a3df2c773d37f27cd2bb15100b835a11d",
+        "b": "6535747187a877b43c4842e344f04a2f24e3f12bca1e569d118ea3be93d47970"
+      },
+      "original_reference": {
+        "type": "prior_agent_proposal",
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no",
+        "reason": "除城市外，实际商品类别也从Handicraft Arch变为Wood Moulding。相同营销模板不能覆盖不同商品种类的供应声明。candidate明确用“by extension”扩大城市例外，coverage也重复该扩大解释；按本轮不得忽略实际商品差异的约束，建议双向保留。"
+      },
+      "assistant_proposal": {
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no"
+      },
+      "latest_user_decision": {
+        "case_id": "R18",
+        "pair_id": "cp1_230b143772066af635c4ec045865b5845a5496dadd4e3b874e308aff894ef598",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "Yes/Yes：没有具体商品说明差异，可忽略模板槽位",
+        "scope": "The concrete pair and conditions stated in the review question. No broader exception inferred.",
+        "recorded_at_utc": "2026-10-27T20:57:12.436341+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {
+        "review_status": "reviewed",
+        "proposed_a_can_replace_b": "no",
+        "proposed_b_can_replace_a": "no",
+        "reason": "除城市外，实际商品类别也从Handicraft Arch变为Wood Moulding。相同营销模板不能覆盖不同商品种类的供应声明。candidate明确用“by extension”扩大城市例外，coverage也重复该扩大解释；按本轮不得忽略实际商品差异的约束，建议双向保留。",
+        "review_scope": "complete_frozen_text",
+        "independent_human_validation": false
+      },
+      "eligible_as_latest_confirmed_label": true
+    },
+    {
+      "case_id": "R14",
+      "pair_id": "cp1_c9d5e4fbd310bfe8c34d34423db25f92be63e0e0dd46f2538ee6013d9d12a499",
+      "title": "统计分类里的重复必需条款",
+      "text_hashes": {
+        "a": "cab05529632795ea5f8b95f2976a1225940d4c0292aa83f2eb78799626380d5a",
+        "b": "4e78b468e6ebd7c5def250831dfb1ad26cca1b05993c616903d2ef87b194c30e"
+      },
+      "original_reference": {
+        "type": "prior_agent_proposal",
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no",
+        "reason": "两边差异具有分类语义：B把Statistics/Analysis写成必需、无法关闭，A则说明Matomo仅在IDS服务器运行并请求用户启用。即使B看似复制了Essential说明，也不能擅自当作无害重复或替其纠错。A独有技术与数据处理约束，B独有统计类不可关闭的条件，建议双向保留。"
+      },
+      "assistant_proposal": {
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no"
+      },
+      "latest_user_decision": {
+        "case_id": "R14",
+        "pair_id": "cp1_c9d5e4fbd310bfe8c34d34423db25f92be63e0e0dd46f2538ee6013d9d12a499",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "no",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "Yes/No：B是重复的通用模板，A已覆盖有用内容",
+        "scope": "The concrete pair and conditions stated in the review question. No broader exception inferred.",
+        "recorded_at_utc": "2026-10-27T20:57:12.436357+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {
+        "review_status": "reviewed",
+        "proposed_a_can_replace_b": "no",
+        "proposed_b_can_replace_a": "no",
+        "reason": "两边差异具有分类语义：B把Statistics/Analysis写成必需、无法关闭，A则说明Matomo仅在IDS服务器运行并请求用户启用。即使B看似复制了Essential说明，也不能擅自当作无害重复或替其纠错。A独有技术与数据处理约束，B独有统计类不可关闭的条件，建议双向保留。",
+        "review_scope": "complete_frozen_text",
+        "independent_human_validation": false
+      },
+      "eligible_as_latest_confirmed_label": true
+    },
+    {
+      "case_id": "R33",
+      "pair_id": "cp1_775e6a1add8c110784e9f14a1f6d6b00088acc1f3a301a4764d869114322661e",
+      "title": "cookie提供方与数据接收方名称",
+      "text_hashes": {
+        "a": "31ac3ef71b39cdc2e601161f9224cfbcd2a0300d7740c7ff389680c28816bd0f",
+        "b": "f9e05c85f6256a033963dffbb18bc7e938def6a36a9a815cc2bd717f4ccb8782"
+      },
+      "original_reference": {
+        "type": "prior_agent_proposal",
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "yes",
+        "reason": "B明确命名Google为cookie来源及数据接收方，A只有未指明接收者的数据共享陈述。该主体是实际处理事实，不是普通按钮或导航。B更具体且覆盖A的泛化说明，A不能覆盖B；candidate及coverage忽略该事实存在放行风险。"
+      },
+      "assistant_proposal": {
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "yes"
+      },
+      "latest_user_decision": {
+        "case_id": "R33",
+        "pair_id": "cp1_775e6a1add8c110784e9f14a1f6d6b00088acc1f3a301a4764d869114322661e",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "Yes/Yes：名称属于可忽略的模板变量",
+        "scope": "The concrete pair and conditions stated in the review question. No broader exception inferred.",
+        "recorded_at_utc": "2026-10-27T20:57:12.436359+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {
+        "review_status": "reviewed",
+        "proposed_a_can_replace_b": "no",
+        "proposed_b_can_replace_a": "yes",
+        "reason": "B明确命名Google为cookie来源及数据接收方，A只有未指明接收者的数据共享陈述。该主体是实际处理事实，不是普通按钮或导航。B更具体且覆盖A的泛化说明，A不能覆盖B；candidate及coverage忽略该事实存在放行风险。",
+        "review_scope": "complete_frozen_text",
+        "independent_human_validation": false
+      },
+      "eligible_as_latest_confirmed_label": true
+    },
+    {
+      "case_id": "D011",
+      "pair_id": "D011",
+      "title": "城市与实际投稿邮箱",
+      "text_hashes": {
+        "a": "1c81ed27667f8ab2737364a9affe9ba553d30833ea0e354adb3bc7cde6d94fba",
+        "b": "5ec5873b47f9bc9e118d1aa57bd07da6a9e62c220914b552f9b5d89129b64095"
+      },
+      "original_reference": {
+        "type": "individual_historical_reference",
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no",
+        "reason": "The target audiences and email addresses differ; both are important details.",
+        "label_status": "provisional"
+      },
+      "assistant_proposal": null,
+      "latest_user_decision": {
+        "case_id": "D011",
+        "pair_id": "D011",
+        "canonical_pair_id": "cp1_71bd41809c11fc1816c89bac026964d7109b21e82c110fc16483e66f2da39a63",
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "No/No：实际投稿入口不同，应分别保留",
+        "scope": "The concrete posting-instruction pair: different actual destination email addresses must be retained.",
+        "recorded_at_utc": "2026-10-27T20:59:06.482598+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {},
+      "eligible_as_latest_confirmed_label": true
+    },
+    {
+      "case_id": "D058",
+      "pair_id": "D058",
+      "title": "一句密码设置说明的语言变化",
+      "text_hashes": {
+        "a": "d3e8da7c8503b851fbee74ad0f80f1035603152fdedde99e8fa3616fd7ef9fbc",
+        "b": "f5431574a69123cccb1072cc88ed2f063139f9e3b8aacbe59eabc3efd149ff2e"
+      },
+      "original_reference": {
+        "type": "individual_historical_reference",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "reason": "This is a simple registration instruction, so I do not consider the language and wording differences important enough to distinguish the documents.",
+        "label_status": "provisional"
+      },
+      "assistant_proposal": null,
+      "latest_user_decision": {
+        "case_id": "D058",
+        "pair_id": "D058",
+        "canonical_pair_id": "cp1_eb12581b326d904c47cfe1e79eedb0d3bae3b5d1374aa848f9d4e6dc94416f79",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "Yes/Yes：短认证指引属于可忽略的界面本地化",
+        "scope": "The reviewed short password-link instruction is harmless authentication-interface localization; the rest of the page is semantically equivalent.",
+        "recorded_at_utc": "2026-10-27T21:20:08.961782+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {},
+      "eligible_as_latest_confirmed_label": true
+    },
+    {
+      "case_id": "D059",
+      "pair_id": "D059",
+      "title": "只有标题本地化，正文完全相同",
+      "text_hashes": {
+        "a": "8e3b4dfc46d2bb888d3519381f5c1f1319f71bc1b71308427a03661b46d83ffd",
+        "b": "ec2d1acf820a88038623da2fa3f656148795e3a1b5aaa9f2aa9dacaf6dd4dba8"
+      },
+      "original_reference": {
+        "type": "individual_historical_reference",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "reason": "Changing only the heading's language does not matter. A language change in the substantive core content would matter.",
+        "label_status": "provisional"
+      },
+      "assistant_proposal": {
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes"
+      },
+      "latest_user_decision": {
+        "case_id": "D059",
+        "pair_id": "D059",
+        "canonical_pair_id": "cp1_d1ed2499ac25c536952147f5e4bce85d7f80fa6c8222472d748770604b7019df",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "Yes/Yes：正文相同，标题本地化可忽略",
+        "scope": "The substantive English body is identical; only the English/French heading differs.",
+        "recorded_at_utc": "2026-10-27T21:20:08.961798+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {},
+      "eligible_as_latest_confirmed_label": true
+    },
+    {
+      "case_id": "D074",
+      "pair_id": "D074",
+      "title": "原始答案正确但一次输出未通过解析",
+      "text_hashes": {
+        "a": "4939b0105eac858461ccb19a050b627cfa86d09e1d8005933275c68009e6ca74",
+        "b": "76573908d7a0b2b8b086781d296bd2a27cb89e866303b940df483fc19a7f9879"
+      },
+      "original_reference": {
+        "type": "individual_historical_reference",
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no",
+        "reason": "These are different product models.",
+        "label_status": "provisional"
+      },
+      "assistant_proposal": {
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no"
+      },
+      "latest_user_decision": null,
+      "joint_review_status": "technical_failure",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {},
+      "eligible_as_latest_confirmed_label": false
+    },
+    {
+      "case_id": "D121",
+      "pair_id": "D121",
+      "title": "空购物车上的通用cookie句子",
+      "text_hashes": {
+        "a": "3bfc0a0330e132301a9895ff4ae95c5d5c597d40edaf718ee6331b7152b57fac",
+        "b": "0b58bdff130bf1142e548698964be5f2b6ebaf25beca320a6f3eb4e99ff818de"
+      },
+      "original_reference": {
+        "type": "individual_historical_reference",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "reason": "The differing parts add little value relative to the shared content.",
+        "label_status": "provisional"
+      },
+      "assistant_proposal": null,
+      "latest_user_decision": null,
+      "joint_review_status": "pending",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {},
+      "eligible_as_latest_confirmed_label": false
+    },
+    {
+      "case_id": "D134",
+      "pair_id": "D134",
+      "title": "装饰性问句与实质cookie说明",
+      "text_hashes": {
+        "a": "8eaf23434a3ee8c61a0f27f04f0aca692259bc4bc86f1810972fca3aa08ae7ab",
+        "b": "977464d70e360029c8361335c45c67d0a9d24815c7c610fbe354e7b4ebf5ca21"
+      },
+      "original_reference": {
+        "type": "individual_historical_reference",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "no",
+        "reason": "A is more detailed. B's decorative introduction is not closely related to the actual cookie purposes.",
+        "label_status": "provisional"
+      },
+      "assistant_proposal": {
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "no"
+      },
+      "latest_user_decision": {
+        "case_id": "D134",
+        "pair_id": "D134",
+        "canonical_pair_id": "cp1_621016220243f638b44d8cebdea41bf25956fc12ed16c3c2cc84b61ce9ccc177",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "Yes/Yes：引言都是可忽略的通用cookie文字",
+        "scope": "In this concrete pair the shared cookie-category definitions are retained, and both introductory variants are accepted as generic cookie text.",
+        "recorded_at_utc": "2026-10-27T21:20:08.961801+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {},
+      "eligible_as_latest_confirmed_label": true
+    },
+    {
+      "case_id": "D135",
+      "pair_id": "D135",
+      "title": "同义的优化目的与额外同意说明",
+      "text_hashes": {
+        "a": "f6303e65898d8b06553a104240a10c3caa51b49e2e2b3eefd43deb2248e4334b",
+        "b": "adaffda489cffb7aa1ddb13c6fcd85e626ece4516171aef6c997ad583715df62"
+      },
+      "original_reference": {
+        "type": "individual_historical_reference",
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "yes",
+        "reason": "B provides the more detailed explanation.",
+        "label_status": "provisional"
+      },
+      "assistant_proposal": {
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "yes"
+      },
+      "latest_user_decision": {
+        "case_id": "D135",
+        "pair_id": "D135",
+        "canonical_pair_id": "cp1_809a66b21ed3b96534913bd2f8708b39862ce15a68458b899cc01884f9dc7de7",
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes",
+        "status": "user_confirmed",
+        "source": "Explicit user answer in this conversation",
+        "user_statement": "Yes/Yes：新增引言也只是通用cookie模板",
+        "scope": "In this concrete pair the shared cookie-category definitions are retained, and the longer introductory variant is accepted as generic cookie text.",
+        "recorded_at_utc": "2026-10-27T21:20:08.961803+00:00"
+      },
+      "joint_review_status": "user_confirmed",
+      "independent_blind_human_validation": false,
+      "initial_agent_review": {},
+      "eligible_as_latest_confirmed_label": true
+    }
+  ]
+}

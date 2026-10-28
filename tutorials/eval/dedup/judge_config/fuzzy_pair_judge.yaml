@@ -81,36 +81,36 @@ execution:
                 non_main_only: B contains reusable cookie, legal, auth, error, paywall, navigation or platform messaging. This profile does not make useful explanations or obligations disposable.
                 unreadable: B cannot be judged safely.
             - name: span_shared_basis
-              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed city/destination labels, including titles. Apply that exception before deciding the basis is only a template.
+              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed city/destination labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots.
               options:
                 verified_substantive_record: Cited spans establish the same retained substantive content; confirmed harmless service-location slots qualify even when the locations differ.
                 verified_equivalent_non_main_message: Cited spans establish a complete retained non-main message shared by both sides; one side may additionally contain useful prose without invalidating this basis.
                 none: No qualifying retained-content or complete-message basis exists after applying conditional exceptions.
                 unresolved: Visible evidence is insufficient.
             - name: span_a_delta
-              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material.
+              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material.
               options:
                 none: No A-only span exists.
-                semantically_covered: A-only factual meaning is covered by B through paraphrase or translation; substantive different-language learning material still requires retention.
-                universal_ui_or_repetition: Every A-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs.
+                semantically_covered: A-only factual meaning is covered by B through paraphrase or translation; substantive different-language body material still requires retention, while equivalent localized headings and short authentication-interface instructions are harmless.
+                universal_ui_or_repetition: Every A-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs. This also includes the conditional cookie framing/repetition and permitted generic template slots defined by the policy.
                 same_record_content_extension: A alone adds retained content to the verified same substantive record.
                 record_identity_role_or_state_change: A-only identity, target, title, SKU, date, count, list, state or role changes a useful contribution. A harmless city/destination label in an unchanged service is excluded, even in a title.
                 material_non_main_message_change: A-only cookie, legal, auth, error, paywall, or platform meaning changes the complete message.
                 other_substantive_content: A has another uncovered retained proposition.
                 unresolved: The full A-only delta cannot be classified safely.
             - name: span_b_delta
-              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material.
+              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material.
               options:
                 none: No B-only span exists.
-                semantically_covered: B-only factual meaning is covered by A through paraphrase or translation; substantive different-language learning material still requires retention.
-                universal_ui_or_repetition: Every B-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs.
+                semantically_covered: B-only factual meaning is covered by A through paraphrase or translation; substantive different-language body material still requires retention, while equivalent localized headings and short authentication-interface instructions are harmless.
+                universal_ui_or_repetition: Every B-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs. This also includes the conditional cookie framing/repetition and permitted generic template slots defined by the policy.
                 same_record_content_extension: B alone adds retained content to the verified same substantive record.
                 record_identity_role_or_state_change: B-only identity, target, title, SKU, date, count, list, state or role changes a useful contribution. A harmless city/destination label in an unchanged service is excluded, even in a title.
                 material_non_main_message_change: B-only cookie, legal, auth, error, paywall, or platform meaning changes the complete message.
                 other_substantive_content: B has another uncovered retained proposition.
                 unresolved: The full B-only delta cannot be classified safely.
             - name: span_hard_conflict
-              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material.
+              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases.
               options:
                 none: No conflicting material value or role is visible.
                 identity_or_slot: Material record identity or defining claim conflicts; confirmed harmless service slots do not conflict.
@@ -123,18 +123,18 @@ execution:
             - name: span_translation_status
               description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict.
               options:
-                complete_faithful: Both sides express the same complete factual content in different languages. This does not remove the contribution of distinct-language substantive prose.
+                complete_faithful: Both sides express the same complete factual content in different languages. This does not remove the contribution of distinct-language substantive body prose; equivalent localized headings and short authentication instructions alone are harmless.
                 partial_or_additive: Translation is incomplete, additive, or changes retained meaning.
                 not_translation: Translation is not the relationship.
                 unresolved: Visible evidence is insufficient.
             - name: a_can_replace_b
-              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B body span. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved.
+              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage.
               options:
                 "yes": A safely replaces B.
                 "no": B has conflicting or uncovered retained meaning.
                 unresolved: The ledger is unresolved.
             - name: b_can_replace_a
-              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A body span. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved.
+              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage.
               options:
                 "yes": B safely replaces A.
                 "no": A has conflicting or uncovered retained meaning.
@@ -158,7 +158,7 @@ execution:
                 major: Retained identity, state, role, list, legal meaning, content, or addition differs.
                 unresolved: The ledger is unresolved.
             - name: primary_material_difference
-              description: Select the single decisive retained-content difference, consistent with the ledger fields above.
+              description: Select the single decisive retained-content difference, consistent with the ledger fields above. Use only this field's options; state_or_version is a span_hard_conflict value and is illegal here.
               options:
                 none: No material difference exists.
                 main_content_addition_deletion: Useful retained prose, explanations or obligations occur on one side only, and the other side is fully covered without conflict. This includes additions beyond a complete shared policy message.
@@ -176,7 +176,7 @@ execution:
                 other_material: A material difference exists and no specific option fits.
                 unresolved: The ledger is unresolved.
             - name: dominant_overlap_source
-              description: Report the largest visible similarity source; it cannot establish identity by itself.
+              description: Report the largest visible similarity source; it cannot establish identity by itself. If evidence is incomplete or truncated, this summary field MUST be unresolved even when the visible similarity source seems obvious; do not substitute its visible overlap type.
               options:
                 main_content: Shared substantive content dominates.
                 shared_page_template: Reusable page template dominates.

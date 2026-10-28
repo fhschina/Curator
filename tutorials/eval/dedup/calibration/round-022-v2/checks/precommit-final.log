@@ -1,0 +1,11 @@
+check for added large files..............................................Passed
+check for case conflicts.................................................Passed
+check yaml...............................................................Passed
+detect private key.......................................................Passed
+fix end of files.........................................................Passed
+fix requirements.txt.................................(no files to check)Skipped
+trim trailing whitespace.................................................Passed
+ruff (legacy alias)......................................................Passed
+ruff format..............................................................Passed
+uv-lock..............................................(no files to check)Skipped
+Pre-commit Installation Reminder.........................................Passed

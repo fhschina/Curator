@@ -1,0 +1,53 @@
+{
+  "checked_at": 1793150352.6405942,
+  "checks": {
+    "tutorial_cpu": {
+      "result": "PASS",
+      "passed": 70,
+      "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/selected-tutorial-cpu-exact-means.log",
+      "sha256": "ad4faeca2d6a31e40cb7f4e5183be474dae39250a9279961e89ca746cf4c5261",
+      "command": "python -m pytest tests/tutorials/eval/dedup --confcutdir=tests/tutorials/eval/dedup -m \"not gpu\" -q"
+    },
+    "native_stage": {
+      "result": "PASS",
+      "passed": 23,
+      "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/final-native-stage.log",
+      "sha256": "ca625fe623e4391fbb31ba37ce30642c3625d16d389ea91e081fd28fd7fdfb1c",
+      "command": "python -m pytest tests/stages/synthetic/nemo_data_designer/test_data_designer.py --confcutdir=tests/stages/synthetic/nemo_data_designer -q"
+    },
+    "workflow": {
+      "result": "PASS",
+      "passed": 32,
+      "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/final-workflow.log",
+      "sha256": "67aebc802da6c6e0e910aaef6c3f7ead2ecd28b1a311223d0b68655c9b2f9840",
+      "command": "python -m pytest tests/eval/llm_judge/test_workflow.py --confcutdir=tests/eval/llm_judge -q"
+    },
+    "registered_single_gpu": {
+      "result": "PASS",
+      "passed": 4,
+      "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/registered-single-gpu-checks.log",
+      "sha256": "adf0f65a0ddf44f2185f2d7e6bd0f55c0eaa8ccf245588cfe557dd2073c9c917",
+      "receipt_sha256": "394259aa979f5964ac51cb76cec36df3817f9a490765482985089978500b268f",
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "-m",
+        "pytest",
+        "tests/tutorials/eval/dedup",
+        "--confcutdir=tests/tutorials/eval/dedup",
+        "-m",
+        "gpu",
+        "-k",
+        "not eight_replica",
+        "-q"
+      ]
+    }
+  },
+  "cpu_total": 125,
+  "gpu_test_scope": "Four registered single-GPU checks; eight-replica test excluded",
+  "precommit": "Final hook receipt is supplied separately after document/artifact generation",
+  "data_designer": "0.9.1",
+  "best_candidate": "candidate-02",
+  "prompt_roundtrip_receipt_sha256": "3e94198bc9e0bfc5dbabdc78fef5df79df7a10808bd60468eaeeb4d6d0d1da1c",
+  "hardware": "NVIDIA B200, GPU-ab17ca72-2cbb-2d20-cf31-d6c99681e7cb, 183359 MiB",
+  "native_python_unchanged_from": "6715574e4e553f7b36f263d755f6cebe198e7b11"
+}

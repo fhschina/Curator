@@ -1,0 +1,21 @@
+{
+  "frozen_at": 1793145244.029431,
+  "semantic_search_closed": true,
+  "new_semantic_versions": 0,
+  "validation_candidates": [
+    2,
+    3,
+    4,
+    6
+  ],
+  "same_hard_presentations": 86,
+  "repetitions_each": 3,
+  "reason": "Candidate06 second preflight allowed bothD011 directions at main/coverage/final. Initial-screen choice is provisional; compare repeated hard correctness and validity for frozen alternatives before final delivery.",
+  "selection_order": [
+    "All mandatory hard checks, validity and zero raw wrongallows each repeat if any candidate qualifies",
+    "If none qualifies, prefer complete native-evidence/validity coverage and fewer reference-required directions wrongly allowed; then greater correct all-layer directional coverage including requiredYes; disclose every unresolved/failed condition",
+    "Compare fixed development reference improvement only after hard correctness/validity; no new policy changes or majority-vote acceptance"
+  ],
+  "no_acceptance_from_majority": true,
+  "original_failed_runs_preserved": true
+}
