@@ -1,0 +1,792 @@
+{
+  "baseline_commit": "6715574e4e553f7b36f263d755f6cebe198e7b11",
+  "best_candidate": "candidate-00-start85",
+  "failed_runs": [],
+  "requirements": {
+    "hard_regressions": {
+      "original36": true,
+      "extra6": true,
+      "latest18": false,
+      "controlled26": false,
+      "real_consensus6": true
+    },
+    "personal_targets_mean": false,
+    "personal_targets_each_repeat": false,
+    "development_nonregression_mean": {
+      "development99_original": true,
+      "development99_reviewed": true,
+      "development97_strict": true
+    }
+  },
+  "requirement_status": {
+    "milestone_85_80": "FAIL",
+    "target_90_85": "FAIL",
+    "hard_regressions": {
+      "original36": "PASS",
+      "extra6": "PASS",
+      "latest18": "FAIL",
+      "controlled26": "FAIL",
+      "real_consensus6": "PASS"
+    },
+    "technical_validity": "FAIL",
+    "development_nonregression_mean": {
+      "development99_original": "PASS",
+      "development99_reviewed": "PASS",
+      "development97_strict": "PASS"
+    }
+  },
+  "acceptance_passed": false,
+  "thresholds": {
+    "milestone": {
+      "correct_directions": 612,
+      "directions": 720,
+      "correct_pairs": 288,
+      "pairs": 360
+    },
+    "target": {
+      "correct_directions": 648,
+      "directions": 720,
+      "correct_pairs": 306,
+      "pairs": 360
+    },
+    "each_repeat_target_required": false
+  },
+  "verification_completion": {
+    "expected": [
+      "candidate-coverage-regression-1",
+      "candidate-coverage-regression-2",
+      "candidate-coverage-regression-3",
+      "candidate-diagnostic-1",
+      "candidate-diagnostic-2",
+      "candidate-diagnostic-3",
+      "candidate-gate-1",
+      "candidate-gate-2",
+      "candidate-gate-3",
+      "candidate-holdout-1",
+      "candidate-holdout-2",
+      "candidate-holdout-3",
+      "candidate-preflight-1",
+      "candidate-preflight-2",
+      "candidate-preflight-3"
+    ],
+    "observed": [
+      "candidate-coverage-regression-1",
+      "candidate-coverage-regression-2",
+      "candidate-coverage-regression-3",
+      "candidate-diagnostic-1",
+      "candidate-diagnostic-2",
+      "candidate-diagnostic-3",
+      "candidate-gate-1",
+      "candidate-gate-2",
+      "candidate-gate-3",
+      "candidate-holdout-1",
+      "candidate-holdout-2",
+      "candidate-holdout-3",
+      "candidate-preflight-1",
+      "candidate-preflight-2",
+      "candidate-preflight-3"
+    ],
+    "complete": true
+  },
+  "independent_human_accuracy": false,
+  "D121": "pending",
+  "audit_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "frozen_evaluation_artifacts": {
+    "panels/coverage-regression/input.jsonl": "8ff5b5de4aa9274975ac953ef3c577d84d973e28ff85326929dc1f4475075bee",
+    "panels/diagnostic/input.jsonl": "3e961946ccfe463423626a488e2356c0232d3ac6981239e098cda2d2f02dfe05",
+    "panels/full20k/input.jsonl": "050dbb85a704545067ec28bc36e898db87f15a1b804cf0c79d04b981e9253682",
+    "panels/gate/input.jsonl": "1dec0642b971b6b13f09275268d6c1d3a0e62eed23ebeacf78fdbaa40a118a8e",
+    "panels/holdout/input.jsonl": "7d96848d2911e20d61b6dc08f26a972591da079607c81b6cbacf55dad7cde23a",
+    "panels/preflight/input.jsonl": "46b4e2785ab99c01f4fd2f3f189f3d7724a190623afec239172632152312cf9f",
+    "labels/coverage-regression.json": "24d064d2b45123ccf210654a0d2a3125db9f944beb48b67ccd85f6ae601d5bc0",
+    "labels/diagnostic.json": "f03221c0769f868e0c31680b70fb42456b9603a57e23a8e4966f8a4bee6eaaa3",
+    "labels/gate.json": "ea0674d1f828f3a82ae44e036007a6e8ce073b805e9baaa3cae1f23fe9717412",
+    "labels/holdout.json": "d02944c8143f84aeecd5b7d60e7c651360955015910c0487fd5fe20ddd63ea4f",
+    "labels/preflight.json": "ff92c3fe1f622be71a37ad1a7a0f0c8cfaf6121672801d1ba0a4a3167b1a8579",
+    "input_indexes/coverage-regression.jsonl": "e86cd5ea3dd932cbff7944faf2953566307cf7be740ecfdd4b08c2aa9f69ca41",
+    "input_indexes/diagnostic.jsonl": "02854fd9fcc630e269b1899cc63e0946db7be1c7a6ba48b27857d2e058ba90d0",
+    "input_indexes/full20k.jsonl": "20c424cf108c8f50139596614a3a8de72044ef9e70f21f061aa7bbdc05e80aab",
+    "input_indexes/gate.jsonl": "7637ea40ac1f818ff6cc9be9ba85d6b118aafc31d55d7e9af02a9de318bfa8e8",
+    "input_indexes/holdout.jsonl": "751c6a05cdac6e07b1b442e4f5caecc7a4933ee5d1a6f468ce4e32544a5e3846",
+    "input_indexes/preflight.jsonl": "1a5c0bb242c1fb33e298b4eda01c8a422e8a917d16d1bbef0a5b9cbe0c1f72db",
+    "evaluation.json": "b1b986f7583a7e5681455173adadcfd50f27852fbf39245fd30ff789abf6e218"
+  },
+  "created": 1793228772.1233711,
+  "audit_revision": {
+    "id": "engineering-04-ledger-coherence",
+    "new_model_calls": 0,
+    "native_comparison": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/formal-progress-230527Z-native/comparison.json",
+    "native_comparison_sha256": "b2257b83c510055b8fdf5e655dd6a88a155b6739236e6b655fca275d33d258e4",
+    "strict_core_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+    "wrapper_sha256": "1764bc82f3edeef234075294a520a648ee02929c7cf0717bf927c103c0f3517d",
+    "labels_denominators_prompts_parameters_native_outputs_unchanged": true,
+    "scope": "Literal positive-versus-uncovered-material/conflict/no-basis contradictions and negative-versus-covered-removed-side contradictions become invalid. Negative checks require a verified basis, no conflict and explicit not_translation; body-language retention stays protected. All references and arithmetic reuse policy_tuning functions. Native reports and outputs remain preserved."
+  },
+  "ledger_audit_changes": [
+    {
+      "version": "baseline",
+      "run": "baseline-diagnostic-1",
+      "ledger_issues": {
+        "D056": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "D069": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side"
+        ],
+        "D075": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side"
+        ],
+        "D095": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta"
+        ],
+        "D104": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side",
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "D126": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 144,
+          "invalid": 3,
+          "unresolved": 3
+        },
+        "coverage": {
+          "valid": 144,
+          "invalid": 3,
+          "unresolved": 3
+        },
+        "final": {
+          "valid": 144,
+          "invalid": 3,
+          "unresolved": 3
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 139,
+          "invalid": 8,
+          "unresolved": 3
+        },
+        "coverage": {
+          "valid": 139,
+          "invalid": 8,
+          "unresolved": 3
+        },
+        "final": {
+          "valid": 139,
+          "invalid": 8,
+          "unresolved": 3
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "run": "baseline-diagnostic-2",
+      "ledger_issues": {
+        "D084": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side"
+        ],
+        "D128": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "D131": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta",
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 141,
+          "invalid": 5,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 141,
+          "invalid": 5,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 141,
+          "invalid": 5,
+          "unresolved": 4
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "run": "baseline-diagnostic-3",
+      "ledger_issues": {
+        "D126": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "D145": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 145,
+          "invalid": 1,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 145,
+          "invalid": 1,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 145,
+          "invalid": 1,
+          "unresolved": 4
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 143,
+          "invalid": 3,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 143,
+          "invalid": 3,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 143,
+          "invalid": 3,
+          "unresolved": 4
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "run": "baseline-holdout-1",
+      "ledger_issues": {
+        "H066": [
+          "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 99,
+          "invalid": 1
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 99,
+          "invalid": 1
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "run": "baseline-holdout-2",
+      "ledger_issues": {
+        "H052": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta",
+          "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 99,
+          "invalid": 1
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 99,
+          "invalid": 1
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "run": "baseline-holdout-3",
+      "ledger_issues": {
+        "H066": [
+          "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 100
+        },
+        "coverage": {
+          "valid": 100
+        },
+        "final": {
+          "valid": 100
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 99,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 99,
+          "invalid": 1
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "run": "baseline-preflight-1",
+      "ledger_issues": {
+        "R14": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 44
+        },
+        "coverage": {
+          "valid": 44
+        },
+        "final": {
+          "valid": 44
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 43,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 43,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 43,
+          "invalid": 1
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "run": "baseline-preflight-2",
+      "ledger_issues": {
+        "R33": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "R33-swapped": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta"
+        ],
+        "D135": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side",
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "T_cookie_intro": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 44
+        },
+        "coverage": {
+          "valid": 44
+        },
+        "final": {
+          "valid": 44
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 40,
+          "invalid": 4
+        },
+        "coverage": {
+          "valid": 40,
+          "invalid": 4
+        },
+        "final": {
+          "valid": 40,
+          "invalid": 4
+        }
+      }
+    },
+    {
+      "version": "baseline",
+      "run": "baseline-preflight-3",
+      "ledger_issues": {
+        "D059-swapped": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta",
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta"
+        ],
+        "T_cookie_intro-swapped": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 43,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 43,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 43,
+          "invalid": 1
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 41,
+          "invalid": 3
+        },
+        "coverage": {
+          "valid": 41,
+          "invalid": 3
+        },
+        "final": {
+          "valid": 41,
+          "invalid": 3
+        }
+      }
+    },
+    {
+      "version": "candidate-00-start85",
+      "run": "candidate-diagnostic-1",
+      "ledger_issues": {
+        "D025": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "D065": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side",
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 145,
+          "invalid": 1,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 145,
+          "invalid": 1,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 145,
+          "invalid": 1,
+          "unresolved": 4
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 143,
+          "invalid": 3,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 143,
+          "invalid": 3,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 143,
+          "invalid": 3,
+          "unresolved": 4
+        }
+      }
+    },
+    {
+      "version": "candidate-00-start85",
+      "run": "candidate-diagnostic-3",
+      "ledger_issues": {
+        "D084": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 145,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 145,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 145,
+          "unresolved": 5
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 144,
+          "invalid": 1,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 144,
+          "invalid": 1,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 144,
+          "invalid": 1,
+          "unresolved": 5
+        }
+      }
+    },
+    {
+      "version": "candidate-00-start85",
+      "run": "candidate-holdout-2",
+      "ledger_issues": {
+        "H039": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side",
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "H052": [
+          "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 100
+        },
+        "coverage": {
+          "valid": 99,
+          "unresolved": 1
+        },
+        "final": {
+          "valid": 99,
+          "unresolved": 1
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 98,
+          "invalid": 2
+        },
+        "coverage": {
+          "valid": 98,
+          "invalid": 2
+        },
+        "final": {
+          "valid": 98,
+          "invalid": 2
+        }
+      }
+    },
+    {
+      "version": "candidate-02",
+      "run": "candidate-preflight-1",
+      "ledger_issues": {
+        "R33-swapped": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 43,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 43,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 43,
+          "invalid": 1
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 43,
+          "invalid": 1
+        },
+        "coverage": {
+          "valid": 43,
+          "invalid": 1
+        },
+        "final": {
+          "valid": 43,
+          "invalid": 1
+        }
+      }
+    },
+    {
+      "version": "candidate-03",
+      "run": "candidate-diagnostic-1",
+      "ledger_issues": {
+        "D025": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ],
+        "D117": [
+          "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 144,
+          "invalid": 1,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 144,
+          "invalid": 1,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 144,
+          "invalid": 1,
+          "unresolved": 5
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "valid": 142,
+          "invalid": 3,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 142,
+          "invalid": 3,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 142,
+          "invalid": 3,
+          "unresolved": 5
+        }
+      }
+    },
+    {
+      "version": "candidate-03-wholeview1",
+      "run": "candidate-coverage-regression-1",
+      "ledger_issues": {
+        "H049": [
+          "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta"
+        ]
+      },
+      "native_all_input_validation": {
+        "main": {
+          "valid": 6
+        },
+        "coverage": {
+          "valid": 6
+        },
+        "final": {
+          "valid": 6
+        }
+      },
+      "strict_all_input_validation": {
+        "main": {
+          "invalid": 1,
+          "valid": 5
+        },
+        "coverage": {
+          "invalid": 1,
+          "valid": 5
+        },
+        "final": {
+          "invalid": 1,
+          "valid": 5
+        }
+      }
+    }
+  ],
+  "runs_files": {
+    "baseline": "runs-baseline.json",
+    "candidate-00-start85": "runs-candidate-00-start85.json",
+    "candidate-01": "runs-candidate-01.json",
+    "candidate-01-coverreasonfirst1": "runs-candidate-01-coverreasonfirst1.json",
+    "candidate-02": "runs-candidate-02.json",
+    "candidate-03": "runs-candidate-03.json",
+    "candidate-03-ledgerbrief1": "runs-candidate-03-ledgerbrief1.json",
+    "candidate-03-ledgerbrief2": "runs-candidate-03-ledgerbrief2.json",
+    "candidate-03-policyonce1": "runs-candidate-03-policyonce1.json",
+    "candidate-03-slotlast1": "runs-candidate-03-slotlast1.json",
+    "candidate-03-slotlast2": "runs-candidate-03-slotlast2.json",
+    "candidate-03-wholeview1": "runs-candidate-03-wholeview1.json",
+    "candidate-04": "runs-candidate-04.json",
+    "candidate-05": "runs-candidate-05.json",
+    "candidate-06": "runs-candidate-06.json",
+    "candidate-07": "runs-candidate-07.json",
+    "candidate-08": "runs-candidate-08.json"
+  },
+  "summary_files": {
+    "baseline": "summary-baseline.json",
+    "candidate-00-start85": "summary-candidate-00-start85.json",
+    "candidate-01": "summary-candidate-01.json",
+    "candidate-01-coverreasonfirst1": "summary-candidate-01-coverreasonfirst1.json",
+    "candidate-02": "summary-candidate-02.json",
+    "candidate-03": "summary-candidate-03.json",
+    "candidate-03-ledgerbrief1": "summary-candidate-03-ledgerbrief1.json",
+    "candidate-03-ledgerbrief2": "summary-candidate-03-ledgerbrief2.json",
+    "candidate-03-policyonce1": "summary-candidate-03-policyonce1.json",
+    "candidate-03-slotlast1": "summary-candidate-03-slotlast1.json",
+    "candidate-03-slotlast2": "summary-candidate-03-slotlast2.json",
+    "candidate-03-wholeview1": "summary-candidate-03-wholeview1.json",
+    "candidate-04": "summary-candidate-04.json",
+    "candidate-05": "summary-candidate-05.json",
+    "candidate-06": "summary-candidate-06.json",
+    "candidate-07": "summary-candidate-07.json",
+    "candidate-08": "summary-candidate-08.json"
+  }
+}

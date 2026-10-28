@@ -2117,5 +2117,16 @@
         }
       }
     }
+  },
+  "candidate-03-slotlast2": {
+    "parent": "candidate-03-slotlast1",
+    "hypothesis_en": "Engineering-only placement of the unchanged finite name/category-slot exception at the end of each coverage template. Wholeview1 actually repairs both stock-copy presentations, but its remaining provider veto still calls the same unchanged generic-cookie recipient name a substantive processing fact. C6 wording acknowledged the finite exception and then bypassed it with the later general data-flow rule. Test instruction placement as a possible contributor, without claiming causality. Move the entire existing second conditional-template block, including every product/route/liability/processing exclusion and specialist scope condition, after the later general rules. Do not add or remove any policy sentence or duplicate the block; an inverse move restores each parent template byte-for-byte. Retain the parent original-order same-visible-evidence view and its proven6000-character limit. Only two coverage files change; other seven files, main/YAML, evidence IDs/text, schema/field/order/enum, native executor, validator, critic veto authority, model and sampling are unchanged. This differs from failed explanation-first output order and from duplicate removal. Screen all original86 and existing boundary groups before considering a long run. Actual slotlast1 answers agree on the previously failing provider presentations, but D134 has three complete bare-JSON attempts, all natively invalid and retained without credit. Inspection confirms the moved policy block follows the last format contract in both templates. Slotlast2 keeps that same exception last among semantic rules but places it immediately BEFORE the unchanged final response-format contract. No policy sentence, output field/order/type/enum, source or parsing rule changes; inverse placement restores the exact failed parent templates. This addresses the new observed formatting failure rather than retrying the failed original group.",
+    "hypothesis_zh": "只调整已有有限名称及类别槽位例外在coverage模板中的位置。Wholeview1实际修好了两个通用复制呈现，但剩余服务商误否决仍把同一未变通用cookie通知的接收方名称视为实质处理事实。C6措辞承认有限例外，之后又用后部一般数据流规则绕过。把指令位置作为可能因素测试，不认定因果。将完整的已有第二段有条件模板规则移至后部一般规则之后，保留其中全部产品、操作去向、责任主体、处理事实排除条件及specialist范围。不增删政策句子，也不重复该块；逆移动可逐字还原父模板。保留父版本已证明的同一可见证据原文顺序视图及6000字符限制。仅改两个coverage文件；其余七文件、main及YAML、证据编号原文、schema字段顺序枚举、原生执行器、校验、critic否决权限和模型采样不变。这不同于失败的先解释输出顺序及重复块删除。考虑长运行前先测原86及已有边界组。 Slotlast1实际答对了此前失败的服务商呈现，但D134有三次完整裸JSON尝试，全部原生无效并保留且不计分。检查确认两个模板中移动后的政策块都在最后格式要求之后。Slotlast2保持该例外为最后一项语义规则，但把它放在未改动的最终回复格式要求之前。不改政策句子、输出字段顺序类型枚举、原文或解析规则；逆放置可逐字还原已失败父模板。这针对新观察到的格式失败，不是补抽原失败组。",
+    "engineering_revision": "slotlast2",
+    "scope": "same final finite-exception placement, with unchanged native response-format contract restored last",
+    "new_human_labels": false,
+    "proof": "proposals/slotlast1-lossless-move-proof.json",
+    "status": "frozen_awaiting_serial_hard_screen",
+    "acceptance_passed": false
   }
 }

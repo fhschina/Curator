@@ -1,0 +1,28 @@
+--- candidate-03-slotlast1/critics/coverage_pair.jinja
++++ candidate-03-slotlast2/critics/coverage_pair.jinja
+@@ -147,5 +146,0 @@
+-RESPONSE FORMAT
+-Return exactly one completed answer object inside a ```json Markdown code fence.
+-Return actual field values, never the response schema or its properties.
+-The first response line must be ```json and the last must be ```. Do not return bare JSON.
+-
+@@ -175,0 +171,5 @@
++
++RESPONSE FORMAT
++Return exactly one completed answer object inside a ```json Markdown code fence.
++Return actual field values, never the response schema or its properties.
++The first response line must be ```json and the last must be ```. Do not return bare JSON.
+--- candidate-03-slotlast1/critics/coverage_system.jinja
++++ candidate-03-slotlast2/critics/coverage_system.jinja
+@@ -260,5 +259,0 @@
+-RESPONSE FORMAT
+-Return exactly one completed answer object inside a ```json Markdown code fence.
+-Return actual field values, never the response schema or its properties.
+-The first response line must be ```json and the last must be ```. Do not return bare JSON.
+-
+@@ -288,0 +284,5 @@
++
++RESPONSE FORMAT
++Return exactly one completed answer object inside a ```json Markdown code fence.
++Return actual field values, never the response schema or its properties.
++The first response line must be ```json and the last must be ```. Do not return bare JSON.

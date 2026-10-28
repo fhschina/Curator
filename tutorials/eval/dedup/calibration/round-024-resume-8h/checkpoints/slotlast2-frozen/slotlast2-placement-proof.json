@@ -1,0 +1,16 @@
+{
+  "critics/coverage_system.jinja": {
+    "parent_template_sha256": "abd80be7e8b32b73b2111233ec862284cf0c57d853ac5eda0b9ffd5b764a6d77",
+    "full_exception_retained_once": true,
+    "all_policy_rules_before_native_final_format_contract": true,
+    "unchanged_final_format_contract_sha256": "ca451957380475eea7609122326fc080a41a64722a4b5be907a41b2bf18fa125",
+    "inverse_move_restores_parent_bytes": true
+  },
+  "critics/coverage_pair.jinja": {
+    "parent_template_sha256": "28f17903814a5828cc93000d7873f3b283c837181d10a57fc49cc8890d7123d9",
+    "full_exception_retained_once": true,
+    "all_policy_rules_before_native_final_format_contract": true,
+    "unchanged_final_format_contract_sha256": "ca451957380475eea7609122326fc080a41a64722a4b5be907a41b2bf18fa125",
+    "inverse_move_restores_parent_bytes": true
+  }
+}
