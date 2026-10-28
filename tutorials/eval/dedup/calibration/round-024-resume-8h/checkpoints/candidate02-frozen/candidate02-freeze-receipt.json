@@ -1,0 +1,48 @@
+{
+  "created": 1793213518.4674098,
+  "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-02",
+  "status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "-m",
+        "pytest",
+        "--confcutdir=tests/tutorials/eval/dedup",
+        "tests/tutorials/eval/dedup/test_policy_tuning.py",
+        "-k",
+        "native_prompt_preserves or native_compiler_accepts",
+        "-q"
+      ],
+      "started": 1793213510.7677488,
+      "completed": 1793213513.991526,
+      "returncode": 0,
+      "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate02-native-tests.log"
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/pre-commit",
+        "run",
+        "--files",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/judge_config/system.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/judge_config/pair.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/coverage_system.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/subject_verifier_pair.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/subject_system.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/coverage_pair.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/subject_pair.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/subject_verifier_system.jinja"
+      ],
+      "started": 1793213513.9915912,
+      "completed": 1793213514.5503385,
+      "returncode": 0,
+      "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate02-precommit.log"
+    }
+  ],
+  "proposal_hashes_verified_before_native_adapter": true,
+  "existing_native_adapter_changed_files": [],
+  "worktree_hashes_equal_actual_frozen_after_hooks": true,
+  "manifest_sha256": "2511794773580ec0f869bb50934925b1fd5ad8cb40136d4ccfad011b27b5de49",
+  "all_fifteen_slots_declared_before_inference": true
+}

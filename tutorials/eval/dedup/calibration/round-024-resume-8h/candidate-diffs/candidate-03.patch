@@ -1,0 +1,141 @@
+--- candidate-02/critics/coverage_pair.jinja
++++ candidate-03/critics/coverage_pair.jinja
+@@ -131,0 +132,11 @@
++For a qualified finite provider/recipient-name slot or covered stock-cookie copy,
++a later general subject, data-flow or mandatory-state rule does not reactivate
++that same allowed difference. Identify an independently changed predicate or
++condition beyond the permitted name or covered copied wording before declaring
++loss. Actual liable parties, action destinations and independent processing or
++consent conditions remain protected outside those finite branches.
++Equivalent same-language form/privacy wording is not a second body-language
++version merely because its phrasing or style differs. For a non-main message,
++identify a changed purpose, right, condition, action or factual meaning beyond
++synonyms before retaining both variants. Real substantive body prose in different
++languages and genuinely changed privacy terms remain protected.
+--- candidate-02/critics/coverage_system.jinja
++++ candidate-03/critics/coverage_system.jinja
+@@ -113,0 +114,11 @@
++For a qualified finite provider/recipient-name slot or covered stock-cookie copy,
++a later general subject, data-flow or mandatory-state rule does not reactivate
++that same allowed difference. Identify an independently changed predicate or
++condition beyond the permitted name or covered copied wording before declaring
++loss. Actual liable parties, action destinations and independent processing or
++consent conditions remain protected outside those finite branches.
++Equivalent same-language form/privacy wording is not a second body-language
++version merely because its phrasing or style differs. For a non-main message,
++identify a changed purpose, right, condition, action or factual meaning beyond
++synonyms before retaining both variants. Real substantive body prose in different
++languages and genuinely changed privacy terms remain protected.
+@@ -167 +178 @@
+-However, a different actual subject of the SAME retained claim is a conflict:
++However, after excluding the qualified finite template slots and covered stock-cookie copies, a different actual subject of the SAME retained claim is a conflict:
+@@ -254,2 +265,6 @@
+-scope. These are different from an unpopulated heading or filter. Check the
+-whole keeper before claiming the actual contribution is uncovered.
++scope. The covered stock-cookie-copy exception still applies here; a generic
++category heading alone does not create an independent category obligation from
++the already retained copied paragraph. An explicit separately stated category
++condition or status value is different and remains useful. These are different
++from an unpopulated heading or filter. Check the whole keeper before claiming
++the actual contribution is uncovered.
+--- candidate-02/critics/subject_pair.jinja
++++ candidate-03/critics/subject_pair.jinja
+@@ -106,0 +107,11 @@
++For a qualified finite provider/recipient-name slot or covered stock-cookie copy,
++a later general subject, data-flow or mandatory-state rule does not reactivate
++that same allowed difference. Identify an independently changed predicate or
++condition beyond the permitted name or covered copied wording before declaring
++loss. Actual liable parties, action destinations and independent processing or
++consent conditions remain protected outside those finite branches.
++Equivalent same-language form/privacy wording is not a second body-language
++version merely because its phrasing or style differs. For a non-main message,
++identify a changed purpose, right, condition, action or factual meaning beyond
++synonyms before retaining both variants. Real substantive body prose in different
++languages and genuinely changed privacy terms remain protected.
+--- candidate-02/critics/subject_system.jinja
++++ candidate-03/critics/subject_system.jinja
+@@ -113,0 +114,11 @@
++For a qualified finite provider/recipient-name slot or covered stock-cookie copy,
++a later general subject, data-flow or mandatory-state rule does not reactivate
++that same allowed difference. Identify an independently changed predicate or
++condition beyond the permitted name or covered copied wording before declaring
++loss. Actual liable parties, action destinations and independent processing or
++consent conditions remain protected outside those finite branches.
++Equivalent same-language form/privacy wording is not a second body-language
++version merely because its phrasing or style differs. For a non-main message,
++identify a changed purpose, right, condition, action or factual meaning beyond
++synonyms before retaining both variants. Real substantive body prose in different
++languages and genuinely changed privacy terms remain protected.
+--- candidate-02/critics/subject_verifier_pair.jinja
++++ candidate-03/critics/subject_verifier_pair.jinja
+@@ -100,0 +101,11 @@
++For a qualified finite provider/recipient-name slot or covered stock-cookie copy,
++a later general subject, data-flow or mandatory-state rule does not reactivate
++that same allowed difference. Identify an independently changed predicate or
++condition beyond the permitted name or covered copied wording before declaring
++loss. Actual liable parties, action destinations and independent processing or
++consent conditions remain protected outside those finite branches.
++Equivalent same-language form/privacy wording is not a second body-language
++version merely because its phrasing or style differs. For a non-main message,
++identify a changed purpose, right, condition, action or factual meaning beyond
++synonyms before retaining both variants. Real substantive body prose in different
++languages and genuinely changed privacy terms remain protected.
+--- candidate-02/critics/subject_verifier_system.jinja
++++ candidate-03/critics/subject_verifier_system.jinja
+@@ -113,0 +114,11 @@
++For a qualified finite provider/recipient-name slot or covered stock-cookie copy,
++a later general subject, data-flow or mandatory-state rule does not reactivate
++that same allowed difference. Identify an independently changed predicate or
++condition beyond the permitted name or covered copied wording before declaring
++loss. Actual liable parties, action destinations and independent processing or
++consent conditions remain protected outside those finite branches.
++Equivalent same-language form/privacy wording is not a second body-language
++version merely because its phrasing or style differs. For a non-main message,
++identify a changed purpose, right, condition, action or factual meaning beyond
++synonyms before retaining both variants. Real substantive body prose in different
++languages and genuinely changed privacy terms remain protected.
+--- candidate-02/judge_config/fuzzy_pair_judge.yaml
++++ candidate-03/judge_config/fuzzy_pair_judge.yaml
+@@ -88 +88 @@
+-                not_translation: Translation is not the relationship.
++                not_translation: Translation is not the relationship. Same-language synonyms or style variants of an otherwise equivalent form/privacy message are not separate body-language versions; identify actual changed meaning or conditions. This value alone does not imply the two texts share a language.
+@@ -106 +106 @@
+-                other_substantive_content: A adds another useful uncovered proposition after the conditional exceptions. Cite the additional assertion beyond any permitted slot or already-covered stock wording.
++                other_substantive_content: A adds another useful uncovered proposition after the conditional exceptions. Cite the additional assertion beyond any permitted slot or already-covered stock wording. Alternate same-language wording of an equivalent form/privacy notice is not an uncovered proposition solely because its style differs.
+@@ -117 +117 @@
+-                other_substantive_content: B adds another useful uncovered proposition after the conditional exceptions. Cite the additional assertion beyond any permitted slot or already-covered stock wording.
++                other_substantive_content: B adds another useful uncovered proposition after the conditional exceptions. Cite the additional assertion beyond any permitted slot or already-covered stock wording. Alternate same-language wording of an equivalent form/privacy notice is not an uncovered proposition solely because its style differs.
+@@ -131 +131 @@
+-              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: Use the already established ledger consistently. With a verified shared basis, no material conflict, no protected distinct-language body contribution and a covered/harmless B-only delta, this direction is yes; do not reclassify that permitted slot as a new loss in this summary. When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
+@@ -137 +137 @@
+-              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: Use the already established ledger consistently. With a verified shared basis, no material conflict, no protected distinct-language body contribution and a covered/harmless A-only delta, this direction is yes; do not reclassify that permitted slot as a new loss in this summary. When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
+--- candidate-02/judge_config/pair.jinja
++++ candidate-03/judge_config/pair.jinja
+@@ -153,0 +154,11 @@
++For a qualified finite provider/recipient-name slot or covered stock-cookie copy,
++a later general subject, data-flow or mandatory-state rule does not reactivate
++that same allowed difference. Identify an independently changed predicate or
++condition beyond the permitted name or covered copied wording before declaring
++loss. Actual liable parties, action destinations and independent processing or
++consent conditions remain protected outside those finite branches.
++Equivalent same-language form/privacy wording is not a second body-language
++version merely because its phrasing or style differs. For a non-main message,
++identify a changed purpose, right, condition, action or factual meaning beyond
++synonyms before retaining both variants. Real substantive body prose in different
++languages and genuinely changed privacy terms remain protected.
+--- candidate-02/judge_config/system.jinja
++++ candidate-03/judge_config/system.jinja
+@@ -116,0 +117,11 @@
++For a qualified finite provider/recipient-name slot or covered stock-cookie copy,
++a later general subject, data-flow or mandatory-state rule does not reactivate
++that same allowed difference. Identify an independently changed predicate or
++condition beyond the permitted name or covered copied wording before declaring
++loss. Actual liable parties, action destinations and independent processing or
++consent conditions remain protected outside those finite branches.
++Equivalent same-language form/privacy wording is not a second body-language
++version merely because its phrasing or style differs. For a non-main message,
++identify a changed purpose, right, condition, action or factual meaning beyond
++synonyms before retaining both variants. Real substantive body prose in different
++languages and genuinely changed privacy terms remain protected.

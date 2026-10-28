@@ -1,0 +1,15 @@
+{
+  "notes.json": "89919fe9bad10f5a429b3846594d8be952338adfc297df204c7dd8cbd555dad2",
+  "frozen-code.json": "a3a651c94a59351dfb201e23e66f9f276f1bfac21be203539a64d6362990ccd5",
+  "hypothesis.json": "4be63e002ffc65384366a270ed7645e28963163a5f0c2c673bfcadc6460677e6",
+  "verification-plan.json": "c8e18d2fc4562de3f598faff8b5fc8c19338d4bb1c08043ce10a7863ae39babb",
+  "variant/judge_config/system.jinja": "53471c4bf215ad14230f57cbb91bb60866159b49b4225e992a89dab93eee86e0",
+  "variant/judge_config/fuzzy_pair_judge.yaml": "05a36d712011a0b93419ad152a2e7498bfeefdddffc7ed18b354b018f65020aa",
+  "variant/judge_config/pair.jinja": "d1422ce40ddb39c56dcf986567123c6bb7d8349176c05a416ef604c313bd38fb",
+  "variant/critics/coverage_system.jinja": "dbc54800698cd6e28d340a7f06c57c4310109019c72682b39fc3841716426151",
+  "variant/critics/subject_verifier_pair.jinja": "596c11b110b1d9bdaaf220408a586c0eb936860b89dbf60687b418faca2698d0",
+  "variant/critics/subject_system.jinja": "78852dc99cea4c178c5c08c19e5a0edb48858c725eb8e98243d1e9887727c960",
+  "variant/critics/coverage_pair.jinja": "0a01576e9f37d930a8ff3415a1354a14824bea6748dd5215adbfbfbdcc1fdc35",
+  "variant/critics/subject_pair.jinja": "32c27d9517987fdfb6001318e5d76aca8e2cca42f53fad69680c0930cfb32fd9",
+  "variant/critics/subject_verifier_system.jinja": "c10d6c41e6d4681396e674db7b582260919835f7e30cf2a4fa0e34fe0eac7a38"
+}

@@ -1,0 +1,7 @@
+{
+  "declared": 1793214707.8320355,
+  "definition": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-nonmain-paraphrase-boundaries-v1.json",
+  "sha256": "3ac87919bf40733ca10aa365b5451e9c59615f9f30a3cadfce6441ae08c2001d",
+  "source": "existing equivalence, actual-action/privacy-condition, distinct-language substantive-body boundaries",
+  "model_outputs_for_these_examples_not_seen": true
+}

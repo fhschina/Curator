@@ -1,0 +1,44 @@
+{
+  "after_file": "coverreasonfirst1-INSERT_SEQUENCE_COMPLETE.json",
+  "cohort_controller": "start85-confirmation-cohort",
+  "cohort_prefix": "start85-confirmation",
+  "cohort_root": "candidate-00-start85",
+  "commands": [
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/check_all_prompt_budgets.py",
+      "--root",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-02",
+      "--output",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-02/all-input-budget-check.json",
+      "--arrow-pandas-roundtrip"
+    ],
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+      "--after-file",
+      "coverreasonfirst1-INSERT_SEQUENCE_COMPLETE.json",
+      "--root",
+      "candidate-02",
+      "--panels",
+      "preflight",
+      "gate",
+      "coverage-regression",
+      "--receipt",
+      "candidate02-hard-screen-receipt.json"
+    ],
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+      "--after-file",
+      "candidate02-hard-screen-receipt.json",
+      "--root",
+      "supplemental-cookie-scope-candidate02-v2",
+      "--panels",
+      "preflight",
+      "--receipt",
+      "candidate02-cookie-screen-receipt.json"
+    ]
+  ],
+  "receipt": "candidate02-INSERT_SEQUENCE_COMPLETE.json"
+}

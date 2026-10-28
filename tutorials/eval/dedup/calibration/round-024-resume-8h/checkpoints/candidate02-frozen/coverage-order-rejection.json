@@ -1,0 +1,17 @@
+{
+  "status": "REJECTED",
+  "candidate": "candidate-01-coverreasonfirst1",
+  "valid_coverage_attempts_observed": 61,
+  "explanation_first": 61,
+  "native_schema_parse_errors_in_these_attempts": 0,
+  "original_hard_main_pairs": "85/86",
+  "original_hard_final_pairs": "82/86",
+  "parent_original_hard_main_pairs": "85/86",
+  "parent_original_hard_final_pairs": "83/86",
+  "evidence_failure": {
+    "run": "candidate-gate-1",
+    "pair_id": "control-one_extension-swapped",
+    "reason": "INVALID_CRITIC_OUTPUT: wrong side or non-unique loss: S001"
+  },
+  "no_long_scoring_admitted": true
+}

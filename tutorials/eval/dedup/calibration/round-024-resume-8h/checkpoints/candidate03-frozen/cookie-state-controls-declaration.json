@@ -1,0 +1,8 @@
+{
+  "declared": 1793212738.146634,
+  "definition": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-cookie-state-boundaries-v1.json",
+  "sha256": "1436bdd3927e8d851a3144c833d37d87bf85bcef7a8c057fd1ebf9aa29faf764",
+  "expected_original_cases_not_rewritten": true,
+  "model_outputs_for_these_examples_not_seen": true,
+  "next_hypothesis_only_not_applied": true
+}

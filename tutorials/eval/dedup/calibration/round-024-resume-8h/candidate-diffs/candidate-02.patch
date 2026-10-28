@@ -1,0 +1,76 @@
+--- candidate-01/critics/coverage_pair.jinja
++++ candidate-02/critics/coverage_pair.jinja
+@@ -116,0 +117,5 @@
++The complete preserved promotional message is the verified retained basis for
++this permitted marketing branch, even when that message is brief and reusable.
++Do not apply the generic-template-only disqualification to this complete
++qualified message. Shared navigation or layout around different actual records
++still does not qualify, and independent product or offer differences still matter.
+--- candidate-01/critics/coverage_system.jinja
++++ candidate-02/critics/coverage_system.jinja
+@@ -98,0 +99,5 @@
++The complete preserved promotional message is the verified retained basis for
++this permitted marketing branch, even when that message is brief and reusable.
++Do not apply the generic-template-only disqualification to this complete
++qualified message. Shared navigation or layout around different actual records
++still does not qualify, and independent product or offer differences still matter.
+--- candidate-01/critics/subject_pair.jinja
++++ candidate-02/critics/subject_pair.jinja
+@@ -91,0 +92,5 @@
++The complete preserved promotional message is the verified retained basis for
++this permitted marketing branch, even when that message is brief and reusable.
++Do not apply the generic-template-only disqualification to this complete
++qualified message. Shared navigation or layout around different actual records
++still does not qualify, and independent product or offer differences still matter.
+--- candidate-01/critics/subject_system.jinja
++++ candidate-02/critics/subject_system.jinja
+@@ -98,0 +99,5 @@
++The complete preserved promotional message is the verified retained basis for
++this permitted marketing branch, even when that message is brief and reusable.
++Do not apply the generic-template-only disqualification to this complete
++qualified message. Shared navigation or layout around different actual records
++still does not qualify, and independent product or offer differences still matter.
+--- candidate-01/critics/subject_verifier_pair.jinja
++++ candidate-02/critics/subject_verifier_pair.jinja
+@@ -85,0 +86,5 @@
++The complete preserved promotional message is the verified retained basis for
++this permitted marketing branch, even when that message is brief and reusable.
++Do not apply the generic-template-only disqualification to this complete
++qualified message. Shared navigation or layout around different actual records
++still does not qualify, and independent product or offer differences still matter.
+--- candidate-01/critics/subject_verifier_system.jinja
++++ candidate-02/critics/subject_verifier_system.jinja
+@@ -98,0 +99,5 @@
++The complete preserved promotional message is the verified retained basis for
++this permitted marketing branch, even when that message is brief and reusable.
++Do not apply the generic-template-only disqualification to this complete
++qualified message. Shared navigation or layout around different actual records
++still does not qualify, and independent product or offer differences still matter.
+--- candidate-01/judge_config/fuzzy_pair_judge.yaml
++++ candidate-02/judge_config/fuzzy_pair_judge.yaml
+@@ -91,3 +91,3 @@
+-              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed city/destination labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots. A complete equivalent routine form message qualifies as verified_equivalent_non_main_message after its mechanism and body-language conditions match; it is not none merely because it is form UI.
+-              options:
+-                verified_substantive_record: Cited spans establish the same retained substantive content; confirmed harmless service-location slots qualify even when the locations differ.
++              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed city/destination labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots. A complete equivalent routine form message qualifies as verified_equivalent_non_main_message after its mechanism and body-language conditions match; it is not none merely because it is form UI. A complete preserved generic marketing message qualifies as verified_substantive_record after the approved category/location-slot conditions hold, even if brief or reusable; the generic-template-only disqualification does not override this finite exception. Shared layout around independently different actual products does not qualify.
++              options:
++                verified_substantive_record: Cited spans establish the same retained substantive content; confirmed harmless service-location slots qualify even when the locations differ. Complete otherwise equivalent generic marketing with only approved category/location labels also qualifies; a different label alone does not make its preserved promotional message none.
+@@ -95 +95 @@
+-                none: No qualifying retained-content or complete-message basis exists after applying conditional exceptions.
++                none: No qualifying retained-content or complete-message basis exists after applying conditional exceptions. Do not choose none merely because a complete message qualifying under the finite generic-marketing exception is short or reusable. A shared topic, navigation or layout around different actual records remains insufficient.
+--- candidate-01/judge_config/pair.jinja
++++ candidate-02/judge_config/pair.jinja
+@@ -138,0 +139,5 @@
++The complete preserved promotional message is the verified retained basis for
++this permitted marketing branch, even when that message is brief and reusable.
++Do not apply the generic-template-only disqualification to this complete
++qualified message. Shared navigation or layout around different actual records
++still does not qualify, and independent product or offer differences still matter.
+--- candidate-01/judge_config/system.jinja
++++ candidate-02/judge_config/system.jinja
+@@ -101,0 +102,5 @@
++The complete preserved promotional message is the verified retained basis for
++this permitted marketing branch, even when that message is brief and reusable.
++Do not apply the generic-template-only disqualification to this complete
++qualified message. Shared navigation or layout around different actual records
++still does not qualify, and independent product or offer differences still matter.

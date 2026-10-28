@@ -1,0 +1,1109 @@
+{
+  "status": "PASS",
+  "observed_at": 1793213711.4367805,
+  "coverage_attempts": 61,
+  "native_failed_attempts": 0,
+  "explanation_first": 61,
+  "model_calls": 0,
+  "diagnostic_only_no_validation_or_score_changes": true,
+  "rows": [
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-coverage-regression-1",
+      "pair_id": "H049-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "5c1159e9819c4da1c9d41d6eb107d4c3d1494a95be225dd44dcbad937baa6ff3"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-coverage-regression-1",
+      "pair_id": "LIST_COVERAGE",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "c811e7efc1b4b094921b82f1166560c2bde976b14ed90def62e26ee02a420a0e"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-coverage-regression-1",
+      "pair_id": "LIST_COVERAGE-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "a0e2dedb06e3a7f58281f0d14aff595953cfa05c253ce8ca1e59d86487da6933"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-coverage-regression-1",
+      "pair_id": "H049",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "0654795cad5cc03146fdfed17f3a3104dd553105fd926c6039fa65883fad68d7"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-license_reference-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "97c461334891490258cb7caf7ff92cd23eb73d89271ae73c0bc87da81af318fc"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D068-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "45e46cd50168008aedeb985d6ae65ad8887979abb77311b5349379c31b8f031c"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-menu_translation-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "4375394592b2c207c125ace7c24a02fe417d35d0f1646f4f9dd282587b2cc3cb"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D043-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "201713c117faee119a42bfff5b7f815e9430cc0f8570880f0cc8ad4d6393755c"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-one_extension",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "6af304d00d2f3d276e92953fd3dc661a72cad15a5b4adb2fa597e35086d80d25"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-menu_translation",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "a244436317ec8f7e006d862ff8505392f98a5e18432a641f2bc89920c114099d"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-publication_metadata-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "c1a677d5f09407650dedca491b80659509f479d5fc07e98f7febd6c225825edb"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-service_slot-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "3bbefe7b9c4708ccfa7e26888cfd3f7b4c4baeaf4459a7364400e1481e815158"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D115",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "f1d9bf4fb84bf5202cfd24ea68b115a25d96a0e289655bee446dd0956d261847"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D115-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "673f29156972d41e5018c27f65b1873a966c6d52f346d56c7b3b04d6989c7532"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-empty_currency",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "0b1511f8b72690f5b57040fd133565008e0e0a38aefc93710918ab92479bc2f0"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D017",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "1574973e6fe2b49e0bdcb2b209b98db885103906f51b13905eca8b69f4c79fd9"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D043",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "1427d60f1e89f15fcae824ea3691589075e0aab62e1831871214b258c7b6ae6c"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D005-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "57ad47deb0ab6d875b6a4e6bbf24570812420c586e32597b7e976345780d63a1"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-service_slot",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "47c71153c9f5fb63fa333fdc30c3269b49442b567236b31316c78cbac0f924b4"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-one_extension-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "51366ce494c03cc6b6be4597a30e427ee3fdcacbedecfb182a9b21be85bb4d5f"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D017-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "92fe2a6207e0f35aaff296438d0cbbf340c99bb4d5df47386d6d930cc2b0c2ac"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-license_reference",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "c283e58542c349d4dc75933d104a4df6fbfc928309461dd23b36fcf5bba76e2e"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-empty_currency-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "cb25334ae2c53697e92ba0a5c1db17a22ea95f00805a014e9113795a12a80df8"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D068",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "9d3d97385a488b40798513ede8329bd0370bdc21ec3e37392e894459680db845"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "D005",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "a9f075b5aa742b92893d61211cf3a218b4432fd87d5aaa15122ee43b5c47b694"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-gate-1",
+      "pair_id": "control-publication_metadata",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "28adb066dc85145f8bede791e798755a2c4a5b4db2d7e23ccc37c79730438c79"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_localized_auth",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "94028f6d3165f04770593f1aa9cf65a89bdb5cc663372f73164c28eb68e463ca"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "D059",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "56da04b0d1741ae17692553515a01be33066d1b763128f8a428518215219374d"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "R18-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "9041f9df4215540ff7f901e4ba1396c0c4653919526c4f7d6d21926115514bef"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_name",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "0234b1b0af15779b3c4e8ac841babad610c014528628f52880fb67a19b72f454"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_intro",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "97aac02c705c1116d6c23dcb841a52b4586d146445d1b1d203e88193ec339bfa"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_localized_title-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "f5e57f42b8121dcae09445fecb6dcc4acbad0dc0add8346ac60a11120b504cce"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "D134",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "2ff4e2191646e3c8babab4572670b55960d3f03f6e4c9d57a45e52f435c8049d"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_specific_use-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "312277e530f410482dad2163991aa162f0b666af65a1354f2fd4fc988636c9a7"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "D134-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "69626cc92c47f3276ad8db7b7d2a00c5cde85b6dab25ae1963390a574e937045"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "R11-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "018da842142a83d708a12532e96030ab50941db8bf0bba5f4b55e61171e3bbb1"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_marketing_slot-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "b77a66c907e2b54e2567b056c473fe4d1d7f1f581ebd63af8509ebbfe0f56230"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "R33",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "019e72bcaf2adfd9091da55ae4c13c482d732aced54ffe616f66953bed9efc4f"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_repetition-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "5aef94cb98dbf5a026195522f5c02e9c96644adc3c1ac8da650b5a3cd21344fe"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_citation_slot-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "29b52e37945720e61b66b67ab5f4e52d902fb502aa85e0ce7956078e539a4d1a"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "R14",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "10b44c92b8be7f83355e4f36465f9de9f25248246ea0e2b6e12cb7cc8945b087"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_localized_title",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "eb78b8557c00b42c65cbc6990bcbe586e6d144897fa1a9d93952dbf7e30189b6"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_intro-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "d01a72edd0f04c239324a6f09d3b58493923e71fcfb2aa2de04d41362c9c45cc"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_citation_slot",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "e044ac82a881a7f625a11101b83b0ff7f6d31d384050a26cc19a8ef597cab7b4"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_localized_auth-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "28a80584944446c296aad6ce711066e3356443bf3023d0d2b555efeac4355d08"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "D058",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "3f34246538eb0897d867a5d4061b35c19c15b2db3e04e75b55f001e4a42402d3"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "R33-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "1f26c314e5907975ce857e8acb56b1c90da220547dd7cb3f6c9c2588e9886cd1"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_specific_use",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "6f92ef3706557e73afc04503854165ba0c49bcb9b3261cf3d9cfb4fb2d885e57"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_name-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "f90c8e5b6bc90b9269bedfccb9841fe66d3f693ba289d24bcc27096b829ee144"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "D059-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "47609d8ac29728c3ad6045e154c908f55cd68bb76efdfc523bb20be8c9de4df7"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_marketing_slot",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "791a4fbd4a3b4748da331da020d8f5696ca9fd69ef48c5b47035b2fa74c3fc90"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "D058-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "8bed65eefbe3a8107825d153cb56a127ed8faf3313cc631b053c508bc59b74c3"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "D135-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "0569c108596636218180dee866d9cfb1ca564ad35c6826f534e5da624333e396"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "R11",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "d572cda20da6153b27025e114f29bb27ca4601e1be439e0d1e13e4026c7a8390"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_repetition",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "d303ea3f0cf2d5fbb0c85c3f9c6207629d5ef3e43b77bdea3ed5c0ae4a4f9efc"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "D135",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "b10cd9134011be220daed4365395897cb253e21ab0f4709f6564e69fec5bf00f"
+    },
+    {
+      "root": "candidate-01-coverreasonfirst1",
+      "run": "candidate-preflight-1",
+      "pair_id": "R18",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "274cc0444acf8cd2f63e51f5898ff58011e44ceddcb43b03ba035bd5798b409e"
+    },
+    {
+      "root": "supplemental-cookie-scope-coverreasonfirst1-v2",
+      "run": "candidate-preflight-1",
+      "pair_id": "SCS002",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "1cf2fde024ad834dab82ea8b7c84e1e20303d6b7b7abfd90f100c1ff5d96bbc2"
+    },
+    {
+      "root": "supplemental-cookie-scope-coverreasonfirst1-v2",
+      "run": "candidate-preflight-1",
+      "pair_id": "SCS002-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "bec136949ae1edeaa00f82c4e503924cb2fefd78cfda0b8de726b133e51c437e"
+    },
+    {
+      "root": "supplemental-cookie-scope-coverreasonfirst1-v2",
+      "run": "candidate-preflight-1",
+      "pair_id": "SCS001",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "887c22cee4b8d23c4522cd5f8c629b04f1cbc90102117d44bd4000cd8eb5ba28"
+    },
+    {
+      "root": "supplemental-cookie-scope-coverreasonfirst1-v2",
+      "run": "candidate-preflight-1",
+      "pair_id": "SCS001-swapped",
+      "native_attempt_status": "valid",
+      "field_order": [
+        "explanation",
+        "shared_anchor_ids",
+        "overlap_basis",
+        "conflict",
+        "a_context_span_id",
+        "b_context_span_id",
+        "a_loss_span_id",
+        "b_loss_span_id"
+      ],
+      "explanation_first": true,
+      "receipt_sha256": "ddad5583592f2ebb3336abc90bc85314e6f663b8e04b0986c85ceb1d0642fe3a"
+    }
+  ]
+}
