@@ -1,0 +1,263 @@
+--- candidate-00-start85/critics/coverage_pair.jinja
++++ candidate-01/critics/coverage_pair.jinja
+@@ -81,4 +81,14 @@
+-do not add a separate purpose. A stock category paragraph already present elsewhere
+-in the same notice is repetition even when repeated beneath another generic
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
++notice is covered repetition when copied beneath another generic category
++heading. Count its meaning at that retained occurrence, rather than inventing
++a second category-specific rule from the new heading. In this stock-copy branch,
++a copied generic statement about necessary basic functions or inability to
++disable cookies does not become a new mandatory-state assertion for the other
++category solely through that heading. Apply the covered-repetition branch before
++general bound-subject or mandatory/optional conflict tests. An explicit additional
++proposition naming a category's actual processing, necessity or consent condition,
++new concrete deployment facts, or independently changed terms still matters;
++it is outside the stock-copy branch. Compare complete propositions across the
++whole keeper, including the original retained occurrence. On this branch,
++the covered repeated side has no own-side retained loss; keep its coverage loss
++ID empty. A real extra contribution on the opposite side keeps its own loss.
+@@ -100 +110,8 @@
+-from the slot alone. These exceptions do not cover actual submission, payment or
++from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
++an independent product-specific fact or differing offer term beyond the category
++or location label. Repeating that class label in a title, first sentence or supplier
++phrase does not supply such a fact. Apply this branch before the general rule for
++different actual products; actual model/specification, price, availability and
++transaction differences remain protected. This exception does not apply to
++unrelated named works, populated records or actual operational destinations.
++These exceptions do not cover actual submission, payment or
+--- candidate-00-start85/critics/coverage_system.jinja
++++ candidate-01/critics/coverage_system.jinja
+@@ -63,4 +63,14 @@
+-do not add a separate purpose. A stock category paragraph already present elsewhere
+-in the same notice is repetition even when repeated beneath another generic
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
++notice is covered repetition when copied beneath another generic category
++heading. Count its meaning at that retained occurrence, rather than inventing
++a second category-specific rule from the new heading. In this stock-copy branch,
++a copied generic statement about necessary basic functions or inability to
++disable cookies does not become a new mandatory-state assertion for the other
++category solely through that heading. Apply the covered-repetition branch before
++general bound-subject or mandatory/optional conflict tests. An explicit additional
++proposition naming a category's actual processing, necessity or consent condition,
++new concrete deployment facts, or independently changed terms still matters;
++it is outside the stock-copy branch. Compare complete propositions across the
++whole keeper, including the original retained occurrence. On this branch,
++the covered repeated side has no own-side retained loss; keep its coverage loss
++ID empty. A real extra contribution on the opposite side keeps its own loss.
+@@ -82 +92,8 @@
+-from the slot alone. These exceptions do not cover actual submission, payment or
++from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
++an independent product-specific fact or differing offer term beyond the category
++or location label. Repeating that class label in a title, first sentence or supplier
++phrase does not supply such a fact. Apply this branch before the general rule for
++different actual products; actual model/specification, price, availability and
++transaction differences remain protected. This exception does not apply to
++unrelated named works, populated records or actual operational destinations.
++These exceptions do not cover actual submission, payment or
+--- candidate-00-start85/critics/subject_pair.jinja
++++ candidate-01/critics/subject_pair.jinja
+@@ -56,4 +56,14 @@
+-do not add a separate purpose. A stock category paragraph already present elsewhere
+-in the same notice is repetition even when repeated beneath another generic
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
++notice is covered repetition when copied beneath another generic category
++heading. Count its meaning at that retained occurrence, rather than inventing
++a second category-specific rule from the new heading. In this stock-copy branch,
++a copied generic statement about necessary basic functions or inability to
++disable cookies does not become a new mandatory-state assertion for the other
++category solely through that heading. Apply the covered-repetition branch before
++general bound-subject or mandatory/optional conflict tests. An explicit additional
++proposition naming a category's actual processing, necessity or consent condition,
++new concrete deployment facts, or independently changed terms still matters;
++it is outside the stock-copy branch. Compare complete propositions across the
++whole keeper, including the original retained occurrence. On this branch,
++the covered repeated side has no own-side retained loss; keep its coverage loss
++ID empty. A real extra contribution on the opposite side keeps its own loss.
+@@ -75 +85,8 @@
+-from the slot alone. These exceptions do not cover actual submission, payment or
++from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
++an independent product-specific fact or differing offer term beyond the category
++or location label. Repeating that class label in a title, first sentence or supplier
++phrase does not supply such a fact. Apply this branch before the general rule for
++different actual products; actual model/specification, price, availability and
++transaction differences remain protected. This exception does not apply to
++unrelated named works, populated records or actual operational destinations.
++These exceptions do not cover actual submission, payment or
+--- candidate-00-start85/critics/subject_system.jinja
++++ candidate-01/critics/subject_system.jinja
+@@ -63,4 +63,14 @@
+-do not add a separate purpose. A stock category paragraph already present elsewhere
+-in the same notice is repetition even when repeated beneath another generic
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
++notice is covered repetition when copied beneath another generic category
++heading. Count its meaning at that retained occurrence, rather than inventing
++a second category-specific rule from the new heading. In this stock-copy branch,
++a copied generic statement about necessary basic functions or inability to
++disable cookies does not become a new mandatory-state assertion for the other
++category solely through that heading. Apply the covered-repetition branch before
++general bound-subject or mandatory/optional conflict tests. An explicit additional
++proposition naming a category's actual processing, necessity or consent condition,
++new concrete deployment facts, or independently changed terms still matters;
++it is outside the stock-copy branch. Compare complete propositions across the
++whole keeper, including the original retained occurrence. On this branch,
++the covered repeated side has no own-side retained loss; keep its coverage loss
++ID empty. A real extra contribution on the opposite side keeps its own loss.
+@@ -82 +92,8 @@
+-from the slot alone. These exceptions do not cover actual submission, payment or
++from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
++an independent product-specific fact or differing offer term beyond the category
++or location label. Repeating that class label in a title, first sentence or supplier
++phrase does not supply such a fact. Apply this branch before the general rule for
++different actual products; actual model/specification, price, availability and
++transaction differences remain protected. This exception does not apply to
++unrelated named works, populated records or actual operational destinations.
++These exceptions do not cover actual submission, payment or
+--- candidate-00-start85/critics/subject_verifier_pair.jinja
++++ candidate-01/critics/subject_verifier_pair.jinja
+@@ -50,4 +50,14 @@
+-do not add a separate purpose. A stock category paragraph already present elsewhere
+-in the same notice is repetition even when repeated beneath another generic
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
++notice is covered repetition when copied beneath another generic category
++heading. Count its meaning at that retained occurrence, rather than inventing
++a second category-specific rule from the new heading. In this stock-copy branch,
++a copied generic statement about necessary basic functions or inability to
++disable cookies does not become a new mandatory-state assertion for the other
++category solely through that heading. Apply the covered-repetition branch before
++general bound-subject or mandatory/optional conflict tests. An explicit additional
++proposition naming a category's actual processing, necessity or consent condition,
++new concrete deployment facts, or independently changed terms still matters;
++it is outside the stock-copy branch. Compare complete propositions across the
++whole keeper, including the original retained occurrence. On this branch,
++the covered repeated side has no own-side retained loss; keep its coverage loss
++ID empty. A real extra contribution on the opposite side keeps its own loss.
+@@ -69 +79,8 @@
+-from the slot alone. These exceptions do not cover actual submission, payment or
++from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
++an independent product-specific fact or differing offer term beyond the category
++or location label. Repeating that class label in a title, first sentence or supplier
++phrase does not supply such a fact. Apply this branch before the general rule for
++different actual products; actual model/specification, price, availability and
++transaction differences remain protected. This exception does not apply to
++unrelated named works, populated records or actual operational destinations.
++These exceptions do not cover actual submission, payment or
+--- candidate-00-start85/critics/subject_verifier_system.jinja
++++ candidate-01/critics/subject_verifier_system.jinja
+@@ -63,4 +63,14 @@
+-do not add a separate purpose. A stock category paragraph already present elsewhere
+-in the same notice is repetition even when repeated beneath another generic
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
++notice is covered repetition when copied beneath another generic category
++heading. Count its meaning at that retained occurrence, rather than inventing
++a second category-specific rule from the new heading. In this stock-copy branch,
++a copied generic statement about necessary basic functions or inability to
++disable cookies does not become a new mandatory-state assertion for the other
++category solely through that heading. Apply the covered-repetition branch before
++general bound-subject or mandatory/optional conflict tests. An explicit additional
++proposition naming a category's actual processing, necessity or consent condition,
++new concrete deployment facts, or independently changed terms still matters;
++it is outside the stock-copy branch. Compare complete propositions across the
++whole keeper, including the original retained occurrence. On this branch,
++the covered repeated side has no own-side retained loss; keep its coverage loss
++ID empty. A real extra contribution on the opposite side keeps its own loss.
+@@ -82 +92,8 @@
+-from the slot alone. These exceptions do not cover actual submission, payment or
++from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
++an independent product-specific fact or differing offer term beyond the category
++or location label. Repeating that class label in a title, first sentence or supplier
++phrase does not supply such a fact. Apply this branch before the general rule for
++different actual products; actual model/specification, price, availability and
++transaction differences remain protected. This exception does not apply to
++unrelated named works, populated records or actual operational destinations.
++These exceptions do not cover actual submission, payment or
+--- candidate-00-start85/judge_config/fuzzy_pair_judge.yaml
++++ candidate-01/judge_config/fuzzy_pair_judge.yaml
+@@ -104,2 +104,2 @@
+-                record_identity_role_or_state_change: A changes a useful retained record, state, role or actual operational destination. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider name in the specified short generic cookie notice is harmless even when repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
+-                material_non_main_message_change: A changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition; concrete additional processing restrictions remain material.
++                record_identity_role_or_state_change: A changes a useful retained record, state, role or actual operational destination. Within the approved generic-marketing branch, a concrete product record requires a product-specific fact or changed offer term beyond the repeated category/location label; title position or supplier wording alone does not meet that condition. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider name in the specified short generic cookie notice is harmless even when repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
++                material_non_main_message_change: A changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition. In the covered stock-cookie-copy branch, a generic basic-function or cannot-disable sentence does not acquire a second category-specific necessity claim solely from its new heading; explicit independent category terms and concrete additional processing restrictions remain material.
+@@ -115,2 +115,2 @@
+-                record_identity_role_or_state_change: B changes a useful retained record, state, role or actual operational destination. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider name in the specified short generic cookie notice is harmless even when repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
+-                material_non_main_message_change: B changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition; concrete additional processing restrictions remain material.
++                record_identity_role_or_state_change: B changes a useful retained record, state, role or actual operational destination. Within the approved generic-marketing branch, a concrete product record requires a product-specific fact or changed offer term beyond the repeated category/location label; title position or supplier wording alone does not meet that condition. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider name in the specified short generic cookie notice is harmless even when repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
++                material_non_main_message_change: B changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition. In the covered stock-cookie-copy branch, a generic basic-function or cannot-disable sentence does not acquire a second category-specific necessity claim solely from its new heading; explicit independent category terms and concrete additional processing restrictions remain material.
+@@ -164 +164 @@
+-                main_content_addition_deletion: Useful retained prose, explanations or obligations occur on one side only, and the other side is fully covered without conflict. This includes additions beyond a complete shared policy message.
++                main_content_addition_deletion: Useful retained prose, explanations or obligations occur on one side only, and the other side is fully covered without conflict. This includes additions beyond a complete shared policy message. Apply the approved finite template exceptions before this category too; a permitted named-versus-unnamed provider, generic marketing category/location label, or covered stock-cookie repetition alone is not a content addition. Identify a separately changed useful proposition instead.
+--- candidate-00-start85/judge_config/pair.jinja
++++ candidate-01/judge_config/pair.jinja
+@@ -103,4 +103,14 @@
+-do not add a separate purpose. A stock category paragraph already present elsewhere
+-in the same notice is repetition even when repeated beneath another generic
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
++notice is covered repetition when copied beneath another generic category
++heading. Count its meaning at that retained occurrence, rather than inventing
++a second category-specific rule from the new heading. In this stock-copy branch,
++a copied generic statement about necessary basic functions or inability to
++disable cookies does not become a new mandatory-state assertion for the other
++category solely through that heading. Apply the covered-repetition branch before
++general bound-subject or mandatory/optional conflict tests. An explicit additional
++proposition naming a category's actual processing, necessity or consent condition,
++new concrete deployment facts, or independently changed terms still matters;
++it is outside the stock-copy branch. Compare complete propositions across the
++whole keeper, including the original retained occurrence. On this branch,
++the covered repeated side has no own-side retained loss; keep its coverage loss
++ID empty. A real extra contribution on the opposite side keeps its own loss.
+@@ -122 +132,8 @@
+-from the slot alone. These exceptions do not cover actual submission, payment or
++from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
++an independent product-specific fact or differing offer term beyond the category
++or location label. Repeating that class label in a title, first sentence or supplier
++phrase does not supply such a fact. Apply this branch before the general rule for
++different actual products; actual model/specification, price, availability and
++transaction differences remain protected. This exception does not apply to
++unrelated named works, populated records or actual operational destinations.
++These exceptions do not cover actual submission, payment or
+--- candidate-00-start85/judge_config/system.jinja
++++ candidate-01/judge_config/system.jinja
+@@ -66,4 +66,14 @@
+-do not add a separate purpose. A stock category paragraph already present elsewhere
+-in the same notice is repetition even when repeated beneath another generic
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
++notice is covered repetition when copied beneath another generic category
++heading. Count its meaning at that retained occurrence, rather than inventing
++a second category-specific rule from the new heading. In this stock-copy branch,
++a copied generic statement about necessary basic functions or inability to
++disable cookies does not become a new mandatory-state assertion for the other
++category solely through that heading. Apply the covered-repetition branch before
++general bound-subject or mandatory/optional conflict tests. An explicit additional
++proposition naming a category's actual processing, necessity or consent condition,
++new concrete deployment facts, or independently changed terms still matters;
++it is outside the stock-copy branch. Compare complete propositions across the
++whole keeper, including the original retained occurrence. On this branch,
++the covered repeated side has no own-side retained loss; keep its coverage loss
++ID empty. A real extra contribution on the opposite side keeps its own loss.
+@@ -85 +95,8 @@
+-from the slot alone. These exceptions do not cover actual submission, payment or
++from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
++an independent product-specific fact or differing offer term beyond the category
++or location label. Repeating that class label in a title, first sentence or supplier
++phrase does not supply such a fact. Apply this branch before the general rule for
++different actual products; actual model/specification, price, availability and
++transaction differences remain protected. This exception does not apply to
++unrelated named works, populated records or actual operational destinations.
++These exceptions do not cover actual submission, payment or

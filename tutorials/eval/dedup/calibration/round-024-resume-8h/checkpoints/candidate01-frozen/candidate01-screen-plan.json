@@ -1,0 +1,56 @@
+{
+  "after_file": "PREPARATION_COMPLETE.json",
+  "cohort_controller": "start85-confirmation-cohort",
+  "cohort_prefix": "start85-confirmation",
+  "cohort_root": "candidate-00-start85",
+  "commands": [
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/check_all_prompt_budgets.py",
+      "--root",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01",
+      "--output",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01/all-input-budget-check.json",
+      "--arrow-pandas-roundtrip"
+    ],
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+      "--after-file",
+      "PREPARATION_COMPLETE.json",
+      "--root",
+      "supplemental-cookie-scope-start85-v2",
+      "--panels",
+      "preflight",
+      "--receipt",
+      "start85-cookie-scope-screen-receipt.json"
+    ],
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+      "--after-file",
+      "start85-cookie-scope-screen-receipt.json",
+      "--root",
+      "candidate-01",
+      "--panels",
+      "preflight",
+      "gate",
+      "coverage-regression",
+      "--receipt",
+      "candidate01-hard-screen-receipt.json"
+    ],
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+      "--after-file",
+      "candidate01-hard-screen-receipt.json",
+      "--root",
+      "supplemental-cookie-scope-candidate01-v2",
+      "--panels",
+      "preflight",
+      "--receipt",
+      "candidate01-cookie-scope-screen-receipt.json"
+    ]
+  ],
+  "receipt": "candidate01-INSERT_SEQUENCE_COMPLETE.json"
+}

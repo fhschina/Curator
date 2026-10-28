@@ -1,0 +1,24 @@
+{
+  "candidate-00-start85": {
+    "parent": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1",
+    "hypothesis_en": "Unmodified C6-languagefirst1 starting comparator; prior85/80 is historical, and the new original3 group is unrun.",
+    "hypothesis_zh": "原样C6-languagefirst1起点对照；既往85/80为历史成绩，本轮新的原定3次尚未运行。",
+    "status": "FROZEN_STARTING_COMPARATOR_NOT_NEW_SEMANTIC_CANDIDATE",
+    "acceptance_passed": false
+  },
+  "candidate-01": {
+    "parent": "candidate-00-start85",
+    "hypothesis_en": "Two narrow exception-priority clarifications on the unchanged confirmed-stage policy: a repeated category/location label in otherwise equivalent generic marketing is not a concrete product record without an independent product-specific fact or changed offer term; and a covered stock-cookie paragraph does not acquire an additional category-specific necessity obligation from its new heading alone. Align existing delta and primary-difference options with those finite exceptions. Actual products/specifications, transaction destinations, named liability, explicit category terms, concrete deployment restrictions and substantive body languages remain protected. Previous broad descendants mixed UI/failed-target/class-instance rules and had format failures; this isolates their approved cookie-scope clarification on the original stable stage parent, without transplanting those other rules. Actual prior main replies explicitly bypassed allowed provider exceptions by labeling them content additions, and a coverage reply acknowledged shared copy yet invented a new category obligation. Preserve all native fields/order/enums, response contract, evidence, model, sampling, executor and strict validator. First screen original hard presentations plus separately frozen cookie-scope positive/negative controls; no long inference solely to retry a failure.",
+    "hypothesis_zh": "在原样确认阶段政策上澄清两项窄范围例外的优先级：等价通用营销中的重复类别或地点标签，如无独立产品事实或变化的销售条件，不构成具体产品记录；已覆盖的通用cookie段落也不因新的标题单独产生额外类别专属的必需义务。同步既有差异及主差异选项与这些有限例外。真实产品及规格、交易去向、责任主体名称、明确类别条款、具体部署限制及实质正文语言继续受保护。既往宽泛后继版本混合了界面、失败目标及类别实例规则，并存在格式失败；本次只把其中已批准的cookie范围澄清置于原有稳定阶段父版本，不移植其他规则。真实既往main回复明确把允许的服务商槽位称为内容新增而绕过例外；coverage回复也曾承认复制共享文字却推断新的类别义务。保留全部原生字段、顺序、枚举、回复格式、证据、模型、采样、执行器及严格校验。先运行原硬呈现及单独冻结的cookie范围正反例；不为重试失败而直接增加长推理。",
+    "scope": "approved marketing category/provider slots and covered cookie-copy scope only",
+    "prior_failure_basis": [
+      "round023/C6 preflight1 R18 main identity inference from repeated generic category",
+      "round023/C6 preflight1 R33 main content-addition bypass of provider exception",
+      "round023/C6 preflight1 R14-swapped coverage category obligation invented from retained duplicate"
+    ],
+    "new_basis_relative_to_prior_attempts": "Stable original C6 parent and its translation-first field order; isolate finite marketing and cookie clauses without broader UI/failed-target/class-instance changes from C10/C11; primary_material_difference content-addition bypass explicitly coupled.",
+    "fields_and_order_unchanged": true,
+    "status": "frozen_awaiting_serial_hard_screen",
+    "acceptance_passed": false
+  }
+}

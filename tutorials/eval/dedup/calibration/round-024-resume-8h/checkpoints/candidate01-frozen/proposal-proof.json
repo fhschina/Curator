@@ -1,0 +1,8 @@
+{
+  "created": 1793212018.894648,
+  "jinja_files": 8,
+  "yaml_schema_names_order_types_enums_preserved": true,
+  "initial_unfrozen_draft_yaml_colon_error_repaired_before_inference": true,
+  "initial_failure_log": "candidate01-native-tests.log",
+  "native_candidate_root_created_by_failed_draft": false
+}
