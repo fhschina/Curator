@@ -1,0 +1,8 @@
+{
+  "purpose": "Recompute current candidate means after every declared completed repeat; retain historical snapshots and metric locks.",
+  "operational_source_sha256": "896da35bdff9a7e588b403c5d909b2df8c3c49176192cbd2b47888070fafd5ed",
+  "packaged_source_sha256": "896da35bdff9a7e588b403c5d909b2df8c3c49176192cbd2b47888070fafd5ed",
+  "source_saved_as_text": true,
+  "native_inference_code_changed": false,
+  "validation": "integration-validation.json"
+}

@@ -1,0 +1,32 @@
+Audit record: {{ pair_id }}
+The record identifier is for tracing only, not evidence for classification.
+
+Compare actual subjects using only the source evidence below. The main judgment,
+coverage result and pair labels are hidden.
+Packet status: {{ subject_packet.status }}; truncated: {{ subject_packet.truncated }}.
+{% for span in subject_packet.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED: ALIGNED ON BOTH SIDES]
+A chars {{ span.a_start_char }}:{{ span.a_end_char }}: {{ span.a_text }}
+B chars {{ span.b_start_char }}:{{ span.b_end_char }}: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }} CORE chars {{ span.start_char }}:{{ span.end_char }}]
+{{ span.text }}
+[READING CONTEXT FOR {{ span.span_id }}; may include shared text]
+{{ span.context_text }}
+{% endif %}
+{% endfor %}
+
+Compare only actual subjects bound to visible predicates within the authorized scope. The conditional policy exceptions still apply.
+
+RESPONSE CONTRACT
+Return one completed answer object, with actual values, inside a ```json
+Markdown code fence. The first line is ```json and the last line is ```.
+Do not return bare JSON, an array, a schema, properties or extra fields.
+Give settled, concise evidence explanations, not a running debate. The chosen
+scores, cited evidence and explanations must describe the same assessment.
+
+RESPONSE FORMAT
+Return exactly one completed answer object inside a ```json Markdown code fence.
+Return actual field values, never the response schema or its properties.
+The first response line must be ```json and the last must be ```. Do not return bare JSON.

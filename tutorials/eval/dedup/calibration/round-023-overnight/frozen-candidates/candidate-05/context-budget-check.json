@@ -1,0 +1,8 @@
+{
+  "variant": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-05/variants/candidate",
+  "pair_id": "D146",
+  "prompt_tokens": 14744,
+  "max_tokens": 6144,
+  "context": 32768,
+  "headroom": 11880
+}

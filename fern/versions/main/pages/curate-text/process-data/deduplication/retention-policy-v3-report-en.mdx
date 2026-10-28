@@ -10,17 +10,17 @@ Evaluation is in progress; acceptance is not confirmed.
 
 | Requirement | Status |
 | --- | --- |
-| milestone_85_80 | NOT_COMPLETED |
-| target_90_85 | NOT_COMPLETED |
-| technical_validity | NOT_COMPLETED |
-| hard.original36 | NOT_COMPLETED |
-| hard.extra6 | NOT_COMPLETED |
-| hard.latest18 | NOT_COMPLETED |
-| hard.controlled26 | NOT_COMPLETED |
-| hard.real_consensus6 | NOT_COMPLETED |
-| nonregression.development99_original | NOT_COMPLETED |
-| nonregression.development99_reviewed | NOT_COMPLETED |
-| nonregression.development97_strict | NOT_COMPLETED |
+| milestone_85_80 | FAIL |
+| target_90_85 | FAIL |
+| technical_validity | FAIL |
+| hard.original36 | PASS |
+| hard.extra6 | PASS |
+| hard.latest18 | FAIL |
+| hard.controlled26 | FAIL |
+| hard.real_consensus6 | PASS |
+| nonregression.development99_original | PASS |
+| nonregression.development99_reviewed | PASS |
+| nonregression.development97_strict | PASS |
 | acceptance_passed | false |
 
 ## Observed development-reference agreement
@@ -34,24 +34,24 @@ The same frozen candidate must satisfy both targets. D means correct directions;
 | baseline | development99_reviewed | 3 | 562/594 | 94.61% | 93.94% | 278/297 | 93.60% | 92.93% |
 | baseline | development97_strict | 3 | 550/582 | 94.50% | 93.81% | 272/291 | 93.47% | 92.78% |
 | start-39714b47 | personal120 | 3 | 593/720 | 82.36% | 81.67% | 281/360 | 78.06% | 77.50% |
-| start-39714b47 | development99_original | 2 | 376/594 | 63.30% | 0.00% | 186/297 | 62.63% | 0.00% |
-| start-39714b47 | development99_reviewed | 2 | 380/594 | 63.97% | 0.00% | 188/297 | 63.30% | 0.00% |
-| start-39714b47 | development97_strict | 2 | 372/582 | 63.92% | 0.00% | 184/291 | 63.23% | 0.00% |
-| candidate-02 | personal120 | 1 | 195/720 | 27.08% | 0.00% | 92/360 | 25.56% | 0.00% |
-| candidate-02 | development99_original | 0 | 0/594 | 0.00% | 0.00% | 0/297 | 0.00% | 0.00% |
-| candidate-02 | development99_reviewed | 0 | 0/594 | 0.00% | 0.00% | 0/297 | 0.00% | 0.00% |
-| candidate-02 | development97_strict | 0 | 0/582 | 0.00% | 0.00% | 0/291 | 0.00% | 0.00% |
+| start-39714b47 | development99_original | 3 | 560/594 | 94.28% | 92.93% | 277/297 | 93.27% | 91.92% |
+| start-39714b47 | development99_reviewed | 3 | 566/594 | 95.29% | 93.94% | 280/297 | 94.28% | 92.93% |
+| start-39714b47 | development97_strict | 3 | 556/582 | 95.53% | 94.85% | 275/291 | 94.50% | 93.81% |
+| candidate-02 | personal120 | 3 | 588/720 | 81.67% | 80.83% | 279/360 | 77.50% | 76.67% |
+| candidate-02 | development99_original | 3 | 564/594 | 94.95% | 93.94% | 280/297 | 94.28% | 92.93% |
+| candidate-02 | development99_reviewed | 3 | 570/594 | 95.96% | 94.95% | 283/297 | 95.29% | 93.94% |
+| candidate-02 | development97_strict | 3 | 558/582 | 95.88% | 94.85% | 277/291 | 95.19% | 93.81% |
 
 | Comparator | Reference | Final D change, percentage points | Final P change, percentage points |
 | --- | --- | --- | --- |
-| baseline | personal120 | NOT_COMPLETED | NOT_COMPLETED |
-| baseline | development99_original | NOT_COMPLETED | NOT_COMPLETED |
-| baseline | development99_reviewed | NOT_COMPLETED | NOT_COMPLETED |
-| baseline | development97_strict | NOT_COMPLETED | NOT_COMPLETED |
-| start-39714b47 | personal120 | NOT_COMPLETED | NOT_COMPLETED |
-| start-39714b47 | development99_original | NOT_COMPLETED | NOT_COMPLETED |
-| start-39714b47 | development99_reviewed | NOT_COMPLETED | NOT_COMPLETED |
-| start-39714b47 | development97_strict | NOT_COMPLETED | NOT_COMPLETED |
+| baseline | personal120 | +9.5833 | +10.2778 |
+| baseline | development99_original | +1.3468 | +1.6835 |
+| baseline | development99_reviewed | +1.3468 | +1.6835 |
+| baseline | development97_strict | +1.3746 | +1.7182 |
+| start-39714b47 | personal120 | -0.6944 | -0.5556 |
+| start-39714b47 | development99_original | +0.6734 | +1.0101 |
+| start-39714b47 | development99_reviewed | +0.6734 | +1.0101 |
+| start-39714b47 | development97_strict | +0.3436 | +0.6873 |
 
 <details>
 <summary>Detailed evidence — repeats</summary>
@@ -79,7 +79,21 @@ The same frozen candidate must satisfy both targets. D means correct directions;
 | start-39714b47 | development99_original | candidate-holdout-2 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
 | start-39714b47 | development99_reviewed | candidate-holdout-2 | 188/198; 93/99 | 188/198; 93/99 | 188/198; 93/99 |
 | start-39714b47 | development97_strict | candidate-holdout-2 | 184/194; 91/97 | 184/194; 91/97 | 184/194; 91/97 |
+| start-39714b47 | development99_original | candidate-holdout-3 | 184/198; 91/99 | 184/198; 91/99 | 184/198; 91/99 |
+| start-39714b47 | development99_reviewed | candidate-holdout-3 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
+| start-39714b47 | development97_strict | candidate-holdout-3 | 184/194; 91/97 | 184/194; 91/97 | 184/194; 91/97 |
 | candidate-02 | personal120 | candidate-diagnostic-1 | 195/240; 92/120 | 195/240; 92/120 | 195/240; 92/120 |
+| candidate-02 | personal120 | candidate-diagnostic-2 | 194/240; 92/120 | 194/240; 92/120 | 194/240; 92/120 |
+| candidate-02 | personal120 | candidate-diagnostic-3 | 198/240; 94/120 | 199/240; 95/120 | 199/240; 95/120 |
+| candidate-02 | development99_original | candidate-holdout-1 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
+| candidate-02 | development99_reviewed | candidate-holdout-1 | 188/198; 93/99 | 188/198; 93/99 | 188/198; 93/99 |
+| candidate-02 | development97_strict | candidate-holdout-1 | 184/194; 91/97 | 184/194; 91/97 | 184/194; 91/97 |
+| candidate-02 | development99_original | candidate-holdout-2 | 187/198; 93/99 | 188/198; 94/99 | 188/198; 94/99 |
+| candidate-02 | development99_reviewed | candidate-holdout-2 | 189/198; 94/99 | 190/198; 95/99 | 190/198; 95/99 |
+| candidate-02 | development97_strict | candidate-holdout-2 | 185/194; 92/97 | 186/194; 93/97 | 186/194; 93/97 |
+| candidate-02 | development99_original | candidate-holdout-3 | 190/198; 94/99 | 190/198; 94/99 | 190/198; 94/99 |
+| candidate-02 | development99_reviewed | candidate-holdout-3 | 192/198; 95/99 | 192/198; 95/99 | 192/198; 95/99 |
+| candidate-02 | development97_strict | candidate-holdout-3 | 188/194; 93/97 | 188/194; 93/97 | 188/194; 93/97 |
 
 </details>
 
@@ -97,12 +111,20 @@ The grouped tables preserve each run and A/B exchange mismatches. Main errors ar
 | Version | Group | Run | Main P | Coverage P | Final P | Swap mismatches |
 | --- | --- | --- | --- | --- | --- | --- |
 | baseline | extra6 | baseline-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| baseline | extra6 | baseline-coverage-regression-2 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| baseline | extra6 | baseline-coverage-regression-3 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
 | baseline | real_consensus6 | baseline-diagnostic-1 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
 | baseline | real_consensus6 | baseline-diagnostic-2 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
 | baseline | real_consensus6 | baseline-diagnostic-3 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
 | baseline | original36 | baseline-gate-1 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| baseline | original36 | baseline-gate-2 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| baseline | original36 | baseline-gate-3 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
 | baseline | latest18 | baseline-preflight-1 | 7/18 | 6/18 | 6/18 | &#123;"main": ["D135", "T_citation_slot", "T_marketing_slot"], "coverage": ["D135", "T_citation_slot", "T_marketing_slot", "T_cookie_intro"], "final": ["D135", "T_citation_slot", "T_marketing_slot", "T_cookie_intro"]&#125; |
 | baseline | controlled26 | baseline-preflight-1 | 16/26 | 16/26 | 16/26 | &#123;"main": ["D135", "T_citation_slot", "T_marketing_slot"], "coverage": ["D135", "T_citation_slot", "T_marketing_slot", "T_cookie_intro"], "final": ["D135", "T_citation_slot", "T_marketing_slot", "T_cookie_intro"]&#125; |
+| baseline | latest18 | baseline-preflight-2 | 4/18 | 4/18 | 4/18 | &#123;"main": ["R11", "R33", "T_localized_auth"], "coverage": ["R11", "R33", "T_localized_auth", "T_cookie_name"], "final": ["R11", "R33", "T_localized_auth", "T_cookie_name"]&#125; |
+| baseline | controlled26 | baseline-preflight-2 | 19/26 | 19/26 | 19/26 | &#123;"main": ["R11", "R33", "T_localized_auth"], "coverage": ["R11", "R33", "T_localized_auth", "T_cookie_name"], "final": ["R11", "R33", "T_localized_auth", "T_cookie_name"]&#125; |
+| baseline | latest18 | baseline-preflight-3 | 6/18 | 5/18 | 5/18 | &#123;"main": ["R18", "D058"], "coverage": ["R18", "R14", "D058", "T_cookie_intro"], "final": ["R18", "R14", "D058", "T_cookie_intro"]&#125; |
+| baseline | controlled26 | baseline-preflight-3 | 18/26 | 18/26 | 18/26 | &#123;"main": ["R18", "D058"], "coverage": ["R18", "R14", "D058", "T_cookie_intro"], "final": ["R18", "R14", "D058", "T_cookie_intro"]&#125; |
 | start-39714b47 | extra6 | candidate-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
 | start-39714b47 | extra6 | candidate-coverage-regression-2 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
 | start-39714b47 | extra6 | candidate-coverage-regression-3 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
@@ -119,10 +141,20 @@ The grouped tables preserve each run and A/B exchange mismatches. Main errors ar
 | start-39714b47 | latest18 | candidate-preflight-3 | 13/18 | 12/18 | 12/18 | &#123;"main": ["R18", "R33", "T_marketing_slot"], "coverage": ["R18", "R14", "T_marketing_slot"], "final": ["R18", "R14", "T_marketing_slot"]&#125; |
 | start-39714b47 | controlled26 | candidate-preflight-3 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R18", "R33", "T_marketing_slot"], "coverage": ["R18", "R14", "T_marketing_slot"], "final": ["R18", "R14", "T_marketing_slot"]&#125; |
 | candidate-02 | extra6 | candidate-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-02 | extra6 | candidate-coverage-regression-2 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-02 | extra6 | candidate-coverage-regression-3 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
 | candidate-02 | real_consensus6 | candidate-diagnostic-1 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| candidate-02 | real_consensus6 | candidate-diagnostic-2 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| candidate-02 | real_consensus6 | candidate-diagnostic-3 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
 | candidate-02 | original36 | candidate-gate-1 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-02 | original36 | candidate-gate-2 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-02 | original36 | candidate-gate-3 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
 | candidate-02 | latest18 | candidate-preflight-1 | 17/18 | 15/18 | 15/18 | &#123;"main": ["D058"], "coverage": ["R14", "R33", "D058"], "final": ["R14", "R33", "D058"]&#125; |
 | candidate-02 | controlled26 | candidate-preflight-1 | 26/26 | 26/26 | 26/26 | &#123;"main": ["D058"], "coverage": ["R14", "R33", "D058"], "final": ["R14", "R33", "D058"]&#125; |
+| candidate-02 | latest18 | candidate-preflight-2 | 14/18 | 12/18 | 12/18 | &#123;"main": ["R33", "D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
+| candidate-02 | controlled26 | candidate-preflight-2 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R33", "D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
+| candidate-02 | latest18 | candidate-preflight-3 | 15/18 | 14/18 | 14/18 | &#123;"main": ["R33", "T_marketing_slot"], "coverage": ["R14", "R33", "T_marketing_slot"], "final": ["R14", "R33", "T_marketing_slot"]&#125; |
+| candidate-02 | controlled26 | candidate-preflight-3 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R33", "T_marketing_slot"], "coverage": ["R14", "R33", "T_marketing_slot"], "final": ["R14", "R33", "T_marketing_slot"]&#125; |
 
 </details>
 
@@ -132,14 +164,20 @@ The grouped tables preserve each run and A/B exchange mismatches. Main errors ar
 | Version | Run | Main V/I/U | Coverage V/I/U | Final V/I/U | Wrong allows M/C/F | Wrong blocks M/C/F | Layer changes | Failures | HTTP attempt status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | baseline | baseline-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| baseline | baseline-coverage-regression-2 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| baseline | baseline-coverage-regression-3 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
 | baseline | baseline-diagnostic-1 | 141/4/5 | 141/4/5 | 141/4/5 | 5/3/3 | 55/59/59 | &#123;"coverage_to_final": 0, "main_to_coverage": 8&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta": 1&#125; | &#123;"valid": 281&#125; |
 | baseline | baseline-diagnostic-2 | 138/7/5 | 138/7/5 | 138/7/5 | 3/3/3 | 64/64/64 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_ATTEMPT_PARSE_ERROR": 2, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 3, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 4&#125; | &#123;"parse_error": 2, "valid": 271&#125; |
 | baseline | baseline-diagnostic-3 | 139/6/5 | 139/6/5 | 139/6/5 | 4/4/4 | 57/59/59 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;"MAIN_ATTEMPT_PARSE_ERROR": 2, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 2&#125; | &#123;"parse_error": 3, "valid": 276&#125; |
 | baseline | baseline-gate-1 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| baseline | baseline-gate-2 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| baseline | baseline-gate-3 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
 | baseline | baseline-holdout-1 | 99/1/0 | 99/1/0 | 99/1/0 | 0/0/0 | 8/8/8 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"MAIN_ATTEMPT_PARSE_ERROR": 1&#125; | &#123;"parse_error": 1, "valid": 117&#125; |
 | baseline | baseline-holdout-2 | 98/2/0 | 98/2/0 | 98/2/0 | 1/1/1 | 8/8/8 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_ATTEMPT_PARSE_ERROR": 1, "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"parse_error": 1, "valid": 117&#125; |
 | baseline | baseline-holdout-3 | 99/1/0 | 99/1/0 | 99/1/0 | 1/1/1 | 8/8/8 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"valid": 117&#125; |
 | baseline | baseline-preflight-1 | 40/4/0 | 40/4/0 | 40/4/0 | 8/8/8 | 27/30/30 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:yes_with_material_hard_conflict": 1&#125; | &#123;"valid": 87&#125; |
+| baseline | baseline-preflight-2 | 44/0/0 | 44/0/0 | 44/0/0 | 8/8/8 | 30/31/31 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;&#125; | &#123;"valid": 82&#125; |
+| baseline | baseline-preflight-3 | 42/2/0 | 42/2/0 | 42/2/0 | 8/8/8 | 26/28/28 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta": 1&#125; | &#123;"valid": 88&#125; |
 | start-39714b47 | candidate-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
 | start-39714b47 | candidate-coverage-regression-2 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
 | start-39714b47 | candidate-coverage-regression-3 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
@@ -151,13 +189,25 @@ The grouped tables preserve each run and A/B exchange mismatches. Main errors ar
 | start-39714b47 | candidate-gate-3 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
 | start-39714b47 | candidate-holdout-1 | 100/0/0 | 100/0/0 | 100/0/0 | 1/1/1 | 5/5/5 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 120&#125; |
 | start-39714b47 | candidate-holdout-2 | 99/1/0 | 99/1/0 | 99/1/0 | 2/1/1 | 7/7/7 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"valid": 119&#125; |
+| start-39714b47 | candidate-holdout-3 | 98/2/0 | 98/2/0 | 98/2/0 | 1/1/1 | 7/7/7 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_ATTEMPT_PARSE_ERROR": 1, "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"parse_error": 1, "valid": 118&#125; |
 | start-39714b47 | candidate-preflight-1 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 8/10/10 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;&#125; | &#123;"valid": 95&#125; |
 | start-39714b47 | candidate-preflight-2 | 44/0/0 | 44/0/0 | 44/0/0 | 2/0/0 | 9/10/10 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;&#125; | &#123;"valid": 96&#125; |
 | start-39714b47 | candidate-preflight-3 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 11/13/13 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;&#125; | &#123;"valid": 92&#125; |
 | candidate-02 | candidate-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| candidate-02 | candidate-coverage-regression-2 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| candidate-02 | candidate-coverage-regression-3 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
 | candidate-02 | candidate-diagnostic-1 | 141/4/5 | 141/4/5 | 141/4/5 | 3/3/3 | 38/38/38 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 3, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 3&#125; | &#123;"valid": 294&#125; |
+| candidate-02 | candidate-diagnostic-2 | 143/2/5 | 143/2/5 | 143/2/5 | 5/5/5 | 40/40/40 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1&#125; | &#123;"valid": 295&#125; |
+| candidate-02 | candidate-diagnostic-3 | 142/4/4 | 142/4/4 | 142/4/4 | 5/4/4 | 32/32/32 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;"CONCLUSIVE_INCOMPLETE_EVIDENCE": 1, "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage": 1, "CONCLUSIVE_INCOMPLETE_EVIDENCE:main": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta": 1, "MAIN_LEDGER_CONTRADICTION:yes_with_material_hard_conflict": 1&#125; | &#123;"valid": 307&#125; |
 | candidate-02 | candidate-gate-1 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| candidate-02 | candidate-gate-2 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| candidate-02 | candidate-gate-3 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| candidate-02 | candidate-holdout-1 | 99/1/0 | 99/1/0 | 99/1/0 | 2/1/1 | 7/7/7 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"valid": 119&#125; |
+| candidate-02 | candidate-holdout-2 | 99/1/0 | 99/1/0 | 99/1/0 | 1/0/0 | 7/7/7 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1&#125; | &#123;"valid": 118&#125; |
+| candidate-02 | candidate-holdout-3 | 100/0/0 | 100/0/0 | 100/0/0 | 0/0/0 | 6/6/6 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 118&#125; |
 | candidate-02 | candidate-preflight-1 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 2/5/5 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;&#125; | &#123;"valid": 100&#125; |
+| candidate-02 | candidate-preflight-2 | 43/1/0 | 43/1/0 | 43/1/0 | 0/0/0 | 9/12/12 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1&#125; | &#123;"valid": 94&#125; |
+| candidate-02 | candidate-preflight-3 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 8/9/9 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;&#125; | &#123;"valid": 95&#125; |
 
 </details>
 
@@ -166,7 +216,7 @@ The grouped tables preserve each run and A/B exchange mismatches. Main errors ar
 
 | Version | Run | Status | Expected inputs | Observed main rows | HTTP attempts |
 | --- | --- | --- | --- | --- | --- |
-| start-39714b47 | candidate-holdout-3 | running | 100 | 0 | 101 |
+| candidate-06-languagefirst1 | candidate-diagnostic-1 | running | 150 | 0 | 0 |
 
 </details>
 
@@ -197,6 +247,10 @@ D121 has no acceptance label. D074 retains its historical illegal state_or_versi
 | start-39714b47 | candidate-diagnostic-3 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
 | candidate-02 | candidate-diagnostic-1 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
 | candidate-02 | candidate-diagnostic-1 | D121 | yes/no → invalid/invalid | yes/no → invalid/invalid | yes/no → invalid/invalid | MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side |
+| candidate-02 | candidate-diagnostic-2 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| candidate-02 | candidate-diagnostic-2 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
+| candidate-02 | candidate-diagnostic-3 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| candidate-02 | candidate-diagnostic-3 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
 
 </details>
 
@@ -212,6 +266,8 @@ D121 has no acceptance label. D074 retains its historical illegal state_or_versi
 | start-39714b47 | candidate-diagnostic-2 | 18/0/0 | 18/0/0 | 18/0/0 |
 | start-39714b47 | candidate-diagnostic-3 | 17/1/0 | 17/1/0 | 17/1/0 |
 | candidate-02 | candidate-diagnostic-1 | 18/0/0 | 18/0/0 | 18/0/0 |
+| candidate-02 | candidate-diagnostic-2 | 17/1/0 | 17/1/0 | 17/1/0 |
+| candidate-02 | candidate-diagnostic-3 | 18/0/0 | 18/0/0 | 18/0/0 |
 
 </details>
 
@@ -227,6 +283,8 @@ D121 has no acceptance label. D074 retains its historical illegal state_or_versi
 | start-39714b47 | candidate-diagnostic-2 | 0/0/5 | 0/0/5 | 0/0/5 |
 | start-39714b47 | candidate-diagnostic-3 | 0/0/5 | 0/0/5 | 0/0/5 |
 | candidate-02 | candidate-diagnostic-1 | 0/0/5 | 0/0/5 | 0/0/5 |
+| candidate-02 | candidate-diagnostic-2 | 0/0/5 | 0/0/5 | 0/0/5 |
+| candidate-02 | candidate-diagnostic-3 | 0/1/4 | 0/1/4 | 0/1/4 |
 
 </details>
 
@@ -238,7 +296,7 @@ Each semantic proposal has its own frozen directory and predeclared verification
 | --- | --- | --- | --- |
 | milestone_85_80 | — | NOT_COMPLETED | — |
 | target_90_85 | — | NOT_COMPLETED | — |
-| best_metric | candidate-02 | provisional | snapshots/1793163170384481638-best_metric-candidate-02-provisional.json |
+| best_metric | candidate-02 | confirmed_three_run_mean | snapshots/1793169127558812788-best_metric-candidate-02-confirmed_three_run_mean.json |
 | best_eligible | — | NOT_COMPLETED | — |
 
 <details>
@@ -247,9 +305,15 @@ Each semantic proposal has its own frozen directory and predeclared verification
 | Candidate | Hypothesis | Completed personal repeats | State | Selection reason | Evidence root |
 | --- | --- | --- | --- | --- | --- |
 | candidate-01 | One isolated rule-expression refinement: apply the already approved conditional template exceptions consistently inside every material delta/conflict/identity option in the main YAML rubric. Preserve the delivered candidate02 system/pair/critic prompts, structured fields and enums, source presentation and operational-destination protections. This isolates rubric-option shadowing from prior full-prompt/window rewrites that improved some slots but introduced format and operational regressions. Expect improved generic marketing/category/provider classification; localization and critic-only false vetoes remain separate diagnostics. | 0 | screen_complete_hard_failed | No raw wrong allows or technical failures in the first86hard presentations; confirmed required-Yes errors remain. Keep evidence and refine the observed localization cause before long development scoring. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-01 |
-| candidate-02 | One functional-localization refinement on candidate01: classify the actual changed clause language and function before protecting body-language material. Equivalent routine password-link form instructions plus same-language privacy paraphrases remain harmless; changed actual steps, account capabilities, privacy conditions and substantive body languages remain protected. Reuse the previously effective functional-role principle in isolation, with a new clause-language check justified by this round raw Vietnamese text being called English; retain the stable operation rules, packet rendering and native output contract rather than repeating the earlier combined window/full-prompt rewrite. | 1 | first_full150_complete_hard_failed |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02 |
+| candidate-02 | One functional-localization refinement on candidate01: classify the actual changed clause language and function before protecting body-language material. Equivalent routine password-link form instructions plus same-language privacy paraphrases remain harmless; changed actual steps, account capabilities, privacy conditions and substantive body languages remain protected. Reuse the previously effective functional-role principle in isolation, with a new clause-language check justified by this round raw Vietnamese text being called English; retain the stable operation rules, packet rendering and native output contract rather than repeating the earlier combined window/full-prompt rewrite. | 3 | first_full150_complete_hard_failed |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02 |
 | candidate-02-core1 | Engineering-only prompt presentation revision of candidate02: show the existing exact unique CORE separately from its unchanged padded reading context in the main pair template. No semantic retention rule, raw source text,6000character window,model,parameters,fields,enums,validation or executor change. This isolates the remaining clause-language attribution failure after functional-role clarification; earlier round022candidate03 combined CORE,full contiguous windows and semantic priorities. Complete address assertions remain visible in unchanged context; actual endpoint/body-language regressions remain mandatory. Baseline and starting original prompts, immutable inputs and execution settings remain fixed; the sole intended experimental difference is the candidate pair presentation. | 0 | REJECTED_BEFORE_INFERENCE_test_marker_compatibility |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02-core1 |
-| candidate-02-core2 | Engineering presentation revision of candidate02: separately expose each existing exact unique CORE from its unchanged padded reading context in the main pair template, preserving native marker syntax. Isolate observed clause-language attribution errors without changing retention rules, raw sources,6000character windows,model,parameters,fields,enums,validation or native executor. Preserve complete operational addresses in context and protect actual endpoint and substantive body-language boundaries. Core1 failed marker compatibility before inference; core2 fixes only that marker separator and passes native template/window tests plus3302CORE excerpt equivalence checks. Baseline and start original prompts remain frozen; presentation is the sole intended candidate intervention. | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02-core2 |
+| candidate-02-core2 | Engineering presentation revision of candidate02: separately expose each existing exact unique CORE from its unchanged padded reading context in the main pair template, preserving native marker syntax. Isolate observed clause-language attribution errors without changing retention rules, raw sources,6000character windows,model,parameters,fields,enums,validation or native executor. Preserve complete operational addresses in context and protect actual endpoint and substantive body-language boundaries. Core1 failed marker compatibility before inference; core2 fixes only that marker separator and passes native template/window tests plus3302CORE excerpt equivalence checks. Baseline and start original prompts remain frozen; presentation is the sole intended candidate intervention. | 0 | hard_failed_main_actual_destination_wrong_allow | Isolated CORE presentation failed the latest-user screen: main wrongly allowed an actual submission-address change; a later coverage veto cannot repair the main gate. Localization and stock-template errors also remain. Reject without full150/100 scoring. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02-core2 |
+| candidate-03 | Two boundary clarifications on candidate02, restoring its original evidence presentation after isolated CORE rendering wrongly allowed an actual submission destination and did not resolve localization: (1) same-language body paraphrases are covered, and a localized authentication UI sentence cannot turn neighboring body clauses into different body languages; meaningful substantive body translations remain protected. (2) the approved generic-template exception includes named versus unnamed provider slots in the same short cookie notice, and stock paragraphs already covered elsewhere do not acquire a new category-specific rule from a standard heading alone. Preserve real action destinations, named liability parties, new purposes/conditions and concrete deployment details. No UI-control refinement, output-format change, executor, schema, window or model change is combined into this semantic candidate. | 0 | hard_screen_complete_failed_no_full150 | The same-language and named/unnamed clarifications did not improve the full86hard screen. No raw wrong allows or technical invalidity, but required-Yes errors remain in authentication localization, a generic marketing slot and cookie repetition. Preserve all evidence; do not run long scoring merely to sample a better result. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-03 |
+| candidate-04 | One functional-priority clarification on candidate03: apply the routine authentication-interface exception before testing linguistic body retention, and remove the remaining short-auth qualifiers from the system derivation, coverage example and YAML options. Actual raw failures protected a full password-link form sentence as body-language material despite the equivalent-form exception; five remaining short-auth phrasings gave an inconsistent boundary. Preserve same-language body paraphrase coverage, actual changed steps/channel/trigger/conditions/capabilities, real operational destinations, and coherent different-language substantive body prose including short factual notices. Keep candidate03 named/unnamed-provider and cross-heading stock-template rules, original evidence presentation, all fields/enums, native executor, model and window unchanged. No UI-control or output-order intervention is combined. | 0 | hard_screen_complete_unsafe_rejected | Protected submission-address and authentication-procedure changes were wrongly allowed; original-order localization also had contradictory fields. Reject without long scoring; preserve all raw failures and complete hard screen. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-04 |
+| candidate-05 | Consolidate the existing conditional policy into one authoritative priority order per native model call: actual action destinations and changed procedures/conditions remain protected before finite localization/template exceptions, and whole-document coverage precedes label or category inference. Actual candidate04 outputs explicitly let a late city exception override a real submission address, treated direct password entry as equivalent to emailed-link activation, and revised a judgment without updating its earlier ledger. Remove repeated semantic appendices from pair prompts and rubric descriptions while retaining original padded evidence, exact native JSON fences, fifteen main fields, eight/seven/four critic schemas, enums, authority, code, model and window. This is a policy-expression/precedence experiment on candidate03, not an expansion to UI selectors/facets or arbitrary identities. Earlier full rewrites had format/evidence changes and bare-JSON failures; this version preserves the native fenced contract and byte-identical packet/truncation rendering, then must pass real hard screens before long scoring. | 0 | hard_screen_complete_overblocking_rejected | Policy consolidation strongly increased required-Yes errors, including previously stable citation, category, introduction and heading cases. Zero raw wrong allows does not compensate for these required coverage failures. Reject without long scoring; preserve the failed full86screen. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-05 |
+| candidate-06 | One mechanism-qualified authentication-localization branch on the earlier safer local candidate. Require equality of actual user action, channel, trigger, sequence, capabilities and conditions, plus covered same-language remaining body; a shared activation goal is insufficient. Couple that qualified branch explicitly to the native ledger, verified complete-message basis and directional summary, preventing a late positive correction from retaining earlier material deltas. Actual changed procedures, destinations, capabilities, purposes, conditions and different-language substantive bodies remain protected. This isolates the observed full-sentence UI misclassification, stale ledger and same-goal/different-mechanism errors. It does not repeat global repeated-slot normalization: no masking or general slot rewrite, no other-family policy change, source/window/order/model/code/schema or validator change. Preserve the earlier native prompts and packet presentation outside this single branch; full rewrites and broad UI-first precedence already failed and are not reused. | 0 | hard_screen_complete_failed_auth_language_and_cookie_coherence | Mechanism-qualified authentication wording preserved every controlled operational boundary but still failed actual clause-language attribution in one order and cookie ledger coherence. The complete hard screen has84/86pairs at each layer, with one invalid pair and zero raw wrong allows. Preserve this failed version; factual assessment order is tested separately. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06 |
+| candidate-06-languagefirst1 | Engineering-only response-order intervention within the existing seven-field ledger: move the factual translation-status assessment before shared-basis and material-delta classification. Actual failed outputs label a quoted non-English privacy clause as English before generating the language field and sometimes revise later conclusions while retaining earlier classifications. All existing field contents, descriptions, enums, types, semantic policy, eight prompts, evidence/window, model, executor and validation remain identical to the parent; only the native score-list order changes. The earlier generic ledger-before-summary hypothesis was disproven because main responses already do that. This tests a different intra-ledger dependency and must verify actual emitted order and hard regressions, not assume improvement. | 0 | hard_screen_complete_language_improved_template_regressed | Actual44main responses followed the intended intra-ledger order and both reviewed authentication orders passed, but generic marketing/provider errors increased and a coverage-only cookie false veto remains. This is a factual-order result, not hard acceptance. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1 |
+| candidate-06-languagefirst1-shortview1 | Engineering-only reading-context intervention on the language-first parent. For complete records no longer than2000characters per side, reassemble the same original text above the untouched main/coverage/subject packets; longer or truncated inputs retain their original presentation. A pre-inference interval proof verified all nonwhitespace preview characters on552source sides already occur in the existing displayed packet ranges, across276presentations. No new source content, wider6000character window, IDs, semantic policy, field content/order/enums, executor, model or validation change. Earlier CORE-only emphasis failed actual addresses; this trial keeps every original padded span/ID and additionally shows whole short records, including full action addresses and body paragraphs. It tests whether fragment-local context causes whole-page language and template-identity anchoring after factual language-first ordering already corrected both localization orders but regressed some template decisions. | 0 | frozen_awaiting_all_input_budget_and_serial_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1-shortview1 |
 
 </details>
 
@@ -275,8 +339,8 @@ Only actually completed checks are reported. GPU allocation includes startup and
 | deadline_utc | 2026-10-28T16:00:00Z |
 | semantic_stop_utc | 2026-10-28T14:30:00Z |
 | gpu_stop_utc | 2026-10-28T15:45:00Z |
-| wall_hours_at_render | 1.927 |
-| allocated_gpu_hours_including_idle | 1.857 |
+| wall_hours_at_render | 3.718 |
+| allocated_gpu_hours_including_idle | 3.648 |
 | GPU | 1 × NVIDIA B200; TP=1 |
 | model_revision | 017b9c7af6b5689d5dd426a76e0bc077eb5ca20a |
 | context/max_tokens/temperature/concurrency/timeout/window | 32768 / 6144 / 0.2 / 8 / 600 / 6000 |
@@ -290,4 +354,4 @@ Use the checked-in calibration entry point and the existing environment. Preserv
 
 `/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z`
 
-`/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/engineering04-integration-0452/comparison.json`
+`/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/formal-candidate02-complete-engineering04/comparison.json`

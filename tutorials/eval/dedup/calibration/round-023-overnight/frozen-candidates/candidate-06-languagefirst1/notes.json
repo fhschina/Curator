@@ -1,0 +1,30 @@
+{
+  "hypothesis_en": "Engineering-only response-order intervention within the existing seven-field ledger: move the factual translation-status assessment before shared-basis and material-delta classification. Actual failed outputs label a quoted non-English privacy clause as English before generating the language field and sometimes revise later conclusions while retaining earlier classifications. All existing field contents, descriptions, enums, types, semantic policy, eight prompts, evidence/window, model, executor and validation remain identical to the parent; only the native score-list order changes. The earlier generic ledger-before-summary hypothesis was disproven because main responses already do that. This tests a different intra-ledger dependency and must verify actual emitted order and hard regressions, not assume improvement.",
+  "hypothesis_zh": "仅在既有七个证据字段内部进行输出顺序工程实验：将事实性的翻译状态判断放到共享依据及实质差异分类之前。真实失败输出曾在生成语言字段前将一条引用的非英语隐私句子称作英语，并有时在后续修改结论却保留先前分类。全部字段内容、描述、枚举、类型、语义政策、八个提示词、证据及窗口、模型、执行器及校验均与父版本相同；只改变原生评分列表顺序。此前“先证据后汇总”的通用假设已被否定，因为main本来就遵循该顺序。本次测试证据字段内部的不同依赖，须核对真实输出顺序及硬回归，不能预设改善。",
+  "parent": "candidate-06",
+  "status": "hard_screen_complete_language_improved_template_regressed",
+  "acceptance_passed": false,
+  "hard_eligible": false,
+  "reason_en": "Actual44main responses followed the intended intra-ledger order and both reviewed authentication orders passed, but generic marketing/provider errors increased and a coverage-only cookie false veto remains. This is a factual-order result, not hard acceptance.",
+  "reason_zh": "真实44个main输出遵循预期字段顺序，且复核认证案例的两个顺序均通过，但通用营销或服务商错误增加，cookie的coverage误否决仍存在。这是字段顺序实验结果，不是硬性验收通过。",
+  "hard_first": {
+    "main": {
+      "correct_pairs": 82,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    },
+    "coverage": {
+      "correct_pairs": 81,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    },
+    "final": {
+      "correct_pairs": 81,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    }
+  }
+}

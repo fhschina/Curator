@@ -1,0 +1,57 @@
+{
+  "created": 1793167823.7471998,
+  "status": "PASS",
+  "bug": "best_metric retained the earlier single-run pointer after its own second declared run lowered its mean",
+  "fix": "Recompute the current best from every candidates complete observed group; refresh the same-candidate pointer even when its mean decreases. Preserve old snapshots and target/milestone locks.",
+  "old_pointer": {
+    "path": "snapshots/1793163170384481638-best_metric-candidate-02-provisional.json",
+    "sha256": "09fc7cf0f8a80ea3f51b57ac19aff421746aef3b17a4a9b3f7bc5f919111f3b8",
+    "signature": [
+      "candidate-02",
+      "provisional",
+      195,
+      92,
+      1,
+      "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    ],
+    "candidate": "candidate-02",
+    "status": "provisional",
+    "metric": {
+      "correct_directions": 195,
+      "directions": 240,
+      "correct_pairs": 92,
+      "pairs": 120,
+      "repeats": 1
+    },
+    "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+  },
+  "new_pointer": {
+    "path": "snapshots/1793167696319792255-best_metric-candidate-02-provisional.json",
+    "sha256": "cfb6e981cf8dc6e49adf181691bcb0e0b87ae277d2e3f41ee981023bc40d5125",
+    "signature": [
+      "candidate-02",
+      "provisional",
+      389,
+      184,
+      2,
+      "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    ],
+    "candidate": "candidate-02",
+    "status": "provisional",
+    "metric": {
+      "correct_directions": 389,
+      "directions": 480,
+      "correct_pairs": 184,
+      "pairs": 240,
+      "repeats": 2
+    },
+    "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+  },
+  "actual_run_ids": [
+    "candidate-diagnostic-1",
+    "candidate-diagnostic-2"
+  ],
+  "old_snapshot_hash_unchanged": true,
+  "new_model_calls": 0,
+  "watcher_sha256": "896da35bdff9a7e588b403c5d909b2df8c3c49176192cbd2b47888070fafd5ed"
+}

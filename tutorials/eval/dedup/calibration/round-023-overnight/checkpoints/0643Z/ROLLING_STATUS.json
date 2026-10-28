@@ -1,0 +1,60 @@
+{
+  "updated": 1793169372.818384,
+  "deadline_utc": "2026-10-28T16:00:00Z",
+  "completed_runs": 67,
+  "personal_scores": [
+    {
+      "candidate": "baseline",
+      "correct_directions": 519,
+      "directions": 720,
+      "correct_pairs": 242,
+      "pairs": 360,
+      "repeats": 3
+    },
+    {
+      "candidate": "candidate-02",
+      "correct_directions": 588,
+      "directions": 720,
+      "correct_pairs": 279,
+      "pairs": 360,
+      "repeats": 3
+    },
+    {
+      "candidate": "start-39714b47",
+      "correct_directions": 593,
+      "directions": 720,
+      "correct_pairs": 281,
+      "pairs": 360,
+      "repeats": 3
+    }
+  ],
+  "pointers": {
+    "milestone_85_80": null,
+    "target_90_85": null,
+    "best_metric": {
+      "path": "snapshots/1793169127558812788-best_metric-candidate-02-confirmed_three_run_mean.json",
+      "sha256": "b3e296fd0a3f42d20ff069c310c51fa93452fcb194e0dbaadb16ea3298390ecc",
+      "signature": [
+        "candidate-02",
+        "confirmed_three_run_mean",
+        588,
+        279,
+        3,
+        "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+      ],
+      "candidate": "candidate-02",
+      "status": "confirmed_three_run_mean",
+      "metric": {
+        "correct_directions": 588,
+        "directions": 720,
+        "correct_pairs": 279,
+        "pairs": 360,
+        "repeats": 3
+      },
+      "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    },
+    "best_eligible": null
+  },
+  "best_eligible": null,
+  "note": "Eligibility requires its own complete fixed acceptance evidence."
+}

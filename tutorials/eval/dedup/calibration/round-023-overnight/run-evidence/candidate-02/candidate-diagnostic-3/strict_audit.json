@@ -1,0 +1,195 @@
+{
+  "run": "candidate-diagnostic-3",
+  "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02",
+  "panel": "diagnostic",
+  "groups": {
+    "personal120": {
+      "main": {
+        "pairs": 120,
+        "directions": 240,
+        "correct_directions": 198,
+        "correct_pairs": 94,
+        "direction_agreement": 0.825,
+        "pair_agreement": 0.7833333333333333,
+        "reference_wrong_allows": 5,
+        "reference_wrong_blocks": 32,
+        "invalid_pairs": 3,
+        "unresolved_pairs": 0,
+        "valid_pairs": 117,
+        "valid_judgment_coverage": 0.975
+      },
+      "coverage": {
+        "pairs": 120,
+        "directions": 240,
+        "correct_directions": 199,
+        "correct_pairs": 95,
+        "direction_agreement": 0.8291666666666667,
+        "pair_agreement": 0.7916666666666666,
+        "reference_wrong_allows": 4,
+        "reference_wrong_blocks": 32,
+        "invalid_pairs": 3,
+        "unresolved_pairs": 0,
+        "valid_pairs": 117,
+        "valid_judgment_coverage": 0.975
+      },
+      "final": {
+        "pairs": 120,
+        "directions": 240,
+        "correct_directions": 199,
+        "correct_pairs": 95,
+        "direction_agreement": 0.8291666666666667,
+        "pair_agreement": 0.7916666666666666,
+        "reference_wrong_allows": 4,
+        "reference_wrong_blocks": 32,
+        "invalid_pairs": 3,
+        "unresolved_pairs": 0,
+        "valid_pairs": 117,
+        "valid_judgment_coverage": 0.975
+      }
+    },
+    "real_consensus6": {
+      "main": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      },
+      "coverage": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      },
+      "final": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      }
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 142,
+      "invalid": 4,
+      "unresolved": 4
+    },
+    "coverage": {
+      "valid": 142,
+      "invalid": 4,
+      "unresolved": 4
+    },
+    "final": {
+      "valid": 142,
+      "invalid": 4,
+      "unresolved": 4
+    }
+  },
+  "failure_counts": {
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE": 1,
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage": 1,
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE:main": 1,
+    "MAIN_LEDGER_CONTRADICTION:yes_with_material_hard_conflict": 1,
+    "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta": 1,
+    "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1
+  },
+  "attempt_status_counts": {
+    "valid": 307
+  },
+  "attempt_retries": 0,
+  "stage_direction_changes": {
+    "main_to_coverage": 2,
+    "coverage_to_final": 0
+  },
+  "issues": {
+    "D147": [
+      "CONCLUSIVE_INCOMPLETE_EVIDENCE",
+      "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage",
+      "CONCLUSIVE_INCOMPLETE_EVIDENCE:main"
+    ],
+    "D069": [
+      "MAIN_LEDGER_CONTRADICTION:yes_with_material_hard_conflict"
+    ],
+    "D088": [
+      "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta"
+    ],
+    "D093": [
+      "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+    ]
+  },
+  "integrity_failures": {},
+  "unmapped_attempts": 0,
+  "native_report_sha256": "a2225e07ccfd819f5b96549d42eb04ab45677fd1eabf056b6e793223da7fff51",
+  "evaluation_sha256": "b1b986f7583a7e5681455173adadcfd50f27852fbf39245fd30ff789abf6e218",
+  "audit_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "execution": {
+    "started": 1793168715.2930284,
+    "completed": 1793169119.7515523,
+    "duration_seconds": 404.45852398872375,
+    "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "judge_config_sha256": "dad8d976e65885b641f8b0ebc3a1f97b37165171539acec4ba0c044830d68956",
+    "replica_peak_concurrency": 8
+  },
+  "native_all_input_validation": {
+    "main": {
+      "valid": 145,
+      "unresolved": 4,
+      "invalid": 1
+    },
+    "coverage": {
+      "valid": 145,
+      "unresolved": 4,
+      "invalid": 1
+    },
+    "final": {
+      "valid": 145,
+      "unresolved": 4,
+      "invalid": 1
+    }
+  },
+  "native_failure_counts": {
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE": 1,
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage": 1,
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE:main": 1
+  },
+  "ledger_issues": {
+    "D069": [
+      "MAIN_LEDGER_CONTRADICTION:yes_with_material_hard_conflict"
+    ],
+    "D088": [
+      "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta"
+    ],
+    "D093": [
+      "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+    ]
+  },
+  "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "strict_artifacts": {
+    "json": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02/runs/candidate-diagnostic-3/audits/engineering04-ledger-coherence/strict_audit.json",
+    "csv": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02/runs/candidate-diagnostic-3/audits/engineering04-ledger-coherence/strict_audit.csv"
+  }
+}

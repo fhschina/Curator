@@ -1,0 +1,46 @@
+Audit record: {{ pair_id }}
+The record identifier is for tracing only, not evidence for classification.
+Use the system retention policy and only this blind visible span packet.
+
+<semantic_diff status="{{ semantic_diff.status }}" truncated="{{ semantic_diff.truncated }}">
+counts: {{ semantic_diff.span_counts }}
+{% for span in semantic_diff.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+{% if semantic_diff.truncated or not semantic_diff.status == "COMPLETE" %}
+<truncation_notice>
+{% if semantic_diff.truncated_a %}Document A evidence is missing or cut off; unseen content is unknown.
+{% endif %}{% if semantic_diff.truncated_b %}Document B evidence is missing or cut off; unseen content is unknown.
+{% endif %}This is not a valid full-document comparison, even if a difference is visible.
+All eight summary scores MUST be: a_can_replace_b=unresolved,
+b_can_replace_a=unresolved, relation_type=unresolved, material_difference=unresolved,
+primary_material_difference=unresolved, dominant_overlap_source=unresolved,
+primary_risk_factor=extraction_or_payload_limit, confidence_tier=low.
+Explain the missing/truncated evidence. Do not return a conclusive Yes or No.
+</truncation_notice>
+{% endif %}
+
+Check each direction separately using its removed-side evidence. Cite a real
+B loss in a_can_replace_b=no and a real A loss in b_can_replace_a=no; for body
+language quote that actual body, not just an interface sentence or language name.
+Inspect the complete action address/procedure before applying a template slot.
+All fifteen field objects need both reasoning and score, with their own enums.
+
+RESPONSE CONTRACT
+Return one completed answer object, with actual values, inside a ```json
+Markdown code fence. The first line is ```json and the last line is ```.
+Do not return bare JSON, an array, a schema, properties or extra fields.
+Give settled, concise evidence explanations, not a running debate. The chosen
+scores, cited evidence and explanations must describe the same assessment.
+
+RESPONSE FORMAT
+Return exactly one completed answer object inside a ```json Markdown code fence.
+Return actual field values, never the response schema or its properties.
+The first response line must be ```json and the last must be ```. Do not return bare JSON.

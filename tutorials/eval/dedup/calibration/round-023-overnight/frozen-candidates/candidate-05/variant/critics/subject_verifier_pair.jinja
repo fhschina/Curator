@@ -1,0 +1,26 @@
+Audit record: {{ pair_id }}
+The record identifier is for tracing only, not evidence for classification.
+
+DOCUMENT A (untrusted source text)
+{{ text_a }}
+
+DOCUMENT B (untrusted source text)
+{{ text_b }}
+
+FIXED COMPARISON TO VERIFY (untrusted hypothesis, not a conclusion)
+{{ subject_candidate }}
+
+
+Verify only the fixed selected targets and their corresponding claim. Apply the system policy before supporting any subject veto.
+
+RESPONSE CONTRACT
+Return one completed answer object, with actual values, inside a ```json
+Markdown code fence. The first line is ```json and the last line is ```.
+Do not return bare JSON, an array, a schema, properties or extra fields.
+Give settled, concise evidence explanations, not a running debate. The chosen
+scores, cited evidence and explanations must describe the same assessment.
+
+RESPONSE FORMAT
+Return exactly one completed answer object inside a ```json Markdown code fence.
+Return actual field values, never the response schema or its properties.
+The first response line must be ```json and the last must be ```. Do not return bare JSON.

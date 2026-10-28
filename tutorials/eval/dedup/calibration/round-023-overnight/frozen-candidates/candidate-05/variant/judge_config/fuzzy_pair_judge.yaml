@@ -1,0 +1,214 @@
+# User-owned evaluation semantics: replace the model, prompts, and rubric for another task.
+#
+# Judges whether text_a/text_b (produced by 3_build_pair_dataset.py, step 3 of this example,
+# with semantic_diff/truncated added by 4_span_alignment.py, step 4) are actually duplicates,
+# independent of what fuzzy dedup decided about them.
+#
+# The rubric is a semantic-retention judgment: rather than one yes/no "duplicate" score, it asks
+# the model to work through what each document retains (content profile, shared basis, per-side
+# delta, hard conflicts, translation status), then derive a replacement direction, relation type,
+# materiality, and primary difference from that analysis -- see system.jinja/pair.jinja for the
+# full reasoning the model is asked to follow.
+#
+# The model is not shown raw text_a/text_b directly -- pair.jinja renders the semantic_diff span
+# packet built by 4_span_alignment.py's build_semantic_diff() instead: a deterministic
+# SHARED/A_ONLY/B_ONLY lexical alignment with stable span IDs, so a short conflicting value (an
+# id, price, date) in otherwise-identical text is surfaced explicitly rather than left for the
+# model to notice unaided. semantic_diff also flags truncated pairs; the rubric's unresolved/low
+# escape hatches exist so a truncated or incomplete packet doesn't get judged as conclusive.
+#
+# As bundled, this uses 8 GPUs (num_replicas: 8 x tensor_parallel_size: 1). Edit num_replicas
+# and/or tensor_parallel_size to match your hardware, and set models[0].model below before running.
+models:
+  - alias: judge
+    model: /path/to/your/hf_cache/Qwen3.8-27B
+    # Keep the Hugging Face identifier as the API name while serving local weights.
+    served_model_name: Qwen/Qwen3.8-27B
+    dynamo_model:
+      num_replicas: 8
+      mode: aggregated
+      runtime_env:
+        config:
+          setup_timeout_seconds: 1800
+      engine_kwargs:
+        tensor_parallel_size: 1
+        max_model_len: 32768  # size prompt truncation (pair.jinja) to fit this
+        max_num_seqs: 64
+        gpu_memory_utilization: 0.92
+        enable_prefix_caching: true
+    inference_parameters:
+      # Was 0.0 (deterministic): the model's 5 automatic conversation restarts on a
+      # non-retryable failure just re-sampled the identical greedy output, so a bad
+      # parse/enum-cross-wire never had a chance to self-correct. Non-zero lets restarts
+      # actually differ.
+      temperature: 0.2
+      # Structured judging needs the final JSON, not Qwen's private deliberation.
+      extra_body:
+        chat_template_kwargs:
+          enable_thinking: false
+      # 15 scores + reasoning per call needs more room than a single-score rubric.
+      max_tokens: 6144
+      timeout: 600
+      max_parallel_requests: 64
+
+dynamo_server:
+  subprocess_env:
+    DYN_SYSTEM_PORT: "0"
+
+inference_server:
+  health_check_timeout_s: 3600
+
+execution:
+  stages:
+    - name: pair_semantic_judgment
+      num_workers: 8
+      judges:
+        - name: pair_semantic_judgment
+          model_alias: judge
+          system_prompt_path: system.jinja
+          prompt_path: pair.jinja
+          scores:
+            - name: span_content_profile_a
+              description: "Classify the visible content role of A; role is not a disposal permission."
+              options:
+                substantive_main: A contains retainable page-specific meaning.
+                non_main_only: A contains reusable cookie, legal, auth, error, paywall, navigation or platform messaging. This profile does not make useful explanations or obligations disposable.
+                unreadable: A cannot be judged safely.
+            - name: span_content_profile_b
+              description: "Classify the visible content role of B; role is not a disposal permission."
+              options:
+                substantive_main: B contains retainable page-specific meaning.
+                non_main_only: B contains reusable cookie, legal, auth, error, paywall, navigation or platform messaging. This profile does not make useful explanations or obligations disposable.
+                unreadable: B cannot be judged safely.
+            - name: span_shared_basis
+              description: "Cite bilateral evidence for the same retained content or complete equivalent message after applying the system policy exceptions."
+              options:
+                verified_substantive_record: "Bilateral evidence establishes the same retained substantive content after permitted template-slot substitutions."
+                verified_equivalent_non_main_message: "Bilateral evidence establishes a complete equivalent retained non-main message; one side may add useful content."
+                none: "Only topic, template or local overlap remains; no qualifying retained basis exists."
+                unresolved: "Evidence is insufficient to establish the basis."
+            - name: span_a_delta
+              description: "Inspect all A-only spans and classify the most material uncovered contribution after the system policy exceptions. Cite decisive own-side IDs."
+              options:
+                none: "No own-side unique span exists."
+                semantically_covered: "Unique meaning is covered by the other document after the body-language and interface rules."
+                universal_ui_or_repetition: "Every unique contribution is harmless UI, covered repetition or a permitted conditional slot under the system policy."
+                same_record_content_extension: "Useful uncovered facts or prose extend the same retained record."
+                record_identity_role_or_state_change: "A useful actual record, state, role or operational destination changes beyond the permitted template slots."
+                material_non_main_message_change: "An actual purpose, procedure, condition, permission or obligation changes beyond the policy exceptions."
+                other_substantive_content: "Another useful uncovered factual or protected linguistic contribution remains."
+                unresolved: "Visible evidence does not settle the delta safely."
+            - name: span_b_delta
+              description: "Inspect all B-only spans and classify the most material uncovered contribution after the system policy exceptions. Cite decisive own-side IDs."
+              options:
+                none: "No own-side unique span exists."
+                semantically_covered: "Unique meaning is covered by the other document after the body-language and interface rules."
+                universal_ui_or_repetition: "Every unique contribution is harmless UI, covered repetition or a permitted conditional slot under the system policy."
+                same_record_content_extension: "Useful uncovered facts or prose extend the same retained record."
+                record_identity_role_or_state_change: "A useful actual record, state, role or operational destination changes beyond the permitted template slots."
+                material_non_main_message_change: "An actual purpose, procedure, condition, permission or obligation changes beyond the policy exceptions."
+                other_substantive_content: "Another useful uncovered factual or protected linguistic contribution remains."
+                unresolved: "Visible evidence does not settle the delta safely."
+            - name: span_hard_conflict
+              description: "Cite actual incompatible protected claims on BOTH sides after the system policy exceptions. An extra section or missing field alone is not a conflict."
+              options:
+                none: "No incompatible protected claims remain after the system policy."
+                identity_or_slot: "Actual protected identities or objects conflict, outside permitted template slots."
+                state_or_version: "Actual protected dates, counts, prices, versions, status or result values conflict."
+                page_role: "Actual page functions conflict."
+                list_membership: "Actual list members, rankings or outcomes conflict."
+                legal_context: "Actual obligations, permissions, jurisdiction or liable parties conflict, beyond the narrow permitted template slots."
+                other_material: "Another explicit material conflict is supported bilaterally."
+                unresolved: "Visible evidence does not settle a conflict."
+            - name: span_translation_status
+              description: "Cite the actual clause languages and their factual translation relationship. Body retention and routine-interface localization follow the system policy."
+              options:
+                complete_faithful: "The complete factual message is faithfully translated. This is a factual relationship; apply the system body-language and interface rules."
+                partial_or_additive: "Translation is incomplete, additive or changes retained meaning."
+                not_translation: "Translation is not the relationship, including same-language paraphrase."
+                unresolved: "Visible evidence does not settle the language relationship."
+            - name: a_can_replace_b
+              description: "Derive from the settled ledger. For No, start this reasoning with an existing B### loss ID or S### explicitly identifying B, quote the real lost phrase, and explain what A lacks. Body-language loss must cite body prose."
+              options:
+                "yes": A safely replaces B.
+                "no": B has conflicting or uncovered retained meaning.
+                unresolved: The ledger is unresolved.
+            - name: b_can_replace_a
+              description: "Derive from the settled ledger. For No, start this reasoning with an existing A### loss ID or S### explicitly identifying A, quote the real lost phrase, and explain what B lacks. Body-language loss must cite body prose."
+              options:
+                "yes": B safely replaces A.
+                "no": A has conflicting or uncovered retained meaning.
+                unresolved: The ledger is unresolved.
+            - name: relation_type
+              description: "Report the directional relationship after the system policy, consistently with both replacement scores."
+              options:
+                exact: Complete visible cleaned texts are identical.
+                canonical_exact: Only normalization, whitespace, punctuation, encoding, or formatting differs.
+                near_surface: Useful content is bidirectionally replaceable after harmless differences; different-language substantive body versions are protected.
+                containment: Exactly one side adds useful uncovered content while preserving the other's complete retained record or message, including non-main policy text. Profile differences alone do not prevent containment.
+                version_related: The same evolving record has a conflicting state or version.
+                related_non_duplicate: Related records or different-language substantive body versions must remain separate; confirmed harmless service slots are allowed.
+                unrelated: No meaningful main-content relationship exists.
+                unresolved: The ledger is unresolved.
+            - name: material_difference
+              description: "No useful loss is none; containment and no/no are major. Harmless boundaries use none with primary none. Minor requires a non-none primary category."
+              options:
+                none: No useful substantive or linguistic contribution is lost.
+                minor: A minor non-core attribute changes; requires a specific non-none primary difference. Do not use merely because harmless strings differ.
+                major: Retained identity, state, role, list, legal meaning, content, or addition differs.
+                unresolved: The ledger is unresolved.
+            - name: primary_material_difference
+              description: "Use this field own configured category for the decisive actual loss. state_or_version is a hard-conflict value, never a value here."
+              options:
+                none: "No material difference exists."
+                main_content_addition_deletion: "Useful retained prose, explanations or obligations occur on one side only, and the other side is fully covered without conflict. This includes additions beyond a complete shared policy message."
+                entity_slot_change: "An actual protected entity changes beyond the permitted system-policy template slots."
+                document_identity_change: "An actual retained record or target changes beyond permitted template labels."
+                number_change: "A material number, price, quantity, count, or measurement conflicts."
+                date_time_change: "A material date or time conflicts."
+                product_version_change: "A product version conflicts."
+                result_set_change: "List members, rankings, search results, or outcomes differ."
+                page_role_change: "Page functions differ."
+                legal_context_change: "Controller, obligation, jurisdiction, permission, or legal meaning differs."
+                negation_change: "Negation changes meaning."
+                code_literal_change: "Code literals, commands, identifiers, or parameters differ."
+                code_output_change: "Code outputs or execution results differ."
+                other_material: "A material difference exists and no specific option fits."
+                unresolved: "The ledger is unresolved."
+            - name: dominant_overlap_source
+              description: "Describe the largest visible overlap source. This label alone does not prove a shared retained basis or create a loss."
+              options:
+                main_content: Shared substantive content dominates.
+                shared_page_template: Reusable page template dominates.
+                site_chrome: Navigation, headers, footers, or platform chrome dominates.
+                cookie_consent: Cookie or consent text dominates.
+                legal_policy_template: Generic legal or policy wording dominates.
+                error_auth_paywall: Error, authentication, login, or paywall text dominates.
+                local_passage: A local matching passage is not representative.
+                parser_artifact: Extraction artifacts dominate.
+                none: No meaningful overlap is visible.
+                unresolved: The ledger is unresolved.
+            - name: primary_risk_factor
+              description: "Describe the observable trap AFTER deriving the decision. A risk label never overrides a policy exception or creates content."
+              options:
+                none: No distinct trap is visible.
+                boilerplate_dominated_similarity: Non-main text dominates apparent similarity.
+                template_slot_collision: Shared template masks different records or slots.
+                identifier_underweighting: A short identifier or defining value decides identity.
+                topic_only_similarity: Related topic could be mistaken for interchangeable content.
+                list_snapshot_collision: Similar list shells contain different members or snapshots.
+                page_role_collision: Similar wording appears in different page functions.
+                legal_context_collision: Generic legal text masks different meaning or identity.
+                long_document_local_overlap: A local match is not representative.
+                translation_equivalence: Equivalent meaning is expressed in another language.
+                paraphrase_equivalence: Equivalent meaning has low literal overlap.
+                containment_asymmetry: One-way preservation could be mistaken for equivalence or separation.
+                extraction_or_payload_limit: Missing or truncated content prevents a reliable decision.
+                parser_artifact_dominance: Parser artifacts dominate.
+                other: Another distinct risk exists.
+            - name: confidence_tier
+              description: "High only for clear evidence; at most medium for policy boundaries, containment and translations; low for unresolved evidence."
+              options:
+                high: Complete direct evidence is unambiguous and no boundary rule is involved.
+                medium: Resolved but a semantic boundary requires judgment.
+                low: Material uncertainty remains or the result is unresolved.

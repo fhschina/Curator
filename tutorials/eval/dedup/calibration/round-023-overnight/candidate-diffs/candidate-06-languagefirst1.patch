@@ -1,0 +1,18 @@
+--- candidate-06/judge_config/fuzzy_pair_judge.yaml
++++ candidate-06-languagefirst1/judge_config/fuzzy_pair_judge.yaml
+@@ -82,0 +83,7 @@
++            - name: span_translation_status
++              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              options:
++                complete_faithful: Both sides express the same complete factual content in different languages. This does not remove the contribution of distinct-language substantive body prose; equivalent localized headings and routine authentication-form instructions alone are harmless.
++                partial_or_additive: Translation is incomplete, additive, or changes retained meaning.
++                not_translation: Translation is not the relationship.
++                unresolved: Visible evidence is insufficient.
+@@ -122,7 +128,0 @@
+-                unresolved: Visible evidence is insufficient.
+-            - name: span_translation_status
+-              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
+-              options:
+-                complete_faithful: Both sides express the same complete factual content in different languages. This does not remove the contribution of distinct-language substantive body prose; equivalent localized headings and routine authentication-form instructions alone are harmless.
+-                partial_or_additive: Translation is incomplete, additive, or changes retained meaning.
+-                not_translation: Translation is not the relationship.

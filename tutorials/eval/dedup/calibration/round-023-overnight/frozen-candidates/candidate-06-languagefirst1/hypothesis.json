@@ -1,0 +1,6 @@
+{
+  "number": 6,
+  "hypothesis": "Engineering-only response-order intervention within the existing seven-field ledger: move the factual translation-status assessment before shared-basis and material-delta classification. Actual failed outputs label a quoted non-English privacy clause as English before generating the language field and sometimes revise later conclusions while retaining earlier classifications. All existing field contents, descriptions, enums, types, semantic policy, eight prompts, evidence/window, model, executor and validation remain identical to the parent; only the native score-list order changes. The earlier generic ledger-before-summary hypothesis was disproven because main responses already do that. This tests a different intra-ledger dependency and must verify actual emitted order and hard regressions, not assume improvement.",
+  "created": 1793168244.9004257,
+  "diff_sha256": "c2bdf9e5b0a26495d3bf3f6264fc93af432c204b6f3a187eb8cf97887f2c900d"
+}
