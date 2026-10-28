@@ -1,0 +1,108 @@
+{
+  "run": "baseline-coverage-regression-2",
+  "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/baseline",
+  "panel": "coverage-regression",
+  "groups": {
+    "extra6": {
+      "main": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      },
+      "coverage": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      },
+      "final": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      }
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 6
+    },
+    "coverage": {
+      "valid": 6
+    },
+    "final": {
+      "valid": 6
+    }
+  },
+  "failure_counts": {},
+  "attempt_status_counts": {
+    "valid": 14
+  },
+  "attempt_retries": 0,
+  "stage_direction_changes": {
+    "main_to_coverage": 0,
+    "coverage_to_final": 0
+  },
+  "issues": {},
+  "integrity_failures": {},
+  "unmapped_attempts": 0,
+  "native_report_sha256": "23e6597de135c1ba7b3ff8ed88abe8dcdba11d896162ebd09a5fdd3312944c3a",
+  "evaluation_sha256": "b1b986f7583a7e5681455173adadcfd50f27852fbf39245fd30ff789abf6e218",
+  "audit_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "execution": {
+    "started": 1793219532.454291,
+    "completed": 1793219605.2967584,
+    "duration_seconds": 72.84246730804443,
+    "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "judge_config_sha256": "8a08894ba53f82943a38b41cf26dbe1a1217801839be51b2aec0e55688666abf",
+    "replica_peak_concurrency": 6
+  },
+  "swap_mismatches": {
+    "main": [],
+    "coverage": [],
+    "final": []
+  },
+  "native_all_input_validation": {
+    "main": {
+      "valid": 6
+    },
+    "coverage": {
+      "valid": 6
+    },
+    "final": {
+      "valid": 6
+    }
+  },
+  "native_failure_counts": {},
+  "ledger_issues": {},
+  "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "strict_artifacts": {
+    "json": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/baseline/runs/baseline-coverage-regression-2/audits/engineering04-ledger-coherence/strict_audit.json",
+    "csv": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/baseline/runs/baseline-coverage-regression-2/audits/engineering04-ledger-coherence/strict_audit.csv"
+  }
+}

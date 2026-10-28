@@ -1,0 +1,25 @@
+pair_id,layer,validation_status,validation_errors,a_can_replace_b,b_can_replace_a,raw_a_can_replace_b,raw_b_can_replace_a,references_by_group,ledger_issues
+SCS001,main,invalid,MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side,invalid,invalid,yes,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}","[""MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side""]"
+SCS001,coverage,invalid,MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side,invalid,invalid,yes,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}","[""MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side""]"
+SCS001,final,invalid,MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side,invalid,invalid,yes,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}","[""MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side""]"
+SCS001-swapped,main,valid,,yes,yes,yes,yes,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCS001-swapped,coverage,valid,,yes,yes,yes,yes,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCS001-swapped,final,valid,,yes,yes,yes,yes,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCS002,main,valid,,no,yes,no,yes,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""yes""}]}",[]
+SCS002,coverage,valid,,no,yes,no,yes,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""yes""}]}",[]
+SCS002,final,valid,,no,yes,no,yes,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""yes""}]}",[]
+SCS002-swapped,main,valid,,yes,no,yes,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""no""}]}",[]
+SCS002-swapped,coverage,valid,,yes,no,yes,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""no""}]}",[]
+SCS002-swapped,final,valid,,yes,no,yes,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""no""}]}",[]
+SCS003,main,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS003,coverage,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS003,final,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS003-swapped,main,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS003-swapped,coverage,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS003-swapped,final,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS004,main,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS004,coverage,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS004,final,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS004-swapped,main,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS004-swapped,coverage,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]
+SCS004-swapped,final,valid,,no,no,no,no,"{""supplemental_cookie_scope8"": [{""a_can_replace_b"": ""no"", ""b_can_replace_a"": ""no""}]}",[]

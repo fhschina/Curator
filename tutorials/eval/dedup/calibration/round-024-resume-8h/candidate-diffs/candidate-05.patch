@@ -1,0 +1,142 @@
+--- candidate-03/critics/coverage_pair.jinja
++++ candidate-05/critics/coverage_pair.jinja
+@@ -94,0 +95,13 @@
++Distinguish a copied paragraph from an independently assigned state. A short
++category-specific setting or toggle value asserts that category's actual
++mandatory/optional condition even when rendered as UI. Non-main role, brevity,
++and the word "setting" do not make that assertion harmless. A missing value is
++not an opposite value, but can be a one-sided useful addition. This does not
++reclassify a generic paragraph already retained elsewhere merely because it is
++copied beneath a new heading; that is still the covered-stock-copy branch.
++The generic introductory-framing exception requires actual shared complete
++category definitions covering the claimed purposes. Without that prerequisite,
++compare every stated purpose and mechanism directly; a broad "better experience"
++claim does not entail a specific recognition, tracking or use condition. A common
++cookie topic is not equivalent coverage. Ordinary synonyms that preserve every
++actual claim can still be semantically covered without invoking this exception.
+--- candidate-03/critics/coverage_system.jinja
++++ candidate-05/critics/coverage_system.jinja
+@@ -76,0 +77,13 @@
++Distinguish a copied paragraph from an independently assigned state. A short
++category-specific setting or toggle value asserts that category's actual
++mandatory/optional condition even when rendered as UI. Non-main role, brevity,
++and the word "setting" do not make that assertion harmless. A missing value is
++not an opposite value, but can be a one-sided useful addition. This does not
++reclassify a generic paragraph already retained elsewhere merely because it is
++copied beneath a new heading; that is still the covered-stock-copy branch.
++The generic introductory-framing exception requires actual shared complete
++category definitions covering the claimed purposes. Without that prerequisite,
++compare every stated purpose and mechanism directly; a broad "better experience"
++claim does not entail a specific recognition, tracking or use condition. A common
++cookie topic is not equivalent coverage. Ordinary synonyms that preserve every
++actual claim can still be semantically covered without invoking this exception.
+--- candidate-03/critics/subject_pair.jinja
++++ candidate-05/critics/subject_pair.jinja
+@@ -69,0 +70,13 @@
++Distinguish a copied paragraph from an independently assigned state. A short
++category-specific setting or toggle value asserts that category's actual
++mandatory/optional condition even when rendered as UI. Non-main role, brevity,
++and the word "setting" do not make that assertion harmless. A missing value is
++not an opposite value, but can be a one-sided useful addition. This does not
++reclassify a generic paragraph already retained elsewhere merely because it is
++copied beneath a new heading; that is still the covered-stock-copy branch.
++The generic introductory-framing exception requires actual shared complete
++category definitions covering the claimed purposes. Without that prerequisite,
++compare every stated purpose and mechanism directly; a broad "better experience"
++claim does not entail a specific recognition, tracking or use condition. A common
++cookie topic is not equivalent coverage. Ordinary synonyms that preserve every
++actual claim can still be semantically covered without invoking this exception.
+--- candidate-03/critics/subject_system.jinja
++++ candidate-05/critics/subject_system.jinja
+@@ -76,0 +77,13 @@
++Distinguish a copied paragraph from an independently assigned state. A short
++category-specific setting or toggle value asserts that category's actual
++mandatory/optional condition even when rendered as UI. Non-main role, brevity,
++and the word "setting" do not make that assertion harmless. A missing value is
++not an opposite value, but can be a one-sided useful addition. This does not
++reclassify a generic paragraph already retained elsewhere merely because it is
++copied beneath a new heading; that is still the covered-stock-copy branch.
++The generic introductory-framing exception requires actual shared complete
++category definitions covering the claimed purposes. Without that prerequisite,
++compare every stated purpose and mechanism directly; a broad "better experience"
++claim does not entail a specific recognition, tracking or use condition. A common
++cookie topic is not equivalent coverage. Ordinary synonyms that preserve every
++actual claim can still be semantically covered without invoking this exception.
+--- candidate-03/critics/subject_verifier_pair.jinja
++++ candidate-05/critics/subject_verifier_pair.jinja
+@@ -63,0 +64,13 @@
++Distinguish a copied paragraph from an independently assigned state. A short
++category-specific setting or toggle value asserts that category's actual
++mandatory/optional condition even when rendered as UI. Non-main role, brevity,
++and the word "setting" do not make that assertion harmless. A missing value is
++not an opposite value, but can be a one-sided useful addition. This does not
++reclassify a generic paragraph already retained elsewhere merely because it is
++copied beneath a new heading; that is still the covered-stock-copy branch.
++The generic introductory-framing exception requires actual shared complete
++category definitions covering the claimed purposes. Without that prerequisite,
++compare every stated purpose and mechanism directly; a broad "better experience"
++claim does not entail a specific recognition, tracking or use condition. A common
++cookie topic is not equivalent coverage. Ordinary synonyms that preserve every
++actual claim can still be semantically covered without invoking this exception.
+--- candidate-03/critics/subject_verifier_system.jinja
++++ candidate-05/critics/subject_verifier_system.jinja
+@@ -76,0 +77,13 @@
++Distinguish a copied paragraph from an independently assigned state. A short
++category-specific setting or toggle value asserts that category's actual
++mandatory/optional condition even when rendered as UI. Non-main role, brevity,
++and the word "setting" do not make that assertion harmless. A missing value is
++not an opposite value, but can be a one-sided useful addition. This does not
++reclassify a generic paragraph already retained elsewhere merely because it is
++copied beneath a new heading; that is still the covered-stock-copy branch.
++The generic introductory-framing exception requires actual shared complete
++category definitions covering the claimed purposes. Without that prerequisite,
++compare every stated purpose and mechanism directly; a broad "better experience"
++claim does not entail a specific recognition, tracking or use condition. A common
++cookie topic is not equivalent coverage. Ordinary synonyms that preserve every
++actual claim can still be semantically covered without invoking this exception.
+--- candidate-03/judge_config/fuzzy_pair_judge.yaml
++++ candidate-05/judge_config/fuzzy_pair_judge.yaml
+@@ -102 +102 @@
+-                universal_ui_or_repetition: Every A-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs. This also includes the conditional cookie framing/repetition and permitted generic template slots defined by the policy.
++                universal_ui_or_repetition: Every A-only span is harmless UI excluding an independently assigned mandatory/optional setting, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs. This also includes the conditional cookie framing/repetition and permitted generic template slots defined by the policy.
+@@ -105 +105 @@
+-                material_non_main_message_change: A changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition. In the covered stock-cookie-copy branch, a generic basic-function or cannot-disable sentence does not acquire a second category-specific necessity claim solely from its new heading; explicit independent category terms and concrete additional processing restrictions remain material.
++                material_non_main_message_change: A states an independently assigned category-specific mandatory/optional setting even if it is short UI, or changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition. In the covered stock-cookie-copy branch, a generic basic-function or cannot-disable sentence does not acquire a second category-specific necessity claim solely from its new heading; explicit independent category terms and concrete additional processing restrictions remain material.
+@@ -113 +113 @@
+-                universal_ui_or_repetition: Every B-only span is harmless UI, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs. This also includes the conditional cookie framing/repetition and permitted generic template slots defined by the policy.
++                universal_ui_or_repetition: Every B-only span is harmless UI excluding an independently assigned mandatory/optional setting, redundant heading/byline, parser noise, or repetition, including only the confirmed harmless service slots, empty-cart currency, incidental metadata and same-terms reference URLs. This also includes the conditional cookie framing/repetition and permitted generic template slots defined by the policy.
+@@ -116 +116 @@
+-                material_non_main_message_change: B changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition. In the covered stock-cookie-copy branch, a generic basic-function or cannot-disable sentence does not acquire a second category-specific necessity claim solely from its new heading; explicit independent category terms and concrete additional processing restrictions remain material.
++                material_non_main_message_change: B states an independently assigned category-specific mandatory/optional setting even if it is short UI, or changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition. In the covered stock-cookie-copy branch, a generic basic-function or cannot-disable sentence does not acquire a second category-specific necessity claim solely from its new heading; explicit independent category terms and concrete additional processing restrictions remain material.
+--- candidate-03/judge_config/pair.jinja
++++ candidate-05/judge_config/pair.jinja
+@@ -116,0 +117,13 @@
++Distinguish a copied paragraph from an independently assigned state. A short
++category-specific setting or toggle value asserts that category's actual
++mandatory/optional condition even when rendered as UI. Non-main role, brevity,
++and the word "setting" do not make that assertion harmless. A missing value is
++not an opposite value, but can be a one-sided useful addition. This does not
++reclassify a generic paragraph already retained elsewhere merely because it is
++copied beneath a new heading; that is still the covered-stock-copy branch.
++The generic introductory-framing exception requires actual shared complete
++category definitions covering the claimed purposes. Without that prerequisite,
++compare every stated purpose and mechanism directly; a broad "better experience"
++claim does not entail a specific recognition, tracking or use condition. A common
++cookie topic is not equivalent coverage. Ordinary synonyms that preserve every
++actual claim can still be semantically covered without invoking this exception.
+--- candidate-03/judge_config/system.jinja
++++ candidate-05/judge_config/system.jinja
+@@ -79,0 +80,13 @@
++Distinguish a copied paragraph from an independently assigned state. A short
++category-specific setting or toggle value asserts that category's actual
++mandatory/optional condition even when rendered as UI. Non-main role, brevity,
++and the word "setting" do not make that assertion harmless. A missing value is
++not an opposite value, but can be a one-sided useful addition. This does not
++reclassify a generic paragraph already retained elsewhere merely because it is
++copied beneath a new heading; that is still the covered-stock-copy branch.
++The generic introductory-framing exception requires actual shared complete
++category definitions covering the claimed purposes. Without that prerequisite,
++compare every stated purpose and mechanism directly; a broad "better experience"
++claim does not entail a specific recognition, tracking or use condition. A common
++cookie topic is not equivalent coverage. Ordinary synonyms that preserve every
++actual claim can still be semantically covered without invoking this exception.

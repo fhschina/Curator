@@ -1,0 +1,16 @@
+{
+  "restarted": 1793220314.6367104,
+  "old_exact_identity": {
+    "pid": 779682,
+    "create_time": 1793215265.43,
+    "started": 1793215265.7926853,
+    "gpu_stop_at": 1793238978,
+    "deadline": 1793239878,
+    "no_model_calls": true,
+    "finalizer": "finalize_existing_evidence.py"
+  },
+  "old_identity_terminated": true,
+  "new_pid": 1221992,
+  "source_sha256": "f0cfda161df4ae7925f711c36083b9bc3ae074e449fa06d5b1f02d4a7496d9c2",
+  "original_deadline_unchanged": true
+}
