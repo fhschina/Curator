@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "mode": "prepare_only",
+  "created": 1793164364.5629928,
+  "verified_files": 117,
+  "declared_runs": 45,
+  "new_model_calls": 0,
+  "inference_status": "NOT_COMPLETED",
+  "entry_sha256": "e97ae761e5eaae1f937debc4f6a9ccba6e797f4965fc7b2db0183cfc86c16d1b",
+  "audit_source_directory": "engineering-04-ledger-completeness",
+  "no_source_inode_aliasing": true
+}
