@@ -1,0 +1,76 @@
+"""Tokenize every fixed input for the actual native main and packet-specialist recipes; no inference."""
+import argparse
+import json
+import time
+from pathlib import Path
+
+import data_designer.config as dd
+import requests
+import yaml
+from critics.coverage import coverage_column
+from critics.spans import SpanPacket
+from critics.subject import subject_column
+from data_designer.engine.column_generators.utils.prompt_renderer import (
+    PromptType,
+    RecordBasedPromptRenderer,
+    create_response_recipe,
+)
+from policy_eval import read_rows
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--root', type=Path, required=True)
+parser.add_argument('--output', type=Path, required=True)
+args = parser.parse_args()
+assert not args.output.exists()
+session = Path(__file__).resolve().parent
+variant = args.root / 'variants/candidate'
+config = yaml.safe_load((variant / 'judge_config/fuzzy_pair_judge.yaml').read_text())
+judge = config['execution']['stages'][0]['judges'][0]
+main = dd.LLMJudgeColumnConfig(name=judge['name'], model_alias='judge',
+    prompt=(variant / 'judge_config/pair.jinja').read_text(),
+    system_prompt=(variant / 'judge_config/system.jinja').read_text(),
+    scores=[dd.Score(**value) for value in judge['scores']])
+columns = [('main', main, None), ('coverage', coverage_column('judge', variant / 'critics'), 'coverage_packet'),
+           ('subject', subject_column('judge', variant / 'critics'), 'subject_packet')]
+service = json.loads((session / 'service.json').read_text())
+state = json.loads((session / 'SESSION_STATUS.json').read_text())
+results = []
+started = time.time()
+http = requests.Session()
+for stage, column, packet_name in columns:
+    renderer = RecordBasedPromptRenderer(create_response_recipe(column))
+    for panel in ['gate', 'coverage-regression', 'preflight', 'diagnostic', 'holdout']:
+        for row in read_rows(args.root / 'panels' / panel):
+            if time.time() + 900 >= state['gpu_stop_at']:
+                raise TimeoutError('Fixed admission reserve reached during CPU tokenization')
+            if packet_name:
+                packet = SpanPacket.from_record(row)
+                if not packet.complete:
+                    continue
+                row = {**row, packet_name: packet.for_prompt()}
+            messages = [
+                {'role': 'system', 'content': renderer.render(prompt_template=column.system_prompt, record=row, prompt_type=PromptType.SYSTEM_PROMPT)},
+                {'role': 'user', 'content': renderer.render(prompt_template=column.prompt, record=row, prompt_type=PromptType.USER_PROMPT)},
+            ]
+            response = http.post(service['endpoint'].removesuffix('/v1') + '/tokenize', json={
+                'model': 'Qwen/Qwen3.8-27B-FP8', 'messages': messages,
+                'add_generation_prompt': True, 'chat_template_kwargs': {'enable_thinking': False},
+            }, timeout=20)
+            response.raise_for_status()
+            count = response.json()['count']
+            results.append({'stage': stage, 'panel': panel, 'pair_id': row['pair_id'],
+                            'prompt_tokens': count, 'output_tokens_reserved': 6144,
+                            'headroom': 32768 - count - 6144})
+violations = [row for row in results if row['headroom'] < 0]
+receipt = {'started': started, 'completed': time.time(), 'status': 'FAIL' if violations else 'PASS',
+           'model_calls': 0, 'tokenization_requests': len(results), 'max_parallel_tokenization': 1,
+           'fixed_context': 32768, 'fixed_output': 6144,
+           'stage_summary': {stage: {'inputs': sum(row['stage'] == stage for row in results),
+                                    'maximum_prompt_tokens': max(row['prompt_tokens'] for row in results if row['stage'] == stage),
+                                    'minimum_headroom': min(row['headroom'] for row in results if row['stage'] == stage)}
+                             for stage, _, _ in columns},
+           'violations': violations, 'results': results}
+args.output.write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps({key: value for key, value in receipt.items() if key != 'results'}), flush=True)
+if violations:
+    raise ValueError('At least one fixed native prompt exceeds the unchanged context/output budget')

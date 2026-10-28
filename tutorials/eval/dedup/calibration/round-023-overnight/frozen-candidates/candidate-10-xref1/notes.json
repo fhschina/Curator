@@ -1,0 +1,25 @@
+{
+  "parent": "candidate-10",
+  "engineering_revision": "xref1",
+  "created": 1793176874.238774,
+  "hypothesis_en": "Engineering-only exact-source navigation index on candidate10. The latest raw coverage veto still calls a paragraph uncovered even though its exact103-character CORE occurs elsewhere in the retained original record; the main directional judgment is correct. Add a bounded index of exact repeated CORE locations to the unchanged main/coverage/subject pair templates. Consider only the first32existing spans, complete untruncated records within the fixed6000-character window, and CORE fragments of at least32characters; preview at most128characters and give the opposite original-source offset. This is navigation, not semantic coverage or a retention verdict. Prove every indexed nonwhitespace character was already visible in the original opposite packet, and removing only the generated index restores each native rendered prompt byte-for-byte. All policy, fields/enums/order, original packet IDs, model, executor, sampling, source window and validation stay unchanged. The original failed candidate10 parse attempt is retained; this intervention does not claim to repair native formatting or qualify the failed parent.",
+  "hypothesis_zh": "仅调整证据导航的工程实验，基于candidate10。最新原始覆盖检查仍将一段内容判为未覆盖，但其103字符CORE在保留记录其他位置逐字出现，主判断方向正确。在原有main、coverage、subject模板中增加有界的精确重复位置索引：仅处理固定6000字符窗口内完整且未截断的记录、前32个既有片段和至少32字符的CORE，显示对侧原文偏移及最多128字符预览。索引不提供语义覆盖或保留结论。逐项证明索引字符此前已在对侧数据包中显示，且只移除新增索引后原生渲染逐字节恢复。政策、字段枚举顺序、数据包ID、模型、执行器、采样、窗口和校验均不变。保留candidate10的解析失败，不声称此实验修复格式或使父版本合格。",
+  "files": {
+    "judge_config/system.jinja": "b970e5d83cd8ec585b7e1865317c4e237cb1eabfb6b4595844f968d4ef61a28d",
+    "judge_config/fuzzy_pair_judge.yaml": "acb024f246204fb0b38aad6795059a982aaafb6ec5d25835d1cece46588854cf",
+    "judge_config/pair.jinja": "744855c4428d2a8e4c67a5a24a540958ac1cd59c927cbf25fc0e6a746618832a",
+    "critics/coverage_system.jinja": "fd398f101714a42e2b30d738bedb4105fc4e3fff11f6641c4a77450fe11c9411",
+    "critics/subject_verifier_pair.jinja": "fb951edaa321dff2c818cebd2fa515e4c1ac0005f6e7e22ddef62b5eaf7c6f51",
+    "critics/subject_system.jinja": "b6ea0cc72d461c85e63bbad484631ad6e2af2c396f866957d21bc75cb06251df",
+    "critics/coverage_pair.jinja": "e942fcdc8bb20590dad836fe2e0fef27d58cab64b104a00c47dc3c8dcf8acd45",
+    "critics/subject_pair.jinja": "9e0d9bef226a26e6ea71b6f7936a240dc0f5c4d4f4d2c1498ab4878a0ba30b04",
+    "critics/subject_verifier_system.jinja": "766e109465ac4dec811c88460a37c8812993b5d8e2b996079d8c1a4d50f17e43"
+  },
+  "model_calls": 0,
+  "status": "failed_native_arrow_slice_type_and_integrity",
+  "acceptance_passed": false,
+  "actual_model_calls": 16,
+  "failure": "Float span offsets from Arrow/Pandas were not legal Python slice indices; native early shutdown left retained null output and missing receipts. Direct-record998-render proof did not exercise this boundary.",
+  "original_run_preserved": true,
+  "replacement_failed_repeats_allowed": false
+}

@@ -1,0 +1,6 @@
+{
+  "number": 10,
+  "hypothesis": "Engineering-only exact-source navigation index on candidate10. The latest raw coverage veto still calls a paragraph uncovered even though its exact103-character CORE occurs elsewhere in the retained original record; the main directional judgment is correct. Add a bounded index of exact repeated CORE locations to the unchanged main/coverage/subject pair templates. Consider only the first32existing spans, complete untruncated records within the fixed6000-character window, and CORE fragments of at least32characters; preview at most128characters and give the opposite original-source offset. This is navigation, not semantic coverage or a retention verdict. Prove every indexed nonwhitespace character was already visible in the original opposite packet, and removing only the generated index restores each native rendered prompt byte-for-byte. All policy, fields/enums/order, original packet IDs, model, executor, sampling, source window and validation stay unchanged. The original failed candidate10 parse attempt is retained; this intervention does not claim to repair native formatting or qualify the failed parent.",
+  "created": 1793176905.8775232,
+  "diff_sha256": "0c6a1780a38293c9806ff4e3a72ce5b90990f3f545f71f58f16dafe1b7cb12ce"
+}

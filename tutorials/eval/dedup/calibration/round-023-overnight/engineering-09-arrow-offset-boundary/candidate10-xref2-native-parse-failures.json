@@ -1,0 +1,72 @@
+[
+  {
+    "pair_id": "R33-swapped",
+    "column": "CoverageReview",
+    "error": "No parsable JSON structure within ```json markdown fence.",
+    "prefix": "'{\\n  \"a_loss_span_id\": \"\",\\n  \"b_loss'",
+    "bare_json_decodes": true,
+    "finish_reason": "stop",
+    "tokens": 267,
+    "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref2/runs/candidate-preflight-1/receipts/critics/http/3c95f0b427fa4658817d510baa1cf132.json"
+  },
+  {
+    "pair_id": "R33-swapped",
+    "column": "CoverageReview",
+    "error": "No parsable JSON structure within ```json markdown fence.",
+    "prefix": "'{\\n  \"a_loss_span_id\": \"\",\\n  \"b_loss'",
+    "bare_json_decodes": true,
+    "finish_reason": "stop",
+    "tokens": 285,
+    "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref2/runs/candidate-preflight-1/receipts/critics/http/47f23afd8b8e45e3af677eaadab182a7.json"
+  },
+  {
+    "pair_id": "R33-swapped",
+    "column": "CoverageReview",
+    "error": "No parsable JSON structure within ```json markdown fence.",
+    "prefix": "'{\\n  \"a_loss_span_id\": \"\",\\n  \"b_loss'",
+    "bare_json_decodes": true,
+    "finish_reason": "stop",
+    "tokens": 314,
+    "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref2/runs/candidate-preflight-1/receipts/critics/http/939af9abbd854a2fa866757152eb0c9b.json"
+  },
+  {
+    "pair_id": "R33-swapped",
+    "column": "CoverageReview",
+    "error": "No parsable JSON structure within ```json markdown fence.",
+    "prefix": "'{\\n  \"a_loss_span_id\": \"\",\\n  \"b_loss'",
+    "bare_json_decodes": true,
+    "finish_reason": "stop",
+    "tokens": 302,
+    "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref2/runs/candidate-preflight-1/receipts/critics/http/bf232dbf3fee4b99aa5dcb24dd1efc8c.json"
+  },
+  {
+    "pair_id": "R33-swapped",
+    "column": "CoverageReview",
+    "error": "No parsable JSON structure within ```json markdown fence.",
+    "prefix": "'{\\n  \"a_loss_span_id\": \"\",\\n  \"b_loss'",
+    "bare_json_decodes": true,
+    "finish_reason": "stop",
+    "tokens": 316,
+    "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref2/runs/candidate-preflight-1/receipts/critics/http/f6f9dff031054c9b991338bb37846b08.json"
+  },
+  {
+    "pair_id": "T_cookie_intro",
+    "column": "JudgeStructuredOutput",
+    "error": "No parsable JSON structure within ```json markdown fence.",
+    "prefix": "'{\\n  \"span_content_profile_a\": {\\n   '",
+    "bare_json_decodes": true,
+    "finish_reason": "stop",
+    "tokens": 943,
+    "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref2/runs/candidate-preflight-1/receipts/main/http/2532135de557459e87713c26096b51c8.json"
+  },
+  {
+    "pair_id": "T_cookie_intro",
+    "column": "JudgeStructuredOutput",
+    "error": "No parsable JSON structure within ```json markdown fence.",
+    "prefix": "'{\\n  \"span_content_profile_a\": {\\n   '",
+    "bare_json_decodes": true,
+    "finish_reason": "stop",
+    "tokens": 912,
+    "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref2/runs/candidate-preflight-1/receipts/main/http/d37cb629751c4e4f81f3744cc22b1700.json"
+  }
+]

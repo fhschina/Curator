@@ -1,0 +1,19 @@
+{
+  "created": 1793178076.366717,
+  "status": "PASS",
+  "model_calls": 0,
+  "native_frozen_files_equal_proposal_after_hooks": true,
+  "fifteen_field_names_order_types_and_options_preserved": true,
+  "yaml_only_six_existing_descriptions_extended_for_one_cookie_scope_factor": [
+    "span_shared_basis",
+    "span_a_delta",
+    "span_b_delta",
+    "span_hard_conflict",
+    "a_can_replace_b",
+    "b_can_replace_a"
+  ],
+  "original_source_and_validation_unchanged": true,
+  "source_root": "candidate-10",
+  "new_frozen_root": "candidate-11",
+  "additional_cookie_scope_definition_sha256": "a954fd98c0f4634f3cd6935f486d05afca5f6429eb7a44e176646b297f853823"
+}

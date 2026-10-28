@@ -1,0 +1,12 @@
+{
+  "saved": 1793178534.917046,
+  "status": "PASS",
+  "candidate": "candidate-10",
+  "snapshot": "snapshots/1793178427346936869-milestone_85_80-candidate-10-provisional_single_run.json",
+  "snapshot_sha256": "6f8d0950d09dffb8c888b83f16086543d2851f73bea82fe83d8701547b289d83",
+  "single_run_provisional": true,
+  "three_run_confirmation": "NOT_COMPLETED",
+  "existing_confirmed_C6_lock_preserved": true,
+  "original_three_run_cohort": "candidate-10/verification-plan.json",
+  "acceptance_passed": false
+}

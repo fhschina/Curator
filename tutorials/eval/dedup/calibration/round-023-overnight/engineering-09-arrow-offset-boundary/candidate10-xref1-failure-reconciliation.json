@@ -1,0 +1,140 @@
+{
+  "reconciled": 1793177256.1181612,
+  "status": "FAILED_INTEGRITY",
+  "original_execution_status": {
+    "current": "candidate-preflight-1",
+    "started": 1793176996.1634824,
+    "command": [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/policy_eval.py",
+      "run",
+      "--root",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref1",
+      "--variant",
+      "candidate",
+      "--panel",
+      "preflight",
+      "--repeat",
+      "1",
+      "--inference-endpoint",
+      "http://127.0.0.1:18823/v1",
+      "--service-container",
+      "retention-policy-v3-overnight-20261028-gpu0"
+    ]
+  },
+  "native_run_completed": 1793177075.390033,
+  "native_integrity_failures": {
+    "R14": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "R14-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "D058": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "D058-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "D134": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "D134-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "D135": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "D135-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_citation_slot": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_citation_slot-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_marketing_slot": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_marketing_slot-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_actual_product": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_actual_product-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_submission_endpoint": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_submission_endpoint-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_localized_title": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_localized_title-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_localized_auth": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_localized_auth-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_body_language": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_body_language-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_auth_procedure": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_auth_procedure-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_intro": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_intro-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_name": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_name-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_repetition": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_repetition-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_specific_use": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_specific_use-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_restriction": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ],
+    "T_cookie_restriction-swapped": [
+      "MAIN_MISSING_INFERENCE_RECEIPT"
+    ]
+  },
+  "unmapped_attempts": 0,
+  "actual_main_http_receipts": 10,
+  "actual_critic_http_receipts": 6,
+  "owned_model_requests_now_idle": true,
+  "failed_run_not_replaced": true,
+  "unstarted_jobs_remain_unstarted": [
+    "gate1",
+    "coverage-regression1",
+    "supplement22"
+  ]
+}

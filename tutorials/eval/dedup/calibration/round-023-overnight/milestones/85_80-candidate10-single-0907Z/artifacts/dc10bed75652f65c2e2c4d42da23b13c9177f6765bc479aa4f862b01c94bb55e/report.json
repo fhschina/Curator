@@ -1,0 +1,178 @@
+{
+  "input_pairs": 150,
+  "output_pairs": 150,
+  "labels": 150,
+  "label_sources": {
+    "provisional": 123,
+    "consensus": 6,
+    "needs_discussion": 21
+  },
+  "unsafe_allow_definition": "Raw yes in a reference-no direction, including judgments with invalid schema or evidence; validity is reported separately.",
+  "unscored_labels": 144,
+  "truncated_pairs": 5,
+  "issues": {
+    "D074": [
+      "MAIN_ATTEMPT_PARSE_ERROR"
+    ]
+  },
+  "integrity_failures": {},
+  "failure_counts": {
+    "MAIN_ATTEMPT_PARSE_ERROR": 1
+  },
+  "skip_reasons": {
+    "coverage": {
+      "PRESERVE_MAIN_NEGATIVE_OR_UNRESOLVED": 45
+    },
+    "subject": {
+      "PRESERVE_MAIN_NEGATIVE_OR_UNRESOLVED": 46,
+      "PRESERVE_WITHOUT_BILATERAL_UNIQUE_SUBJECTS": 49
+    }
+  },
+  "layers": {
+    "main": {
+      "scored_pairs": 6,
+      "direction_accuracy": 1.0,
+      "pair_accuracy": 1.0,
+      "unsafe_allows": 0,
+      "unresolved_pair_rate": 0.0,
+      "invalid_pair_rate": 0.0
+    },
+    "coverage": {
+      "scored_pairs": 6,
+      "direction_accuracy": 1.0,
+      "pair_accuracy": 1.0,
+      "unsafe_allows": 0,
+      "unresolved_pair_rate": 0.0,
+      "invalid_pair_rate": 0.0
+    },
+    "final": {
+      "scored_pairs": 6,
+      "direction_accuracy": 1.0,
+      "pair_accuracy": 1.0,
+      "unsafe_allows": 0,
+      "unresolved_pair_rate": 0.0,
+      "invalid_pair_rate": 0.0
+    }
+  },
+  "gate_passed": false,
+  "holdout_passed": false,
+  "attempt_status_counts": {
+    "valid": 311,
+    "parse_error": 1
+  },
+  "attempt_retries": 1,
+  "unmapped_attempts": 0,
+  "variant": "candidate",
+  "panel": "diagnostic",
+  "repeat": 1,
+  "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+  "diagnostic_signals": {},
+  "language_distribution": {},
+  "raw_document_length_chars": {
+    "documents": 300,
+    "missing_documents": 0,
+    "min": 217,
+    "max": 23439,
+    "visible_window_chars": 6000,
+    "over_window_documents": 10
+  },
+  "reference_agreement_by_source": {
+    "consensus": {
+      "main": {
+        "eligible_pairs": 6,
+        "agreeing_pairs": 6
+      },
+      "coverage": {
+        "eligible_pairs": 6,
+        "agreeing_pairs": 6
+      },
+      "final": {
+        "eligible_pairs": 6,
+        "agreeing_pairs": 6
+      }
+    },
+    "needs_discussion": {
+      "main": {
+        "eligible_pairs": 18,
+        "agreeing_pairs": 8
+      },
+      "coverage": {
+        "eligible_pairs": 18,
+        "agreeing_pairs": 9
+      },
+      "final": {
+        "eligible_pairs": 18,
+        "agreeing_pairs": 9
+      }
+    },
+    "provisional": {
+      "main": {
+        "eligible_pairs": 121,
+        "agreeing_pairs": 99
+      },
+      "coverage": {
+        "eligible_pairs": 121,
+        "agreeing_pairs": 98
+      },
+      "final": {
+        "eligible_pairs": 121,
+        "agreeing_pairs": 97
+      }
+    }
+  },
+  "stage_direction_changes": {
+    "main_to_coverage": 2,
+    "coverage_to_final": 1
+  },
+  "truncated_ids": [
+    "D146",
+    "D147",
+    "D148",
+    "D149",
+    "D150"
+  ],
+  "execution_manifest_sha256": "5b33de55ef559add0fd09003c94aa3e770103add83f3cb716f1267d1dc58c2b7",
+  "audit_code_sha256": "0d69f64b88ab1f963016069fc58add24413ef0d6ebf10b50aeb214fe4838e294",
+  "experiment_manifest_sha256": "0b053c6b8cc279f12e228c32b54e1d330da77c262ba140adc56318898518add1",
+  "output_files": {
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10/runs/candidate-diagnostic-1/critics/0c0010133c76.jsonl": "dad1290194e8e93211cb63a921f60163435fc960cfc5985fb028d29b3b053872"
+  },
+  "purpose": "diagnostic",
+  "missing_source_pairs": 0,
+  "layer_answer_counts": {
+    "main": {
+      "raw_yes_directions": 165,
+      "validated_yes_directions": 165
+    },
+    "coverage": {
+      "raw_yes_directions": 163,
+      "validated_yes_directions": 163
+    },
+    "final": {
+      "raw_yes_directions": 162,
+      "validated_yes_directions": 162
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 144,
+      "invalid": 1,
+      "unresolved": 5
+    },
+    "coverage": {
+      "valid": 144,
+      "invalid": 1,
+      "unresolved": 5
+    },
+    "final": {
+      "valid": 144,
+      "invalid": 1,
+      "unresolved": 5
+    }
+  },
+  "replica_requests": {
+    "http://127.0.0.1:18823/v1": 312
+  },
+  "replica_peak_concurrency": 8,
+  "interpretation": "Purpose-selected diagnostics and automated judgments; not corpus-wide error rates."
+}

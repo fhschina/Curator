@@ -1,0 +1,46 @@
+"""Prepare separately versioned policy-derived controls through the existing alignment and native evaluator."""
+import argparse
+import hashlib
+import json
+import shutil
+import time
+from pathlib import Path
+
+from policy_cases import aligned, blind_row, mirrored
+from policy_eval import FIELDS, read_json, verify_files, write_json, write_rows
+from policy_tuning import seal
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--source-root', type=Path, required=True)
+parser.add_argument('--source-variant', choices=['baseline', 'candidate'], required=True)
+parser.add_argument('--destination', type=Path, required=True)
+parser.add_argument('--definition', type=Path, required=True)
+args = parser.parse_args()
+source, destination = args.source_root.resolve(), args.destination.resolve()
+source_manifest = read_json(source / 'manifest.json')
+verify_files(source, source_manifest['files'])
+definition = read_json(args.definition)
+controls = definition['controls']
+diagnostics = [{**row, **dict.fromkeys(FIELDS, ''), 'label_status': 'diagnostic_unlabeled'} for row in definition['diagnostics']]
+presentations = [item for row in controls + diagnostics for item in [row, mirrored(row)]]
+prepared = aligned([{key: row[key] for key in ['pair_id', 'text_a', 'text_b']} for row in presentations])
+destination.mkdir(parents=True, exist_ok=False)
+write_rows(destination / 'panels/preflight/input.jsonl', [blind_row(row) for row in prepared])
+labels = [{key: value for key, value in row.items() if key not in ['text_a', 'text_b']} for row in presentations]
+for label, row in zip(labels, presentations, strict=True):
+    for side in ['a', 'b']:
+        label['text_' + side + '_sha256'] = hashlib.sha256(row['text_' + side].encode()).hexdigest()
+write_json(destination / 'labels/preflight.json', labels)
+write_rows(destination / 'input_indexes/preflight.jsonl', [{'pair_id': row['pair_id'], 'text_a_sha256': hashlib.sha256(row['text_a'].encode()).hexdigest(), 'text_b_sha256': hashlib.sha256(row['text_b'].encode()).hexdigest(), 'evidence_sha256': hashlib.sha256(json.dumps(row['semantic_diff'], sort_keys=True).encode()).hexdigest(), 'truncated': row['truncated']} for row in prepared])
+for variant in ['baseline', 'candidate']:
+    shutil.copytree(source / 'variants' / args.source_variant, destination / 'variants' / variant)
+for name, data in [('adjudications.json', {'entries': []}), ('agent_votes.json', []), ('private_index.json', {'preflight': []})]:
+    write_json(destination / name, data)
+shutil.copy2(source / 'engineering_checks.json', destination / 'engineering_checks.json')
+ids = [row['pair_id'] for row in presentations if row['label_status'] == 'controlled']
+assert len(ids) == definition['controlled_presentations_with_swaps']
+write_json(destination / 'evaluation.json', {'direction_order': list(FIELDS), 'fixed_personal_reference': [], 'latest_user_decisions': [], 'consensus_ids': [], 'discussion_ids': [row['pair_id'] for row in presentations if row['label_status'] == 'diagnostic_unlabeled'], 'truncated_ids': [], 'hard_groups': {definition.get('group_name', 'supplemental_ui16'): {'panel': 'preflight', 'ids': ids}}, 'reference_kind': 'Policy-derived controlled expectations, not new human labels; supplemental version separate from original86.'})
+manifest = {'policy_version': definition['version'], 'purpose': 'diagnostic', 'baseline_commit': source_manifest['baseline_commit'], 'panels': {'preflight': len(prepared)}, 'created_at': time.time(), 'source_root': str(source), 'source_manifest_sha256': hashlib.sha256((source / 'manifest.json').read_bytes()).hexdigest(), 'definition_sha256': hashlib.sha256(args.definition.read_bytes()).hexdigest(), 'not_part_of_original86_or_personal120_or_development_denominators': True}
+seal(destination, manifest)
+write_json(destination / 'verification-plan.json', {'declared': time.time(), 'manifest_sha256': hashlib.sha256((destination / 'manifest.json').read_bytes()).hexdigest(), 'runs': {'preflight': ['candidate-preflight-' + str(repeat) for repeat in [1, 2, 3]]}, 'replacement_failed_repeats_allowed': False})
+print(json.dumps({'destination': str(destination), 'inputs': len(prepared), 'controlled_presentations': len(ids), 'unlabeled_diagnostic_presentations': len(prepared) - len(ids)}))

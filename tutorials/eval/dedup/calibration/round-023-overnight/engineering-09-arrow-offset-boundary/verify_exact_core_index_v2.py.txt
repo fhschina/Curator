@@ -1,0 +1,74 @@
+"""Verify native rendering, exact source occurrences, visibility and unchanged original prompts without inference."""
+import argparse
+import ast
+import pyarrow as pa
+import hashlib
+import json
+import time
+from pathlib import Path
+
+from critics.spans import SpanPacket
+from data_designer.engine.column_generators.utils.prompt_renderer import PromptType, RecordBasedPromptRenderer
+from data_designer.engine.models.recipes.response_recipes import TextResponseRecipe
+from policy_eval import read_rows
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--parent', type=Path, required=True)
+parser.add_argument('--proposal', type=Path, required=True)
+parser.add_argument('--output', type=Path, required=True)
+args = parser.parse_args()
+assert not args.output.exists()
+session = Path(__file__).resolve().parent
+block = (session / 'proposals/exact-core-index-v2-block.txt').read_text().rstrip('\n')
+index_renderer = RecordBasedPromptRenderer(TextResponseRecipe())
+results = []
+for stage, relative, packet_name in [('main', 'judge_config/pair.jinja', None),
+                                    ('coverage', 'critics/coverage_pair.jinja', 'coverage_packet'),
+                                    ('subject', 'critics/subject_pair.jinja', 'subject_packet')]:
+    before_renderer = RecordBasedPromptRenderer(TextResponseRecipe())
+    after_renderer = RecordBasedPromptRenderer(TextResponseRecipe())
+    before_template = (args.parent / 'variants/candidate' / relative).read_text()
+    after_template = (args.proposal / relative).read_text()
+    for panel in ['gate', 'coverage-regression', 'preflight', 'diagnostic', 'holdout']:
+        for row in pa.Table.from_pylist(read_rows(args.parent / 'panels' / panel)).to_pandas().to_dict('records'):
+            if packet_name:
+                packet = SpanPacket.from_record(row)
+                if not packet.complete:
+                    continue
+                row = {**row, packet_name: packet.for_prompt()}
+            before = before_renderer.render(prompt_template=before_template, record=row, prompt_type=PromptType.USER_PROMPT)
+            after = after_renderer.render(prompt_template=after_template, record=row, prompt_type=PromptType.USER_PROMPT)
+            proof_prefix = '__INDEX_PROOF_PREFIX__\n'
+            index = index_renderer.render(prompt_template=proof_prefix + block, record=row, prompt_type=PromptType.USER_PROMPT)[len(proof_prefix):]
+            assert after.replace(index, '', 1) == before, (stage, panel, row['pair_id'])
+            matches = []
+            if row['semantic_diff']['status'] == 'COMPLETE' and not row['truncated'] and max(len(row['text_a']), len(row['text_b'])) <= 6000:
+                for span in row['semantic_diff']['spans'][:32]:
+                    if span['kind'] == 'SHARED':
+                        continue
+                    side = 'a' if span['kind'] == 'A_ONLY' else 'b'
+                    other = 'b' if side == 'a' else 'a'
+                    core = row['text_' + side][int(span['delta_start_char']):int(span['delta_end_char'])]
+                    position = row['text_' + other].find(core)
+                    if len(core) < 32 or position < 0:
+                        continue
+                    ranges = []
+                    for witness in row['semantic_diff']['spans']:
+                        if witness['kind'] == 'SHARED':
+                            ranges.append((witness[other + '_start_char'], witness[other + '_end_char']))
+                        elif witness['kind'] == other.upper() + '_ONLY':
+                            ranges.append((witness['start_char'], witness['end_char']))
+                    assert all(char.isspace() or any(lo <= position + i < hi for lo, hi in ranges) for i, char in enumerate(core))
+                    matches.append({'span_id': span['span_id'], 'core_characters': len(core), 'other_start': position,
+                                    'sha256': hashlib.sha256(core.encode()).hexdigest()})
+            assert index.count('<exact_lexical_occurrence>') == len(matches)
+            results.append({'stage': stage, 'panel': panel, 'pair_id': row['pair_id'], 'matches': matches,
+                            'original_rendered_sha256': hashlib.sha256(before.encode()).hexdigest(),
+                            'new_rendered_sha256': hashlib.sha256(after.encode()).hexdigest()})
+receipt = {'created': time.time(), 'arrow_pandas_roundtrip': True, 'status': 'PASS', 'model_calls': 0, 'native_projections': len(results),
+           'projections_with_index': sum(bool(row['matches']) for row in results),
+           'all_original_rendered_content_unchanged_after_removing_only_generated_index': True,
+           'all_occurrence_source_characters_already_visible_in_original_opposite_packet': True,
+           'separate_native_renderers_avoid_template_name_cache_aliasing': True, 'results': results}
+args.output.write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps({key: value for key, value in receipt.items() if key != 'results'}))

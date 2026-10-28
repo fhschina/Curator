@@ -1,0 +1,51 @@
+--- candidate-10/critics/coverage_pair.jinja
++++ candidate-10-xref1/critics/coverage_pair.jinja
+@@ -21 +21,13 @@
+-<semantic_diff status="{{ coverage_packet.status }}" truncated="{{ coverage_packet.truncated }}">
++{% for span in semantic_diff.spans[:32] if semantic_diff.status == "COMPLETE" and not semantic_diff.truncated and text_a is string and text_b is string and 0 < text_a|length <= 6000 and 0 < text_b|length <= 6000 %}{% if span.kind == "A_ONLY" and span.delta_end_char - span.delta_start_char >= 32 and text_a[span.delta_start_char:span.delta_end_char] in text_b %}
++<exact_lexical_occurrence>
++{{ span.span_id }} original CORE, {{ span.delta_end_char - span.delta_start_char }} characters, also occurs verbatim in Document B at zero-based character {{ text_b.find(text_a[span.delta_start_char:span.delta_end_char]) }}.
++Original-fragment preview, at most 128 characters: {{ text_a[span.delta_start_char:span.delta_end_char]|truncate(128, true, "...", 0) }}
++This is a string-location index, not a retention verdict. Apply the existing policy and cite the unchanged packet IDs below.
++</exact_lexical_occurrence>
++{% elif span.kind == "B_ONLY" and span.delta_end_char - span.delta_start_char >= 32 and text_b[span.delta_start_char:span.delta_end_char] in text_a %}
++<exact_lexical_occurrence>
++{{ span.span_id }} original CORE, {{ span.delta_end_char - span.delta_start_char }} characters, also occurs verbatim in Document A at zero-based character {{ text_a.find(text_b[span.delta_start_char:span.delta_end_char]) }}.
++Original-fragment preview, at most 128 characters: {{ text_b[span.delta_start_char:span.delta_end_char]|truncate(128, true, "...", 0) }}
++This is a string-location index, not a retention verdict. Apply the existing policy and cite the unchanged packet IDs below.
++</exact_lexical_occurrence>
++{% endif %}{% endfor %}<semantic_diff status="{{ coverage_packet.status }}" truncated="{{ coverage_packet.truncated }}">
+--- candidate-10/critics/subject_pair.jinja
++++ candidate-10-xref1/critics/subject_pair.jinja
+@@ -19 +19,13 @@
+-Packet status: {{ subject_packet.status }}; truncated: {{ subject_packet.truncated }}.
++{% for span in semantic_diff.spans[:32] if semantic_diff.status == "COMPLETE" and not semantic_diff.truncated and text_a is string and text_b is string and 0 < text_a|length <= 6000 and 0 < text_b|length <= 6000 %}{% if span.kind == "A_ONLY" and span.delta_end_char - span.delta_start_char >= 32 and text_a[span.delta_start_char:span.delta_end_char] in text_b %}
++<exact_lexical_occurrence>
++{{ span.span_id }} original CORE, {{ span.delta_end_char - span.delta_start_char }} characters, also occurs verbatim in Document B at zero-based character {{ text_b.find(text_a[span.delta_start_char:span.delta_end_char]) }}.
++Original-fragment preview, at most 128 characters: {{ text_a[span.delta_start_char:span.delta_end_char]|truncate(128, true, "...", 0) }}
++This is a string-location index, not a retention verdict. Apply the existing policy and cite the unchanged packet IDs below.
++</exact_lexical_occurrence>
++{% elif span.kind == "B_ONLY" and span.delta_end_char - span.delta_start_char >= 32 and text_b[span.delta_start_char:span.delta_end_char] in text_a %}
++<exact_lexical_occurrence>
++{{ span.span_id }} original CORE, {{ span.delta_end_char - span.delta_start_char }} characters, also occurs verbatim in Document A at zero-based character {{ text_a.find(text_b[span.delta_start_char:span.delta_end_char]) }}.
++Original-fragment preview, at most 128 characters: {{ text_b[span.delta_start_char:span.delta_end_char]|truncate(128, true, "...", 0) }}
++This is a string-location index, not a retention verdict. Apply the existing policy and cite the unchanged packet IDs below.
++</exact_lexical_occurrence>
++{% endif %}{% endfor %}Packet status: {{ subject_packet.status }}; truncated: {{ subject_packet.truncated }}.
+--- candidate-10/judge_config/pair.jinja
++++ candidate-10-xref1/judge_config/pair.jinja
+@@ -48 +48,13 @@
+-<semantic_diff status="{{ semantic_diff.status }}" truncated="{{ semantic_diff.truncated }}">
++{% for span in semantic_diff.spans[:32] if semantic_diff.status == "COMPLETE" and not semantic_diff.truncated and text_a is string and text_b is string and 0 < text_a|length <= 6000 and 0 < text_b|length <= 6000 %}{% if span.kind == "A_ONLY" and span.delta_end_char - span.delta_start_char >= 32 and text_a[span.delta_start_char:span.delta_end_char] in text_b %}
++<exact_lexical_occurrence>
++{{ span.span_id }} original CORE, {{ span.delta_end_char - span.delta_start_char }} characters, also occurs verbatim in Document B at zero-based character {{ text_b.find(text_a[span.delta_start_char:span.delta_end_char]) }}.
++Original-fragment preview, at most 128 characters: {{ text_a[span.delta_start_char:span.delta_end_char]|truncate(128, true, "...", 0) }}
++This is a string-location index, not a retention verdict. Apply the existing policy and cite the unchanged packet IDs below.
++</exact_lexical_occurrence>
++{% elif span.kind == "B_ONLY" and span.delta_end_char - span.delta_start_char >= 32 and text_b[span.delta_start_char:span.delta_end_char] in text_a %}
++<exact_lexical_occurrence>
++{{ span.span_id }} original CORE, {{ span.delta_end_char - span.delta_start_char }} characters, also occurs verbatim in Document A at zero-based character {{ text_a.find(text_b[span.delta_start_char:span.delta_end_char]) }}.
++Original-fragment preview, at most 128 characters: {{ text_b[span.delta_start_char:span.delta_end_char]|truncate(128, true, "...", 0) }}
++This is a string-location index, not a retention verdict. Apply the existing policy and cite the unchanged packet IDs below.
++</exact_lexical_occurrence>
++{% endif %}{% endfor %}<semantic_diff status="{{ semantic_diff.status }}" truncated="{{ semantic_diff.truncated }}">

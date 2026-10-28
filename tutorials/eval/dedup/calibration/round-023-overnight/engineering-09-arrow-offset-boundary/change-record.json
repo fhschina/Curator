@@ -1,0 +1,18 @@
+{
+  "created": 1793177466.9925354,
+  "kind": "engineering_input_type_compatibility",
+  "native_evaluator_changed": false,
+  "model_or_window_changed": false,
+  "parser_or_validation_relaxed": false,
+  "failed_original_run_preserved": "candidate-10-xref1/runs/candidate-preflight-1",
+  "failure_reconciliation": "candidate10-xref1-failure-reconciliation.json",
+  "prototype_compile_failures": [
+    "proposals/candidate10-xref2-depth11-variant",
+    "proposals/candidate10-xref2-depth11-slices-variant"
+  ],
+  "passing_boundary_proof": "engineering-09-arrow-offset-boundary/regression-proof.json",
+  "passing_998_render_proof": "proposals/candidate10-xref2-arrow-proof.json",
+  "offset_cast_scope": "Only string slice indices of existing source spans; no text, labels or semantic facts rewritten.",
+  "additional_cpu_budget_check": "Optional real Arrow/Pandas conversion, historical direct-record receipts remain unchanged.",
+  "gpu_result": "PENDING"
+}

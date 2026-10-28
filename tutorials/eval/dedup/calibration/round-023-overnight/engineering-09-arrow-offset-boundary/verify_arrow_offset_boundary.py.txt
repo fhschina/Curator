@@ -1,0 +1,19 @@
+import json,time
+from pathlib import Path
+import pyarrow as pa
+from data_designer.engine.column_generators.utils.prompt_renderer import PromptType,RecordBasedPromptRenderer
+from data_designer.engine.models.recipes.response_recipes import TextResponseRecipe
+from policy_eval import read_rows
+s=Path(__file__).resolve().parent
+rows=read_rows(s/'candidate-10/panels/preflight');after=pa.Table.from_pylist(rows).to_pandas().to_dict('records')
+receipts=[]
+for name in ['candidate-10-xref1','candidate-10-xref2']:
+ renderer=RecordBasedPromptRenderer(TextResponseRecipe());template=(s/name/'variants/candidate/judge_config/pair.jinja').read_text();failed={};passed=[]
+ for row in after:
+  try:renderer.render(prompt_template=template,record=row,prompt_type=PromptType.USER_PROMPT);passed.append(row['pair_id'])
+  except Exception as error:failed[row['pair_id']]=str(error)
+ receipts.append({'candidate':name,'passed_rows':passed,'failed_rows':failed})
+assert receipts[0]['failed_rows'] and all('slice indices must be integers' in x for x in receipts[0]['failed_rows'].values())
+assert len(receipts[1]['passed_rows'])==44 and not receipts[1]['failed_rows']
+(s/'engineering-09-arrow-offset-boundary/regression-proof.json').write_text(json.dumps({'status':'PASS','created':time.time(),'model_calls':0,'real_pyarrow_pandas_conversion':True,'old_failure_reproduced_without_mocking_renderer':True,'new_all44_render':True,'results':receipts},indent=2)+'\n')
+print(json.dumps({'status':'PASS','old_failed':len(receipts[0]['failed_rows']),'new_passed':len(receipts[1]['passed_rows']),'model_calls':0}))

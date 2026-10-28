@@ -1,0 +1,21 @@
+{
+  "created": 1793178247.5579114,
+  "status": "PASS",
+  "before_any_control_model_output": true,
+  "v1_definition_sha256": "a954fd98c0f4634f3cd6935f486d05afca5f6429eb7a44e176646b297f853823",
+  "v2_definition_sha256": "f5153f3ab79f6d5991e84c8037f187f858f8051c3d6c44b587fe5124e6c8c79d",
+  "only_ids_and_version_metadata_changed": true,
+  "id_map": {
+    "CSCOPE_STOCK_COPY": "SCS001",
+    "CSCOPE_CONCRETE_DEPLOYMENT": "SCS002",
+    "CSCOPE_EXPLICIT_NECESSITY": "SCS003",
+    "CSCOPE_RETENTION_PERIOD": "SCS004"
+  },
+  "v1_unexecuted_roots_preserved": [
+    "supplemental-cookie-scope-candidate10-v1",
+    "supplemental-cookie-scope-candidate11-v1"
+  ],
+  "source_and_reference_unchanged": true,
+  "denominator": 8,
+  "model_calls": 0
+}

@@ -1,0 +1,31 @@
+{
+  "created": 1793177783.4293048,
+  "parent": "candidate-10",
+  "semantic_factors": 1,
+  "hypothesis_en": "Clarify the precedence of the already approved complete-cookie-notice stock-repetition exception, before importing category scope into generic repeated necessity/disablement wording. Actual coverage outputs now explicitly recognize the same stock paragraph occurs elsewhere, including after an exact-location index, but still treat its new generic heading as a fresh mandatory-versus-optional category assertion. Thus the unresolved cause is semantic scope/precedence rather than failure to find matching text. Replace the existing stock-copy paragraph consistently in all eight native prompts and align six existing rubric descriptions. A copied generic stock statement is counted at its retained occurrence, not promoted into a new category-bound obligation solely from the heading. Explicit actual category-bound processing/necessity/consent propositions, new purposes/terms and concrete deployment facts remain protected. Keep original candidate10 evidence presentation (no unsuccessful lexical-index intervention), field order/enums, all other conditions, native executor/model/window/validation. Fixed original86 plus the unchanged separateUI22 remain; freeze additional positive and explicit-bound negative cookie-scope controls before their model outputs and keep their denominators separate. This is one policy-boundary refinement, not a rule to ignore all headings or all cookie content.",
+  "hypothesis_zh": "仅明确已批准的完整cookie通知中通用重复段落例外的优先级，避免将通用重复的必要性或不可停用措辞绑定到新类别。真实coverage输出已明确承认相同通用段落在其他位置出现，在提供精确位置索引后仍把新的通用标题解释为额外的类别必选与可选断言，因此剩余原因是语义作用域与优先级，而非找不到相同文字。在八个原生提示中一致替换既有通用重复规则，并同步六个既有rubric说明。已保留的通用段落按其原位置计一次，不能仅因标题而新增类别义务；实际明确绑定类别的处理、必要性或同意条件、新用途条款和具体部署事实仍保留。继续使用candidate10原始证据呈现，不带入未改善结果的索引；字段顺序枚举、其余规则、执行器、模型、窗口和校验不变。保留固定86项及单独22项，并在模型输出前冻结额外cookie作用域正例和明确绑定反例，单独计分。这是一项边界细化，不是忽略全部标题或cookie内容。",
+  "expected_improvement": "Remove duplicate-stock-paragraph false coverage veto without losing actual category-bound terms or actual operational/bound records.",
+  "risk": "Overextending generic repetition to explicit category-specific necessity/consent claims; must preserve separately frozen negative controls and all original hard failures.",
+  "source_evidence": [
+    "candidate-10/runs/candidate-preflight-1/receipts/critics/http/c405ec276cbd4e098fd061960071612b.json",
+    "candidate-10-xref2/runs/candidate-preflight-1/receipts/critics/http"
+  ],
+  "original_failed_versions_preserved": true,
+  "model_calls": 0,
+  "files": {
+    "judge_config/system.jinja": "7386ac624503e8712e75bff9a8e5a1cbc71bba815e5d1d054c70a91d50194957",
+    "judge_config/fuzzy_pair_judge.yaml": "05b3d657bb8d34b34500e766f5253c255a1226d2c14a9fc7319f0a6babbb18e7",
+    "judge_config/pair.jinja": "019bc0b37f1528b116f5ea4f3f27b3c12cca16054895394ade8df7ff4ed4edc0",
+    "critics/coverage_system.jinja": "43d9a372afe9769b17f71bb373d7c0f10686d001fbf2e1917145c427de499e18",
+    "critics/subject_verifier_pair.jinja": "6a52feecda5c958005a520e5f77bfd3f8da013d4ba187cd8889c5c9af026484c",
+    "critics/subject_system.jinja": "594bb02e5b61cd00e9334c8b260a5b5efdbce6f2f03b248b73fc74d38f970c26",
+    "critics/coverage_pair.jinja": "ecf582031be8012d4c561752724d3c877bbb834debf9de5283068822dd22c2b0",
+    "critics/subject_pair.jinja": "f0aef6b6737c9c9ccabee62432ff3aeb9cce789403b8ec4b36eaf45d64e2a52a",
+    "critics/subject_verifier_system.jinja": "89ae471be86d647749cd6eef7c609a98903a03dac8a0af059aa6678d4cfb884b"
+  },
+  "supplemental_cookie_scope_definition_sha256": "a954fd98c0f4634f3cd6935f486d05afca5f6429eb7a44e176646b297f853823",
+  "status": "frozen_waiting_owned_candidate10_job_boundary",
+  "acceptance_passed": false,
+  "supplemental_scope_version": 2,
+  "scope_control_declaration": "candidate11-cookie-controls-v2-declaration.json"
+}
