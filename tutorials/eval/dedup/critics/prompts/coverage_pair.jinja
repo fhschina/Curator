@@ -145,3 +145,10 @@ RESPONSE FORMAT
 Return exactly one completed answer object inside a ```json Markdown code fence.
 Return actual field values, never the response schema or its properties.
 The first response line must be ```json and the last must be ```. Do not return bare JSON.
+
+Within the fenced JSON object, write explanation FIRST, before choosing any loss
+ID. State the whole-notice retained-meaning comparison and apply the existing
+conditional exceptions in that paragraph. Then emit shared_anchor_ids,
+overlap_basis, conflict, a_context_span_id, b_context_span_id, a_loss_span_id,
+and b_loss_span_id, consistent with that completed comparison. These are the
+same eight fields and existing value/evidence rules; add no fields or actions.

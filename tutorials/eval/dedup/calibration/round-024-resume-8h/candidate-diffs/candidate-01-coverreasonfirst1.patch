@@ -1,0 +1,25 @@
+--- candidate-01/critics/coverage_pair.jinja
++++ candidate-01-coverreasonfirst1/critics/coverage_pair.jinja
+@@ -147,0 +148,7 @@
++
++Within the fenced JSON object, write explanation FIRST, before choosing any loss
++ID. State the whole-notice retained-meaning comparison and apply the existing
++conditional exceptions in that paragraph. Then emit shared_anchor_ids,
++overlap_basis, conflict, a_context_span_id, b_context_span_id, a_loss_span_id,
++and b_loss_span_id, consistent with that completed comparison. These are the
++same eight fields and existing value/evidence rules; add no fields or actions.
+--- candidate-01/critics/coverage_system.jinja
++++ candidate-01-coverreasonfirst1/critics/coverage_system.jinja
+@@ -209,2 +209,2 @@
+-a_loss_span_id, b_loss_span_id, a_context_span_id, b_context_span_id,
+-conflict, overlap_basis, shared_anchor_ids, explanation.
++explanation, shared_anchor_ids, overlap_basis, conflict,
++a_context_span_id, b_context_span_id, a_loss_span_id, b_loss_span_id.
+@@ -268,0 +269,7 @@
++
++Within the fenced JSON object, write explanation FIRST, before choosing any loss
++ID. State the whole-notice retained-meaning comparison and apply the existing
++conditional exceptions in that paragraph. Then emit shared_anchor_ids,
++overlap_basis, conflict, a_context_span_id, b_context_span_id, a_loss_span_id,
++and b_loss_span_id, consistent with that completed comparison. These are the
++same eight fields and existing value/evidence rules; add no fields or actions.

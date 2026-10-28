@@ -1,0 +1,154 @@
+Audit record: {{ pair_id }}
+The record identifier is for tracing only, not evidence for classification.
+
+Audit retained meaning using the evidence below. No main judgment or dedup label
+is provided. S### has text on BOTH sides; A### and B### identify core lexical
+differences. Lexical differences are not necessarily semantic losses.
+
+<semantic_diff status="{{ coverage_packet.status }}" truncated="{{ coverage_packet.truncated }}">
+counts: {{ coverage_packet.span_counts }}
+{% for span in coverage_packet.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED: ALIGNED ON BOTH SIDES]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }} CORE DIFFERENCE]
+{{ span.text }}
+[READING CONTEXT FOR {{ span.span_id }}: may also contain shared text]
+{{ span.context_text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+
+Select loss IDs only when their CORE difference carries the uncovered meaning.
+Padded reading context is not itself one-sided evidence. Shared alignment can
+normalize case or Unicode: compare both displayed originals before claiming
+their retained meaning is identical. Incomplete or truncated evidence cannot
+support a conclusive veto; use UNCERTAIN if the retained meaning is unsettled.
+Return the concrete eight-field judgment inside a Markdown JSON code fence.
+The first response line must be ```json and the last must be ```.
+Do not return a bare JSON object. Do not copy the response schema.
+Select a checked context ID for each side even when there is no loss.
+Apply the conditional exceptions before choosing loss IDs. An extra URL merely
+referencing the same already stated license, with no new visible condition, is
+not a loss: leave its side's loss ID empty. A literal missing pointer does not
+override this rule. New license restrictions or obligations do require loss IDs.
+Likewise, a currency label alone in an empty zero-value cart is not a loss.
+A city/destination label alone is also not a loss when the rest of the complete
+service description, stated procedure, actual price/rate and conditions match.
+This applies even in "consultation in CITY" or a service title. Without another
+destination-specific explanation or changed term, leave BOTH loss IDs empty and
+use conflict=NONE. The exception precedes general claims about named subjects.
+Final interface check: uniqueness alone is not a loss. Bare section headings,
+archive links, empty query/filter labels and city selectors do not provide the
+records or facts they would navigate to. Do not invent unseen names, items or
+metadata. Cite the actual visible useful contribution beyond the interface;
+without one, leave that side's loss ID empty. Actual explanations, conditions,
+obligations, named records and populated results remain protected.
+
+LIST CONTAINMENT
+Compare the retained product facts before page identity. A broader list can
+replace a filtered subset when it preserves every product and its actual
+price, availability and conditions. A narrower breadcrumb/filter and the
+resulting smaller displayed count alone do not add an uncovered product fact
+or create a conflict. Mark those presentation deltas harmless and allow only
+the covering direction when the broader list adds a useful product. Actual
+conflicting product facts, prices, stock or conditions remain material.
+
+LOCALIZATION AND OPERATIONAL COVERAGE
+Classify the actual changed clause by both language and function. Equivalent
+localized headings and routine authentication-form instructions are harmless
+when actual steps, channel, trigger and conditions match. A full sentence about
+an emailed password-setting link is still form UI. Check the cited phrase itself;
+a nearby English UI sentence does not turn same-language privacy paraphrases
+into different-language body versions. Preserve changed procedures, capabilities,
+privacy purposes/conditions and independent factual body prose in each language,
+including short real notices. Meaningful body translations remain protected.
+An email or endpoint used to submit, pay or perform an account action must itself
+be covered: two city-specific submission addresses are different destinations,
+not harmless location labels. Compare both whole texts in each direction.
+
+
+CONDITIONAL TEMPLATE COVERAGE
+Apply these boundaries before treating a string, heading or named slot as a loss.
+
+1. Complete cookie-category definitions shared by both sides preserve the notice's
+retained basis. Generic introductory framing about optimizing the site, improving
+experience, cookies/device storage, browsing behavior or IDs, and general effects
+of consenting or withdrawing is harmless when those full definitions are already
+retained. Decorative opening questions, synonyms, repeated headings and rewordings
+do not add a separate purpose. A stock cookie paragraph already retained elsewhere in the same complete
+notice is covered repetition when copied beneath another generic category
+heading. Count its meaning at that retained occurrence, rather than inventing
+a second category-specific rule from the new heading. In this stock-copy branch,
+a copied generic statement about necessary basic functions or inability to
+disable cookies does not become a new mandatory-state assertion for the other
+category solely through that heading. Apply the covered-repetition branch before
+general bound-subject or mandatory/optional conflict tests. An explicit additional
+proposition naming a category's actual processing, necessity or consent condition,
+new concrete deployment facts, or independently changed terms still matters;
+it is outside the stock-copy branch. Compare complete propositions across the
+whole keeper, including the original retained occurrence. On this branch,
+the covered repeated side has no own-side retained loss; keep its coverage loss
+ID empty. A real extra contribution on the opposite side keeps its own loss.
+Retain genuinely additional, concrete deployment details, data flows, storage or
+transfer restrictions, specific uses, retention periods, consent mechanisms,
+prices or obligations. A concrete analytics deployment explanation can add useful
+content while still fully covering a shorter notice that repeats a stock paragraph.
+One-way coverage then follows the actual extra contribution; the repetition does
+not create a conflict. This boundary requires the shared complete definitions or
+an already covered repeated paragraph, not merely a common cookie-related topic.
+
+2. A name/category slot in an otherwise equivalent generic template is not by
+itself a retained difference. This covers city-site/source names in the same
+citation notice with unchanged linking, permission and attribution terms;
+category/location labels in the same generic marketing copy with no concrete
+product specifications; and provider/recipient names in the same short generic
+cookies/services/advertising/visits notice with unchanged described behavior.
+Do not invent a new product specification, legal condition or processing practice
+from the slot alone. Within this approved generic-marketing branch, a concrete product record needs
+an independent product-specific fact or differing offer term beyond the category
+or location label. Repeating that class label in a title, first sentence or supplier
+phrase does not supply such a fact. Apply this branch before the general rule for
+different actual products; actual model/specification, price, availability and
+transaction differences remain protected. This exception does not apply to
+unrelated named works, populated records or actual operational destinations.
+These exceptions do not cover actual submission, payment or
+account-action destinations, named liability parties, concrete product records
+and specifications, changed terms, or additional concrete data-processing claims.
+For a specialist comparison, name inequality within these permitted slots is
+outside veto scope. Keep the actual names truthful; do not fabricate sameness.
+
+For each direction, first classify the claimed difference under these conditions,
+then check whether all remaining useful meaning survives in the whole keeper.
+Harmless framing or permitted template slots alone cannot support a loss or
+conflict. Useful independent additions still require directional retention.
+
+MECHANISM-QUALIFIED FORM LOCALIZATION
+Routine authentication-form localization is harmless only after the actual user
+action, delivery channel, trigger, sequence, capabilities and conditions match.
+A common goal is not enough: direct password entry is not an emailed setting
+link. Different real action addresses do not qualify. Inspect the remaining body
+by its own actual language and purposes/conditions; protect a different-language
+substantive body or a new condition independently of the form UI.
+If only a qualified localized form sentence and covered same-language body
+paraphrases differ, there is no own-side retained loss or subject veto. The form
+sentence can be grammatically complete. For coverage, keep loss IDs empty and
+conflict=NONE, while supplying real nonempty context IDs and truthful overlap
+basis. For subject comparison use NONE/NOT_APPLICABLE when no actual authorized
+binding exists; a fixed comparison based only on this harmless localization is
+UNSUPPORTED_COMPARISON. These conclusions never exempt an actual changed
+procedure, capability, condition, destination or substantive body language.
+
+RESPONSE FORMAT
+Return exactly one completed answer object inside a ```json Markdown code fence.
+Return actual field values, never the response schema or its properties.
+The first response line must be ```json and the last must be ```. Do not return bare JSON.
+
+Within the fenced JSON object, write explanation FIRST, before choosing any loss
+ID. State the whole-notice retained-meaning comparison and apply the existing
+conditional exceptions in that paragraph. Then emit shared_anchor_ids,
+overlap_basis, conflict, a_context_span_id, b_context_span_id, a_loss_span_id,
+and b_loss_span_id, consistent with that completed comparison. These are the
+same eight fields and existing value/evidence rules; add no fields or actions.

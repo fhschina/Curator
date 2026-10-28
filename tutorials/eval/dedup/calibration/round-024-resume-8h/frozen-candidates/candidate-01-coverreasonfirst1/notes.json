@@ -1,0 +1,10 @@
+{
+  "parent": "candidate-01",
+  "hypothesis_en": "Engineering-only coverage response-order experiment: ask the existing explanation paragraph and whole-notice comparison before choosing loss IDs, then emit the unchanged remaining fields. Previous actual coverage replies emit loss IDs before explaining the comparison and invent a category obligation or provider loss despite the existing exception; a prior order diagnostic proposed but never applied this experiment. The new semantic screen again has correct main decisions followed by those false coverage vetoes. All retention-policy paragraphs, main prompts/rubric, field names/types/enums, schema, validator, quoted evidence, critic veto authority, source presentation, model and sampling stay unchanged. This observation is not proof of causality: verify actual emitted order and native validity, then compare hard screens and separate cookie controls. Reject if order is ignored or technical validity worsens; do not repeat failed groups to select a lucky sample.",
+  "hypothesis_zh": "仅对coverage回复顺序进行工程实验：要求先生成既有explanation段落并完成全篇比较，再选择损失ID，之后输出不变的其余字段。既往真实coverage回复先给损失ID再解释比较，尽管存在例外仍推断类别义务或服务商损失；此前顺序诊断提出但未实际实施过这一实验。新的语义筛查再次出现main判断正确后被coverage误否决。全部保留政策段落、main提示词与rubric、字段名类型枚举、schema、校验器、引用证据、critic只能否决的权限、原文呈现、模型及采样均不变。该观察不证明因果：须核验实际输出顺序及原生有效性，再比较硬回归与单独cookie反例。若顺序未生效或技术有效性退步则淘汰，不重复失败组以挑选幸运样本。",
+  "engineering_only": true,
+  "prior_proposed_not_executed_evidence": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/decision-order-diagnostic-plan.json",
+  "no_retention_policy_schema_validator_authority_changes": true,
+  "status": "frozen_awaiting_serial_hard_screen",
+  "acceptance_passed": false
+}

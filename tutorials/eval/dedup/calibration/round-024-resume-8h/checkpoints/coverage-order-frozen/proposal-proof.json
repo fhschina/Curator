@@ -1,0 +1,10 @@
+{
+  "created": 1793212898.2886448,
+  "changed_files": [
+    "critics/coverage_system.jinja",
+    "critics/coverage_pair.jinja"
+  ],
+  "other_seven_files_byte_identical": true,
+  "actual_emitted_order_requires_observation": true,
+  "new_output_fields": false
+}

@@ -270,6 +270,12 @@ navigation:
                   - page: Qwen 保留规则校准 v3
                     path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v3-report-zh.mdx
                     slug: retention-policy-v3-report-zh
+                  - page: Qwen Retention Calibration v4 (8h)
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v4-report-en.mdx
+                    slug: retention-policy-v4-report
+                  - page: Qwen 保留规则校准 v4（八小时）
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v4-report-zh.mdx
+                    slug: retention-policy-v4-report-zh
               - section: Language Management
                 slug: language-management
                 contents:
