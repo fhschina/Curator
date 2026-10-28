@@ -81,6 +81,18 @@
       "revision": null,
       "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-06",
       "hypothesis": "Two coverage-expression refinements with unchanged main/YAML/subject policy. C4 actually removes both provider coverage false vetoes but introduces a main operational-address error; causality among its simultaneous additions is not established. Isolate only its qualified provider-predicate paragraph in coverage_system/pair, leaving all other seven files exactly C3. Additionally illustrate the existing stock-copy scope boundary with symbolic P/H/V: a generic paragraph P already retained elsewhere copied under a heading H is not an independently assigned category condition, whereas a separate actual H/value assertion is protected. C3 and C4 coverage still reactivate the copied generic paragraph as a category obligation, so this changes its representation rather than appending the same abstract precedence sentence. No actual case text/IDs/answers enter prompts; no new exception family, schema/fields/order/enums, critic authority, evidence/window, executor, model, sampling or validator changes. Preserve all C4/C5 failures and test original86 plus every separate boundary group before considering any long diagnostic."
+    },
+    {
+      "number": 7,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-07",
+      "hypothesis": "Two existing functional-role protections at the exact main delta-option choice. C3 state controls classify a visible independent mandatory setting as harmless UI, and C4/C5/ledgerbrief2 actual main replies treat operational submission mailboxes as harmless location slots despite the existing route rule. Change only four option-description strings in the two existing side-delta fields: short UI does not make an independently assigned cookie-category setting disposable; a real submission/payment/account-action route is outside the harmless option regardless of city pattern. Missing setting values remain one-sided additions rather than invented conflicts. Explicitly preserve qualified copied-stock, citation, generic-marketing and generic-provider exceptions. All eight Jinja templates remain byte-identical to C3; no broad interface/facet/named-title rule, whole-system repetition, failed C4 provider paragraph or ledgerbrief instruction is inherited. Fields/order/types/enums, other descriptions, evidence/window, native code, model, sampling and validators remain unchanged. This isolates option-level shadowing from the earlier global additions. Test original86 and all four separately frozen boundary groups before any long admission."
+    },
+    {
+      "number": 7,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-07",
+      "hypothesis": "Two existing functional-role protections at the exact main delta-option choice. C3 state controls classify a visible independent mandatory setting as harmless UI, and C4/C5/ledgerbrief2 actual main replies treat operational submission mailboxes as harmless location slots despite the existing route rule. Change only four option-description strings in the two existing side-delta fields: short UI does not make an independently assigned cookie-category setting disposable; a real submission/payment/account-action route is outside the harmless option regardless of city pattern. Missing setting values remain one-sided additions rather than invented conflicts. Explicitly preserve qualified copied-stock, citation, generic-marketing and generic-provider exceptions. All eight Jinja templates remain byte-identical to C3; no broad interface/facet/named-title rule, whole-system repetition, failed C4 provider paragraph or ledgerbrief instruction is inherited. Fields/order/types/enums, other descriptions, evidence/window, native code, model, sampling and validators remain unchanged. This isolates option-level shadowing from the earlier global additions. Test original86 and all four separately frozen boundary groups before any long admission."
     }
   ],
   "engineering_revisions": [
@@ -141,9 +153,9 @@
   ],
   "owner": "retention-policy-v4-8h-20261028",
   "previous_session": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z",
-  "next_action": "Ledgerbrief2hard+four8controls active, thenwholeview1 native736direct+ArrowproofPASS, fixed336inputs and32supplementsbyteequalparent. Wholeview1queuedbudget998->hard86->four8supplements. C6andpolicyonce1hardfail no long. No newlongadmitted.",
+  "next_action": "Wholeview1firsthardpositiveonR14copy butremainingR33swappedveto+mainmarketingswapfailure; controlsactive. C7only4mainYAMLoptionstrings roleprotections, all8JinjaC3equal, queuedhard86+four8groups. No newlongadmitted.",
   "phase": "BASELINE_ORIGINAL_THREE_RUNS_AND_ENGINEERING_SCREEN_QUEUE",
-  "last_pushed_commit": "eb0d1b205c77370085ca7ce2fc38a1b2f581dd60",
+  "last_pushed_commit": "9e9e07b411a88af228f5b5ca04b11fe0eff53105",
   "active_queue": {
     "start85_controller_pid": 407363,
     "baseline_controller_pid": 407368,
@@ -152,8 +164,8 @@
     "delivery_controller_pid": 1221992,
     "candidate05_inserter_pid": 1205679
   },
-  "current_worktree_nine": "candidate-03-wholeview1",
-  "active_candidate": "candidate-03-wholeview1",
+  "current_worktree_nine": "candidate-07",
+  "active_candidate": "candidate-07",
   "goal_control_status": "blocked_observed_without_reason_or_quota_evidence",
   "local_authorized_work_continues": true
 }

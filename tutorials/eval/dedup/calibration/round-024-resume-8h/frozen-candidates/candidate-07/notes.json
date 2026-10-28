@@ -1,0 +1,213 @@
+{
+  "parent": "candidate-03",
+  "hypothesis_en": "Two existing functional-role protections at the exact main delta-option choice. C3 state controls classify a visible independent mandatory setting as harmless UI, and C4/C5/ledgerbrief2 actual main replies treat operational submission mailboxes as harmless location slots despite the existing route rule. Change only four option-description strings in the two existing side-delta fields: short UI does not make an independently assigned cookie-category setting disposable; a real submission/payment/account-action route is outside the harmless option regardless of city pattern. Missing setting values remain one-sided additions rather than invented conflicts. Explicitly preserve qualified copied-stock, citation, generic-marketing and generic-provider exceptions. All eight Jinja templates remain byte-identical to C3; no broad interface/facet/named-title rule, whole-system repetition, failed C4 provider paragraph or ledgerbrief instruction is inherited. Fields/order/types/enums, other descriptions, evidence/window, native code, model, sampling and validators remain unchanged. This isolates option-level shadowing from the earlier global additions. Test original86 and all four separately frozen boundary groups before any long admission.",
+  "hypothesis_zh": "在main差异选项的实际选择位置落实两项既有功能角色保护。C3状态受控项把可见独立强制状态归为无害界面，而C4、C5及ledgerbrief2的实际main回复无视已有操作去向规则，把投稿邮箱当作无害地点槽位。只改两侧差异字段中的四个已有选项描述字符串：短界面不使独立赋予的cookie类别状态变得可丢弃；真实投稿、支付或账户操作去向不因城市样式就属于无害选项。缺失状态值继续视为一侧新增，不虚构冲突。明确保留合格的通用复制、引用、通用营销及通用服务商例外。八个Jinja模板与C3逐字相同；不引入宽泛界面、筛选器或命名标题规则、不重复追加整个system，也不继承失败的C4服务商段落或ledgerbrief指令。字段顺序类型枚举、其他描述、证据窗口、原生代码、模型采样及校验均不变。这把选项层面的遮蔽与此前全局追加分离。任何长运行准入前先测原86及四个单独冻结边界组。",
+  "scope": "four existing side-delta option descriptions only; independent state and operational route protections",
+  "new_human_labels": false,
+  "changed_option_descriptions": [
+    [
+      "span_a_delta",
+      "universal_ui_or_repetition"
+    ],
+    [
+      "span_a_delta",
+      "material_non_main_message_change"
+    ],
+    [
+      "span_b_delta",
+      "universal_ui_or_repetition"
+    ],
+    [
+      "span_b_delta",
+      "material_non_main_message_change"
+    ]
+  ],
+  "all_eight_jinja_equal_parent": true,
+  "evidence": "C3 cookie-state8 main6/8; C4/C5/ledgerbrief2 main D011 operational-address wrong allows",
+  "status": "REJECTED_FIRST_LATEST18_FOUR_MAIN_WRONG_ALLOWS_NO_LONG",
+  "acceptance_passed": false,
+  "observed_runs": {
+    "candidate-coverage-regression-1": {
+      "extra6": {
+        "main": {
+          "pairs": 6,
+          "directions": 12,
+          "correct_directions": 12,
+          "correct_pairs": 6,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 6,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 6,
+          "directions": 12,
+          "correct_directions": 12,
+          "correct_pairs": 6,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 6,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 6,
+          "directions": 12,
+          "correct_directions": 12,
+          "correct_pairs": 6,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 6,
+          "valid_judgment_coverage": 1.0
+        }
+      }
+    },
+    "candidate-gate-1": {
+      "original36": {
+        "main": {
+          "pairs": 36,
+          "directions": 72,
+          "correct_directions": 72,
+          "correct_pairs": 36,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 36,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 36,
+          "directions": 72,
+          "correct_directions": 72,
+          "correct_pairs": 36,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 36,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 36,
+          "directions": 72,
+          "correct_directions": 72,
+          "correct_pairs": 36,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 36,
+          "valid_judgment_coverage": 1.0
+        }
+      }
+    },
+    "candidate-preflight-1": {
+      "latest18": {
+        "main": {
+          "pairs": 18,
+          "directions": 36,
+          "correct_directions": 32,
+          "correct_pairs": 16,
+          "direction_agreement": 0.8888888888888888,
+          "pair_agreement": 0.8888888888888888,
+          "reference_wrong_allows": 4,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 18,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 18,
+          "directions": 36,
+          "correct_directions": 32,
+          "correct_pairs": 15,
+          "direction_agreement": 0.8888888888888888,
+          "pair_agreement": 0.8333333333333334,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 4,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 18,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 18,
+          "directions": 36,
+          "correct_directions": 32,
+          "correct_pairs": 15,
+          "direction_agreement": 0.8888888888888888,
+          "pair_agreement": 0.8333333333333334,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 4,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 18,
+          "valid_judgment_coverage": 1.0
+        }
+      },
+      "controlled26": {
+        "main": {
+          "pairs": 26,
+          "directions": 52,
+          "correct_directions": 52,
+          "correct_pairs": 26,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 26,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 26,
+          "directions": 52,
+          "correct_directions": 52,
+          "correct_pairs": 26,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 26,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 26,
+          "directions": 52,
+          "correct_directions": 52,
+          "correct_pairs": 26,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 26,
+          "valid_judgment_coverage": 1.0
+        }
+      }
+    }
+  }
+}
