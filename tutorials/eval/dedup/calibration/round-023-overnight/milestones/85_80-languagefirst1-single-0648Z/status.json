@@ -1,0 +1,27 @@
+{
+  "saved": 1793170191.2650862,
+  "candidate": "candidate-06-languagefirst1",
+  "snapshot_sha256": "d61c251b49b14f0f0116a10a80e0f2b68a0c38db2db6dd0894904056eaa20557",
+  "status": "PROVISIONAL_SINGLE_RUN",
+  "directions": {
+    "correct": 205,
+    "denominator": 240
+  },
+  "pairs": {
+    "correct": 96,
+    "denominator": 120
+  },
+  "stage_three_run_confirmation": "NOT_COMPLETED",
+  "hard_acceptance_eligible": false,
+  "acceptance_passed": false,
+  "remaining_declared_group_plan": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/languagefirst1-confirmation-plan.json",
+  "native_personal_final": {
+    "correct_directions": 207,
+    "correct_pairs": 97
+  },
+  "strict_audit_personal_final": {
+    "correct_directions": 205,
+    "correct_pairs": 96
+  },
+  "strict_audit_never_rewrites_answers": true
+}

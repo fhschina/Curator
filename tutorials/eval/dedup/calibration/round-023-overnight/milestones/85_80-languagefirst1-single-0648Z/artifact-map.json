@@ -1,0 +1,82 @@
+{
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/f0e0bdcfcbc6f7c2bf391b01cea19f06cce1ac659b38eda095380b02fa748dd5/strict_audit.json": {
+    "packaged": "artifacts/f0e0bdcfcbc6f7c2bf391b01cea19f06cce1ac659b38eda095380b02fa748dd5/strict_audit.json",
+    "sha256": "f0e0bdcfcbc6f7c2bf391b01cea19f06cce1ac659b38eda095380b02fa748dd5"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/bff12c5c3513c9e26e33b9795b94e7a416fe6b12bbf351cfaaf3b1a7b1601396/strict_audit.csv": {
+    "packaged": "artifacts/bff12c5c3513c9e26e33b9795b94e7a416fe6b12bbf351cfaaf3b1a7b1601396/strict_audit.csv",
+    "sha256": "bff12c5c3513c9e26e33b9795b94e7a416fe6b12bbf351cfaaf3b1a7b1601396"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/fe81bb77df0a29108fe5b31f8974e7e243419ecdefa7708274fb96b813f4856d/tuning_audit-v2.csv": {
+    "packaged": "artifacts/fe81bb77df0a29108fe5b31f8974e7e243419ecdefa7708274fb96b813f4856d/tuning_audit-v2.csv",
+    "sha256": "fe81bb77df0a29108fe5b31f8974e7e243419ecdefa7708274fb96b813f4856d"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/77627e4ef548ac27a810601e74597db3d0ff467e5ca95f2375a35b5339601c43/report.json": {
+    "packaged": "artifacts/77627e4ef548ac27a810601e74597db3d0ff467e5ca95f2375a35b5339601c43/report.json",
+    "sha256": "77627e4ef548ac27a810601e74597db3d0ff467e5ca95f2375a35b5339601c43"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/01b48ebdd93fbb444816d5c50d802fb806183188de195197213ce57a1d2a5244/run_manifest.json": {
+    "packaged": "artifacts/01b48ebdd93fbb444816d5c50d802fb806183188de195197213ce57a1d2a5244/run_manifest.json",
+    "sha256": "01b48ebdd93fbb444816d5c50d802fb806183188de195197213ce57a1d2a5244"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/619b8392ed6994f43f3548f2b8bb9c640170cad45a5804be300a38d72a79de7e/strict_audit.json": {
+    "packaged": "artifacts/619b8392ed6994f43f3548f2b8bb9c640170cad45a5804be300a38d72a79de7e/strict_audit.json",
+    "sha256": "619b8392ed6994f43f3548f2b8bb9c640170cad45a5804be300a38d72a79de7e"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/b79e19d20b5182f3f014959c198c6bdd24af96d3fdeb8fd38e95c00b3881d9b5/strict_audit.csv": {
+    "packaged": "artifacts/b79e19d20b5182f3f014959c198c6bdd24af96d3fdeb8fd38e95c00b3881d9b5/strict_audit.csv",
+    "sha256": "b79e19d20b5182f3f014959c198c6bdd24af96d3fdeb8fd38e95c00b3881d9b5"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/1c7877472f77b7537e6a3c9343fe8ab227507e7d4456315f04758eacee037010/tuning_audit-v2.csv": {
+    "packaged": "artifacts/1c7877472f77b7537e6a3c9343fe8ab227507e7d4456315f04758eacee037010/tuning_audit-v2.csv",
+    "sha256": "1c7877472f77b7537e6a3c9343fe8ab227507e7d4456315f04758eacee037010"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/1dd4cdeada1e4583182b86571a40a5c4622f702a58c66ecbbe4e4b27f5b3fc28/report.json": {
+    "packaged": "artifacts/1dd4cdeada1e4583182b86571a40a5c4622f702a58c66ecbbe4e4b27f5b3fc28/report.json",
+    "sha256": "1dd4cdeada1e4583182b86571a40a5c4622f702a58c66ecbbe4e4b27f5b3fc28"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/4a7ef7b8d6bbae46b33f42ca5ab85b63ec6be6dab53eaefe8e78335852fb1aea/run_manifest.json": {
+    "packaged": "artifacts/4a7ef7b8d6bbae46b33f42ca5ab85b63ec6be6dab53eaefe8e78335852fb1aea/run_manifest.json",
+    "sha256": "4a7ef7b8d6bbae46b33f42ca5ab85b63ec6be6dab53eaefe8e78335852fb1aea"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/411b7ad81a079132dbd3262bb7ebfee6c88abd2490b46bbd1b8a2cd8e2b6e58e/strict_audit.json": {
+    "packaged": "artifacts/411b7ad81a079132dbd3262bb7ebfee6c88abd2490b46bbd1b8a2cd8e2b6e58e/strict_audit.json",
+    "sha256": "411b7ad81a079132dbd3262bb7ebfee6c88abd2490b46bbd1b8a2cd8e2b6e58e"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/513a49d89bfab6255bf278b72b6744228798c258bdcbccc24a2b99b71aff943f/strict_audit.csv": {
+    "packaged": "artifacts/513a49d89bfab6255bf278b72b6744228798c258bdcbccc24a2b99b71aff943f/strict_audit.csv",
+    "sha256": "513a49d89bfab6255bf278b72b6744228798c258bdcbccc24a2b99b71aff943f"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/e01a174b7762857494f3f5ff080991d934b21090899b87592e3af3be76b26d0c/tuning_audit-v2.csv": {
+    "packaged": "artifacts/e01a174b7762857494f3f5ff080991d934b21090899b87592e3af3be76b26d0c/tuning_audit-v2.csv",
+    "sha256": "e01a174b7762857494f3f5ff080991d934b21090899b87592e3af3be76b26d0c"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/927cfd5e3b739accd63b2e79f7985b55b1a57d15ce538a1037d4c39b7b1f5697/report.json": {
+    "packaged": "artifacts/927cfd5e3b739accd63b2e79f7985b55b1a57d15ce538a1037d4c39b7b1f5697/report.json",
+    "sha256": "927cfd5e3b739accd63b2e79f7985b55b1a57d15ce538a1037d4c39b7b1f5697"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/b8a07d67af94defee0f898c8c13c3674aac14b969b4c6067fd339589888c01be/run_manifest.json": {
+    "packaged": "artifacts/b8a07d67af94defee0f898c8c13c3674aac14b969b4c6067fd339589888c01be/run_manifest.json",
+    "sha256": "b8a07d67af94defee0f898c8c13c3674aac14b969b4c6067fd339589888c01be"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/44ed2b1e5d8cdd41b724d3da9fc3ab1dcac3ac85a018eaaec913a46a14073228/strict_audit.json": {
+    "packaged": "artifacts/44ed2b1e5d8cdd41b724d3da9fc3ab1dcac3ac85a018eaaec913a46a14073228/strict_audit.json",
+    "sha256": "44ed2b1e5d8cdd41b724d3da9fc3ab1dcac3ac85a018eaaec913a46a14073228"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/71a8217d6224629fc5c71bbcb479f7e277c178f0a33009146a6b2867d90133ed/strict_audit.csv": {
+    "packaged": "artifacts/71a8217d6224629fc5c71bbcb479f7e277c178f0a33009146a6b2867d90133ed/strict_audit.csv",
+    "sha256": "71a8217d6224629fc5c71bbcb479f7e277c178f0a33009146a6b2867d90133ed"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/0bd5805c17bd43c4afb1e43aafba80df8c6f84ebbf8df43db9d3a6358d44b62d/tuning_audit-v2.csv": {
+    "packaged": "artifacts/0bd5805c17bd43c4afb1e43aafba80df8c6f84ebbf8df43db9d3a6358d44b62d/tuning_audit-v2.csv",
+    "sha256": "0bd5805c17bd43c4afb1e43aafba80df8c6f84ebbf8df43db9d3a6358d44b62d"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/6c220cea31f99a56c962333a3e9c017124ffc52b09cf31621567035287bc15a2/report.json": {
+    "packaged": "artifacts/6c220cea31f99a56c962333a3e9c017124ffc52b09cf31621567035287bc15a2/report.json",
+    "sha256": "6c220cea31f99a56c962333a3e9c017124ffc52b09cf31621567035287bc15a2"
+  },
+  "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/artifact-store/5b4609275bf49360994a30f7b5aad6d01dcedebf4f63d89514bf61d01fd9b001/run_manifest.json": {
+    "packaged": "artifacts/5b4609275bf49360994a30f7b5aad6d01dcedebf4f63d89514bf61d01fd9b001/run_manifest.json",
+    "sha256": "5b4609275bf49360994a30f7b5aad6d01dcedebf4f63d89514bf61d01fd9b001"
+  }
+}
