@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "actual_owned_process_terminated": true,
+  "unowned_process_untouched": true,
+  "cutoff": 1793157038.57478,
+  "triggered": 1793157038.574988,
+  "trigger_delay_seconds": 0.0002079010009765625,
+  "prior_harness_timeout_preserved": true
+}

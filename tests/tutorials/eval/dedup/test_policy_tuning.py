@@ -51,6 +51,23 @@ def test_nonregression_compares_exact_counts_and_requires_complete_repeats():
     assert nonregression_status(personal_summary([240], [120]), baseline) == "NOT_COMPLETED"
 
 
+def test_missing_declared_repeats_earn_zero_credit_in_the_full_fixed_denominator():
+    labels = [{"pair_id": str(index), "a_can_replace_b": "yes", "b_can_replace_a": "yes"} for index in range(120)]
+    metrics = agreement({row["pair_id"]: output() for row in labels}, labels, {}, "final")
+    runs = [{"run": "r1", "groups": {"personal120": dict.fromkeys(("main", "coverage", "final"), metrics)}}]
+    summary = aggregate(runs, "personal120", ["r1", "r2", "r3"], 120)["final"]
+    assert summary["direction_agreement"]["correct_total"] == 240
+    assert summary["direction_agreement"]["denominator_total"] == 720
+    assert summary["pair_agreement"]["correct_total"] == 120
+    assert summary["pair_agreement"]["denominator_total"] == 360
+    assert summary["missing_repeats"] == ["r2", "r3"]
+    assert target_status(summary, Fraction(9, 10), Fraction(17, 20)) == "NOT_COMPLETED"
+    with pytest.raises(ValueError, match="counted twice"):
+        aggregate(runs + runs, "personal120", ["r1", "r2", "r3"], 120)
+    with pytest.raises(ValueError, match="predeclared group"):
+        aggregate(runs, "personal120", ["replacement", "r2", "r3"], 120)
+
+
 def output(a: str = "yes", b: str = "yes"):
     value = {
         "a_can_replace_b": a,
@@ -154,13 +171,13 @@ def test_repeat_summary_preserves_worst_run_and_failed_row_coverage():
 def test_equal_integer_totals_cannot_appear_as_a_mean_regression():
     labels = [{"pair_id": str(index), "a_can_replace_b": "yes", "b_can_replace_a": "yes"} for index in range(97)]
 
-    def trial(correct_pairs: int) -> dict:
+    def trial(correct_pairs: int, repeat: int) -> dict:
         rows = {str(index): output() if index < correct_pairs else output("no", "no") for index in range(97)}
         metrics = agreement(rows, labels, {}, "final")
-        return {"run": str(correct_pairs), "groups": {"fixed": dict.fromkeys(("main", "coverage", "final"), metrics)}}
+        return {"run": str(repeat), "groups": {"fixed": dict.fromkeys(("main", "coverage", "final"), metrics)}}
 
-    baseline = aggregate([trial(93), trial(93), trial(93)], "fixed")["final"]
-    candidate = aggregate([trial(92), trial(92), trial(95)], "fixed")["final"]
+    baseline = aggregate([trial(93, repeat) for repeat in range(3)], "fixed")["final"]
+    candidate = aggregate([trial(count, repeat) for repeat, count in enumerate((92, 92, 95))], "fixed")["final"]
     assert candidate["direction_agreement"]["mean"] == baseline["direction_agreement"]["mean"] == 558 / 582
     assert candidate["pair_agreement"]["mean"] == baseline["pair_agreement"]["mean"] == 279 / 291
 

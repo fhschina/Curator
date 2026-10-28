@@ -1,0 +1,22 @@
+{
+  "id": "engineering-02",
+  "time": 1793157385.9579995,
+  "change": "Missing declared repeats receive zero credit in fixed three-run denominators; completion remains separate. Reject duplicate or undeclared repeat identities.",
+  "semantic_candidate": false,
+  "judge_runtime_validation_and_critic_python_unchanged": true,
+  "checks": {
+    "tutorial_cpu": 74,
+    "native_stage_cpu": 25,
+    "workflow_cpu": 32,
+    "precommit": "PASS",
+    "real_partial_comparison_fixed720_360": "PASS"
+  },
+  "logs": {
+    "reporting-engineering-cpu-final.log": "ba24af3c422f0a902c143ce42caa9a70553e10350b773dff87f3d7d35be21d76",
+    "reporting-engineering-precommit-pass.log": "0cb6ceefeffb07596b0fe417fc5dd8941d1a81073dbaac5c3f4203d79eccd357",
+    "native-stage-cpu.log": "e5a9d84cf907518b67a62d5d2f3d76639bd2e6012f634f09cbddee9e624e68ed",
+    "workflow-cpu.log": "90fb5cc53251bdf0d6a3d61a5d238221c6c5636a676f65b7385bf6c997df9699"
+  },
+  "policy_tuning_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "policy_eval_sha256": "0d69f64b88ab1f963016069fc58add24413ef0d6ebf10b50aeb214fe4838e294"
+}

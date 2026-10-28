@@ -516,9 +516,23 @@ def audit_run(args: argparse.Namespace) -> dict:  # noqa: C901, PLR0912, PLR0915
     return result
 
 
-def aggregate(reports: list[dict], group: str) -> dict:
+def aggregate(
+    reports: list[dict], group: str, expected_runs: list[str] | None = None, expected_pairs: int | None = None
+) -> dict:
     """Average exact count ratios while preserving every failed hard-regression repeat."""
     selected = [report for report in reports if group in report["groups"]]
+    indexed = {report["run"]: report for report in selected}
+    if len(indexed) != len(selected):
+        msg = "A verification repeat cannot be counted twice"
+        raise ValueError(msg)
+    names = expected_runs if expected_runs is not None else list(indexed)
+    if expected_runs is not None and (len(set(names)) != len(names) or set(indexed) - set(names)):
+        msg = "Observed runs must belong to the unique predeclared group"
+        raise ValueError(msg)
+    missing = [name for name in names if name not in indexed]
+    if missing and not expected_pairs:
+        msg = "Missing repeats require an explicit frozen pair denominator"
+        raise ValueError(msg)
     counts = {
         "direction_agreement": ("correct_directions", "directions"),
         "pair_agreement": ("correct_pairs", "pairs"),
@@ -526,9 +540,30 @@ def aggregate(reports: list[dict], group: str) -> dict:
     }
     result = {}
     for layer in LAYERS:
-        metrics = [report["groups"][group][layer] for report in selected]
+        metrics = [
+            indexed[name]["groups"][group][layer]
+            if name in indexed
+            else {
+                "pairs": expected_pairs,
+                "directions": 2 * expected_pairs,
+                "correct_directions": 0,
+                "correct_pairs": 0,
+                "direction_agreement": 0,
+                "pair_agreement": 0,
+                "valid_judgment_coverage": 0,
+                "valid_pairs": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "incomplete_pairs": expected_pairs,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+            }
+            for name in names
+        ]
         result[layer] = {
-            "repeats": [report["run"] for report in selected],
+            "repeats": names,
+            "completed_repeats": len(selected),
+            "missing_repeats": missing,
             "denominator_pairs": sorted({item["pairs"] for item in metrics}),
             "each": metrics,
         }
@@ -562,7 +597,7 @@ def declare_verification(root: Path, variant: str) -> None:
 
 def target_status(personal: dict, direction: Fraction, pair: Fraction) -> str:
     """Use the frozen 720/360 denominators, including every invalid judgment."""
-    if len(personal.get("repeats", [])) != REPEATS:
+    if personal.get("completed_repeats", len(personal.get("repeats", []))) != REPEATS:
         return "NOT_COMPLETED"
     if personal["denominator_pairs"] != [PERSONAL_PAIR_COUNT]:
         msg = "Personal reference denominator changed"
@@ -583,7 +618,10 @@ def target_status(personal: dict, direction: Fraction, pair: Fraction) -> str:
 
 
 def nonregression_status(candidate: dict, baseline: dict) -> str:
-    if len(candidate.get("repeats", [])) != REPEATS or len(baseline.get("repeats", [])) != REPEATS:
+    if (
+        candidate.get("completed_repeats", len(candidate.get("repeats", []))) != REPEATS
+        or baseline.get("completed_repeats", len(baseline.get("repeats", []))) != REPEATS
+    ):
         return "NOT_COMPLETED"
     a, b = candidate["direction_agreement"], baseline["direction_agreement"]
     return (
@@ -604,6 +642,15 @@ def compare(args: argparse.Namespace) -> None:  # noqa: PLR0915
         if key.startswith(("panels/", "labels/", "input_indexes/")) or key == "evaluation.json"
     }
     reports, summaries, failed_runs = {}, {}, []
+    evaluation = read_json(session / "baseline/evaluation.json")
+    group_plans = {
+        **{name: (item["panel"], len(item["ids"])) for name, item in evaluation["hard_groups"].items()},
+        "real_consensus6": ("diagnostic", len(evaluation["consensus_ids"])),
+        "personal120": ("diagnostic", PERSONAL_PAIR_COUNT),
+        "development99_original": ("holdout", 99),
+        "development99_reviewed": ("holdout", 99),
+        "development97_strict": ("holdout", 97),
+    }
     for root in roots:
         if not root.is_dir():
             continue
@@ -633,9 +680,12 @@ def compare(args: argparse.Namespace) -> None:  # noqa: PLR0915
             for path in sorted((root / "runs").glob("*/report.json"))
         ]
         reports[root.name] = values
+        declared = (
+            read_json(root / "verification-plan.json")["runs"] if (root / "verification-plan.json").exists() else {}
+        )
         summaries[root.name] = {
-            group: aggregate(values, group)
-            for group in sorted({name for report in values for name in report["groups"]})
+            group: aggregate(values, group, declared.get(panel), pairs)
+            for group, (panel, pairs) in group_plans.items()
         }
     best_name = getattr(args, "best_root", None) or f"candidate-{args.best:02d}"
     best = summaries.get(best_name, {})
@@ -690,7 +740,7 @@ def compare(args: argparse.Namespace) -> None:  # noqa: PLR0915
         name: "PASS"
         if passed
         else "FAIL"
-        if all(len(best.get(name, {}).get(layer, {}).get("repeats", [])) == REPEATS for layer in LAYERS)
+        if all(best.get(name, {}).get(layer, {}).get("completed_repeats", 0) == REPEATS for layer in LAYERS)
         else "NOT_COMPLETED"
         for name, passed in hard_checks.items()
     }
