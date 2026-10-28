@@ -1,0 +1,13 @@
+{
+  "status": "PREPARATION_PASS_INFERENCE_NOT_COMPLETED",
+  "destination": "/raid/hfang/retention_policy_eval/v1/experiments/round024-replay-prepare-c3-20261028T1938Z",
+  "actual_prepared_roots": [
+    "baseline",
+    "candidate-00-start85",
+    "candidate-03"
+  ],
+  "original_predeclared_slots": 45,
+  "model_calls": 0,
+  "not_a_deadline_extension": true,
+  "created": 1793216321.3548586
+}

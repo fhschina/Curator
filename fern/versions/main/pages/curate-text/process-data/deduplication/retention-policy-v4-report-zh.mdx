@@ -37,10 +37,10 @@ title: "Qwen 保留规则校准 v4 — 八小时进展"
 | baseline | development99_original | 0 | 0/594 | 0.00% | 0.00% | 0/297 | 0.00% | 0.00% |
 | baseline | development99_reviewed | 0 | 0/594 | 0.00% | 0.00% | 0/297 | 0.00% | 0.00% |
 | baseline | development97_strict | 0 | 0/582 | 0.00% | 0.00% | 0/291 | 0.00% | 0.00% |
-| candidate-00-start85 | personal120 | 1 | 200/720 | 27.78% | 0.00% | 95/360 | 26.39% | 0.00% |
-| candidate-00-start85 | development99_original | 0 | 0/594 | 0.00% | 0.00% | 0/297 | 0.00% | 0.00% |
-| candidate-00-start85 | development99_reviewed | 0 | 0/594 | 0.00% | 0.00% | 0/297 | 0.00% | 0.00% |
-| candidate-00-start85 | development97_strict | 0 | 0/582 | 0.00% | 0.00% | 0/291 | 0.00% | 0.00% |
+| candidate-00-start85 | personal120 | 2 | 403/720 | 55.97% | 0.00% | 190/360 | 52.78% | 0.00% |
+| candidate-00-start85 | development99_original | 2 | 380/594 | 63.97% | 0.00% | 188/297 | 63.30% | 0.00% |
+| candidate-00-start85 | development99_reviewed | 2 | 384/594 | 64.65% | 0.00% | 190/297 | 63.97% | 0.00% |
+| candidate-00-start85 | development97_strict | 2 | 378/582 | 64.95% | 0.00% | 187/291 | 64.26% | 0.00% |
 
 | 对照 | 参考口径 | Final 方向变化，百分点 | Final 整对变化，百分点 |
 | --- | --- | --- | --- |
@@ -59,6 +59,13 @@ title: "Qwen 保留规则校准 v4 — 八小时进展"
 | 版本 | 参考口径 | 运行 | Main 方向；整对 | Coverage 方向；整对 | Final 方向；整对 |
 | --- | --- | --- | --- | --- | --- |
 | candidate-00-start85 | personal120 | candidate-diagnostic-1 | 202/240; 96/120 | 200/240; 95/120 | 200/240; 95/120 |
+| candidate-00-start85 | personal120 | candidate-diagnostic-2 | 204/240; 95/120 | 203/240; 95/120 | 203/240; 95/120 |
+| candidate-00-start85 | development99_original | candidate-holdout-1 | 192/198; 95/99 | 192/198; 95/99 | 192/198; 95/99 |
+| candidate-00-start85 | development99_reviewed | candidate-holdout-1 | 194/198; 96/99 | 194/198; 96/99 | 194/198; 96/99 |
+| candidate-00-start85 | development97_strict | candidate-holdout-1 | 190/194; 94/97 | 190/194; 94/97 | 190/194; 94/97 |
+| candidate-00-start85 | development99_original | candidate-holdout-2 | 188/198; 93/99 | 188/198; 93/99 | 188/198; 93/99 |
+| candidate-00-start85 | development99_reviewed | candidate-holdout-2 | 190/198; 94/99 | 190/198; 94/99 | 190/198; 94/99 |
+| candidate-00-start85 | development97_strict | candidate-holdout-2 | 188/194; 93/97 | 188/194; 93/97 | 188/194; 93/97 |
 
 </details>
 
@@ -80,10 +87,15 @@ title: "Qwen 保留规则校准 v4 — 八小时进展"
 | 版本 | 组 | 运行 | Main 整对 | Coverage 整对 | Final 整对 | 交换不一致 |
 | --- | --- | --- | --- | --- | --- | --- |
 | candidate-00-start85 | extra6 | candidate-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-00-start85 | extra6 | candidate-coverage-regression-2 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
 | candidate-00-start85 | real_consensus6 | candidate-diagnostic-1 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| candidate-00-start85 | real_consensus6 | candidate-diagnostic-2 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
 | candidate-00-start85 | original36 | candidate-gate-1 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-00-start85 | original36 | candidate-gate-2 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
 | candidate-00-start85 | latest18 | candidate-preflight-1 | 17/18 | 15/18 | 15/18 | &#123;"main": ["D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
 | candidate-00-start85 | controlled26 | candidate-preflight-1 | 25/26 | 25/26 | 25/26 | &#123;"main": ["D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
+| candidate-00-start85 | latest18 | candidate-preflight-2 | 17/18 | 16/18 | 16/18 | &#123;"main": ["R14"], "coverage": ["R14", "R33"], "final": ["R14", "R33"]&#125; |
+| candidate-00-start85 | controlled26 | candidate-preflight-2 | 26/26 | 26/26 | 26/26 | &#123;"main": ["R14"], "coverage": ["R14", "R33"], "final": ["R14", "R33"]&#125; |
 
 </details>
 
@@ -93,9 +105,15 @@ title: "Qwen 保留规则校准 v4 — 八小时进展"
 | 版本 | 运行 | Main 有效/无效/待定 | Coverage 有效/无效/待定 | Final 有效/无效/待定 | 错误允许 M/C/F | 错误阻止 M/C/F | 层间变化 | 失败 | HTTP 尝试状态 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | candidate-00-start85 | candidate-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| candidate-00-start85 | candidate-coverage-regression-2 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
 | candidate-00-start85 | candidate-diagnostic-1 | 143/3/4 | 143/3/4 | 143/3/4 | 6/5/5 | 30/33/33 | &#123;"coverage_to_final": 0, "main_to_coverage": 4&#125; | &#123;"MAIN_ATTEMPT_PARSE_ERROR": 1, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 2&#125; | &#123;"parse_error": 1, "valid": 302&#125; |
+| candidate-00-start85 | candidate-diagnostic-2 | 145/0/5 | 145/0/5 | 145/0/5 | 7/6/6 | 29/31/31 | &#123;"coverage_to_final": 0, "main_to_coverage": 4&#125; | &#123;&#125; | &#123;"valid": 309&#125; |
 | candidate-00-start85 | candidate-gate-1 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| candidate-00-start85 | candidate-gate-2 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| candidate-00-start85 | candidate-holdout-1 | 100/0/0 | 100/0/0 | 100/0/0 | 1/1/1 | 3/3/3 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 122&#125; |
+| candidate-00-start85 | candidate-holdout-2 | 98/2/0 | 98/2/0 | 98/2/0 | 1/1/1 | 5/5/5 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"valid": 121&#125; |
 | candidate-00-start85 | candidate-preflight-1 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 4/7/7 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;&#125; | &#123;"valid": 98&#125; |
+| candidate-00-start85 | candidate-preflight-2 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 1/3/3 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;&#125; | &#123;"valid": 101&#125; |
 
 </details>
 
@@ -104,7 +122,7 @@ title: "Qwen 保留规则校准 v4 — 八小时进展"
 
 | 版本 | 运行 | 状态 | 预期输入 | 实际 main 行数 | HTTP 尝试 |
 | --- | --- | --- | --- | --- | --- |
-| candidate-01 | candidate-preflight-1 | running | 44 | 44 | 66 |
+| candidate-03 | candidate-diagnostic-1 | running | 150 | 0 | 120 |
 
 </details>
 
@@ -139,6 +157,8 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | --- | --- | --- | --- | --- | --- | --- |
 | candidate-00-start85 | candidate-diagnostic-1 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
 | candidate-00-start85 | candidate-diagnostic-1 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
+| candidate-00-start85 | candidate-diagnostic-2 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| candidate-00-start85 | candidate-diagnostic-2 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
 
 </details>
 
@@ -148,6 +168,7 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | 版本 | 运行 | Main 有效/无效/待定 | Coverage 有效/无效/待定 | Final 有效/无效/待定 |
 | --- | --- | --- | --- | --- |
 | candidate-00-start85 | candidate-diagnostic-1 | 18/0/0 | 18/0/0 | 18/0/0 |
+| candidate-00-start85 | candidate-diagnostic-2 | 18/0/0 | 18/0/0 | 18/0/0 |
 
 </details>
 
@@ -157,6 +178,7 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | 版本 | 运行 | Main 有效/无效/待定 | Coverage 有效/无效/待定 | Final 有效/无效/待定 |
 | --- | --- | --- | --- | --- |
 | candidate-00-start85 | candidate-diagnostic-1 | 0/1/4 | 0/1/4 | 0/1/4 |
+| candidate-00-start85 | candidate-diagnostic-2 | 0/0/5 | 0/0/5 | 0/0/5 |
 
 </details>
 
@@ -168,7 +190,7 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | --- | --- | --- | --- | --- | --- | --- |
 | milestone_85_80 | — | NOT_COMPLETED | — | — | 0 | — |
 | target_90_85 | — | NOT_COMPLETED | — | — | 0 | — |
-| best_metric | candidate-00-start85 | provisional | 200/240 | 95/120 | 1 | snapshots/1793212390253946611-best_metric-candidate-00-start85-provisional.json |
+| best_metric | candidate-00-start85 | provisional | 403/480 | 190/240 | 2 | snapshots/1793215031280690578-best_metric-candidate-00-start85-provisional.json |
 | best_eligible | — | NOT_COMPLETED | — | — | 0 | — |
 
 <details>
@@ -176,8 +198,12 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 
 | 候选 | 假设 | 完成的个人参考重复数 | 状态 | 选择理由 | 证据目录 |
 | --- | --- | --- | --- | --- | --- |
-| candidate-00-start85 | 原样C6-languagefirst1起点对照；既往85/80为历史成绩，本轮新的原定3次尚未运行。 | 1 | FROZEN_STARTING_COMPARATOR_NOT_NEW_SEMANTIC_CANDIDATE |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-00-start85 |
-| candidate-01 | 在原样确认阶段政策上澄清两项窄范围例外的优先级：等价通用营销中的重复类别或地点标签，如无独立产品事实或变化的销售条件，不构成具体产品记录；已覆盖的通用cookie段落也不因新的标题单独产生额外类别专属的必需义务。同步既有差异及主差异选项与这些有限例外。真实产品及规格、交易去向、责任主体名称、明确类别条款、具体部署限制及实质正文语言继续受保护。既往宽泛后继版本混合了界面、失败目标及类别实例规则，并存在格式失败；本次只把其中已批准的cookie范围澄清置于原有稳定阶段父版本，不移植其他规则。真实既往main回复明确把允许的服务商槽位称为内容新增而绕过例外；coverage回复也曾承认复制共享文字却推断新的类别义务。保留全部原生字段、顺序、枚举、回复格式、证据、模型、采样、执行器及严格校验。先运行原硬呈现及单独冻结的cookie范围正反例；不为重试失败而直接增加长推理。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01 |
+| candidate-00-start85 | 原样C6-languagefirst1起点对照；既往85/80为历史成绩，本轮新的原定3次尚未运行。 | 2 | FROZEN_STARTING_COMPARATOR_NOT_NEW_SEMANTIC_CANDIDATE |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-00-start85 |
+| candidate-01 | 在原样确认阶段政策上澄清两项窄范围例外的优先级：等价通用营销中的重复类别或地点标签，如无独立产品事实或变化的销售条件，不构成具体产品记录；已覆盖的通用cookie段落也不因新的标题单独产生额外类别专属的必需义务。同步既有差异及主差异选项与这些有限例外。真实产品及规格、交易去向、责任主体名称、明确类别条款、具体部署限制及实质正文语言继续受保护。既往宽泛后继版本混合了界面、失败目标及类别实例规则，并存在格式失败；本次只把其中已批准的cookie范围澄清置于原有稳定阶段父版本，不移植其他规则。真实既往main回复明确把允许的服务商槽位称为内容新增而绕过例外；coverage回复也曾承认复制共享文字却推断新的类别义务。保留全部原生字段、顺序、枚举、回复格式、证据、模型、采样、执行器及严格校验。先运行原硬呈现及单独冻结的cookie范围正反例；不为重试失败而直接增加长推理。 | 0 | FIRST_HARD_SCREEN_FAIL_NO_LONG_RUN_ADMITTED | 首次原定硬回归：main85/86，coverage/final83/86，无效及原始错误允许均为零。最新18的main通过，但R14/R33交换方向被coverage误否决；T_marketing_slot的main仍错误拒绝。未启动原定150/100；单独cookie范围受控结果保留。 | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01 |
+| candidate-01-coverreasonfirst1 | 仅对coverage回复顺序进行工程实验：要求先生成既有explanation段落并完成全篇比较，再选择损失ID，之后输出不变的其余字段。既往真实coverage回复先给损失ID再解释比较，尽管存在例外仍推断类别义务或服务商损失；此前顺序诊断提出但未实际实施过这一实验。新的语义筛查再次出现main判断正确后被coverage误否决。全部保留政策段落、main提示词与rubric、字段名类型枚举、schema、校验器、引用证据、critic只能否决的权限、原文呈现、模型及采样均不变。该观察不证明因果：须核验实际输出顺序及原生有效性，再比较硬回归与单独cookie反例。若顺序未生效或技术有效性退步则淘汰，不重复失败组以挑选幸运样本。 | 0 | REJECTED_AFTER_ORIGINAL_HARD_SCREEN_NO_LONG_RUN | 观察到的全部61次coverage回复均先生成explanation。原硬回归main85/86、final82/86，未优于父版本main85/86、final83/86；仍存在认证误否决及一个无效gate判断。未准入长评测。 | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01-coverreasonfirst1 |
+| candidate-02 | 仅澄清已批准的有限通用营销例外与共享依据的一致性。前一main失败明确把已保留的营销文字视为仅有模板而选择无依据，尽管类别及地点标签本身已被允许。明确完整且满足条件的相同营销文字即使简短或可复用，仍构成经核验的保留依据；排除不同真实记录周围的共享导航及版式，继续保护独立产品事实或销售条件差异。不新增槽位例外类别、不改内容角色定义、输出字段及顺序枚举、原文、模型、采样、schema、执行器或校验器。父版本其余政策及任何已单独核验的coverage顺序工程干预均保持不变。该实验针对实际无依据路径，不重复已测试的身份措辞。 | 0 | FIRST_HARD86_FAIL_LEDGER_AND_POLICY_NO_LONG_RUN | 首次硬回归main84/86、final83/86；1个无效R33-swapped字段矛盾，另有D058同语言措辞保留及R14-swapped的coverage误否决。受控26/26通过。未准入150/100。 | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-02 |
+| candidate-03 | 针对观察到的决策位置澄清两项一致性，不扩大政策范围。第一，后部一般性的主体绑定、数据流及标题作用域条款必须服从已满足条件的有限服务商名称及已覆盖通用cookie复制例外；方向汇总应与已核验依据及已归为无害的被移除侧证据一致。前一main回复把双方服务商差异均判为无害，却仅因同一名称否认替换；coverage则把已覆盖复制文字重新当成类别义务。第二，等价的同语言表单及隐私措辞，不因风格不同就成为独立实质正文语言版本；必须存在实际意义或条件变化。前一认证回复明确为预训练保留语义等价的越南语近义措辞。真实操作去向、责任主体、明确类别及状态同意条款、实际流程变化和不同语言实质正文继续保护。不改字段、顺序、枚举、schema、原文及窗口、模型采样、原生执行器、校验器、权限或回复外层格式。继续排除未成功的先解释工程干预。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03 |
+| candidate-04 | 根据保留的实际回复澄清两项有限功能角色。Main在两个镜像受控呈现中把明确类别状态当成无害界面，critic则正确保护。区分独立赋予的强制或可选状态值与已覆盖通用段落；缺失是一侧新增而非虚构冲突。Coverage还把未变的通用cookie传递谓词中的接收方宾语当成新增处理，甚至引用空导航标题。选损失前按谓词应用已有有限服务商及接收方槽位例外。不新增例外类别，不放宽真实责任主体或操作去向，不改标签、字段顺序枚举、模型采样、证据窗口、原生代码、schema或校验器。保留此前所有失败，只评测新预声明运行。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-04 |
 
 </details>
 
@@ -210,8 +236,8 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | deadline_utc | 2026-10-29T02:11:18Z |
 | semantic_stop_utc | 2026-10-29T00:41:18Z |
 | gpu_stop_utc | 2026-10-29T01:56:18Z |
-| wall_hours_at_render | 0.471 |
-| allocated_gpu_hours_including_idle | 0.365 |
+| wall_hours_at_render | 1.461 |
+| allocated_gpu_hours_including_idle | 1.355 |
 | GPU | 1 × NVIDIA B200; TP=1 |
 | model_revision | 017b9c7af6b5689d5dd426a76e0bc077eb5ca20a |
 | context/max_tokens/temperature/concurrency/timeout/window | 32768 / 6144 / 0.2 / 8 / 600 / 6000 |
@@ -225,4 +251,4 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 
 `/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z`
 
-`/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/formal-progress-183710Z/comparison.json`
+`/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/formal-progress-193841Z/comparison.json`

@@ -33,3 +33,18 @@ new score confirmations remain incomplete until their actual receipts exist.
 Raw inputs and HTTP bodies remain outside Git in
 `/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z`.
 Old v1/v2/v3 evidence, source workspaces and reports remain unchanged.
+
+`replay_frozen_v4.py` verifies the native source and frozen inputs, then prepares
+or executes the original three repeats for the fixed baseline, this round's
+starting version and the selected candidate. When start and best are identical,
+their shared frozen version is evaluated once and the two roles remain explicit.
+Use the existing Python environment and supply a new explicit future deadline,
+checkout, endpoint and caller-owned container. `--prepare-only` makes no model
+calls; it is preparation evidence, never a claim of completed replay. The fixed
+strict audit sources are loaded byte-for-byte from the source session included
+in the external evidence bundle, or an explicitly supplied `--audit-tools` path.
+
+Current candidate selection remains provisional. Supplemental controls have
+separate fixed expectations and denominators; critic corrections do not excuse
+main errors. All failed candidates and the unsuccessful coverage response-order
+experiment remain in the frozen archives and per-layer row evidence.

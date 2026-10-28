@@ -1,0 +1,126 @@
+{
+  "completed": 1793215843.0624292,
+  "status": "PASS",
+  "plan_sha256": "32c7cf5249fc7e67b9fad6ed48e261e72e463e5aedee1bbd40dd04020eebcd37",
+  "jobs": [
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/check_all_prompt_budgets.py",
+        "--root",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03",
+        "--output",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03/all-input-budget-check.json",
+        "--arrow-pandas-roundtrip"
+      ],
+      "started": 1793215030.9431083,
+      "completed": 1793215057.1113555,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+        "--after-file",
+        "candidate02-INSERT_SEQUENCE_COMPLETE.json",
+        "--root",
+        "supplemental-cookie-state-parent02-v1",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "parent02-cookie-state-screen-receipt.json"
+      ],
+      "started": 1793215057.1114023,
+      "completed": 1793215132.9917262,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+        "--after-file",
+        "parent02-cookie-state-screen-receipt.json",
+        "--root",
+        "supplemental-nonmain-paraphrase-parent02-v1",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "parent02-nonmain-paraphrase-screen-receipt.json"
+      ],
+      "started": 1793215132.9917803,
+      "completed": 1793215217.7317104,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+        "--after-file",
+        "parent02-nonmain-paraphrase-screen-receipt.json",
+        "--root",
+        "candidate-03",
+        "--panels",
+        "preflight",
+        "gate",
+        "coverage-regression",
+        "--receipt",
+        "candidate03-hard-screen-receipt.json"
+      ],
+      "started": 1793215217.7317567,
+      "completed": 1793215607.2617266,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+        "--after-file",
+        "candidate03-hard-screen-receipt.json",
+        "--root",
+        "supplemental-cookie-scope-candidate03-v2",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "candidate03-cookie-scope-screen-receipt.json"
+      ],
+      "started": 1793215607.2617738,
+      "completed": 1793215687.836113,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+        "--after-file",
+        "candidate03-cookie-scope-screen-receipt.json",
+        "--root",
+        "supplemental-cookie-state-candidate03-v1",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "candidate03-cookie-state-screen-receipt.json"
+      ],
+      "started": 1793215687.8361595,
+      "completed": 1793215763.489951,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+        "--after-file",
+        "candidate03-cookie-state-screen-receipt.json",
+        "--root",
+        "supplemental-nonmain-paraphrase-candidate03-v1",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "candidate03-nonmain-paraphrase-screen-receipt.json"
+      ],
+      "started": 1793215763.4900022,
+      "completed": 1793215843.0624008,
+      "returncode": 0
+    }
+  ],
+  "command_success_is_not_acceptance": true
+}

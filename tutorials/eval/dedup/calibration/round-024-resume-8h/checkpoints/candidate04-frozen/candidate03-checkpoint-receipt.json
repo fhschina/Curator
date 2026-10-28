@@ -1,0 +1,16 @@
+{
+  "commit": "b5ff051ed84fc5fdf3efa1923d426b4c2dafa9bd",
+  "remote_equal": true,
+  "post_hook_frozen_nine": {
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/judge_config/system.jinja": true,
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml": true,
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/judge_config/pair.jinja": true,
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/coverage_system.jinja": true,
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/subject_verifier_pair.jinja": true,
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/subject_system.jinja": true,
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/coverage_pair.jinja": true,
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/subject_pair.jinja": true,
+    "/raid/hfang/workspaces/Curator-retention-policy-v4-8h/tutorials/eval/dedup/critics/prompts/subject_verifier_system.jinja": true
+  },
+  "verified": 1793216104.2294548
+}

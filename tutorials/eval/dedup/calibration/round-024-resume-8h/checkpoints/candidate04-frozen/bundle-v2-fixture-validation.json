@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "tested": 1793216239.609438,
+  "fixture": "/raid/hfang/retention_policy_eval/v1/experiments/round024-bundle-fixture-84d229c3",
+  "build": {
+    "status": "PASS",
+    "bundle": "/raid/hfang/retention_policy_eval/v1/experiments/round024-bundle-fixture-84d229c3/bundle",
+    "indexed_files": 3,
+    "preserved_symlinks": 1,
+    "unique_blobs": 2,
+    "logical_bytes": 54,
+    "unique_bytes": 40,
+    "critical_frozen_manifest_references_verified": 0,
+    "model_calls": 0,
+    "archive": "/raid/hfang/retention_policy_eval/v1/experiments/round024-bundle-fixture-84d229c3/bundle.tar.gz",
+    "archive_sha256": "7935b535bb67b0940287056d94b5f71952aa34ca1bff40f2a0ec5eda9d730040",
+    "archive_bytes": 2197
+  },
+  "restore": {
+    "status": "PASS",
+    "verified_unique_blobs": 2,
+    "indexed_files": 3,
+    "restored_files": 3,
+    "preserved_symlinks": 1,
+    "model_calls": 0,
+    "hardlinks_used": false
+  },
+  "uv_lock_in_source_preserved": true,
+  "relative_file_symlink_preserved": true,
+  "ephemeral_outside_source_excluded": true,
+  "new_model_calls": 0
+}

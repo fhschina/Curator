@@ -1,0 +1,329 @@
+{
+  "declared": 1793216096.8073323,
+  "mode": "ONE_DIAGNOSTIC_ORIGINAL_FIRST150_NOT_ACCEPTANCE",
+  "candidate": "candidate-03",
+  "reason_en": "This is the first new semantic candidate with all original86 main presentations correct, valid and zero raw wrong allows. Coverage false vetoes remain and separate controls are explicitly retained below. One original first150 measures transfer to the full exposed personal/reference strata and separates main improvements from critic losses; this is not a retry or stage confirmation. No second/third long run is admitted by this receipt.",
+  "reason_zh": "这是首个在原86个main呈现全部正确、有效且无原始错误允许的新语义候选。Coverage误否决仍存在，单独受控结果在下方明确保留。仅原定首次150用于测量改善向完整已暴露个人参考分层的转移，并区分main改善与critic损失；不是重试或阶段确认。本凭据不准入第二或第三次长运行。",
+  "hard_actual": {
+    "extra6": {
+      "main": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      },
+      "coverage": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      },
+      "final": {
+        "pairs": 6,
+        "directions": 12,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 6,
+        "valid_judgment_coverage": 1.0
+      }
+    },
+    "original36": {
+      "main": {
+        "pairs": 36,
+        "directions": 72,
+        "correct_directions": 72,
+        "correct_pairs": 36,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 36,
+        "valid_judgment_coverage": 1.0
+      },
+      "coverage": {
+        "pairs": 36,
+        "directions": 72,
+        "correct_directions": 72,
+        "correct_pairs": 36,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 36,
+        "valid_judgment_coverage": 1.0
+      },
+      "final": {
+        "pairs": 36,
+        "directions": 72,
+        "correct_directions": 72,
+        "correct_pairs": 36,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 36,
+        "valid_judgment_coverage": 1.0
+      }
+    },
+    "latest18": {
+      "main": {
+        "pairs": 18,
+        "directions": 36,
+        "correct_directions": 36,
+        "correct_pairs": 18,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 18,
+        "valid_judgment_coverage": 1.0
+      },
+      "coverage": {
+        "pairs": 18,
+        "directions": 36,
+        "correct_directions": 32,
+        "correct_pairs": 15,
+        "direction_agreement": 0.8888888888888888,
+        "pair_agreement": 0.8333333333333334,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 4,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 18,
+        "valid_judgment_coverage": 1.0
+      },
+      "final": {
+        "pairs": 18,
+        "directions": 36,
+        "correct_directions": 32,
+        "correct_pairs": 15,
+        "direction_agreement": 0.8888888888888888,
+        "pair_agreement": 0.8333333333333334,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 4,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 18,
+        "valid_judgment_coverage": 1.0
+      }
+    },
+    "controlled26": {
+      "main": {
+        "pairs": 26,
+        "directions": 52,
+        "correct_directions": 52,
+        "correct_pairs": 26,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 26,
+        "valid_judgment_coverage": 1.0
+      },
+      "coverage": {
+        "pairs": 26,
+        "directions": 52,
+        "correct_directions": 52,
+        "correct_pairs": 26,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 26,
+        "valid_judgment_coverage": 1.0
+      },
+      "final": {
+        "pairs": 26,
+        "directions": 52,
+        "correct_directions": 52,
+        "correct_pairs": 26,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 26,
+        "valid_judgment_coverage": 1.0
+      }
+    }
+  },
+  "separate_controls_actual": {
+    "supplemental-cookie-scope-candidate03-v2": {
+      "supplemental_cookie_scope8": {
+        "main": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 16,
+          "correct_pairs": 8,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 16,
+          "correct_pairs": 8,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 16,
+          "correct_pairs": 8,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        }
+      }
+    },
+    "supplemental-cookie-state-candidate03-v1": {
+      "supplemental_cookie_state8": {
+        "main": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 14,
+          "correct_pairs": 6,
+          "direction_agreement": 0.875,
+          "pair_agreement": 0.75,
+          "reference_wrong_allows": 2,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 16,
+          "correct_pairs": 8,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 16,
+          "correct_pairs": 8,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        }
+      }
+    },
+    "supplemental-nonmain-paraphrase-candidate03-v1": {
+      "supplemental_nonmain_paraphrase8": {
+        "main": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 16,
+          "correct_pairs": 8,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 16,
+          "correct_pairs": 8,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 8,
+          "directions": 16,
+          "correct_directions": 16,
+          "correct_pairs": 8,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 8,
+          "valid_judgment_coverage": 1.0
+        }
+      }
+    }
+  },
+  "acceptance_eligible": false,
+  "native_original_run": "candidate-diagnostic-1",
+  "replaces_failed_run": false,
+  "no_later_run_promised": true
+}
