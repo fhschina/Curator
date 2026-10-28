@@ -1,0 +1,24 @@
+{
+  "created": 1793157092.009985,
+  "before_any_round023_semantic_candidate": true,
+  "baseline_and_start_are_comparators_not_new_candidates": true,
+  "eligible_definition": "Every fixed hard presentation and consensus pair is correct in all layers in three predeclared runs; all required runs complete and technically valid; original99/reviewed99/strict97 directional means each meet the fixed baseline. Personal reference target is evaluated separately.",
+  "best_metric_rank": [
+    "same-candidate three-run joint 90/85 target passed",
+    "same-candidate three-run joint 85/80 milestone passed",
+    "final personal120 directional mean exact fraction",
+    "final personal120 pair mean exact fraction"
+  ],
+  "final_selection_rank": [
+    "eligible before ineligible",
+    "three-run hard technical validity and zero raw wrong-allow directions at every layer",
+    "total correct hard-presentation directions across every layer in the same three repeats",
+    "joint personal120 target/milestone attainment",
+    "personal120 directional mean",
+    "personal120 pair mean"
+  ],
+  "incomplete_evidence": "Provisional only. Missing/failed judgments receive zero credit within fixed required denominators and remain visible; do not replace failed run identities.",
+  "hard_correctness_mandatory": "Averages or final rescues never convert a failed main/coverage presentation into hard PASS.",
+  "locked_target": "A confirmed target or accepted version is retained immutably even if later versions fail.",
+  "comparability": "No cross-version, cross-prompt or cross-run best-result splicing."
+}

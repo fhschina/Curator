@@ -1,0 +1,140 @@
+[
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-021/delivery/summary.json",
+    "sha256": "ef0ae08ed1a6d23f347fe9e54a5de5c547577eee63e556b4897be580ce0eabcd",
+    "bytes": 133939,
+    "bundled_path": "frozen-source-materials/ef0ae08ed1a6d23f347fe9e54a5de5c547577eee63e556b4897be580ce0eabcd/summary.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-021/manifest.json",
+    "sha256": "e3955866b66c7e3beebca8e0254d17886a5e007d2bb10cc774c038c313b70dbb",
+    "bytes": 5657,
+    "bundled_path": "frozen-source-materials/e3955866b66c7e3beebca8e0254d17886a5e007d2bb10cc774c038c313b70dbb/manifest.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-021/labels/diagnostic.json",
+    "sha256": "f03221c0769f868e0c31680b70fb42456b9603a57e23a8e4966f8a4bee6eaaa3",
+    "bytes": 143459,
+    "bundled_path": "frozen-source-materials/f03221c0769f868e0c31680b70fb42456b9603a57e23a8e4966f8a4bee6eaaa3/diagnostic.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-021/labels/holdout.json",
+    "sha256": "d02944c8143f84aeecd5b7d60e7c651360955015910c0487fd5fe20ddd63ea4f",
+    "bytes": 31803,
+    "bundled_path": "frozen-source-materials/d02944c8143f84aeecd5b7d60e7c651360955015910c0487fd5fe20ddd63ea4f/holdout.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/adjudications.json",
+    "sha256": "28053e1c5886a9c0b16cd188f974369ed73a59dbe577c6e39101b64a89568f05",
+    "bytes": 5309,
+    "bundled_path": "frozen-source-materials/28053e1c5886a9c0b16cd188f974369ed73a59dbe577c6e39101b64a89568f05/adjudications.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/cases.json",
+    "sha256": "27c244bebec483fcab6634038cb27e6735425abbe821efb47ee542747e1c2603",
+    "bytes": 1332392,
+    "bundled_path": "frozen-source-materials/27c244bebec483fcab6634038cb27e6735425abbe821efb47ee542747e1c2603/cases.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/DELIVERY_RECEIPT.json",
+    "sha256": "b9ffa0ba6b32bc6cc4c392fad6322a07461edb1933f74d5a8003f8919865780d",
+    "bytes": 819,
+    "bundled_path": "frozen-source-materials/b9ffa0ba6b32bc6cc4c392fad6322a07461edb1933f74d5a8003f8919865780d/DELIVERY_RECEIPT.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/delivery/comparison.json",
+    "sha256": "4bbc9e51158d91582671d37a48b1d8dfe6de5c1f1ea8ecf2cdcdf4a983f88968",
+    "bytes": 561130,
+    "bundled_path": "frozen-source-materials/4bbc9e51158d91582671d37a48b1d8dfe6de5c1f1ea8ecf2cdcdf4a983f88968/comparison.json"
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/README.md",
+    "sha256": "191664639c87996175980a15252be07d70c5cadafa59a3beea1d282f6c632467",
+    "bytes": 8022,
+    "bundled_path": "frozen-source-materials/191664639c87996175980a15252be07d70c5cadafa59a3beea1d282f6c632467/README.md"
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/frozen-evaluation-protocol.json",
+    "sha256": "348ccbeb914bf8f86ef38f24065aefbe397487ceb261dd466346655515b58202",
+    "bytes": 11379,
+    "bundled_path": "frozen-source-materials/348ccbeb914bf8f86ef38f24065aefbe397487ceb261dd466346655515b58202/frozen-evaluation-protocol.json"
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/final-selection.json",
+    "sha256": "edeccca7218a8a880669c1934fe95e675d9d4353fcd6e4cac88bb70c3052b36f",
+    "bytes": 5151,
+    "bundled_path": "frozen-source-materials/edeccca7218a8a880669c1934fe95e675d9d4353fcd6e4cac88bb70c3052b36f/final-selection.json"
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/verification-final.json",
+    "sha256": "bd159d9247605c56725fa7318236a4c0af8557e2094283d476702a0ebd9f4ffd",
+    "bytes": 2490,
+    "bundled_path": "frozen-source-materials/bd159d9247605c56725fa7318236a4c0af8557e2094283d476702a0ebd9f4ffd/verification-final.json"
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx",
+    "sha256": "6933df7fac3a2e75482854dae9186fea715cb6d5eed0a45eb3b2317c70816d83",
+    "bytes": 30630,
+    "bundled_path": "frozen-source-materials/6933df7fac3a2e75482854dae9186fea715cb6d5eed0a45eb3b2317c70816d83/retention-policy-v2-report-zh.mdx"
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-en.mdx",
+    "sha256": "834994998230d459f41e027bbd112eb215f8e71d5acda5a3f68cdacf238298a8",
+    "bytes": 31969,
+    "bundled_path": "frozen-source-materials/834994998230d459f41e027bbd112eb215f8e71d5acda5a3f68cdacf238298a8/retention-policy-v2-report-en.mdx"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/INSTRUCTIONS.txt",
+    "sha256": "ce4f2bd4e61297cf9cc23e3350dfeb65427fe3798620e0da945e3a9be97d5ce4",
+    "bytes": 21475,
+    "bundled_path": "frozen-source-materials/ce4f2bd4e61297cf9cc23e3350dfeb65427fe3798620e0da945e3a9be97d5ce4/INSTRUCTIONS.txt"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/DELIVERY_RECEIPT.json",
+    "sha256": "6723d0c8a81cc14c5b391f07f4542c4b50217d847f242aefa0ab7c79df455469",
+    "bytes": 6040,
+    "bundled_path": "frozen-source-materials/6723d0c8a81cc14c5b391f07f4542c4b50217d847f242aefa0ab7c79df455469/DELIVERY_RECEIPT.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/final-selection.json",
+    "sha256": "2859b620b86ffa07db7d8ce81016f392dd5b7070147fa4b287b92c9772be1fe2",
+    "bytes": 4964,
+    "bundled_path": "frozen-source-materials/2859b620b86ffa07db7d8ce81016f392dd5b7070147fa4b287b92c9772be1fe2/final-selection.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/verification-final.json",
+    "sha256": "749e45c65bda2eebc36e713570aaebd1d89b544e3f2149dcb40d29cd288d7f07",
+    "bytes": 4392,
+    "bundled_path": "frozen-source-materials/749e45c65bda2eebc36e713570aaebd1d89b544e3f2149dcb40d29cd288d7f07/verification-final.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/frozen-evaluation-protocol.json",
+    "sha256": "18ac4a7dcb06b820dae05e6df697ec2e9fca172da84940cd7239f57955f42854",
+    "bytes": 21670,
+    "bundled_path": "frozen-source-materials/18ac4a7dcb06b820dae05e6df697ec2e9fca172da84940cd7239f57955f42854/frozen-evaluation-protocol.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/selection-protocol.json",
+    "sha256": "76b05d8bd7724b098ca5ebe3e0274b2f308a6d550acc58d90f806741533a6f5f",
+    "bytes": 1595,
+    "bundled_path": "frozen-source-materials/76b05d8bd7724b098ca5ebe3e0274b2f308a6d550acc58d90f806741533a6f5f/selection-protocol.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-notes.json",
+    "sha256": "020b2e330bb34b8a5578e04ed9ac43cd8f0b856cf8558bdfd70a02cba685de93",
+    "bytes": 80626,
+    "bundled_path": "frozen-source-materials/020b2e330bb34b8a5578e04ed9ac43cd8f0b856cf8558bdfd70a02cba685de93/candidate-notes.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/delivery-final-engineering04/comparison.json",
+    "sha256": "2fc790acac34f0a9af9d3cb4e22dbb253778a3714871aefa86d0d18a6b374b00",
+    "bytes": 2511433,
+    "bundled_path": "frozen-source-materials/2fc790acac34f0a9af9d3cb4e22dbb253778a3714871aefa86d0d18a6b374b00/comparison.json"
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/HANDOFF.md",
+    "sha256": "cafa05df90cdd7089ab241cd61914dc8ac7e040aea708b0b2b49011c2ff3b93b",
+    "bytes": 53972,
+    "bundled_path": "frozen-source-materials/cafa05df90cdd7089ab241cd61914dc8ac7e040aea708b0b2b49011c2ff3b93b/HANDOFF.md"
+  }
+]

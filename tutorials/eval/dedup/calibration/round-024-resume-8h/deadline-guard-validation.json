@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "verified_at": 1793211458.52901,
+  "real_clock_deadline_trigger_with_empty_owned_resources": true,
+  "no_gpu_or_unrelated_resources_touched": true,
+  "guard_source_sha256": "27cba3b490a86172ca9e9a508b92ae3dc871779c18dcacc229c64b761073399c",
+  "fixture": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/guard-validation"
+}
