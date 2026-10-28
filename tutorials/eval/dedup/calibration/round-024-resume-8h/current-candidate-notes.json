@@ -2128,5 +2128,20 @@
     "proof": "proposals/slotlast1-lossless-move-proof.json",
     "status": "frozen_awaiting_serial_hard_screen",
     "acceptance_passed": false
+  },
+  "candidate-09": {
+    "parent": "candidate-08",
+    "hypothesis_en": "One coverage-before-classification clarification at the two existing main delta descriptions. C8 passes first main86 and independent-state8, but its new equivalent-state control keeps an explicit label although the same mandatory condition is already stated in prose; another reply acknowledges equivalent states in its summaries while its earlier deltas remain material, causing a strict contradiction. C3 first150 has the opposite role error for actual access/cookie clauses, labeling them harmless before later correctly denying replacement. Define the delta as residual meaning AFTER whole-keeper comparison and qualified exceptions, require that comparison in its own reasoning before choosing its score, and distinguish representation from actual conditions. Preserve complete qualified marketing, genuine new predicates, actual routes and protected body-language contributions. Only two existing YAML description strings change; every option value and description, field/order/type/enum, all eight C8 Jinja templates, sources/window, model/sampling, native executor and strict validator remain unchanged. This is not the rejected all-field brevity/enum instruction and does not invent new labels. Use all original86 and all five fixed supplement groups, retaining C8 failures.",
+    "hypothesis_zh": "只在两个已有main差异描述中澄清先覆盖比较、后分类。C8首次main86及独立状态8通过，但新增状态等价反例中，实际强制条件已在正文明确保留，模型仍保留额外状态标签；另一回复在方向汇总承认状态等价，前部差异分类却仍为实质，造成strict矛盾。C3首次150对真实访问及cookie条款出现相反的角色错误，先归无害，之后又正确否认替换。把差异定义为全文比较及合格例外之后的剩余含义，要求在该字段自己的理由中先做比较再选分，区分表达形式与实际条件。保留合格完整营销、新真实谓词、实际操作去向及受保护正文语言贡献。只改两个已有YAML描述字符串；全部选项值及描述、字段顺序类型枚举、八个C8 Jinja模板、原文窗口、模型采样、原生执行器及strict校验不变。这不同于失败的所有字段精简及枚举指令，也不虚构新标签。使用原86及五个固定补充组，保留C8失败。",
+    "scope": "two main side-delta descriptions; residual retained meaning before intrinsic role",
+    "new_human_labels": false,
+    "changed_fields": [
+      "span_a_delta",
+      "span_b_delta"
+    ],
+    "all_eight_jinja_equal_parent": true,
+    "evidence": "C8 SCEQ001 false block and SCEQ002-swapped positive-versus-material ledger contradiction; C3 D025/D117 inverse role contradictions",
+    "status": "frozen_awaiting_serial_hard_screen",
+    "acceptance_passed": false
   }
 }
