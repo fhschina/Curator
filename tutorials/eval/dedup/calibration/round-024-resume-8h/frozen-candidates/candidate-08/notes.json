@@ -1,0 +1,11 @@
+{
+  "parent": "candidate-03",
+  "hypothesis_en": "Two existing branch guards at the main pair decision point, rather than another global block or delta-option prefix. C7 still allows both mirrored operational-address presentations despite an explicit exclusion in its harmless option. The early pair instruction, however, directly derives positive service-slot fields from unchanged procedure and city/calling-destination labels without first excluding actual routing addresses. Qualify that exact branch before its positive instruction. Separately, put independent category-setting meaning before the generic-UI decision: require equivalent explicit setting coverage, preserve uncovered state as an addition rather than a fabricated conflict, and keep equivalent existing conditions and qualified copied-stock paragraphs covered. C4/C5 state wording worked on simple controls but interacted with other global instructions; this version changes only the main pair preamble on C3. Other eight files, all fields/order/types/enums, source/window, model/sampling, native executor and strict validators remain unchanged. Add separately fixed state-equivalence positives before their outputs to prevent literal-setting overretention; preserve original86 and all prior supplements without denominator changes.",
+  "hypothesis_zh": "在main pair的实际决策位置限定两项已有分支，不再追加全局段落或差异选项前缀。C7虽在无害选项明确排除真实操作地址，仍错误允许两个镜像呈现；pair前部却直接根据流程未变及城市或呼叫地点标签推导允许字段，没有先排除实际路由地址。因此在这条明确的正向指令之前限定其条件。另在一般界面判断之前核对独立类别状态的含义：要求明确等价的状态覆盖，未覆盖状态按新增而非虚构冲突保留，同时继续覆盖已有等价条件及合格通用复制段落。C4/C5状态措辞在简单受控项有效，但与其他全局指令发生交互；本版在C3上仅改main pair前部。其余八文件、字段顺序类型枚举、原文窗口、模型采样、原生执行器及strict校验均不变。在查看输出前另固定状态等价正例，防止只因状态文字缺失而过度保留；原86及全部既有补充例继续保留，分母不变。",
+  "scope": "main pair early service-slot eligibility and actual category-setting coverage only",
+  "new_human_labels": false,
+  "other_eight_files_equal_parent": true,
+  "evidence": "C7 first latest18 main four wrong allows across D011 presentations; C3 state8 main6/8; C4/C5 state8 PASS but hard regressions",
+  "status": "frozen_awaiting_serial_hard_screen",
+  "acceptance_passed": false
+}

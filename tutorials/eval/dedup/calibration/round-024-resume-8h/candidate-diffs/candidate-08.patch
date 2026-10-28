@@ -1,0 +1,25 @@
+--- candidate-03/judge_config/pair.jinja
++++ candidate-08/judge_config/pair.jinja
+@@ -11 +11,8 @@
+-Apply exceptions before the same-record/identity tests. If a service description
++Apply exceptions before the same-record/identity tests. First distinguish a
++locality label from a real action route. A literal address or endpoint to which
++the user is instructed to send a submission, payment or account request must
++itself be covered. It does not qualify for the city-only service branch merely
++because its spelling follows the city pattern or the surrounding procedure is
++identical. The separately qualified citation/source-name and generic-cookie
++provider-name exceptions retain their own conditions. Only after excluding
++those actual action routes, if a service description
+@@ -22 +29,11 @@
+-does not force No/No. For every No, cite a real span on the side being removed,
++does not force No/No. An explicit mandatory/optional category setting states
++actual behavior even if displayed as a short UI value. Check whether the keeper
++states that same setting or an equivalent explicit mandatory/optional condition
++for that category. A broad purpose or a generic statement of technical necessity
++alone does not establish an actual setting value. Preserve a genuinely uncovered
++setting as a one-sided addition; an absent value alone is not a contrary value.
++If the actual condition is already stated equivalently in the keeper, the extra
++label or synonymous value adds no separate claim. Apply the qualified covered
++stock-copy branch first: copying a generic paragraph already retained elsewhere
++beneath a heading does not itself assign that category a new setting.
++For every No, cite a real span on the side being removed,

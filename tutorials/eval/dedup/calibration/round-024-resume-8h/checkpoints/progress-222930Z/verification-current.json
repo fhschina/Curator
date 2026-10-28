@@ -1,0 +1,39 @@
+{
+  "phase": "FIXED_COMPARATORS_COMPLETE_ENGINEERING_SCREEN_ACTIVE",
+  "actual_new_cpu_tests": {
+    "status": "PASS",
+    "tests": 74,
+    "gpu_deselected": 5,
+    "log": "initial-cpu.log"
+  },
+  "new_candidate01_native_compile_window_checks": {
+    "status": "PASS",
+    "tests": 2,
+    "log": "candidate01-repair1-native-tests.log"
+  },
+  "registered_single_gpu_checks": {
+    "status": "PASS",
+    "candidate": "candidate-00-start85",
+    "tests": 4,
+    "failures": 0,
+    "skipped": 0,
+    "receipt": "start85-single-gpu-checks-receipt.json",
+    "source_checkout": "/raid/hfang/workspaces/Curator-retention-policy-v4-gpu-checks",
+    "does_not_claim_other_policy_variants_tested": true
+  },
+  "fixed_baseline_and_start85_original3": "COMPLETE_ORIGINAL15_EACH",
+  "inherited_stage85_80": "HISTORICAL_CONFIRMED_NOT_NEW_ROUND_RESULT",
+  "new_model_service": "ONE_OWNED_B200_TP1_PINNED_PROFILE",
+  "final_verification": "NOT_COMPLETED",
+  "independent_source_replay_preparation": {
+    "status": "PASS_PREPARATION_ONLY",
+    "receipt": "independent-source-replay-preparation-proof.json",
+    "model_calls": 0,
+    "inference_status": "NOT_COMPLETED"
+  },
+  "bundle_tar_roundtrip_fixture": {
+    "status": "PASS_FIXTURE_ONLY",
+    "receipt": "bundle-v2-tar-roundtrip-validation.json",
+    "full_final_archive": "NOT_COMPLETED"
+  }
+}

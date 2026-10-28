@@ -93,6 +93,18 @@
       "revision": null,
       "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-07",
       "hypothesis": "Two existing functional-role protections at the exact main delta-option choice. C3 state controls classify a visible independent mandatory setting as harmless UI, and C4/C5/ledgerbrief2 actual main replies treat operational submission mailboxes as harmless location slots despite the existing route rule. Change only four option-description strings in the two existing side-delta fields: short UI does not make an independently assigned cookie-category setting disposable; a real submission/payment/account-action route is outside the harmless option regardless of city pattern. Missing setting values remain one-sided additions rather than invented conflicts. Explicitly preserve qualified copied-stock, citation, generic-marketing and generic-provider exceptions. All eight Jinja templates remain byte-identical to C3; no broad interface/facet/named-title rule, whole-system repetition, failed C4 provider paragraph or ledgerbrief instruction is inherited. Fields/order/types/enums, other descriptions, evidence/window, native code, model, sampling and validators remain unchanged. This isolates option-level shadowing from the earlier global additions. Test original86 and all four separately frozen boundary groups before any long admission."
+    },
+    {
+      "number": 8,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-08",
+      "hypothesis": "Two existing branch guards at the main pair decision point, rather than another global block or delta-option prefix. C7 still allows both mirrored operational-address presentations despite an explicit exclusion in its harmless option. The early pair instruction, however, directly derives positive service-slot fields from unchanged procedure and city/calling-destination labels without first excluding actual routing addresses. Qualify that exact branch before its positive instruction. Separately, put independent category-setting meaning before the generic-UI decision: require equivalent explicit setting coverage, preserve uncovered state as an addition rather than a fabricated conflict, and keep equivalent existing conditions and qualified copied-stock paragraphs covered. C4/C5 state wording worked on simple controls but interacted with other global instructions; this version changes only the main pair preamble on C3. Other eight files, all fields/order/types/enums, source/window, model/sampling, native executor and strict validators remain unchanged. Add separately fixed state-equivalence positives before their outputs to prevent literal-setting overretention; preserve original86 and all prior supplements without denominator changes."
+    },
+    {
+      "number": 8,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-08",
+      "hypothesis": "Two existing branch guards at the main pair decision point, rather than another global block or delta-option prefix. C7 still allows both mirrored operational-address presentations despite an explicit exclusion in its harmless option. The early pair instruction, however, directly derives positive service-slot fields from unchanged procedure and city/calling-destination labels without first excluding actual routing addresses. Qualify that exact branch before its positive instruction. Separately, put independent category-setting meaning before the generic-UI decision: require equivalent explicit setting coverage, preserve uncovered state as an addition rather than a fabricated conflict, and keep equivalent existing conditions and qualified copied-stock paragraphs covered. C4/C5 state wording worked on simple controls but interacted with other global instructions; this version changes only the main pair preamble on C3. Other eight files, all fields/order/types/enums, source/window, model/sampling, native executor and strict validators remain unchanged. Add separately fixed state-equivalence positives before their outputs to prevent literal-setting overretention; preserve original86 and all prior supplements without denominator changes."
     }
   ],
   "engineering_revisions": [
@@ -153,9 +165,9 @@
   ],
   "owner": "retention-policy-v4-8h-20261028",
   "previous_session": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z",
-  "next_action": "Wholeview1firsthardpositiveonR14copy butremainingR33swappedveto+mainmarketingswapfailure; controlsactive. C7only4mainYAMLoptionstrings roleprotections, all8JinjaC3equal, queuedhard86+four8groups. No newlongadmitted.",
+  "next_action": "C7firsthardfail4routewrongallows no long; C8mainpairearlybranch guards frozen, queuedparentstateequivalence4 thenhard86+four8+equivalence4. Slotlast1onlyproposedUNFROZEN. Reserve23:30Zforcompleteoriginal3 bestformalcohort; no laterthan00:41semanticstop01:56GPUstop02:11delivery.",
   "phase": "BASELINE_ORIGINAL_THREE_RUNS_AND_ENGINEERING_SCREEN_QUEUE",
-  "last_pushed_commit": "9e9e07b411a88af228f5b5ca04b11fe0eff53105",
+  "last_pushed_commit": "7dabca5035c878704fcf15691fb75c2b7f7d27b1",
   "active_queue": {
     "start85_controller_pid": 407363,
     "baseline_controller_pid": 407368,
@@ -164,8 +176,9 @@
     "delivery_controller_pid": 1221992,
     "candidate05_inserter_pid": 1205679
   },
-  "current_worktree_nine": "candidate-07",
-  "active_candidate": "candidate-07",
+  "current_worktree_nine": "candidate-08",
+  "active_candidate": "candidate-08",
   "goal_control_status": "blocked_observed_without_reason_or_quota_evidence",
-  "local_authorized_work_continues": true
+  "local_authorized_work_continues": true,
+  "formal_best_cohort_reserve_utc": "2026-10-28T23:30:00Z"
 }
