@@ -1,0 +1,81 @@
+{
+  "recorded": 1793228171.381922,
+  "scope": "DIAGNOSTIC_ONLY_NATIVE_INVALID_UNCHANGED",
+  "attempts": [
+    {
+      "native_status": "parse_error",
+      "native_error": "No parsable JSON structure within ```json markdown fence.",
+      "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-slotlast1/runs/candidate-preflight-1/receipts/critics/http/0ad709b85a4e4a0baab1e5a27c72b49b.json",
+      "complete_bare_json_lexically_decodable": true,
+      "first_line": "{",
+      "finish_reason": "stop",
+      "completion_tokens": 298,
+      "raw_keys": [
+        "a_loss_span_id",
+        "b_loss_span_id",
+        "a_context_span_id",
+        "b_context_span_id",
+        "conflict",
+        "overlap_basis",
+        "shared_anchor_ids",
+        "explanation"
+      ],
+      "raw_a_loss_span_id": "",
+      "raw_b_loss_span_id": "",
+      "raw_conflict": "NONE",
+      "agreement_credit": 0,
+      "counts_as_valid": false
+    },
+    {
+      "native_status": "parse_error",
+      "native_error": "No parsable JSON structure within ```json markdown fence.",
+      "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-slotlast1/runs/candidate-preflight-1/receipts/critics/http/2530127224784d9fa5bab7bcba377dc4.json",
+      "complete_bare_json_lexically_decodable": true,
+      "first_line": "{",
+      "finish_reason": "stop",
+      "completion_tokens": 293,
+      "raw_keys": [
+        "a_loss_span_id",
+        "b_loss_span_id",
+        "a_context_span_id",
+        "b_context_span_id",
+        "conflict",
+        "overlap_basis",
+        "shared_anchor_ids",
+        "explanation"
+      ],
+      "raw_a_loss_span_id": "",
+      "raw_b_loss_span_id": "",
+      "raw_conflict": "NONE",
+      "agreement_credit": 0,
+      "counts_as_valid": false
+    },
+    {
+      "native_status": "parse_error",
+      "native_error": "No parsable JSON structure within ```json markdown fence.",
+      "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-slotlast1/runs/candidate-preflight-1/receipts/critics/http/fb3fd789ab884fa2a945fcedf00cf9c6.json",
+      "complete_bare_json_lexically_decodable": true,
+      "first_line": "{",
+      "finish_reason": "stop",
+      "completion_tokens": 302,
+      "raw_keys": [
+        "a_loss_span_id",
+        "b_loss_span_id",
+        "a_context_span_id",
+        "b_context_span_id",
+        "conflict",
+        "overlap_basis",
+        "shared_anchor_ids",
+        "explanation"
+      ],
+      "raw_a_loss_span_id": "",
+      "raw_b_loss_span_id": "",
+      "raw_conflict": "NONE",
+      "agreement_credit": 0,
+      "counts_as_valid": false
+    }
+  ],
+  "all_failed_attempts_preserved": true,
+  "frozen_template_format_contract_is_before_relocated_policy": true,
+  "model_calls": 0
+}

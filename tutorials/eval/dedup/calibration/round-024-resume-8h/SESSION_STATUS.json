@@ -161,13 +161,25 @@
       "revision": "wholeview1",
       "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-wholeview1",
       "hypothesis": "Engineering-only original-order reading context for coverage. Actual C6 coverage now claims the keeper lacks the Essential paragraph while citing shared anchors and retaining the full source; earlier replies instead imported category scope into a recognized copy. Prior core2 already showed each exact CORE plus full padded context, and xref2 indexed an exact repetition without resolving the issue; neither exposed the complete already-visible notice in original document order. Add that linear reading context only for complete packets whose two original texts each fit the unchanged6000-character window. Before freezing and inference, prove every non-whitespace source character is already displayed in the old coverage packet, and removing only the added rendered context restores the original native user prompt byte-for-byte, on direct and actual Arrow/Pandas inputs and all fixed supplements. Incomplete or longer records retain the unchanged packet. Only coverage_pair changes; other eight files, all policies, fields/order/enums, validators, critic veto-only authority, source inputs, model, sampling and native executor remain unchanged. This is a retrieval/segmentation hypothesis, not a claim of causal improvement or a new retention rule. No source characters are removed or masked; no new content window or main verdict is supplied."
+    },
+    {
+      "number": 3,
+      "revision": "slotlast1",
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-slotlast1",
+      "hypothesis": "Engineering-only placement of the unchanged finite name/category-slot exception at the end of each coverage template. Wholeview1 actually repairs both stock-copy presentations, but its remaining provider veto still calls the same unchanged generic-cookie recipient name a substantive processing fact. C6 wording acknowledged the finite exception and then bypassed it with the later general data-flow rule. Test instruction placement as a possible contributor, without claiming causality. Move the entire existing second conditional-template block, including every product/route/liability/processing exclusion and specialist scope condition, after the later general rules. Do not add or remove any policy sentence or duplicate the block; an inverse move restores each parent template byte-for-byte. Retain the parent original-order same-visible-evidence view and its proven6000-character limit. Only two coverage files change; other seven files, main/YAML, evidence IDs/text, schema/field/order/enum, native executor, validator, critic veto authority, model and sampling are unchanged. This differs from failed explanation-first output order and from duplicate removal. Screen all original86 and existing boundary groups before considering a long run."
+    },
+    {
+      "number": 3,
+      "revision": "slotlast1",
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-slotlast1",
+      "hypothesis": "Engineering-only placement of the unchanged finite name/category-slot exception at the end of each coverage template. Wholeview1 actually repairs both stock-copy presentations, but its remaining provider veto still calls the same unchanged generic-cookie recipient name a substantive processing fact. C6 wording acknowledged the finite exception and then bypassed it with the later general data-flow rule. Test instruction placement as a possible contributor, without claiming causality. Move the entire existing second conditional-template block, including every product/route/liability/processing exclusion and specialist scope condition, after the later general rules. Do not add or remove any policy sentence or duplicate the block; an inverse move restores each parent template byte-for-byte. Retain the parent original-order same-visible-evidence view and its proven6000-character limit. Only two coverage files change; other seven files, main/YAML, evidence IDs/text, schema/field/order/enum, native executor, validator, critic veto authority, model and sampling are unchanged. This differs from failed explanation-first output order and from duplicate removal. Screen all original86 and existing boundary groups before considering a long run."
     }
   ],
   "owner": "retention-policy-v4-8h-20261028",
   "previous_session": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z",
-  "next_action": "C7firsthardfail4routewrongallows no long; C8mainpairearlybranch guards frozen, queuedparentstateequivalence4 thenhard86+four8+equivalence4. Slotlast1onlyproposedUNFROZEN. Reserve23:30Zforcompleteoriginal3 bestformalcohort; no laterthan00:41semanticstop01:56GPUstop02:11delivery.",
+  "next_action": "C8firstpreflight18+26mainALLPASS0unsafe, oldcoverage3vetoesremain; fullhard+5supplementsfinish. Slotlast1frozenparentwholeview1movesSAMEfullfinite-slotblock2totheendof2coveragefiles, inverseproofbeforeinference; queued744visibility->998budget->hard86+fivegroups36. No newlongadmitted; reserve23:30formalbestoriginal3.",
   "phase": "BASELINE_ORIGINAL_THREE_RUNS_AND_ENGINEERING_SCREEN_QUEUE",
-  "last_pushed_commit": "7dabca5035c878704fcf15691fb75c2b7f7d27b1",
+  "last_pushed_commit": "684ff5527ce1aa43c4434957d0df9cb335658351",
   "active_queue": {
     "start85_controller_pid": 407363,
     "baseline_controller_pid": 407368,
@@ -176,8 +188,8 @@
     "delivery_controller_pid": 1221992,
     "candidate05_inserter_pid": 1205679
   },
-  "current_worktree_nine": "candidate-08",
-  "active_candidate": "candidate-08",
+  "current_worktree_nine": "candidate-03-slotlast1",
+  "active_candidate": "candidate-03-slotlast1",
   "goal_control_status": "blocked_observed_without_reason_or_quota_evidence",
   "local_authorized_work_continues": true,
   "formal_best_cohort_reserve_utc": "2026-10-28T23:30:00Z"

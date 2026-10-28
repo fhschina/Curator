@@ -1,0 +1,13 @@
+pair_id,layer,validation_status,validation_errors,a_can_replace_b,b_can_replace_a,raw_a_can_replace_b,raw_b_can_replace_a,references_by_group,ledger_issues
+SCEQ001,main,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ001,coverage,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ001,final,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ001-swapped,main,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ001-swapped,coverage,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ001-swapped,final,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ002,main,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ002,coverage,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ002,final,valid,,yes,yes,yes,yes,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ002-swapped,main,valid,,no,no,no,no,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ002-swapped,coverage,valid,,no,no,no,no,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]
+SCEQ002-swapped,final,valid,,no,no,no,no,"{""supplemental_state_equivalence4"": [{""a_can_replace_b"": ""yes"", ""b_can_replace_a"": ""yes""}]}",[]

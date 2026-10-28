@@ -1,0 +1,16 @@
+{
+  "critics/coverage_system.jinja": {
+    "original_template_sha256": "c79dbda59e5c100fd901169312ca8a506d090e97e07eb9d9c3c4c2e4ad4aeb27",
+    "moved_block_sha256": "5ef8f6394514e9674eb998393497d4b5583163cfa4f88105199bb31dcfd11818",
+    "full_exception_and_all_exclusions_retained_once": true,
+    "inverse_move_restores_original_bytes": true,
+    "only_surrounding_blank_lines_normalized": true
+  },
+  "critics/coverage_pair.jinja": {
+    "original_template_sha256": "a283e721c75d88fc69e78f49a959b27e58ef7ac80baa840f10792d47941a97e8",
+    "moved_block_sha256": "5ef8f6394514e9674eb998393497d4b5583163cfa4f88105199bb31dcfd11818",
+    "full_exception_and_all_exclusions_retained_once": true,
+    "inverse_move_restores_original_bytes": true,
+    "only_surrounding_blank_lines_normalized": true
+  }
+}
