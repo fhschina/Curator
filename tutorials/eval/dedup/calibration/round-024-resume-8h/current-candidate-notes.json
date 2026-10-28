@@ -1135,5 +1135,16 @@
     "withdrawal_receipt": "ledgerbrief1-withdrawn-before-inference.json",
     "status": "frozen_awaiting_serial_hard_screen",
     "acceptance_passed": false
+  },
+  "candidate-03-wholeview1": {
+    "parent": "candidate-03",
+    "hypothesis_en": "Engineering-only original-order reading context for coverage. Actual C6 coverage now claims the keeper lacks the Essential paragraph while citing shared anchors and retaining the full source; earlier replies instead imported category scope into a recognized copy. Prior core2 already showed each exact CORE plus full padded context, and xref2 indexed an exact repetition without resolving the issue; neither exposed the complete already-visible notice in original document order. Add that linear reading context only for complete packets whose two original texts each fit the unchanged6000-character window. Before freezing and inference, prove every non-whitespace source character is already displayed in the old coverage packet, and removing only the added rendered context restores the original native user prompt byte-for-byte, on direct and actual Arrow/Pandas inputs and all fixed supplements. Incomplete or longer records retain the unchanged packet. Only coverage_pair changes; other eight files, all policies, fields/order/enums, validators, critic veto-only authority, source inputs, model, sampling and native executor remain unchanged. This is a retrieval/segmentation hypothesis, not a claim of causal improvement or a new retention rule. No source characters are removed or masked; no new content window or main verdict is supplied.",
+    "hypothesis_zh": "只为coverage增加原文顺序的阅读上下文。C6实际coverage在引用共享锚点并保留全文的同时，声称被保留方缺少Essential段落；此前回复则把已识别复制文字绑定到新类别。旧core2已显示每个精确CORE及完整原padding，xref2也为精确重复提供索引但仍未解决；它们都没有按原始文档顺序展示完整且已可见的通知。本轮仅在packet完整且两侧原文各不超过未变的6000字符窗口时增加线性阅读上下文。冻结及推理前，在直接数据及真实Arrow/Pandas往返数据和全部固定补充例上，证明每个非空白原文字符在旧coverage packet中已显示，移除新增渲染上下文后逐字还原旧原生用户prompt。不完整或更长记录继续原packet。只改coverage_pair，其余八文件、全部政策、字段顺序枚举、校验、critic仅否决权限、原文输入、模型采样及原生执行器均不变。这是检索及分段假设，不是因果改善结论或新保留规则。不删改或遮盖源字符，不提供扩大窗口或main判断。",
+    "engineering_revision": "wholeview1",
+    "scope": "coverage pair original-order same-visible-evidence context only",
+    "new_human_labels": false,
+    "required_before_inference": "direct+Arrow source visibility and inverse rendering proof, all998 native budget check",
+    "status": "frozen_awaiting_serial_hard_screen",
+    "acceptance_passed": false
   }
 }

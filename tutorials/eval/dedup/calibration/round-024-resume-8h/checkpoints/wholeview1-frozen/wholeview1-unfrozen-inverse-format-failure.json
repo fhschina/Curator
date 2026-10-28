@@ -1,0 +1,9 @@
+{
+  "status": "CPU_READINESS_FAILED_BEFORE_FREEZE_OR_INFERENCE",
+  "observed": 1793223431.9112136,
+  "error": "AssertionError: ('direct', 'D005')",
+  "cause": "Extra literal newlines outside the conditional context prevented byte-identical inverse rendering.",
+  "repair": "Place conditional delimiters directly around the added block, without altering the original surrounding prompt whitespace.",
+  "model_calls": 0,
+  "frozen_candidate_existed": false
+}

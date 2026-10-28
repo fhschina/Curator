@@ -125,13 +125,25 @@
       "revision": "ledgerbrief2",
       "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-ledgerbrief2",
       "hypothesis": "Engineering-only settled field-output instruction in the main system template. Actual first150 has an initial risk-factor option emitted in dominant_overlap_source despite a successful retained retry, and two literal negative-versus-covered-ledger contradictions. Replies also expose self-directed re-evaluation after earlier ledger fields were already emitted. Request concise settled evidence sentences, each field own enum set, and one coherent ledger for both summaries; preserve required citations, uncertainty and every existing policy/schema/field/order/enum/validator. This is distinct from the rejected old response-contract prefix: no Markdown contract relocation, fence change, new key example, parser repair or all-system prefix. Only one Jinja changes; the other eight files are byte-identical to C3. Do not inherit untested policyonce1 or failed C4/C5 rules. No failed original run is replaced. Pre-inference review withdrew the frozen but wholly unexecuted ledgerbrief1 version: its negative-versus-covered sentence omitted an explicit substantive body-language guard. Ledgerbrief2 qualifies that sentence by verified basis, absence of conflict and absence of a protected distinct-language body; it explicitly preserves factual-equivalent body-language versions and the separate qualified form-UI exception. This aligns the response instruction with the unchanged strict ledger audit. Retain all original unexecuted slots and the withdrawal receipt; no failed model output is replaced."
+    },
+    {
+      "number": 3,
+      "revision": "wholeview1",
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-wholeview1",
+      "hypothesis": "Engineering-only original-order reading context for coverage. Actual C6 coverage now claims the keeper lacks the Essential paragraph while citing shared anchors and retaining the full source; earlier replies instead imported category scope into a recognized copy. Prior core2 already showed each exact CORE plus full padded context, and xref2 indexed an exact repetition without resolving the issue; neither exposed the complete already-visible notice in original document order. Add that linear reading context only for complete packets whose two original texts each fit the unchanged6000-character window. Before freezing and inference, prove every non-whitespace source character is already displayed in the old coverage packet, and removing only the added rendered context restores the original native user prompt byte-for-byte, on direct and actual Arrow/Pandas inputs and all fixed supplements. Incomplete or longer records retain the unchanged packet. Only coverage_pair changes; other eight files, all policies, fields/order/enums, validators, critic veto-only authority, source inputs, model, sampling and native executor remain unchanged. This is a retrieval/segmentation hypothesis, not a claim of causal improvement or a new retention rule. No source characters are removed or masked; no new content window or main verdict is supplied."
+    },
+    {
+      "number": 3,
+      "revision": "wholeview1",
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-wholeview1",
+      "hypothesis": "Engineering-only original-order reading context for coverage. Actual C6 coverage now claims the keeper lacks the Essential paragraph while citing shared anchors and retaining the full source; earlier replies instead imported category scope into a recognized copy. Prior core2 already showed each exact CORE plus full padded context, and xref2 indexed an exact repetition without resolving the issue; neither exposed the complete already-visible notice in original document order. Add that linear reading context only for complete packets whose two original texts each fit the unchanged6000-character window. Before freezing and inference, prove every non-whitespace source character is already displayed in the old coverage packet, and removing only the added rendered context restores the original native user prompt byte-for-byte, on direct and actual Arrow/Pandas inputs and all fixed supplements. Incomplete or longer records retain the unchanged packet. Only coverage_pair changes; other eight files, all policies, fields/order/enums, validators, critic veto-only authority, source inputs, model, sampling and native executor remain unchanged. This is a retrieval/segmentation hypothesis, not a claim of causal improvement or a new retention rule. No source characters are removed or masked; no new content window or main verdict is supplied."
     }
   ],
   "owner": "retention-policy-v4-8h-20261028",
   "previous_session": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z",
-  "next_action": "Policyonce1hardregressed no long; C6critic-only screen thenledgerbrief2main-systemonly guard-qualified screen queued. Ledgerbrief1 exactpendingcontroller withdrawn BEFOREANYmodelcalls for missingprotected-body-languageguard; oldfrozen15retainedunexecuted. No newlongadmitted.",
+  "next_action": "Ledgerbrief2hard+four8controls active, thenwholeview1 native736direct+ArrowproofPASS, fixed336inputs and32supplementsbyteequalparent. Wholeview1queuedbudget998->hard86->four8supplements. C6andpolicyonce1hardfail no long. No newlongadmitted.",
   "phase": "BASELINE_ORIGINAL_THREE_RUNS_AND_ENGINEERING_SCREEN_QUEUE",
-  "last_pushed_commit": "063e901031ed09d5e7ba75afff9ef0c7a0169f62",
+  "last_pushed_commit": "eb0d1b205c77370085ca7ce2fc38a1b2f581dd60",
   "active_queue": {
     "start85_controller_pid": 407363,
     "baseline_controller_pid": 407368,
@@ -140,8 +152,8 @@
     "delivery_controller_pid": 1221992,
     "candidate05_inserter_pid": 1205679
   },
-  "current_worktree_nine": "candidate-03-ledgerbrief2",
-  "active_candidate": "candidate-03-ledgerbrief2",
+  "current_worktree_nine": "candidate-03-wholeview1",
+  "active_candidate": "candidate-03-wholeview1",
   "goal_control_status": "blocked_observed_without_reason_or_quota_evidence",
   "local_authorized_work_continues": true
 }
