@@ -1,0 +1,11 @@
+{
+  "time": 1793229854.0803597,
+  "reason": "Complete the original three-run formal comparison for the strongest smaller main-policy plus verified reading-presentation combination. C8 first main86 and independent-state8 passed; C3-wholeview1 reduced two stock-copy critic vetoes with identical visible characters. C8 equivalent-state failures remain retained and prevent any assumed eligibility. This one complete group measures whole-dataset benefit, technical validity, all hard layers and three development nonregressions; no provisional milestone is claimed, no failed original slot is replaced, and no parent score transfers.",
+  "plans": [
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate08-wholeview1-formal-plan.json",
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/formal-best-followup-plan.json"
+  ],
+  "original_deadlines_preserved": true,
+  "expected_original_cohorts": "baseline and C0 complete; new combination original15, C3 missing11 then all new combination supplemental original3",
+  "no_failed_slot_replacement": true
+}

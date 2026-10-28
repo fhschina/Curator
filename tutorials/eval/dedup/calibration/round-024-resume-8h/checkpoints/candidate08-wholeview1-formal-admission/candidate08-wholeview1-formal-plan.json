@@ -1,0 +1,55 @@
+{
+  "after_file": "candidate09-SEQUENCE_COMPLETE.json",
+  "commands": [
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/verify_reading_context_visibility.py",
+      "--root",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-08-wholeview1",
+      "--supplemental-roots",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-cookie-scope-candidate08-wholeview1-v2",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-cookie-state-candidate08-wholeview1-v1",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-nonmain-paraphrase-candidate08-wholeview1-v1",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-cookie-prerequisite-candidate08-wholeview1-v1",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-state-equivalence-candidate08-wholeview1-v1",
+      "--output",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate08-wholeview1-native-source-visibility-proof.json"
+    ],
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/check_all_prompt_budgets.py",
+      "--root",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-08-wholeview1",
+      "--output",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-08-wholeview1/all-input-budget-check.json",
+      "--arrow-pandas-roundtrip"
+    ],
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_serial.py",
+      "--after-file",
+      "candidate09-SEQUENCE_COMPLETE.json",
+      "--root",
+      "candidate-08-wholeview1",
+      "--panels",
+      "preflight",
+      "gate",
+      "coverage-regression",
+      "--receipt",
+      "candidate08-wholeview1-hard-screen-receipt.json"
+    ],
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/complete_metric_cohort.py",
+      "--root",
+      "candidate-08-wholeview1",
+      "--prefix",
+      "candidate08-wholeview1-formal15",
+      "--after-file",
+      "candidate08-wholeview1-hard-screen-receipt.json",
+      "--reason",
+      "Complete the original three-run formal comparison for the strongest smaller main-policy plus verified reading-presentation combination. C8 first main86 and independent-state8 passed; C3-wholeview1 reduced two stock-copy critic vetoes with identical visible characters. C8 equivalent-state failures remain retained and prevent any assumed eligibility. This one complete group measures whole-dataset benefit, technical validity, all hard layers and three development nonregressions; no provisional milestone is claimed, no failed original slot is replaced, and no parent score transfers."
+    ]
+  ],
+  "receipt": "candidate08-wholeview1-ORIGINAL15_COMPLETE.json"
+}

@@ -1,0 +1,108 @@
+{
+  "run": "candidate-gate-1",
+  "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-slotlast2",
+  "panel": "gate",
+  "groups": {
+    "original36": {
+      "main": {
+        "pairs": 36,
+        "directions": 72,
+        "correct_directions": 72,
+        "correct_pairs": 36,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 36,
+        "valid_judgment_coverage": 1.0
+      },
+      "coverage": {
+        "pairs": 36,
+        "directions": 72,
+        "correct_directions": 72,
+        "correct_pairs": 36,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 36,
+        "valid_judgment_coverage": 1.0
+      },
+      "final": {
+        "pairs": 36,
+        "directions": 72,
+        "correct_directions": 72,
+        "correct_pairs": 36,
+        "direction_agreement": 1.0,
+        "pair_agreement": 1.0,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 36,
+        "valid_judgment_coverage": 1.0
+      }
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 36
+    },
+    "coverage": {
+      "valid": 36
+    },
+    "final": {
+      "valid": 36
+    }
+  },
+  "failure_counts": {},
+  "attempt_status_counts": {
+    "valid": 72
+  },
+  "attempt_retries": 0,
+  "stage_direction_changes": {
+    "main_to_coverage": 0,
+    "coverage_to_final": 0
+  },
+  "issues": {},
+  "integrity_failures": {},
+  "unmapped_attempts": 0,
+  "native_report_sha256": "aff726c4d42c3290ed14c0b34a185b2d6329e62d053421a5f0d427b203618527",
+  "evaluation_sha256": "b1b986f7583a7e5681455173adadcfd50f27852fbf39245fd30ff789abf6e218",
+  "audit_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "execution": {
+    "started": 1793228937.4104433,
+    "completed": 1793229074.0971177,
+    "duration_seconds": 136.68667435646057,
+    "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "judge_config_sha256": "3222fb3d2a4a39577edd57185117ca589da8723dfa7eaf5cae60e01634682a57",
+    "replica_peak_concurrency": 8
+  },
+  "swap_mismatches": {
+    "main": [],
+    "coverage": [],
+    "final": []
+  },
+  "native_all_input_validation": {
+    "main": {
+      "valid": 36
+    },
+    "coverage": {
+      "valid": 36
+    },
+    "final": {
+      "valid": 36
+    }
+  },
+  "native_failure_counts": {},
+  "ledger_issues": {},
+  "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "strict_artifacts": {
+    "json": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-slotlast2/runs/candidate-gate-1/audits/engineering04-ledger-coherence/strict_audit.json",
+    "csv": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-slotlast2/runs/candidate-gate-1/audits/engineering04-ledger-coherence/strict_audit.csv"
+  }
+}

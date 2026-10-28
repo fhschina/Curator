@@ -1,0 +1,10 @@
+{
+  "parent": "candidate-08",
+  "changed_files": [
+    "critics/coverage_pair.jinja"
+  ],
+  "source_reading_template_sha256": "a283e721c75d88fc69e78f49a959b27e58ef7ac80baa840f10792d47941a97e8",
+  "other_eight_files_byte_identical_to_parent": true,
+  "inherits_failed_slotlast_variants": false,
+  "requires_fresh_original_fifteen_and_all_fixed_supplements": true
+}
