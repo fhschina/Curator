@@ -1,0 +1,293 @@
+---
+title: "Qwen 保留规则校准 v3 — 夜间进展"
+---
+
+`codex/dedup-retention-policy-v3-overnight` · `candidate-02`
+
+## 结论
+
+评测进行中，尚未确认验收通过。
+
+| 要求 | 状态 |
+| --- | --- |
+| milestone_85_80 | NOT_COMPLETED |
+| target_90_85 | NOT_COMPLETED |
+| technical_validity | NOT_COMPLETED |
+| hard.original36 | NOT_COMPLETED |
+| hard.extra6 | NOT_COMPLETED |
+| hard.latest18 | NOT_COMPLETED |
+| hard.controlled26 | NOT_COMPLETED |
+| hard.real_consensus6 | NOT_COMPLETED |
+| nonregression.development99_original | NOT_COMPLETED |
+| nonregression.development99_reviewed | NOT_COMPLETED |
+| nonregression.development97_strict | NOT_COMPLETED |
+| acceptance_passed | false |
+
+## 实际开发参考一致率
+
+两个目标必须由同一冻结候选同时满足。D 为正确方向；P 要求两个方向均正确。规定的三次分母对未完成判断计零分；完成重复数单独显示。这些已暴露的开发材料不能估计独立人工准确率或真实语料误删率。
+
+| 版本 | 参考口径 | 完成重复数 | Final 方向合计 | 方向均值 | 方向最差 | Final 整对合计 | 整对均值 | 整对最差 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| baseline | personal120 | 3 | 519/720 | 72.08% | 70.42% | 242/360 | 67.22% | 65.83% |
+| baseline | development99_original | 3 | 556/594 | 93.60% | 92.93% | 275/297 | 92.59% | 91.92% |
+| baseline | development99_reviewed | 3 | 562/594 | 94.61% | 93.94% | 278/297 | 93.60% | 92.93% |
+| baseline | development97_strict | 3 | 550/582 | 94.50% | 93.81% | 272/291 | 93.47% | 92.78% |
+| start-39714b47 | personal120 | 3 | 593/720 | 82.36% | 81.67% | 281/360 | 78.06% | 77.50% |
+| start-39714b47 | development99_original | 2 | 376/594 | 63.30% | 0.00% | 186/297 | 62.63% | 0.00% |
+| start-39714b47 | development99_reviewed | 2 | 380/594 | 63.97% | 0.00% | 188/297 | 63.30% | 0.00% |
+| start-39714b47 | development97_strict | 2 | 372/582 | 63.92% | 0.00% | 184/291 | 63.23% | 0.00% |
+| candidate-02 | personal120 | 1 | 195/720 | 27.08% | 0.00% | 92/360 | 25.56% | 0.00% |
+| candidate-02 | development99_original | 0 | 0/594 | 0.00% | 0.00% | 0/297 | 0.00% | 0.00% |
+| candidate-02 | development99_reviewed | 0 | 0/594 | 0.00% | 0.00% | 0/297 | 0.00% | 0.00% |
+| candidate-02 | development97_strict | 0 | 0/582 | 0.00% | 0.00% | 0/291 | 0.00% | 0.00% |
+
+| 对照 | 参考口径 | Final 方向变化，百分点 | Final 整对变化，百分点 |
+| --- | --- | --- | --- |
+| baseline | personal120 | NOT_COMPLETED | NOT_COMPLETED |
+| baseline | development99_original | NOT_COMPLETED | NOT_COMPLETED |
+| baseline | development99_reviewed | NOT_COMPLETED | NOT_COMPLETED |
+| baseline | development97_strict | NOT_COMPLETED | NOT_COMPLETED |
+| start-39714b47 | personal120 | NOT_COMPLETED | NOT_COMPLETED |
+| start-39714b47 | development99_original | NOT_COMPLETED | NOT_COMPLETED |
+| start-39714b47 | development99_reviewed | NOT_COMPLETED | NOT_COMPLETED |
+| start-39714b47 | development97_strict | NOT_COMPLETED | NOT_COMPLETED |
+
+<details>
+<summary>详细证据 — repeats</summary>
+
+| 版本 | 参考口径 | 运行 | Main 方向；整对 | Coverage 方向；整对 | Final 方向；整对 |
+| --- | --- | --- | --- | --- | --- |
+| baseline | personal120 | baseline-diagnostic-1 | 176/240; 83/120 | 176/240; 82/120 | 176/240; 82/120 |
+| baseline | personal120 | baseline-diagnostic-2 | 169/240; 79/120 | 169/240; 79/120 | 169/240; 79/120 |
+| baseline | personal120 | baseline-diagnostic-3 | 176/240; 82/120 | 174/240; 81/120 | 174/240; 81/120 |
+| baseline | development99_original | baseline-holdout-1 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
+| baseline | development99_reviewed | baseline-holdout-1 | 188/198; 93/99 | 188/198; 93/99 | 188/198; 93/99 |
+| baseline | development97_strict | baseline-holdout-1 | 184/194; 91/97 | 184/194; 91/97 | 184/194; 91/97 |
+| baseline | development99_original | baseline-holdout-2 | 184/198; 91/99 | 184/198; 91/99 | 184/198; 91/99 |
+| baseline | development99_reviewed | baseline-holdout-2 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
+| baseline | development97_strict | baseline-holdout-2 | 182/194; 90/97 | 182/194; 90/97 | 182/194; 90/97 |
+| baseline | development99_original | baseline-holdout-3 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
+| baseline | development99_reviewed | baseline-holdout-3 | 188/198; 93/99 | 188/198; 93/99 | 188/198; 93/99 |
+| baseline | development97_strict | baseline-holdout-3 | 184/194; 91/97 | 184/194; 91/97 | 184/194; 91/97 |
+| start-39714b47 | personal120 | candidate-diagnostic-1 | 198/240; 94/120 | 198/240; 94/120 | 198/240; 94/120 |
+| start-39714b47 | personal120 | candidate-diagnostic-2 | 197/240; 93/120 | 196/240; 93/120 | 196/240; 93/120 |
+| start-39714b47 | personal120 | candidate-diagnostic-3 | 199/240; 94/120 | 199/240; 94/120 | 199/240; 94/120 |
+| start-39714b47 | development99_original | candidate-holdout-1 | 190/198; 94/99 | 190/198; 94/99 | 190/198; 94/99 |
+| start-39714b47 | development99_reviewed | candidate-holdout-1 | 192/198; 95/99 | 192/198; 95/99 | 192/198; 95/99 |
+| start-39714b47 | development97_strict | candidate-holdout-1 | 188/194; 93/97 | 188/194; 93/97 | 188/194; 93/97 |
+| start-39714b47 | development99_original | candidate-holdout-2 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
+| start-39714b47 | development99_reviewed | candidate-holdout-2 | 188/198; 93/99 | 188/198; 93/99 | 188/198; 93/99 |
+| start-39714b47 | development97_strict | candidate-holdout-2 | 184/194; 91/97 | 184/194; 91/97 | 184/194; 91/97 |
+| candidate-02 | personal120 | candidate-diagnostic-1 | 195/240; 92/120 | 195/240; 92/120 | 195/240; 92/120 |
+
+</details>
+
+## 冻结参考与验收
+
+全部讨论输入和开发输入均保留在技术统计中。个人参考为 120 对 / 240 个方向；其他分层为 6 对共识、18 对待讨论、5 对截断和待定的 D121。开发口径为 original99、接受完整整对备选的 reviewed99，以及 strict97。最终阈值为方向 648/720 和整对 306/360；阶段阈值为 612/720 和 288/360。每个硬性呈现样本的每层必须在每次声明的重复中通过。三个开发方向均值都须不低于本轮重跑固定基线。无效和 unresolved 答案均不获得一致率分数。
+
+## 硬性回归与技术证据
+
+分组表保留每次运行和 A/B 交换不一致。后续 critic 的纠正不能免除 main 错误。Critic 保持只能否决的权限。V/I/U 为全部输入中的有效/无效/unresolved；原生解析和证据失败均保留，包括后续重试成功之前的失败。错误允许和阻止采用个人参考、复核后开发参考或适用的硬回归组；无效输出的原始信号也予以保留。
+
+<details>
+<summary>详细证据 — hard</summary>
+
+| 版本 | 组 | 运行 | Main 整对 | Coverage 整对 | Final 整对 | 交换不一致 |
+| --- | --- | --- | --- | --- | --- | --- |
+| baseline | extra6 | baseline-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| baseline | real_consensus6 | baseline-diagnostic-1 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| baseline | real_consensus6 | baseline-diagnostic-2 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| baseline | real_consensus6 | baseline-diagnostic-3 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| baseline | original36 | baseline-gate-1 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| baseline | latest18 | baseline-preflight-1 | 7/18 | 6/18 | 6/18 | &#123;"main": ["D135", "T_citation_slot", "T_marketing_slot"], "coverage": ["D135", "T_citation_slot", "T_marketing_slot", "T_cookie_intro"], "final": ["D135", "T_citation_slot", "T_marketing_slot", "T_cookie_intro"]&#125; |
+| baseline | controlled26 | baseline-preflight-1 | 16/26 | 16/26 | 16/26 | &#123;"main": ["D135", "T_citation_slot", "T_marketing_slot"], "coverage": ["D135", "T_citation_slot", "T_marketing_slot", "T_cookie_intro"], "final": ["D135", "T_citation_slot", "T_marketing_slot", "T_cookie_intro"]&#125; |
+| start-39714b47 | extra6 | candidate-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| start-39714b47 | extra6 | candidate-coverage-regression-2 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| start-39714b47 | extra6 | candidate-coverage-regression-3 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| start-39714b47 | real_consensus6 | candidate-diagnostic-1 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| start-39714b47 | real_consensus6 | candidate-diagnostic-2 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| start-39714b47 | real_consensus6 | candidate-diagnostic-3 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| start-39714b47 | original36 | candidate-gate-1 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| start-39714b47 | original36 | candidate-gate-2 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| start-39714b47 | original36 | candidate-gate-3 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| start-39714b47 | latest18 | candidate-preflight-1 | 16/18 | 14/18 | 14/18 | &#123;"main": [], "coverage": ["R14", "R33"], "final": ["R14", "R33"]&#125; |
+| start-39714b47 | controlled26 | candidate-preflight-1 | 24/26 | 24/26 | 24/26 | &#123;"main": [], "coverage": ["R14", "R33"], "final": ["R14", "R33"]&#125; |
+| start-39714b47 | latest18 | candidate-preflight-2 | 13/18 | 13/18 | 13/18 | &#123;"main": ["R33", "D011", "D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
+| start-39714b47 | controlled26 | candidate-preflight-2 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R33", "D011", "D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
+| start-39714b47 | latest18 | candidate-preflight-3 | 13/18 | 12/18 | 12/18 | &#123;"main": ["R18", "R33", "T_marketing_slot"], "coverage": ["R18", "R14", "T_marketing_slot"], "final": ["R18", "R14", "T_marketing_slot"]&#125; |
+| start-39714b47 | controlled26 | candidate-preflight-3 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R18", "R33", "T_marketing_slot"], "coverage": ["R18", "R14", "T_marketing_slot"], "final": ["R18", "R14", "T_marketing_slot"]&#125; |
+| candidate-02 | extra6 | candidate-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-02 | real_consensus6 | candidate-diagnostic-1 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| candidate-02 | original36 | candidate-gate-1 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-02 | latest18 | candidate-preflight-1 | 17/18 | 15/18 | 15/18 | &#123;"main": ["D058"], "coverage": ["R14", "R33", "D058"], "final": ["R14", "R33", "D058"]&#125; |
+| candidate-02 | controlled26 | candidate-preflight-1 | 26/26 | 26/26 | 26/26 | &#123;"main": ["D058"], "coverage": ["R14", "R33", "D058"], "final": ["R14", "R33", "D058"]&#125; |
+
+</details>
+
+<details>
+<summary>详细证据 — technical</summary>
+
+| 版本 | 运行 | Main 有效/无效/待定 | Coverage 有效/无效/待定 | Final 有效/无效/待定 | 错误允许 M/C/F | 错误阻止 M/C/F | 层间变化 | 失败 | HTTP 尝试状态 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| baseline | baseline-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| baseline | baseline-diagnostic-1 | 141/4/5 | 141/4/5 | 141/4/5 | 5/3/3 | 55/59/59 | &#123;"coverage_to_final": 0, "main_to_coverage": 8&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta": 1&#125; | &#123;"valid": 281&#125; |
+| baseline | baseline-diagnostic-2 | 138/7/5 | 138/7/5 | 138/7/5 | 3/3/3 | 64/64/64 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_ATTEMPT_PARSE_ERROR": 2, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 3, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 4&#125; | &#123;"parse_error": 2, "valid": 271&#125; |
+| baseline | baseline-diagnostic-3 | 139/6/5 | 139/6/5 | 139/6/5 | 4/4/4 | 57/59/59 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;"MAIN_ATTEMPT_PARSE_ERROR": 2, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 2&#125; | &#123;"parse_error": 3, "valid": 276&#125; |
+| baseline | baseline-gate-1 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| baseline | baseline-holdout-1 | 99/1/0 | 99/1/0 | 99/1/0 | 0/0/0 | 8/8/8 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"MAIN_ATTEMPT_PARSE_ERROR": 1&#125; | &#123;"parse_error": 1, "valid": 117&#125; |
+| baseline | baseline-holdout-2 | 98/2/0 | 98/2/0 | 98/2/0 | 1/1/1 | 8/8/8 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_ATTEMPT_PARSE_ERROR": 1, "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"parse_error": 1, "valid": 117&#125; |
+| baseline | baseline-holdout-3 | 99/1/0 | 99/1/0 | 99/1/0 | 1/1/1 | 8/8/8 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"valid": 117&#125; |
+| baseline | baseline-preflight-1 | 40/4/0 | 40/4/0 | 40/4/0 | 8/8/8 | 27/30/30 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:yes_with_material_hard_conflict": 1&#125; | &#123;"valid": 87&#125; |
+| start-39714b47 | candidate-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| start-39714b47 | candidate-coverage-regression-2 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| start-39714b47 | candidate-coverage-regression-3 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| start-39714b47 | candidate-diagnostic-1 | 143/2/5 | 143/2/5 | 143/2/5 | 6/4/4 | 33/35/35 | &#123;"coverage_to_final": 0, "main_to_coverage": 6&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1&#125; | &#123;"valid": 305&#125; |
+| start-39714b47 | candidate-diagnostic-2 | 144/1/5 | 144/1/5 | 144/1/5 | 4/3/3 | 37/39/39 | &#123;"coverage_to_final": 0, "main_to_coverage": 4&#125; | &#123;"MAIN_ATTEMPT_PARSE_ERROR": 1&#125; | &#123;"parse_error": 1, "valid": 297&#125; |
+| start-39714b47 | candidate-diagnostic-3 | 144/1/5 | 144/1/5 | 144/1/5 | 7/7/7 | 34/34/34 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 1&#125; | &#123;"valid": 305&#125; |
+| start-39714b47 | candidate-gate-1 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| start-39714b47 | candidate-gate-2 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| start-39714b47 | candidate-gate-3 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| start-39714b47 | candidate-holdout-1 | 100/0/0 | 100/0/0 | 100/0/0 | 1/1/1 | 5/5/5 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 120&#125; |
+| start-39714b47 | candidate-holdout-2 | 99/1/0 | 99/1/0 | 99/1/0 | 2/1/1 | 7/7/7 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"valid": 119&#125; |
+| start-39714b47 | candidate-preflight-1 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 8/10/10 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;&#125; | &#123;"valid": 95&#125; |
+| start-39714b47 | candidate-preflight-2 | 44/0/0 | 44/0/0 | 44/0/0 | 2/0/0 | 9/10/10 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;&#125; | &#123;"valid": 96&#125; |
+| start-39714b47 | candidate-preflight-3 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 11/13/13 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;&#125; | &#123;"valid": 92&#125; |
+| candidate-02 | candidate-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| candidate-02 | candidate-diagnostic-1 | 141/4/5 | 141/4/5 | 141/4/5 | 3/3/3 | 38/38/38 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 3, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 3&#125; | &#123;"valid": 294&#125; |
+| candidate-02 | candidate-gate-1 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| candidate-02 | candidate-preflight-1 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 2/5/5 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;&#125; | &#123;"valid": 100&#125; |
+
+</details>
+
+<details>
+<summary>详细证据 — lifecycles</summary>
+
+| 版本 | 运行 | 状态 | 预期输入 | 实际 main 行数 | HTTP 尝试 |
+| --- | --- | --- | --- | --- | --- |
+| start-39714b47 | candidate-holdout-3 | running | 100 | 0 | 101 |
+
+</details>
+
+## 审计来源
+
+统一的只读字段审计额外将正向替换与未覆盖实质内容、实质冲突或缺少已验证依据之间，以及负向替换与明确已覆盖且无冲突、无翻译差异的被移除内容之间的直接矛盾判为无效。该审计不增加模型调用，也不改变原始判断、参考、分母或错误信号。原生对照及审计后对照均保留；本报告全部采用审计后对照。
+
+## 历史失败及待定观察
+
+D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试及其后的原始 No/No 答案；后来的成功不能抹去该失败。当前各行分别显示原始答案和经验证答案。待讨论及截断分层没有确定的全文一致率评分；只报告技术完整性，不虚构标签。
+
+<details>
+<summary>详细证据 — observations</summary>
+
+| 版本 | 运行 | 案例 | Main 原始 → 经验证 | Coverage 原始 → 经验证 | Final 原始 → 经验证 | 问题 |
+| --- | --- | --- | --- | --- | --- | --- |
+| baseline | baseline-diagnostic-1 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| baseline | baseline-diagnostic-1 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
+| baseline | baseline-diagnostic-2 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| baseline | baseline-diagnostic-2 | D121 | yes/no → invalid/invalid | yes/no → invalid/invalid | yes/no → invalid/invalid | MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side |
+| baseline | baseline-diagnostic-3 | D074 | no/no → invalid/invalid | no/no → invalid/invalid | no/no → invalid/invalid | MAIN_ATTEMPT_PARSE_ERROR |
+| baseline | baseline-diagnostic-3 | D121 | yes/no → invalid/invalid | yes/no → invalid/invalid | yes/no → invalid/invalid | MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side |
+| start-39714b47 | candidate-diagnostic-1 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| start-39714b47 | candidate-diagnostic-1 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
+| start-39714b47 | candidate-diagnostic-2 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| start-39714b47 | candidate-diagnostic-2 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
+| start-39714b47 | candidate-diagnostic-3 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| start-39714b47 | candidate-diagnostic-3 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
+| candidate-02 | candidate-diagnostic-1 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| candidate-02 | candidate-diagnostic-1 | D121 | yes/no → invalid/invalid | yes/no → invalid/invalid | yes/no → invalid/invalid | MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side |
+
+</details>
+
+<details>
+<summary>详细证据 — discussion</summary>
+
+| 版本 | 运行 | Main 有效/无效/待定 | Coverage 有效/无效/待定 | Final 有效/无效/待定 |
+| --- | --- | --- | --- | --- |
+| baseline | baseline-diagnostic-1 | 18/0/0 | 18/0/0 | 18/0/0 |
+| baseline | baseline-diagnostic-2 | 17/1/0 | 17/1/0 | 17/1/0 |
+| baseline | baseline-diagnostic-3 | 17/1/0 | 17/1/0 | 17/1/0 |
+| start-39714b47 | candidate-diagnostic-1 | 18/0/0 | 18/0/0 | 18/0/0 |
+| start-39714b47 | candidate-diagnostic-2 | 18/0/0 | 18/0/0 | 18/0/0 |
+| start-39714b47 | candidate-diagnostic-3 | 17/1/0 | 17/1/0 | 17/1/0 |
+| candidate-02 | candidate-diagnostic-1 | 18/0/0 | 18/0/0 | 18/0/0 |
+
+</details>
+
+<details>
+<summary>详细证据 — truncated</summary>
+
+| 版本 | 运行 | Main 有效/无效/待定 | Coverage 有效/无效/待定 | Final 有效/无效/待定 |
+| --- | --- | --- | --- | --- |
+| baseline | baseline-diagnostic-1 | 0/0/5 | 0/0/5 | 0/0/5 |
+| baseline | baseline-diagnostic-2 | 0/0/5 | 0/0/5 | 0/0/5 |
+| baseline | baseline-diagnostic-3 | 0/0/5 | 0/0/5 | 0/0/5 |
+| start-39714b47 | candidate-diagnostic-1 | 0/0/5 | 0/0/5 | 0/0/5 |
+| start-39714b47 | candidate-diagnostic-2 | 0/0/5 | 0/0/5 | 0/0/5 |
+| start-39714b47 | candidate-diagnostic-3 | 0/0/5 | 0/0/5 | 0/0/5 |
+| candidate-02 | candidate-diagnostic-1 | 0/0/5 | 0/0/5 | 0/0/5 |
+
+</details>
+
+## 搜索与保留版本
+
+每个语义提案均有独立冻结目录和预先声明的复验组。工程修改单独记录。不可变的阶段与目标快照、指针历史、失败输出及未完成生命周期均保留在实验目录。保存指标阶段成果本身不代表验收通过。D121 继续待定。
+
+| 指针 | 候选 | 状态 | 不可变快照 |
+| --- | --- | --- | --- |
+| milestone_85_80 | — | NOT_COMPLETED | — |
+| target_90_85 | — | NOT_COMPLETED | — |
+| best_metric | candidate-02 | provisional | snapshots/1793163170384481638-best_metric-candidate-02-provisional.json |
+| best_eligible | — | NOT_COMPLETED | — |
+
+<details>
+<summary>详细证据 — candidates</summary>
+
+| 候选 | 假设 | 完成的个人参考重复数 | 状态 | 选择理由 | 证据目录 |
+| --- | --- | --- | --- | --- | --- |
+| candidate-01 | 仅隔离一项规则表达修订：在主 YAML rubric 的所有实质 delta、冲突和身份选项中一致应用已经允许的有条件模板例外。保留已交付 candidate02 的 system、pair 和 critic 提示词、结构化字段及枚举、证据呈现和操作入口保护。该实验隔离分类选项遮蔽问题，区别于上一轮同时改变完整提示词及窗口呈现、虽改善部分槽位却带来格式和操作回归的尝试。预期改善通用营销类别和服务商分类；本地化及仅由 critic 引起的误否决继续作为独立诊断。 | 0 | screen_complete_hard_failed | 首轮86个硬性呈现样本中无原始错误允许或技术失败，仍存在已确认必须为Yes的错误。保留证据，并在进行长开发评分前修正已观察到的本地化原因。 | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-01 |
+| candidate-02 | 在candidate01基础上仅修订一项功能本地化规则：先判断实际变化句子的语言和功能，再判断正文语言贡献。等价的常规密码链接表单指引以及同语言隐私段落改写可忽略；实际步骤、账户能力、隐私条件和实质正文语言变化继续保留。独立复用上一轮曾有效的功能角色原则，并依据本轮将越南语原文误称为英语的输出补充句子语言核查；保留稳定的操作规则、证据包呈现和原生输出约束，避免重复此前同时修改窗口及完整提示词的尝试。 | 1 | first_full150_complete_hard_failed |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02 |
+| candidate-02-core1 | candidate02的纯工程提示词呈现修订：在主pair模板中分别展示既有精确差异CORE及未改变的填充阅读上下文。不改变语义保留规则、原文、6000字符窗口、模型、参数、字段、枚举、校验或执行器。该修订独立检查功能角色澄清后仍存在的句子语言归属错误；此前round022candidate03同时改变了CORE、完整连续窗口及语义优先级。完整操作地址仍在未改变的上下文中可见，实际入口和正文语言回归仍须通过。固定基线及起点提示词、不可变输入和执行设置保持冻结；唯一有意改变的实验因素为候选pair呈现。 | 0 | REJECTED_BEFORE_INFERENCE_test_marker_compatibility |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02-core1 |
+| candidate-02-core2 | candidate02的工程呈现修订：在主pair模板中分别展示既有精确差异CORE和未改变的填充阅读上下文，并保留原生标记语法。独立检查已观察到的句子语言归属错误，不改变保留规则、原文、6000字符窗口、模型、参数、字段、枚举、校验或原生执行器。上下文继续呈现完整操作地址，并保护实际入口与实质正文语言边界。core1在推理前未通过标记兼容性检查；core2仅修正该标记分隔，已通过原生模板及窗口测试和3302个CORE摘录一致性检查。固定基线及起点提示词保持冻结；呈现方式是唯一有意改变的候选因素。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02-core2 |
+
+</details>
+
+## 验证与资源清理
+
+仅报告实际完成的检查。GPU 占用包含启动和空闲时间。绝对期限保护独立于 Goal Mode，仅清理本任务拥有的资源。实际关闭结果见最终生命周期凭据。
+
+<details>
+<summary>详细证据 — verification</summary>
+
+| 检查 | 实际证据 |
+| --- | --- |
+| status | "NOT_COMPLETED" |
+
+</details>
+
+<details>
+<summary>详细证据 — resources</summary>
+
+| 项目 | 值 |
+| --- | --- |
+| start_utc | 2026-10-28T02:59:29Z |
+| deadline_utc | 2026-10-28T16:00:00Z |
+| semantic_stop_utc | 2026-10-28T14:30:00Z |
+| gpu_stop_utc | 2026-10-28T15:45:00Z |
+| wall_hours_at_render | 1.927 |
+| allocated_gpu_hours_including_idle | 1.857 |
+| GPU | 1 × NVIDIA B200; TP=1 |
+| model_revision | 017b9c7af6b5689d5dd426a76e0bc077eb5ca20a |
+| context/max_tokens/temperature/concurrency/timeout/window | 32768 / 6144 / 0.2 / 8 / 600 / 6000 |
+| owned_service_stopped | false |
+
+</details>
+
+## 复现与剩余工作
+
+使用仓库中的校准入口和已有环境复现。保持模型 revision、原生 Data Designer 执行器、字符窗口、采样参数及校验一致。完整原文和 HTTP 正文保留在 Git 之外。新的独立人工验收、20K 推理和 Deciffusion 对照仍为后续工作。
+
+`/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z`
+
+`/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/engineering04-integration-0452/comparison.json`
