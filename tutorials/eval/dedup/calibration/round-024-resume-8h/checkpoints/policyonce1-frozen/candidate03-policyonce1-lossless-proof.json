@@ -1,0 +1,30 @@
+{
+  "judge_config/pair.jinja": {
+    "retained_system": "judge_config/system.jinja",
+    "removed_exact_duplicate_sha256": "7e9d6a3486c768a77ec8fdd51ef21271291ff769249e730512692791defa5519",
+    "removed_characters": 5264,
+    "inverse_replacement_restores_original_bytes": true,
+    "identical_full_block_in_unchanged_system": true
+  },
+  "critics/coverage_pair.jinja": {
+    "retained_system": "critics/coverage_system.jinja",
+    "removed_exact_duplicate_sha256": "7e9d6a3486c768a77ec8fdd51ef21271291ff769249e730512692791defa5519",
+    "removed_characters": 5264,
+    "inverse_replacement_restores_original_bytes": true,
+    "identical_full_block_in_unchanged_system": true
+  },
+  "critics/subject_pair.jinja": {
+    "retained_system": "critics/subject_system.jinja",
+    "removed_exact_duplicate_sha256": "7e9d6a3486c768a77ec8fdd51ef21271291ff769249e730512692791defa5519",
+    "removed_characters": 5264,
+    "inverse_replacement_restores_original_bytes": true,
+    "identical_full_block_in_unchanged_system": true
+  },
+  "critics/subject_verifier_pair.jinja": {
+    "retained_system": "critics/subject_verifier_system.jinja",
+    "removed_exact_duplicate_sha256": "7e9d6a3486c768a77ec8fdd51ef21271291ff769249e730512692791defa5519",
+    "removed_characters": 5264,
+    "inverse_replacement_restores_original_bytes": true,
+    "identical_full_block_in_unchanged_system": true
+  }
+}

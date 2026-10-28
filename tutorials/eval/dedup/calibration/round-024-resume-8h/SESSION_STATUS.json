@@ -27,10 +27,80 @@
   "branch": "codex/dedup-retention-policy-v4-8h",
   "starting_commit": "8831f46fb233b86df6a056394217b8eb3e2c0667",
   "starting_candidate": "candidate-00-start85",
-  "semantic_candidates": [],
-  "engineering_revisions": [],
+  "semantic_candidates": [
+    {
+      "number": 1,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01",
+      "hypothesis": "Two narrow exception-priority clarifications on the unchanged confirmed-stage policy: a repeated category/location label in otherwise equivalent generic marketing is not a concrete product record without an independent product-specific fact or changed offer term; and a covered stock-cookie paragraph does not acquire an additional category-specific necessity obligation from its new heading alone. Align existing delta and primary-difference options with those finite exceptions. Actual products/specifications, transaction destinations, named liability, explicit category terms, concrete deployment restrictions and substantive body languages remain protected. Previous broad descendants mixed UI/failed-target/class-instance rules and had format failures; this isolates their approved cookie-scope clarification on the original stable stage parent, without transplanting those other rules. Actual prior main replies explicitly bypassed allowed provider exceptions by labeling them content additions, and a coverage reply acknowledged shared copy yet invented a new category obligation. Preserve all native fields/order/enums, response contract, evidence, model, sampling, executor and strict validator. First screen original hard presentations plus separately frozen cookie-scope positive/negative controls; no long inference solely to retry a failure."
+    },
+    {
+      "number": 2,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-02",
+      "hypothesis": "One shared-basis consistency clarification for the already approved finite generic-marketing exception. The preceding main failure explicitly classifies the otherwise preserved promotional message as template-only and chooses no basis, although category/location labels alone are permitted. State that this complete qualified message remains a verified retained basis even when brief or reusable; exclude shared navigation/layout around different actual records and preserve independent product facts or offer differences. No new family of slot exceptions, profile definition, output field/order/enum, source, model, sampling, schema, executor or validator change. Keep every other parent policy and any separately verified coverage-order engineering intervention unchanged. This addresses the observed basis-none path rather than repeating the already tested identity wording."
+    },
+    {
+      "number": 3,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03",
+      "hypothesis": "Two consistency refinements at the observed decision points, without expanding policy scope. First, late general bound-subject, data-flow and heading-scope clauses must defer to the already qualified finite provider-name and covered-stock-cookie exceptions; directional summaries must remain consistent with a verified basis and a harmless removed-side ledger. The preceding main reply calls both provider deltas harmless and then denies replacement solely for that same name, while coverage reactivates the covered copy as a category obligation. Second, equivalent same-language form/privacy phrasing is not a separate substantive body-language version solely because its style differs; require an actual changed meaning or condition. The preceding authentication reply explicitly retains synonymous Vietnamese wording for pretraining despite equivalent meaning. Preserve real action destinations, liable parties, explicit category/status/consent terms, actual changed procedures, and substantive body prose in different languages. No fields/order/enums/schema, source/window, model/sampling, native executor, validator, authority or response-envelope changes. Keep the unsuccessful explanation-first engineering intervention excluded."
+    },
+    {
+      "number": 4,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-04",
+      "hypothesis": "Two narrow functional-role clarifications based on actual retained replies. Main treats an explicit category setting as harmless UI in both mirrored supplemental presentations, although the critic correctly preserves it. Distinguish independently assigned mandatory/optional values from an already covered stock paragraph; absence is a one-sided addition rather than a fabricated conflict. Coverage separately treats the recipient object in an unchanged generic cookie-transfer predicate as new processing and even cites a bare navigation heading. Apply the existing finite provider/recipient-slot exception to the predicate before choosing a loss. No new exception family, actual liability/action destination relaxation, labels, fields/order/enums, model/sampling, evidence/window, native code, schema or validator changes. All prior failures remain; only new predeclared slots are tested."
+    },
+    {
+      "number": 4,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-04",
+      "hypothesis": "Two narrow functional-role clarifications based on actual retained replies. Main treats an explicit category setting as harmless UI in both mirrored supplemental presentations, although the critic correctly preserves it. Distinguish independently assigned mandatory/optional values from an already covered stock paragraph; absence is a one-sided addition rather than a fabricated conflict. Coverage separately treats the recipient object in an unchanged generic cookie-transfer predicate as new processing and even cites a bare navigation heading. Apply the existing finite provider/recipient-slot exception to the predicate before choosing a loss. No new exception family, actual liability/action destination relaxation, labels, fields/order/enums, model/sampling, evidence/window, native code, schema or validator changes. All prior failures remain; only new predeclared slots are tested."
+    },
+    {
+      "number": 5,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-05",
+      "hypothesis": "Isolate the useful explicit-state clarification from the rejected C4 recipient-predicate paragraph. C4 fixed every state control but generalized its new provider wording to actual submission emails, regressing D011, and still contradicted its copied-paragraph ledger. C5 inherits C3, retains only C4 state-role wording and existing delta-option alignment, and does not inherit C4 recipient wording. Add one prerequisite clarification: generic cookie framing is harmless only over actually retained complete category definitions; a broad purpose cannot entail a distinct recognition/tracking/use condition in a partial notice. C3 actual first150 D108 explicitly inferred coverage from a broad umbrella purpose despite this missing prerequisite. Ordinary equivalent synonyms remain covered. These are two finite existing-cookie-boundary clarifications, not new human labels or relaxed destinations. All fields/order/enums, evidence/window, native chain, validator, model and sampling remain fixed."
+    },
+    {
+      "number": 5,
+      "revision": null,
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-05",
+      "hypothesis": "Isolate the useful explicit-state clarification from the rejected C4 recipient-predicate paragraph. C4 fixed every state control but generalized its new provider wording to actual submission emails, regressing D011, and still contradicted its copied-paragraph ledger. C5 inherits C3, retains only C4 state-role wording and existing delta-option alignment, and does not inherit C4 recipient wording. Add one prerequisite clarification: generic cookie framing is harmless only over actually retained complete category definitions; a broad purpose cannot entail a distinct recognition/tracking/use condition in a partial notice. C3 actual first150 D108 explicitly inferred coverage from a broad umbrella purpose despite this missing prerequisite. Ordinary equivalent synonyms remain covered. These are two finite existing-cookie-boundary clarifications, not new human labels or relaxed destinations. All fields/order/enums, evidence/window, native chain, validator, model and sampling remain fixed."
+    }
+  ],
+  "engineering_revisions": [
+    {
+      "number": 1,
+      "revision": "coverreasonfirst1",
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01-coverreasonfirst1",
+      "hypothesis": "Engineering-only coverage response-order experiment: ask the existing explanation paragraph and whole-notice comparison before choosing loss IDs, then emit the unchanged remaining fields. Previous actual coverage replies emit loss IDs before explaining the comparison and invent a category obligation or provider loss despite the existing exception; a prior order diagnostic proposed but never applied this experiment. The new semantic screen again has correct main decisions followed by those false coverage vetoes. All retention-policy paragraphs, main prompts/rubric, field names/types/enums, schema, validator, quoted evidence, critic veto authority, source presentation, model and sampling stay unchanged. This observation is not proof of causality: verify actual emitted order and native validity, then compare hard screens and separate cookie controls. Reject if order is ignored or technical validity worsens; do not repeat failed groups to select a lucky sample."
+    },
+    {
+      "number": 3,
+      "revision": "policyonce1",
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-policyonce1",
+      "hypothesis": "Engineering-only removal of an exact duplicate policy block from each pair template while preserving its byte-identical complete system copy. C3 has the strongest first main86 result, but later append-only clarifications regressed operational-address and marketing decisions, and C3 long replies show rule confusion and literal ledger contradictions. Each current request repeats the same roughly seventy-line conditional-template block in both system and pair. This experiment tests redundant presentation as a possible contributor, not a proven cause. Only four pair files change; all four system files, YAML, unique task instructions, mechanism branch, document evidence and native field/enumeration/order/validator/critic authority/model/sampling remain unchanged. An inverse-replacement and exact-system-containment proof is frozen before inference. No source text is removed or masked. Keep C3 and every intervening failure; no failed original run is replaced."
+    },
+    {
+      "number": 3,
+      "revision": "policyonce1",
+      "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-policyonce1",
+      "hypothesis": "Engineering-only removal of an exact duplicate policy block from each pair template while preserving its byte-identical complete system copy. C3 has the strongest first main86 result, but later append-only clarifications regressed operational-address and marketing decisions, and C3 long replies show rule confusion and literal ledger contradictions. Each current request repeats the same roughly seventy-line conditional-template block in both system and pair. This experiment tests redundant presentation as a possible contributor, not a proven cause. Only four pair files change; all four system files, YAML, unique task instructions, mechanism branch, document evidence and native field/enumeration/order/validator/critic authority/model/sampling remain unchanged. An inverse-replacement and exact-system-containment proof is frozen before inference. No source text is removed or masked. Keep C3 and every intervening failure; no failed original run is replaced."
+    }
+  ],
   "owner": "retention-policy-v4-8h-20261028",
   "previous_session": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z",
-  "next_action": "Verify frozen materials and guard; start same-condition baseline/start85 native runs; analyze previous failures before a new isolated proposal.",
-  "phase": "INITIALIZING"
+  "next_action": "Finish C5screen thenoriginalbaseline thirdrepeat. AfterbaselineCOMPLETE serialqueue actual4singleGPU checks forC0 in exactseparatecheckout, losslesspolicyonce1budget+hard86+four8supplemental groups. Noengineeringlongadmitted.",
+  "phase": "STARTING_COMPARATOR_ORIGINAL_THREE_RUNS_ACTIVE",
+  "last_pushed_commit": "7a3f2c0145d2bb7a9d5327f0f2df2fbc04fe86c6",
+  "active_queue": {
+    "start85_controller_pid": 407363,
+    "baseline_controller_pid": 407368,
+    "watcher_pid": 407370
+  },
+  "current_worktree_nine": "candidate-03-policyonce1",
+  "active_candidate": "candidate-03-policyonce1"
 }

@@ -1,0 +1,11 @@
+{
+  "parent": "candidate-03",
+  "hypothesis_en": "Engineering-only removal of an exact duplicate policy block from each pair template while preserving its byte-identical complete system copy. C3 has the strongest first main86 result, but later append-only clarifications regressed operational-address and marketing decisions, and C3 long replies show rule confusion and literal ledger contradictions. Each current request repeats the same roughly seventy-line conditional-template block in both system and pair. This experiment tests redundant presentation as a possible contributor, not a proven cause. Only four pair files change; all four system files, YAML, unique task instructions, mechanism branch, document evidence and native field/enumeration/order/validator/critic authority/model/sampling remain unchanged. An inverse-replacement and exact-system-containment proof is frozen before inference. No source text is removed or masked. Keep C3 and every intervening failure; no failed original run is replaced.",
+  "hypothesis_zh": "仅做工程性去重：从各pair模板移除一段完全重复的规则，system中逐字相同的完整副本保留。C3首次main86表现最好，但之后追加式澄清使实际操作地址及营销判断退步，C3长评测回复也出现规则混淆及字面证据矛盾。目前每个请求在system和pair中重复同一段约七十行的有条件模板规则。本实验把重复呈现作为可能因素测试，并非认定因果。仅改四个pair文件；四个system、YAML、独有任务指令、机制分支、文档证据以及原生字段枚举顺序、校验、critic权限、模型采样均不变。推理前冻结逆替换还原与system逐字包含证明。不删除或遮盖原文。保留C3及之后全部失败，不替换任何已失败原运行。",
+  "scope": "lossless policy-block deduplication only; four pair files",
+  "new_human_labels": false,
+  "engineering_revision": "policyonce1",
+  "proof": "proposals/candidate03-policyonce1-lossless-proof.json",
+  "status": "frozen_awaiting_serial_hard_screen",
+  "acceptance_passed": false
+}
