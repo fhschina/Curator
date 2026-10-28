@@ -4,12 +4,51 @@
 
 import copy
 import re
+from fractions import Fraction
 from pathlib import Path
 
 import pytest
 import yaml
 from policy_cases import aligned, blind_row
-from policy_tuning import aggregate, agreement
+from policy_tuning import aggregate, agreement, nonregression_status, target_status
+
+
+def personal_summary(directions: list[int], pairs: list[int]) -> dict:
+    return {
+        "repeats": [str(i) for i in range(len(directions))],
+        "denominator_pairs": [120],
+        "direction_agreement": {"correct_total": sum(directions), "denominator_total": 240 * len(directions)},
+        "pair_agreement": {"correct_total": sum(pairs), "denominator_total": 120 * len(pairs)},
+    }
+
+
+def test_overnight_target_uses_exact_three_run_means_without_an_each_run_gate():
+    summary = personal_summary([215, 216, 217], [101, 102, 103])
+    assert target_status(summary, Fraction(9, 10), Fraction(17, 20)) == "PASS"
+    assert (
+        target_status(personal_summary([216, 216, 215], [102, 102, 102]), Fraction(9, 10), Fraction(17, 20)) == "FAIL"
+    )
+    assert (
+        target_status(personal_summary([216, 216, 216], [102, 102, 101]), Fraction(9, 10), Fraction(17, 20)) == "FAIL"
+    )
+
+
+def test_old_target_and_incomplete_repeats_do_not_satisfy_overnight_goal():
+    assert target_status(personal_summary([192] * 3, [90] * 3), Fraction(9, 10), Fraction(17, 20)) == "FAIL"
+    assert target_status(personal_summary([240] * 2, [120] * 2), Fraction(9, 10), Fraction(17, 20)) == "NOT_COMPLETED"
+    changed = personal_summary([240] * 3, [120] * 3)
+    changed["denominator_pairs"] = [119]
+    with pytest.raises(ValueError, match="denominator changed"):
+        target_status(changed, Fraction(9, 10), Fraction(17, 20))
+
+
+def test_nonregression_compares_exact_counts_and_requires_complete_repeats():
+    baseline = personal_summary([224, 224, 224], [110] * 3)
+    candidate = personal_summary([223, 224, 225], [109] * 3)
+    assert nonregression_status(candidate, baseline) == "PASS"
+    candidate["direction_agreement"]["correct_total"] -= 1
+    assert nonregression_status(candidate, baseline) == "FAIL"
+    assert nonregression_status(personal_summary([240], [120]), baseline) == "NOT_COMPLETED"
 
 
 def output(a: str = "yes", b: str = "yes"):

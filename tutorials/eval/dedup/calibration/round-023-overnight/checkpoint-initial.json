@@ -1,0 +1,17 @@
+{
+  "time": 1793156724.051772,
+  "session": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z",
+  "phase": "frozen before inference",
+  "baseline": "6715574e4e553f7b36f263d755f6cebe198e7b11",
+  "search_start": "39714b476de7dcabceb387714ad0c15e6cc34437",
+  "deadline_utc": "2026-10-28T16:00:00Z",
+  "requirement_status": {
+    "milestone_85_80": "NOT_COMPLETED",
+    "target_90_85": "NOT_COMPLETED",
+    "hard_regressions": "NOT_COMPLETED",
+    "technical_validity": "NOT_COMPLETED",
+    "development_nonregression": "NOT_COMPLETED"
+  },
+  "baseline_and_start_prompts_exact_to_recorded_versions": true,
+  "all_inputs_exact_to_round022": true
+}

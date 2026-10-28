@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "checks": {
+    "cpu": "73 passed; 5 GPU deselected",
+    "precommit": "PASS"
+  },
+  "files": {
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/initial-cpu.log": "912450bc357b9a6683528b40a41e97d4dbd7a484269b642bdf5011442a57f0bb",
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/engineering-precommit-pass.log": "0cb6ceefeffb07596b0fe417fc5dd8941d1a81073dbaac5c3f4203d79eccd357"
+  }
+}

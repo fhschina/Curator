@@ -39,8 +39,10 @@ BASELINE = "6715574e4e553f7b36f263d755f6cebe198e7b11"
 LATEST_CASE_COUNT = 9
 PERSONAL_PAIR_COUNT = 120
 REPEATS = 3
-TARGET_DIRECTION_AGREEMENT = 0.8
-TARGET_PAIR_AGREEMENT = 0.75
+TARGET_DIRECTION_AGREEMENT = Fraction(9, 10)
+TARGET_PAIR_AGREEMENT = Fraction(17, 20)
+MILESTONE_DIRECTION_AGREEMENT = Fraction(17, 20)
+MILESTONE_PAIR_AGREEMENT = Fraction(4, 5)
 
 
 def controls() -> list[dict]:
@@ -281,8 +283,8 @@ def prepare(args: argparse.Namespace) -> None:
     write_json(root / "evaluation.json", evaluation)
     manifest.update(
         baseline_commit=BASELINE,
-        policy_version="retention-policy-v2",
-        semantic_prompt_revision_budget=6,
+        policy_version="retention-policy-v3-overnight",
+        semantic_prompt_revision_budget=None,
         panels={**manifest["panels"], "preflight": len(presentations)},
         frozen_at=time.time(),
     )
@@ -304,8 +306,8 @@ def candidate(args: argparse.Namespace) -> None:
     if time.time() >= state["semantic_search_deadline"]:
         msg = "Semantic search deadline reached; reserve the last hour for delivery"
         raise ValueError(msg)
-    if not 1 <= args.number <= state["max_semantic_candidates"]:
-        msg = "Semantic candidate limit exceeded"
+    if args.number < 1:
+        msg = "Semantic candidate number must be positive"
         raise ValueError(msg)
     revision = getattr(args, "revision", None)
     if revision and (
@@ -344,6 +346,7 @@ def candidate(args: argparse.Namespace) -> None:
         frozen_at=time.time(),
     )
     seal(root, manifest)
+    declare_verification(root, "candidate")
     records = state.setdefault("engineering_revisions", []) if revision else state["semantic_candidates"]
     records.append({"number": args.number, "revision": revision, "root": str(root), "hypothesis": args.hypothesis})
     write_json(session / "SESSION_STATUS.json", state)
@@ -535,15 +538,66 @@ def aggregate(reports: list[dict], group: str) -> dict:
                     "each": [item[key] for item in metrics],
                     "mean": float(mean(Fraction(item[numerator], item[denominator]) for item in metrics)),
                     "worst": min(item[key] for item in metrics),
+                    "correct_total": sum(item[numerator] for item in metrics),
+                    "denominator_total": sum(item[denominator] for item in metrics),
                 }
     return result
 
 
-def compare(args: argparse.Namespace) -> None:
+def declare_verification(root: Path, variant: str) -> None:
+    """Commit the three repeat identities before observing any candidate output."""
+    write_json(
+        root / "verification-plan.json",
+        {
+            "declared": time.time(),
+            "manifest_sha256": digest((root / "manifest.json").read_bytes()),
+            "runs": {
+                panel: [f"{variant}-{panel}-{repeat}" for repeat in range(1, REPEATS + 1)]
+                for panel in ("gate", "coverage-regression", "preflight", "diagnostic", "holdout")
+            },
+            "replacement_failed_repeats_allowed": False,
+        },
+    )
+
+
+def target_status(personal: dict, direction: Fraction, pair: Fraction) -> str:
+    """Use the frozen 720/360 denominators, including every invalid judgment."""
+    if len(personal.get("repeats", [])) != REPEATS:
+        return "NOT_COMPLETED"
+    if personal["denominator_pairs"] != [PERSONAL_PAIR_COUNT]:
+        msg = "Personal reference denominator changed"
+        raise ValueError(msg)
+    directions = personal["direction_agreement"]
+    pairs = personal["pair_agreement"]
+    if (
+        directions["denominator_total"] != 2 * PERSONAL_PAIR_COUNT * REPEATS
+        or pairs["denominator_total"] != PERSONAL_PAIR_COUNT * REPEATS
+    ):
+        msg = "Three complete personal-reference repeats are required"
+        raise ValueError(msg)
+    return (
+        "PASS"
+        if Fraction(directions["correct_total"], 720) >= direction and Fraction(pairs["correct_total"], 360) >= pair
+        else "FAIL"
+    )
+
+
+def nonregression_status(candidate: dict, baseline: dict) -> str:
+    if len(candidate.get("repeats", [])) != REPEATS or len(baseline.get("repeats", [])) != REPEATS:
+        return "NOT_COMPLETED"
+    a, b = candidate["direction_agreement"], baseline["direction_agreement"]
+    return (
+        "PASS"
+        if Fraction(a["correct_total"], a["denominator_total"]) >= Fraction(b["correct_total"], b["denominator_total"])
+        else "FAIL"
+    )
+
+
+def compare(args: argparse.Namespace) -> None:  # noqa: PLR0915
     session = args.session.resolve()
     output = session / args.output
     output.mkdir(exist_ok=False)
-    roots = [session / "baseline", *sorted(session.glob("candidate-*"))]
+    roots = [session / "baseline", session / "start-39714b47", *sorted(session.glob("candidate-*"))]
     reference_files = {
         key: value
         for key, value in read_json(session / "baseline/manifest.json")["files"].items()
@@ -602,18 +656,44 @@ def compare(args: argparse.Namespace) -> None:
         and personal["direction_agreement"]["worst"] >= TARGET_DIRECTION_AGREEMENT
         and personal["pair_agreement"]["worst"] >= TARGET_PAIR_AGREEMENT
     )
-    personal_mean_passed = (
-        len(personal.get("repeats", [])) == REPEATS
-        and personal["direction_agreement"]["mean"] >= TARGET_DIRECTION_AGREEMENT
-        and personal["pair_agreement"]["mean"] >= TARGET_PAIR_AGREEMENT
-    )
+    target = target_status(personal, TARGET_DIRECTION_AGREEMENT, TARGET_PAIR_AGREEMENT)
+    milestone = target_status(personal, MILESTONE_DIRECTION_AGREEMENT, MILESTONE_PAIR_AGREEMENT)
+    personal_mean_passed = target == "PASS"
     nonregression = {}
+    nonregression_states = {}
     for group in ("development99_original", "development99_reviewed", "development97_strict"):
         a, b = best.get(group, {}).get("final", {}), baseline.get(group, {}).get("final", {})
-        nonregression[group] = (
-            len(a.get("repeats", [])) == len(b.get("repeats", [])) == REPEATS
-            and a["direction_agreement"]["mean"] >= b["direction_agreement"]["mean"]
+        nonregression_states[group] = nonregression_status(a, b)
+        nonregression[group] = nonregression_states[group] == "PASS"
+    selected_runs = reports.get(best_name, [])
+    plan_path = session / best_name / "verification-plan.json"
+    plan = read_json(plan_path) if plan_path.exists() else {"runs": {}}
+    expected = {name for names in plan["runs"].values() for name in names}
+    observed = {run["run"] for run in selected_runs}
+    completion = bool(expected) and expected == observed
+    if plan_path.exists() and (
+        plan["manifest_sha256"] != digest((session / best_name / "manifest.json").read_bytes())
+        or any(run["execution"]["started"] < plan["declared"] for run in selected_runs)
+    ):
+        msg = "Verification plan must bind the frozen candidate before its first run"
+        raise ValueError(msg)
+    technical = completion and all(
+        not run["integrity_failures"]
+        and not run["unmapped_attempts"]
+        and all(value == 0 for key, value in run["attempt_status_counts"].items() if key != "valid")
+        and all(
+            layer.get("invalid", layer.get("invalid_pairs", 0)) == 0 for layer in run["all_input_validation"].values()
         )
+        for run in selected_runs
+    )
+    hard_states = {
+        name: "PASS"
+        if passed
+        else "FAIL"
+        if all(len(best.get(name, {}).get(layer, {}).get("repeats", [])) == REPEATS for layer in LAYERS)
+        else "NOT_COMPLETED"
+        for name, passed in hard_checks.items()
+    }
     result = {
         "baseline_commit": BASELINE,
         "best_candidate": best_name,
@@ -626,7 +706,27 @@ def compare(args: argparse.Namespace) -> None:
             "personal_targets_mean": personal_mean_passed,
             "development_nonregression_mean": nonregression,
         },
-        "acceptance_passed": all(hard_checks.values()) and personal_passed and all(nonregression.values()),
+        "requirement_status": {
+            "milestone_85_80": milestone,
+            "target_90_85": target,
+            "hard_regressions": hard_states,
+            "technical_validity": "PASS" if technical else "FAIL" if completion else "NOT_COMPLETED",
+            "development_nonregression_mean": nonregression_states,
+        },
+        "acceptance_passed": all(hard_checks.values())
+        and personal_mean_passed
+        and all(nonregression.values())
+        and technical,
+        "thresholds": {
+            "milestone": {"correct_directions": 612, "directions": 720, "correct_pairs": 288, "pairs": 360},
+            "target": {"correct_directions": 648, "directions": 720, "correct_pairs": 306, "pairs": 360},
+            "each_repeat_target_required": False,
+        },
+        "verification_completion": {
+            "expected": sorted(expected),
+            "observed": sorted(observed),
+            "complete": completion,
+        },
         "independent_human_accuracy": False,
         "D121": "pending",
         "audit_sha256": digest(Path(__file__).read_bytes()),
@@ -664,7 +764,7 @@ def compare(args: argparse.Namespace) -> None:
 def execute(args: argparse.Namespace) -> None:
     root, session = args.root.resolve(), args.session.resolve()
     state = read_json(session / "SESSION_STATUS.json")
-    deadline = state["deadline"]
+    deadline = min(state["deadline"], state.get("gpu_stop_at", state["deadline"]))
     service = read_json(session / "service.json")
     env = {
         **os.environ,
@@ -675,10 +775,14 @@ def execute(args: argparse.Namespace) -> None:
     }
     for repeat in args.repeats:
         for panel in args.panels:
-            if time.time() >= deadline - args.reserve_seconds:
+            if time.time() + args.estimated_seconds >= min(deadline, state["deadline"] - args.reserve_seconds):
                 msg = "Time reserve reached; no new inference run started"
                 raise TimeoutError(msg)
             name = f"{args.variant}-{panel}-{repeat}"
+            plan_path = root / "verification-plan.json"
+            if plan_path.exists() and name not in read_json(plan_path)["runs"].get(panel, []):
+                msg = "Run is outside the predeclared verification group"
+                raise ValueError(msg)
             if (root / "runs" / name).exists():
                 msg = "Run already exists; preserve its evidence and use a new root"
                 raise ValueError(msg)
@@ -742,7 +846,7 @@ def main() -> None:
     audit.add_argument("--name", required=True)
     comparison = commands.add_parser("compare")
     comparison.add_argument("--session", type=Path, required=True)
-    comparison.add_argument("--best", type=int, choices=range(1, 7), required=True)
+    comparison.add_argument("--best", type=int, required=True)
     comparison.add_argument("--best-root", help="Selected engineering revision directory name, when applicable")
     comparison.add_argument("--output", required=True, help="New immutable comparison directory within session")
     run = commands.add_parser("execute")
@@ -757,6 +861,7 @@ def main() -> None:
     )
     run.add_argument("--repeats", nargs="+", type=int, choices=(1, 2, 3), default=[1])
     run.add_argument("--reserve-seconds", type=int, default=3600)
+    run.add_argument("--estimated-seconds", type=int, default=900)
     args = parser.parse_args()
     if args.command == "audit":
         print(json.dumps(audit_run(args), ensure_ascii=False, indent=2))

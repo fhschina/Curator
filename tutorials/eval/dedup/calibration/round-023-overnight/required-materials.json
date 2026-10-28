@@ -1,0 +1,211 @@
+[
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-021/delivery/summary.json",
+    "sha256": "ef0ae08ed1a6d23f347fe9e54a5de5c547577eee63e556b4897be580ce0eabcd",
+    "bytes": 133939,
+    "topology": [
+      "purpose",
+      "independent_human_acceptance",
+      "diagnostic_readiness",
+      "policy_revisions",
+      "population",
+      "population_distributions",
+      "engineering_checks",
+      "translation_semantics",
+      "created_at",
+      "history",
+      "historical_extra_robustness_check",
+      "small_panels",
+      "full20k",
+      "deciffusion",
+      "accepted_ambiguous_cases",
+      "reference_stage_effects",
+      "main_snapshot_integrity",
+      "agent_post_result_review",
+      "remaining_policy_questions",
+      "agent_diagnostic_findings",
+      "critic_guard_followups",
+      "semantic_evidence_followups",
+      "interpretation",
+      "source_hashes"
+    ]
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-021/manifest.json",
+    "sha256": "e3955866b66c7e3beebca8e0254d17886a5e007d2bb10cc774c038c313b70dbb",
+    "bytes": 5657,
+    "topology": [
+      "policy_version",
+      "seed",
+      "panels",
+      "baseline_commit",
+      "candidate_commit",
+      "created_at",
+      "human_holdout_required",
+      "shared_format_adapter",
+      "source_snapshot_sha256",
+      "files",
+      "purpose",
+      "source_experiment",
+      "source_manifest_sha256",
+      "holdout_usage",
+      "formal_independent_human_acceptance",
+      "semantic_prompt_revision_budget"
+    ]
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-021/labels/diagnostic.json",
+    "sha256": "f03221c0769f868e0c31680b70fb42456b9603a57e23a8e4966f8a4bee6eaaa3",
+    "bytes": 143459,
+    "topology": {
+      "rows": 150
+    }
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-021/labels/holdout.json",
+    "sha256": "d02944c8143f84aeecd5b7d60e7c651360955015910c0487fd5fe20ddd63ea4f",
+    "bytes": 31803,
+    "topology": {
+      "rows": 100
+    }
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/adjudications.json",
+    "sha256": "28053e1c5886a9c0b16cd188f974369ed73a59dbe577c6e39101b64a89568f05",
+    "bytes": 5309,
+    "topology": [
+      "purpose",
+      "independent_blind_human_validation",
+      "decisions"
+    ]
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/cases.json",
+    "sha256": "27c244bebec483fcab6634038cb27e6735425abbe821efb47ee542747e1c2603",
+    "bytes": 1332392,
+    "topology": [
+      "purpose",
+      "source_experiment",
+      "direction_order",
+      "source_sha256",
+      "cases"
+    ]
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/DELIVERY_RECEIPT.json",
+    "sha256": "b9ffa0ba6b32bc6cc4c392fad6322a07461edb1933f74d5a8003f8919865780d",
+    "bytes": 819,
+    "topology": [
+      "commit",
+      "remote_verified",
+      "branch",
+      "workspace",
+      "completed",
+      "wall_hours",
+      "allocated_gpu_hours",
+      "semantic_candidates",
+      "max_gpus",
+      "acceptance_passed",
+      "best_candidate",
+      "D121",
+      "clean_worktree",
+      "tests",
+      "comparison_sha256",
+      "delivery_manifest_sha256"
+    ]
+  },
+  {
+    "path": "/raid/hfang/retention_policy_eval/v1/experiments/round-022-v2-20261027T214234Z/delivery/comparison.json",
+    "sha256": "4bbc9e51158d91582671d37a48b1d8dfe6de5c1f1ea8ecf2cdcdf4a983f88968",
+    "bytes": 561130,
+    "topology": [
+      "baseline_commit",
+      "best_candidate",
+      "summary",
+      "runs",
+      "failed_runs",
+      "requirements",
+      "acceptance_passed",
+      "independent_human_accuracy",
+      "D121",
+      "audit_sha256",
+      "frozen_evaluation_artifacts",
+      "created"
+    ]
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/README.md",
+    "sha256": "191664639c87996175980a15252be07d70c5cadafa59a3beea1d282f6c632467",
+    "bytes": 8022,
+    "topology": "text"
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/frozen-evaluation-protocol.json",
+    "sha256": "348ccbeb914bf8f86ef38f24065aefbe397487ceb261dd466346655515b58202",
+    "bytes": 11379,
+    "topology": [
+      "created_at_utc",
+      "criterion",
+      "fixed_personal_ids",
+      "personal_directions",
+      "development_input_ids",
+      "original_reference_eligible_ids",
+      "reviewed_reference_eligible_ids",
+      "strict_reviewed_reference_ids",
+      "accepted_complete_pair_alternatives",
+      "reference_unresolved_ids",
+      "hard_groups",
+      "consensus6_ids",
+      "discussion18_ids",
+      "truncated5_ids",
+      "D121",
+      "source_hashes",
+      "denominator_policy"
+    ]
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/final-selection.json",
+    "sha256": "edeccca7218a8a880669c1934fe95e675d9d4353fcd6e4cac88bb70c3052b36f",
+    "bytes": 5151,
+    "topology": [
+      "best_candidate",
+      "acceptance_passed",
+      "created",
+      "based_on",
+      "reason_en",
+      "reason_zh",
+      "selection_protocol_sha256",
+      "metrics",
+      "new_semantic_candidates"
+    ]
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/verification-final.json",
+    "sha256": "bd159d9247605c56725fa7318236a4c0af8557e2094283d476702a0ebd9f4ffd",
+    "bytes": 2490,
+    "topology": [
+      "checked_at",
+      "checks",
+      "cpu_total",
+      "gpu_test_scope",
+      "precommit",
+      "data_designer",
+      "best_candidate",
+      "prompt_roundtrip_receipt_sha256",
+      "hardware",
+      "native_python_unchanged_from"
+    ]
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx",
+    "sha256": "6933df7fac3a2e75482854dae9186fea715cb6d5eed0a45eb3b2317c70816d83",
+    "bytes": 30630,
+    "topology": "text"
+  },
+  {
+    "path": "/raid/hfang/workspaces/Curator-retention-policy-v2/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-en.mdx",
+    "sha256": "834994998230d459f41e027bbd112eb215f8e71d5acda5a3f68cdacf238298a8",
+    "bytes": 31969,
+    "topology": "text"
+  }
+]
