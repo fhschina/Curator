@@ -1,0 +1,38 @@
+--- candidate-07/judge_config/pair.jinja
++++ candidate-07-format2/judge_config/pair.jinja
+@@ -1,0 +2,10 @@
++The record identifier is for tracing only, not evidence for classification.
++
++{% if semantic_diff.truncated or not semantic_diff.status == "COMPLETE" %}EVIDENCE CONTRACT: THE PACKET IS INCOMPLETE.
++Visible differences cannot establish a complete replacement judgment. The eight
++summary scores must be unresolved, except confidence_tier=low and
++primary_risk_factor=extraction_or_payload_limit. This is a structured unresolved
++answer, not permission to return an incomplete object. Keep all fifteen native
++field objects and their reasoning/score keys. Do not derive a conclusive Yes/No
++from the visible prefix; the evidence-status constraint takes precedence.
++{% endif %}Audit record: {{ pair_id }}
+@@ -193,0 +204,24 @@
++
++SETTLED NATIVE CONTRACT CHECK
++Return the completed fifteen-field answer inside the required JSON fence.
++Each field has both reasoning and its own exact score option. Explain settled
++observations briefly; do not include a debate, alternative enum selections or
++instructions to yourself. Evidence requirements remain unchanged.
++
++Apply the existing native cross-field contract literally:
++- For relation_type=containment, exactly one replacement is Yes, the other No;
++  material_difference=major, primary_material_difference=main_content_addition_deletion,
++  and confidence_tier=medium. This includes an added actual list item. Do not use
++  result_set_change as the primary field in a containment answer, even if it
++  seems more specific, and do not promote clear containment to high confidence.
++- For a protected body translation, retain the existing No/No and translation
++  relationship; do not turn a substantive body into harmless UI to fit a field.
++- For incomplete/truncated evidence, all eight summary fields follow the exact
++  unresolved contract above, regardless of what the visible prefix suggests.
++- A harmless qualified boundary uses material_difference=none together with
++  primary_material_difference=none and medium confidence.
++Keep the actual replacement reasoning and ledger truthful. Never change an
++actual loss into a harmless delta, or flip a direction merely to fit a category.
++The fifteen fields must represent one settled comparison, using the existing
++schema, enums and policy. Finish with the actual fenced answer, not its schema.
++

@@ -1,0 +1,14 @@
+{
+  "created": 1793172377.386828,
+  "native_inference_code_changed": false,
+  "actual_frozen_input_packets_verified": 336,
+  "early_notice_limited_inputs": 5,
+  "original_schema_enums_order_unchanged": true,
+  "adapter": "Existing unmodified policy_eval.freeze_variant; exact actual frozen prompts restored after adapter.",
+  "tools": {
+    "freeze_proposal.py": "91ee840c66ed98260bc1669621e7a55d3b7532f93ad1b44550745b4c677acf4f",
+    "create_evidence_bundle.py": "2b2dc2137490b26584b4dd2d9096f0e6beeca2f86a641347e904232e27ac10f3",
+    "restore_evidence_bundle.py": "8b2a5afabd8ecb86d83339ffab84346f65ed4a20f461388baea5143715c37468"
+  },
+  "prototypes_and_native_failures_retained_outside_git": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/preinference-setup-attempts.jsonl"
+}

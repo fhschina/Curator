@@ -1,0 +1,421 @@
+--- candidate-06-languagefirst1/critics/coverage_pair.jinja
++++ candidate-07/critics/coverage_pair.jinja
+@@ -38 +38 @@
+-A city/destination label alone is also not a loss when the rest of the complete
++A service-location label alone is also not a loss when the rest of the complete
+@@ -50,8 +50,35 @@
+-LIST CONTAINMENT
+-Compare the retained product facts before page identity. A broader list can
+-replace a filtered subset when it preserves every product and its actual
+-price, availability and conditions. A narrower breadcrumb/filter and the
+-resulting smaller displayed count alone do not add an uncovered product fact
+-or create a conflict. Mark those presentation deltas harmless and allow only
+-the covering direction when the broader list adds a useful product. Actual
+-conflicting product facts, prices, stock or conditions remain material.
++BOUND IDENTIFIERS AND ACTION ROUTES
++The service-location exception concerns a named city or calling region in
++otherwise equivalent service prose. It never covers a literal address or URL
++used to submit, pay or perform an account action. The actual action route must
++itself be preserved, even when its spelling contains the permitted city name
++and all surrounding instructions match. An analogous route is not coverage.
++Likewise, the subject of an actual failed-object/status/permission assertion
++is a bound record identity, not an unpopulated query or navigation control.
++Apply the control exception only after distinguishing these actual assertions.
++
++INTERFACE VALUES AND LIST COVERAGE
++Classify the visible role before treating a number, name, date or version as a
++record fact. A search input, selectable facet, sort choice, archive link or
++documentation version selector navigates content; its value does not assert
++the unseen content. When the displayed actual results and substantive text
++are fully preserved, changed control values, facet subsets and their counts
++are harmless UI. A version selector alone does not provide a changed API,
++command, compatibility requirement or version-specific explanation. A search
++word in introductory tool copy is not an actual example sentence or result.
++Do not infer unshown records, behavior or facts from controls or headings.
++
++Actual populated records remain protected: changed people/items in a result,
++prices, measurements, availability, event timing, API facts and real status or
++permission assertions are material. A record identifier in 'object X failed'
++is the subject of an actual assertion, unlike a query box value. An actual
++submission/payment/account endpoint is an action destination, not navigation.
++Incidental citation-access/publication metadata can be harmless when the same
++work and all substantive terms survive; dates in the work or event are facts.
++
++A broader list can replace a filtered subset only when it preserves every
++actual item and its price, availability and conditions. A narrower filter or
++displayed count alone adds no uncovered item fact. If the broader list adds a
++useful item, only the covering direction is allowed. Conflicting actual facts
++and new record details still require retention. A full shared policy/message
++can be a retained basis; common navigation alone is insufficient.
+--- candidate-06-languagefirst1/critics/coverage_system.jinja
++++ candidate-07/critics/coverage_system.jinja
+@@ -13 +13 @@
+-- Repeated service descriptions differing only in city or calling destination
++- Repeated service descriptions differing only in named service city or calling region
+@@ -178 +178 @@
+-   the city/destination; stated procedure, actual price/rate and conditions match:
++   the service-location label; stated procedure, actual price/rate and conditions match:
+@@ -213 +213 @@
+-For otherwise identical service descriptions with only city/destination changes,
++For otherwise identical service descriptions with only service-location label changes,
+@@ -239,8 +239,35 @@
+-LIST CONTAINMENT
+-Compare the retained product facts before page identity. A broader list can
+-replace a filtered subset when it preserves every product and its actual
+-price, availability and conditions. A narrower breadcrumb/filter and the
+-resulting smaller displayed count alone do not add an uncovered product fact
+-or create a conflict. Mark those presentation deltas harmless and allow only
+-the covering direction when the broader list adds a useful product. Actual
+-conflicting product facts, prices, stock or conditions remain material.
++BOUND IDENTIFIERS AND ACTION ROUTES
++The service-location exception concerns a named city or calling region in
++otherwise equivalent service prose. It never covers a literal address or URL
++used to submit, pay or perform an account action. The actual action route must
++itself be preserved, even when its spelling contains the permitted city name
++and all surrounding instructions match. An analogous route is not coverage.
++Likewise, the subject of an actual failed-object/status/permission assertion
++is a bound record identity, not an unpopulated query or navigation control.
++Apply the control exception only after distinguishing these actual assertions.
++
++INTERFACE VALUES AND LIST COVERAGE
++Classify the visible role before treating a number, name, date or version as a
++record fact. A search input, selectable facet, sort choice, archive link or
++documentation version selector navigates content; its value does not assert
++the unseen content. When the displayed actual results and substantive text
++are fully preserved, changed control values, facet subsets and their counts
++are harmless UI. A version selector alone does not provide a changed API,
++command, compatibility requirement or version-specific explanation. A search
++word in introductory tool copy is not an actual example sentence or result.
++Do not infer unshown records, behavior or facts from controls or headings.
++
++Actual populated records remain protected: changed people/items in a result,
++prices, measurements, availability, event timing, API facts and real status or
++permission assertions are material. A record identifier in 'object X failed'
++is the subject of an actual assertion, unlike a query box value. An actual
++submission/payment/account endpoint is an action destination, not navigation.
++Incidental citation-access/publication metadata can be harmless when the same
++work and all substantive terms survive; dates in the work or event are facts.
++
++A broader list can replace a filtered subset only when it preserves every
++actual item and its price, availability and conditions. A narrower filter or
++displayed count alone adds no uncovered item fact. If the broader list adds a
++useful item, only the covering direction is allowed. Conflicting actual facts
++and new record details still require retention. A full shared policy/message
++can be a retained basis; common navigation alone is insufficient.
+--- candidate-06-languagefirst1/critics/subject_pair.jinja
++++ candidate-07/critics/subject_pair.jinja
+@@ -25,8 +25,35 @@
+-LIST CONTAINMENT
+-Compare the retained product facts before page identity. A broader list can
+-replace a filtered subset when it preserves every product and its actual
+-price, availability and conditions. A narrower breadcrumb/filter and the
+-resulting smaller displayed count alone do not add an uncovered product fact
+-or create a conflict. Mark those presentation deltas harmless and allow only
+-the covering direction when the broader list adds a useful product. Actual
+-conflicting product facts, prices, stock or conditions remain material.
++BOUND IDENTIFIERS AND ACTION ROUTES
++The service-location exception concerns a named city or calling region in
++otherwise equivalent service prose. It never covers a literal address or URL
++used to submit, pay or perform an account action. The actual action route must
++itself be preserved, even when its spelling contains the permitted city name
++and all surrounding instructions match. An analogous route is not coverage.
++Likewise, the subject of an actual failed-object/status/permission assertion
++is a bound record identity, not an unpopulated query or navigation control.
++Apply the control exception only after distinguishing these actual assertions.
++
++INTERFACE VALUES AND LIST COVERAGE
++Classify the visible role before treating a number, name, date or version as a
++record fact. A search input, selectable facet, sort choice, archive link or
++documentation version selector navigates content; its value does not assert
++the unseen content. When the displayed actual results and substantive text
++are fully preserved, changed control values, facet subsets and their counts
++are harmless UI. A version selector alone does not provide a changed API,
++command, compatibility requirement or version-specific explanation. A search
++word in introductory tool copy is not an actual example sentence or result.
++Do not infer unshown records, behavior or facts from controls or headings.
++
++Actual populated records remain protected: changed people/items in a result,
++prices, measurements, availability, event timing, API facts and real status or
++permission assertions are material. A record identifier in 'object X failed'
++is the subject of an actual assertion, unlike a query box value. An actual
++submission/payment/account endpoint is an action destination, not navigation.
++Incidental citation-access/publication metadata can be harmless when the same
++work and all substantive terms survive; dates in the work or event are facts.
++
++A broader list can replace a filtered subset only when it preserves every
++actual item and its price, availability and conditions. A narrower filter or
++displayed count alone adds no uncovered item fact. If the broader list adds a
++useful item, only the covering direction is allowed. Conflicting actual facts
++and new record details still require retention. A full shared policy/message
++can be a retained basis; common navigation alone is insufficient.
+--- candidate-06-languagefirst1/critics/subject_system.jinja
++++ candidate-07/critics/subject_system.jinja
+@@ -13 +13 @@
+-- Repeated service descriptions differing only in city or calling destination
++- Repeated service descriptions differing only in named service city or calling region
+@@ -161 +161 @@
+-unchanged service template. If only the city or calling destination changes
++unchanged service template. If only the named service city or calling region changes
+@@ -173,8 +173,35 @@
+-LIST CONTAINMENT
+-Compare the retained product facts before page identity. A broader list can
+-replace a filtered subset when it preserves every product and its actual
+-price, availability and conditions. A narrower breadcrumb/filter and the
+-resulting smaller displayed count alone do not add an uncovered product fact
+-or create a conflict. Mark those presentation deltas harmless and allow only
+-the covering direction when the broader list adds a useful product. Actual
+-conflicting product facts, prices, stock or conditions remain material.
++BOUND IDENTIFIERS AND ACTION ROUTES
++The service-location exception concerns a named city or calling region in
++otherwise equivalent service prose. It never covers a literal address or URL
++used to submit, pay or perform an account action. The actual action route must
++itself be preserved, even when its spelling contains the permitted city name
++and all surrounding instructions match. An analogous route is not coverage.
++Likewise, the subject of an actual failed-object/status/permission assertion
++is a bound record identity, not an unpopulated query or navigation control.
++Apply the control exception only after distinguishing these actual assertions.
++
++INTERFACE VALUES AND LIST COVERAGE
++Classify the visible role before treating a number, name, date or version as a
++record fact. A search input, selectable facet, sort choice, archive link or
++documentation version selector navigates content; its value does not assert
++the unseen content. When the displayed actual results and substantive text
++are fully preserved, changed control values, facet subsets and their counts
++are harmless UI. A version selector alone does not provide a changed API,
++command, compatibility requirement or version-specific explanation. A search
++word in introductory tool copy is not an actual example sentence or result.
++Do not infer unshown records, behavior or facts from controls or headings.
++
++Actual populated records remain protected: changed people/items in a result,
++prices, measurements, availability, event timing, API facts and real status or
++permission assertions are material. A record identifier in 'object X failed'
++is the subject of an actual assertion, unlike a query box value. An actual
++submission/payment/account endpoint is an action destination, not navigation.
++Incidental citation-access/publication metadata can be harmless when the same
++work and all substantive terms survive; dates in the work or event are facts.
++
++A broader list can replace a filtered subset only when it preserves every
++actual item and its price, availability and conditions. A narrower filter or
++displayed count alone adds no uncovered item fact. If the broader list adds a
++useful item, only the covering direction is allowed. Conflicting actual facts
++and new record details still require retention. A full shared policy/message
++can be a retained basis; common navigation alone is insufficient.
+--- candidate-06-languagefirst1/critics/subject_verifier_pair.jinja
++++ candidate-07/critics/subject_verifier_pair.jinja
+@@ -19,8 +19,35 @@
+-LIST CONTAINMENT
+-Compare the retained product facts before page identity. A broader list can
+-replace a filtered subset when it preserves every product and its actual
+-price, availability and conditions. A narrower breadcrumb/filter and the
+-resulting smaller displayed count alone do not add an uncovered product fact
+-or create a conflict. Mark those presentation deltas harmless and allow only
+-the covering direction when the broader list adds a useful product. Actual
+-conflicting product facts, prices, stock or conditions remain material.
++BOUND IDENTIFIERS AND ACTION ROUTES
++The service-location exception concerns a named city or calling region in
++otherwise equivalent service prose. It never covers a literal address or URL
++used to submit, pay or perform an account action. The actual action route must
++itself be preserved, even when its spelling contains the permitted city name
++and all surrounding instructions match. An analogous route is not coverage.
++Likewise, the subject of an actual failed-object/status/permission assertion
++is a bound record identity, not an unpopulated query or navigation control.
++Apply the control exception only after distinguishing these actual assertions.
++
++INTERFACE VALUES AND LIST COVERAGE
++Classify the visible role before treating a number, name, date or version as a
++record fact. A search input, selectable facet, sort choice, archive link or
++documentation version selector navigates content; its value does not assert
++the unseen content. When the displayed actual results and substantive text
++are fully preserved, changed control values, facet subsets and their counts
++are harmless UI. A version selector alone does not provide a changed API,
++command, compatibility requirement or version-specific explanation. A search
++word in introductory tool copy is not an actual example sentence or result.
++Do not infer unshown records, behavior or facts from controls or headings.
++
++Actual populated records remain protected: changed people/items in a result,
++prices, measurements, availability, event timing, API facts and real status or
++permission assertions are material. A record identifier in 'object X failed'
++is the subject of an actual assertion, unlike a query box value. An actual
++submission/payment/account endpoint is an action destination, not navigation.
++Incidental citation-access/publication metadata can be harmless when the same
++work and all substantive terms survive; dates in the work or event are facts.
++
++A broader list can replace a filtered subset only when it preserves every
++actual item and its price, availability and conditions. A narrower filter or
++displayed count alone adds no uncovered item fact. If the broader list adds a
++useful item, only the covering direction is allowed. Conflicting actual facts
++and new record details still require retention. A full shared policy/message
++can be a retained basis; common navigation alone is insufficient.
+--- candidate-06-languagefirst1/critics/subject_verifier_system.jinja
++++ candidate-07/critics/subject_verifier_system.jinja
+@@ -13 +13 @@
+-- Repeated service descriptions differing only in city or calling destination
++- Repeated service descriptions differing only in named service city or calling region
+@@ -151,8 +151,35 @@
+-LIST CONTAINMENT
+-Compare the retained product facts before page identity. A broader list can
+-replace a filtered subset when it preserves every product and its actual
+-price, availability and conditions. A narrower breadcrumb/filter and the
+-resulting smaller displayed count alone do not add an uncovered product fact
+-or create a conflict. Mark those presentation deltas harmless and allow only
+-the covering direction when the broader list adds a useful product. Actual
+-conflicting product facts, prices, stock or conditions remain material.
++BOUND IDENTIFIERS AND ACTION ROUTES
++The service-location exception concerns a named city or calling region in
++otherwise equivalent service prose. It never covers a literal address or URL
++used to submit, pay or perform an account action. The actual action route must
++itself be preserved, even when its spelling contains the permitted city name
++and all surrounding instructions match. An analogous route is not coverage.
++Likewise, the subject of an actual failed-object/status/permission assertion
++is a bound record identity, not an unpopulated query or navigation control.
++Apply the control exception only after distinguishing these actual assertions.
++
++INTERFACE VALUES AND LIST COVERAGE
++Classify the visible role before treating a number, name, date or version as a
++record fact. A search input, selectable facet, sort choice, archive link or
++documentation version selector navigates content; its value does not assert
++the unseen content. When the displayed actual results and substantive text
++are fully preserved, changed control values, facet subsets and their counts
++are harmless UI. A version selector alone does not provide a changed API,
++command, compatibility requirement or version-specific explanation. A search
++word in introductory tool copy is not an actual example sentence or result.
++Do not infer unshown records, behavior or facts from controls or headings.
++
++Actual populated records remain protected: changed people/items in a result,
++prices, measurements, availability, event timing, API facts and real status or
++permission assertions are material. A record identifier in 'object X failed'
++is the subject of an actual assertion, unlike a query box value. An actual
++submission/payment/account endpoint is an action destination, not navigation.
++Incidental citation-access/publication metadata can be harmless when the same
++work and all substantive terms survive; dates in the work or event are facts.
++
++A broader list can replace a filtered subset only when it preserves every
++actual item and its price, availability and conditions. A narrower filter or
++displayed count alone adds no uncovered item fact. If the broader list adds a
++useful item, only the covering direction is allowed. Conflicting actual facts
++and new record details still require retention. A full shared policy/message
++can be a retained basis; common navigation alone is insufficient.
+--- candidate-06-languagefirst1/judge_config/fuzzy_pair_judge.yaml
++++ candidate-07/judge_config/fuzzy_pair_judge.yaml
+@@ -91 +91 @@
+-              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed city/destination labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots. A complete equivalent routine form message qualifies as verified_equivalent_non_main_message after its mechanism and body-language conditions match; it is not none merely because it is form UI.
++              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed service-location labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots. A complete equivalent routine form message qualifies as verified_equivalent_non_main_message after its mechanism and body-language conditions match; it is not none merely because it is form UI.
+@@ -98 +98 @@
+-              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
+@@ -109 +109 @@
+-              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
+@@ -120 +120 @@
+-              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases.
++              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases.
+@@ -124 +124 @@
+-                state_or_version: Date, count, price, version, availability, status, or result conflicts.
++                state_or_version: Actual retained date, count, price, version, availability, status or result claims conflict. An unpopulated selector alone does not assert unseen version-specific facts or results.
+@@ -131 +131 @@
+-              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
+@@ -137 +137 @@
+-              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
+--- candidate-06-languagefirst1/judge_config/pair.jinja
++++ candidate-07/judge_config/pair.jinja
+@@ -12 +12 @@
+-differs only by city or calling-destination labels and has the same procedure,
++differs only by named service-city or calling-region labels and has the same procedure,
+@@ -66,8 +66,35 @@
+-LIST CONTAINMENT
+-Compare the retained product facts before page identity. A broader list can
+-replace a filtered subset when it preserves every product and its actual
+-price, availability and conditions. A narrower breadcrumb/filter and the
+-resulting smaller displayed count alone do not add an uncovered product fact
+-or create a conflict. Mark those presentation deltas harmless and allow only
+-the covering direction when the broader list adds a useful product. Actual
+-conflicting product facts, prices, stock or conditions remain material.
++BOUND IDENTIFIERS AND ACTION ROUTES
++The service-location exception concerns a named city or calling region in
++otherwise equivalent service prose. It never covers a literal address or URL
++used to submit, pay or perform an account action. The actual action route must
++itself be preserved, even when its spelling contains the permitted city name
++and all surrounding instructions match. An analogous route is not coverage.
++Likewise, the subject of an actual failed-object/status/permission assertion
++is a bound record identity, not an unpopulated query or navigation control.
++Apply the control exception only after distinguishing these actual assertions.
++
++INTERFACE VALUES AND LIST COVERAGE
++Classify the visible role before treating a number, name, date or version as a
++record fact. A search input, selectable facet, sort choice, archive link or
++documentation version selector navigates content; its value does not assert
++the unseen content. When the displayed actual results and substantive text
++are fully preserved, changed control values, facet subsets and their counts
++are harmless UI. A version selector alone does not provide a changed API,
++command, compatibility requirement or version-specific explanation. A search
++word in introductory tool copy is not an actual example sentence or result.
++Do not infer unshown records, behavior or facts from controls or headings.
++
++Actual populated records remain protected: changed people/items in a result,
++prices, measurements, availability, event timing, API facts and real status or
++permission assertions are material. A record identifier in 'object X failed'
++is the subject of an actual assertion, unlike a query box value. An actual
++submission/payment/account endpoint is an action destination, not navigation.
++Incidental citation-access/publication metadata can be harmless when the same
++work and all substantive terms survive; dates in the work or event are facts.
++
++A broader list can replace a filtered subset only when it preserves every
++actual item and its price, availability and conditions. A narrower filter or
++displayed count alone adds no uncovered item fact. If the broader list adds a
++useful item, only the covering direction is allowed. Conflicting actual facts
++and new record details still require retention. A full shared policy/message
++can be a retained basis; common navigation alone is insufficient.
+--- candidate-06-languagefirst1/judge_config/system.jinja
++++ candidate-07/judge_config/system.jinja
+@@ -16 +16 @@
+-- Repeated service descriptions differing only in city or calling destination
++- Repeated service descriptions differing only in named service city or calling region
+@@ -102,8 +102,35 @@
+-LIST CONTAINMENT
+-Compare the retained product facts before page identity. A broader list can
+-replace a filtered subset when it preserves every product and its actual
+-price, availability and conditions. A narrower breadcrumb/filter and the
+-resulting smaller displayed count alone do not add an uncovered product fact
+-or create a conflict. Mark those presentation deltas harmless and allow only
+-the covering direction when the broader list adds a useful product. Actual
+-conflicting product facts, prices, stock or conditions remain material.
++BOUND IDENTIFIERS AND ACTION ROUTES
++The service-location exception concerns a named city or calling region in
++otherwise equivalent service prose. It never covers a literal address or URL
++used to submit, pay or perform an account action. The actual action route must
++itself be preserved, even when its spelling contains the permitted city name
++and all surrounding instructions match. An analogous route is not coverage.
++Likewise, the subject of an actual failed-object/status/permission assertion
++is a bound record identity, not an unpopulated query or navigation control.
++Apply the control exception only after distinguishing these actual assertions.
++
++INTERFACE VALUES AND LIST COVERAGE
++Classify the visible role before treating a number, name, date or version as a
++record fact. A search input, selectable facet, sort choice, archive link or
++documentation version selector navigates content; its value does not assert
++the unseen content. When the displayed actual results and substantive text
++are fully preserved, changed control values, facet subsets and their counts
++are harmless UI. A version selector alone does not provide a changed API,
++command, compatibility requirement or version-specific explanation. A search
++word in introductory tool copy is not an actual example sentence or result.
++Do not infer unshown records, behavior or facts from controls or headings.
++
++Actual populated records remain protected: changed people/items in a result,
++prices, measurements, availability, event timing, API facts and real status or
++permission assertions are material. A record identifier in 'object X failed'
++is the subject of an actual assertion, unlike a query box value. An actual
++submission/payment/account endpoint is an action destination, not navigation.
++Incidental citation-access/publication metadata can be harmless when the same
++work and all substantive terms survive; dates in the work or event are facts.
++
++A broader list can replace a filtered subset only when it preserves every
++actual item and its price, availability and conditions. A narrower filter or
++displayed count alone adds no uncovered item fact. If the broader list adds a
++useful item, only the covering direction is allowed. Conflicting actual facts
++and new record details still require retention. A full shared policy/message
++can be a retained basis; common navigation alone is insufficient.
+@@ -152 +179 @@
+-  identity or conflict. A city/destination label alone is not a specific
++  identity or conflict. A service-location label alone is not a specific

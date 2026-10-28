@@ -1,0 +1,48 @@
+{
+  "milestone_85_80": {
+    "path": "snapshots/1793170078392648690-milestone_85_80-candidate-06-languagefirst1-provisional_single_run.json",
+    "sha256": "d61c251b49b14f0f0116a10a80e0f2b68a0c38db2db6dd0894904056eaa20557",
+    "signature": [
+      "candidate-06-languagefirst1",
+      "provisional_single_run",
+      205,
+      96,
+      1,
+      "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    ],
+    "candidate": "candidate-06-languagefirst1",
+    "status": "provisional_single_run",
+    "metric": {
+      "correct_directions": 205,
+      "directions": 240,
+      "correct_pairs": 96,
+      "pairs": 120,
+      "repeats": 1
+    },
+    "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+  },
+  "target_90_85": null,
+  "best_metric": {
+    "path": "snapshots/1793173591750238998-best_metric-candidate-06-languagefirst1-provisional.json",
+    "sha256": "a44554e86302c9f2f03acc7424a9233799345a42336a4589947af8efe8270748",
+    "signature": [
+      "candidate-06-languagefirst1",
+      "provisional",
+      411,
+      193,
+      2,
+      "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    ],
+    "candidate": "candidate-06-languagefirst1",
+    "status": "provisional",
+    "metric": {
+      "correct_directions": 411,
+      "directions": 480,
+      "correct_pairs": 193,
+      "pairs": 240,
+      "repeats": 2
+    },
+    "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+  },
+  "best_eligible": null
+}

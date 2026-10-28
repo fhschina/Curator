@@ -1,0 +1,89 @@
+{
+  "updated": 1793172315.3487537,
+  "deadline_utc": "2026-10-28T16:00:00Z",
+  "completed_runs": 83,
+  "personal_scores": [
+    {
+      "candidate": "baseline",
+      "correct_directions": 519,
+      "directions": 720,
+      "correct_pairs": 242,
+      "pairs": 360,
+      "repeats": 3
+    },
+    {
+      "candidate": "candidate-02",
+      "correct_directions": 588,
+      "directions": 720,
+      "correct_pairs": 279,
+      "pairs": 360,
+      "repeats": 3
+    },
+    {
+      "candidate": "candidate-06-languagefirst1",
+      "correct_directions": 205,
+      "directions": 240,
+      "correct_pairs": 96,
+      "pairs": 120,
+      "repeats": 1
+    },
+    {
+      "candidate": "start-39714b47",
+      "correct_directions": 593,
+      "directions": 720,
+      "correct_pairs": 281,
+      "pairs": 360,
+      "repeats": 3
+    }
+  ],
+  "pointers": {
+    "milestone_85_80": {
+      "path": "snapshots/1793170078392648690-milestone_85_80-candidate-06-languagefirst1-provisional_single_run.json",
+      "sha256": "d61c251b49b14f0f0116a10a80e0f2b68a0c38db2db6dd0894904056eaa20557",
+      "signature": [
+        "candidate-06-languagefirst1",
+        "provisional_single_run",
+        205,
+        96,
+        1,
+        "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+      ],
+      "candidate": "candidate-06-languagefirst1",
+      "status": "provisional_single_run",
+      "metric": {
+        "correct_directions": 205,
+        "directions": 240,
+        "correct_pairs": 96,
+        "pairs": 120,
+        "repeats": 1
+      },
+      "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    },
+    "target_90_85": null,
+    "best_metric": {
+      "path": "snapshots/1793170078396376069-best_metric-candidate-06-languagefirst1-provisional.json",
+      "sha256": "51f95a285ef7f71c0d3bba3b609766f48f0295ff219a12aa2e8af97dfcf16bc4",
+      "signature": [
+        "candidate-06-languagefirst1",
+        "provisional",
+        205,
+        96,
+        1,
+        "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+      ],
+      "candidate": "candidate-06-languagefirst1",
+      "status": "provisional",
+      "metric": {
+        "correct_directions": 205,
+        "directions": 240,
+        "correct_pairs": 96,
+        "pairs": 120,
+        "repeats": 1
+      },
+      "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    },
+    "best_eligible": null
+  },
+  "best_eligible": null,
+  "note": "Eligibility requires its own complete fixed acceptance evidence."
+}

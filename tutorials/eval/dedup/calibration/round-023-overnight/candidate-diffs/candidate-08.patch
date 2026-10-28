@@ -1,0 +1,386 @@
+--- candidate-07-format2/critics/coverage_pair.jinja
++++ candidate-08/critics/coverage_pair.jinja
+@@ -153,0 +154,43 @@
++CONDITIONAL TEMPLATE PROPOSITION CHECK
++Use this branch only for the already permitted template conditions: equivalent
++generic marketing copy without concrete item specifications; the same short
++generic cookie/services/advertising/visits message with unchanged behavior; or
++complete retained cookie definitions with stock framing or covered repetition.
++Check the remaining actual assertions, not merely the changed category/name.
++Keep the real names truthful. A permitted category/provider slot alone does not
++establish another actual product record, purpose, restriction or liable party.
++An unnamed provider can express the same generic behavior as a named slot in
++the permitted short notice; do not invent a new behavior from naming alone.
++
++Within this qualified stock-template branch, search the whole other document
++for each complete proposition. A stock paragraph already covered elsewhere is
++still covered when repeated beneath a standard category heading. The heading
++alone does not create another processing rule from that same stock paragraph.
++A bare terms/menu label or reference supplies no unshown legal conditions.
++Concrete additional deployment details, data flows, transfer/storage limits,
++retention periods, consent mechanisms and actual obligations remain useful.
++An independent extra explanation is not a conflicting value in the shared text.
++
++Do not decide by which text seems more accurate, better written or preferable
++to keep. Compare the asserted contributions under this policy; do not correct
++the source or discard an assertion merely because it seems mistaken. A positive
++coverage conclusion needs an actual retained equivalent proposition or an
++applicable harmless exception, not a preference for the other document.
++
++This branch does not exempt actual named items or populated records, literal
++submission/payment/account routes, changed procedures/capabilities/conditions,
++named liability parties or substantive body versions in different languages.
++The existing mechanism-qualified form-localization branch remains separate.
++
++DERIVE THE NATIVE COVERAGE FIELDS FOR THIS QUALIFIED BRANCH
++Choose a loss ID only for an actual uncovered useful contribution after that
++whole-document check. If a side has only permitted slots/framing/repetition,
++its loss ID is empty, even when it has unique lexical span IDs. If the other
++side adds a concrete deployment explanation, select loss only on the side with
++that uncovered addition. The already covered stock paragraph is not another
++loss or conflict. Use conflict=NONE when the difference is only an independent
++addition. Keep a real nonempty context ID for each side and truthful retained
++overlap basis. Your explanation and loss selections must describe the same
++actual coverage; a string difference or bare terms heading cannot justify loss.
++
++
+--- candidate-07-format2/critics/coverage_system.jinja
++++ candidate-08/critics/coverage_system.jinja
+@@ -274,0 +275,43 @@
++CONDITIONAL TEMPLATE PROPOSITION CHECK
++Use this branch only for the already permitted template conditions: equivalent
++generic marketing copy without concrete item specifications; the same short
++generic cookie/services/advertising/visits message with unchanged behavior; or
++complete retained cookie definitions with stock framing or covered repetition.
++Check the remaining actual assertions, not merely the changed category/name.
++Keep the real names truthful. A permitted category/provider slot alone does not
++establish another actual product record, purpose, restriction or liable party.
++An unnamed provider can express the same generic behavior as a named slot in
++the permitted short notice; do not invent a new behavior from naming alone.
++
++Within this qualified stock-template branch, search the whole other document
++for each complete proposition. A stock paragraph already covered elsewhere is
++still covered when repeated beneath a standard category heading. The heading
++alone does not create another processing rule from that same stock paragraph.
++A bare terms/menu label or reference supplies no unshown legal conditions.
++Concrete additional deployment details, data flows, transfer/storage limits,
++retention periods, consent mechanisms and actual obligations remain useful.
++An independent extra explanation is not a conflicting value in the shared text.
++
++Do not decide by which text seems more accurate, better written or preferable
++to keep. Compare the asserted contributions under this policy; do not correct
++the source or discard an assertion merely because it seems mistaken. A positive
++coverage conclusion needs an actual retained equivalent proposition or an
++applicable harmless exception, not a preference for the other document.
++
++This branch does not exempt actual named items or populated records, literal
++submission/payment/account routes, changed procedures/capabilities/conditions,
++named liability parties or substantive body versions in different languages.
++The existing mechanism-qualified form-localization branch remains separate.
++
++DERIVE THE NATIVE COVERAGE FIELDS FOR THIS QUALIFIED BRANCH
++Choose a loss ID only for an actual uncovered useful contribution after that
++whole-document check. If a side has only permitted slots/framing/repetition,
++its loss ID is empty, even when it has unique lexical span IDs. If the other
++side adds a concrete deployment explanation, select loss only on the side with
++that uncovered addition. The already covered stock paragraph is not another
++loss or conflict. Use conflict=NONE when the difference is only an independent
++addition. Keep a real nonempty context ID for each side and truthful retained
++overlap basis. Your explanation and loss selections must describe the same
++actual coverage; a string difference or bare terms heading cannot justify loss.
++
++
+--- candidate-07-format2/critics/subject_pair.jinja
++++ candidate-08/critics/subject_pair.jinja
+@@ -128,0 +129,42 @@
++CONDITIONAL TEMPLATE PROPOSITION CHECK
++Use this branch only for the already permitted template conditions: equivalent
++generic marketing copy without concrete item specifications; the same short
++generic cookie/services/advertising/visits message with unchanged behavior; or
++complete retained cookie definitions with stock framing or covered repetition.
++Check the remaining actual assertions, not merely the changed category/name.
++Keep the real names truthful. A permitted category/provider slot alone does not
++establish another actual product record, purpose, restriction or liable party.
++An unnamed provider can express the same generic behavior as a named slot in
++the permitted short notice; do not invent a new behavior from naming alone.
++
++Within this qualified stock-template branch, search the whole other document
++for each complete proposition. A stock paragraph already covered elsewhere is
++still covered when repeated beneath a standard category heading. The heading
++alone does not create another processing rule from that same stock paragraph.
++A bare terms/menu label or reference supplies no unshown legal conditions.
++Concrete additional deployment details, data flows, transfer/storage limits,
++retention periods, consent mechanisms and actual obligations remain useful.
++An independent extra explanation is not a conflicting value in the shared text.
++
++Do not decide by which text seems more accurate, better written or preferable
++to keep. Compare the asserted contributions under this policy; do not correct
++the source or discard an assertion merely because it seems mistaken. A positive
++coverage conclusion needs an actual retained equivalent proposition or an
++applicable harmless exception, not a preference for the other document.
++
++This branch does not exempt actual named items or populated records, literal
++submission/payment/account routes, changed procedures/capabilities/conditions,
++named liability parties or substantive body versions in different languages.
++The existing mechanism-qualified form-localization branch remains separate.
++
++DERIVE THE NATIVE SUBJECT EVIDENCE FOR THIS QUALIFIED BRANCH
++Permitted template slots, covered stock repetition and empty terms/menu labels
++alone are outside subject-veto scope. They do not bind a different actual record,
++liability party, processing practice or permission. A proposed comparison based
++only on those harmless differences is not a supported actual binding. In this
++subject review use binding_type=NONE and target_relation=NOT_APPLICABLE when no
++actual authorized binding exists, with the existing appropriate empty IDs. Preserve
++literal action routes and genuine retained subjects/claims. Do not invent an
++unshown legal condition or record from a generic heading or provider-name slot.
++
++
+--- candidate-07-format2/critics/subject_system.jinja
++++ candidate-08/critics/subject_system.jinja
+@@ -208,0 +209,42 @@
++CONDITIONAL TEMPLATE PROPOSITION CHECK
++Use this branch only for the already permitted template conditions: equivalent
++generic marketing copy without concrete item specifications; the same short
++generic cookie/services/advertising/visits message with unchanged behavior; or
++complete retained cookie definitions with stock framing or covered repetition.
++Check the remaining actual assertions, not merely the changed category/name.
++Keep the real names truthful. A permitted category/provider slot alone does not
++establish another actual product record, purpose, restriction or liable party.
++An unnamed provider can express the same generic behavior as a named slot in
++the permitted short notice; do not invent a new behavior from naming alone.
++
++Within this qualified stock-template branch, search the whole other document
++for each complete proposition. A stock paragraph already covered elsewhere is
++still covered when repeated beneath a standard category heading. The heading
++alone does not create another processing rule from that same stock paragraph.
++A bare terms/menu label or reference supplies no unshown legal conditions.
++Concrete additional deployment details, data flows, transfer/storage limits,
++retention periods, consent mechanisms and actual obligations remain useful.
++An independent extra explanation is not a conflicting value in the shared text.
++
++Do not decide by which text seems more accurate, better written or preferable
++to keep. Compare the asserted contributions under this policy; do not correct
++the source or discard an assertion merely because it seems mistaken. A positive
++coverage conclusion needs an actual retained equivalent proposition or an
++applicable harmless exception, not a preference for the other document.
++
++This branch does not exempt actual named items or populated records, literal
++submission/payment/account routes, changed procedures/capabilities/conditions,
++named liability parties or substantive body versions in different languages.
++The existing mechanism-qualified form-localization branch remains separate.
++
++DERIVE THE NATIVE SUBJECT EVIDENCE FOR THIS QUALIFIED BRANCH
++Permitted template slots, covered stock repetition and empty terms/menu labels
++alone are outside subject-veto scope. They do not bind a different actual record,
++liability party, processing practice or permission. A proposed comparison based
++only on those harmless differences is not a supported actual binding. In this
++subject review use binding_type=NONE and target_relation=NOT_APPLICABLE when no
++actual authorized binding exists, with the existing appropriate empty IDs. Preserve
++literal action routes and genuine retained subjects/claims. Do not invent an
++unshown legal condition or record from a generic heading or provider-name slot.
++
++
+--- candidate-07-format2/critics/subject_verifier_pair.jinja
++++ candidate-08/critics/subject_verifier_pair.jinja
+@@ -122,0 +123,40 @@
++CONDITIONAL TEMPLATE PROPOSITION CHECK
++Use this branch only for the already permitted template conditions: equivalent
++generic marketing copy without concrete item specifications; the same short
++generic cookie/services/advertising/visits message with unchanged behavior; or
++complete retained cookie definitions with stock framing or covered repetition.
++Check the remaining actual assertions, not merely the changed category/name.
++Keep the real names truthful. A permitted category/provider slot alone does not
++establish another actual product record, purpose, restriction or liable party.
++An unnamed provider can express the same generic behavior as a named slot in
++the permitted short notice; do not invent a new behavior from naming alone.
++
++Within this qualified stock-template branch, search the whole other document
++for each complete proposition. A stock paragraph already covered elsewhere is
++still covered when repeated beneath a standard category heading. The heading
++alone does not create another processing rule from that same stock paragraph.
++A bare terms/menu label or reference supplies no unshown legal conditions.
++Concrete additional deployment details, data flows, transfer/storage limits,
++retention periods, consent mechanisms and actual obligations remain useful.
++An independent extra explanation is not a conflicting value in the shared text.
++
++Do not decide by which text seems more accurate, better written or preferable
++to keep. Compare the asserted contributions under this policy; do not correct
++the source or discard an assertion merely because it seems mistaken. A positive
++coverage conclusion needs an actual retained equivalent proposition or an
++applicable harmless exception, not a preference for the other document.
++
++This branch does not exempt actual named items or populated records, literal
++submission/payment/account routes, changed procedures/capabilities/conditions,
++named liability parties or substantive body versions in different languages.
++The existing mechanism-qualified form-localization branch remains separate.
++
++DERIVE THE NATIVE VERIFIER FIELDS FOR THIS QUALIFIED BRANCH
++A proposed subject comparison resting only on permitted template slots, covered
++stock wording or an empty terms/menu label is UNSUPPORTED_COMPARISON. Classify
++each actual selected target truthfully with this verifier's own subject-kind
++options. Do not infer an actual liability party, binding or new processing
++restriction from the harmless template difference alone. Real named subjects
++of actual protected claims and literal action routes remain protected.
++
++
+--- candidate-07-format2/critics/subject_verifier_system.jinja
++++ candidate-08/critics/subject_verifier_system.jinja
+@@ -186,0 +187,40 @@
++CONDITIONAL TEMPLATE PROPOSITION CHECK
++Use this branch only for the already permitted template conditions: equivalent
++generic marketing copy without concrete item specifications; the same short
++generic cookie/services/advertising/visits message with unchanged behavior; or
++complete retained cookie definitions with stock framing or covered repetition.
++Check the remaining actual assertions, not merely the changed category/name.
++Keep the real names truthful. A permitted category/provider slot alone does not
++establish another actual product record, purpose, restriction or liable party.
++An unnamed provider can express the same generic behavior as a named slot in
++the permitted short notice; do not invent a new behavior from naming alone.
++
++Within this qualified stock-template branch, search the whole other document
++for each complete proposition. A stock paragraph already covered elsewhere is
++still covered when repeated beneath a standard category heading. The heading
++alone does not create another processing rule from that same stock paragraph.
++A bare terms/menu label or reference supplies no unshown legal conditions.
++Concrete additional deployment details, data flows, transfer/storage limits,
++retention periods, consent mechanisms and actual obligations remain useful.
++An independent extra explanation is not a conflicting value in the shared text.
++
++Do not decide by which text seems more accurate, better written or preferable
++to keep. Compare the asserted contributions under this policy; do not correct
++the source or discard an assertion merely because it seems mistaken. A positive
++coverage conclusion needs an actual retained equivalent proposition or an
++applicable harmless exception, not a preference for the other document.
++
++This branch does not exempt actual named items or populated records, literal
++submission/payment/account routes, changed procedures/capabilities/conditions,
++named liability parties or substantive body versions in different languages.
++The existing mechanism-qualified form-localization branch remains separate.
++
++DERIVE THE NATIVE VERIFIER FIELDS FOR THIS QUALIFIED BRANCH
++A proposed subject comparison resting only on permitted template slots, covered
++stock wording or an empty terms/menu label is UNSUPPORTED_COMPARISON. Classify
++each actual selected target truthfully with this verifier's own subject-kind
++options. Do not infer an actual liability party, binding or new processing
++restriction from the harmless template difference alone. Real named subjects
++of actual protected claims and literal action routes remain protected.
++
++
+--- candidate-07-format2/judge_config/fuzzy_pair_judge.yaml
++++ candidate-08/judge_config/fuzzy_pair_judge.yaml
+@@ -91 +91 @@
+-              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed service-location labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots. A complete equivalent routine form message qualifies as verified_equivalent_non_main_message after its mechanism and body-language conditions match; it is not none merely because it is form UI.
++              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed service-location labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots. A complete equivalent routine form message qualifies as verified_equivalent_non_main_message after its mechanism and body-language conditions match; it is not none merely because it is form UI. Apply the qualified template proposition check before assigning materiality. A permitted marketing category/provider slot, bare terms label or whole-document-covered stock paragraph alone is harmless. A complete qualified record/message remains a verified basis. Actual action routes, named liability parties, populated records, changed processing/conditions and distinct-language substantive bodies remain protected. Derive all ledger and replacement fields from the same settled coverage; do not invent a loss or absent basis from the permitted slot alone.
+@@ -98 +98 @@
+-              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. Apply the qualified template proposition check before assigning materiality. A permitted marketing category/provider slot, bare terms label or whole-document-covered stock paragraph alone is harmless. A complete qualified record/message remains a verified basis. Actual action routes, named liability parties, populated records, changed processing/conditions and distinct-language substantive bodies remain protected. Derive all ledger and replacement fields from the same settled coverage; do not invent a loss or absent basis from the permitted slot alone.
+@@ -109 +109 @@
+-              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. Apply the qualified template proposition check before assigning materiality. A permitted marketing category/provider slot, bare terms label or whole-document-covered stock paragraph alone is harmless. A complete qualified record/message remains a verified basis. Actual action routes, named liability parties, populated records, changed processing/conditions and distinct-language substantive bodies remain protected. Derive all ledger and replacement fields from the same settled coverage; do not invent a loss or absent basis from the permitted slot alone.
+@@ -120 +120 @@
+-              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases.
++              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases. Apply the qualified template proposition check before assigning materiality. A permitted marketing category/provider slot, bare terms label or whole-document-covered stock paragraph alone is harmless. A complete qualified record/message remains a verified basis. Actual action routes, named liability parties, populated records, changed processing/conditions and distinct-language substantive bodies remain protected. Derive all ledger and replacement fields from the same settled coverage; do not invent a loss or absent basis from the permitted slot alone.
+@@ -131 +131 @@
+-              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. Apply the qualified template proposition check before assigning materiality. A permitted marketing category/provider slot, bare terms label or whole-document-covered stock paragraph alone is harmless. A complete qualified record/message remains a verified basis. Actual action routes, named liability parties, populated records, changed processing/conditions and distinct-language substantive bodies remain protected. Derive all ledger and replacement fields from the same settled coverage; do not invent a loss or absent basis from the permitted slot alone.
+@@ -137 +137 @@
+-              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. Apply the qualified template proposition check before assigning materiality. A permitted marketing category/provider slot, bare terms label or whole-document-covered stock paragraph alone is harmless. A complete qualified record/message remains a verified basis. Actual action routes, named liability parties, populated records, changed processing/conditions and distinct-language substantive bodies remain protected. Derive all ledger and replacement fields from the same settled coverage; do not invent a loss or absent basis from the permitted slot alone.
+--- candidate-07-format2/judge_config/pair.jinja
++++ candidate-08/judge_config/pair.jinja
+@@ -227,0 +228,46 @@
++CONDITIONAL TEMPLATE PROPOSITION CHECK
++Use this branch only for the already permitted template conditions: equivalent
++generic marketing copy without concrete item specifications; the same short
++generic cookie/services/advertising/visits message with unchanged behavior; or
++complete retained cookie definitions with stock framing or covered repetition.
++Check the remaining actual assertions, not merely the changed category/name.
++Keep the real names truthful. A permitted category/provider slot alone does not
++establish another actual product record, purpose, restriction or liable party.
++An unnamed provider can express the same generic behavior as a named slot in
++the permitted short notice; do not invent a new behavior from naming alone.
++
++Within this qualified stock-template branch, search the whole other document
++for each complete proposition. A stock paragraph already covered elsewhere is
++still covered when repeated beneath a standard category heading. The heading
++alone does not create another processing rule from that same stock paragraph.
++A bare terms/menu label or reference supplies no unshown legal conditions.
++Concrete additional deployment details, data flows, transfer/storage limits,
++retention periods, consent mechanisms and actual obligations remain useful.
++An independent extra explanation is not a conflicting value in the shared text.
++
++Do not decide by which text seems more accurate, better written or preferable
++to keep. Compare the asserted contributions under this policy; do not correct
++the source or discard an assertion merely because it seems mistaken. A positive
++coverage conclusion needs an actual retained equivalent proposition or an
++applicable harmless exception, not a preference for the other document.
++
++This branch does not exempt actual named items or populated records, literal
++submission/payment/account routes, changed procedures/capabilities/conditions,
++named liability parties or substantive body versions in different languages.
++The existing mechanism-qualified form-localization branch remains separate.
++
++DERIVE THE NATIVE MAIN FIELDS FOR THIS QUALIFIED BRANCH
++Preserve truthful content profiles. The complete retained record/message is a
++verified basis after the permitted slot, framing and repetition are classified;
++it is not absent merely because the shared wording is a reusable template.
++For each own-side delta, use universal_ui_or_repetition for only qualified slots,
++framing or covered stock repetition, or semantically_covered for an equivalent
++same-language paraphrase. Do not simultaneously call that same delta uncovered.
++With both sides fully covered and no actual conflict, derive both Yes scores,
++near_surface, material_difference=none, primary_material_difference=none and
++confidence_tier=medium. If one side has a real independent extra contribution,
++classify that side as material and derive only its covering direction; do not
++give the other side an invented loss from a harmless heading or copied stock
++paragraph. Every ledger field and summary must express the same comparison.
++
++
+--- candidate-07-format2/judge_config/system.jinja
++++ candidate-08/judge_config/system.jinja
+@@ -235,0 +236,46 @@
++CONDITIONAL TEMPLATE PROPOSITION CHECK
++Use this branch only for the already permitted template conditions: equivalent
++generic marketing copy without concrete item specifications; the same short
++generic cookie/services/advertising/visits message with unchanged behavior; or
++complete retained cookie definitions with stock framing or covered repetition.
++Check the remaining actual assertions, not merely the changed category/name.
++Keep the real names truthful. A permitted category/provider slot alone does not
++establish another actual product record, purpose, restriction or liable party.
++An unnamed provider can express the same generic behavior as a named slot in
++the permitted short notice; do not invent a new behavior from naming alone.
++
++Within this qualified stock-template branch, search the whole other document
++for each complete proposition. A stock paragraph already covered elsewhere is
++still covered when repeated beneath a standard category heading. The heading
++alone does not create another processing rule from that same stock paragraph.
++A bare terms/menu label or reference supplies no unshown legal conditions.
++Concrete additional deployment details, data flows, transfer/storage limits,
++retention periods, consent mechanisms and actual obligations remain useful.
++An independent extra explanation is not a conflicting value in the shared text.
++
++Do not decide by which text seems more accurate, better written or preferable
++to keep. Compare the asserted contributions under this policy; do not correct
++the source or discard an assertion merely because it seems mistaken. A positive
++coverage conclusion needs an actual retained equivalent proposition or an
++applicable harmless exception, not a preference for the other document.
++
++This branch does not exempt actual named items or populated records, literal
++submission/payment/account routes, changed procedures/capabilities/conditions,
++named liability parties or substantive body versions in different languages.
++The existing mechanism-qualified form-localization branch remains separate.
++
++DERIVE THE NATIVE MAIN FIELDS FOR THIS QUALIFIED BRANCH
++Preserve truthful content profiles. The complete retained record/message is a
++verified basis after the permitted slot, framing and repetition are classified;
++it is not absent merely because the shared wording is a reusable template.
++For each own-side delta, use universal_ui_or_repetition for only qualified slots,
++framing or covered stock repetition, or semantically_covered for an equivalent
++same-language paraphrase. Do not simultaneously call that same delta uncovered.
++With both sides fully covered and no actual conflict, derive both Yes scores,
++near_surface, material_difference=none, primary_material_difference=none and
++confidence_tier=medium. If one side has a real independent extra contribution,
++classify that side as material and derive only its covering direction; do not
++give the other side an invented loss from a harmless heading or copied stock
++paragraph. Every ledger field and summary must express the same comparison.
++
++

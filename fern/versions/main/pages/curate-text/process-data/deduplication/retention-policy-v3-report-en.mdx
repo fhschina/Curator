@@ -2,7 +2,7 @@
 title: "Qwen retention calibration v3 — overnight progress"
 ---
 
-`codex/dedup-retention-policy-v3-overnight` · `candidate-02`
+`codex/dedup-retention-policy-v3-overnight` · `candidate-06-languagefirst1`
 
 ## Outcome
 
@@ -10,17 +10,17 @@ Evaluation is in progress; acceptance is not confirmed.
 
 | Requirement | Status |
 | --- | --- |
-| milestone_85_80 | FAIL |
-| target_90_85 | FAIL |
-| technical_validity | FAIL |
-| hard.original36 | PASS |
-| hard.extra6 | PASS |
-| hard.latest18 | FAIL |
-| hard.controlled26 | FAIL |
-| hard.real_consensus6 | PASS |
-| nonregression.development99_original | PASS |
-| nonregression.development99_reviewed | PASS |
-| nonregression.development97_strict | PASS |
+| milestone_85_80 | NOT_COMPLETED |
+| target_90_85 | NOT_COMPLETED |
+| technical_validity | NOT_COMPLETED |
+| hard.original36 | NOT_COMPLETED |
+| hard.extra6 | NOT_COMPLETED |
+| hard.latest18 | NOT_COMPLETED |
+| hard.controlled26 | NOT_COMPLETED |
+| hard.real_consensus6 | NOT_COMPLETED |
+| nonregression.development99_original | NOT_COMPLETED |
+| nonregression.development99_reviewed | NOT_COMPLETED |
+| nonregression.development97_strict | NOT_COMPLETED |
 | acceptance_passed | false |
 
 ## Observed development-reference agreement
@@ -37,21 +37,21 @@ The same frozen candidate must satisfy both targets. D means correct directions;
 | start-39714b47 | development99_original | 3 | 560/594 | 94.28% | 92.93% | 277/297 | 93.27% | 91.92% |
 | start-39714b47 | development99_reviewed | 3 | 566/594 | 95.29% | 93.94% | 280/297 | 94.28% | 92.93% |
 | start-39714b47 | development97_strict | 3 | 556/582 | 95.53% | 94.85% | 275/291 | 94.50% | 93.81% |
-| candidate-02 | personal120 | 3 | 588/720 | 81.67% | 80.83% | 279/360 | 77.50% | 76.67% |
-| candidate-02 | development99_original | 3 | 564/594 | 94.95% | 93.94% | 280/297 | 94.28% | 92.93% |
-| candidate-02 | development99_reviewed | 3 | 570/594 | 95.96% | 94.95% | 283/297 | 95.29% | 93.94% |
-| candidate-02 | development97_strict | 3 | 558/582 | 95.88% | 94.85% | 277/291 | 95.19% | 93.81% |
+| candidate-06-languagefirst1 | personal120 | 1 | 205/720 | 28.47% | 0.00% | 96/360 | 26.67% | 0.00% |
+| candidate-06-languagefirst1 | development99_original | 1 | 190/594 | 31.99% | 0.00% | 94/297 | 31.65% | 0.00% |
+| candidate-06-languagefirst1 | development99_reviewed | 1 | 192/594 | 32.32% | 0.00% | 95/297 | 31.99% | 0.00% |
+| candidate-06-languagefirst1 | development97_strict | 1 | 188/582 | 32.30% | 0.00% | 93/291 | 31.96% | 0.00% |
 
 | Comparator | Reference | Final D change, percentage points | Final P change, percentage points |
 | --- | --- | --- | --- |
-| baseline | personal120 | +9.5833 | +10.2778 |
-| baseline | development99_original | +1.3468 | +1.6835 |
-| baseline | development99_reviewed | +1.3468 | +1.6835 |
-| baseline | development97_strict | +1.3746 | +1.7182 |
-| start-39714b47 | personal120 | -0.6944 | -0.5556 |
-| start-39714b47 | development99_original | +0.6734 | +1.0101 |
-| start-39714b47 | development99_reviewed | +0.6734 | +1.0101 |
-| start-39714b47 | development97_strict | +0.3436 | +0.6873 |
+| baseline | personal120 | NOT_COMPLETED | NOT_COMPLETED |
+| baseline | development99_original | NOT_COMPLETED | NOT_COMPLETED |
+| baseline | development99_reviewed | NOT_COMPLETED | NOT_COMPLETED |
+| baseline | development97_strict | NOT_COMPLETED | NOT_COMPLETED |
+| start-39714b47 | personal120 | NOT_COMPLETED | NOT_COMPLETED |
+| start-39714b47 | development99_original | NOT_COMPLETED | NOT_COMPLETED |
+| start-39714b47 | development99_reviewed | NOT_COMPLETED | NOT_COMPLETED |
+| start-39714b47 | development97_strict | NOT_COMPLETED | NOT_COMPLETED |
 
 <details>
 <summary>Detailed evidence — repeats</summary>
@@ -82,18 +82,10 @@ The same frozen candidate must satisfy both targets. D means correct directions;
 | start-39714b47 | development99_original | candidate-holdout-3 | 184/198; 91/99 | 184/198; 91/99 | 184/198; 91/99 |
 | start-39714b47 | development99_reviewed | candidate-holdout-3 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
 | start-39714b47 | development97_strict | candidate-holdout-3 | 184/194; 91/97 | 184/194; 91/97 | 184/194; 91/97 |
-| candidate-02 | personal120 | candidate-diagnostic-1 | 195/240; 92/120 | 195/240; 92/120 | 195/240; 92/120 |
-| candidate-02 | personal120 | candidate-diagnostic-2 | 194/240; 92/120 | 194/240; 92/120 | 194/240; 92/120 |
-| candidate-02 | personal120 | candidate-diagnostic-3 | 198/240; 94/120 | 199/240; 95/120 | 199/240; 95/120 |
-| candidate-02 | development99_original | candidate-holdout-1 | 186/198; 92/99 | 186/198; 92/99 | 186/198; 92/99 |
-| candidate-02 | development99_reviewed | candidate-holdout-1 | 188/198; 93/99 | 188/198; 93/99 | 188/198; 93/99 |
-| candidate-02 | development97_strict | candidate-holdout-1 | 184/194; 91/97 | 184/194; 91/97 | 184/194; 91/97 |
-| candidate-02 | development99_original | candidate-holdout-2 | 187/198; 93/99 | 188/198; 94/99 | 188/198; 94/99 |
-| candidate-02 | development99_reviewed | candidate-holdout-2 | 189/198; 94/99 | 190/198; 95/99 | 190/198; 95/99 |
-| candidate-02 | development97_strict | candidate-holdout-2 | 185/194; 92/97 | 186/194; 93/97 | 186/194; 93/97 |
-| candidate-02 | development99_original | candidate-holdout-3 | 190/198; 94/99 | 190/198; 94/99 | 190/198; 94/99 |
-| candidate-02 | development99_reviewed | candidate-holdout-3 | 192/198; 95/99 | 192/198; 95/99 | 192/198; 95/99 |
-| candidate-02 | development97_strict | candidate-holdout-3 | 188/194; 93/97 | 188/194; 93/97 | 188/194; 93/97 |
+| candidate-06-languagefirst1 | personal120 | candidate-diagnostic-1 | 205/240; 95/120 | 205/240; 96/120 | 205/240; 96/120 |
+| candidate-06-languagefirst1 | development99_original | candidate-holdout-1 | 190/198; 94/99 | 190/198; 94/99 | 190/198; 94/99 |
+| candidate-06-languagefirst1 | development99_reviewed | candidate-holdout-1 | 192/198; 95/99 | 192/198; 95/99 | 192/198; 95/99 |
+| candidate-06-languagefirst1 | development97_strict | candidate-holdout-1 | 188/194; 93/97 | 188/194; 93/97 | 188/194; 93/97 |
 
 </details>
 
@@ -140,21 +132,13 @@ The grouped tables preserve each run and A/B exchange mismatches. Main errors ar
 | start-39714b47 | controlled26 | candidate-preflight-2 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R33", "D011", "D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
 | start-39714b47 | latest18 | candidate-preflight-3 | 13/18 | 12/18 | 12/18 | &#123;"main": ["R18", "R33", "T_marketing_slot"], "coverage": ["R18", "R14", "T_marketing_slot"], "final": ["R18", "R14", "T_marketing_slot"]&#125; |
 | start-39714b47 | controlled26 | candidate-preflight-3 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R18", "R33", "T_marketing_slot"], "coverage": ["R18", "R14", "T_marketing_slot"], "final": ["R18", "R14", "T_marketing_slot"]&#125; |
-| candidate-02 | extra6 | candidate-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
-| candidate-02 | extra6 | candidate-coverage-regression-2 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
-| candidate-02 | extra6 | candidate-coverage-regression-3 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
-| candidate-02 | real_consensus6 | candidate-diagnostic-1 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
-| candidate-02 | real_consensus6 | candidate-diagnostic-2 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
-| candidate-02 | real_consensus6 | candidate-diagnostic-3 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
-| candidate-02 | original36 | candidate-gate-1 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
-| candidate-02 | original36 | candidate-gate-2 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
-| candidate-02 | original36 | candidate-gate-3 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
-| candidate-02 | latest18 | candidate-preflight-1 | 17/18 | 15/18 | 15/18 | &#123;"main": ["D058"], "coverage": ["R14", "R33", "D058"], "final": ["R14", "R33", "D058"]&#125; |
-| candidate-02 | controlled26 | candidate-preflight-1 | 26/26 | 26/26 | 26/26 | &#123;"main": ["D058"], "coverage": ["R14", "R33", "D058"], "final": ["R14", "R33", "D058"]&#125; |
-| candidate-02 | latest18 | candidate-preflight-2 | 14/18 | 12/18 | 12/18 | &#123;"main": ["R33", "D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
-| candidate-02 | controlled26 | candidate-preflight-2 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R33", "D058", "T_marketing_slot"], "coverage": ["R14", "R33", "D058", "T_marketing_slot"], "final": ["R14", "R33", "D058", "T_marketing_slot"]&#125; |
-| candidate-02 | latest18 | candidate-preflight-3 | 15/18 | 14/18 | 14/18 | &#123;"main": ["R33", "T_marketing_slot"], "coverage": ["R14", "R33", "T_marketing_slot"], "final": ["R14", "R33", "T_marketing_slot"]&#125; |
-| candidate-02 | controlled26 | candidate-preflight-3 | 25/26 | 25/26 | 25/26 | &#123;"main": ["R33", "T_marketing_slot"], "coverage": ["R14", "R33", "T_marketing_slot"], "final": ["R14", "R33", "T_marketing_slot"]&#125; |
+| candidate-06-languagefirst1 | extra6 | candidate-coverage-regression-1 | 6/6 | 6/6 | 6/6 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-06-languagefirst1 | real_consensus6 | candidate-diagnostic-1 | 6/6 | 6/6 | 6/6 | &#123;&#125; |
+| candidate-06-languagefirst1 | original36 | candidate-gate-1 | 36/36 | 36/36 | 36/36 | &#123;"main": [], "coverage": [], "final": []&#125; |
+| candidate-06-languagefirst1 | latest18 | candidate-preflight-1 | 16/18 | 15/18 | 15/18 | &#123;"main": ["R18", "R33"], "coverage": ["R18", "R14", "R33"], "final": ["R18", "R14", "R33"]&#125; |
+| candidate-06-languagefirst1 | controlled26 | candidate-preflight-1 | 24/26 | 24/26 | 24/26 | &#123;"main": ["R18", "R33"], "coverage": ["R18", "R14", "R33"], "final": ["R18", "R14", "R33"]&#125; |
+| candidate-06-languagefirst1 | latest18 | candidate-preflight-2 | 18/18 | 16/18 | 16/18 | &#123;"main": ["T_marketing_slot"], "coverage": ["R14", "R33", "T_marketing_slot"], "final": ["R14", "R33", "T_marketing_slot"]&#125; |
+| candidate-06-languagefirst1 | controlled26 | candidate-preflight-2 | 25/26 | 25/26 | 25/26 | &#123;"main": ["T_marketing_slot"], "coverage": ["R14", "R33", "T_marketing_slot"], "final": ["R14", "R33", "T_marketing_slot"]&#125; |
 
 </details>
 
@@ -193,21 +177,12 @@ The grouped tables preserve each run and A/B exchange mismatches. Main errors ar
 | start-39714b47 | candidate-preflight-1 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 8/10/10 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;&#125; | &#123;"valid": 95&#125; |
 | start-39714b47 | candidate-preflight-2 | 44/0/0 | 44/0/0 | 44/0/0 | 2/0/0 | 9/10/10 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;&#125; | &#123;"valid": 96&#125; |
 | start-39714b47 | candidate-preflight-3 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 11/13/13 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;&#125; | &#123;"valid": 92&#125; |
-| candidate-02 | candidate-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
-| candidate-02 | candidate-coverage-regression-2 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
-| candidate-02 | candidate-coverage-regression-3 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
-| candidate-02 | candidate-diagnostic-1 | 141/4/5 | 141/4/5 | 141/4/5 | 3/3/3 | 38/38/38 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 3, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 3&#125; | &#123;"valid": 294&#125; |
-| candidate-02 | candidate-diagnostic-2 | 143/2/5 | 143/2/5 | 143/2/5 | 5/5/5 | 40/40/40 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 2, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1&#125; | &#123;"valid": 295&#125; |
-| candidate-02 | candidate-diagnostic-3 | 142/4/4 | 142/4/4 | 142/4/4 | 5/4/4 | 32/32/32 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;"CONCLUSIVE_INCOMPLETE_EVIDENCE": 1, "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage": 1, "CONCLUSIVE_INCOMPLETE_EVIDENCE:main": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta": 1, "MAIN_LEDGER_CONTRADICTION:yes_with_material_hard_conflict": 1&#125; | &#123;"valid": 307&#125; |
-| candidate-02 | candidate-gate-1 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
-| candidate-02 | candidate-gate-2 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
-| candidate-02 | candidate-gate-3 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
-| candidate-02 | candidate-holdout-1 | 99/1/0 | 99/1/0 | 99/1/0 | 2/1/1 | 7/7/7 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"valid": 119&#125; |
-| candidate-02 | candidate-holdout-2 | 99/1/0 | 99/1/0 | 99/1/0 | 1/0/0 | 7/7/7 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1&#125; | &#123;"valid": 118&#125; |
-| candidate-02 | candidate-holdout-3 | 100/0/0 | 100/0/0 | 100/0/0 | 0/0/0 | 6/6/6 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 118&#125; |
-| candidate-02 | candidate-preflight-1 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 2/5/5 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;&#125; | &#123;"valid": 100&#125; |
-| candidate-02 | candidate-preflight-2 | 43/1/0 | 43/1/0 | 43/1/0 | 0/0/0 | 9/12/12 | &#123;"coverage_to_final": 0, "main_to_coverage": 3&#125; | &#123;"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1&#125; | &#123;"valid": 94&#125; |
-| candidate-02 | candidate-preflight-3 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 8/9/9 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;&#125; | &#123;"valid": 95&#125; |
+| candidate-06-languagefirst1 | candidate-coverage-regression-1 | 6/0/0 | 6/0/0 | 6/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 14&#125; |
+| candidate-06-languagefirst1 | candidate-diagnostic-1 | 143/3/4 | 143/3/4 | 143/3/4 | 5/3/3 | 28/30/30 | &#123;"coverage_to_final": 0, "main_to_coverage": 5&#125; | &#123;"CONCLUSIVE_INCOMPLETE_EVIDENCE": 1, "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage": 1, "CONCLUSIVE_INCOMPLETE_EVIDENCE:main": 1, "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 2&#125; | &#123;"valid": 310&#125; |
+| candidate-06-languagefirst1 | candidate-gate-1 | 36/0/0 | 36/0/0 | 36/0/0 | 0/0/0 | 0/0/0 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;&#125; | &#123;"valid": 72&#125; |
+| candidate-06-languagefirst1 | candidate-holdout-1 | 99/1/0 | 99/1/0 | 99/1/0 | 2/2/2 | 3/3/3 | &#123;"coverage_to_final": 0, "main_to_coverage": 0&#125; | &#123;"INVALID_DECISION:coverage": 1, "INVALID_DECISION:final": 1, "INVALID_DECISION:main": 1, "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1&#125; | &#123;"valid": 122&#125; |
+| candidate-06-languagefirst1 | candidate-preflight-1 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 7/8/8 | &#123;"coverage_to_final": 0, "main_to_coverage": 1&#125; | &#123;&#125; | &#123;"valid": 97&#125; |
+| candidate-06-languagefirst1 | candidate-preflight-2 | 44/0/0 | 44/0/0 | 44/0/0 | 0/0/0 | 2/4/4 | &#123;"coverage_to_final": 0, "main_to_coverage": 2&#125; | &#123;&#125; | &#123;"valid": 101&#125; |
 
 </details>
 
@@ -216,7 +191,7 @@ The grouped tables preserve each run and A/B exchange mismatches. Main errors ar
 
 | Version | Run | Status | Expected inputs | Observed main rows | HTTP attempts |
 | --- | --- | --- | --- | --- | --- |
-| candidate-06-languagefirst1 | candidate-diagnostic-1 | running | 150 | 0 | 0 |
+| candidate-07-format2 | candidate-preflight-1 | running | 44 | 44 | 44 |
 
 </details>
 
@@ -245,12 +220,8 @@ D121 has no acceptance label. D074 retains its historical illegal state_or_versi
 | start-39714b47 | candidate-diagnostic-2 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
 | start-39714b47 | candidate-diagnostic-3 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
 | start-39714b47 | candidate-diagnostic-3 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
-| candidate-02 | candidate-diagnostic-1 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
-| candidate-02 | candidate-diagnostic-1 | D121 | yes/no → invalid/invalid | yes/no → invalid/invalid | yes/no → invalid/invalid | MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side |
-| candidate-02 | candidate-diagnostic-2 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
-| candidate-02 | candidate-diagnostic-2 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
-| candidate-02 | candidate-diagnostic-3 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
-| candidate-02 | candidate-diagnostic-3 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
+| candidate-06-languagefirst1 | candidate-diagnostic-1 | D074 | no/no → no/no | no/no → no/no | no/no → no/no |  |
+| candidate-06-languagefirst1 | candidate-diagnostic-1 | D121 | yes/yes → yes/yes | yes/yes → yes/yes | yes/yes → yes/yes |  |
 
 </details>
 
@@ -265,9 +236,7 @@ D121 has no acceptance label. D074 retains its historical illegal state_or_versi
 | start-39714b47 | candidate-diagnostic-1 | 18/0/0 | 18/0/0 | 18/0/0 |
 | start-39714b47 | candidate-diagnostic-2 | 18/0/0 | 18/0/0 | 18/0/0 |
 | start-39714b47 | candidate-diagnostic-3 | 17/1/0 | 17/1/0 | 17/1/0 |
-| candidate-02 | candidate-diagnostic-1 | 18/0/0 | 18/0/0 | 18/0/0 |
-| candidate-02 | candidate-diagnostic-2 | 17/1/0 | 17/1/0 | 17/1/0 |
-| candidate-02 | candidate-diagnostic-3 | 18/0/0 | 18/0/0 | 18/0/0 |
+| candidate-06-languagefirst1 | candidate-diagnostic-1 | 17/1/0 | 17/1/0 | 17/1/0 |
 
 </details>
 
@@ -282,9 +251,7 @@ D121 has no acceptance label. D074 retains its historical illegal state_or_versi
 | start-39714b47 | candidate-diagnostic-1 | 0/0/5 | 0/0/5 | 0/0/5 |
 | start-39714b47 | candidate-diagnostic-2 | 0/0/5 | 0/0/5 | 0/0/5 |
 | start-39714b47 | candidate-diagnostic-3 | 0/0/5 | 0/0/5 | 0/0/5 |
-| candidate-02 | candidate-diagnostic-1 | 0/0/5 | 0/0/5 | 0/0/5 |
-| candidate-02 | candidate-diagnostic-2 | 0/0/5 | 0/0/5 | 0/0/5 |
-| candidate-02 | candidate-diagnostic-3 | 0/1/4 | 0/1/4 | 0/1/4 |
+| candidate-06-languagefirst1 | candidate-diagnostic-1 | 0/1/4 | 0/1/4 | 0/1/4 |
 
 </details>
 
@@ -292,12 +259,12 @@ D121 has no acceptance label. D074 retains its historical illegal state_or_versi
 
 Each semantic proposal has its own frozen directory and predeclared verification group. Engineering changes are recorded separately. Immutable milestone and target snapshots, pointer history, failed outputs and incomplete lifecycles remain in the experiment directory. A saved metric milestone alone is not acceptance. D121 remains pending.
 
-| Pointer | Candidate | Status | Immutable snapshot |
-| --- | --- | --- | --- |
-| milestone_85_80 | — | NOT_COMPLETED | — |
-| target_90_85 | — | NOT_COMPLETED | — |
-| best_metric | candidate-02 | confirmed_three_run_mean | snapshots/1793169127558812788-best_metric-candidate-02-confirmed_three_run_mean.json |
-| best_eligible | — | NOT_COMPLETED | — |
+| Pointer | Candidate | Status | Observed D | Observed P | Observed repeats | Immutable snapshot |
+| --- | --- | --- | --- | --- | --- | --- |
+| milestone_85_80 | candidate-06-languagefirst1 | provisional_single_run | 205/240 | 96/120 | 1 | snapshots/1793170078392648690-milestone_85_80-candidate-06-languagefirst1-provisional_single_run.json |
+| target_90_85 | — | NOT_COMPLETED | — | — | 0 | — |
+| best_metric | candidate-06-languagefirst1 | provisional | 205/240 | 96/120 | 1 | snapshots/1793170078396376069-best_metric-candidate-06-languagefirst1-provisional.json |
+| best_eligible | — | NOT_COMPLETED | — | — | 0 | — |
 
 <details>
 <summary>Detailed evidence — candidates</summary>
@@ -312,8 +279,10 @@ Each semantic proposal has its own frozen directory and predeclared verification
 | candidate-04 | One functional-priority clarification on candidate03: apply the routine authentication-interface exception before testing linguistic body retention, and remove the remaining short-auth qualifiers from the system derivation, coverage example and YAML options. Actual raw failures protected a full password-link form sentence as body-language material despite the equivalent-form exception; five remaining short-auth phrasings gave an inconsistent boundary. Preserve same-language body paraphrase coverage, actual changed steps/channel/trigger/conditions/capabilities, real operational destinations, and coherent different-language substantive body prose including short factual notices. Keep candidate03 named/unnamed-provider and cross-heading stock-template rules, original evidence presentation, all fields/enums, native executor, model and window unchanged. No UI-control or output-order intervention is combined. | 0 | hard_screen_complete_unsafe_rejected | Protected submission-address and authentication-procedure changes were wrongly allowed; original-order localization also had contradictory fields. Reject without long scoring; preserve all raw failures and complete hard screen. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-04 |
 | candidate-05 | Consolidate the existing conditional policy into one authoritative priority order per native model call: actual action destinations and changed procedures/conditions remain protected before finite localization/template exceptions, and whole-document coverage precedes label or category inference. Actual candidate04 outputs explicitly let a late city exception override a real submission address, treated direct password entry as equivalent to emailed-link activation, and revised a judgment without updating its earlier ledger. Remove repeated semantic appendices from pair prompts and rubric descriptions while retaining original padded evidence, exact native JSON fences, fifteen main fields, eight/seven/four critic schemas, enums, authority, code, model and window. This is a policy-expression/precedence experiment on candidate03, not an expansion to UI selectors/facets or arbitrary identities. Earlier full rewrites had format/evidence changes and bare-JSON failures; this version preserves the native fenced contract and byte-identical packet/truncation rendering, then must pass real hard screens before long scoring. | 0 | hard_screen_complete_overblocking_rejected | Policy consolidation strongly increased required-Yes errors, including previously stable citation, category, introduction and heading cases. Zero raw wrong allows does not compensate for these required coverage failures. Reject without long scoring; preserve the failed full86screen. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-05 |
 | candidate-06 | One mechanism-qualified authentication-localization branch on the earlier safer local candidate. Require equality of actual user action, channel, trigger, sequence, capabilities and conditions, plus covered same-language remaining body; a shared activation goal is insufficient. Couple that qualified branch explicitly to the native ledger, verified complete-message basis and directional summary, preventing a late positive correction from retaining earlier material deltas. Actual changed procedures, destinations, capabilities, purposes, conditions and different-language substantive bodies remain protected. This isolates the observed full-sentence UI misclassification, stale ledger and same-goal/different-mechanism errors. It does not repeat global repeated-slot normalization: no masking or general slot rewrite, no other-family policy change, source/window/order/model/code/schema or validator change. Preserve the earlier native prompts and packet presentation outside this single branch; full rewrites and broad UI-first precedence already failed and are not reused. | 0 | hard_screen_complete_failed_auth_language_and_cookie_coherence | Mechanism-qualified authentication wording preserved every controlled operational boundary but still failed actual clause-language attribution in one order and cookie ledger coherence. The complete hard screen has84/86pairs at each layer, with one invalid pair and zero raw wrong allows. Preserve this failed version; factual assessment order is tested separately. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06 |
-| candidate-06-languagefirst1 | Engineering-only response-order intervention within the existing seven-field ledger: move the factual translation-status assessment before shared-basis and material-delta classification. Actual failed outputs label a quoted non-English privacy clause as English before generating the language field and sometimes revise later conclusions while retaining earlier classifications. All existing field contents, descriptions, enums, types, semantic policy, eight prompts, evidence/window, model, executor and validation remain identical to the parent; only the native score-list order changes. The earlier generic ledger-before-summary hypothesis was disproven because main responses already do that. This tests a different intra-ledger dependency and must verify actual emitted order and hard regressions, not assume improvement. | 0 | hard_screen_complete_language_improved_template_regressed | Actual44main responses followed the intended intra-ledger order and both reviewed authentication orders passed, but generic marketing/provider errors increased and a coverage-only cookie false veto remains. This is a factual-order result, not hard acceptance. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1 |
-| candidate-06-languagefirst1-shortview1 | Engineering-only reading-context intervention on the language-first parent. For complete records no longer than2000characters per side, reassemble the same original text above the untouched main/coverage/subject packets; longer or truncated inputs retain their original presentation. A pre-inference interval proof verified all nonwhitespace preview characters on552source sides already occur in the existing displayed packet ranges, across276presentations. No new source content, wider6000character window, IDs, semantic policy, field content/order/enums, executor, model or validation change. Earlier CORE-only emphasis failed actual addresses; this trial keeps every original padded span/ID and additionally shows whole short records, including full action addresses and body paragraphs. It tests whether fragment-local context causes whole-page language and template-identity anchoring after factual language-first ordering already corrected both localization orders but regressed some template decisions. | 0 | frozen_awaiting_all_input_budget_and_serial_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1-shortview1 |
+| candidate-06-languagefirst1 | Engineering-only response-order intervention within the existing seven-field ledger: move the factual translation-status assessment before shared-basis and material-delta classification. Actual failed outputs label a quoted non-English privacy clause as English before generating the language field and sometimes revise later conclusions while retaining earlier classifications. All existing field contents, descriptions, enums, types, semantic policy, eight prompts, evidence/window, model, executor and validation remain identical to the parent; only the native score-list order changes. The earlier generic ledger-before-summary hypothesis was disproven because main responses already do that. This tests a different intra-ledger dependency and must verify actual emitted order and hard regressions, not assume improvement. | 1 | hard_screen_complete_language_improved_template_regressed | Actual44main responses followed the intended intra-ledger order and both reviewed authentication orders passed, but generic marketing/provider errors increased and a coverage-only cookie false veto remains. This is a factual-order result, not hard acceptance. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1 |
+| candidate-06-languagefirst1-shortview1 | Engineering-only reading-context intervention on the language-first parent. For complete records no longer than2000characters per side, reassemble the same original text above the untouched main/coverage/subject packets; longer or truncated inputs retain their original presentation. A pre-inference interval proof verified all nonwhitespace preview characters on552source sides already occur in the existing displayed packet ranges, across276presentations. No new source content, wider6000character window, IDs, semantic policy, field content/order/enums, executor, model or validation change. Earlier CORE-only emphasis failed actual addresses; this trial keeps every original padded span/ID and additionally shows whole short records, including full action addresses and body paragraphs. It tests whether fragment-local context causes whole-page language and template-identity anchoring after factual language-first ordering already corrected both localization orders but regressed some template decisions. | 0 | hard_screen_complete_unsafe_operational_regression_rejected | Whole-short-record presentation did not resolve the cookie false veto and introduced actual submission-address wrong allows in main and final. The native compiler/window checks and four registered single-GPU dependency checks passed, but they do not establish policy acceptance. Reject without long scoring; preserve all evidence and use the original padded presentation for later candidates. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1-shortview1 |
+| candidate-07 | Two functional-boundary clarifications on the frozen language-first parent. Distinguish unpopulated query, facet, sort, archive and version controls from actual retained assertions; do not infer unseen results or API behavior from controls when actual displayed content remains covered. Also disambiguate named service-location wording from literal submission/payment/account routes: a city-bearing address still identifies the actual action destination and must itself be preserved. Actual populated records, failed-object/status/permission identities, API facts, conditions and substantive body languages remain protected. Raw failures explicitly treated selectors as record versions and let an ambiguous city/destination exception override acknowledged submission addresses. Preserve original padded evidence, native field order/content/enums, model, window, executor and validators; reject the unsafe short-record presentation as a parent. Separately frozen supplemental controls test these boundaries outside the original denominators. | 0 | hard_screen_complete_template_vetoes_and_native_contract_failure | Functional clarification improved several required-Yes main decisions and preserved operational endpoints, but a generic marketing order still failed and coverage falsely vetoed cookie/provider equivalence. A correct raw list-containment decision failed the existing primary-difference/confidence contract. A separately declared failed-object control also had a main wrong allow, rescued later. Preserve all failures; isolate native output-contract reinforcement before long scoring. | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-07 |
+| candidate-07-format2 | Engineering-only reinforcement of the existing native answer contract. A real failed list-containment output had correct raw replacement directions but selected a disallowed primary-difference combination and high confidence after an explicit internal enum debate. Earlier complete diagnostic output also made a conclusive judgment on an incomplete packet. Add an early evidence-status notice only for incomplete inputs and a settled cross-field contract check, without changing retention rules, evidence, fields/enums, model, window, validators or executor. Keep actual losses and direction reasoning truthful; never rewrite a direction to fit a category. All original policy boundaries and the functional-control/action-route clarification remain frozen. | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-07-format2 |
 
 </details>
 
@@ -339,8 +308,8 @@ Only actually completed checks are reported. GPU allocation includes startup and
 | deadline_utc | 2026-10-28T16:00:00Z |
 | semantic_stop_utc | 2026-10-28T14:30:00Z |
 | gpu_stop_utc | 2026-10-28T15:45:00Z |
-| wall_hours_at_render | 3.718 |
-| allocated_gpu_hours_including_idle | 3.648 |
+| wall_hours_at_render | 4.288 |
+| allocated_gpu_hours_including_idle | 4.218 |
 | GPU | 1 × NVIDIA B200; TP=1 |
 | model_revision | 017b9c7af6b5689d5dd426a76e0bc077eb5ca20a |
 | context/max_tokens/temperature/concurrency/timeout/window | 32768 / 6144 / 0.2 / 8 / 600 / 6000 |
@@ -354,4 +323,4 @@ Use the checked-in calibration entry point and the existing environment. Preserv
 
 `/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z`
 
-`/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/formal-candidate02-complete-engineering04/comparison.json`
+`/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/formal-languagefirst1-progress-0713Z-engineering04/comparison.json`

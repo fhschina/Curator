@@ -1,0 +1,31 @@
+{
+  "parent": "candidate-07",
+  "hypothesis_en": "Engineering-only reinforcement of the existing native answer contract. A real failed list-containment output had correct raw replacement directions but selected a disallowed primary-difference combination and high confidence after an explicit internal enum debate. Earlier complete diagnostic output also made a conclusive judgment on an incomplete packet. Add an early evidence-status notice only for incomplete inputs and a settled cross-field contract check, without changing retention rules, evidence, fields/enums, model, window, validators or executor. Keep actual losses and direction reasoning truthful; never rewrite a direction to fit a category. All original policy boundaries and the functional-control/action-route clarification remain frozen.",
+  "hypothesis_zh": "仅以工程方式强化既有原生回答契约。一次真实失败的列表包含输出虽然原始替换方向正确，却在明确的内部枚举争论后选择了不合法的主差异组合及高置信度。此前完整诊断还曾对不完整证据包给出确定判断。仅对不完整输入增加提前的证据状态提示，并增加定稿字段契约核对，不改变保留规则、证据、字段或枚举、模型、窗口、校验或执行器。保持实际损失及方向理由真实，绝不为迁就分类而改写方向。原有政策边界及功能控件与实际操作入口的澄清均保持冻结。",
+  "status": "hard_screen_complete_contract_corrected_template_vetoes_remain",
+  "preinference_recovery": "format1 prototype failed native compiler before freezing/inference because its inequality syntax crossed Python Formatter parsing. format2 uses the existing native not-equals expression pattern; no semantic change.",
+  "acceptance_passed": false,
+  "hard_first": {
+    "main": {
+      "correct_pairs": 85,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    },
+    "coverage": {
+      "correct_pairs": 82,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    },
+    "final": {
+      "correct_pairs": 82,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    }
+  },
+  "hard_eligible": false,
+  "reason_en": "The observed list-containment contract failure is corrected and every fixed hard input is technically valid with zero raw wrong allows. Marketing and cookie/provider false blocks remain, so the fixed hard screen still fails. The separate failed-object control retains a main wrong allow that a later critic rescues. Preserve the failed version; conditional-template proposition/field coupling is tested next, while retaining the validated native contract and original evidence.",
+  "reason_zh": "已纠正实际观察到的列表包含契约失败，全部固定硬回归输入均技术有效，原始错误允许为零。营销及cookie或服务商误阻止仍存在，固定硬回归仍失败。独立失败对象受控例在main仍有错误允许，后续critic予以纠正。保留此失败版本，接着检验有条件的模板命题与字段推导关联，同时保留已验证的原生契约及原始证据。"
+}

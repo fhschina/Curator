@@ -1,0 +1,19 @@
+{
+  "created": 1793173604.712777,
+  "phase": "PROGRESS_NOT_DELIVERY",
+  "provisional_single_milestone": {
+    "candidate": "candidate-06-languagefirst1",
+    "D": "205/240",
+    "P": "96/120",
+    "confirmation": "NOT_COMPLETED"
+  },
+  "candidate07_format2_first150": {
+    "D": "195/240",
+    "P": "92/120",
+    "all_input_valid": 140,
+    "invalid": 5,
+    "unresolved": 5
+  },
+  "acceptance_passed": false,
+  "readview2_first_hard_screen": "QUEUED"
+}

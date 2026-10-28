@@ -1,0 +1,29 @@
+{
+  "created": 1793170873.2161722,
+  "status": "PASS",
+  "fixture": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-bundle-fixture-20261028T0700Z",
+  "creation": {
+    "status": "PASS",
+    "bundle": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-bundle-fixture-20261028T0700Z/bundle",
+    "indexed_files": 4,
+    "unique_blobs": 3,
+    "logical_bytes": 1637,
+    "unique_bytes": 869,
+    "critical_frozen_manifest_references_verified": 1,
+    "model_calls": 0,
+    "archive": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-bundle-fixture-20261028T0700Z/bundle.tar.gz",
+    "archive_sha256": "aa523c653592e555d85b8677c33588a3eafc6abcc021be9b5e463c9a3e2a6b58",
+    "archive_bytes": 2237
+  },
+  "restoration": {
+    "status": "PASS",
+    "verified_unique_blobs": 3,
+    "indexed_files": 4,
+    "restored_files": 4,
+    "model_calls": 0,
+    "hardlinks_used": false
+  },
+  "binary_unicode_and_duplicate_roundtrip": true,
+  "all_files_independent_inodes": true,
+  "actual_native_replay_not_claimed_by_this_fixture": true
+}

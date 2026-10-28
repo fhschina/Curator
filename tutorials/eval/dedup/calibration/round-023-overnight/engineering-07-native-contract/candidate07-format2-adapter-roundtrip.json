@@ -1,0 +1,61 @@
+{
+  "saved": 1793171724.7685823,
+  "native_adapter_unchanged": true,
+  "actual_frozen_files_restored_to_worktree": true,
+  "changes": [
+    {
+      "file": "judge_config/system.jinja",
+      "proposal_sha256": "3158777a8b7bb7436267f7ea99b29777c8a5c3f0f96ccbac0c614db96a9599a5",
+      "actual_frozen_sha256": "3158777a8b7bb7436267f7ea99b29777c8a5c3f0f96ccbac0c614db96a9599a5",
+      "adapter_changed": false
+    },
+    {
+      "file": "judge_config/fuzzy_pair_judge.yaml",
+      "proposal_sha256": "08563f4b5c24de090c5f04ed8dde99f9ffa095a43a47f291a80f5c4fdef12418",
+      "actual_frozen_sha256": "08563f4b5c24de090c5f04ed8dde99f9ffa095a43a47f291a80f5c4fdef12418",
+      "adapter_changed": false
+    },
+    {
+      "file": "judge_config/pair.jinja",
+      "proposal_sha256": "e3666581ff61a45c77f6c7e3972486d525fac34688ae6b86bf85dc64f333ca17",
+      "actual_frozen_sha256": "62dbde52b2a8b221ae84aef79459644cfca5ba8cd10b77ec06c40940a0029132",
+      "adapter_changed": true
+    },
+    {
+      "file": "critics/coverage_system.jinja",
+      "proposal_sha256": "e1dc6f26aef61d8b64d4e28f9e42f33c4922e63ded4201fb8a69ab3b11f916c2",
+      "actual_frozen_sha256": "e1dc6f26aef61d8b64d4e28f9e42f33c4922e63ded4201fb8a69ab3b11f916c2",
+      "adapter_changed": false
+    },
+    {
+      "file": "critics/subject_verifier_pair.jinja",
+      "proposal_sha256": "79b925cc4773fc8290c203e23992dfcc5daae4c5e1f516c8a5f5b3bbc12ce430",
+      "actual_frozen_sha256": "79b925cc4773fc8290c203e23992dfcc5daae4c5e1f516c8a5f5b3bbc12ce430",
+      "adapter_changed": false
+    },
+    {
+      "file": "critics/subject_system.jinja",
+      "proposal_sha256": "3a0cb2936083488bfc8f4c2ff8666972edfc35757c1500941d53c7a04f4f948f",
+      "actual_frozen_sha256": "3a0cb2936083488bfc8f4c2ff8666972edfc35757c1500941d53c7a04f4f948f",
+      "adapter_changed": false
+    },
+    {
+      "file": "critics/coverage_pair.jinja",
+      "proposal_sha256": "37cbae746a54276c6c5bc173f9fd21526e21c2f70cb4295ccf015536d200616a",
+      "actual_frozen_sha256": "37cbae746a54276c6c5bc173f9fd21526e21c2f70cb4295ccf015536d200616a",
+      "adapter_changed": false
+    },
+    {
+      "file": "critics/subject_pair.jinja",
+      "proposal_sha256": "c5170ff15771acd106b46505c2249380434d0f1e2269adeb0c791630f6c40ee0",
+      "actual_frozen_sha256": "c5170ff15771acd106b46505c2249380434d0f1e2269adeb0c791630f6c40ee0",
+      "adapter_changed": false
+    },
+    {
+      "file": "critics/subject_verifier_system.jinja",
+      "proposal_sha256": "45229cab80004a778feabe5b107d3e2dfc52e242b0936aaa8808f8c2e6be3417",
+      "actual_frozen_sha256": "45229cab80004a778feabe5b107d3e2dfc52e242b0936aaa8808f8c2e6be3417",
+      "adapter_changed": false
+    }
+  ]
+}

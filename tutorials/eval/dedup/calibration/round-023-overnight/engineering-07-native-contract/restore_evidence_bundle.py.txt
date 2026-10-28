@@ -1,0 +1,38 @@
+"""Verify a content-addressed evidence bundle and optionally restore independent files."""
+import argparse
+import hashlib
+import json
+import shutil
+from pathlib import Path, PurePosixPath
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--bundle', type=Path, required=True)
+parser.add_argument('--destination', type=Path)
+args = parser.parse_args()
+bundle = args.bundle.resolve()
+manifest = json.loads((bundle / 'bundle-index.json').read_text())
+verified = {}
+for name, entry in manifest['files'].items():
+    relative = PurePosixPath(name)
+    assert not relative.is_absolute() and '..' not in relative.parts
+    sha = entry['sha256']
+    assert len(sha) == 64 and all(char in '0123456789abcdef' for char in sha)
+    blob = bundle / 'blobs' / sha
+    if sha not in verified:
+        with blob.open('rb') as stream:
+            actual = hashlib.file_digest(stream, 'sha256').hexdigest()
+        assert actual == sha, blob
+        verified[sha] = blob.stat().st_size
+    assert verified[sha] == entry['size'], name
+if args.destination:
+    destination = args.destination.resolve()
+    destination.mkdir(parents=True, exist_ok=False)
+    for name, entry in manifest['files'].items():
+        target = destination / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(bundle / 'blobs' / entry['sha256'], target)
+        target.chmod(entry['mode'] & 0o777)
+        assert target.stat().st_ino != (bundle / 'blobs' / entry['sha256']).stat().st_ino
+print(json.dumps({'status': 'PASS', 'verified_unique_blobs': len(verified),
+                  'indexed_files': len(manifest['files']), 'restored_files': len(manifest['files']) if args.destination else 0,
+                  'model_calls': 0, 'hardlinks_used': False}))

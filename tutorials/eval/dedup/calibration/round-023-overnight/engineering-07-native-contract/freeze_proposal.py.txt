@@ -1,0 +1,96 @@
+"""Compile, check hooks, and freeze a declared proposal through the existing native candidate entry."""
+import argparse
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--source', type=Path, required=True)
+parser.add_argument('--hypothesis', type=Path, required=True)
+parser.add_argument('--number', type=int, required=True)
+parser.add_argument('--revision')
+parser.add_argument('--prefix', required=True)
+args = parser.parse_args()
+session = Path(__file__).resolve().parent
+state = json.loads((session / 'SESSION_STATUS.json').read_text())
+assert time.time() < state['semantic_search_deadline']
+checkout = Path(state['workspace'])
+base = checkout / 'tutorials/eval/dedup'
+hypothesis = json.loads(args.hypothesis.read_text())
+parent = session / hypothesis['parent']
+frozen = json.loads((parent / 'frozen-code.json').read_text())
+for name, expected in frozen['python_files'].items():
+    assert hashlib.sha256((checkout / name).read_bytes()).hexdigest() == expected, name
+files = [path for path in args.source.rglob('*') if path.is_file()]
+assert len(files) == 9
+expected = {}
+for path in files:
+    relative = path.relative_to(args.source)
+    target = base / relative if relative.parts[0] == 'judge_config' else base / 'critics/prompts' / Path(*relative.parts[1:])
+    expected[target] = hashlib.sha256(path.read_bytes()).hexdigest()
+    shutil.copy2(path, target)
+env = {**os.environ, 'PYTHONPATH': f'{base}:{checkout}'}
+checks = [
+    ('native-tests', [sys.executable, '-m', 'pytest', '--confcutdir=tests/tutorials/eval/dedup',
+                      'tests/tutorials/eval/dedup/test_policy_tuning.py', '-k',
+                      'native_prompt_preserves or native_compiler_accepts', '-q']),
+    ('precommit', [str(Path(sys.executable).with_name('pre-commit')), 'run', '--files', *map(str, expected)]),
+]
+receipts = []
+for suffix, command in checks:
+    path = session / (args.prefix + '-' + suffix + '.log')
+    assert not path.exists()
+    started = time.time()
+    with path.open('w') as stream:
+        result = subprocess.run(command, cwd=checkout, env=env, stdout=stream, stderr=subprocess.STDOUT, check=False)
+    receipts.append({'command': command, 'started': started, 'completed': time.time(), 'returncode': result.returncode, 'log': str(path)})
+    assert result.returncode == 0, path
+assert all(hashlib.sha256(path.read_bytes()).hexdigest() == sha for path, sha in expected.items())
+command = [sys.executable, str(base / 'policy_tuning.py'), 'candidate', '--session', str(session),
+           '--number', str(args.number), '--hypothesis', hypothesis['hypothesis_en']]
+if args.revision:
+    command += ['--revision', args.revision]
+subprocess.run(command, cwd=checkout, env=env, check=True)
+name = f'candidate-{args.number:02d}' + ('-' + args.revision if args.revision else '')
+root = session / name
+adapter_changes = []
+for path in (root / 'variants/candidate').rglob('*'):
+    if not path.is_file():
+        continue
+    relative = path.relative_to(root / 'variants/candidate')
+    target = base / relative if relative.parts[0] == 'judge_config' else base / 'critics/prompts' / Path(*relative.parts[1:])
+    if target.read_bytes() != path.read_bytes():
+        adapter_changes.append(str(relative))
+        shutil.copy2(path, target)
+if adapter_changes:
+    for suffix, command in checks:
+        path = session / (args.prefix + '-post-adapter-' + suffix + '.log')
+        assert not path.exists()
+        started = time.time()
+        with path.open('w') as stream:
+            result = subprocess.run(command, cwd=checkout, env=env, stdout=stream, stderr=subprocess.STDOUT, check=False)
+        receipts.append({'command': command, 'started': started, 'completed': time.time(), 'returncode': result.returncode, 'log': str(path)})
+        assert result.returncode == 0, path
+for path in (root / 'variants/candidate').rglob('*'):
+    if path.is_file():
+        relative = path.relative_to(root / 'variants/candidate')
+        target = base / relative if relative.parts[0] == 'judge_config' else base / 'critics/prompts' / Path(*relative.parts[1:])
+        assert target.read_bytes() == path.read_bytes(), relative
+frozen.update(frozen=time.time(), git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=checkout).decode().strip(),
+              parent=hypothesis['parent'], compile_check=args.prefix + '-native-tests.log', precommit_check=args.prefix + '-precommit.log')
+frozen['nine_prompt_config_files'] = {str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
+                                    for path in (root / 'variants/candidate').rglob('*') if path.is_file()}
+(root / 'frozen-code.json').write_text(json.dumps(frozen, indent=2) + '\n')
+notes = json.loads((session / 'candidate-notes.json').read_text())
+notes[name] = {**hypothesis, 'status': 'frozen_awaiting_serial_hard_screen', 'acceptance_passed': False}
+(session / 'candidate-notes.json').write_text(json.dumps(notes, ensure_ascii=False, indent=2) + '\n')
+(session / (args.prefix + '-freeze-receipt.json')).write_text(json.dumps({'created': time.time(), 'root': str(root),
+    'status': 'PASS', 'checks': receipts, 'proposal_hashes_verified_before_native_adapter': True,
+    'existing_native_adapter_changed_files': adapter_changes, 'worktree_hashes_equal_actual_frozen_after_hooks': True,
+    'manifest_sha256': hashlib.sha256((root / 'manifest.json').read_bytes()).hexdigest(),
+    'all_fifteen_slots_declared_before_inference': True}, indent=2) + '\n')

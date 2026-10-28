@@ -1,0 +1,1967 @@
+{
+  "headline": {
+    "headers_en": [
+      "Version",
+      "Reference",
+      "Completed repeats",
+      "Final D total",
+      "D mean",
+      "D worst",
+      "Final P total",
+      "P mean",
+      "P worst"
+    ],
+    "headers_zh": [
+      "版本",
+      "参考口径",
+      "完成重复数",
+      "Final 方向合计",
+      "方向均值",
+      "方向最差",
+      "Final 整对合计",
+      "整对均值",
+      "整对最差"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "personal120",
+        "3",
+        "519/720",
+        "72.08%",
+        "70.42%",
+        "242/360",
+        "67.22%",
+        "65.83%"
+      ],
+      [
+        "baseline",
+        "development99_original",
+        "3",
+        "556/594",
+        "93.60%",
+        "92.93%",
+        "275/297",
+        "92.59%",
+        "91.92%"
+      ],
+      [
+        "baseline",
+        "development99_reviewed",
+        "3",
+        "562/594",
+        "94.61%",
+        "93.94%",
+        "278/297",
+        "93.60%",
+        "92.93%"
+      ],
+      [
+        "baseline",
+        "development97_strict",
+        "3",
+        "550/582",
+        "94.50%",
+        "93.81%",
+        "272/291",
+        "93.47%",
+        "92.78%"
+      ],
+      [
+        "start-39714b47",
+        "personal120",
+        "3",
+        "593/720",
+        "82.36%",
+        "81.67%",
+        "281/360",
+        "78.06%",
+        "77.50%"
+      ],
+      [
+        "start-39714b47",
+        "development99_original",
+        "3",
+        "560/594",
+        "94.28%",
+        "92.93%",
+        "277/297",
+        "93.27%",
+        "91.92%"
+      ],
+      [
+        "start-39714b47",
+        "development99_reviewed",
+        "3",
+        "566/594",
+        "95.29%",
+        "93.94%",
+        "280/297",
+        "94.28%",
+        "92.93%"
+      ],
+      [
+        "start-39714b47",
+        "development97_strict",
+        "3",
+        "556/582",
+        "95.53%",
+        "94.85%",
+        "275/291",
+        "94.50%",
+        "93.81%"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "personal120",
+        "1",
+        "205/720",
+        "28.47%",
+        "0.00%",
+        "96/360",
+        "26.67%",
+        "0.00%"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "development99_original",
+        "1",
+        "190/594",
+        "31.99%",
+        "0.00%",
+        "94/297",
+        "31.65%",
+        "0.00%"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "development99_reviewed",
+        "1",
+        "192/594",
+        "32.32%",
+        "0.00%",
+        "95/297",
+        "31.99%",
+        "0.00%"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "development97_strict",
+        "1",
+        "188/582",
+        "32.30%",
+        "0.00%",
+        "93/291",
+        "31.96%",
+        "0.00%"
+      ]
+    ]
+  },
+  "repeats": {
+    "headers_en": [
+      "Version",
+      "Reference",
+      "Run",
+      "Main D; P",
+      "Coverage D; P",
+      "Final D; P"
+    ],
+    "headers_zh": [
+      "版本",
+      "参考口径",
+      "运行",
+      "Main 方向；整对",
+      "Coverage 方向；整对",
+      "Final 方向；整对"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "personal120",
+        "baseline-diagnostic-1",
+        "176/240; 83/120",
+        "176/240; 82/120",
+        "176/240; 82/120"
+      ],
+      [
+        "baseline",
+        "personal120",
+        "baseline-diagnostic-2",
+        "169/240; 79/120",
+        "169/240; 79/120",
+        "169/240; 79/120"
+      ],
+      [
+        "baseline",
+        "personal120",
+        "baseline-diagnostic-3",
+        "176/240; 82/120",
+        "174/240; 81/120",
+        "174/240; 81/120"
+      ],
+      [
+        "baseline",
+        "development99_original",
+        "baseline-holdout-1",
+        "186/198; 92/99",
+        "186/198; 92/99",
+        "186/198; 92/99"
+      ],
+      [
+        "baseline",
+        "development99_reviewed",
+        "baseline-holdout-1",
+        "188/198; 93/99",
+        "188/198; 93/99",
+        "188/198; 93/99"
+      ],
+      [
+        "baseline",
+        "development97_strict",
+        "baseline-holdout-1",
+        "184/194; 91/97",
+        "184/194; 91/97",
+        "184/194; 91/97"
+      ],
+      [
+        "baseline",
+        "development99_original",
+        "baseline-holdout-2",
+        "184/198; 91/99",
+        "184/198; 91/99",
+        "184/198; 91/99"
+      ],
+      [
+        "baseline",
+        "development99_reviewed",
+        "baseline-holdout-2",
+        "186/198; 92/99",
+        "186/198; 92/99",
+        "186/198; 92/99"
+      ],
+      [
+        "baseline",
+        "development97_strict",
+        "baseline-holdout-2",
+        "182/194; 90/97",
+        "182/194; 90/97",
+        "182/194; 90/97"
+      ],
+      [
+        "baseline",
+        "development99_original",
+        "baseline-holdout-3",
+        "186/198; 92/99",
+        "186/198; 92/99",
+        "186/198; 92/99"
+      ],
+      [
+        "baseline",
+        "development99_reviewed",
+        "baseline-holdout-3",
+        "188/198; 93/99",
+        "188/198; 93/99",
+        "188/198; 93/99"
+      ],
+      [
+        "baseline",
+        "development97_strict",
+        "baseline-holdout-3",
+        "184/194; 91/97",
+        "184/194; 91/97",
+        "184/194; 91/97"
+      ],
+      [
+        "start-39714b47",
+        "personal120",
+        "candidate-diagnostic-1",
+        "198/240; 94/120",
+        "198/240; 94/120",
+        "198/240; 94/120"
+      ],
+      [
+        "start-39714b47",
+        "personal120",
+        "candidate-diagnostic-2",
+        "197/240; 93/120",
+        "196/240; 93/120",
+        "196/240; 93/120"
+      ],
+      [
+        "start-39714b47",
+        "personal120",
+        "candidate-diagnostic-3",
+        "199/240; 94/120",
+        "199/240; 94/120",
+        "199/240; 94/120"
+      ],
+      [
+        "start-39714b47",
+        "development99_original",
+        "candidate-holdout-1",
+        "190/198; 94/99",
+        "190/198; 94/99",
+        "190/198; 94/99"
+      ],
+      [
+        "start-39714b47",
+        "development99_reviewed",
+        "candidate-holdout-1",
+        "192/198; 95/99",
+        "192/198; 95/99",
+        "192/198; 95/99"
+      ],
+      [
+        "start-39714b47",
+        "development97_strict",
+        "candidate-holdout-1",
+        "188/194; 93/97",
+        "188/194; 93/97",
+        "188/194; 93/97"
+      ],
+      [
+        "start-39714b47",
+        "development99_original",
+        "candidate-holdout-2",
+        "186/198; 92/99",
+        "186/198; 92/99",
+        "186/198; 92/99"
+      ],
+      [
+        "start-39714b47",
+        "development99_reviewed",
+        "candidate-holdout-2",
+        "188/198; 93/99",
+        "188/198; 93/99",
+        "188/198; 93/99"
+      ],
+      [
+        "start-39714b47",
+        "development97_strict",
+        "candidate-holdout-2",
+        "184/194; 91/97",
+        "184/194; 91/97",
+        "184/194; 91/97"
+      ],
+      [
+        "start-39714b47",
+        "development99_original",
+        "candidate-holdout-3",
+        "184/198; 91/99",
+        "184/198; 91/99",
+        "184/198; 91/99"
+      ],
+      [
+        "start-39714b47",
+        "development99_reviewed",
+        "candidate-holdout-3",
+        "186/198; 92/99",
+        "186/198; 92/99",
+        "186/198; 92/99"
+      ],
+      [
+        "start-39714b47",
+        "development97_strict",
+        "candidate-holdout-3",
+        "184/194; 91/97",
+        "184/194; 91/97",
+        "184/194; 91/97"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "personal120",
+        "candidate-diagnostic-1",
+        "205/240; 95/120",
+        "205/240; 96/120",
+        "205/240; 96/120"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "development99_original",
+        "candidate-holdout-1",
+        "190/198; 94/99",
+        "190/198; 94/99",
+        "190/198; 94/99"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "development99_reviewed",
+        "candidate-holdout-1",
+        "192/198; 95/99",
+        "192/198; 95/99",
+        "192/198; 95/99"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "development97_strict",
+        "candidate-holdout-1",
+        "188/194; 93/97",
+        "188/194; 93/97",
+        "188/194; 93/97"
+      ]
+    ]
+  },
+  "requirements": {
+    "headers_en": [
+      "Requirement",
+      "Status"
+    ],
+    "headers_zh": [
+      "要求",
+      "状态"
+    ],
+    "rows": [
+      [
+        "milestone_85_80",
+        "NOT_COMPLETED"
+      ],
+      [
+        "target_90_85",
+        "NOT_COMPLETED"
+      ],
+      [
+        "technical_validity",
+        "NOT_COMPLETED"
+      ],
+      [
+        "hard.original36",
+        "NOT_COMPLETED"
+      ],
+      [
+        "hard.extra6",
+        "NOT_COMPLETED"
+      ],
+      [
+        "hard.latest18",
+        "NOT_COMPLETED"
+      ],
+      [
+        "hard.controlled26",
+        "NOT_COMPLETED"
+      ],
+      [
+        "hard.real_consensus6",
+        "NOT_COMPLETED"
+      ],
+      [
+        "nonregression.development99_original",
+        "NOT_COMPLETED"
+      ],
+      [
+        "nonregression.development99_reviewed",
+        "NOT_COMPLETED"
+      ],
+      [
+        "nonregression.development97_strict",
+        "NOT_COMPLETED"
+      ],
+      [
+        "acceptance_passed",
+        "false"
+      ]
+    ]
+  },
+  "hard": {
+    "headers_en": [
+      "Version",
+      "Group",
+      "Run",
+      "Main P",
+      "Coverage P",
+      "Final P",
+      "Swap mismatches"
+    ],
+    "headers_zh": [
+      "版本",
+      "组",
+      "运行",
+      "Main 整对",
+      "Coverage 整对",
+      "Final 整对",
+      "交换不一致"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "extra6",
+        "baseline-coverage-regression-1",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "baseline",
+        "extra6",
+        "baseline-coverage-regression-2",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "baseline",
+        "extra6",
+        "baseline-coverage-regression-3",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "baseline",
+        "real_consensus6",
+        "baseline-diagnostic-1",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{}"
+      ],
+      [
+        "baseline",
+        "real_consensus6",
+        "baseline-diagnostic-2",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{}"
+      ],
+      [
+        "baseline",
+        "real_consensus6",
+        "baseline-diagnostic-3",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{}"
+      ],
+      [
+        "baseline",
+        "original36",
+        "baseline-gate-1",
+        "36/36",
+        "36/36",
+        "36/36",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "baseline",
+        "original36",
+        "baseline-gate-2",
+        "36/36",
+        "36/36",
+        "36/36",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "baseline",
+        "original36",
+        "baseline-gate-3",
+        "36/36",
+        "36/36",
+        "36/36",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "baseline",
+        "latest18",
+        "baseline-preflight-1",
+        "7/18",
+        "6/18",
+        "6/18",
+        "{\"main\": [\"D135\", \"T_citation_slot\", \"T_marketing_slot\"], \"coverage\": [\"D135\", \"T_citation_slot\", \"T_marketing_slot\", \"T_cookie_intro\"], \"final\": [\"D135\", \"T_citation_slot\", \"T_marketing_slot\", \"T_cookie_intro\"]}"
+      ],
+      [
+        "baseline",
+        "controlled26",
+        "baseline-preflight-1",
+        "16/26",
+        "16/26",
+        "16/26",
+        "{\"main\": [\"D135\", \"T_citation_slot\", \"T_marketing_slot\"], \"coverage\": [\"D135\", \"T_citation_slot\", \"T_marketing_slot\", \"T_cookie_intro\"], \"final\": [\"D135\", \"T_citation_slot\", \"T_marketing_slot\", \"T_cookie_intro\"]}"
+      ],
+      [
+        "baseline",
+        "latest18",
+        "baseline-preflight-2",
+        "4/18",
+        "4/18",
+        "4/18",
+        "{\"main\": [\"R11\", \"R33\", \"T_localized_auth\"], \"coverage\": [\"R11\", \"R33\", \"T_localized_auth\", \"T_cookie_name\"], \"final\": [\"R11\", \"R33\", \"T_localized_auth\", \"T_cookie_name\"]}"
+      ],
+      [
+        "baseline",
+        "controlled26",
+        "baseline-preflight-2",
+        "19/26",
+        "19/26",
+        "19/26",
+        "{\"main\": [\"R11\", \"R33\", \"T_localized_auth\"], \"coverage\": [\"R11\", \"R33\", \"T_localized_auth\", \"T_cookie_name\"], \"final\": [\"R11\", \"R33\", \"T_localized_auth\", \"T_cookie_name\"]}"
+      ],
+      [
+        "baseline",
+        "latest18",
+        "baseline-preflight-3",
+        "6/18",
+        "5/18",
+        "5/18",
+        "{\"main\": [\"R18\", \"D058\"], \"coverage\": [\"R18\", \"R14\", \"D058\", \"T_cookie_intro\"], \"final\": [\"R18\", \"R14\", \"D058\", \"T_cookie_intro\"]}"
+      ],
+      [
+        "baseline",
+        "controlled26",
+        "baseline-preflight-3",
+        "18/26",
+        "18/26",
+        "18/26",
+        "{\"main\": [\"R18\", \"D058\"], \"coverage\": [\"R18\", \"R14\", \"D058\", \"T_cookie_intro\"], \"final\": [\"R18\", \"R14\", \"D058\", \"T_cookie_intro\"]}"
+      ],
+      [
+        "start-39714b47",
+        "extra6",
+        "candidate-coverage-regression-1",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "start-39714b47",
+        "extra6",
+        "candidate-coverage-regression-2",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "start-39714b47",
+        "extra6",
+        "candidate-coverage-regression-3",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "start-39714b47",
+        "real_consensus6",
+        "candidate-diagnostic-1",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{}"
+      ],
+      [
+        "start-39714b47",
+        "real_consensus6",
+        "candidate-diagnostic-2",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{}"
+      ],
+      [
+        "start-39714b47",
+        "real_consensus6",
+        "candidate-diagnostic-3",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{}"
+      ],
+      [
+        "start-39714b47",
+        "original36",
+        "candidate-gate-1",
+        "36/36",
+        "36/36",
+        "36/36",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "start-39714b47",
+        "original36",
+        "candidate-gate-2",
+        "36/36",
+        "36/36",
+        "36/36",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "start-39714b47",
+        "original36",
+        "candidate-gate-3",
+        "36/36",
+        "36/36",
+        "36/36",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "start-39714b47",
+        "latest18",
+        "candidate-preflight-1",
+        "16/18",
+        "14/18",
+        "14/18",
+        "{\"main\": [], \"coverage\": [\"R14\", \"R33\"], \"final\": [\"R14\", \"R33\"]}"
+      ],
+      [
+        "start-39714b47",
+        "controlled26",
+        "candidate-preflight-1",
+        "24/26",
+        "24/26",
+        "24/26",
+        "{\"main\": [], \"coverage\": [\"R14\", \"R33\"], \"final\": [\"R14\", \"R33\"]}"
+      ],
+      [
+        "start-39714b47",
+        "latest18",
+        "candidate-preflight-2",
+        "13/18",
+        "13/18",
+        "13/18",
+        "{\"main\": [\"R33\", \"D011\", \"D058\", \"T_marketing_slot\"], \"coverage\": [\"R14\", \"R33\", \"D058\", \"T_marketing_slot\"], \"final\": [\"R14\", \"R33\", \"D058\", \"T_marketing_slot\"]}"
+      ],
+      [
+        "start-39714b47",
+        "controlled26",
+        "candidate-preflight-2",
+        "25/26",
+        "25/26",
+        "25/26",
+        "{\"main\": [\"R33\", \"D011\", \"D058\", \"T_marketing_slot\"], \"coverage\": [\"R14\", \"R33\", \"D058\", \"T_marketing_slot\"], \"final\": [\"R14\", \"R33\", \"D058\", \"T_marketing_slot\"]}"
+      ],
+      [
+        "start-39714b47",
+        "latest18",
+        "candidate-preflight-3",
+        "13/18",
+        "12/18",
+        "12/18",
+        "{\"main\": [\"R18\", \"R33\", \"T_marketing_slot\"], \"coverage\": [\"R18\", \"R14\", \"T_marketing_slot\"], \"final\": [\"R18\", \"R14\", \"T_marketing_slot\"]}"
+      ],
+      [
+        "start-39714b47",
+        "controlled26",
+        "candidate-preflight-3",
+        "25/26",
+        "25/26",
+        "25/26",
+        "{\"main\": [\"R18\", \"R33\", \"T_marketing_slot\"], \"coverage\": [\"R18\", \"R14\", \"T_marketing_slot\"], \"final\": [\"R18\", \"R14\", \"T_marketing_slot\"]}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "extra6",
+        "candidate-coverage-regression-1",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "real_consensus6",
+        "candidate-diagnostic-1",
+        "6/6",
+        "6/6",
+        "6/6",
+        "{}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "original36",
+        "candidate-gate-1",
+        "36/36",
+        "36/36",
+        "36/36",
+        "{\"main\": [], \"coverage\": [], \"final\": []}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "latest18",
+        "candidate-preflight-1",
+        "16/18",
+        "15/18",
+        "15/18",
+        "{\"main\": [\"R18\", \"R33\"], \"coverage\": [\"R18\", \"R14\", \"R33\"], \"final\": [\"R18\", \"R14\", \"R33\"]}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "controlled26",
+        "candidate-preflight-1",
+        "24/26",
+        "24/26",
+        "24/26",
+        "{\"main\": [\"R18\", \"R33\"], \"coverage\": [\"R18\", \"R14\", \"R33\"], \"final\": [\"R18\", \"R14\", \"R33\"]}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "latest18",
+        "candidate-preflight-2",
+        "18/18",
+        "16/18",
+        "16/18",
+        "{\"main\": [\"T_marketing_slot\"], \"coverage\": [\"R14\", \"R33\", \"T_marketing_slot\"], \"final\": [\"R14\", \"R33\", \"T_marketing_slot\"]}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "controlled26",
+        "candidate-preflight-2",
+        "25/26",
+        "25/26",
+        "25/26",
+        "{\"main\": [\"T_marketing_slot\"], \"coverage\": [\"R14\", \"R33\", \"T_marketing_slot\"], \"final\": [\"R14\", \"R33\", \"T_marketing_slot\"]}"
+      ]
+    ]
+  },
+  "technical": {
+    "headers_en": [
+      "Version",
+      "Run",
+      "Main V/I/U",
+      "Coverage V/I/U",
+      "Final V/I/U",
+      "Wrong allows M/C/F",
+      "Wrong blocks M/C/F",
+      "Layer changes",
+      "Failures",
+      "HTTP attempt status"
+    ],
+    "headers_zh": [
+      "版本",
+      "运行",
+      "Main 有效/无效/待定",
+      "Coverage 有效/无效/待定",
+      "Final 有效/无效/待定",
+      "错误允许 M/C/F",
+      "错误阻止 M/C/F",
+      "层间变化",
+      "失败",
+      "HTTP 尝试状态"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "baseline-coverage-regression-1",
+        "6/0/0",
+        "6/0/0",
+        "6/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 14}"
+      ],
+      [
+        "baseline",
+        "baseline-coverage-regression-2",
+        "6/0/0",
+        "6/0/0",
+        "6/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 14}"
+      ],
+      [
+        "baseline",
+        "baseline-coverage-regression-3",
+        "6/0/0",
+        "6/0/0",
+        "6/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 14}"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-1",
+        "141/4/5",
+        "141/4/5",
+        "141/4/5",
+        "5/3/3",
+        "55/59/59",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 8}",
+        "{\"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side\": 2, \"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta\": 1, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side\": 2, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta\": 1}",
+        "{\"valid\": 281}"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-2",
+        "138/7/5",
+        "138/7/5",
+        "138/7/5",
+        "3/3/3",
+        "64/64/64",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 1}",
+        "{\"INVALID_DECISION:coverage\": 1, \"INVALID_DECISION:final\": 1, \"INVALID_DECISION:main\": 1, \"MAIN_ATTEMPT_PARSE_ERROR\": 2, \"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side\": 3, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side\": 4}",
+        "{\"parse_error\": 2, \"valid\": 271}"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-3",
+        "139/6/5",
+        "139/6/5",
+        "139/6/5",
+        "4/4/4",
+        "57/59/59",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 2}",
+        "{\"MAIN_ATTEMPT_PARSE_ERROR\": 2, \"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side\": 2, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side\": 2}",
+        "{\"parse_error\": 3, \"valid\": 276}"
+      ],
+      [
+        "baseline",
+        "baseline-gate-1",
+        "36/0/0",
+        "36/0/0",
+        "36/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 72}"
+      ],
+      [
+        "baseline",
+        "baseline-gate-2",
+        "36/0/0",
+        "36/0/0",
+        "36/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 72}"
+      ],
+      [
+        "baseline",
+        "baseline-gate-3",
+        "36/0/0",
+        "36/0/0",
+        "36/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 72}"
+      ],
+      [
+        "baseline",
+        "baseline-holdout-1",
+        "99/1/0",
+        "99/1/0",
+        "99/1/0",
+        "0/0/0",
+        "8/8/8",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{\"MAIN_ATTEMPT_PARSE_ERROR\": 1}",
+        "{\"parse_error\": 1, \"valid\": 117}"
+      ],
+      [
+        "baseline",
+        "baseline-holdout-2",
+        "98/2/0",
+        "98/2/0",
+        "98/2/0",
+        "1/1/1",
+        "8/8/8",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{\"INVALID_DECISION:coverage\": 1, \"INVALID_DECISION:final\": 1, \"INVALID_DECISION:main\": 1, \"MAIN_ATTEMPT_PARSE_ERROR\": 1, \"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis\": 1}",
+        "{\"parse_error\": 1, \"valid\": 117}"
+      ],
+      [
+        "baseline",
+        "baseline-holdout-3",
+        "99/1/0",
+        "99/1/0",
+        "99/1/0",
+        "1/1/1",
+        "8/8/8",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{\"INVALID_DECISION:coverage\": 1, \"INVALID_DECISION:final\": 1, \"INVALID_DECISION:main\": 1, \"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis\": 1}",
+        "{\"valid\": 117}"
+      ],
+      [
+        "baseline",
+        "baseline-preflight-1",
+        "40/4/0",
+        "40/4/0",
+        "40/4/0",
+        "8/8/8",
+        "27/30/30",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 3}",
+        "{\"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side\": 2, \"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta\": 1, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side\": 2, \"MAIN_LEDGER_CONTRADICTION:yes_with_material_hard_conflict\": 1}",
+        "{\"valid\": 87}"
+      ],
+      [
+        "baseline",
+        "baseline-preflight-2",
+        "44/0/0",
+        "44/0/0",
+        "44/0/0",
+        "8/8/8",
+        "30/31/31",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 1}",
+        "{}",
+        "{\"valid\": 82}"
+      ],
+      [
+        "baseline",
+        "baseline-preflight-3",
+        "42/2/0",
+        "42/2/0",
+        "42/2/0",
+        "8/8/8",
+        "26/28/28",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 2}",
+        "{\"INVALID_DECISION:coverage\": 1, \"INVALID_DECISION:final\": 1, \"INVALID_DECISION:main\": 1, \"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side\": 1, \"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta\": 1, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side\": 1, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta\": 1}",
+        "{\"valid\": 88}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-coverage-regression-1",
+        "6/0/0",
+        "6/0/0",
+        "6/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 14}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-coverage-regression-2",
+        "6/0/0",
+        "6/0/0",
+        "6/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 14}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-coverage-regression-3",
+        "6/0/0",
+        "6/0/0",
+        "6/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 14}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-1",
+        "143/2/5",
+        "143/2/5",
+        "143/2/5",
+        "6/4/4",
+        "33/35/35",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 6}",
+        "{\"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side\": 1, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side\": 1}",
+        "{\"valid\": 305}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-2",
+        "144/1/5",
+        "144/1/5",
+        "144/1/5",
+        "4/3/3",
+        "37/39/39",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 4}",
+        "{\"MAIN_ATTEMPT_PARSE_ERROR\": 1}",
+        "{\"parse_error\": 1, \"valid\": 297}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-3",
+        "144/1/5",
+        "144/1/5",
+        "144/1/5",
+        "7/7/7",
+        "34/34/34",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 2}",
+        "{\"MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side\": 1}",
+        "{\"valid\": 305}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-gate-1",
+        "36/0/0",
+        "36/0/0",
+        "36/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 72}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-gate-2",
+        "36/0/0",
+        "36/0/0",
+        "36/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 72}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-gate-3",
+        "36/0/0",
+        "36/0/0",
+        "36/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 72}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-holdout-1",
+        "100/0/0",
+        "100/0/0",
+        "100/0/0",
+        "1/1/1",
+        "5/5/5",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 120}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-holdout-2",
+        "99/1/0",
+        "99/1/0",
+        "99/1/0",
+        "2/1/1",
+        "7/7/7",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 1}",
+        "{\"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis\": 1}",
+        "{\"valid\": 119}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-holdout-3",
+        "98/2/0",
+        "98/2/0",
+        "98/2/0",
+        "1/1/1",
+        "7/7/7",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{\"INVALID_DECISION:coverage\": 1, \"INVALID_DECISION:final\": 1, \"INVALID_DECISION:main\": 1, \"MAIN_ATTEMPT_PARSE_ERROR\": 1, \"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis\": 1}",
+        "{\"parse_error\": 1, \"valid\": 118}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-preflight-1",
+        "44/0/0",
+        "44/0/0",
+        "44/0/0",
+        "0/0/0",
+        "8/10/10",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 2}",
+        "{}",
+        "{\"valid\": 95}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-preflight-2",
+        "44/0/0",
+        "44/0/0",
+        "44/0/0",
+        "2/0/0",
+        "9/10/10",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 3}",
+        "{}",
+        "{\"valid\": 96}"
+      ],
+      [
+        "start-39714b47",
+        "candidate-preflight-3",
+        "44/0/0",
+        "44/0/0",
+        "44/0/0",
+        "0/0/0",
+        "11/13/13",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 2}",
+        "{}",
+        "{\"valid\": 92}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-coverage-regression-1",
+        "6/0/0",
+        "6/0/0",
+        "6/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 14}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-diagnostic-1",
+        "143/3/4",
+        "143/3/4",
+        "143/3/4",
+        "5/3/3",
+        "28/30/30",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 5}",
+        "{\"CONCLUSIVE_INCOMPLETE_EVIDENCE\": 1, \"CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage\": 1, \"CONCLUSIVE_INCOMPLETE_EVIDENCE:main\": 1, \"MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side\": 2}",
+        "{\"valid\": 310}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-gate-1",
+        "36/0/0",
+        "36/0/0",
+        "36/0/0",
+        "0/0/0",
+        "0/0/0",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{}",
+        "{\"valid\": 72}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-holdout-1",
+        "99/1/0",
+        "99/1/0",
+        "99/1/0",
+        "2/2/2",
+        "3/3/3",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 0}",
+        "{\"INVALID_DECISION:coverage\": 1, \"INVALID_DECISION:final\": 1, \"INVALID_DECISION:main\": 1, \"MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis\": 1}",
+        "{\"valid\": 122}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-preflight-1",
+        "44/0/0",
+        "44/0/0",
+        "44/0/0",
+        "0/0/0",
+        "7/8/8",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 1}",
+        "{}",
+        "{\"valid\": 97}"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-preflight-2",
+        "44/0/0",
+        "44/0/0",
+        "44/0/0",
+        "0/0/0",
+        "2/4/4",
+        "{\"coverage_to_final\": 0, \"main_to_coverage\": 2}",
+        "{}",
+        "{\"valid\": 101}"
+      ]
+    ]
+  },
+  "observations": {
+    "headers_en": [
+      "Version",
+      "Run",
+      "Case",
+      "Main raw → validated",
+      "Coverage raw → validated",
+      "Final raw → validated",
+      "Issues"
+    ],
+    "headers_zh": [
+      "版本",
+      "运行",
+      "案例",
+      "Main 原始 → 经验证",
+      "Coverage 原始 → 经验证",
+      "Final 原始 → 经验证",
+      "问题"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "baseline-diagnostic-1",
+        "D074",
+        "no/no → no/no",
+        "no/no → no/no",
+        "no/no → no/no",
+        ""
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-1",
+        "D121",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        ""
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-2",
+        "D074",
+        "no/no → no/no",
+        "no/no → no/no",
+        "no/no → no/no",
+        ""
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-2",
+        "D121",
+        "yes/no → invalid/invalid",
+        "yes/no → invalid/invalid",
+        "yes/no → invalid/invalid",
+        "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-3",
+        "D074",
+        "no/no → invalid/invalid",
+        "no/no → invalid/invalid",
+        "no/no → invalid/invalid",
+        "MAIN_ATTEMPT_PARSE_ERROR"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-3",
+        "D121",
+        "yes/no → invalid/invalid",
+        "yes/no → invalid/invalid",
+        "yes/no → invalid/invalid",
+        "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-1",
+        "D074",
+        "no/no → no/no",
+        "no/no → no/no",
+        "no/no → no/no",
+        ""
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-1",
+        "D121",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        ""
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-2",
+        "D074",
+        "no/no → no/no",
+        "no/no → no/no",
+        "no/no → no/no",
+        ""
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-2",
+        "D121",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        ""
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-3",
+        "D074",
+        "no/no → no/no",
+        "no/no → no/no",
+        "no/no → no/no",
+        ""
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-3",
+        "D121",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        ""
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-diagnostic-1",
+        "D074",
+        "no/no → no/no",
+        "no/no → no/no",
+        "no/no → no/no",
+        ""
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-diagnostic-1",
+        "D121",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        "yes/yes → yes/yes",
+        ""
+      ]
+    ]
+  },
+  "discussion": {
+    "headers_en": [
+      "Version",
+      "Run",
+      "Main V/I/U",
+      "Coverage V/I/U",
+      "Final V/I/U"
+    ],
+    "headers_zh": [
+      "版本",
+      "运行",
+      "Main 有效/无效/待定",
+      "Coverage 有效/无效/待定",
+      "Final 有效/无效/待定"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "baseline-diagnostic-1",
+        "18/0/0",
+        "18/0/0",
+        "18/0/0"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-2",
+        "17/1/0",
+        "17/1/0",
+        "17/1/0"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-3",
+        "17/1/0",
+        "17/1/0",
+        "17/1/0"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-1",
+        "18/0/0",
+        "18/0/0",
+        "18/0/0"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-2",
+        "18/0/0",
+        "18/0/0",
+        "18/0/0"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-3",
+        "17/1/0",
+        "17/1/0",
+        "17/1/0"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-diagnostic-1",
+        "17/1/0",
+        "17/1/0",
+        "17/1/0"
+      ]
+    ]
+  },
+  "truncated": {
+    "headers_en": [
+      "Version",
+      "Run",
+      "Main V/I/U",
+      "Coverage V/I/U",
+      "Final V/I/U"
+    ],
+    "headers_zh": [
+      "版本",
+      "运行",
+      "Main 有效/无效/待定",
+      "Coverage 有效/无效/待定",
+      "Final 有效/无效/待定"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "baseline-diagnostic-1",
+        "0/0/5",
+        "0/0/5",
+        "0/0/5"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-2",
+        "0/0/5",
+        "0/0/5",
+        "0/0/5"
+      ],
+      [
+        "baseline",
+        "baseline-diagnostic-3",
+        "0/0/5",
+        "0/0/5",
+        "0/0/5"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-1",
+        "0/0/5",
+        "0/0/5",
+        "0/0/5"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-2",
+        "0/0/5",
+        "0/0/5",
+        "0/0/5"
+      ],
+      [
+        "start-39714b47",
+        "candidate-diagnostic-3",
+        "0/0/5",
+        "0/0/5",
+        "0/0/5"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        "candidate-diagnostic-1",
+        "0/1/4",
+        "0/1/4",
+        "0/1/4"
+      ]
+    ]
+  },
+  "deltas": {
+    "headers_en": [
+      "Comparator",
+      "Reference",
+      "Final D change, percentage points",
+      "Final P change, percentage points"
+    ],
+    "headers_zh": [
+      "对照",
+      "参考口径",
+      "Final 方向变化，百分点",
+      "Final 整对变化，百分点"
+    ],
+    "rows": [
+      [
+        "baseline",
+        "personal120",
+        "NOT_COMPLETED",
+        "NOT_COMPLETED"
+      ],
+      [
+        "baseline",
+        "development99_original",
+        "NOT_COMPLETED",
+        "NOT_COMPLETED"
+      ],
+      [
+        "baseline",
+        "development99_reviewed",
+        "NOT_COMPLETED",
+        "NOT_COMPLETED"
+      ],
+      [
+        "baseline",
+        "development97_strict",
+        "NOT_COMPLETED",
+        "NOT_COMPLETED"
+      ],
+      [
+        "start-39714b47",
+        "personal120",
+        "NOT_COMPLETED",
+        "NOT_COMPLETED"
+      ],
+      [
+        "start-39714b47",
+        "development99_original",
+        "NOT_COMPLETED",
+        "NOT_COMPLETED"
+      ],
+      [
+        "start-39714b47",
+        "development99_reviewed",
+        "NOT_COMPLETED",
+        "NOT_COMPLETED"
+      ],
+      [
+        "start-39714b47",
+        "development97_strict",
+        "NOT_COMPLETED",
+        "NOT_COMPLETED"
+      ]
+    ]
+  },
+  "lifecycles": {
+    "headers_en": [
+      "Version",
+      "Run",
+      "Status",
+      "Expected inputs",
+      "Observed main rows",
+      "HTTP attempts"
+    ],
+    "headers_zh": [
+      "版本",
+      "运行",
+      "状态",
+      "预期输入",
+      "实际 main 行数",
+      "HTTP 尝试"
+    ],
+    "rows": [
+      [
+        "candidate-07-format2",
+        "candidate-preflight-1",
+        "running",
+        44,
+        44,
+        44
+      ]
+    ]
+  },
+  "snapshots": {
+    "headers_en": [
+      "Pointer",
+      "Candidate",
+      "Status",
+      "Observed D",
+      "Observed P",
+      "Observed repeats",
+      "Immutable snapshot"
+    ],
+    "headers_zh": [
+      "指针",
+      "候选",
+      "状态",
+      "已观察方向",
+      "已观察整对",
+      "已观察重复数",
+      "不可变快照"
+    ],
+    "rows": [
+      [
+        "milestone_85_80",
+        "candidate-06-languagefirst1",
+        "provisional_single_run",
+        "205/240",
+        "96/120",
+        "1",
+        "snapshots/1793170078392648690-milestone_85_80-candidate-06-languagefirst1-provisional_single_run.json"
+      ],
+      [
+        "target_90_85",
+        "—",
+        "NOT_COMPLETED",
+        "—",
+        "—",
+        "0",
+        "—"
+      ],
+      [
+        "best_metric",
+        "candidate-06-languagefirst1",
+        "provisional",
+        "205/240",
+        "96/120",
+        "1",
+        "snapshots/1793170078396376069-best_metric-candidate-06-languagefirst1-provisional.json"
+      ],
+      [
+        "best_eligible",
+        "—",
+        "NOT_COMPLETED",
+        "—",
+        "—",
+        "0",
+        "—"
+      ]
+    ]
+  },
+  "candidates": {
+    "headers_en": [
+      "Candidate",
+      "Hypothesis",
+      "Completed personal repeats",
+      "State",
+      "Selection reason",
+      "Evidence root"
+    ],
+    "headers_zh": [
+      "候选",
+      "假设",
+      "完成的个人参考重复数",
+      "状态",
+      "选择理由",
+      "证据目录"
+    ],
+    "rows": [
+      [
+        "candidate-01",
+        {
+          "en": "One isolated rule-expression refinement: apply the already approved conditional template exceptions consistently inside every material delta/conflict/identity option in the main YAML rubric. Preserve the delivered candidate02 system/pair/critic prompts, structured fields and enums, source presentation and operational-destination protections. This isolates rubric-option shadowing from prior full-prompt/window rewrites that improved some slots but introduced format and operational regressions. Expect improved generic marketing/category/provider classification; localization and critic-only false vetoes remain separate diagnostics.",
+          "zh": "仅隔离一项规则表达修订：在主 YAML rubric 的所有实质 delta、冲突和身份选项中一致应用已经允许的有条件模板例外。保留已交付 candidate02 的 system、pair 和 critic 提示词、结构化字段及枚举、证据呈现和操作入口保护。该实验隔离分类选项遮蔽问题，区别于上一轮同时改变完整提示词及窗口呈现、虽改善部分槽位却带来格式和操作回归的尝试。预期改善通用营销类别和服务商分类；本地化及仅由 critic 引起的误否决继续作为独立诊断。"
+        },
+        "0",
+        "screen_complete_hard_failed",
+        {
+          "en": "No raw wrong allows or technical failures in the first86hard presentations; confirmed required-Yes errors remain. Keep evidence and refine the observed localization cause before long development scoring.",
+          "zh": "首轮86个硬性呈现样本中无原始错误允许或技术失败，仍存在已确认必须为Yes的错误。保留证据，并在进行长开发评分前修正已观察到的本地化原因。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-01"
+      ],
+      [
+        "candidate-02",
+        {
+          "en": "One functional-localization refinement on candidate01: classify the actual changed clause language and function before protecting body-language material. Equivalent routine password-link form instructions plus same-language privacy paraphrases remain harmless; changed actual steps, account capabilities, privacy conditions and substantive body languages remain protected. Reuse the previously effective functional-role principle in isolation, with a new clause-language check justified by this round raw Vietnamese text being called English; retain the stable operation rules, packet rendering and native output contract rather than repeating the earlier combined window/full-prompt rewrite.",
+          "zh": "在candidate01基础上仅修订一项功能本地化规则：先判断实际变化句子的语言和功能，再判断正文语言贡献。等价的常规密码链接表单指引以及同语言隐私段落改写可忽略；实际步骤、账户能力、隐私条件和实质正文语言变化继续保留。独立复用上一轮曾有效的功能角色原则，并依据本轮将越南语原文误称为英语的输出补充句子语言核查；保留稳定的操作规则、证据包呈现和原生输出约束，避免重复此前同时修改窗口及完整提示词的尝试。"
+        },
+        "3",
+        "first_full150_complete_hard_failed",
+        {
+          "en": "",
+          "zh": ""
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02"
+      ],
+      [
+        "candidate-02-core1",
+        {
+          "en": "Engineering-only prompt presentation revision of candidate02: show the existing exact unique CORE separately from its unchanged padded reading context in the main pair template. No semantic retention rule, raw source text,6000character window,model,parameters,fields,enums,validation or executor change. This isolates the remaining clause-language attribution failure after functional-role clarification; earlier round022candidate03 combined CORE,full contiguous windows and semantic priorities. Complete address assertions remain visible in unchanged context; actual endpoint/body-language regressions remain mandatory. Baseline and starting original prompts, immutable inputs and execution settings remain fixed; the sole intended experimental difference is the candidate pair presentation.",
+          "zh": "candidate02的纯工程提示词呈现修订：在主pair模板中分别展示既有精确差异CORE及未改变的填充阅读上下文。不改变语义保留规则、原文、6000字符窗口、模型、参数、字段、枚举、校验或执行器。该修订独立检查功能角色澄清后仍存在的句子语言归属错误；此前round022candidate03同时改变了CORE、完整连续窗口及语义优先级。完整操作地址仍在未改变的上下文中可见，实际入口和正文语言回归仍须通过。固定基线及起点提示词、不可变输入和执行设置保持冻结；唯一有意改变的实验因素为候选pair呈现。"
+        },
+        "0",
+        "REJECTED_BEFORE_INFERENCE_test_marker_compatibility",
+        {
+          "en": "",
+          "zh": ""
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02-core1"
+      ],
+      [
+        "candidate-02-core2",
+        {
+          "en": "Engineering presentation revision of candidate02: separately expose each existing exact unique CORE from its unchanged padded reading context in the main pair template, preserving native marker syntax. Isolate observed clause-language attribution errors without changing retention rules, raw sources,6000character windows,model,parameters,fields,enums,validation or native executor. Preserve complete operational addresses in context and protect actual endpoint and substantive body-language boundaries. Core1 failed marker compatibility before inference; core2 fixes only that marker separator and passes native template/window tests plus3302CORE excerpt equivalence checks. Baseline and start original prompts remain frozen; presentation is the sole intended candidate intervention.",
+          "zh": "candidate02的工程呈现修订：在主pair模板中分别展示既有精确差异CORE和未改变的填充阅读上下文，并保留原生标记语法。独立检查已观察到的句子语言归属错误，不改变保留规则、原文、6000字符窗口、模型、参数、字段、枚举、校验或原生执行器。上下文继续呈现完整操作地址，并保护实际入口与实质正文语言边界。core1在推理前未通过标记兼容性检查；core2仅修正该标记分隔，已通过原生模板及窗口测试和3302个CORE摘录一致性检查。固定基线及起点提示词保持冻结；呈现方式是唯一有意改变的候选因素。"
+        },
+        "0",
+        "hard_failed_main_actual_destination_wrong_allow",
+        {
+          "en": "Isolated CORE presentation failed the latest-user screen: main wrongly allowed an actual submission-address change; a later coverage veto cannot repair the main gate. Localization and stock-template errors also remain. Reject without full150/100 scoring.",
+          "zh": "独立CORE呈现未通过最新复核组：main错误允许实际投稿地址变化；后续coverage否决不能修复main硬性条件。本地化及通用模板错误仍存在。不进行完整150/100评分即淘汰。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-02-core2"
+      ],
+      [
+        "candidate-03",
+        {
+          "en": "Two boundary clarifications on candidate02, restoring its original evidence presentation after isolated CORE rendering wrongly allowed an actual submission destination and did not resolve localization: (1) same-language body paraphrases are covered, and a localized authentication UI sentence cannot turn neighboring body clauses into different body languages; meaningful substantive body translations remain protected. (2) the approved generic-template exception includes named versus unnamed provider slots in the same short cookie notice, and stock paragraphs already covered elsewhere do not acquire a new category-specific rule from a standard heading alone. Preserve real action destinations, named liability parties, new purposes/conditions and concrete deployment details. No UI-control refinement, output-format change, executor, schema, window or model change is combined into this semantic candidate.",
+          "zh": "在candidate02基础上澄清两项边界，并恢复其原有证据呈现；独立CORE呈现曾错误允许实际投稿入口且未解决本地化问题：（1）同语言正文改写已被覆盖，本地化认证界面句子不能把邻近正文变成不同正文语言；有实质贡献的不同语言正文继续保护。（2）既有通用模板例外包括同一简短cookie通知中服务商有名与无名的槽位差异；已在其他位置覆盖的通用段落不能仅凭标准标题位置衍生另一项分类规则。保留真实操作入口、明确责任方、新增目的或条件及具体部署细节。本语义候选不混入界面控件修订、输出格式改动、执行器、结构、窗口或模型变化。"
+        },
+        "0",
+        "hard_screen_complete_failed_no_full150",
+        {
+          "en": "The same-language and named/unnamed clarifications did not improve the full86hard screen. No raw wrong allows or technical invalidity, but required-Yes errors remain in authentication localization, a generic marketing slot and cookie repetition. Preserve all evidence; do not run long scoring merely to sample a better result.",
+          "zh": "同语言及服务商有名/无名的澄清未改善完整86项硬回归。无原始错误允许或技术无效，但认证本地化、通用营销槽位和cookie重复中仍有必须为Yes的错误。保留全部证据，不为抽取更好的随机结果而运行长评分。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-03"
+      ],
+      [
+        "candidate-04",
+        {
+          "en": "One functional-priority clarification on candidate03: apply the routine authentication-interface exception before testing linguistic body retention, and remove the remaining short-auth qualifiers from the system derivation, coverage example and YAML options. Actual raw failures protected a full password-link form sentence as body-language material despite the equivalent-form exception; five remaining short-auth phrasings gave an inconsistent boundary. Preserve same-language body paraphrase coverage, actual changed steps/channel/trigger/conditions/capabilities, real operational destinations, and coherent different-language substantive body prose including short factual notices. Keep candidate03 named/unnamed-provider and cross-heading stock-template rules, original evidence presentation, all fields/enums, native executor, model and window unchanged. No UI-control or output-order intervention is combined.",
+          "zh": "在candidate03基础上仅澄清一项功能优先级规则：在判断正文语言保留前先应用常规认证界面例外，并移除system推导、coverage示例及YAML选项中残留的短认证限定。原始失败输出曾将完整的密码链接表单句子当作正文语言材料保护，尽管存在等价表单例外；五处残留的短认证措辞造成了不一致边界。保留同语言正文改写覆盖、实际步骤或渠道或触发条件或账户能力的变化、真实操作入口，以及包括简短事实通知在内的完整不同语言实质正文。继续保留candidate03的服务商有名与无名及跨标题通用段落规则，原有证据呈现、全部字段和枚举、原生执行器、模型及窗口均不改变。不混入界面控件或输出顺序实验。"
+        },
+        "0",
+        "hard_screen_complete_unsafe_rejected",
+        {
+          "en": "Protected submission-address and authentication-procedure changes were wrongly allowed; original-order localization also had contradictory fields. Reject without long scoring; preserve all raw failures and complete hard screen.",
+          "zh": "实际投稿地址及认证流程变化被错误允许；原始顺序的本地化判断也存在字段矛盾。不进行长评分即淘汰，并保留原始失败及完整硬回归。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-04"
+      ],
+      [
+        "candidate-05",
+        {
+          "en": "Consolidate the existing conditional policy into one authoritative priority order per native model call: actual action destinations and changed procedures/conditions remain protected before finite localization/template exceptions, and whole-document coverage precedes label or category inference. Actual candidate04 outputs explicitly let a late city exception override a real submission address, treated direct password entry as equivalent to emailed-link activation, and revised a judgment without updating its earlier ledger. Remove repeated semantic appendices from pair prompts and rubric descriptions while retaining original padded evidence, exact native JSON fences, fifteen main fields, eight/seven/four critic schemas, enums, authority, code, model and window. This is a policy-expression/precedence experiment on candidate03, not an expansion to UI selectors/facets or arbitrary identities. Earlier full rewrites had format/evidence changes and bare-JSON failures; this version preserves the native fenced contract and byte-identical packet/truncation rendering, then must pass real hard screens before long scoring.",
+          "zh": "将既有条件政策合并为每次原生模型调用中的一套权威优先顺序：实际操作入口及流程或条件变化先于有限的本地化及模板例外受到保护，全文覆盖先于名称或分类推断。candidate04原始输出曾明确让后面的城市例外覆盖真实投稿地址，将直接输入密码视为与邮件链接激活等价，并修改判断却未同步先前字段。移除pair提示及rubric描述中重复的语义附录，同时保留原有填充证据、精确的原生JSON代码围栏、十五个主字段、八个或七个或四个critic字段结构、枚举、权限、代码、模型及窗口。这是在candidate03基础上进行的政策表达及优先级实验，不扩展到界面选择器、筛选项或任意身份。此前完整改写曾同时更改格式或证据并出现裸JSON失败；本版保留原生围栏约束及逐字相同的证据包和截断呈现，须先通过真实硬回归才进行长评分。"
+        },
+        "0",
+        "hard_screen_complete_overblocking_rejected",
+        {
+          "en": "Policy consolidation strongly increased required-Yes errors, including previously stable citation, category, introduction and heading cases. Zero raw wrong allows does not compensate for these required coverage failures. Reject without long scoring; preserve the failed full86screen.",
+          "zh": "政策合并显著增加必须为Yes的错误，包括此前较稳定的引用、分类、引言及标题情况。原始错误允许为零不能抵消这些必须正确覆盖的失败。不进行长评分即淘汰，并保留失败的完整86项回归。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-05"
+      ],
+      [
+        "candidate-06",
+        {
+          "en": "One mechanism-qualified authentication-localization branch on the earlier safer local candidate. Require equality of actual user action, channel, trigger, sequence, capabilities and conditions, plus covered same-language remaining body; a shared activation goal is insufficient. Couple that qualified branch explicitly to the native ledger, verified complete-message basis and directional summary, preventing a late positive correction from retaining earlier material deltas. Actual changed procedures, destinations, capabilities, purposes, conditions and different-language substantive bodies remain protected. This isolates the observed full-sentence UI misclassification, stale ledger and same-goal/different-mechanism errors. It does not repeat global repeated-slot normalization: no masking or general slot rewrite, no other-family policy change, source/window/order/model/code/schema or validator change. Preserve the earlier native prompts and packet presentation outside this single branch; full rewrites and broad UI-first precedence already failed and are not reused.",
+          "zh": "在此前较安全的局部候选基础上，仅增加一条经机制匹配确认的认证本地化分支。要求实际用户动作、渠道、触发、顺序、能力及条件相同，且其余同语言正文已被覆盖；共同的激活目标并不足够。将满足条件的分支明确映射到原生证据字段、完整消息依据及方向汇总，防止后续改为肯定判断却保留先前的实质差异字段。继续保留实际流程、入口、能力、目的或条件变化，以及不同语言实质正文。该实验隔离已观察到的完整句子界面误分类、过时字段及同目标而不同机制的错误。不重复通用槽位联合归一化；不遮蔽名称或通用改写槽位，不更改其他政策家族、来源、窗口、顺序、模型、代码、结构或校验。除这条分支外，保留此前原生提示与证据呈现；此前失败的完整改写和泛化界面优先级不再复用。"
+        },
+        "0",
+        "hard_screen_complete_failed_auth_language_and_cookie_coherence",
+        {
+          "en": "Mechanism-qualified authentication wording preserved every controlled operational boundary but still failed actual clause-language attribution in one order and cookie ledger coherence. The complete hard screen has84/86pairs at each layer, with one invalid pair and zero raw wrong allows. Preserve this failed version; factual assessment order is tested separately.",
+          "zh": "经机制匹配的认证措辞保留了全部受控操作边界，但仍在一个顺序中错误归属实际句子语言，并出现cookie证据字段矛盾。完整硬回归各层均为84/86对，其中一对无效、原始错误允许为零。保留此失败版本，事实判断顺序另作独立实验。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06"
+      ],
+      [
+        "candidate-06-languagefirst1",
+        {
+          "en": "Engineering-only response-order intervention within the existing seven-field ledger: move the factual translation-status assessment before shared-basis and material-delta classification. Actual failed outputs label a quoted non-English privacy clause as English before generating the language field and sometimes revise later conclusions while retaining earlier classifications. All existing field contents, descriptions, enums, types, semantic policy, eight prompts, evidence/window, model, executor and validation remain identical to the parent; only the native score-list order changes. The earlier generic ledger-before-summary hypothesis was disproven because main responses already do that. This tests a different intra-ledger dependency and must verify actual emitted order and hard regressions, not assume improvement.",
+          "zh": "仅在既有七个证据字段内部进行输出顺序工程实验：将事实性的翻译状态判断放到共享依据及实质差异分类之前。真实失败输出曾在生成语言字段前将一条引用的非英语隐私句子称作英语，并有时在后续修改结论却保留先前分类。全部字段内容、描述、枚举、类型、语义政策、八个提示词、证据及窗口、模型、执行器及校验均与父版本相同；只改变原生评分列表顺序。此前“先证据后汇总”的通用假设已被否定，因为main本来就遵循该顺序。本次测试证据字段内部的不同依赖，须核对真实输出顺序及硬回归，不能预设改善。"
+        },
+        "1",
+        "hard_screen_complete_language_improved_template_regressed",
+        {
+          "en": "Actual44main responses followed the intended intra-ledger order and both reviewed authentication orders passed, but generic marketing/provider errors increased and a coverage-only cookie false veto remains. This is a factual-order result, not hard acceptance.",
+          "zh": "真实44个main输出遵循预期字段顺序，且复核认证案例的两个顺序均通过，但通用营销或服务商错误增加，cookie的coverage误否决仍存在。这是字段顺序实验结果，不是硬性验收通过。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1"
+      ],
+      [
+        "candidate-06-languagefirst1-shortview1",
+        {
+          "en": "Engineering-only reading-context intervention on the language-first parent. For complete records no longer than2000characters per side, reassemble the same original text above the untouched main/coverage/subject packets; longer or truncated inputs retain their original presentation. A pre-inference interval proof verified all nonwhitespace preview characters on552source sides already occur in the existing displayed packet ranges, across276presentations. No new source content, wider6000character window, IDs, semantic policy, field content/order/enums, executor, model or validation change. Earlier CORE-only emphasis failed actual addresses; this trial keeps every original padded span/ID and additionally shows whole short records, including full action addresses and body paragraphs. It tests whether fragment-local context causes whole-page language and template-identity anchoring after factual language-first ordering already corrected both localization orders but regressed some template decisions.",
+          "zh": "在语言先判断的父版本上，仅进行阅读上下文呈现工程实验。对于每侧不超过2000字符的完整记录，在不改变main、coverage及subject原始证据包的前提下，先重组展示相同原文；更长或截断输入保留原呈现。推理前区间核对已证明，552侧原文中的预览非空白字符均已出现在现有证据包呈现区间，涉及276个呈现样本。不增加来源内容，不扩大6000字符窗口，不改变ID、语义政策、字段内容或顺序或枚举、执行器、模型及校验。此前只强调CORE的实验曾误判实际地址；本次保留每个原始填充片段及ID，同时显示包括完整操作地址和正文段落在内的完整短记录。语言字段先判断已纠正两个本地化顺序但使部分模板判断回退；本次检验片段局部上下文是否造成对整页语言及模板身份的误判。"
+        },
+        "0",
+        "hard_screen_complete_unsafe_operational_regression_rejected",
+        {
+          "en": "Whole-short-record presentation did not resolve the cookie false veto and introduced actual submission-address wrong allows in main and final. The native compiler/window checks and four registered single-GPU dependency checks passed, but they do not establish policy acceptance. Reject without long scoring; preserve all evidence and use the original padded presentation for later candidates.",
+          "zh": "完整短记录呈现未解决cookie误否决，并在main及final引入实际投稿地址的错误允许。原生编译或窗口检查以及四项独立注册的单GPU依赖检查通过，但这些检查不能证明政策验收。保留全部证据，不进行长评分即淘汰；后续候选使用原有填充呈现。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1-shortview1"
+      ],
+      [
+        "candidate-07",
+        {
+          "en": "Two functional-boundary clarifications on the frozen language-first parent. Distinguish unpopulated query, facet, sort, archive and version controls from actual retained assertions; do not infer unseen results or API behavior from controls when actual displayed content remains covered. Also disambiguate named service-location wording from literal submission/payment/account routes: a city-bearing address still identifies the actual action destination and must itself be preserved. Actual populated records, failed-object/status/permission identities, API facts, conditions and substantive body languages remain protected. Raw failures explicitly treated selectors as record versions and let an ambiguous city/destination exception override acknowledged submission addresses. Preserve original padded evidence, native field order/content/enums, model, window, executor and validators; reject the unsafe short-record presentation as a parent. Separately frozen supplemental controls test these boundaries outside the original denominators.",
+          "zh": "在冻结的语言先判断父版本上澄清两项功能边界。区分未呈现实际数据的查询、筛选、排序、归档及版本控件与真实保留断言；在实际显示内容已被覆盖时，不得从控件推定未呈现结果或API行为。同时区分服务地点名称与字面上的投稿、付款或账户操作入口：包含城市名称的地址仍是实际操作去向，必须覆盖该地址本身。继续保护真实记录、失败对象或状态或权限断言中的身份、API事实、条件及实质正文语言。原始失败曾明确将选择器判为记录版本，并让含糊的城市或目的地例外覆盖已被承认的投稿地址。保留原有填充证据、原生字段顺序或内容或枚举、模型、窗口、执行器及校验；不采用不安全的短记录呈现作为父版本。独立冻结的补充受控例在原有分母之外检查这些边界。"
+        },
+        "0",
+        "hard_screen_complete_template_vetoes_and_native_contract_failure",
+        {
+          "en": "Functional clarification improved several required-Yes main decisions and preserved operational endpoints, but a generic marketing order still failed and coverage falsely vetoed cookie/provider equivalence. A correct raw list-containment decision failed the existing primary-difference/confidence contract. A separately declared failed-object control also had a main wrong allow, rescued later. Preserve all failures; isolate native output-contract reinforcement before long scoring.",
+          "zh": "功能澄清改善了若干必须为Yes的主判断，并保留实际操作入口，但通用营销的一个顺序仍失败，coverage也错误否决cookie或服务商等价。一个原始方向正确的列表包含判断未满足既有主差异或置信度契约。另一个独立声明的失败对象受控例在main错误允许，之后被纠正。保留全部失败，长评分前先独立检验原生输出契约强化。"
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-07"
+      ],
+      [
+        "candidate-07-format2",
+        {
+          "en": "Engineering-only reinforcement of the existing native answer contract. A real failed list-containment output had correct raw replacement directions but selected a disallowed primary-difference combination and high confidence after an explicit internal enum debate. Earlier complete diagnostic output also made a conclusive judgment on an incomplete packet. Add an early evidence-status notice only for incomplete inputs and a settled cross-field contract check, without changing retention rules, evidence, fields/enums, model, window, validators or executor. Keep actual losses and direction reasoning truthful; never rewrite a direction to fit a category. All original policy boundaries and the functional-control/action-route clarification remain frozen.",
+          "zh": "仅以工程方式强化既有原生回答契约。一次真实失败的列表包含输出虽然原始替换方向正确，却在明确的内部枚举争论后选择了不合法的主差异组合及高置信度。此前完整诊断还曾对不完整证据包给出确定判断。仅对不完整输入增加提前的证据状态提示，并增加定稿字段契约核对，不改变保留规则、证据、字段或枚举、模型、窗口、校验或执行器。保持实际损失及方向理由真实，绝不为迁就分类而改写方向。原有政策边界及功能控件与实际操作入口的澄清均保持冻结。"
+        },
+        "0",
+        "frozen_awaiting_serial_hard_screen",
+        {
+          "en": "",
+          "zh": ""
+        },
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-07-format2"
+      ]
+    ]
+  },
+  "resources": {
+    "headers_en": [
+      "Item",
+      "Value"
+    ],
+    "headers_zh": [
+      "项目",
+      "值"
+    ],
+    "rows": [
+      [
+        "start_utc",
+        "2026-10-28T02:59:29Z"
+      ],
+      [
+        "deadline_utc",
+        "2026-10-28T16:00:00Z"
+      ],
+      [
+        "semantic_stop_utc",
+        "2026-10-28T14:30:00Z"
+      ],
+      [
+        "gpu_stop_utc",
+        "2026-10-28T15:45:00Z"
+      ],
+      [
+        "wall_hours_at_render",
+        "4.288"
+      ],
+      [
+        "allocated_gpu_hours_including_idle",
+        "4.218"
+      ],
+      [
+        "GPU",
+        "1 × NVIDIA B200; TP=1"
+      ],
+      [
+        "model_revision",
+        "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a"
+      ],
+      [
+        "context/max_tokens/temperature/concurrency/timeout/window",
+        "32768 / 6144 / 0.2 / 8 / 600 / 6000"
+      ],
+      [
+        "owned_service_stopped",
+        "false"
+      ]
+    ]
+  },
+  "verification": {
+    "headers_en": [
+      "Check",
+      "Observed evidence"
+    ],
+    "headers_zh": [
+      "检查",
+      "实际证据"
+    ],
+    "rows": [
+      [
+        "status",
+        "\"NOT_COMPLETED\""
+      ]
+    ]
+  }
+}

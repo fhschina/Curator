@@ -1,0 +1,46 @@
+{
+  "created": 1793171327.8574247,
+  "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-07-format2",
+  "status": "PASS",
+  "checks": [
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "-m",
+        "pytest",
+        "--confcutdir=tests/tutorials/eval/dedup",
+        "tests/tutorials/eval/dedup/test_policy_tuning.py",
+        "-k",
+        "native_prompt_preserves or native_compiler_accepts",
+        "-q"
+      ],
+      "started": 1793171320.5437717,
+      "completed": 1793171323.7038336,
+      "returncode": 0,
+      "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate07-format2-native-tests.log"
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/pre-commit",
+        "run",
+        "--files",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/judge_config/system.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/judge_config/pair.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/critics/prompts/coverage_system.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/critics/prompts/subject_verifier_pair.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/critics/prompts/subject_system.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/critics/prompts/coverage_pair.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/critics/prompts/subject_pair.jinja",
+        "/raid/hfang/workspaces/Curator-retention-policy-v3-overnight/tutorials/eval/dedup/critics/prompts/subject_verifier_system.jinja"
+      ],
+      "started": 1793171323.7038908,
+      "completed": 1793171324.2500572,
+      "returncode": 0,
+      "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate07-format2-precommit.log"
+    }
+  ],
+  "prompt_hashes_after_hooks_equal_proposal": true,
+  "manifest_sha256": "01434b28af6b25100785e4183d935df1060e668f739db73012227ba552cfa188",
+  "all_fifteen_slots_declared_before_inference": true
+}

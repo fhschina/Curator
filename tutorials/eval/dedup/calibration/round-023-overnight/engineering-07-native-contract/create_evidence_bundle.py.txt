@@ -1,0 +1,78 @@
+"""Package task evidence without duplicating identical inputs; raw artifacts remain outside Git."""
+import argparse
+import hashlib
+import json
+import os
+import shutil
+import stat
+import tarfile
+import time
+from pathlib import Path
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--source', type=Path, required=True)
+parser.add_argument('--destination', type=Path, required=True)
+parser.add_argument('--archive', action='store_true')
+args = parser.parse_args()
+source, destination = args.source.resolve(), args.destination.resolve()
+assert not destination.is_relative_to(source)
+destination.mkdir(parents=True, exist_ok=False)
+(destination / 'blobs').mkdir()
+excluded_directories = {'__pycache__', 'service-cache', '.pytest_cache'}
+excluded_suffixes = {'.pyc', '.tmp', '.lock'}
+files, excluded = {}, []
+started = time.time()
+for folder, directories, names in os.walk(source, followlinks=False):
+    for name in directories[:]:
+        path = Path(folder) / name
+        if name in excluded_directories or path.is_symlink():
+            directories.remove(name)
+            excluded.append({'path': str(path.relative_to(source)), 'reason': 'ephemeral cache or nontraversed directory link'})
+    for name in sorted(names):
+        path = Path(folder) / name
+        relative = str(path.relative_to(source))
+        if path.suffix in excluded_suffixes or not path.is_file():
+            excluded.append({'path': relative, 'reason': 'ephemeral temporary/lock/bytecode or nonregular entry'})
+            continue
+        before = path.stat()
+        with path.open('rb') as stream:
+            sha = hashlib.file_digest(stream, 'sha256').hexdigest()
+        blob = destination / 'blobs' / sha
+        if not blob.exists():
+            shutil.copyfile(path, blob)
+            with blob.open('rb') as stream:
+                assert hashlib.file_digest(stream, 'sha256').hexdigest() == sha, path
+        after = path.stat()
+        assert (before.st_ino, before.st_size, before.st_mtime_ns) == (after.st_ino, after.st_size, after.st_mtime_ns), path
+        files[relative] = {'sha256': sha, 'size': after.st_size, 'mode': stat.S_IMODE(after.st_mode)}
+critical = []
+for path in source.rglob('manifest.json'):
+    if any(part in excluded_directories for part in path.relative_to(source).parts):
+        continue
+    value = json.loads(path.read_text())
+    if not isinstance(value, dict) or not isinstance(value.get('files'), dict):
+        continue
+    for name, expected in value['files'].items():
+        relative = str((path.parent / name).relative_to(source))
+        assert relative in files and files[relative]['sha256'] == expected, relative
+        critical.append(relative)
+index = {'format': 'retention-evidence-content-addressed-v1', 'source': str(source),
+         'started': started, 'completed': time.time(), 'files': files, 'excluded': excluded,
+         'critical_frozen_manifest_references_verified': len(critical),
+         'model_weights_and_existing_environment_are_external_pinned_prerequisites': True,
+         'restore_entry': 'restore_evidence_bundle.py'}
+(destination / 'bundle-index.json').write_text(json.dumps(index, ensure_ascii=False, indent=2) + '\n')
+shutil.copy2(Path(__file__).with_name('restore_evidence_bundle.py'), destination / 'restore_evidence_bundle.py')
+receipt = {'status': 'PASS', 'bundle': str(destination), 'indexed_files': len(files),
+           'unique_blobs': len({entry['sha256'] for entry in files.values()}),
+           'logical_bytes': sum(entry['size'] for entry in files.values()),
+           'unique_bytes': sum(path.stat().st_size for path in (destination / 'blobs').iterdir()),
+           'critical_frozen_manifest_references_verified': len(critical), 'model_calls': 0}
+if args.archive:
+    archive = destination.with_suffix('.tar.gz')
+    assert not archive.exists()
+    with tarfile.open(archive, mode='w:gz', compresslevel=1) as output:
+        output.add(destination, arcname=destination.name)
+    with archive.open('rb') as stream:
+        receipt.update(archive=str(archive), archive_sha256=hashlib.file_digest(stream, 'sha256').hexdigest(), archive_bytes=archive.stat().st_size)
+print(json.dumps(receipt))
