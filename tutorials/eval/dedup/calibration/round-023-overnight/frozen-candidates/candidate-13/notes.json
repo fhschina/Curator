@@ -1,0 +1,63 @@
+{
+  "created": 1793184086.774255,
+  "parent": "candidate-11",
+  "semantic_factors": 1,
+  "hypothesis_en": "Place the already approved functional-control boundary at the exact existing rubric option choices, without the candidate12 global role rewrite or failed contract prefix. Actual candidate12 full150 still labels a recognized facet view as a same_record_content_extension and invents specific sentence entries from introductory lookup targets; its main203/240 and final198/240 do not improve the retained stage. The generic paragraph intervention did not transfer to those real layouts, while simple role8controls already pass in the parent. Reuse the earlier effective option-level exception mapping pattern in a new specific control-role context. Change only eight existing option descriptions: covered UI/repetition includes populated controls, content extensions and identity/state changes exclude them under complete actual-record/message coverage, and a complete same non-main explanation is still a retained basis. Actual assigned attributes, examples, bound failed-object/status claims, action routes and new terms stay protected. All eight prompt templates,15field names/order/types/enums, other descriptions, source/window, native code/executor/model and strict validation remain byte-identical to parent. Keep original86 and every versioned supplement; no new labels or title rule. Test the same separately frozen role8controls and complex real-layout transfer if the screen warrants one diagnostic. This isolates rubric-option shadowing rather than adding another global instruction block.",
+  "hypothesis_zh": "仅将已批准的控制功能边界落实到既有rubric选项定义，不继承candidate12全局角色段落改写或失败的格式前缀。candidate12真实完整150对仍把已识别的分面视图选为same_record_content_extension，并从工具引言检索词推断具体例句条目；main203/240、final198/240未改善既有阶段成绩。一般段落细化没有迁移到这些真实布局，而父版本已通过简单角色8项。复用此前有效的选项层例外映射方式，针对新的控制角色问题。只改变八个既有选项说明：填有值的控制可属于已覆盖UI或重复，完整实际记录或消息覆盖后不应归为内容新增、身份或状态变化，相同完整非主消息仍可提供保留依据。实际赋值属性、已展示例句、绑定失败对象或状态断言、操作地址与新条款继续保留。八个提示模板、15个字段名称顺序类型枚举、其他说明、原文窗口、原生代码执行器模型和严格校验与父版本逐字节一致。保留原始86和全部已有补充分组，不新增标签或标题规则。沿用单独冻结的角色8项，并仅在筛查有依据时用一次诊断检验真实复杂布局。只隔离rubric选项遮蔽问题，不追加全局指令段落。",
+  "source_evidence": [
+    "candidate-12/runs/candidate-diagnostic-1/main:D042,D067,D124",
+    "candidate-12/runs/candidate-diagnostic-1/audits/engineering04-ledger-coherence/strict_audit.json"
+  ],
+  "changed_option_descriptions": [
+    [
+      "span_shared_basis",
+      "verified_equivalent_non_main_message"
+    ],
+    [
+      "span_a_delta",
+      "universal_ui_or_repetition"
+    ],
+    [
+      "span_a_delta",
+      "same_record_content_extension"
+    ],
+    [
+      "span_a_delta",
+      "record_identity_role_or_state_change"
+    ],
+    [
+      "span_b_delta",
+      "universal_ui_or_repetition"
+    ],
+    [
+      "span_b_delta",
+      "same_record_content_extension"
+    ],
+    [
+      "span_b_delta",
+      "record_identity_role_or_state_change"
+    ],
+    [
+      "span_hard_conflict",
+      "state_or_version"
+    ]
+  ],
+  "eight_prompt_templates_identical_to_parent": true,
+  "fifteen_schema_field_order_and_option_keys_unchanged": true,
+  "model_calls": 0,
+  "files": {
+    "judge_config/system.jinja": "7386ac624503e8712e75bff9a8e5a1cbc71bba815e5d1d054c70a91d50194957",
+    "judge_config/fuzzy_pair_judge.yaml": "10a0f50b2655a30d6128d4d90ea0e3b66a9636cf10b2fb8305e44266c061af06",
+    "judge_config/pair.jinja": "019bc0b37f1528b116f5ea4f3f27b3c12cca16054895394ade8df7ff4ed4edc0",
+    "critics/coverage_system.jinja": "43d9a372afe9769b17f71bb373d7c0f10686d001fbf2e1917145c427de499e18",
+    "critics/subject_verifier_pair.jinja": "6a52feecda5c958005a520e5f77bfd3f8da013d4ba187cd8889c5c9af026484c",
+    "critics/subject_system.jinja": "594bb02e5b61cd00e9334c8b260a5b5efdbce6f2f03b248b73fc74d38f970c26",
+    "critics/coverage_pair.jinja": "ecf582031be8012d4c561752724d3c877bbb834debf9de5283068822dd22c2b0",
+    "critics/subject_pair.jinja": "f0aef6b6737c9c9ccabee62432ff3aeb9cce789403b8ec4b36eaf45d64e2a52a",
+    "critics/subject_verifier_system.jinja": "89ae471be86d647749cd6eef7c609a98903a03dac8a0af059aa6678d4cfb884b"
+  },
+  "status": "FIRST_HARD86_PASS_SUPPLEMENTAL_FORMAT_FAIL_NOT_CONFIRMED",
+  "acceptance_passed": false,
+  "reason_en": "Original first86 passes in main/coverage/final, but the separate cookie-scope8 has7/8 correct with1 main parse failure. UI16, class-instance6 and control-role8 pass. No full150/100 or second/third hard repeat was started; qualification and reference improvement remain unconfirmed. Deadline passed; no further inference.",
+  "reason_zh": "原定首次86在main/coverage/final均通过，但单独cookie-scope8为7/8正确，含1个main解析失败。UI16、class-instance6和control-role8通过。未启动完整150/100或第二、第三次硬回归；资格及参考改善尚未确认。截止时间已过，不再新增推理。"
+}

@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "checked": 1793180103.8430617,
+  "cases": [
+    {
+      "case": "known_pass",
+      "expected_returncode": 0,
+      "actual_returncode": 0,
+      "receipt": {
+        "status": "PASS",
+        "time": 1793180103.7880306,
+        "candidate": "candidate-11",
+        "checked": [
+          "candidate-11/runs/candidate-preflight-1/audits/engineering04-ledger-coherence/strict_audit.json",
+          "candidate-11/runs/candidate-gate-1/audits/engineering04-ledger-coherence/strict_audit.json",
+          "candidate-11/runs/candidate-coverage-regression-1/audits/engineering04-ledger-coherence/strict_audit.json"
+        ],
+        "first_original86_all_layers_pass": true,
+        "unlabeled_diagnostics_never_scored_or_required_conclusive": true,
+        "check_only": true,
+        "original_three_run_qualification": "NOT_COMPLETED",
+        "failed_run_replacement": false
+      }
+    },
+    {
+      "case": "known_failure",
+      "expected_returncode": 1,
+      "actual_returncode": 1,
+      "receipt": {
+        "status": "NOT_ADMITTED",
+        "time": 1793180103.836757,
+        "error": "",
+        "checked": [
+          "candidate-11/runs/candidate-preflight-1/audits/engineering04-ledger-coherence/strict_audit.json",
+          "candidate-11/runs/candidate-gate-1/audits/engineering04-ledger-coherence/strict_audit.json",
+          "candidate-11/runs/candidate-coverage-regression-1/audits/engineering04-ledger-coherence/strict_audit.json"
+        ],
+        "model_calls": 0,
+        "original_long_slot_not_started": true,
+        "unlabeled_diagnostics_never_scored": true
+      }
+    }
+  ],
+  "real_native_audits_used": true,
+  "model_calls": 0,
+  "no_fake_decisions_or_labels": true
+}

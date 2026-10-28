@@ -1,0 +1,23 @@
+"""Check existing native first-screen evidence before admitting one original full150 slot."""
+import argparse,json,subprocess,sys,time
+from pathlib import Path
+parser=argparse.ArgumentParser();parser.add_argument('--plan',type=Path,required=True);parser.add_argument('--check-only',action='store_true');args=parser.parse_args()
+s=Path(__file__).resolve().parent;plan=json.loads(args.plan.read_text());checked=[];observed_original=0
+try:
+ for item in plan['screens']:
+  for panel in item['panels']:
+   root=s/item['root'];path=root/f'runs/candidate-{panel}-1/audits/engineering04-ledger-coherence/strict_audit.json';v=json.loads(path.read_text());assert v['strict_audit_sha256']=='900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44'
+   expected={name for name,data in json.loads((root/'evaluation.json').read_text())['hard_groups'].items() if data['panel']==panel};assert set(v['groups'])==expected
+   assert not v['failure_counts'] and not v['integrity_failures'] and not v['unmapped_attempts'] and not v.get('ledger_issues')
+   assert all(status=='valid' or count==0 for status,count in v['attempt_status_counts'].items())
+   for group,layers in v['groups'].items():
+    for layer,m in layers.items():assert m['correct_pairs']==m['pairs'] and not m['invalid_pairs'] and not m['unresolved_pairs'] and not m['reference_wrong_allows'],(item['root'],group,layer)
+   assert all(not m.get('invalid',0) for m in v['all_input_validation'].values())
+   if item['root']==plan['candidate']:observed_original+=sum(x['main']['pairs'] for x in v['groups'].values())
+   checked.append(str(path.relative_to(s)))
+ assert observed_original==plan['original_hard_presentations']
+except (OSError,ValueError,AssertionError) as error:
+ (s/plan['admission_receipt']).write_text(json.dumps({'status':'NOT_ADMITTED','time':time.time(),'error':str(error),'checked':checked,'model_calls':0,'original_long_slot_not_started':True,'unlabeled_diagnostics_never_scored':True},indent=2)+'\n');raise
+(s/plan['admission_receipt']).write_text(json.dumps({'status':'PASS','time':time.time(),'candidate':plan['candidate'],'checked':checked,'first_original86_all_layers_pass':True,'unlabeled_diagnostics_never_scored_or_required_conclusive':True,'check_only':args.check_only,'original_three_run_qualification':'NOT_COMPLETED','failed_run_replacement':False},indent=2)+'\n')
+if args.check_only:raise SystemExit(0)
+raise SystemExit(subprocess.run([sys.executable,str(s/'run_serial.py'),'--after-file',plan['admission_receipt'],'--root',plan['candidate'],'--panels','diagnostic','--receipt',plan['run_receipt']],check=False).returncode)

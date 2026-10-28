@@ -1,0 +1,54 @@
+{
+  "created": 1793179836.6124752,
+  "parent": "candidate-11",
+  "engineering_revision": "contract1",
+  "hypothesis_en": "Engineering-only priority placement of the already required native response contract. Candidate11 passes the first original86 in all three layers and UI22, but the separate cookie-scope negative control has a real main schema parse failure: the fenced JSON uses risk_factor instead of the required nested score key in primary_risk_factor. The object finishes normally at936tokens, so this is a schema-key cross-wire, not missing Markdown or output truncation. Earlier candidate10/xref2 separately has seven valid-bare-JSON fence omissions. Prepend a short complete-response contract to four system templates: distinguish the schema-defined inner answer from required outer Markdown framing, include all required keys/nested properties, and in the main rubric use its existing reasoning/score keys regardless of field name. No example scores or reference answers. Removing only the prefix restores all four original system bodies byte-for-byte; other five files, all retention policy,15fields/order/enums, evidence, model/sampling/window, native recipe/executor and strict parsing remain unchanged. This is a candidate prompt-format intervention under the existing common native contract, not a runtime/parser change or baseline-policy alteration. Preserve parent failures and use a distinct frozen original3 group. First screen original86,UI22,cookie8,and6supported class-instance controls plus2unlabeled diagnostics; only actual outputs can establish improvement.",
+  "hypothesis_zh": "仅前置原生链路已要求的完整输出格式。candidate11首轮原始86项每层全部通过，UI22也有效；但单独cookie作用域反例真实发生main schema解析失败：带正确围栏的JSON在primary_risk_factor对象内使用risk_factor而非规定的score键。回复正常结束且仅936token，因此是嵌套键串用，不是缺围栏或输出截断。此前candidate10/xref2另有七次合法裸JSON遗漏围栏。在四个system模板前增加简短格式要求，区分schema规定的内部答案和外部Markdown围栏、要求全部必填键与嵌套属性，并在main rubric中使用既有reasoning/score键，不因字段名称而替换键。没有示例分数或参考答案。只移除前缀即可逐字节恢复四个system正文；其余五个文件、全部保留政策、15字段顺序枚举、证据、模型采样窗口、原生recipe执行器和严格解析不变。这是在既有共同格式要求下的候选提示格式实验，不改变运行时解析器或基线政策。保留父版本失败，冻结独立原组3次运行。先检查原始86项、UI22、cookie8，以及6项有依据的类别实例受控和2项未标注诊断，仅由真实输出判断改善。",
+  "semantic_factors": 0,
+  "model_calls": 0,
+  "changed_system_prefixes": {
+    "judge_config/system.jinja": "67a79025a4ff6e0cfedac49eb5e6992007f24538cd053b0c0a857b617bd9f015",
+    "critics/coverage_system.jinja": "2938b73abee06f61d70cd9f65af8e10ea8958b9a6c65d93bd0da15e11f2416fa",
+    "critics/subject_system.jinja": "2938b73abee06f61d70cd9f65af8e10ea8958b9a6c65d93bd0da15e11f2416fa",
+    "critics/subject_verifier_system.jinja": "2938b73abee06f61d70cd9f65af8e10ea8958b9a6c65d93bd0da15e11f2416fa"
+  },
+  "other_five_files_identical": true,
+  "system_bodies_exact_after_removing_prefix": true,
+  "source_evidence": [
+    "diagnostics/candidate11-cookie-scope-native-format-failure.json",
+    "diagnostics/candidate10-xref2-native-parse-failures.json"
+  ],
+  "files": {
+    "judge_config/system.jinja": "733e7b787e7c5748c4b100d09cc557035d3185465306b9bd709424d42d08c6fd",
+    "judge_config/fuzzy_pair_judge.yaml": "05b3d657bb8d34b34500e766f5253c255a1226d2c14a9fc7319f0a6babbb18e7",
+    "judge_config/pair.jinja": "019bc0b37f1528b116f5ea4f3f27b3c12cca16054895394ade8df7ff4ed4edc0",
+    "critics/coverage_system.jinja": "0ce5b19f03841bb73e18aea9b9febe3e00dc698196f6461ffbbedd0abae91156",
+    "critics/subject_verifier_pair.jinja": "6a52feecda5c958005a520e5f77bfd3f8da013d4ba187cd8889c5c9af026484c",
+    "critics/subject_system.jinja": "be5ec3e164bffda58cd726f07ed9d8b358cf4e6bbf322f248ac44b1dcb4bc5c9",
+    "critics/coverage_pair.jinja": "ecf582031be8012d4c561752724d3c877bbb834debf9de5283068822dd22c2b0",
+    "critics/subject_pair.jinja": "f0aef6b6737c9c9ccabee62432ff3aeb9cce789403b8ec4b36eaf45d64e2a52a",
+    "critics/subject_verifier_system.jinja": "b474aa6540d83f633009a9ad532a77fac555ba5c7225ff39f351c60c08262733"
+  },
+  "status": "first_complete_screen_rejected_for_format_failures",
+  "acceptance_passed": false,
+  "main_budget_max_tokens": 25187,
+  "main_minimum_headroom": 1437,
+  "admission_guard": "admit_screened_first150.py",
+  "admission_guard_cpu_checks": "engineering-10-native-contract-priority/native-audit-admission-checks.json",
+  "first_hard_summary": {
+    "correct_pairs": {
+      "main": 81,
+      "coverage": 81,
+      "final": 81
+    },
+    "invalid_pairs": {
+      "main": 5,
+      "coverage": 5,
+      "final": 5
+    },
+    "pairs": 86
+  },
+  "original_first150_status": "NOT_STARTED_CANCELLED_BEFORE_NATIVE",
+  "reason_en": "Original86 correct main/coverage/final:81/81/81; invalid:5/5/5. Format-priority intervention rejected; no full150.",
+  "reason_zh": "原始86项main/coverage/final正确数：81/81/81；无效数：5/5/5。格式前置实验被拒绝，未运行完整150对。"
+}

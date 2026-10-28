@@ -1,0 +1,118 @@
+{
+  "selected": "candidate-06-languagefirst1",
+  "best_root": "candidate-06-languagefirst1",
+  "selected_for": "best complete frozen candidate under predeclared hard-validity-first ranking; not eligible or accepted",
+  "created": 1793209443.1492977,
+  "selection_protocol": "selection-protocol.json",
+  "best_metric": "candidate-06-languagefirst1",
+  "best_eligible": null,
+  "acceptance_passed": false,
+  "requirement_status": {
+    "milestone_85_80": "PASS",
+    "target_90_85": "FAIL",
+    "hard_regressions": {
+      "original36": "PASS",
+      "extra6": "PASS",
+      "latest18": "FAIL",
+      "controlled26": "FAIL",
+      "real_consensus6": "PASS"
+    },
+    "technical_validity": "FAIL",
+    "development_nonregression_mean": {
+      "development99_original": "PASS",
+      "development99_reviewed": "PASS",
+      "development97_strict": "PASS"
+    }
+  },
+  "nine_delivered_files": {
+    "tutorials/eval/dedup/judge_config/system.jinja": "e1c66d5275d9367637c27d4bb7d9af8c02394db91c6834adc26c6a5ca71d0caf",
+    "tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml": "77d14b44d188a96008b7786cd7a59fbdf47518bb7403d1d567bf3230638c7d3e",
+    "tutorials/eval/dedup/judge_config/pair.jinja": "06562a24a39d44b0c48368c21acad4cf667bd8567b7daec19b204d7181806a71",
+    "tutorials/eval/dedup/critics/prompts/coverage_system.jinja": "a9c8121270288abbc692fd849bd3becd31ccae0b6152d46f8f45c139243ac904",
+    "tutorials/eval/dedup/critics/prompts/subject_verifier_pair.jinja": "548138c71a2f4a8ccf0540b3685e8346254534d4e6f3e6dbc5b11804ce33545c",
+    "tutorials/eval/dedup/critics/prompts/subject_system.jinja": "c55f4418c04affb3334eac922f3947f532008df6f9d6aef9e1ef64eb056ae62c",
+    "tutorials/eval/dedup/critics/prompts/coverage_pair.jinja": "4b5037a1882af3f699ff21f9b73991fe910696a8486f58258e52a4c19dc265b0",
+    "tutorials/eval/dedup/critics/prompts/subject_pair.jinja": "424d1472db35ee18987281f43b81ad42b8626e5ac7aabf556287d07dbef2c419",
+    "tutorials/eval/dedup/critics/prompts/subject_verifier_system.jinja": "0bbcc96078900239ec8fdfbc142c3a9d900f1bf0ea25b8ce5c65885b309bd9ae"
+  },
+  "same_condition_original_three_runs_complete": true,
+  "personal_original3": [
+    {
+      "run": "candidate-diagnostic-1",
+      "final": {
+        "pairs": 120,
+        "directions": 240,
+        "correct_directions": 205,
+        "correct_pairs": 96,
+        "direction_agreement": 0.8541666666666666,
+        "pair_agreement": 0.8,
+        "reference_wrong_allows": 3,
+        "reference_wrong_blocks": 30,
+        "invalid_pairs": 1,
+        "unresolved_pairs": 0,
+        "valid_pairs": 119,
+        "valid_judgment_coverage": 0.9916666666666667
+      }
+    },
+    {
+      "run": "candidate-diagnostic-2",
+      "final": {
+        "pairs": 120,
+        "directions": 240,
+        "correct_directions": 206,
+        "correct_pairs": 97,
+        "direction_agreement": 0.8583333333333333,
+        "pair_agreement": 0.8083333333333333,
+        "reference_wrong_allows": 5,
+        "reference_wrong_blocks": 25,
+        "invalid_pairs": 2,
+        "unresolved_pairs": 0,
+        "valid_pairs": 118,
+        "valid_judgment_coverage": 0.9833333333333333
+      }
+    },
+    {
+      "run": "candidate-diagnostic-3",
+      "final": {
+        "pairs": 120,
+        "directions": 240,
+        "correct_directions": 201,
+        "correct_pairs": 95,
+        "direction_agreement": 0.8375,
+        "pair_agreement": 0.7916666666666666,
+        "reference_wrong_allows": 6,
+        "reference_wrong_blocks": 28,
+        "invalid_pairs": 3,
+        "unresolved_pairs": 0,
+        "valid_pairs": 117,
+        "valid_judgment_coverage": 0.975
+      }
+    }
+  ],
+  "comparison": "delivery-final-engineering04/comparison.json",
+  "selection_explanation": "Candidate06-languagefirst1 has all three fixed hard groups technically valid with zero raw wrong allows, although semantic hard failures remain. Candidate10 has more hard correct directions but native invalid hard judgments; incomplete candidates have missing original repetitions. No eligible version exists. Candidate11 and candidate13 first-screen passes remain provisional.",
+  "locked_milestone_85_80": {
+    "path": "snapshots/1793176498595615452-milestone_85_80-candidate-06-languagefirst1-confirmed-three-run-full-cohort.json",
+    "sha256": "cf4128d6efa6bc7690fc5bbaf65c86a28669e67fa1d7fde66f1e666fd0b78b07",
+    "signature": [
+      "candidate-06-languagefirst1",
+      "confirmed_three_run_mean",
+      612,
+      288,
+      3,
+      "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    ],
+    "candidate": "candidate-06-languagefirst1",
+    "status": "confirmed_three_run_mean",
+    "metric": {
+      "correct_directions": 612,
+      "directions": 720,
+      "correct_pairs": 288,
+      "pairs": 360,
+      "repeats": 3
+    },
+    "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+  },
+  "delivery_on_time": false,
+  "best_candidate": "candidate-06-languagefirst1"
+}

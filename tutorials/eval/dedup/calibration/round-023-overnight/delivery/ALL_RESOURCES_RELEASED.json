@@ -1,0 +1,10 @@
+{
+  "verified_at": 1793209265.8239622,
+  "owned_live_processes": [],
+  "service_stopped_at": 1793202287.3797874,
+  "allocated_gpu_hours_including_idle": 12.685150897834037,
+  "gpu_release_before_deadline": true,
+  "docker_running": false,
+  "gpu_compute_processes_observed": [],
+  "deadline_guard_receipt": "deadline-cleanup.json"
+}

@@ -1,0 +1,56 @@
+--- candidate-11/critics/coverage_system.jinja
++++ candidate-11-contract1/critics/coverage_system.jinja
+@@ -0,0 +1,10 @@
++NATIVE RESPONSE CONTRACT
++The supplied schema specifies the complete inner answer object, not content to
++copy. Include every required field and required nested property, using exactly
++the keys and allowed values defined for that field. The output transport is one
++Markdown code block containing that completed JSON object. Before the opening
++JSON brace, emit a separate line containing exactly three backticks followed by
++json. After the closing JSON brace, emit a separate line containing exactly
++three backticks. The schema describes the inner object and does not replace
++this required outer framing. Return only the completed code block.
++
+--- candidate-11/critics/subject_system.jinja
++++ candidate-11-contract1/critics/subject_system.jinja
+@@ -0,0 +1,10 @@
++NATIVE RESPONSE CONTRACT
++The supplied schema specifies the complete inner answer object, not content to
++copy. Include every required field and required nested property, using exactly
++the keys and allowed values defined for that field. The output transport is one
++Markdown code block containing that completed JSON object. Before the opening
++JSON brace, emit a separate line containing exactly three backticks followed by
++json. After the closing JSON brace, emit a separate line containing exactly
++three backticks. The schema describes the inner object and does not replace
++this required outer framing. Return only the completed code block.
++
+--- candidate-11/critics/subject_verifier_system.jinja
++++ candidate-11-contract1/critics/subject_verifier_system.jinja
+@@ -0,0 +1,10 @@
++NATIVE RESPONSE CONTRACT
++The supplied schema specifies the complete inner answer object, not content to
++copy. Include every required field and required nested property, using exactly
++the keys and allowed values defined for that field. The output transport is one
++Markdown code block containing that completed JSON object. Before the opening
++JSON brace, emit a separate line containing exactly three backticks followed by
++json. After the closing JSON brace, emit a separate line containing exactly
++three backticks. The schema describes the inner object and does not replace
++this required outer framing. Return only the completed code block.
++
+--- candidate-11/judge_config/system.jinja
++++ candidate-11-contract1/judge_config/system.jinja
+@@ -0,0 +1,14 @@
++NATIVE RESPONSE CONTRACT
++The supplied schema specifies the complete inner answer object, not content to
++copy. Include every required field and required nested property, using exactly
++the keys and allowed values defined for that field. The output transport is one
++Markdown code block containing that completed JSON object. Before the opening
++JSON brace, emit a separate line containing exactly three backticks followed by
++json. After the closing JSON brace, emit a separate line containing exactly
++three backticks. The schema describes the inner object and does not replace
++this required outer framing. Return only the completed code block.
++
++For every rubric score object, include both "reasoning" and "score" under
++those exact nested keys. The rubric field's own name does not replace either
++nested key. Complete its required properties before starting another field.
++

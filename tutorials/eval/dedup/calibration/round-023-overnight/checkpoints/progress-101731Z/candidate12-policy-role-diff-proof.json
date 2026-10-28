@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "time": 1793181938.228369,
+  "model_calls": 0,
+  "fifteen_field_names_order_and_all_option_values_preserved": true,
+  "only_existing_role_boundary_descriptions_changed": [
+    "span_a_delta",
+    "span_b_delta",
+    "span_hard_conflict"
+  ],
+  "option_description_only": [
+    [
+      "span_hard_conflict",
+      "state_or_version"
+    ]
+  ],
+  "native_frozen_nine_equal_proposal_after_hooks": true,
+  "parent": "candidate-11",
+  "candidate": "candidate-12",
+  "retention_semantic_factor": 1
+}

@@ -1,0 +1,1055 @@
+{
+  "model_calls": 0,
+  "recognized_direction_signals_only_no_raw_response_body": true,
+  "native_validity_and_scores_never_changed": true,
+  "projections": [
+    {
+      "root": "baseline",
+      "run": "baseline-coverage-regression-1",
+      "projection": "projections/baseline/baseline-coverage-regression-1.csv",
+      "sha256": "b6150f5c900cf67069dd2e30bdf38d6e14f25e996e9e2eff5e80c0a81da6c9e2",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-coverage-regression-1.json",
+      "external_trace_sha256": "4da4c15a3e0a25157d91c18083592cd0fb0ade7bc18d1142511efae1eaeeced3"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-coverage-regression-2",
+      "projection": "projections/baseline/baseline-coverage-regression-2.csv",
+      "sha256": "a6fd6c9c369a26216e00bf692bacd1ae6fcdcb90c1c48de1f623f60c687320aa",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-coverage-regression-2.json",
+      "external_trace_sha256": "49ca66eae9207c0011aa868ecbb28054abf05aa7efcd60ee558e26d150291487"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-coverage-regression-3",
+      "projection": "projections/baseline/baseline-coverage-regression-3.csv",
+      "sha256": "7b312103fdcc921ea1e3672183481da9fd3d74e4f3dbe3fe77ff30c4e0496d82",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-coverage-regression-3.json",
+      "external_trace_sha256": "86f8a61f5255e7b52ff6894dfed7c0df62b63e3ba7736a7618839dd3b273cbe5"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-diagnostic-1",
+      "projection": "projections/baseline/baseline-diagnostic-1.csv",
+      "sha256": "a616701b71f358f305b97240ba35009a0d8c9c8864c8d223b204b38df28c05fb",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-diagnostic-1.json",
+      "external_trace_sha256": "58684d4f680062b23b0c53787ef1f5aeb977c62ba4d7a61b36ca8ff482ccdd87"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-diagnostic-2",
+      "projection": "projections/baseline/baseline-diagnostic-2.csv",
+      "sha256": "f14462c5228f4ddd886b6ee14dc64dbe6cb310d4c749e6bd61cef549291c1c57",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-diagnostic-2.json",
+      "external_trace_sha256": "3cbe2ccfa8a161ca7c401f493ce7b41306838a15a6292caf2a63a076d371a95e"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-diagnostic-3",
+      "projection": "projections/baseline/baseline-diagnostic-3.csv",
+      "sha256": "7a872d45060d7e359403b8a2d507e61c5e2afc5347667b038d4afe0f2b0e19bb",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-diagnostic-3.json",
+      "external_trace_sha256": "49730204316d0a47fbf5be71c631cfd9c87ada2785b7ddfee12ed3d8ca6f5f1a"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-gate-1",
+      "projection": "projections/baseline/baseline-gate-1.csv",
+      "sha256": "00e552caaa91d200566c0a2ea69aaf8758bfd33b9a797d4188c5bc31df2a4909",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-gate-1.json",
+      "external_trace_sha256": "4fbe5fe687bd290f90dcb6bd1db5a305719fa757bc615a1bb9cc8b215183ad16"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-gate-2",
+      "projection": "projections/baseline/baseline-gate-2.csv",
+      "sha256": "9c1bd50eeec0be187f2e0f2969716fa5277b34c5e2b5295203e06fc7d374c6c0",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-gate-2.json",
+      "external_trace_sha256": "1245e298c394c3a330b60447abc426721e9d805fc30abe350a49715caa201008"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-gate-3",
+      "projection": "projections/baseline/baseline-gate-3.csv",
+      "sha256": "4442221dabc717e6811c97a65e5d4302dc277e13d210ade999ff46ddedfac5a9",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-gate-3.json",
+      "external_trace_sha256": "93291cb215044b3887ade6218803aeba84c9521d334cdd5c1c88fdadf389cbc3"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-holdout-1",
+      "projection": "projections/baseline/baseline-holdout-1.csv",
+      "sha256": "741e7f7f66c5ae5964d5d388c19e20193abebd34e225c6c1f92177e4c4dcc6dd",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-holdout-1.json",
+      "external_trace_sha256": "022016e8721dd04b764fcfd1239b591561f9134dae98a3620c4566b07a4da13c"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-holdout-2",
+      "projection": "projections/baseline/baseline-holdout-2.csv",
+      "sha256": "1af08c1fdeec96c43899dfe068538d62f99545fdaa41ab10f164647695652fa3",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-holdout-2.json",
+      "external_trace_sha256": "218557d46b3d92120eecf18b89b161fc94248d469b5f58bb4a2c1d192e23b4c5"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-holdout-3",
+      "projection": "projections/baseline/baseline-holdout-3.csv",
+      "sha256": "9fab90ea9e0ceb4f2e4fcce30f97ab5ca5d3594a48314a1b372d826f06583bd2",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-holdout-3.json",
+      "external_trace_sha256": "89465c43d2308bff0298a53144278c91b1c74c38afdd71587b315a11b84e3f95"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-preflight-1",
+      "projection": "projections/baseline/baseline-preflight-1.csv",
+      "sha256": "8a9df4132cf496c3459dfc356c49bcb6896c748d7c1be7effa9d696e8a60e32d",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-preflight-1.json",
+      "external_trace_sha256": "5ae9bde8ed971e3d9a0e06c189c92ad0ecfe2dfe56fa3ce12981cecdeb5def44"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-preflight-2",
+      "projection": "projections/baseline/baseline-preflight-2.csv",
+      "sha256": "aa29b998fc991d30c339d43d15e0bf68f7cc4aa7cbd7c7ef28dcbb0cecead113",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-preflight-2.json",
+      "external_trace_sha256": "55b34ce1ded06b7cdb54a70012dc7242e3cffe56eddd07d99a6460a784301e54"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-preflight-3",
+      "projection": "projections/baseline/baseline-preflight-3.csv",
+      "sha256": "8e9dea371fe80a762042354390774746daeedd539088b6e61b0ff99ac7796e94",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-preflight-3.json",
+      "external_trace_sha256": "78137a003f18e20d507522c9817b52cc20b1ad1e2e82fb608cb109beb56c60e3"
+    },
+    {
+      "root": "candidate-01",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-01/candidate-coverage-regression-1.csv",
+      "sha256": "eb25c36d606a53ba6b017a0673af7906dcba786cd4c86e8489898a078e766193",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-01/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "2464c6e907901a7d20030e6663686bca15d3647d9d84682e76dfc37124512800"
+    },
+    {
+      "root": "candidate-01",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-01/candidate-gate-1.csv",
+      "sha256": "9f01f503d2f5989d5fce9bf64514d80b9ad5bb70ad508efbf98c264354a26bf4",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-01/candidate-gate-1.json",
+      "external_trace_sha256": "bcd094180ab53c6b5f04ac1c46be7f8bad926029fafbdab038fcb64c080bd3fc"
+    },
+    {
+      "root": "candidate-01",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-01/candidate-preflight-1.csv",
+      "sha256": "3952357350c0d761986e79b0e7de3b8c550c7a6c134bddc79ccceef4b48a978a",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-01/candidate-preflight-1.json",
+      "external_trace_sha256": "a016b1103db475417bdf5c5d918ab9833d44d94552706f8fe223d68c5026a679"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-02/candidate-coverage-regression-1.csv",
+      "sha256": "05bdb43ec95e8a834008166e348699b8efb4169e9b632a9c7fb7401c52812ddc",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "f70d0f1cf94fca683cfe4071f2230cf1ad6ef71c550c4a594e165896b405dbc1"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-coverage-regression-2",
+      "projection": "projections/candidate-02/candidate-coverage-regression-2.csv",
+      "sha256": "af8f5a5eca12863c29a9d261d136b8f0b3572f0d57bce0f0ea5294e8728b112f",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-coverage-regression-2.json",
+      "external_trace_sha256": "5903124d566a7c79292a7570514b4ba9c62200303cf5086a17879a0cf49149c8"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-coverage-regression-3",
+      "projection": "projections/candidate-02/candidate-coverage-regression-3.csv",
+      "sha256": "d97179b8339421602a9fe2d7b061fbc6f674d29e0d0b01998423327ece807bda",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-coverage-regression-3.json",
+      "external_trace_sha256": "2cdcb054c854f63a25c203fcc40c00f17352e89eda11e0f13f3353b4034da9f8"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-diagnostic-1",
+      "projection": "projections/candidate-02/candidate-diagnostic-1.csv",
+      "sha256": "03137873e9a2b7740abf5e203305ec2ab8d063a57c5a7f627d489f2709d01313",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-diagnostic-1.json",
+      "external_trace_sha256": "820b7adbb0e491efa8fc12b983c911dd61b8a932b1472902c53efca9b0218934"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-diagnostic-2",
+      "projection": "projections/candidate-02/candidate-diagnostic-2.csv",
+      "sha256": "e7efa0ce4b5f916f08df879f343f26706ac60e082c7d97309c174462498fa5ad",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-diagnostic-2.json",
+      "external_trace_sha256": "abebac0c42511cd4f32190714db7a6c0750d0d0b74f2f115f01e03da3998c27a"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-diagnostic-3",
+      "projection": "projections/candidate-02/candidate-diagnostic-3.csv",
+      "sha256": "b8759795f618908712fda666559596bda624b66929d44d5facfad7aed6eefd08",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-diagnostic-3.json",
+      "external_trace_sha256": "441ec1b1b6d923fc510ba7ff9f56345df94ef1900948745b2360037d57056fc3"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-02/candidate-gate-1.csv",
+      "sha256": "f5bee2e286748970cb3b0efb49662448fac72003b97c209f5152849037cbf922",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-gate-1.json",
+      "external_trace_sha256": "9522c78a47e93a0929b8da1135937a0a3d119ddb447f7e4f40a7c4108ac06bee"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-gate-2",
+      "projection": "projections/candidate-02/candidate-gate-2.csv",
+      "sha256": "b58aeedfa65e83408a7427d496cb774280e64b0c77b8070ea80cfc44062be03f",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-gate-2.json",
+      "external_trace_sha256": "cef230c47c72967dda4ae58b5e0b68444869e3430a6852b317f3c6b5ff4e176c"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-gate-3",
+      "projection": "projections/candidate-02/candidate-gate-3.csv",
+      "sha256": "429ab0e5ace425cce61a21d6b8f084de15c49be063d07f4cd13f52259284d95d",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-gate-3.json",
+      "external_trace_sha256": "a248b665dc3dfd70456c5d7f9a9f31c642a3822456094b84f719b2635db95083"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-holdout-1",
+      "projection": "projections/candidate-02/candidate-holdout-1.csv",
+      "sha256": "3f626c8227a65f1f0e5cee59cc8edf4c57b510ca78b587ee2829426bcc9be597",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-holdout-1.json",
+      "external_trace_sha256": "8dc3d2c9c24b971023556672c5354a324d8ab60183b8559fc290b7b9e36f8deb"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-holdout-2",
+      "projection": "projections/candidate-02/candidate-holdout-2.csv",
+      "sha256": "f7f1b5e6c823864bf9523c3b31079f0ddefb385a9d06fa7bb7c1a7b4450d192f",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-holdout-2.json",
+      "external_trace_sha256": "2fb4c08685ef597006a580f76a63992fe0b7d5f0ac18d5a3064b52b1fab57146"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-holdout-3",
+      "projection": "projections/candidate-02/candidate-holdout-3.csv",
+      "sha256": "27ad372a0d639b8fd9716753c985bf6aa602918c45cc980a644cec37ac75a435",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-holdout-3.json",
+      "external_trace_sha256": "023751957c48bf7d7f6c83539e168d68577eec7682c5a339ac21c8123d730d0c"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-02/candidate-preflight-1.csv",
+      "sha256": "a5724aea8116995b6499d899dc64e8d774ac748860965e1e01bcfbe60a37f2fa",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-preflight-1.json",
+      "external_trace_sha256": "c042723632d99dcb81c620afc174f72a85e5a0490176ec5b6554730a2bfc76e1"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-preflight-2",
+      "projection": "projections/candidate-02/candidate-preflight-2.csv",
+      "sha256": "e38a282941a93c2f046cbf25f0c056630e10054801fd1572d4a2a82cd383b08f",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-preflight-2.json",
+      "external_trace_sha256": "803e07e033003a47cecf769aaea85dd0dc478633deaed1a890a11a5090d717c5"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-preflight-3",
+      "projection": "projections/candidate-02/candidate-preflight-3.csv",
+      "sha256": "63fe3fb2fdd40d47edd493c7408e66268c719a6603db8f12c7db2dc820fa0a5c",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-preflight-3.json",
+      "external_trace_sha256": "43de2d9344181351777087eab8b3b8617195e157de8b6595899811edb7554e79"
+    },
+    {
+      "root": "candidate-02-core2",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-02-core2/candidate-coverage-regression-1.csv",
+      "sha256": "4079d6b56a476941bac6ccf78866b8e4c9520d96ba9336356de83a33b17607fe",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02-core2/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "93248b72e596b20b645fe9b01646a8fcf8bed810898aea813b2726eabf82492c"
+    },
+    {
+      "root": "candidate-02-core2",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-02-core2/candidate-gate-1.csv",
+      "sha256": "d0577029314d65596a4be8473c3e16b078fbd1f2502c974693b44c8105144d19",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02-core2/candidate-gate-1.json",
+      "external_trace_sha256": "a6698c69ea3c5edd586f121375b9796bdcbacba6dbdce4e7d2de179d9ef0f4ab"
+    },
+    {
+      "root": "candidate-02-core2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-02-core2/candidate-preflight-1.csv",
+      "sha256": "7ec4bd111d7cadee8d4d90875a2d2f00a336385c51aa1739dd91a92c4a72e340",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02-core2/candidate-preflight-1.json",
+      "external_trace_sha256": "61626287241560843e3e8f734db69cd8e29a37a7d3084bbc181519b01d302b85"
+    },
+    {
+      "root": "candidate-03",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-03/candidate-coverage-regression-1.csv",
+      "sha256": "266a41cc9534f34ad6fa25c724449bb10e01bced52996fc6848034de2c182984",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-03/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "80ebda7071fec13b029651536f7be2212e5cf2695ff145530b2f05683c173171"
+    },
+    {
+      "root": "candidate-03",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-03/candidate-gate-1.csv",
+      "sha256": "217cc0a7ef87f2c78832087798051e1eb2f7819524c50cfce57b430e7591c207",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-03/candidate-gate-1.json",
+      "external_trace_sha256": "22b2b1a5c0b7e0c4cbe6f43e7e4cf91dd438fb950279cb3cd662fa334fdf4727"
+    },
+    {
+      "root": "candidate-03",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-03/candidate-preflight-1.csv",
+      "sha256": "f698b7a07fae64e12d0d07f2e30da0b34028bfff01ce67fdf2b2b71e17980ba2",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-03/candidate-preflight-1.json",
+      "external_trace_sha256": "ca1464a1707f4f7ed2abe0c56af9e7c3da678ada4d6ea13daf9aed4171a05265"
+    },
+    {
+      "root": "candidate-04",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-04/candidate-coverage-regression-1.csv",
+      "sha256": "6ac784dcb0406a08db27192ed1cc08d78183834088ad9501625543a333602a72",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-04/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "c7e198f19104526851dd5d120c65aee8ade1bbc69e8abda7d5319e01c9109b30"
+    },
+    {
+      "root": "candidate-04",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-04/candidate-gate-1.csv",
+      "sha256": "5fe7a281c2b0374bf3149d500f8ed45197d61397969c4430bb63be9d3f3dffbe",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-04/candidate-gate-1.json",
+      "external_trace_sha256": "36531253b747a417ad130e74b82ce3e0a97898e09511e1785616ef8c725f543b"
+    },
+    {
+      "root": "candidate-04",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-04/candidate-preflight-1.csv",
+      "sha256": "868b2360de6ae48ea8bfa2660a54c04ccadf6448f29387c73af900273ff1d297",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-04/candidate-preflight-1.json",
+      "external_trace_sha256": "8db42f2776c0ba80bbb6958d4328febf933795343d3751ec63110048e28539ab"
+    },
+    {
+      "root": "candidate-05",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-05/candidate-coverage-regression-1.csv",
+      "sha256": "433cdb7e7d9a10749f7a4b251acfdad46a78c86004d302073753ebb0f16d9879",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-05/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "6aa50c1f5682df8830e19aea00d8580a6b1b167f99d8202f202716240475671c"
+    },
+    {
+      "root": "candidate-05",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-05/candidate-gate-1.csv",
+      "sha256": "e90089c838d760373e0ec81f14f328f19169e0d3f6e2b399582127ce4963a3f6",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-05/candidate-gate-1.json",
+      "external_trace_sha256": "726b24ca80491d6ce30d5f42e9d70ce792c74682fa4fdb9b7099f5b06547e1fa"
+    },
+    {
+      "root": "candidate-05",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-05/candidate-preflight-1.csv",
+      "sha256": "6089d098c2b1a7c9412c704c4056b406629a5b4112bf1174fa56b41f33509727",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-05/candidate-preflight-1.json",
+      "external_trace_sha256": "8efcbd14a03775aba7585e5cc9d72339a938fc30a2631f137f08ad6ab14c5145"
+    },
+    {
+      "root": "candidate-06",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-06/candidate-coverage-regression-1.csv",
+      "sha256": "fc88d58c02a2f6920e0117fece33b8e6f1af00672ba3eb51cc674600eae220c0",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "7159a07ef6bfde9f70e806355d8b0bf1640e2ce58d649bddaa839399121b60a8"
+    },
+    {
+      "root": "candidate-06",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-06/candidate-gate-1.csv",
+      "sha256": "d2895c5fcb1bc1987e43970351bda83728cad0c1fdc3221b58c71190ffb7e71a",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06/candidate-gate-1.json",
+      "external_trace_sha256": "9ecb00b9e6541c02702a390f550a3df9bbd4558d5c95b1d99f40aff5568e752e"
+    },
+    {
+      "root": "candidate-06",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-06/candidate-preflight-1.csv",
+      "sha256": "a646a8189e410178282f2aa5a36d8391d313fc9dbedbde12774eccf584833d75",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06/candidate-preflight-1.json",
+      "external_trace_sha256": "6f7f1d665516c114f63e50357c2d2c8aa89df85a069251454334a5ef03e02d48"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-06-languagefirst1/candidate-coverage-regression-1.csv",
+      "sha256": "4a5d1a6c62613b12f677eac57147a246dff319d01859693e9cd1e6a498e4f717",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "c0b8ca8d9e55a12dd1ac44fb05dcb04bffc5898f638a8b5e6b3405c9f4b44ec9"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-coverage-regression-2",
+      "projection": "projections/candidate-06-languagefirst1/candidate-coverage-regression-2.csv",
+      "sha256": "a30af50fff1628e9fcdcdae1f3e257a5174a277401df1b6216a3677100cfc3d4",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-coverage-regression-2.json",
+      "external_trace_sha256": "6e7581c8408cddb27aee0ec691e55376a61f4705721b43ebdd3479f98d128a9d"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-coverage-regression-3",
+      "projection": "projections/candidate-06-languagefirst1/candidate-coverage-regression-3.csv",
+      "sha256": "291d632949329bf92cc113de8abba87bde6359f820bdf3f273394c5086123952",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-coverage-regression-3.json",
+      "external_trace_sha256": "0faf9dbd3a045f32ebe8210b3a252ba0a769c987eefe6ab81a91ed988798af06"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-diagnostic-1",
+      "projection": "projections/candidate-06-languagefirst1/candidate-diagnostic-1.csv",
+      "sha256": "a994cc7c6ab9b8dc5406e73a5efe4cb63d4d27aab866753e59124da10b199489",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-diagnostic-1.json",
+      "external_trace_sha256": "601e4e3b30fd83b4a704f9128f146b6322df6344cf6c89580357443ba90f8497"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-diagnostic-2",
+      "projection": "projections/candidate-06-languagefirst1/candidate-diagnostic-2.csv",
+      "sha256": "fc46a971842fbbb03ec1fe35cb98dfb42c90a560993c5c5fcbf5d5c6be88e427",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-diagnostic-2.json",
+      "external_trace_sha256": "8a83b7c77543cbd3f7f742dbc6cc1cc441f77b29fcb1fdf427e01ee888d4014b"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-diagnostic-3",
+      "projection": "projections/candidate-06-languagefirst1/candidate-diagnostic-3.csv",
+      "sha256": "0c0e703b8a9f869a08d65553a67cdadaaef714045c1b3ab19e1009b6fbb6e446",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-diagnostic-3.json",
+      "external_trace_sha256": "1d9438370d7b864a2a6acb42e861d3bcfeb78c1aa4d6ce3831ac032980c9281b"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-06-languagefirst1/candidate-gate-1.csv",
+      "sha256": "e5466a92585b2f18e5e62b444f2dae41ff127c84d4ddb492c4a2deb8cb7159a6",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-gate-1.json",
+      "external_trace_sha256": "2307f6647c212c330363677735afb3caa6559145c4f4b0fcedc49f2d3b284a23"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-gate-2",
+      "projection": "projections/candidate-06-languagefirst1/candidate-gate-2.csv",
+      "sha256": "122e89914f7951109a84b5f8ef78a26c8910a0d40676a975ec40d09141284036",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-gate-2.json",
+      "external_trace_sha256": "6449afaddf8585fa7ba94997ef3806ba263cdcdac1752f2a823e3065b5faa001"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-gate-3",
+      "projection": "projections/candidate-06-languagefirst1/candidate-gate-3.csv",
+      "sha256": "44a654b85de6e8cd5b039aeb3c07edf90012cdf2cf1be23f6b2a191df1c2e5e1",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-gate-3.json",
+      "external_trace_sha256": "63dfa69e8b5311c55749d5b06abb920b592d858fb7f7d042ae490e7fdf03310b"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-holdout-1",
+      "projection": "projections/candidate-06-languagefirst1/candidate-holdout-1.csv",
+      "sha256": "70d3cea6a5cb4ac61e5106285cf7bb685e2a5b751ffbb1a02d85f4c26ace5581",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-holdout-1.json",
+      "external_trace_sha256": "ab95ac575c424a43383f8808865d94095d3f4efa0339a8703a59ee0f0ff4621d"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-holdout-2",
+      "projection": "projections/candidate-06-languagefirst1/candidate-holdout-2.csv",
+      "sha256": "e2b9319bffb10f0e6b78d57227543b43065bc8f1014e290f38d5b7e097277f35",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-holdout-2.json",
+      "external_trace_sha256": "39ff2e2b8ffc7d47a1899d6fb811f533267de29bf55124bc6f869cf45be54e2e"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-holdout-3",
+      "projection": "projections/candidate-06-languagefirst1/candidate-holdout-3.csv",
+      "sha256": "5b1e01e3008be073ea6db1720e0c84b348a750f576f07c42476e88b6e22b8586",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-holdout-3.json",
+      "external_trace_sha256": "65c674c6c185cffd53d1dff514db2981fa8e96ec13197e359fa098c929b00d3e"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-06-languagefirst1/candidate-preflight-1.csv",
+      "sha256": "c5a3f40b8cf00bf9ac5eedfb1056678a0ca145d32e0cfb7b3e24690f68bcb23c",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-preflight-1.json",
+      "external_trace_sha256": "e6b2ed92b24e79e5f41cb5822ac59e64c1516f45f847f708a74d22d5cf5254e8"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-preflight-2",
+      "projection": "projections/candidate-06-languagefirst1/candidate-preflight-2.csv",
+      "sha256": "833dfe4b4f860c7d2a2853544ca980622b9af3314ee00a988f046e62602e8c60",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-preflight-2.json",
+      "external_trace_sha256": "af6374a9170618bf0f8170dc300eab9eab4d248282434d74f5a3045ebbe370db"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-preflight-3",
+      "projection": "projections/candidate-06-languagefirst1/candidate-preflight-3.csv",
+      "sha256": "a4369e59a9d259a66cf7e7de81036c4c80c12e582f33dfc52e8e5483d3ca3e15",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-preflight-3.json",
+      "external_trace_sha256": "ecfdd18e58f96da42c0ef9450941d424bbb94d73b097105577d5f091caa5bebe"
+    },
+    {
+      "root": "candidate-06-languagefirst1-shortview1",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-06-languagefirst1-shortview1/candidate-coverage-regression-1.csv",
+      "sha256": "581b36179131ab646b358650f30c8a6d84a542e9208a7785adc4859f742e9379",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1-shortview1/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "13c5ab3740f27a76ccd78876c81326e4b2552662710939cfdaa428234f1c635a"
+    },
+    {
+      "root": "candidate-06-languagefirst1-shortview1",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-06-languagefirst1-shortview1/candidate-gate-1.csv",
+      "sha256": "604a39da1caba7b4b7f6c7658568d5fdda1f5b430c27bff9105a12994e58a411",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1-shortview1/candidate-gate-1.json",
+      "external_trace_sha256": "5d18a22ead4365a7a7d2e96d6509ef663d29290a1074c082437d0f5e9143749d"
+    },
+    {
+      "root": "candidate-06-languagefirst1-shortview1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-06-languagefirst1-shortview1/candidate-preflight-1.csv",
+      "sha256": "56821296ede9bce1f1cd4b4483c3132e921629185b1c97bd5ed761616888c3e8",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1-shortview1/candidate-preflight-1.json",
+      "external_trace_sha256": "fcea24957771e729582e7cf63e20aaeea9e80c4d492178895173116b2c9a1ebe"
+    },
+    {
+      "root": "candidate-07",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-07/candidate-coverage-regression-1.csv",
+      "sha256": "15ebfe889b652163a74742b7f1a4a3ee660f9cdaeb65374281d6736f52c9fb3b",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "6e2d818a87a08bfb45123b46881ecedace9fc85500b3237a3d6636532ead54b5"
+    },
+    {
+      "root": "candidate-07",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-07/candidate-gate-1.csv",
+      "sha256": "80ce67e8cb76d91cd3f4bf960d8d843fb5ae0d8fbe045b9774aede74b1ddf304",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07/candidate-gate-1.json",
+      "external_trace_sha256": "5ef15630bf84eb563c0b7d1a02bd53a04c8ba30ce3498f717a8fcd0088ab8e04"
+    },
+    {
+      "root": "candidate-07",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-07/candidate-preflight-1.csv",
+      "sha256": "108d69154fb30708e9c18bc66a351db0cf2ec7c15cbb6ab77a4d71b6aca24821",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07/candidate-preflight-1.json",
+      "external_trace_sha256": "4a1384c9af7637919b5c3d10e6e4f343a4f0c5050862b73dc976688f3038bf99"
+    },
+    {
+      "root": "candidate-07-format2",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-07-format2/candidate-coverage-regression-1.csv",
+      "sha256": "f300896d70ea6af9b78d895380a8513537a57d3223165c83541b005ca26b6867",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "f17555e1af5775465d181c5887d3e2af6b246a3a486def62708d8fce159a2fc8"
+    },
+    {
+      "root": "candidate-07-format2",
+      "run": "candidate-diagnostic-1",
+      "projection": "projections/candidate-07-format2/candidate-diagnostic-1.csv",
+      "sha256": "d978efde5ce91069e368634b7206a3d8faa903b671f99e0822eb5b6009dad3b5",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2/candidate-diagnostic-1.json",
+      "external_trace_sha256": "30bb6d729ad7293553dad518291469718421e9f1d45d18567d18726f8d38fd41"
+    },
+    {
+      "root": "candidate-07-format2",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-07-format2/candidate-gate-1.csv",
+      "sha256": "1e07a2555a4d7bf7a6b3ade465056b92715fe7dbcc6cb5aff9aad72cbfc4c85e",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2/candidate-gate-1.json",
+      "external_trace_sha256": "bde6ba2439d4ad9f8122cfc66224c6daee7344f4fec98d57a298adee76ae23aa"
+    },
+    {
+      "root": "candidate-07-format2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-07-format2/candidate-preflight-1.csv",
+      "sha256": "e7cf288fabd70aca58bfcf25bdb505c76e916d31c21b3d947ec840815b65eb88",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2/candidate-preflight-1.json",
+      "external_trace_sha256": "777998497b73fc9c89a8b9edc6c41cf86121531570a76fce620efd39dacaae97"
+    },
+    {
+      "root": "candidate-07-format2-readview2",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-07-format2-readview2/candidate-coverage-regression-1.csv",
+      "sha256": "d59fb7a2d4c7c2f821648316bb12e4eb07a84026b000d155fb352d593b0c6cb1",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2-readview2/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "ab5f8a82a89894d5e5caf77622801814c158452120bb2b588cac4ca4c87f64e1"
+    },
+    {
+      "root": "candidate-07-format2-readview2",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-07-format2-readview2/candidate-gate-1.csv",
+      "sha256": "1ea7af30ecf2411547cc2394d5b46e8130e76226a862499354ee3e7d7f812f15",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2-readview2/candidate-gate-1.json",
+      "external_trace_sha256": "2d452945facd5a675067668d59521f3c155b8c44cc4dfd458479cd90271537ad"
+    },
+    {
+      "root": "candidate-07-format2-readview2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-07-format2-readview2/candidate-preflight-1.csv",
+      "sha256": "5e5f68f20a8f2089fa474aeebbacbe87968ff6cb6b8a6218ed99ae61a17656dc",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2-readview2/candidate-preflight-1.json",
+      "external_trace_sha256": "0085fac318679b389470332a7743b51261a0d3167bf50b1a764345cbe74131a6"
+    },
+    {
+      "root": "candidate-08",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-08/candidate-coverage-regression-1.csv",
+      "sha256": "06a9efe0b5794ef79997efcf58c44e2bf0d528ee146817dc2b73beb9b9253907",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-08/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "d86361dfe1f60219b7761715bd6a6bb49784eff7314d93917e5b9739daf648b5"
+    },
+    {
+      "root": "candidate-08",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-08/candidate-gate-1.csv",
+      "sha256": "0f1ae1c7b62867657ab31c3188e6e1c83c230d3ae6aaeb9dff7bebb09fc00677",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-08/candidate-gate-1.json",
+      "external_trace_sha256": "9f03c0f2c4b14590d43d08ad9baa3e383e85f717f9ee2408d1627f0fed1f51f2"
+    },
+    {
+      "root": "candidate-08",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-08/candidate-preflight-1.csv",
+      "sha256": "b5a326e84bb3c8b20e3fb4525b1c82e76c1341db1ae366f4102d9026b7edce76",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-08/candidate-preflight-1.json",
+      "external_trace_sha256": "2ba998b33360bbb2a7795ca5dd9ede96e06f1dbd2c25dcd63af036a06effe299"
+    },
+    {
+      "root": "candidate-09",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-09/candidate-coverage-regression-1.csv",
+      "sha256": "c8e67caadb44536c991f10d6bcbf0784cb586df761fed313681a401fce41a9be",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-09/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "6d8d4c096dd6ae8e7370034246fd8997c9bebf6137455e740fd5f450ac14831d"
+    },
+    {
+      "root": "candidate-09",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-09/candidate-gate-1.csv",
+      "sha256": "fee7ff04125994e0d81c0a2a52864bd24b36686736fb4681ceb8fa8ca258fc35",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-09/candidate-gate-1.json",
+      "external_trace_sha256": "2e5ab4b3de6aff3159bf228d76f1d9d162f0a1a2c2b37fd14f55ec4b076ccd41"
+    },
+    {
+      "root": "candidate-09",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-09/candidate-preflight-1.csv",
+      "sha256": "3a7f5549eb37cebc7091725a29d817c8741357a4551f23a11ab6ac30509612b3",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-09/candidate-preflight-1.json",
+      "external_trace_sha256": "7ca66a525315c1461d92ecc73044fb742fc8735610df15e63e55cc3217a58d13"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-10/candidate-coverage-regression-1.csv",
+      "sha256": "081b7cbde35b821d12dbdc546b9ec68f9581e0922e7583b7f40a6db0bdcd6548",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "4e2ecdd62d73c579ddaca9bfdec947901118307d314b93366ab692f94f95486b"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-coverage-regression-2",
+      "projection": "projections/candidate-10/candidate-coverage-regression-2.csv",
+      "sha256": "60aa8d6eebc89b1f886036f0e33484cc9ac9b657d1140ca7b9e263038deaca99",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-coverage-regression-2.json",
+      "external_trace_sha256": "957588cc0bc2fea5c84015a2a9ccb9225b9d35bc421ed9d9a7b57f395cdcd4f5"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-diagnostic-1",
+      "projection": "projections/candidate-10/candidate-diagnostic-1.csv",
+      "sha256": "ce53d749fcb4a6d5c5d051270863cc220ac425aa29d5527676fd2245d489e0d6",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-diagnostic-1.json",
+      "external_trace_sha256": "7c1432610257aa997ee813e020aae6455bf6cc28f77bd62914027dfd27aeb6e8"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-10/candidate-gate-1.csv",
+      "sha256": "4288181d4c0649aa68590aeea993ae04c55a3e69826cc23b25b8b2b0eaa50084",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-gate-1.json",
+      "external_trace_sha256": "4fa0d6f5fad5ffcf3da9f0804d35056833c28f3957217e448bcddbae9db2b65c"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-gate-2",
+      "projection": "projections/candidate-10/candidate-gate-2.csv",
+      "sha256": "f815aea46b56a8a097218592fb9f31789780b76d67abf51ff1494e00658e3346",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-gate-2.json",
+      "external_trace_sha256": "abce0eed9880c7d59fab5ed0a7407965b4b5a672184a2639b8c9882c0ff7d607"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-holdout-1",
+      "projection": "projections/candidate-10/candidate-holdout-1.csv",
+      "sha256": "60b48468a30de2c45c33b8f82847c3f0a2ba9473e411015f3e4ea34d58e83d74",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-holdout-1.json",
+      "external_trace_sha256": "4774c53793920d33711b0343d19ae1f1a2dff74788ec63b23e8c8b0106046be0"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-10/candidate-preflight-1.csv",
+      "sha256": "31edc3abe931c681edd395efa7d6a26a37a4262d34be2a5ca972a400bb5f1eee",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-preflight-1.json",
+      "external_trace_sha256": "8972266454c82958bba99b26c045e213ff6153375341414dc2306771aaaac56a"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-preflight-2",
+      "projection": "projections/candidate-10/candidate-preflight-2.csv",
+      "sha256": "1037be34c74daef44701f724bb75cd386139f82d2e074fdb6ba02485d52bda56",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-preflight-2.json",
+      "external_trace_sha256": "b8ab09a0e1931450a9da20e539f1745f7963c95b8f6d4ee2cd3500c8c39f92bc"
+    },
+    {
+      "root": "candidate-10-xref1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-10-xref1/candidate-preflight-1.csv",
+      "sha256": "91fa49b44de96a26ac5508e703f22999711b5eb98e1e77ad8d6eca9839b70053",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10-xref1/candidate-preflight-1.json",
+      "external_trace_sha256": "0720336c1b5ff650bb4732bf47972a2a6b922fbafb0dd48d70b23680cb2b065b"
+    },
+    {
+      "root": "candidate-10-xref2",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-10-xref2/candidate-coverage-regression-1.csv",
+      "sha256": "5b7811f4cb748124d3cbd59a6b01a6f01280903036fae26b6502a9f6cf1be61c",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10-xref2/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "8f3ee817251cc03ce40fc123063587b902a2af274092721d2594f430a8452adf"
+    },
+    {
+      "root": "candidate-10-xref2",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-10-xref2/candidate-gate-1.csv",
+      "sha256": "4820814cad813decaba212d38f1cab08b3ea3ee014206dfe762ecb2886220bd8",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10-xref2/candidate-gate-1.json",
+      "external_trace_sha256": "048009ced98fb094e9157a39b31adcea28609b24ecaa7f70f2af8410f63a2721"
+    },
+    {
+      "root": "candidate-10-xref2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-10-xref2/candidate-preflight-1.csv",
+      "sha256": "9e74f917886e409b0856f9f376774360add68fcaef2e930cf29e30c5347efa3f",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10-xref2/candidate-preflight-1.json",
+      "external_trace_sha256": "abdb291d9ba3fbacecbd9206b65704dd1c6847045e4bc5036c38a627959b44da"
+    },
+    {
+      "root": "candidate-11",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-11/candidate-coverage-regression-1.csv",
+      "sha256": "eb8f8a2a571d1b2f712afe2ea34bbddf1e3cdf9b1729fd5d05d43b7db13266e3",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "fa13365271890a857663e018246a7552f9efb728cdd602ecedc449f44186b34f"
+    },
+    {
+      "root": "candidate-11",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-11/candidate-gate-1.csv",
+      "sha256": "a91b5321443483122dcd49db4cc1f069d4ad8fdd873b2f00b6c46dd972b9204c",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11/candidate-gate-1.json",
+      "external_trace_sha256": "280886958773bbf5036318151b430d324d9c8b80c8573ae303bbc6481f318a7b"
+    },
+    {
+      "root": "candidate-11",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-11/candidate-preflight-1.csv",
+      "sha256": "76ce16d149400cd4e8ddbd71aaa376fa87c31a679902ef2898eefbdf851520de",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11/candidate-preflight-1.json",
+      "external_trace_sha256": "d3962eef3ced60699b1def258084d40ee99d82c509540edd04b3a79d1a31e2b5"
+    },
+    {
+      "root": "candidate-11-contract1",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/candidate-11-contract1/candidate-coverage-regression-1.csv",
+      "sha256": "213ab0fa9fe89a062edff40cad4890ee500b2f922caeec8c2277195c18692ddd",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11-contract1/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "dce06efe66d0ed652f8f65d914e3e915503f4e9358c91f957a52e32f9f5923f7"
+    },
+    {
+      "root": "candidate-11-contract1",
+      "run": "candidate-gate-1",
+      "projection": "projections/candidate-11-contract1/candidate-gate-1.csv",
+      "sha256": "0487e3f3ec57f814f0bea18eee84bafd893b250777438c1bd1086eb265e2cbe6",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11-contract1/candidate-gate-1.json",
+      "external_trace_sha256": "a5087a036ce719ea929f9ca01cf87d7e658e3af28c5c299ee640252e90e94ffb"
+    },
+    {
+      "root": "candidate-11-contract1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/candidate-11-contract1/candidate-preflight-1.csv",
+      "sha256": "fa75770cce8d63ef33c83956a6f50419552c86873140537277e5fea5d53d76cc",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11-contract1/candidate-preflight-1.json",
+      "external_trace_sha256": "c00e7ce448404373817a9fbfb5416a32c252bb04d469cdd815a34b3695d8f85e"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-coverage-regression-1",
+      "projection": "projections/start-39714b47/candidate-coverage-regression-1.csv",
+      "sha256": "8a204d0450fd64d28a5e85d6a4deac823689281b5083c27699202cdbdd1dc661",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-coverage-regression-1.json",
+      "external_trace_sha256": "d4dc23ac4668bca2d476d26e9d0b2d65dc11e3d70ff456e5230b84c18d0d3266"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-coverage-regression-2",
+      "projection": "projections/start-39714b47/candidate-coverage-regression-2.csv",
+      "sha256": "a7bd36f27514b7d69a9727f8a4d65fb6857fcfcc2e485fd4e5a307a904938451",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-coverage-regression-2.json",
+      "external_trace_sha256": "dd7ecb405e363ee5b2b7c507461aeee03e5c0501fa08992cea86cb23f00fe3ee"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-coverage-regression-3",
+      "projection": "projections/start-39714b47/candidate-coverage-regression-3.csv",
+      "sha256": "53e1849a78eddd0794304b1d6902770624558c8ac278e66f29098a527f37a674",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-coverage-regression-3.json",
+      "external_trace_sha256": "07cf3aa170b9220fcd556908b367efd5c3ca2a01b306082c823aea9228c4b0fd"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-diagnostic-1",
+      "projection": "projections/start-39714b47/candidate-diagnostic-1.csv",
+      "sha256": "bde7e372350dcffe92298a85e42709031d5600dcdfdea7bd95705de54ad9bfc6",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-diagnostic-1.json",
+      "external_trace_sha256": "82cce6cde43547f3956ad410f1aeb8614da14fb85d30dc6b9be6e13c1c9dd1c8"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-diagnostic-2",
+      "projection": "projections/start-39714b47/candidate-diagnostic-2.csv",
+      "sha256": "a3f3e5405fa2390d5b286279d2e3af1fad9601216fe13b19ee4e7a46d6e134d4",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-diagnostic-2.json",
+      "external_trace_sha256": "474a30ba23ff63719c7b6d21f5e83260b32d7156810db528d11e1cce4bf039d2"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-diagnostic-3",
+      "projection": "projections/start-39714b47/candidate-diagnostic-3.csv",
+      "sha256": "25229f054d9237a8c2daedd06f138e95ed3eb0633cd943462feaa6888c4e7db9",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-diagnostic-3.json",
+      "external_trace_sha256": "4dfbc26df82d546f946f02e6c5f03c2678bf70c1affd791f76b9849f4797e284"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-gate-1",
+      "projection": "projections/start-39714b47/candidate-gate-1.csv",
+      "sha256": "13dca62cc06af3648ca204efde9902f885ae008f7930f1f7ffffd083ab0badcc",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-gate-1.json",
+      "external_trace_sha256": "196d30e2653cf9de9205c5ad55da32f008522866ff40ebaedc530642a7882176"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-gate-2",
+      "projection": "projections/start-39714b47/candidate-gate-2.csv",
+      "sha256": "45585b14f1de741ed02746f694f619f21d5b6b196ab6967737214b4ec758277a",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-gate-2.json",
+      "external_trace_sha256": "03e7fc4311bbbf1438495aeff0224d3570360a9ea5307164b1b30f5f08e5b777"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-gate-3",
+      "projection": "projections/start-39714b47/candidate-gate-3.csv",
+      "sha256": "947672b0c34308d0e55ecfaa960c5e0d1a9929ffe841a7d68cf3257dd66defc3",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-gate-3.json",
+      "external_trace_sha256": "98ab59ee3c208710cf0f26c4057489421aa44b50c7857fd8ebf122c8ba5f832e"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-holdout-1",
+      "projection": "projections/start-39714b47/candidate-holdout-1.csv",
+      "sha256": "671981f03e4ced6a33948623fdb7b850398aa34f445e7a26f9e11b1e427136d8",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-holdout-1.json",
+      "external_trace_sha256": "f0a54ce792ac2f1be822340c1ebc76290c8407aca874d885d70bd34fa3e17c52"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-holdout-2",
+      "projection": "projections/start-39714b47/candidate-holdout-2.csv",
+      "sha256": "b3ff7fe262e067ea1de43f51e6cbe8f8d6e8ca86041fb748008faa38faaff0da",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-holdout-2.json",
+      "external_trace_sha256": "5898de7f75e25ca122eace19480a3cc1502f24b8698a6105be68feefd4d89a68"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-holdout-3",
+      "projection": "projections/start-39714b47/candidate-holdout-3.csv",
+      "sha256": "f1120e183f8efde84441cc3d204dd0eac104b5a1fc943ab00e043480a7d227d9",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-holdout-3.json",
+      "external_trace_sha256": "409815b9ae01155cc60b5e9d493736658195ddec86cc6bd68f8e4ff2663c0d64"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-preflight-1",
+      "projection": "projections/start-39714b47/candidate-preflight-1.csv",
+      "sha256": "88433507c3e6ebba589365a50bca51b94acae3614e5bc874f86099dd77e7cf2a",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-preflight-1.json",
+      "external_trace_sha256": "ad0a032dacc2b543e832644cd1d039dc0b1433d810d7eceb8edf8bc63c3f090a"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-preflight-2",
+      "projection": "projections/start-39714b47/candidate-preflight-2.csv",
+      "sha256": "afcac9181d57cad52971f1058d23f49d129a797e2480a87f25ec28cf377fc458",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-preflight-2.json",
+      "external_trace_sha256": "8915c384c69178e64c84c93857ad5e22cc2897d486cad497ae8ded77dc0e4b0a"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-preflight-3",
+      "projection": "projections/start-39714b47/candidate-preflight-3.csv",
+      "sha256": "337f6b95cbd3ce32f2dfaa49b032d7892b8bbe8d9fa1228ceab5b5b494147430",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-preflight-3.json",
+      "external_trace_sha256": "ae57a8ec5129b5c8a166fab257956b93d59a65241d0cc41bdc8f42d9bfd0a946"
+    },
+    {
+      "root": "supplemental-class-instance-candidate10-v2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-class-instance-candidate10-v2/candidate-preflight-1.csv",
+      "sha256": "1dcd8b5757c5cea4a767c77498ced07a27be00dbc5e8e7f5e773628534de58f2",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-class-instance-candidate10-v2/candidate-preflight-1.json",
+      "external_trace_sha256": "2f5b5b677dde8784b9b3eedd4d7a1157c71a72037428e117ed51843b780bf2b8"
+    },
+    {
+      "root": "supplemental-class-instance-candidate11-contract1-v2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-class-instance-candidate11-contract1-v2/candidate-preflight-1.csv",
+      "sha256": "4775345b6be49fb5c858d7eacd4ea2fec8ab82f440cd7914588a80ddfdd25c91",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-class-instance-candidate11-contract1-v2/candidate-preflight-1.json",
+      "external_trace_sha256": "fd0196c7cd865895c122c1ff19efe515d7b0db381c6ec7e309b74def3711650b"
+    },
+    {
+      "root": "supplemental-class-instance-candidate11-v2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-class-instance-candidate11-v2/candidate-preflight-1.csv",
+      "sha256": "a7bfc8a716171b03164e94f307cfe5ba986540b0ba2be63bba5c2d823dd217c7",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-class-instance-candidate11-v2/candidate-preflight-1.json",
+      "external_trace_sha256": "27e92a198932757677e924ee880875fe702f4aab984105bb036b1f8763f3d3c4"
+    },
+    {
+      "root": "supplemental-cookie-scope-candidate10-v2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-cookie-scope-candidate10-v2/candidate-preflight-1.csv",
+      "sha256": "0a3343b97c2d4a0740e3df518d5d7870fb0e8ee70287c646d94f518f8d233fbe",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-cookie-scope-candidate10-v2/candidate-preflight-1.json",
+      "external_trace_sha256": "29ce401bc19281b4a4988581e42dc09698c4017705c3c33670b09c9e00ae53ee"
+    },
+    {
+      "root": "supplemental-cookie-scope-candidate11-contract1-v2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-cookie-scope-candidate11-contract1-v2/candidate-preflight-1.csv",
+      "sha256": "c7a5eb2cc9531a9de071a98d9dcad80b620fff65bb56781e80821f41c61a9242",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-cookie-scope-candidate11-contract1-v2/candidate-preflight-1.json",
+      "external_trace_sha256": "f072e1487ba319f12001a029eadaba95cad33246b93b0f02e47494b13c7c8c2f"
+    },
+    {
+      "root": "supplemental-cookie-scope-candidate11-v2",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-cookie-scope-candidate11-v2/candidate-preflight-1.csv",
+      "sha256": "ef3e79426f725d41ec2de4aef8423bf90cf2e85de9733d2fa56b5f48bc93f63a",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-cookie-scope-candidate11-v2/candidate-preflight-1.json",
+      "external_trace_sha256": "c7a235883f97bb28e3229b344138ee30dfaf14dc610ed32aa24e8cfd79250b03"
+    },
+    {
+      "root": "supplemental-ui-baseline-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-baseline-v1/candidate-preflight-1.csv",
+      "sha256": "7623ed88dbeeddce96b63264e1b2671d1ee953c9c64438001b2ee591b9c0b847",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-baseline-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "d5279a9f22416a4262e54db922ac7ed8d47cc28d8d7d28cf2ee7595de2f0562b"
+    },
+    {
+      "root": "supplemental-ui-candidate07-format2-readview2-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate07-format2-readview2-v1/candidate-preflight-1.csv",
+      "sha256": "c37e1b6a10378600a5280797d006d1830bf9e37d27207fb25a61de65a806e51b",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate07-format2-readview2-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "29f3bf2dfebea35cb9a026f21b5047de9ab858961b8b6bfbe2c06bdec4552859"
+    },
+    {
+      "root": "supplemental-ui-candidate07-format2-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate07-format2-v1/candidate-preflight-1.csv",
+      "sha256": "4fb44e5a210e3cea77d19ed6488b4e568eab51ccfe35c717842ad02cea8ffba8",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate07-format2-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "0d769ed68f6f49672e356826ed15632cea94e636df7ce91c095f15705fd4371b"
+    },
+    {
+      "root": "supplemental-ui-candidate07-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate07-v1/candidate-preflight-1.csv",
+      "sha256": "e53f04ace5131f9d18a736590ddd5b2a34dae33aaea9dcb0ae6c3ab908b6754e",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate07-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "280281a15a4148cd203d2dbbd3f7434f960e182c36e741b3f0db0f9e2d21fab9"
+    },
+    {
+      "root": "supplemental-ui-candidate08-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate08-v1/candidate-preflight-1.csv",
+      "sha256": "e9f0b0aa2595a61803b71bae6dd0fc94695ddf2b49de83f923552f7ff889dd9b",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate08-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "9ddc73779f4cd9ba0677022a2d17773b4747d81f3019bd4c8a56858639bb7a71"
+    },
+    {
+      "root": "supplemental-ui-candidate09-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate09-v1/candidate-preflight-1.csv",
+      "sha256": "eab934d94ca2d8c1892cad6baaa4b12b9c2286f5d2fac6191784bd1ae3b5fbd5",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate09-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "861be13bc7df6c21fa7e83464f820461c2d903c6ed6f1bd48aa19a1c577cde8c"
+    },
+    {
+      "root": "supplemental-ui-candidate10-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate10-v1/candidate-preflight-1.csv",
+      "sha256": "306f0e0196c3a742161f226508b355153408eb25799c31359ecbd07a81c63c0c",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate10-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "636829f098231109c552d321a834cc306af31ae770a7a93e3502edd388bedae5"
+    },
+    {
+      "root": "supplemental-ui-candidate10-xref2-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate10-xref2-v1/candidate-preflight-1.csv",
+      "sha256": "66373e5d726fa353436f028b877867ffd3a398ac2cd0a57228184fb0158de19c",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate10-xref2-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "6ffd92a4e2e1f5ca21564d46737bc449484e033ef6feb6971609dc759dc4f4e6"
+    },
+    {
+      "root": "supplemental-ui-candidate11-contract1-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate11-contract1-v1/candidate-preflight-1.csv",
+      "sha256": "334eff39a2f32908a60bff0fac630af364f7a893a29b6ad983fb2c9273dca808",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate11-contract1-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "12ad08f3d30add7d61fb56fca7f8c80fee0b67fb508304cfd4bf0cda645f8dcb"
+    },
+    {
+      "root": "supplemental-ui-candidate11-v1",
+      "run": "candidate-preflight-1",
+      "projection": "projections/supplemental-ui-candidate11-v1/candidate-preflight-1.csv",
+      "sha256": "cb31bf400a568f869380b6f774d0767f0f157f60a5c7d5673ca6b8b38ea6ac49",
+      "complete_external_trace": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate11-v1/candidate-preflight-1.json",
+      "external_trace_sha256": "ca4b08fb4da483ee4cef08b094e2d35be96afac5df5bbc2095cb562368da2b94"
+    }
+  ]
+}

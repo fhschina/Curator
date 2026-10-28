@@ -1,0 +1,109 @@
+{
+  "completed": 1793185216.8395474,
+  "status": "PASS",
+  "plan_sha256": "b45832a02772afcfb8a01b3d6b0a5f6023f9b215d7229735e8225789147a9f52",
+  "jobs": [
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/check_all_prompt_budgets.py",
+        "--root",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-13",
+        "--output",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-13/all-input-budget-check.json",
+        "--arrow-pandas-roundtrip"
+      ],
+      "started": 1793184398.4639661,
+      "completed": 1793184431.361876,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/run_serial.py",
+        "--after-file",
+        "candidate10-confirmation-COMPLETE.json",
+        "--root",
+        "candidate-13",
+        "--panels",
+        "preflight",
+        "gate",
+        "coverage-regression",
+        "--receipt",
+        "candidate13-hard-screen-receipt.json"
+      ],
+      "started": 1793184431.370938,
+      "completed": 1793184849.2847564,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/run_serial.py",
+        "--after-file",
+        "candidate13-hard-screen-receipt.json",
+        "--root",
+        "supplemental-ui-candidate13-v1",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "candidate13-ui-screen-receipt.json"
+      ],
+      "started": 1793184849.293899,
+      "completed": 1793184965.772785,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/run_serial.py",
+        "--after-file",
+        "candidate13-ui-screen-receipt.json",
+        "--root",
+        "supplemental-cookie-scope-candidate13-v2",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "candidate13-cookie-screen-receipt.json"
+      ],
+      "started": 1793184965.7823355,
+      "completed": 1793185054.9552026,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/run_serial.py",
+        "--after-file",
+        "candidate13-cookie-screen-receipt.json",
+        "--root",
+        "supplemental-class-instance-candidate13-v2",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "candidate13-class-screen-receipt.json"
+      ],
+      "started": 1793185054.9638166,
+      "completed": 1793185135.8209717,
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+        "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/run_serial.py",
+        "--after-file",
+        "candidate13-class-screen-receipt.json",
+        "--root",
+        "supplemental-control-role-candidate13-v1",
+        "--panels",
+        "preflight",
+        "--receipt",
+        "candidate13-control-role-screen-receipt.json"
+      ],
+      "started": 1793185135.829484,
+      "completed": 1793185216.8395023,
+      "returncode": 0
+    }
+  ],
+  "command_success_is_not_acceptance": true
+}

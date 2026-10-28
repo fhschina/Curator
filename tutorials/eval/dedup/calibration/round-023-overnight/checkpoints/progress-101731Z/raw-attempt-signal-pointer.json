@@ -1,0 +1,6 @@
+{
+  "path": "raw-attempt-signals-v1/summary.json",
+  "sha256": "42a29103c6bea327246f67cb7d0594d3d5d29c07ab4aaa0b3ce140bf3f7c5a76",
+  "scope": "Completed native runs at trace snapshot; signals only, no score/validation changes",
+  "created": 1793182153.8288772
+}

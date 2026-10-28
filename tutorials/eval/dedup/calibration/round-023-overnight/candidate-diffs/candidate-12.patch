@@ -1,0 +1,330 @@
+--- candidate-11/critics/coverage_pair.jinja
++++ candidate-12/critics/coverage_pair.jinja
+@@ -70 +70 @@
+-is a bound record identity, not an unpopulated query or navigation control.
++is a bound record identity, not a query value or navigation control.
+@@ -74,11 +74,22 @@
+-Classify the visible role before treating a number, name, date or version as a
+-record fact. A search input, selectable facet, sort choice, archive link or
+-documentation version selector navigates content; its value does not assert
+-the unseen content. When the displayed actual results and substantive text
+-are fully preserved, changed control values, facet subsets and their counts
+-are harmless UI. A version selector alone does not provide a changed API,
+-command, compatibility requirement or version-specific explanation. A search
+-word in introductory tool copy is not an actual example sentence or result.
+-Do not infer unshown records, behavior or facts from controls or headings.
+-
+-Actual populated records remain protected: changed people/items in a result,
++Classify the FUNCTION of each value before calling it a record fact.
++A populated search query, selectable facet, sort choice, archive link, language
++or documentation-version selector is still a control. Its names, dates,
++versions and counts do not by themselves assert new item facts. A facet remains
++a control even on a one-result page; its options are not additional attributes
++assigned within the actual displayed item record merely because they relate to
++that result. When every actual displayed record and substantive passage is
++fully preserved, changed control options, facet subsets and counts are harmless.
++Keep values actually assigned in an item record, action, status or permission
++claim distinct from those choices. A query term in generic lookup-introduction
++copy remains the search target; describing a translation/example lookup does
++not itself display the promised sentence or word record. Actual displayed
++examples, definitions, translations and item facts remain useful.
++For a claimed value loss, cite where it is asserted as an actual record or claim,
++rather than merely available as a control or lookup target. When only such
++controls differ over the same fully retained record or complete message, their
++deltas are harmless or covered and do not create a material conflict; the
++corresponding coverage loss ID stays empty. Apply the original basis/summary
++rules to that same complete comparison. Do not infer unseen content.
++
++Actual displayed item facts and real status/access claims remain protected:
++changed people/items in a result,
+--- candidate-11/critics/coverage_system.jinja
++++ candidate-12/critics/coverage_system.jinja
+@@ -242 +242,2 @@
+-scope. These are different from an unpopulated heading or filter. Check the
++scope. These are different from a navigation-only heading or filter, even one with
++concrete option values or counts. Check the
+@@ -256 +257 @@
+-is a bound record identity, not an unpopulated query or navigation control.
++is a bound record identity, not a query value or navigation control.
+@@ -260,11 +261,22 @@
+-Classify the visible role before treating a number, name, date or version as a
+-record fact. A search input, selectable facet, sort choice, archive link or
+-documentation version selector navigates content; its value does not assert
+-the unseen content. When the displayed actual results and substantive text
+-are fully preserved, changed control values, facet subsets and their counts
+-are harmless UI. A version selector alone does not provide a changed API,
+-command, compatibility requirement or version-specific explanation. A search
+-word in introductory tool copy is not an actual example sentence or result.
+-Do not infer unshown records, behavior or facts from controls or headings.
+-
+-Actual populated records remain protected: changed people/items in a result,
++Classify the FUNCTION of each value before calling it a record fact.
++A populated search query, selectable facet, sort choice, archive link, language
++or documentation-version selector is still a control. Its names, dates,
++versions and counts do not by themselves assert new item facts. A facet remains
++a control even on a one-result page; its options are not additional attributes
++assigned within the actual displayed item record merely because they relate to
++that result. When every actual displayed record and substantive passage is
++fully preserved, changed control options, facet subsets and counts are harmless.
++Keep values actually assigned in an item record, action, status or permission
++claim distinct from those choices. A query term in generic lookup-introduction
++copy remains the search target; describing a translation/example lookup does
++not itself display the promised sentence or word record. Actual displayed
++examples, definitions, translations and item facts remain useful.
++For a claimed value loss, cite where it is asserted as an actual record or claim,
++rather than merely available as a control or lookup target. When only such
++controls differ over the same fully retained record or complete message, their
++deltas are harmless or covered and do not create a material conflict; the
++corresponding coverage loss ID stays empty. Apply the original basis/summary
++rules to that same complete comparison. Do not infer unseen content.
++
++Actual displayed item facts and real status/access claims remain protected:
++changed people/items in a result,
+--- candidate-11/critics/subject_pair.jinja
++++ candidate-12/critics/subject_pair.jinja
+@@ -45 +45 @@
+-is a bound record identity, not an unpopulated query or navigation control.
++is a bound record identity, not a query value or navigation control.
+@@ -49,11 +49,22 @@
+-Classify the visible role before treating a number, name, date or version as a
+-record fact. A search input, selectable facet, sort choice, archive link or
+-documentation version selector navigates content; its value does not assert
+-the unseen content. When the displayed actual results and substantive text
+-are fully preserved, changed control values, facet subsets and their counts
+-are harmless UI. A version selector alone does not provide a changed API,
+-command, compatibility requirement or version-specific explanation. A search
+-word in introductory tool copy is not an actual example sentence or result.
+-Do not infer unshown records, behavior or facts from controls or headings.
+-
+-Actual populated records remain protected: changed people/items in a result,
++Classify the FUNCTION of each value before calling it a record fact.
++A populated search query, selectable facet, sort choice, archive link, language
++or documentation-version selector is still a control. Its names, dates,
++versions and counts do not by themselves assert new item facts. A facet remains
++a control even on a one-result page; its options are not additional attributes
++assigned within the actual displayed item record merely because they relate to
++that result. When every actual displayed record and substantive passage is
++fully preserved, changed control options, facet subsets and counts are harmless.
++Keep values actually assigned in an item record, action, status or permission
++claim distinct from those choices. A query term in generic lookup-introduction
++copy remains the search target; describing a translation/example lookup does
++not itself display the promised sentence or word record. Actual displayed
++examples, definitions, translations and item facts remain useful.
++For a claimed value loss, cite where it is asserted as an actual record or claim,
++rather than merely available as a control or lookup target. When only such
++controls differ over the same fully retained record or complete message, their
++deltas are harmless or covered and do not create a material conflict; the
++corresponding coverage loss ID stays empty. Apply the original basis/summary
++rules to that same complete comparison. Do not infer unseen content.
++
++Actual displayed item facts and real status/access claims remain protected:
++changed people/items in a result,
+--- candidate-11/critics/subject_system.jinja
++++ candidate-12/critics/subject_system.jinja
+@@ -190 +190 @@
+-is a bound record identity, not an unpopulated query or navigation control.
++is a bound record identity, not a query value or navigation control.
+@@ -194,11 +194,22 @@
+-Classify the visible role before treating a number, name, date or version as a
+-record fact. A search input, selectable facet, sort choice, archive link or
+-documentation version selector navigates content; its value does not assert
+-the unseen content. When the displayed actual results and substantive text
+-are fully preserved, changed control values, facet subsets and their counts
+-are harmless UI. A version selector alone does not provide a changed API,
+-command, compatibility requirement or version-specific explanation. A search
+-word in introductory tool copy is not an actual example sentence or result.
+-Do not infer unshown records, behavior or facts from controls or headings.
+-
+-Actual populated records remain protected: changed people/items in a result,
++Classify the FUNCTION of each value before calling it a record fact.
++A populated search query, selectable facet, sort choice, archive link, language
++or documentation-version selector is still a control. Its names, dates,
++versions and counts do not by themselves assert new item facts. A facet remains
++a control even on a one-result page; its options are not additional attributes
++assigned within the actual displayed item record merely because they relate to
++that result. When every actual displayed record and substantive passage is
++fully preserved, changed control options, facet subsets and counts are harmless.
++Keep values actually assigned in an item record, action, status or permission
++claim distinct from those choices. A query term in generic lookup-introduction
++copy remains the search target; describing a translation/example lookup does
++not itself display the promised sentence or word record. Actual displayed
++examples, definitions, translations and item facts remain useful.
++For a claimed value loss, cite where it is asserted as an actual record or claim,
++rather than merely available as a control or lookup target. When only such
++controls differ over the same fully retained record or complete message, their
++deltas are harmless or covered and do not create a material conflict; the
++corresponding coverage loss ID stays empty. Apply the original basis/summary
++rules to that same complete comparison. Do not infer unseen content.
++
++Actual displayed item facts and real status/access claims remain protected:
++changed people/items in a result,
+--- candidate-11/critics/subject_verifier_pair.jinja
++++ candidate-12/critics/subject_verifier_pair.jinja
+@@ -26 +26 @@
+-is a bound record identity, not an unpopulated query or navigation control.
++is a bound record identity, not a query value or navigation control.
+@@ -30,11 +30,22 @@
+-Classify the visible role before treating a number, name, date or version as a
+-record fact. A search input, selectable facet, sort choice, archive link or
+-documentation version selector navigates content; its value does not assert
+-the unseen content. When the displayed actual results and substantive text
+-are fully preserved, changed control values, facet subsets and their counts
+-are harmless UI. A version selector alone does not provide a changed API,
+-command, compatibility requirement or version-specific explanation. A search
+-word in introductory tool copy is not an actual example sentence or result.
+-Do not infer unshown records, behavior or facts from controls or headings.
+-
+-Actual populated records remain protected: changed people/items in a result,
++Classify the FUNCTION of each value before calling it a record fact.
++A populated search query, selectable facet, sort choice, archive link, language
++or documentation-version selector is still a control. Its names, dates,
++versions and counts do not by themselves assert new item facts. A facet remains
++a control even on a one-result page; its options are not additional attributes
++assigned within the actual displayed item record merely because they relate to
++that result. When every actual displayed record and substantive passage is
++fully preserved, changed control options, facet subsets and counts are harmless.
++Keep values actually assigned in an item record, action, status or permission
++claim distinct from those choices. A query term in generic lookup-introduction
++copy remains the search target; describing a translation/example lookup does
++not itself display the promised sentence or word record. Actual displayed
++examples, definitions, translations and item facts remain useful.
++For a claimed value loss, cite where it is asserted as an actual record or claim,
++rather than merely available as a control or lookup target. When only such
++controls differ over the same fully retained record or complete message, their
++deltas are harmless or covered and do not create a material conflict; the
++corresponding coverage loss ID stays empty. Apply the original basis/summary
++rules to that same complete comparison. Do not infer unseen content.
++
++Actual displayed item facts and real status/access claims remain protected:
++changed people/items in a result,
+--- candidate-11/critics/subject_verifier_system.jinja
++++ candidate-12/critics/subject_verifier_system.jinja
+@@ -168 +168 @@
+-is a bound record identity, not an unpopulated query or navigation control.
++is a bound record identity, not a query value or navigation control.
+@@ -172,11 +172,22 @@
+-Classify the visible role before treating a number, name, date or version as a
+-record fact. A search input, selectable facet, sort choice, archive link or
+-documentation version selector navigates content; its value does not assert
+-the unseen content. When the displayed actual results and substantive text
+-are fully preserved, changed control values, facet subsets and their counts
+-are harmless UI. A version selector alone does not provide a changed API,
+-command, compatibility requirement or version-specific explanation. A search
+-word in introductory tool copy is not an actual example sentence or result.
+-Do not infer unshown records, behavior or facts from controls or headings.
+-
+-Actual populated records remain protected: changed people/items in a result,
++Classify the FUNCTION of each value before calling it a record fact.
++A populated search query, selectable facet, sort choice, archive link, language
++or documentation-version selector is still a control. Its names, dates,
++versions and counts do not by themselves assert new item facts. A facet remains
++a control even on a one-result page; its options are not additional attributes
++assigned within the actual displayed item record merely because they relate to
++that result. When every actual displayed record and substantive passage is
++fully preserved, changed control options, facet subsets and counts are harmless.
++Keep values actually assigned in an item record, action, status or permission
++claim distinct from those choices. A query term in generic lookup-introduction
++copy remains the search target; describing a translation/example lookup does
++not itself display the promised sentence or word record. Actual displayed
++examples, definitions, translations and item facts remain useful.
++For a claimed value loss, cite where it is asserted as an actual record or claim,
++rather than merely available as a control or lookup target. When only such
++controls differ over the same fully retained record or complete message, their
++deltas are harmless or covered and do not create a material conflict; the
++corresponding coverage loss ID stays empty. Apply the original basis/summary
++rules to that same complete comparison. Do not infer unseen content.
++
++Actual displayed item facts and real status/access claims remain protected:
++changed people/items in a result,
+--- candidate-11/judge_config/fuzzy_pair_judge.yaml
++++ candidate-12/judge_config/fuzzy_pair_judge.yaml
+@@ -98 +98 @@
+-              description: "Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions. Distinguish broad category classes from actual bound instances. The approved generic-marketing category exception permits different category/service types even in titles and repeated promotional sentences; do not require category identity or invent a concrete item from that class label alone. Actual failed-object/status/access targets and liable parties are bound instances, not optional variables; matching predicates alone do not establish equivalent messages with different actual targets. In the qualified complete cookie-notice stock-copy branch, count the already-retained paragraph once. A generic heading alone cannot turn its repeated necessary/basic-function wording into another category-specific mandatory assertion or conflict; an explicit additional category-bound proposition or new actual term remains material."
++              description: "Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Facts assigned in actual item records, actual failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions. Distinguish broad category classes from actual bound instances. The approved generic-marketing category exception permits different category/service types even in titles and repeated promotional sentences; do not require category identity or invent a concrete item from that class label alone. Actual failed-object/status/access targets and liable parties are bound instances, not optional variables; matching predicates alone do not establish equivalent messages with different actual targets. In the qualified complete cookie-notice stock-copy branch, count the already-retained paragraph once. A generic heading alone cannot turn its repeated necessary/basic-function wording into another category-specific mandatory assertion or conflict; an explicit additional category-bound proposition or new actual term remains material. Concrete option values and counts do not turn a control into a record assertion, including one-result facets. A lookup-introduction query term is not a displayed example. Preserve actual item/action/status claims; after complete underlying record/message coverage, control-only deltas are harmless and cannot create a hard conflict."
+@@ -109 +109 @@
+-              description: "Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions. Distinguish broad category classes from actual bound instances. The approved generic-marketing category exception permits different category/service types even in titles and repeated promotional sentences; do not require category identity or invent a concrete item from that class label alone. Actual failed-object/status/access targets and liable parties are bound instances, not optional variables; matching predicates alone do not establish equivalent messages with different actual targets. In the qualified complete cookie-notice stock-copy branch, count the already-retained paragraph once. A generic heading alone cannot turn its repeated necessary/basic-function wording into another category-specific mandatory assertion or conflict; an explicit additional category-bound proposition or new actual term remains material."
++              description: "Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Facts assigned in actual item records, actual failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions. Distinguish broad category classes from actual bound instances. The approved generic-marketing category exception permits different category/service types even in titles and repeated promotional sentences; do not require category identity or invent a concrete item from that class label alone. Actual failed-object/status/access targets and liable parties are bound instances, not optional variables; matching predicates alone do not establish equivalent messages with different actual targets. In the qualified complete cookie-notice stock-copy branch, count the already-retained paragraph once. A generic heading alone cannot turn its repeated necessary/basic-function wording into another category-specific mandatory assertion or conflict; an explicit additional category-bound proposition or new actual term remains material. Concrete option values and counts do not turn a control into a record assertion, including one-result facets. A lookup-introduction query term is not a displayed example. Preserve actual item/action/status claims; after complete underlying record/message coverage, control-only deltas are harmless and cannot create a hard conflict."
+@@ -120 +120 @@
+-              description: "Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions. Distinguish broad category classes from actual bound instances. The approved generic-marketing category exception permits different category/service types even in titles and repeated promotional sentences; do not require category identity or invent a concrete item from that class label alone. Actual failed-object/status/access targets and liable parties are bound instances, not optional variables; matching predicates alone do not establish equivalent messages with different actual targets. In the qualified complete cookie-notice stock-copy branch, count the already-retained paragraph once. A generic heading alone cannot turn its repeated necessary/basic-function wording into another category-specific mandatory assertion or conflict; an explicit additional category-bound proposition or new actual term remains material."
++              description: "Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Facts assigned in actual item records, actual failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions. Distinguish broad category classes from actual bound instances. The approved generic-marketing category exception permits different category/service types even in titles and repeated promotional sentences; do not require category identity or invent a concrete item from that class label alone. Actual failed-object/status/access targets and liable parties are bound instances, not optional variables; matching predicates alone do not establish equivalent messages with different actual targets. In the qualified complete cookie-notice stock-copy branch, count the already-retained paragraph once. A generic heading alone cannot turn its repeated necessary/basic-function wording into another category-specific mandatory assertion or conflict; an explicit additional category-bound proposition or new actual term remains material. Concrete option values and counts do not turn a control into a record assertion, including one-result facets. A lookup-introduction query term is not a displayed example. Preserve actual item/action/status claims; after complete underlying record/message coverage, control-only deltas are harmless and cannot create a hard conflict."
+@@ -124 +124 @@
+-                state_or_version: Actual retained date, count, price, version, availability, status or result claims conflict. An unpopulated selector alone does not assert unseen version-specific facts or results.
++                state_or_version: Actual retained date, count, price, version, availability, status or result claims conflict. A control's offered values alone do not assert unseen version-specific facts or results, even when populated.
+--- candidate-11/judge_config/pair.jinja
++++ candidate-12/judge_config/pair.jinja
+@@ -96 +96 @@
+-is a bound record identity, not an unpopulated query or navigation control.
++is a bound record identity, not a query value or navigation control.
+@@ -100,11 +100,22 @@
+-Classify the visible role before treating a number, name, date or version as a
+-record fact. A search input, selectable facet, sort choice, archive link or
+-documentation version selector navigates content; its value does not assert
+-the unseen content. When the displayed actual results and substantive text
+-are fully preserved, changed control values, facet subsets and their counts
+-are harmless UI. A version selector alone does not provide a changed API,
+-command, compatibility requirement or version-specific explanation. A search
+-word in introductory tool copy is not an actual example sentence or result.
+-Do not infer unshown records, behavior or facts from controls or headings.
+-
+-Actual populated records remain protected: changed people/items in a result,
++Classify the FUNCTION of each value before calling it a record fact.
++A populated search query, selectable facet, sort choice, archive link, language
++or documentation-version selector is still a control. Its names, dates,
++versions and counts do not by themselves assert new item facts. A facet remains
++a control even on a one-result page; its options are not additional attributes
++assigned within the actual displayed item record merely because they relate to
++that result. When every actual displayed record and substantive passage is
++fully preserved, changed control options, facet subsets and counts are harmless.
++Keep values actually assigned in an item record, action, status or permission
++claim distinct from those choices. A query term in generic lookup-introduction
++copy remains the search target; describing a translation/example lookup does
++not itself display the promised sentence or word record. Actual displayed
++examples, definitions, translations and item facts remain useful.
++For a claimed value loss, cite where it is asserted as an actual record or claim,
++rather than merely available as a control or lookup target. When only such
++controls differ over the same fully retained record or complete message, their
++deltas are harmless or covered and do not create a material conflict; the
++corresponding coverage loss ID stays empty. Apply the original basis/summary
++rules to that same complete comparison. Do not infer unseen content.
++
++Actual displayed item facts and real status/access claims remain protected:
++changed people/items in a result,
+--- candidate-11/judge_config/system.jinja
++++ candidate-12/judge_config/system.jinja
+@@ -119 +119 @@
+-is a bound record identity, not an unpopulated query or navigation control.
++is a bound record identity, not a query value or navigation control.
+@@ -123,11 +123,22 @@
+-Classify the visible role before treating a number, name, date or version as a
+-record fact. A search input, selectable facet, sort choice, archive link or
+-documentation version selector navigates content; its value does not assert
+-the unseen content. When the displayed actual results and substantive text
+-are fully preserved, changed control values, facet subsets and their counts
+-are harmless UI. A version selector alone does not provide a changed API,
+-command, compatibility requirement or version-specific explanation. A search
+-word in introductory tool copy is not an actual example sentence or result.
+-Do not infer unshown records, behavior or facts from controls or headings.
+-
+-Actual populated records remain protected: changed people/items in a result,
++Classify the FUNCTION of each value before calling it a record fact.
++A populated search query, selectable facet, sort choice, archive link, language
++or documentation-version selector is still a control. Its names, dates,
++versions and counts do not by themselves assert new item facts. A facet remains
++a control even on a one-result page; its options are not additional attributes
++assigned within the actual displayed item record merely because they relate to
++that result. When every actual displayed record and substantive passage is
++fully preserved, changed control options, facet subsets and counts are harmless.
++Keep values actually assigned in an item record, action, status or permission
++claim distinct from those choices. A query term in generic lookup-introduction
++copy remains the search target; describing a translation/example lookup does
++not itself display the promised sentence or word record. Actual displayed
++examples, definitions, translations and item facts remain useful.
++For a claimed value loss, cite where it is asserted as an actual record or claim,
++rather than merely available as a control or lookup target. When only such
++controls differ over the same fully retained record or complete message, their
++deltas are harmless or covered and do not create a material conflict; the
++corresponding coverage loss ID stays empty. Apply the original basis/summary
++rules to that same complete comparison. Do not infer unseen content.
++
++Actual displayed item facts and real status/access claims remain protected:
++changed people/items in a result,

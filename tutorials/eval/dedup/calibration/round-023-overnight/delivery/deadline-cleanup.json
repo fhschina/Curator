@@ -1,0 +1,207 @@
+{
+  "triggered": 1793202285.0002763,
+  "cleanup_starts_at": 1793202285,
+  "gpu_stop_at": 1793202300,
+  "deadline": 1793203200,
+  "processes": [
+    {
+      "pid": 1468822,
+      "status": "term_sent",
+      "children": []
+    },
+    {
+      "pid": 1475911,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1486272,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1547541,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1622133,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1701173,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1705429,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1754091,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1755355,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1840959,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1859056,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1869090,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1963459,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1994624,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2049076,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2077204,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2107815,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2199330,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2247346,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2296471,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2390226,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2398490,
+      "status": "term_sent",
+      "children": []
+    },
+    {
+      "pid": 2458420,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2552967,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2594331,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2640559,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2716510,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2783266,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2820125,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2905586,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2997423,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3134618,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3138020,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3199145,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3221627,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3245745,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3303159,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3308909,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3348925,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3381714,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3446245,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3454084,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3557250,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3563270,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3687641,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3702210,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3803959,
+      "status": "already_exited"
+    }
+  ],
+  "containers": [
+    {
+      "name": "retention-policy-v3-overnight-20261028-gpu0",
+      "status": "stopped",
+      "returncode": 0,
+      "completed": 1793202287.3797886
+    }
+  ],
+  "finished": 1793202287.4064267
+}

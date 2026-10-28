@@ -1,0 +1,16 @@
+{
+  "checked": 1793180563.1294572,
+  "installed_data_designer": "0.9.1",
+  "source_files": {
+    "/raid/hfang/llm_judge_env_pr2324_latest/lib/python3.11/site-packages/data_designer/engine/column_generators/utils/prompt_renderer.py": "d9c811f94e13a9e9357a28878757d4ee6e95d4f951fff975590eab9356faa4b7",
+    "/raid/hfang/llm_judge_env_pr2324_latest/lib/python3.11/site-packages/data_designer/engine/models/recipes/response_recipes.py": "517f66fbc4530e3dec5e4cc474aa644a3e73ee33be7d085d71adcc481c9bfc9b"
+  },
+  "findings": [
+    "Native LLM_JUDGE selects PydanticResponseRecipe; it validates the existing judge response model.",
+    "Native LLM_STRUCTURED also requires Markdown JSON framing; switching column kinds is not a direct bare-JSON transport option.",
+    "serialize_output/deserialize_output are storage round-trip helpers; using them to accept unfenced model replies would bypass the native generation parser.",
+    "No native recipe, parser, model option, decoding constraint or evaluator code was changed in this inspection."
+  ],
+  "model_calls": 0,
+  "native_validation_relaxed": false
+}

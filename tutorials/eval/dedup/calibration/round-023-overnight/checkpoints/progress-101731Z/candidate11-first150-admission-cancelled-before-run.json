@@ -1,0 +1,28 @@
+{
+  "time": 1793179673.7260203,
+  "status": "NOT_ADMITTED",
+  "original_first_hard86": "PASS_ALL_LAYERS",
+  "supplemental_cookie8": "FAIL_TECHNICAL_PARSE",
+  "native_first150_slot": "NOT_STARTED",
+  "queued_process_cancelled": {
+    "name": "candidate11-first150",
+    "pid": 3381714,
+    "create_time": 1793179400.23,
+    "command": [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/insert_declared_jobs.py",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate11-first150-insert-plan.json"
+    ]
+  },
+  "queue_cancelled_before_own_reservation_or_child": true,
+  "failed_extra_control_evidence": "supplemental-cookie-scope-candidate11-v2/runs/candidate-preflight-1/audits/engineering04-ledger-coherence/strict_audit.json",
+  "evidence_sha256": "ace4203987781cebca3a60953a06f597ade02af5a4d2e76df5457169c409e74b",
+  "issues": {
+    "SCS004": [
+      "MAIN_ATTEMPT_PARSE_ERROR"
+    ]
+  },
+  "model_calls_by_cancelled_long_admission": 0,
+  "original_source_and_failed_control_outputs_preserved": true,
+  "reason": "Do not launch the long slot after an already observed technical failure. Test the separately frozen transport-priority prefix instead; no parser relaxation and no replacement of failed native runs."
+}

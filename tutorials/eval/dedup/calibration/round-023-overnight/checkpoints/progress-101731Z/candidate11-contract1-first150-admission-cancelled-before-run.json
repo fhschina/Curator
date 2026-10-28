@@ -1,0 +1,26 @@
+{
+  "time": 1793180423.2147527,
+  "status": "NOT_ADMITTED",
+  "reason": "Two actual original-preflight parse-invalid rows; preserve outputs and do not launch long inference from a failed format screen.",
+  "issues": {
+    "T_localized_title-swapped": [
+      "MAIN_ATTEMPT_PARSE_ERROR"
+    ],
+    "R33": [
+      "MAIN_ATTEMPT_PARSE_ERROR"
+    ]
+  },
+  "native_first150_slot": "NOT_STARTED",
+  "cancelled_identity": {
+    "name": "candidate11-contract1-first150",
+    "pid": 3454084,
+    "create_time": 1793180046.74,
+    "command": [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/insert_declared_jobs.py",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate11-contract1-first150-insert-plan.json"
+    ]
+  },
+  "before_own_reservation_or_child": true,
+  "model_calls_by_cancelled_long_admission": 0
+}

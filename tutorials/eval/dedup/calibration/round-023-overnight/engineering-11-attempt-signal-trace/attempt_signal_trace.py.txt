@@ -1,0 +1,63 @@
+"""Read-only direction signals from every main attempt; never validates or scores a reply."""
+import argparse,csv,hashlib,json,time
+from collections import defaultdict
+from pathlib import Path
+from data_designer.engine.models.parsers.parser import LLMResponseParser
+from data_designer.engine.models.parsers.postprocessors import StructuredDataBlock,deserialize_json_code,merge_text_blocks
+FIELDS=('a_can_replace_b','b_can_replace_a')
+parser=LLMResponseParser(postprocessors=[merge_text_blocks,deserialize_json_code])
+
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def raw_object(content):
+ try:
+  obj=parser.parse(content).filter([StructuredDataBlock]).parsed.pop().obj
+  return (obj,'native_lexical_fenced_json') if isinstance(obj,dict) else (None,'non_object')
+ except Exception:
+  try:
+   obj=json.loads(content)
+   return (obj,'bare_json_DIAGNOSTIC_ONLY') if isinstance(obj,dict) else (None,'non_object')
+  except (ValueError,TypeError):return None,'unreadable_DIAGNOSTIC_ONLY'
+
+def trace_run(run_dir,output):
+ strict=run_dir/'audits/engineering04-ledger-coherence/strict_audit.csv'
+ native=run_dir/'tuning_audit-v2.json';audit=run_dir/'attempt_audit.jsonl'
+ protected=[strict,native,audit,run_dir/'run_manifest.json',run_dir.parents[1]/'manifest.json']
+ before={str(p):sha(p) for p in protected};refs={row['pair_id']:json.loads(row['references_by_group']) for row in csv.DictReader(strict.open()) if row['layer']=='main'}
+ rows=[];groups=defaultdict(lambda:{'attempts':0,'wrong_allow_signals':0,'wrong_block_signals':0,'nonvalid_attempt_wrong_allow_signals':0,'nonvalid_attempt_wrong_block_signals':0,'unknown_direction_values':0,'pairs_with_wrong_allow':set(),'pairs_with_wrong_block':set()})
+ for index,line in enumerate(audit.read_text().splitlines()):
+  item=json.loads(line)
+  if item.get('stage')!='main':continue
+  pair=item['pair_id'];receipt_path=Path(item['receipt']);receipt=json.loads(receipt_path.read_text());assert receipt['pair_id']==pair
+  try:
+   body=json.loads(receipt['response']);obj,kind=raw_object(body['choices'][0]['message']['content'])
+  except (KeyError,ValueError,TypeError,IndexError):obj,kind=None,'unreadable_transport_or_response'
+  values={f:(x.get('score') if isinstance(x,dict) else x) for f in FIELDS for x in [(obj or {}).get(f)]}
+  signals={f:(value.casefold().strip() if isinstance(value,str) and value.casefold().strip() in {'yes','no'} else None) for f,value in values.items()}
+  comparisons={}
+  for group,choices in refs.get(pair,{}).items():
+   if not choices:continue
+   reference=max(choices,key=lambda c:sum(signals.get(f)==c[f] for f in FIELDS))
+   allows=[f for f in FIELDS if signals[f]=='yes' and reference[f]=='no'];blocks=[f for f in FIELDS if signals[f]=='no' and reference[f]=='yes'];stats=groups[group];stats['attempts']+=1;stats['wrong_allow_signals']+=len(allows);stats['wrong_block_signals']+=len(blocks);stats['unknown_direction_values']+=sum(v is None for v in signals.values())
+   if item['status']!='valid':stats['nonvalid_attempt_wrong_allow_signals']+=len(allows);stats['nonvalid_attempt_wrong_block_signals']+=len(blocks)
+   if allows:stats['pairs_with_wrong_allow'].add(pair)
+   if blocks:stats['pairs_with_wrong_block'].add(pair)
+   comparisons[group]={'one_pair_coherent_reference':reference,'wrong_allow_fields':allows,'wrong_block_fields':blocks}
+  rows.append({'pair_id':pair,'attempt_index_in_native_audit':index,'native_attempt_status':item['status'],'native_attempt_error':item.get('error'),'receipt':str(receipt_path),'receipt_sha256':sha(receipt_path),'lexical_extraction':kind,'raw_direction_values':values,'recognized_direction_signals':signals,'comparisons':comparisons,'unlabeled_no_comparison':not bool(comparisons),'never_grants_validity_or_agreement':True})
+ assert all(sha(Path(p))==h for p,h in before.items())
+ for stats in groups.values():
+  for key in ['pairs_with_wrong_allow','pairs_with_wrong_block']:stats[key]=sorted(stats[key])
+ result={'status':'PASS','run_dir':str(run_dir),'source_artifacts_unchanged':before,'method':'All main attempts, including failed ones. Native lexical JSON extraction plus bare-JSON decoding for diagnostic direction signals only. Native parsers, validation, decisions, fixed references and all agreement scores are unchanged. Counts are attempt signals, not accuracy or fixed input denominators. Alternatives select one whole pair by the existing native maximum-match rule; unknown values stay unknown. Unlabeled diagnostics have no correctness comparison.','groups':dict(groups),'main_attempts':len(rows),'attempts':rows,'model_calls_by_this_trace':0}
+ output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');return result
+
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--session',type=Path,required=True);p.add_argument('--output',type=Path,required=True);args=p.parse_args();session=args.session.resolve();args.output.mkdir(parents=True,exist_ok=False);started=time.time();runs=[]
+ for csv_path in sorted(session.glob('*/runs/*/audits/engineering04-ledger-coherence/strict_audit.csv')):
+  run=csv_path.parents[2];manifest=run/'run_manifest.json'
+  if not manifest.exists():continue
+  state=json.loads(manifest.read_text())
+  if state.get('status')!='complete' or time.time()-state.get('completed',time.time())<10:continue
+  root=run.parents[1].name;target=args.output/root/(run.name+'.json');result=trace_run(run,target);runs.append({'root':root,'run':run.name,'main_attempts':result['main_attempts'],'groups':result['groups'],'output':str(target),'sha256':sha(target)})
+  if len(runs)%20==0:print(json.dumps({'completed_runs':len(runs)}),flush=True)
+ summary={'status':'PASS','started':started,'completed':time.time(),'native_score_artifacts_unchanged':True,'model_calls':0,'not_a_new_judge_or_score_revision':True,'source_code_sha256':sha(Path(__file__)),'runs':runs};(args.output/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'status':'PASS','runs':len(runs),'main_attempts':sum(x['main_attempts'] for x in runs),'output':str(args.output),'model_calls':0}),flush=True)
+if __name__=='__main__':main()

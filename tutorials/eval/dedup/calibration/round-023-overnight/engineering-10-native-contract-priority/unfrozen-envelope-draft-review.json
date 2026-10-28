@@ -1,0 +1,7 @@
+{
+  "time": 1793179836.6128726,
+  "status": "NOT_FROZEN_OR_INFERRED",
+  "reason": "The initial envelope-only draft inaccurately attributed the fresh candidate11 failure to bare JSON before receipt inspection. Actual cause is a nested schema key. Preserve draft and replace it with the separately versioned contract1 proposal and accurate evidence.",
+  "replacement": "candidate11-contract1-hypothesis.json",
+  "model_calls": 0
+}

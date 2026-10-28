@@ -1,0 +1,7 @@
+{
+  "source": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/formal-progress-101731Z-engineering04/comparison.json",
+  "source_sha256": "f6d6debceed3dbe2d690df7e68089e981944c74cf0eca777e0603b8801ca6611",
+  "complete_minified_sha256": "85b82b898c4b537bf30f64cf34e17dbedf77993dabbdbe1c2dcbb956a278e7de",
+  "complete_minified_gzip": "comparison.json.gz",
+  "all_versions_and_runs_preserved": true
+}

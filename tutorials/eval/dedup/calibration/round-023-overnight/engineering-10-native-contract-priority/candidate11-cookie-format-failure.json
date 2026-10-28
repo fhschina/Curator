@@ -1,0 +1,30 @@
+{
+  "pair_id": "SCS004",
+  "error": "Response doesn't match requested <response_schema>\n'score' is a required property\n\nFailed validating 'required' in schema['properties']['primary_risk_factor']:\n    {'description': 'Select the most specific observable deduplication '\n                    'trap.',\n     'properties': {'reasoning': {'description': 'Reasoning for the '\n                                                 'assigned score.',\n",
+  "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/supplemental-cookie-scope-candidate11-v2/runs/candidate-preflight-1/receipts/main/http/e873e434315c4124b30b227d18764b38.json",
+  "fenced_json_decodes": true,
+  "top_level_fields": [
+    "span_content_profile_a",
+    "span_content_profile_b",
+    "span_translation_status",
+    "span_shared_basis",
+    "span_a_delta",
+    "span_b_delta",
+    "span_hard_conflict",
+    "a_can_replace_b",
+    "b_can_replace_a",
+    "relation_type",
+    "material_difference",
+    "primary_material_difference",
+    "dominant_overlap_source",
+    "primary_risk_factor",
+    "confidence_tier"
+  ],
+  "primary_risk_factor": {
+    "risk_factor": "legal_context_collision",
+    "reasoning": "The generic cookie boilerplate is similar, masking the specific conflict in the legal obligation regarding data retention duration."
+  },
+  "finish_reason": "stop",
+  "completion_tokens": 936,
+  "model_calls_in_this_cpu_inspection": 0
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "time": 1793184202.349359,
+  "model_calls": 0,
+  "native_data_designer_schema_contains_new_option_definitions": true,
+  "native_schema_sha256": "824d394ee1c8e082e34c7e9e4438fa11f1a0b97095bef39b8cd7bd1ea132ac3d",
+  "all_eight_prompt_templates_identical_to_parent": true,
+  "only_yaml_option_descriptions_changed": true
+}

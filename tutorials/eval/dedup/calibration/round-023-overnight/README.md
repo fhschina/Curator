@@ -1,9 +1,12 @@
 # Qwen retention-policy overnight calibration
 
-This is the active 2026-10-28 overnight development experiment on
+This is the completed 2026-10-28 overnight development experiment on
 `codex/dedup-retention-policy-v3-overnight`. The delivery deadline is
 2026-10-28 16:00 UTC (09:00 PDT); semantic search stops at 14:30 UTC and the
 task-owned GPU service must stop by 15:45 UTC.
+
+See [the final evidence index](delivery/README.md) and the bilingual reports
+for the delivered result, unmet requirements and timing record.
 
 The fixed protocol requires the same frozen candidate to reach 648/720
 directions and 306/360 pairs across its three declared personal-reference
@@ -18,6 +21,8 @@ and 288/360 pairs across its original three runs. The final 90% / 85% target,
 latest-review and controlled hard groups, and technical validity fail. All
 three 100-pair nonregression views pass. No candidate is accepted.
 
+- `checkpoints/progress-101731Z/`: refreshed bilingual reports, full machine comparison and retained snapshot history.
+- `engineering-11-attempt-signal-trace/`: read-only raw-attempt signal summaries and safe row projections; no scoring changes.
 - `milestones/85_80-languagefirst1-confirmed-0822Z/`: confirmed snapshot,
   immutable evidence, exact counts, and bilingual qualification summary.
 - `checkpoints/0835Z-confirmed-stage/`: complete comparison, bilingual reports,
@@ -38,5 +43,6 @@ three 100-pair nonregression views pass. No candidate is accepted.
 
 Raw source corpora and full HTTP receipts remain outside Git at
 `/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z`.
-The final selection, resource cleanup and delivery receipts will record the
-observed final result; an archived or committed candidate is not acceptance.
+The final selection and resource cleanup are recorded in `delivery/`. Delivery
+was late; the final metric target was not reached and no candidate passed
+acceptance. An archived or committed candidate is not acceptance.

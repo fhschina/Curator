@@ -1,0 +1,22 @@
+{
+  "candidate": "candidate-11",
+  "original_hard_presentations": 86,
+  "admission_receipt": "engineering-10-native-contract-priority/known_failure-receipt.json",
+  "run_receipt": "MUST_NOT_BE_CREATED_CPU_CHECK.json",
+  "screens": [
+    {
+      "root": "candidate-11",
+      "panels": [
+        "preflight",
+        "gate",
+        "coverage-regression"
+      ]
+    },
+    {
+      "root": "supplemental-cookie-scope-candidate11-v2",
+      "panels": [
+        "preflight"
+      ]
+    }
+  ]
+}

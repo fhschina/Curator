@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "checked": 1793182272.8724287,
+  "model_calls": 0,
+  "actual_native_failed_attempts_used": true,
+  "frozen_reference_and_score_files_unchanged": true,
+  "examples": [
+    {
+      "root": "candidate-10-xref2",
+      "run": "candidate-preflight-1",
+      "pair_id": "T_cookie_intro",
+      "raw_signals": {
+        "a_can_replace_b": "yes",
+        "b_can_replace_a": "yes"
+      },
+      "native_attempt_status": "parse_error",
+      "lexical_extraction": "bare_json_DIAGNOSTIC_ONLY",
+      "native_row_still_invalid": true,
+      "native_csv_sha256_unchanged": true,
+      "trace_never_grants_agreement": true
+    },
+    {
+      "root": "supplemental-cookie-scope-candidate11-v2",
+      "run": "candidate-preflight-1",
+      "pair_id": "SCS004",
+      "raw_signals": {
+        "a_can_replace_b": "no",
+        "b_can_replace_a": "no"
+      },
+      "native_attempt_status": "parse_error",
+      "lexical_extraction": "native_lexical_fenced_json",
+      "native_row_still_invalid": true,
+      "native_csv_sha256_unchanged": true,
+      "trace_never_grants_agreement": true
+    }
+  ]
+}

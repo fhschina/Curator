@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "time": 1793180103.7880306,
+  "candidate": "candidate-11",
+  "checked": [
+    "candidate-11/runs/candidate-preflight-1/audits/engineering04-ledger-coherence/strict_audit.json",
+    "candidate-11/runs/candidate-gate-1/audits/engineering04-ledger-coherence/strict_audit.json",
+    "candidate-11/runs/candidate-coverage-regression-1/audits/engineering04-ledger-coherence/strict_audit.json"
+  ],
+  "first_original86_all_layers_pass": true,
+  "unlabeled_diagnostics_never_scored_or_required_conclusive": true,
+  "check_only": true,
+  "original_three_run_qualification": "NOT_COMPLETED",
+  "failed_run_replacement": false
+}

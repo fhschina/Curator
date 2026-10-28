@@ -1,0 +1,78 @@
+{
+  "phase": "FINAL_UNACCEPTED_DELIVERY",
+  "frozen_candidate": "candidate-06-languagefirst1",
+  "native_template_and_window_checks": {
+    "status": "PASS",
+    "tests": 2,
+    "log": "c6-languagefirst1-native-tests.log",
+    "sha256": "5221183d642eebac9fd1e500610fa9e0dbd9f6bd4100a6c5459feafeb6fad33a"
+  },
+  "registered_single_gpu_checks": {
+    "status": "PASS",
+    "tests": 4,
+    "skips": 0,
+    "failures": 0,
+    "errors": 0,
+    "receipt": "languagefirst1-confirmed-stage-gpu-checks.json",
+    "exact_frozen_nine_prompt_hashes": {
+      "variants/candidate/judge_config/system.jinja": "e1c66d5275d9367637c27d4bb7d9af8c02394db91c6834adc26c6a5ca71d0caf",
+      "variants/candidate/judge_config/fuzzy_pair_judge.yaml": "77d14b44d188a96008b7786cd7a59fbdf47518bb7403d1d567bf3230638c7d3e",
+      "variants/candidate/judge_config/pair.jinja": "06562a24a39d44b0c48368c21acad4cf667bd8567b7daec19b204d7181806a71",
+      "variants/candidate/critics/coverage_system.jinja": "a9c8121270288abbc692fd849bd3becd31ccae0b6152d46f8f45c139243ac904",
+      "variants/candidate/critics/subject_verifier_pair.jinja": "548138c71a2f4a8ccf0540b3685e8346254534d4e6f3e6dbc5b11804ce33545c",
+      "variants/candidate/critics/subject_system.jinja": "c55f4418c04affb3334eac922f3947f532008df6f9d6aef9e1ef64eb056ae62c",
+      "variants/candidate/critics/coverage_pair.jinja": "4b5037a1882af3f699ff21f9b73991fe910696a8486f58258e52a4c19dc265b0",
+      "variants/candidate/critics/subject_pair.jinja": "424d1472db35ee18987281f43b81ad42b8626e5ac7aabf556287d07dbef2c419",
+      "variants/candidate/critics/subject_verifier_system.jinja": "0bbcc96078900239ec8fdfbc142c3a9d900f1bf0ea25b8ce5c65885b309bd9ae"
+    }
+  },
+  "three_version_formal_comparison": {
+    "baseline_runs": 15,
+    "starting_version_runs": 15,
+    "stage_candidate_runs": 15,
+    "all_original_declared_slots_complete": true
+  },
+  "full_input_technical_validity": "FAIL",
+  "fixed_hard_regressions": "FAIL",
+  "final_verification": "EXISTING_EXACT_FROZEN_RESULTS_REUSED_NO_NEW_INFERENCE",
+  "final_source_restored_from": "candidate-06-languagefirst1",
+  "delivered_nine_prompt_hashes": {
+    "tutorials/eval/dedup/judge_config/system.jinja": "e1c66d5275d9367637c27d4bb7d9af8c02394db91c6834adc26c6a5ca71d0caf",
+    "tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml": "77d14b44d188a96008b7786cd7a59fbdf47518bb7403d1d567bf3230638c7d3e",
+    "tutorials/eval/dedup/judge_config/pair.jinja": "06562a24a39d44b0c48368c21acad4cf667bd8567b7daec19b204d7181806a71",
+    "tutorials/eval/dedup/critics/prompts/coverage_system.jinja": "a9c8121270288abbc692fd849bd3becd31ccae0b6152d46f8f45c139243ac904",
+    "tutorials/eval/dedup/critics/prompts/subject_verifier_pair.jinja": "548138c71a2f4a8ccf0540b3685e8346254534d4e6f3e6dbc5b11804ce33545c",
+    "tutorials/eval/dedup/critics/prompts/subject_system.jinja": "c55f4418c04affb3334eac922f3947f532008df6f9d6aef9e1ef64eb056ae62c",
+    "tutorials/eval/dedup/critics/prompts/coverage_pair.jinja": "4b5037a1882af3f699ff21f9b73991fe910696a8486f58258e52a4c19dc265b0",
+    "tutorials/eval/dedup/critics/prompts/subject_pair.jinja": "424d1472db35ee18987281f43b81ad42b8626e5ac7aabf556287d07dbef2c419",
+    "tutorials/eval/dedup/critics/prompts/subject_verifier_system.jinja": "0bbcc96078900239ec8fdfbc142c3a9d900f1bf0ea25b8ce5c65885b309bd9ae"
+  },
+  "required_45_comparison_runs_complete": true,
+  "resource_release": "PASS",
+  "resource_receipt": "ALL_RESOURCES_RELEASED.json",
+  "deadline_delivery": "FAIL",
+  "new_evaluation_jobs_after_deadline": 0,
+  "after_hooks_hash_verification": "PASS",
+  "completed_cpu_sets": {
+    "engineering05-cpu-regression.log": {
+      "tests": 74,
+      "sha256": "2c317633a20eb2a10e9666f64735c974a3d237f9be7a72d25f50725ebd2718b1"
+    },
+    "native-stage-cpu.log": {
+      "tests": 25,
+      "sha256": "e5a9d84cf907518b67a62d5d2f3d76639bd2e6012f634f09cbddee9e624e68ed"
+    },
+    "workflow-cpu.log": {
+      "tests": 32,
+      "sha256": "90fb5cc53251bdf0d6a3d61a5d238221c6c5636a676f65b7385bf6c997df9699"
+    },
+    "engineering04-ledger-tests.log": {
+      "tests": 12,
+      "sha256": "f4e918b1f804fafd0182eb9fbfbc50d3c046b2d567efc29e2bc2bed42bb5df38"
+    }
+  },
+  "distinct_cpu_tests_across_these_sets": 143,
+  "frozen_native_python_files_verified": 26,
+  "immutable_candidate_archives_verified": 22,
+  "existing_cpu_and_gpu_checks_reused_only_for_identical_evaluated_files": true
+}

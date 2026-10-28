@@ -1,12 +1,12 @@
 ---
-title: "Qwen 保留规则校准 v3 — 夜间进展"
+title: "Qwen 保留规则校准 v3 — 夜间交付"
 ---
 
 `codex/dedup-retention-policy-v3-overnight` · `candidate-06-languagefirst1`
 
 ## 结论
 
-评测进行中，尚未确认验收通过。
+最终指标未达。
 
 | 要求 | 状态 |
 | --- | --- |
@@ -22,6 +22,26 @@ title: "Qwen 保留规则校准 v3 — 夜间进展"
 | nonregression.development99_reviewed | PASS |
 | nonregression.development97_strict | PASS |
 | acceptance_passed | false |
+
+## 交付修改
+
+交付候选明确同语言改写、通用cookie及服务商和类别槽位的覆盖边界，以及实际机制相同的认证界面本地化，同时保护真实操作去向、流程变化及不同语言的实质正文。最后一项独立干预把已有翻译状态字段移到覆盖依据和差异判断之前。所有字段定义及原生critic只能否决的权限保持不变。统一字段审计将直接矛盾保留为无效。交付的九个文件来自实际评测过的冻结快照。
+
+## 未达项与选优
+
+最终指标未达：方向612/720、整对288/360确认85%/80%，距648/720和306/360还差36个方向及18个整对。原36、额外6及真实共识6通过，但最新18和受控26失败；全部输入的技术有效性失败。三个开发参考不退步口径均通过。没有符合资格的候选。交付版本在完成候选中按冻结的有效性优先顺序胜出：candidate10存在无效硬回归判断，原定三次个人参考合计612/720和287/360，整对距阶段门槛差1。Candidate11与candidate13各自首次86个硬呈现通过，但均保留单独cookie-scope格式失败，且缺少完整确认。没有跨版本拼接结果。
+
+## 错误解释
+
+剩余错误包括把认证界面本地化当成实质正文翻译、coverage从已覆盖通用文字推断类别专属义务，以及原生结构或证据失败。后续功能角色规则通过简单受控例，却未能转移到复杂的已填充分面与查询页面；被淘汰的诊断候选candidate12为方向198/240、整对94/120。词法诊断不会使失败回复变为有效。历史D074非法枚举失败及其后回复一同打包。D121继续待定且不评分。
+
+## 截止与交付延误
+
+交付错过固定的2026-10-28 09:00 PDT截止。最后一组推理于04:00 PDT完成；本任务保护在08:44:47 PDT停止服务，早于08:45上限。截止后于10:39 PDT恢复处理，仅审计并打包已有证据；不启动新评测作业或模型服务。观察到的执行空档原因尚未核实。截止时间从未顺延。
+
+## 证据与复现
+
+最终证据索引为tutorials/eval/dedup/calibration/round-023-overnight/delivery/README.md。以恢复的外部实验目录、已有环境、单独拥有且固定配置的服务及明确的未来截止时间运行replay_frozen_v3.py。离线包包含冻结输入、保留回复、清单、失败及最终已提交源码副本。模型权重、固定镜像与已有环境仍为外部前提。包恢复及准备检查不调用模型，也不声称完成推理重放。
 
 ## 实际开发参考一致率
 
@@ -223,6 +243,175 @@ title: "Qwen 保留规则校准 v3 — 夜间进展"
 
 统一的只读字段审计额外将正向替换与未覆盖实质内容、实质冲突或缺少已验证依据之间，以及负向替换与明确已覆盖且无冲突、无翻译差异的被移除内容之间的直接矛盾判为无效。该审计不增加模型调用，也不改变原始判断、参考、分母或错误信号。原生对照及审计后对照均保留；本报告全部采用审计后对照。
 
+## 原始尝试信号——仅诊断
+
+这一单独的只读追踪统计每次main尝试中的明确替换信号，包括失败重试。在这里按词法解码裸JSON不会将其判为有效，也不获得一致率分数。原生校验、分数、参考和分母均保持不变。计数包含尝试与重复，并非准确率或固定输入分母。备选答案按完整允许整对比较；未标注诊断不作正确性比较。未知值继续保持未知。
+
+<details>
+<summary>详细证据 — attempt_trace_provenance</summary>
+
+| 尝试追踪项目 | 实际值 |
+| --- | --- |
+| summary | raw-attempt-signals-final/summary.json |
+| sha256 | c081e93551f67357941ab2763c5955823773cb365c39c772d4eebd94c8c33f29 |
+| completed_runs_at_trace_snapshot | 154 |
+| main_attempts_at_trace_snapshot | 7237 |
+| new_model_calls | 0 |
+| native_score_artifacts_unchanged | True |
+
+</details>
+
+<details>
+<summary>详细证据 — attempt_signals</summary>
+
+| 版本 | 参考分组 | Main尝试数 | 错误允许信号 | 错误阻止信号 | 无效尝试错误允许信号 | 无效尝试错误阻止信号 | 未知或未决值 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| baseline | controlled26 | 78 | 12 | 28 | 0 | 0 | 0 |
+| baseline | development97_strict | 293 | 2 | 24 | 0 | 0 | 0 |
+| baseline | development99_original | 299 | 2 | 30 | 0 | 0 | 0 |
+| baseline | development99_reviewed | 299 | 2 | 24 | 0 | 0 | 0 |
+| baseline | extra6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| baseline | latest18 | 54 | 12 | 55 | 0 | 0 | 0 |
+| baseline | original36 | 108 | 0 | 0 | 0 | 0 | 0 |
+| baseline | personal120 | 365 | 12 | 178 | 0 | 2 | 2 |
+| baseline | real_consensus6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-01 | controlled26 | 26 | 0 | 2 | 0 | 0 | 0 |
+| candidate-01 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-01 | latest18 | 18 | 0 | 5 | 0 | 0 | 0 |
+| candidate-01 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-02 | controlled26 | 78 | 0 | 4 | 0 | 0 | 0 |
+| candidate-02 | development97_strict | 291 | 3 | 20 | 0 | 0 | 0 |
+| candidate-02 | development99_original | 297 | 3 | 26 | 0 | 0 | 0 |
+| candidate-02 | development99_reviewed | 297 | 3 | 20 | 0 | 0 | 0 |
+| candidate-02 | extra6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-02 | latest18 | 54 | 0 | 15 | 0 | 0 | 0 |
+| candidate-02 | original36 | 108 | 0 | 0 | 0 | 0 | 0 |
+| candidate-02 | personal120 | 360 | 13 | 110 | 0 | 0 | 0 |
+| candidate-02 | real_consensus6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-02-core2 | controlled26 | 26 | 0 | 2 | 0 | 0 | 0 |
+| candidate-02-core2 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-02-core2 | latest18 | 18 | 2 | 3 | 0 | 0 | 0 |
+| candidate-02-core2 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-03 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-03 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-03 | latest18 | 18 | 0 | 6 | 0 | 0 | 0 |
+| candidate-03 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-04 | controlled26 | 26 | 2 | 4 | 0 | 0 | 0 |
+| candidate-04 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-04 | latest18 | 18 | 2 | 0 | 0 | 0 | 0 |
+| candidate-04 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-05 | controlled26 | 26 | 0 | 8 | 0 | 0 | 0 |
+| candidate-05 | extra6 | 6 | 0 | 3 | 0 | 0 | 0 |
+| candidate-05 | latest18 | 18 | 0 | 21 | 0 | 0 | 0 |
+| candidate-05 | original36 | 36 | 0 | 11 | 0 | 0 | 0 |
+| candidate-06 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-06 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-06 | latest18 | 18 | 0 | 2 | 0 | 0 | 0 |
+| candidate-06 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | controlled26 | 78 | 0 | 6 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | development97_strict | 292 | 5 | 13 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | development99_original | 298 | 5 | 15 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | development99_reviewed | 298 | 5 | 13 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | extra6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | latest18 | 54 | 0 | 9 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | original36 | 108 | 0 | 0 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | personal120 | 362 | 19 | 76 | 0 | 0 | 0 |
+| candidate-06-languagefirst1 | real_consensus6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-06-languagefirst1-shortview1 | controlled26 | 26 | 0 | 2 | 0 | 0 | 0 |
+| candidate-06-languagefirst1-shortview1 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-06-languagefirst1-shortview1 | latest18 | 18 | 4 | 1 | 0 | 0 | 0 |
+| candidate-06-languagefirst1-shortview1 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07 | latest18 | 18 | 0 | 2 | 0 | 0 | 0 |
+| candidate-07 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07-format2 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07-format2 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07-format2 | latest18 | 18 | 0 | 2 | 0 | 0 | 0 |
+| candidate-07-format2 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07-format2 | personal120 | 121 | 4 | 29 | 0 | 0 | 0 |
+| candidate-07-format2 | real_consensus6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07-format2-readview2 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-07-format2-readview2 | extra6 | 6 | 0 | 1 | 0 | 0 | 0 |
+| candidate-07-format2-readview2 | latest18 | 18 | 0 | 3 | 0 | 0 | 0 |
+| candidate-07-format2-readview2 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-08 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-08 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-08 | latest18 | 18 | 0 | 3 | 0 | 0 | 0 |
+| candidate-08 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-09 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-09 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-09 | latest18 | 18 | 0 | 2 | 0 | 0 | 0 |
+| candidate-09 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10 | controlled26 | 80 | 0 | 1 | 0 | 0 | 0 |
+| candidate-10 | development97_strict | 292 | 1 | 13 | 0 | 0 | 0 |
+| candidate-10 | development99_original | 298 | 1 | 17 | 0 | 0 | 0 |
+| candidate-10 | development99_reviewed | 298 | 1 | 13 | 0 | 0 | 0 |
+| candidate-10 | extra6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10 | latest18 | 54 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10 | original36 | 109 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10 | personal120 | 365 | 11 | 79 | 0 | 0 | 0 |
+| candidate-10 | real_consensus6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10-xref1 | latest18 | 10 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10-xref2 | controlled26 | 28 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10-xref2 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10-xref2 | latest18 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-10-xref2 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-11 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-11 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-11 | latest18 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-11 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-11-contract1 | controlled26 | 27 | 0 | 0 | 0 | 0 | 0 |
+| candidate-11-contract1 | extra6 | 7 | 0 | 0 | 0 | 0 | 0 |
+| candidate-11-contract1 | latest18 | 19 | 0 | 0 | 0 | 0 | 0 |
+| candidate-11-contract1 | original36 | 38 | 0 | 0 | 0 | 0 | 0 |
+| candidate-12 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-12 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-12 | latest18 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-12 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| candidate-12 | personal120 | 121 | 8 | 27 | 0 | 0 | 0 |
+| candidate-12 | real_consensus6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-13 | controlled26 | 26 | 0 | 0 | 0 | 0 | 0 |
+| candidate-13 | extra6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| candidate-13 | latest18 | 18 | 0 | 0 | 0 | 0 | 0 |
+| candidate-13 | original36 | 36 | 0 | 0 | 0 | 0 | 0 |
+| start-39714b47 | controlled26 | 78 | 0 | 8 | 0 | 0 | 0 |
+| start-39714b47 | development97_strict | 292 | 4 | 19 | 0 | 0 | 0 |
+| start-39714b47 | development99_original | 298 | 5 | 25 | 0 | 0 | 0 |
+| start-39714b47 | development99_reviewed | 298 | 4 | 19 | 0 | 0 | 0 |
+| start-39714b47 | extra6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| start-39714b47 | latest18 | 54 | 2 | 20 | 0 | 0 | 0 |
+| start-39714b47 | original36 | 108 | 0 | 0 | 0 | 0 | 0 |
+| start-39714b47 | personal120 | 361 | 17 | 104 | 0 | 0 | 0 |
+| start-39714b47 | real_consensus6 | 18 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-class-instance-candidate10-v2 | supplemental_class_instance6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-class-instance-candidate11-contract1-v2 | supplemental_class_instance6 | 11 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-class-instance-candidate11-v2 | supplemental_class_instance6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-class-instance-candidate12-v2 | supplemental_class_instance6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-class-instance-candidate13-v2 | supplemental_class_instance6 | 6 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-control-role-candidate11-v1 | supplemental_control_role8 | 8 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-control-role-candidate12-v1 | supplemental_control_role8 | 8 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-control-role-candidate13-v1 | supplemental_control_role8 | 8 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-cookie-scope-candidate10-v2 | supplemental_cookie_scope8 | 8 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-cookie-scope-candidate11-contract1-v2 | supplemental_cookie_scope8 | 10 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-cookie-scope-candidate11-v2 | supplemental_cookie_scope8 | 9 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-cookie-scope-candidate12-v2 | supplemental_cookie_scope8 | 8 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-cookie-scope-candidate13-v2 | supplemental_cookie_scope8 | 9 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-ui-baseline-v1 | supplemental_ui16 | 16 | 4 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate07-format2-readview2-v1 | supplemental_ui16 | 16 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate07-format2-v1 | supplemental_ui16 | 16 | 2 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate07-v1 | supplemental_ui16 | 16 | 2 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate08-v1 | supplemental_ui16 | 16 | 2 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate09-v1 | supplemental_ui16 | 17 | 2 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate10-v1 | supplemental_ui16 | 16 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate10-xref2-v1 | supplemental_ui16 | 16 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate11-contract1-v1 | supplemental_ui16 | 28 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate11-v1 | supplemental_ui16 | 16 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate12-v1 | supplemental_ui16 | 17 | 0 | 0 | 0 | 0 | 0 |
+| supplemental-ui-candidate13-v1 | supplemental_ui16 | 16 | 0 | 0 | 0 | 0 | 0 |
+
+</details>
+
 ## 历史失败及待定观察
 
 D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试及其后的原始 No/No 答案；后来的成功不能抹去该失败。当前各行分别显示原始答案和经验证答案。待讨论及截断分层没有确定的全文一致率评分；只报告技术完整性，不虚构标签。
@@ -297,6 +486,10 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | target_90_85 | — | NOT_COMPLETED | — | — | 0 | — |
 | best_metric | candidate-06-languagefirst1 | confirmed_three_run_mean | 612/720 | 288/360 | 3 | snapshots/1793176498604225968-best_metric-candidate-06-languagefirst1-confirmed-three-run-full-cohort.json |
 | best_eligible | — | NOT_COMPLETED | — | — | 0 | — |
+| 已保存阶段快照（历史） | candidate-06-languagefirst1 | provisional_single_run | 205/240 | 96/120 | 1 | snapshots/1793170078392648690-milestone_85_80-candidate-06-languagefirst1-provisional_single_run.json |
+| 已保存阶段快照（历史） | candidate-06-languagefirst1 | confirmed_three_run_mean | 612/720 | 288/360 | 3 | snapshots/1793175754200027634-milestone_85_80-candidate-06-languagefirst1-confirmed_three_run_mean.json |
+| 已保存阶段快照（历史） | candidate-10 | provisional_single_run | 205/240 | 97/120 | 1 | snapshots/1793178427346936869-milestone_85_80-candidate-10-provisional_single_run.json |
+| 已保存阶段快照（历史） | candidate-10 | not_confirmed_three_run_mean | 612/720 | 287/360 | 3 | snapshots/1793184015634728106-milestone_85_80-candidate-10-not_confirmed_three_run_mean.json |
 
 <details>
 <summary>详细证据 — candidates</summary>
@@ -318,7 +511,13 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | candidate-07-format2-readview2 | 在服务地点与实际操作入口已消歧之后，仅进行完整记录阅读上下文的工程实验。在不改变main、coverage或subject原始证据包的前提下，重组展示固定6000字符范围内相同且已可见的完整来源；区间核对证明331个呈现样本及662侧原文不增加任何此前不可见的非空白字符。此前2000字符实验失败，原始输出曾明确用含糊的城市或目的地例外丢弃实际投稿地址。新父版本移除了该含混措辞，并明确保护实际入口；这是重新检验该呈现方式的新因果依据。更大的完整记录上限也纳入了此前未重组的通用营销记录，截断记录仍保留原始呈现及未决提示。保留所有原始证据ID、语义政策、字段或枚举或顺序、模型、执行器及校验。整页布局可能帮助区分筛选项或查询标签、常规表单句子及复制段落；同样的操作入口和正文语言反例仍必须通过。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-07-format2-readview2 |
 | candidate-08 | 在冻结的原生契约父版本上，仅增加一条有条件的模板执行分支。只确认既已允许的通用营销或分类、简短cookie服务商，以及全文cookie引言或重复条件，然后让每个任务从同一组保留命题明确推导自身的已验证依据、差异、冲突及损失字段。已在别处覆盖的通用段落不会因置于普通标题下就成为另一项处理规则，孤立的条款标签也不提供未呈现的法律条件。区分真实的断言覆盖与偏好看似更准确的文本。继续保护实际命名条目、操作入口、责任方、处理或条件变化及实质正文语言。此前仅以文字澄清，仍留下将已覆盖段落或服务商或标题槽位视为新损失的原始coverage解释。本次增加条件确认到字段推导的关联，不遮蔽或改写来源名称，不进行通用槽位归一化、政策合并，也不增加仲裁器，不改变来源呈现、结构或枚举、模型、窗口、执行器或校验。保留已单独冻结的原生输出契约指令及原有填充证据包。 | 0 | hard_screen_complete_localization_regression_and_subject_parse_error | 明确的模板字段推导改善了营销或服务商主判断，却使满足条件的表单本地化的一个顺序回退，并将通用重复段落判为法律冲突。Coverage误否决仍存在，一次subject尝试解析错误使一个final硬回归结果无效。保留全部证据，不进行长评分即淘汰；同样的补充失败对象main错误仍存在。 | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-08 |
 | candidate-09 | 在冻结的完整上下文父版本上，澄清两项狭义的边界执行规则。明确将既已允许的通用营销或分类及简短cookie服务商名称槽位，关联到已验证依据、无害差异及各原生任务的损失字段；真实存在的服务商有名或无名差异，以及孤立条款标题，本身不增加处理行为或未呈现的义务。另在已证明实际条目包含且条目事实相同的情况下，将汇总总数限定为所显示的目录或结果集；不得从Products、Filter或Total视图推定购物车、订单或全局库存状态。保留实际新增条目、冲突的条目事实、被断言约束的主体、责任方、操作入口及真实交易或处理条件。此前宽泛的模板附加规则使满足条件的表单本地化和通用标题解释回退；本提案不增加宽泛的正文语言或事实真伪重述，保留这些既有规则。保留完整阅读上下文、原始证据ID、结构或枚举或顺序、原生契约、模型、窗口、执行及校验。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-09 |
-| candidate-10 | 依据真实硬回归失败，澄清两项相关的身份角色。相同通用营销文字中的宽泛产品或服务类别是类别标签，而非实际单个商品记录；独立的仅城市变化服务例子不能取消既已允许的不同类别例外。大写、重复及标题或主体位置本身不形成具体实例。反过来，即使周围谓词可复用，被请求的失败对象或真实状态、访问、责任目标仍是绑定实例。应按该实际绑定确认完整非主消息的等价性，以及实质差异或冲突选项，不能将不同失败对象ID视为可选模板变量。保留特定允许的引用或服务商槽位、实际命名作品或商品、真实流程或价格或条件或入口，以及独立列表新增条目。保留父版本的显示总数范围修正、完整且已可见的阅读上下文、字段名称或枚举或顺序、原生执行器或模型或窗口及全部校验。本实验隔离已观察到的类别身份循环推理及失败对象依据错误，不增加另一套宽泛正文语言或真伪规则。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10 |
+| candidate-10 | 依据真实硬回归失败，澄清两项相关的身份角色。相同通用营销文字中的宽泛产品或服务类别是类别标签，而非实际单个商品记录；独立的仅城市变化服务例子不能取消既已允许的不同类别例外。大写、重复及标题或主体位置本身不形成具体实例。反过来，即使周围谓词可复用，被请求的失败对象或真实状态、访问、责任目标仍是绑定实例。应按该实际绑定确认完整非主消息的等价性，以及实质差异或冲突选项，不能将不同失败对象ID视为可选模板变量。保留特定允许的引用或服务商槽位、实际命名作品或商品、真实流程或价格或条件或入口，以及独立列表新增条目。保留父版本的显示总数范围修正、完整且已可见的阅读上下文、字段名称或枚举或顺序、原生执行器或模型或窗口及全部校验。本实验隔离已观察到的类别身份循环推理及失败对象依据错误，不增加另一套宽泛正文语言或真伪规则。 | 3 | original3_personal_stage_NOT_CONFIRMED_100last_repeat_in_progress | 原定3次final：612/720个方向、287/360对。方向85%通过，整对79.72%距阶段门槛差1对，不按四舍五入判通过。首次单次快照继续保留，硬回归与技术失败仍存在。 | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10 |
+| candidate-10-xref1 | 仅调整证据导航的工程实验，基于candidate10。最新原始覆盖检查仍将一段内容判为未覆盖，但其103字符CORE在保留记录其他位置逐字出现，主判断方向正确。在原有main、coverage、subject模板中增加有界的精确重复位置索引：先限前32个既有片段，仅处理固定6000字符窗口内完整且未截断的记录和至少32字符的CORE，显示对侧原文偏移及最多128字符预览。索引不提供语义覆盖或保留结论。逐项证明索引字符此前已在对侧数据包中显示，且只移除新增索引后原生渲染逐字节恢复。政策、字段枚举顺序、数据包ID、模型、执行器、采样、窗口和校验均不变。保留candidate10的解析失败，不声称此实验修复格式或使父版本合格。 | 0 | failed_native_arrow_slice_type_and_integrity |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref1 |
+| candidate-10-xref2 | 仅调整证据导航的工程实验，基于candidate10。最新原始覆盖检查仍将一段内容判为未覆盖，但其103字符CORE在保留记录其他位置逐字出现，主判断方向正确。在原有main、coverage、subject模板中增加有界的精确重复位置索引：先限前32个既有片段，仅处理固定6000字符窗口内完整且未截断的记录和至少32字符的CORE，显示对侧原文偏移及最多128字符预览。索引不提供语义覆盖或保留结论。逐项证明索引字符此前已在对侧数据包中显示，且只移除新增索引后原生渲染逐字节恢复。政策、字段枚举顺序、数据包ID、模型、执行器、采样、窗口和校验均不变。保留candidate10的解析失败，不声称此实验修复格式或使父版本合格。 xref1直接记录渲染通过，但真实Arrow/Pandas边界将含空值的整数偏移转为浮点数，字符串切片因此失败，触发原生提前停止并保留空结果行。xref2只对既有字符偏移显式转整数，保留全部xref1失败和原生校验；冻结独立复验组前同时验证直接记录与真实Arrow/Pandas往返数据。这是输入类型兼容修复，不是替换失败运行的补抽。 | 0 | first_original86_and_supplement22_complete_failed |  | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-10-xref2 |
+| candidate-11 | 仅明确已批准的完整cookie通知中通用重复段落例外的优先级，避免将通用重复的必要性或不可停用措辞绑定到新类别。真实coverage输出已明确承认相同通用段落在其他位置出现，在提供精确位置索引后仍把新的通用标题解释为额外的类别必选与可选断言，因此剩余原因是语义作用域与优先级，而非找不到相同文字。在八个原生提示中一致替换既有通用重复规则，并同步六个既有rubric说明。已保留的通用段落按其原位置计一次，不能仅因标题而新增类别义务；实际明确绑定类别的处理、必要性或同意条件、新用途条款和具体部署事实仍保留。继续使用candidate10原始证据呈现，不带入未改善结果的索引；字段顺序枚举、其余规则、执行器、模型、窗口和校验不变。保留固定86项及单独22项，并在模型输出前冻结额外cookie作用域正例和明确绑定反例，单独计分。这是一项边界细化，不是忽略全部标题或cookie内容。 | 0 | first_original86PASS_but_supplement_cookie_schema_parse_failure | 原始硬回归：每层86/86；cookie8有1项schema无效行。尚未启动完整150对。 | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-11 |
+| candidate-11-contract1 | 仅前置原生链路已要求的完整输出格式。candidate11首轮原始86项每层全部通过，UI22也有效；但单独cookie作用域反例真实发生main schema解析失败：带正确围栏的JSON在primary_risk_factor对象内使用risk_factor而非规定的score键。回复正常结束且仅936token，因此是嵌套键串用，不是缺围栏或输出截断。此前candidate10/xref2另有七次合法裸JSON遗漏围栏。在四个system模板前增加简短格式要求，区分schema规定的内部答案和外部Markdown围栏、要求全部必填键与嵌套属性，并在main rubric中使用既有reasoning/score键，不因字段名称而替换键。没有示例分数或参考答案。只移除前缀即可逐字节恢复四个system正文；其余五个文件、全部保留政策、15字段顺序枚举、证据、模型采样窗口、原生recipe执行器和严格解析不变。这是在既有共同格式要求下的候选提示格式实验，不改变运行时解析器或基线政策。保留父版本失败，冻结独立原组3次运行。先检查原始86项、UI22、cookie8，以及6项有依据的类别实例受控和2项未标注诊断，仅由真实输出判断改善。 | 0 | first_complete_screen_rejected_for_format_failures | 原始86项main/coverage/final正确数：81/81/81；无效数：5/5/5。格式前置实验被拒绝，未运行完整150对。 | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-11-contract1 |
+| candidate-12 | 仅明确控制项的功能角色不因有具体值而改变。candidate10完整150对真实解释已识别作者、主题、年份为侧栏分面，也承认完整同一结果保留，却仍将分面值判为新增记录元数据；还把查询工具引言中的检索词判为实际例句。旧提示把未填充标题或筛选项与实际已填充记录对照，使具体选项值和计数覆盖其已识别的控制功能。在八个提示中替换既有界面角色段落、消除这一措辞歧义，并仅同步三个既有差异与冲突rubric说明。已填值的控制仍是控制，包括只有一个结果的分面；保留值差异应指向实际条目、动作、状态或权限断言，句子内容损失应指向实际展示的例句。工具引言描述的查询不是未展示的例子。保留实际记录属性、失败对象、操作地址、真实流程条款变化和实质正文语言。继承父版本11的cookie重复修正，字段顺序枚举、原证据窗口、原生代码执行器模型及严格解析不变，不继承失败的contract1前缀。额外采用输出前冻结的角色8项正反检查，与原始86、UI22、cookie8、类别6项及2项未标注诊断分开。只细化一项角色边界，不全局归一化名称数字，不新增标题标签规则。格式失败仍可能出现，计分不予正确分数。 同步移除state_or_version既有选项说明中仅限未填值选择器的限定，枚举值保持不变。 | 1 | single_full150_diagnostic_complete_rejected_no_more_sampling | 一次完整150对：main203/240、96/120，final198/240、94/120。复杂分面与查询错误阻止仍存在，新增格式失败进一步降低final。不继续补抽或替换运行。 | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-12 |
+| candidate-13 | 仅将已批准的控制功能边界落实到既有rubric选项定义，不继承candidate12全局角色段落改写或失败的格式前缀。candidate12真实完整150对仍把已识别的分面视图选为same_record_content_extension，并从工具引言检索词推断具体例句条目；main203/240、final198/240未改善既有阶段成绩。一般段落细化没有迁移到这些真实布局，而父版本已通过简单角色8项。复用此前有效的选项层例外映射方式，针对新的控制角色问题。只改变八个既有选项说明：填有值的控制可属于已覆盖UI或重复，完整实际记录或消息覆盖后不应归为内容新增、身份或状态变化，相同完整非主消息仍可提供保留依据。实际赋值属性、已展示例句、绑定失败对象或状态断言、操作地址与新条款继续保留。八个提示模板、15个字段名称顺序类型枚举、其他说明、原文窗口、原生代码执行器模型和严格校验与父版本逐字节一致。保留原始86和全部已有补充分组，不新增标签或标题规则。沿用单独冻结的角色8项，并仅在筛查有依据时用一次诊断检验真实复杂布局。只隔离rubric选项遮蔽问题，不追加全局指令段落。 | 0 | FIRST_HARD86_PASS_SUPPLEMENTAL_FORMAT_FAIL_NOT_CONFIRMED | 原定首次86在main/coverage/final均通过，但单独cookie-scope8为7/8正确，含1个main解析失败。UI16、class-instance6和control-role8通过。未启动完整150/100或第二、第三次硬回归；资格及参考改善尚未确认。截止时间已过，不再新增推理。 | /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-13 |
 
 </details>
 
@@ -331,14 +530,27 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 
 | 检查 | 实际证据 |
 | --- | --- |
-| phase | "CONFIRMED_METRIC_STAGE_NOT_ACCEPTANCE" |
+| phase | "FINAL_UNACCEPTED_DELIVERY" |
 | frozen_candidate | "candidate-06-languagefirst1" |
 | native_template_and_window_checks | &#123;"log": "c6-languagefirst1-native-tests.log", "sha256": "5221183d642eebac9fd1e500610fa9e0dbd9f6bd4100a6c5459feafeb6fad33a", "status": "PASS", "tests": 2&#125; |
 | registered_single_gpu_checks | &#123;"errors": 0, "exact_frozen_nine_prompt_hashes": &#123;"variants/candidate/critics/coverage_pair.jinja": "4b5037a1882af3f699ff21f9b73991fe910696a8486f58258e52a4c19dc265b0", "variants/candidate/critics/coverage_system.jinja": "a9c8121270288abbc692fd849bd3becd31ccae0b6152d46f8f45c139243ac904", "variants/candidate/critics/subject_pair.jinja": "424d1472db35ee18987281f43b81ad42b8626e5ac7aabf556287d07dbef2c419", "variants/candidate/critics/subject_system.jinja": "c55f4418c04affb3334eac922f3947f532008df6f9d6aef9e1ef64eb056ae62c", "variants/candidate/critics/subject_verifier_pair.jinja": "548138c71a2f4a8ccf0540b3685e8346254534d4e6f3e6dbc5b11804ce33545c", "variants/candidate/critics/subject_verifier_system.jinja": "0bbcc96078900239ec8fdfbc142c3a9d900f1bf0ea25b8ce5c65885b309bd9ae", "variants/candidate/judge_config/fuzzy_pair_judge.yaml": "77d14b44d188a96008b7786cd7a59fbdf47518bb7403d1d567bf3230638c7d3e", "variants/candidate/judge_config/pair.jinja": "06562a24a39d44b0c48368c21acad4cf667bd8567b7daec19b204d7181806a71", "variants/candidate/judge_config/system.jinja": "e1c66d5275d9367637c27d4bb7d9af8c02394db91c6834adc26c6a5ca71d0caf"&#125;, "failures": 0, "receipt": "languagefirst1-confirmed-stage-gpu-checks.json", "skips": 0, "status": "PASS", "tests": 4&#125; |
 | three_version_formal_comparison | &#123;"all_original_declared_slots_complete": true, "baseline_runs": 15, "stage_candidate_runs": 15, "starting_version_runs": 15&#125; |
 | full_input_technical_validity | "FAIL" |
 | fixed_hard_regressions | "FAIL" |
-| final_verification | "NOT_COMPLETED" |
+| final_verification | "EXISTING_EXACT_FROZEN_RESULTS_REUSED_NO_NEW_INFERENCE" |
+| final_source_restored_from | "candidate-06-languagefirst1" |
+| delivered_nine_prompt_hashes | &#123;"tutorials/eval/dedup/critics/prompts/coverage_pair.jinja": "4b5037a1882af3f699ff21f9b73991fe910696a8486f58258e52a4c19dc265b0", "tutorials/eval/dedup/critics/prompts/coverage_system.jinja": "a9c8121270288abbc692fd849bd3becd31ccae0b6152d46f8f45c139243ac904", "tutorials/eval/dedup/critics/prompts/subject_pair.jinja": "424d1472db35ee18987281f43b81ad42b8626e5ac7aabf556287d07dbef2c419", "tutorials/eval/dedup/critics/prompts/subject_system.jinja": "c55f4418c04affb3334eac922f3947f532008df6f9d6aef9e1ef64eb056ae62c", "tutorials/eval/dedup/critics/prompts/subject_verifier_pair.jinja": "548138c71a2f4a8ccf0540b3685e8346254534d4e6f3e6dbc5b11804ce33545c", "tutorials/eval/dedup/critics/prompts/subject_verifier_system.jinja": "0bbcc96078900239ec8fdfbc142c3a9d900f1bf0ea25b8ce5c65885b309bd9ae", "tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml": "77d14b44d188a96008b7786cd7a59fbdf47518bb7403d1d567bf3230638c7d3e", "tutorials/eval/dedup/judge_config/pair.jinja": "06562a24a39d44b0c48368c21acad4cf667bd8567b7daec19b204d7181806a71", "tutorials/eval/dedup/judge_config/system.jinja": "e1c66d5275d9367637c27d4bb7d9af8c02394db91c6834adc26c6a5ca71d0caf"&#125; |
+| required_45_comparison_runs_complete | true |
+| resource_release | "PASS" |
+| resource_receipt | "ALL_RESOURCES_RELEASED.json" |
+| deadline_delivery | "FAIL" |
+| new_evaluation_jobs_after_deadline | 0 |
+| after_hooks_hash_verification | "PASS" |
+| completed_cpu_sets | &#123;"engineering04-ledger-tests.log": &#123;"sha256": "f4e918b1f804fafd0182eb9fbfbc50d3c046b2d567efc29e2bc2bed42bb5df38", "tests": 12&#125;, "engineering05-cpu-regression.log": &#123;"sha256": "2c317633a20eb2a10e9666f64735c974a3d237f9be7a72d25f50725ebd2718b1", "tests": 74&#125;, "native-stage-cpu.log": &#123;"sha256": "e5a9d84cf907518b67a62d5d2f3d76639bd2e6012f634f09cbddee9e624e68ed", "tests": 25&#125;, "workflow-cpu.log": &#123;"sha256": "90fb5cc53251bdf0d6a3d61a5d238221c6c5636a676f65b7385bf6c997df9699", "tests": 32&#125;&#125; |
+| distinct_cpu_tests_across_these_sets | 143 |
+| frozen_native_python_files_verified | 26 |
+| immutable_candidate_archives_verified | 22 |
+| existing_cpu_and_gpu_checks_reused_only_for_identical_evaluated_files | true |
 
 </details>
 
@@ -351,12 +563,12 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | deadline_utc | 2026-10-28T16:00:00Z |
 | semantic_stop_utc | 2026-10-28T14:30:00Z |
 | gpu_stop_utc | 2026-10-28T15:45:00Z |
-| wall_hours_at_render | 5.607 |
-| allocated_gpu_hours_including_idle | 5.537 |
+| wall_hours_at_render | 14.790 |
+| allocated_gpu_hours_including_idle | 12.685 |
 | GPU | 1 × NVIDIA B200; TP=1 |
 | model_revision | 017b9c7af6b5689d5dd426a76e0bc077eb5ca20a |
 | context/max_tokens/temperature/concurrency/timeout/window | 32768 / 6144 / 0.2 / 8 / 600 / 6000 |
-| owned_service_stopped | false |
+| owned_service_stopped | true |
 
 </details>
 
@@ -366,4 +578,4 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 
 `/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z`
 
-`/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/formal-languagefirst1-complete-engineering04/comparison.json`
+`/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/delivery-final-engineering04/comparison.json`

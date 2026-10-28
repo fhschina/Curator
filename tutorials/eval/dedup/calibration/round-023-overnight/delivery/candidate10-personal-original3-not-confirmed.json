@@ -1,0 +1,118 @@
+{
+  "saved": 1793184269.546589,
+  "status": "NOT_CONFIRMED_THREE_RUN_MEAN",
+  "candidate": "candidate-10",
+  "runs": [
+    {
+      "repeat": 1,
+      "directions": 205,
+      "pairs": 97,
+      "evidence": "candidate-10/runs/candidate-diagnostic-1/audits/engineering04-ledger-coherence/strict_audit.json",
+      "sha256": "9ad0fa00ba057446c8e0ba6ea9e2691325390ae059a440a9d5c83a413aae13ae",
+      "validation": {
+        "main": {
+          "valid": 143,
+          "invalid": 2,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 143,
+          "invalid": 2,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 143,
+          "invalid": 2,
+          "unresolved": 5
+        }
+      },
+      "failures": {
+        "MAIN_ATTEMPT_PARSE_ERROR": 1,
+        "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1
+      }
+    },
+    {
+      "repeat": 2,
+      "directions": 203,
+      "pairs": 95,
+      "evidence": "candidate-10/runs/candidate-diagnostic-2/audits/engineering04-ledger-coherence/strict_audit.json",
+      "sha256": "3a7e984c8916df9ec94d634d12c369dafdd8d0c885224a12aae48da035a7fd0a",
+      "validation": {
+        "main": {
+          "valid": 143,
+          "invalid": 2,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 142,
+          "invalid": 3,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 142,
+          "invalid": 3,
+          "unresolved": 5
+        }
+      },
+      "failures": {
+        "COVERAGE_ATTEMPT_PARSE_ERROR": 1,
+        "MAIN_ATTEMPT_PARSE_ERROR": 1,
+        "MAIN_LEDGER_CONTRADICTION:yes_without_verified_basis": 1
+      }
+    },
+    {
+      "repeat": 3,
+      "directions": 204,
+      "pairs": 95,
+      "evidence": "candidate-10/runs/candidate-diagnostic-3/audits/engineering04-ledger-coherence/strict_audit.json",
+      "sha256": "708514f35fbf1f2aff4420324417b357045b9c8b9a96c9826dcd87dd12398563",
+      "validation": {
+        "main": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        }
+      },
+      "failures": {
+        "INVALID_DECISION:coverage": 1,
+        "INVALID_DECISION:final": 1,
+        "INVALID_DECISION:main": 1,
+        "MAIN_ATTEMPT_PARSE_ERROR": 3
+      }
+    }
+  ],
+  "combined": {
+    "correct_directions": 612,
+    "directions": 720,
+    "correct_pairs": 287,
+    "pairs": 360
+  },
+  "exact_stage_test": {
+    "direction_pass": true,
+    "pair_pass": false,
+    "stage_pass": false
+  },
+  "missing_stage_pairs": 1,
+  "final_target_missing_directions": 36,
+  "final_target_missing_pairs": 19,
+  "worst": {
+    "correct_directions": 203,
+    "directions": 240,
+    "correct_pairs": 95,
+    "pairs": 120
+  },
+  "earlier_provisional_preserved": "candidate10-provisional-stage-receipt.json",
+  "failed_run_replacement": false,
+  "acceptance_passed": false,
+  "all_100_repeats": "NOT_COMPLETED_AT_SAVE"
+}

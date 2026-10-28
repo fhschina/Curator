@@ -1,0 +1,4074 @@
+{
+  "status": "PASS",
+  "started": 1793181259.5350296,
+  "completed": 1793181263.599411,
+  "native_score_artifacts_unchanged": true,
+  "model_calls": 0,
+  "not_a_new_judge_or_score_revision": true,
+  "source_code_sha256": "e44e76217a69c20c7fa543b7f829ec18794cee9bd248e74937801956185bc283",
+  "runs": [
+    {
+      "root": "baseline",
+      "run": "baseline-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-coverage-regression-1.json",
+      "sha256": "4da4c15a3e0a25157d91c18083592cd0fb0ade7bc18d1142511efae1eaeeced3"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-coverage-regression-2",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-coverage-regression-2.json",
+      "sha256": "49ca66eae9207c0011aa868ecbb28054abf05aa7efcd60ee558e26d150291487"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-coverage-regression-3",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-coverage-regression-3.json",
+      "sha256": "86f8a61f5255e7b52ff6894dfed7c0df62b63e3ba7736a7618839dd3b273cbe5"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-diagnostic-1",
+      "main_attempts": 150,
+      "groups": {
+        "personal120": {
+          "attempts": 120,
+          "wrong_allow_signals": 5,
+          "wrong_block_signals": 55,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011",
+            "D049",
+            "D095"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D004",
+            "D008",
+            "D015",
+            "D018",
+            "D020",
+            "D022",
+            "D024",
+            "D042",
+            "D044",
+            "D058",
+            "D059",
+            "D064",
+            "D065",
+            "D066",
+            "D067",
+            "D082",
+            "D085",
+            "D086",
+            "D087",
+            "D088",
+            "D102",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D126",
+            "D134",
+            "D135",
+            "D136",
+            "D142",
+            "D143"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-diagnostic-1.json",
+      "sha256": "58684d4f680062b23b0c53787ef1f5aeb977c62ba4d7a61b36ca8ff482ccdd87"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-diagnostic-2",
+      "main_attempts": 152,
+      "groups": {
+        "personal120": {
+          "attempts": 122,
+          "wrong_allow_signals": 3,
+          "wrong_block_signals": 64,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 2,
+          "pairs_with_wrong_allow": [
+            "D011",
+            "D095"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D004",
+            "D007",
+            "D015",
+            "D018",
+            "D020",
+            "D021",
+            "D022",
+            "D024",
+            "D031",
+            "D042",
+            "D044",
+            "D056",
+            "D058",
+            "D064",
+            "D065",
+            "D066",
+            "D067",
+            "D081",
+            "D082",
+            "D085",
+            "D086",
+            "D087",
+            "D088",
+            "D104",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D124",
+            "D130",
+            "D134",
+            "D135",
+            "D136",
+            "D142",
+            "D143",
+            "D145"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-diagnostic-2.json",
+      "sha256": "3cbe2ccfa8a161ca7c401f493ce7b41306838a15a6292caf2a63a076d371a95e"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-diagnostic-3",
+      "main_attempts": 153,
+      "groups": {
+        "personal120": {
+          "attempts": 123,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 59,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 2,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011",
+            "D075",
+            "D095"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D004",
+            "D015",
+            "D018",
+            "D020",
+            "D021",
+            "D022",
+            "D024",
+            "D031",
+            "D042",
+            "D044",
+            "D058",
+            "D059",
+            "D064",
+            "D065",
+            "D067",
+            "D081",
+            "D082",
+            "D085",
+            "D086",
+            "D087",
+            "D088",
+            "D104",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D126",
+            "D134",
+            "D135",
+            "D136",
+            "D142",
+            "D143"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-diagnostic-3.json",
+      "sha256": "49730204316d0a47fbf5be71c631cfd9c87ada2785b7ddfee12ed3d8ca6f5f1a"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-gate-1.json",
+      "sha256": "4fbe5fe687bd290f90dcb6bd1db5a305719fa757bc615a1bb9cc8b215183ad16"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-gate-2",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-gate-2.json",
+      "sha256": "1245e298c394c3a330b60447abc426721e9d805fc30abe350a49715caa201008"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-gate-3",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-gate-3.json",
+      "sha256": "93291cb215044b3887ade6218803aeba84c9521d334cdd5c1c88fdadf389cbc3"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-holdout-1",
+      "main_attempts": 101,
+      "groups": {
+        "development97_strict": {
+          "attempts": 98,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 100,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 10,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H029",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 100,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-holdout-1.json",
+      "sha256": "022016e8721dd04b764fcfd1239b591561f9134dae98a3620c4566b07a4da13c"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-holdout-2",
+      "main_attempts": 101,
+      "groups": {
+        "development97_strict": {
+          "attempts": 98,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H082"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 100,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 10,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H082"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H029",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 100,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H082"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-holdout-2.json",
+      "sha256": "218557d46b3d92120eecf18b89b161fc94248d469b5f58bb4a2c1d192e23b4c5"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-holdout-3",
+      "main_attempts": 100,
+      "groups": {
+        "development97_strict": {
+          "attempts": 97,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H082"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 99,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 10,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H082"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H029",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 99,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H082"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-holdout-3.json",
+      "sha256": "89465c43d2308bff0298a53144278c91b1c74c38afdd71587b315a11b84e3f95"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 12,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "T_submission_endpoint",
+            "T_submission_endpoint-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "T_citation_slot",
+            "T_cookie_intro",
+            "T_cookie_intro-swapped",
+            "T_cookie_name",
+            "T_cookie_name-swapped",
+            "T_localized_auth",
+            "T_localized_auth-swapped",
+            "T_marketing_slot-swapped"
+          ]
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 15,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011",
+            "D011-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped",
+            "D134",
+            "D134-swapped",
+            "D135",
+            "D135-swapped",
+            "R33",
+            "R33-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-preflight-1.json",
+      "sha256": "5ae9bde8ed971e3d9a0e06c189c92ad0ecfe2dfe56fa3ce12981cecdeb5def44"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-preflight-2",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "T_submission_endpoint",
+            "T_submission_endpoint-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "T_cookie_intro",
+            "T_cookie_intro-swapped",
+            "T_cookie_name",
+            "T_cookie_name-swapped",
+            "T_localized_auth"
+          ]
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 22,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011",
+            "D011-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped",
+            "D134",
+            "D134-swapped",
+            "D135",
+            "D135-swapped",
+            "R11-swapped",
+            "R14",
+            "R14-swapped",
+            "R18",
+            "R18-swapped",
+            "R33-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-preflight-2.json",
+      "sha256": "55b34ce1ded06b7cdb54a70012dc7242e3cffe56eddd07d99a6460a784301e54"
+    },
+    {
+      "root": "baseline",
+      "run": "baseline-preflight-3",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 18,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011",
+            "D011-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped",
+            "D134",
+            "D134-swapped",
+            "D135",
+            "D135-swapped",
+            "R18-swapped",
+            "R33",
+            "R33-swapped"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "T_submission_endpoint",
+            "T_submission_endpoint-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "T_cookie_intro",
+            "T_cookie_intro-swapped",
+            "T_cookie_name",
+            "T_cookie_name-swapped",
+            "T_localized_auth",
+            "T_localized_auth-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/baseline/baseline-preflight-3.json",
+      "sha256": "78137a003f18e20d507522c9817b52cc20b1ad1e2e82fb608cb109beb56c60e3"
+    },
+    {
+      "root": "candidate-01",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-01/candidate-coverage-regression-1.json",
+      "sha256": "2464c6e907901a7d20030e6663686bca15d3647d9d84682e76dfc37124512800"
+    },
+    {
+      "root": "candidate-01",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-01/candidate-gate-1.json",
+      "sha256": "bcd094180ab53c6b5f04ac1c46be7f8bad926029fafbdab038fcb64c080bd3fc"
+    },
+    {
+      "root": "candidate-01",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot-swapped"
+          ]
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped",
+            "R33-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-01/candidate-preflight-1.json",
+      "sha256": "a016b1103db475417bdf5c5d918ab9833d44d94552706f8fe223d68c5026a679"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-coverage-regression-1.json",
+      "sha256": "f70d0f1cf94fca683cfe4071f2230cf1ad6ef71c550c4a594e165896b405dbc1"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-coverage-regression-2",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-coverage-regression-2.json",
+      "sha256": "5903124d566a7c79292a7570514b4ba9c62200303cf5086a17879a0cf49149c8"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-coverage-regression-3",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-coverage-regression-3.json",
+      "sha256": "2cdcb054c854f63a25c203fcc40c00f17352e89eda11e0f13f3353b4034da9f8"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-diagnostic-1",
+      "main_attempts": 150,
+      "groups": {
+        "personal120": {
+          "attempts": 120,
+          "wrong_allow_signals": 3,
+          "wrong_block_signals": 38,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D075",
+            "D095",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D004",
+            "D015",
+            "D021",
+            "D024",
+            "D042",
+            "D044",
+            "D058",
+            "D064",
+            "D065",
+            "D066",
+            "D067",
+            "D069",
+            "D085",
+            "D086",
+            "D088",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D124",
+            "D136"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-diagnostic-1.json",
+      "sha256": "820b7adbb0e491efa8fc12b983c911dd61b8a932b1472902c53efca9b0218934"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-diagnostic-2",
+      "main_attempts": 150,
+      "groups": {
+        "personal120": {
+          "attempts": 120,
+          "wrong_allow_signals": 5,
+          "wrong_block_signals": 40,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D075",
+            "D095",
+            "D108",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D004",
+            "D007",
+            "D015",
+            "D021",
+            "D022",
+            "D024",
+            "D042",
+            "D044",
+            "D058",
+            "D064",
+            "D065",
+            "D067",
+            "D085",
+            "D086",
+            "D087",
+            "D088",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D124",
+            "D136"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-diagnostic-2.json",
+      "sha256": "abebac0c42511cd4f32190714db7a6c0750d0d0b74f2f115f01e03da3998c27a"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-diagnostic-3",
+      "main_attempts": 150,
+      "groups": {
+        "personal120": {
+          "attempts": 120,
+          "wrong_allow_signals": 5,
+          "wrong_block_signals": 32,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D079",
+            "D095",
+            "D108",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D004",
+            "D015",
+            "D024",
+            "D042",
+            "D044",
+            "D058",
+            "D064",
+            "D065",
+            "D067",
+            "D085",
+            "D086",
+            "D088",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D124",
+            "D136"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-diagnostic-3.json",
+      "sha256": "441ec1b1b6d923fc510ba7ff9f56345df94ef1900948745b2360037d57056fc3"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-gate-1.json",
+      "sha256": "9522c78a47e93a0929b8da1135937a0a3d119ddb447f7e4f40a7c4108ac06bee"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-gate-2",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-gate-2.json",
+      "sha256": "cef230c47c72967dda4ae58b5e0b68444869e3430a6852b317f3c6b5ff4e176c"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-gate-3",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-gate-3.json",
+      "sha256": "a248b665dc3dfd70456c5d7f9a9f31c642a3822456094b84f719b2635db95083"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-holdout-1",
+      "main_attempts": 100,
+      "groups": {
+        "development97_strict": {
+          "attempts": 97,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 99,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 9,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H029",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 99,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-holdout-1.json",
+      "sha256": "8dc3d2c9c24b971023556672c5354a324d8ab60183b8559fc290b7b9e36f8deb"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-holdout-2",
+      "main_attempts": 100,
+      "groups": {
+        "development97_strict": {
+          "attempts": 97,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 99,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 9,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H029",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 99,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-holdout-2.json",
+      "sha256": "2fb4c08685ef597006a580f76a63992fe0b7d5f0ac18d5a3064b52b1fab57146"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-holdout-3",
+      "main_attempts": 100,
+      "groups": {
+        "development97_strict": {
+          "attempts": 97,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 6,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H034",
+            "H058"
+          ]
+        },
+        "development99_original": {
+          "attempts": 99,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H029",
+            "H034",
+            "H058"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 99,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 6,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H026",
+            "H034",
+            "H058"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-holdout-3.json",
+      "sha256": "023751957c48bf7d7f6c83539e168d68577eec7682c5a339ac21c8123d730d0c"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-preflight-1.json",
+      "sha256": "c042723632d99dcb81c620afc174f72a85e5a0490176ec5b6554730a2bfc76e1"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-preflight-2",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058-swapped",
+            "R18",
+            "R18-swapped",
+            "R33-swapped"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-preflight-2.json",
+      "sha256": "803e07e033003a47cecf769aaea85dd0dc478633deaed1a890a11a5090d717c5"
+    },
+    {
+      "root": "candidate-02",
+      "run": "candidate-preflight-3",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot"
+          ]
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 6,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped",
+            "R33-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02/candidate-preflight-3.json",
+      "sha256": "43de2d9344181351777087eab8b3b8617195e157de8b6595899811edb7554e79"
+    },
+    {
+      "root": "candidate-02-core2",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02-core2/candidate-coverage-regression-1.json",
+      "sha256": "93248b72e596b20b645fe9b01646a8fcf8bed810898aea813b2726eabf82492c"
+    },
+    {
+      "root": "candidate-02-core2",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02-core2/candidate-gate-1.json",
+      "sha256": "a6698c69ea3c5edd586f121375b9796bdcbacba6dbdce4e7d2de179d9ef0f4ab"
+    },
+    {
+      "root": "candidate-02-core2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 3,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011"
+          ],
+          "pairs_with_wrong_block": [
+            "D058",
+            "R14-swapped"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-02-core2/candidate-preflight-1.json",
+      "sha256": "61626287241560843e3e8f734db69cd8e29a37a7d3084bbc181519b01d302b85"
+    },
+    {
+      "root": "candidate-03",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-03/candidate-coverage-regression-1.json",
+      "sha256": "80ebda7071fec13b029651536f7be2212e5cf2695ff145530b2f05683c173171"
+    },
+    {
+      "root": "candidate-03",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-03/candidate-gate-1.json",
+      "sha256": "22b2b1a5c0b7e0c4cbe6f43e7e4cf91dd438fb950279cb3cd662fa334fdf4727"
+    },
+    {
+      "root": "candidate-03",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 6,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped",
+            "R18-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-03/candidate-preflight-1.json",
+      "sha256": "ca1464a1707f4f7ed2abe0c56af9e7c3da678ada4d6ea13daf9aed4171a05265"
+    },
+    {
+      "root": "candidate-04",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-04/candidate-coverage-regression-1.json",
+      "sha256": "c7e198f19104526851dd5d120c65aee8ade1bbc69e8abda7d5319e01c9109b30"
+    },
+    {
+      "root": "candidate-04",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-04/candidate-gate-1.json",
+      "sha256": "36531253b747a417ad130e74b82ce3e0a97898e09511e1785616ef8c725f543b"
+    },
+    {
+      "root": "candidate-04",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 4,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "T_auth_procedure-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot",
+            "T_marketing_slot-swapped"
+          ]
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011"
+          ],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-04/candidate-preflight-1.json",
+      "sha256": "8db42f2776c0ba80bbb6958d4328febf933795343d3751ec63110048e28539ab"
+    },
+    {
+      "root": "candidate-05",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 3,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H049",
+            "H049-swapped",
+            "LIST_COVERAGE"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-05/candidate-coverage-regression-1.json",
+      "sha256": "6aa50c1f5682df8830e19aea00d8580a6b1b167f99d8202f202716240475671c"
+    },
+    {
+      "root": "candidate-05",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 11,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D005",
+            "D005-swapped",
+            "D017-swapped",
+            "D043",
+            "D043-swapped",
+            "D068-swapped",
+            "D115-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-05/candidate-gate-1.json",
+      "sha256": "726b24ca80491d6ce30d5f42e9d70ce792c74682fa4fdb9b7099f5b06547e1fa"
+    },
+    {
+      "root": "candidate-05",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 8,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_cookie_intro-swapped",
+            "T_localized_auth-swapped",
+            "T_marketing_slot",
+            "T_marketing_slot-swapped"
+          ]
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 21,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped",
+            "D059-swapped",
+            "D134",
+            "D134-swapped",
+            "D135",
+            "D135-swapped",
+            "R11-swapped",
+            "R18",
+            "R18-swapped",
+            "R33-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-05/candidate-preflight-1.json",
+      "sha256": "8efcbd14a03775aba7585e5cc9d72339a938fc30a2631f137f08ad6ab14c5145"
+    },
+    {
+      "root": "candidate-06",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06/candidate-coverage-regression-1.json",
+      "sha256": "7159a07ef6bfde9f70e806355d8b0bf1640e2ce58d649bddaa839399121b60a8"
+    },
+    {
+      "root": "candidate-06",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06/candidate-gate-1.json",
+      "sha256": "9ecb00b9e6541c02702a390f550a3df9bbd4558d5c95b1d99f40aff5568e752e"
+    },
+    {
+      "root": "candidate-06",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06/candidate-preflight-1.json",
+      "sha256": "6f7f1d665516c114f63e50357c2d2c8aa89df85a069251454334a5ef03e02d48"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-coverage-regression-1.json",
+      "sha256": "c0b8ca8d9e55a12dd1ac44fb05dcb04bffc5898f638a8b5e6b3405c9f4b44ec9"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-coverage-regression-2",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-coverage-regression-2.json",
+      "sha256": "6e7581c8408cddb27aee0ec691e55376a61f4705721b43ebdd3479f98d128a9d"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-coverage-regression-3",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-coverage-regression-3.json",
+      "sha256": "0faf9dbd3a045f32ebe8210b3a252ba0a769c987eefe6ab81a91ed988798af06"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-diagnostic-1",
+      "main_attempts": 150,
+      "groups": {
+        "personal120": {
+          "attempts": 120,
+          "wrong_allow_signals": 5,
+          "wrong_block_signals": 28,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D025",
+            "D075",
+            "D095",
+            "D117",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D008",
+            "D015",
+            "D024",
+            "D042",
+            "D044",
+            "D064",
+            "D065",
+            "D067",
+            "D085",
+            "D088",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D136",
+            "D142",
+            "D143"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-diagnostic-1.json",
+      "sha256": "601e4e3b30fd83b4a704f9128f146b6322df6344cf6c89580357443ba90f8497"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-diagnostic-2",
+      "main_attempts": 150,
+      "groups": {
+        "personal120": {
+          "attempts": 120,
+          "wrong_allow_signals": 8,
+          "wrong_block_signals": 23,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D025",
+            "D049",
+            "D075",
+            "D095",
+            "D108",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D015",
+            "D024",
+            "D044",
+            "D058",
+            "D064",
+            "D065",
+            "D085",
+            "D088",
+            "D109",
+            "D116",
+            "D124",
+            "D136",
+            "D142"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-diagnostic-2.json",
+      "sha256": "8a83b7c77543cbd3f7f742dbc6cc1cc441f77b29fcb1fdf427e01ee888d4014b"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-diagnostic-3",
+      "main_attempts": 152,
+      "groups": {
+        "personal120": {
+          "attempts": 122,
+          "wrong_allow_signals": 6,
+          "wrong_block_signals": 25,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D075",
+            "D093",
+            "D095",
+            "D108",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D007",
+            "D015",
+            "D024",
+            "D044",
+            "D064",
+            "D065",
+            "D067",
+            "D085",
+            "D086",
+            "D109",
+            "D113",
+            "D116",
+            "D136",
+            "D142"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-diagnostic-3.json",
+      "sha256": "1d9438370d7b864a2a6acb42e861d3bcfeb78c1aa4d6ce3831ac032980c9281b"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-gate-1.json",
+      "sha256": "2307f6647c212c330363677735afb3caa6559145c4f4b0fcedc49f2d3b284a23"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-gate-2",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-gate-2.json",
+      "sha256": "6449afaddf8585fa7ba94997ef3806ba263cdcdac1752f2a823e3065b5faa001"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-gate-3",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-gate-3.json",
+      "sha256": "63dfa69e8b5311c55749d5b06abb920b592d858fb7f7d042ae490e7fdf03310b"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-holdout-1",
+      "main_attempts": 100,
+      "groups": {
+        "development97_strict": {
+          "attempts": 97,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 3,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058"
+          ]
+        },
+        "development99_original": {
+          "attempts": 99,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H029",
+            "H058"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 99,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 3,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-holdout-1.json",
+      "sha256": "ab95ac575c424a43383f8808865d94095d3f4efa0339a8703a59ee0f0ff4621d"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-holdout-2",
+      "main_attempts": 100,
+      "groups": {
+        "development97_strict": {
+          "attempts": 97,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 99,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 99,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-holdout-2.json",
+      "sha256": "39ff2e2b8ffc7d47a1899d6fb811f533267de29bf55124bc6f869cf45be54e2e"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-holdout-3",
+      "main_attempts": 101,
+      "groups": {
+        "development97_strict": {
+          "attempts": 98,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 100,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 100,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-holdout-3.json",
+      "sha256": "65c674c6c185cffd53d1dff514db2981fa8e96ec13197e359fa098c929b00d3e"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 3,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "R18",
+            "R33"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 4,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot",
+            "T_marketing_slot-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-preflight-1.json",
+      "sha256": "e6b2ed92b24e79e5f41cb5822ac59e64c1516f45f847f708a74d22d5cf5254e8"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-preflight-2",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot-swapped"
+          ]
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-preflight-2.json",
+      "sha256": "af6374a9170618bf0f8170dc300eab9eab4d248282434d74f5a3045ebbe370db"
+    },
+    {
+      "root": "candidate-06-languagefirst1",
+      "run": "candidate-preflight-3",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 6,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "R14-swapped",
+            "R18",
+            "R18-swapped",
+            "R33-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1/candidate-preflight-3.json",
+      "sha256": "ecfdd18e58f96da42c0ef9450941d424bbb94d73b097105577d5f091caa5bebe"
+    },
+    {
+      "root": "candidate-06-languagefirst1-shortview1",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1-shortview1/candidate-coverage-regression-1.json",
+      "sha256": "13c5ab3740f27a76ccd78876c81326e4b2552662710939cfdaa428234f1c635a"
+    },
+    {
+      "root": "candidate-06-languagefirst1-shortview1",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1-shortview1/candidate-gate-1.json",
+      "sha256": "5d18a22ead4365a7a7d2e96d6509ef663d29290a1074c082437d0f5e9143749d"
+    },
+    {
+      "root": "candidate-06-languagefirst1-shortview1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 1,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011",
+            "D011-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "R33-swapped"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-06-languagefirst1-shortview1/candidate-preflight-1.json",
+      "sha256": "fcea24957771e729582e7cf63e20aaeea9e80c4d492178895173116b2c9a1ebe"
+    },
+    {
+      "root": "candidate-07",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07/candidate-coverage-regression-1.json",
+      "sha256": "6e2d818a87a08bfb45123b46881ecedace9fc85500b3237a3d6636532ead54b5"
+    },
+    {
+      "root": "candidate-07",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07/candidate-gate-1.json",
+      "sha256": "5ef15630bf84eb563c0b7d1a02bd53a04c8ba30ce3498f717a8fcd0088ab8e04"
+    },
+    {
+      "root": "candidate-07",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "R18-swapped"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07/candidate-preflight-1.json",
+      "sha256": "4a1384c9af7637919b5c3d10e6e4f343a4f0c5050862b73dc976688f3038bf99"
+    },
+    {
+      "root": "candidate-07-format2",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2/candidate-coverage-regression-1.json",
+      "sha256": "f17555e1af5775465d181c5887d3e2af6b246a3a486def62708d8fce159a2fc8"
+    },
+    {
+      "root": "candidate-07-format2",
+      "run": "candidate-diagnostic-1",
+      "main_attempts": 151,
+      "groups": {
+        "personal120": {
+          "attempts": 121,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 29,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D025",
+            "D075",
+            "D108"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D015",
+            "D021",
+            "D022",
+            "D042",
+            "D044",
+            "D064",
+            "D067",
+            "D085",
+            "D086",
+            "D088",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D124",
+            "D136",
+            "D145"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2/candidate-diagnostic-1.json",
+      "sha256": "30bb6d729ad7293553dad518291469718421e9f1d45d18567d18726f8d38fd41"
+    },
+    {
+      "root": "candidate-07-format2",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2/candidate-gate-1.json",
+      "sha256": "bde6ba2439d4ad9f8122cfc66224c6daee7344f4fec98d57a298adee76ae23aa"
+    },
+    {
+      "root": "candidate-07-format2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2/candidate-preflight-1.json",
+      "sha256": "777998497b73fc9c89a8b9edc6c41cf86121531570a76fce620efd39dacaae97"
+    },
+    {
+      "root": "candidate-07-format2-readview2",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 1,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "LIST_COVERAGE-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2-readview2/candidate-coverage-regression-1.json",
+      "sha256": "ab5f8a82a89894d5e5caf77622801814c158452120bb2b588cac4ca4c87f64e1"
+    },
+    {
+      "root": "candidate-07-format2-readview2",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2-readview2/candidate-gate-1.json",
+      "sha256": "2d452945facd5a675067668d59521f3c155b8c44cc4dfd458479cd90271537ad"
+    },
+    {
+      "root": "candidate-07-format2-readview2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 3,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "R33",
+            "R33-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-07-format2-readview2/candidate-preflight-1.json",
+      "sha256": "0085fac318679b389470332a7743b51261a0d3167bf50b1a764345cbe74131a6"
+    },
+    {
+      "root": "candidate-08",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-08/candidate-coverage-regression-1.json",
+      "sha256": "d86361dfe1f60219b7761715bd6a6bb49784eff7314d93917e5b9739daf648b5"
+    },
+    {
+      "root": "candidate-08",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-08/candidate-gate-1.json",
+      "sha256": "9f03c0f2c4b14590d43d08ad9baa3e383e85f717f9ee2408d1627f0fed1f51f2"
+    },
+    {
+      "root": "candidate-08",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 3,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058",
+            "R14-swapped"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-08/candidate-preflight-1.json",
+      "sha256": "2ba998b33360bbb2a7795ca5dd9ede96e06f1dbd2c25dcd63af036a06effe299"
+    },
+    {
+      "root": "candidate-09",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-09/candidate-coverage-regression-1.json",
+      "sha256": "6d8d4c096dd6ae8e7370034246fd8997c9bebf6137455e740fd5f450ac14831d"
+    },
+    {
+      "root": "candidate-09",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-09/candidate-gate-1.json",
+      "sha256": "2e5ab4b3de6aff3159bf228d76f1d9d162f0a1a2c2b37fd14f55ec4b076ccd41"
+    },
+    {
+      "root": "candidate-09",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "R18"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-09/candidate-preflight-1.json",
+      "sha256": "7ca66a525315c1461d92ecc73044fb742fc8735610df15e63e55cc3217a58d13"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-coverage-regression-1.json",
+      "sha256": "4e2ecdd62d73c579ddaca9bfdec947901118307d314b93366ab692f94f95486b"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-coverage-regression-2",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-coverage-regression-2.json",
+      "sha256": "957588cc0bc2fea5c84015a2a9ccb9225b9d35bc421ed9d9a7b57f395cdcd4f5"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-diagnostic-1",
+      "main_attempts": 151,
+      "groups": {
+        "personal120": {
+          "attempts": 121,
+          "wrong_allow_signals": 3,
+          "wrong_block_signals": 26,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D075",
+            "D095",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D004",
+            "D007",
+            "D015",
+            "D024",
+            "D042",
+            "D044",
+            "D064",
+            "D067",
+            "D085",
+            "D087",
+            "D088",
+            "D109",
+            "D116",
+            "D123",
+            "D124",
+            "D136"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-diagnostic-1.json",
+      "sha256": "7c1432610257aa997ee813e020aae6455bf6cc28f77bd62914027dfd27aeb6e8"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-gate-1.json",
+      "sha256": "4fa0d6f5fad5ffcf3da9f0804d35056833c28f3957217e448bcddbae9db2b65c"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-gate-2",
+      "main_attempts": 37,
+      "groups": {
+        "original36": {
+          "attempts": 37,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-gate-2.json",
+      "sha256": "abce0eed9880c7d59fab5ed0a7407965b4b5a672184a2639b8c9882c0ff7d607"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-holdout-1",
+      "main_attempts": 101,
+      "groups": {
+        "development97_strict": {
+          "attempts": 98,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 100,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 100,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-holdout-1.json",
+      "sha256": "4774c53793920d33711b0343d19ae1f1a2dff74788ec63b23e8c8b0106046be0"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-preflight-1",
+      "main_attempts": 46,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "controlled26": {
+          "attempts": 28,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 1,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_cookie_intro"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-preflight-1.json",
+      "sha256": "8972266454c82958bba99b26c045e213ff6153375341414dc2306771aaaac56a"
+    },
+    {
+      "root": "candidate-10",
+      "run": "candidate-preflight-2",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10/candidate-preflight-2.json",
+      "sha256": "b8ab09a0e1931450a9da20e539f1745f7963c95b8f6d4ee2cd3500c8c39f92bc"
+    },
+    {
+      "root": "candidate-10-xref1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 10,
+      "groups": {
+        "latest18": {
+          "attempts": 10,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10-xref1/candidate-preflight-1.json",
+      "sha256": "0720336c1b5ff650bb4732bf47972a2a6b922fbafb0dd48d70b23680cb2b065b"
+    },
+    {
+      "root": "candidate-10-xref2",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10-xref2/candidate-coverage-regression-1.json",
+      "sha256": "8f3ee817251cc03ce40fc123063587b902a2af274092721d2594f430a8452adf"
+    },
+    {
+      "root": "candidate-10-xref2",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10-xref2/candidate-gate-1.json",
+      "sha256": "048009ced98fb094e9157a39b31adcea28609b24ecaa7f70f2af8410f63a2721"
+    },
+    {
+      "root": "candidate-10-xref2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 46,
+      "groups": {
+        "controlled26": {
+          "attempts": 28,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-10-xref2/candidate-preflight-1.json",
+      "sha256": "abdb291d9ba3fbacecbd9206b65704dd1c6847045e4bc5036c38a627959b44da"
+    },
+    {
+      "root": "candidate-11",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11/candidate-coverage-regression-1.json",
+      "sha256": "fa13365271890a857663e018246a7552f9efb728cdd602ecedc449f44186b34f"
+    },
+    {
+      "root": "candidate-11",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11/candidate-gate-1.json",
+      "sha256": "280886958773bbf5036318151b430d324d9c8b80c8573ae303bbc6481f318a7b"
+    },
+    {
+      "root": "candidate-11",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11/candidate-preflight-1.json",
+      "sha256": "d3962eef3ced60699b1def258084d40ee99d82c509540edd04b3a79d1a31e2b5"
+    },
+    {
+      "root": "candidate-11-contract1",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 7,
+      "groups": {
+        "extra6": {
+          "attempts": 7,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11-contract1/candidate-coverage-regression-1.json",
+      "sha256": "dce06efe66d0ed652f8f65d914e3e915503f4e9358c91f957a52e32f9f5923f7"
+    },
+    {
+      "root": "candidate-11-contract1",
+      "run": "candidate-gate-1",
+      "main_attempts": 38,
+      "groups": {
+        "original36": {
+          "attempts": 38,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11-contract1/candidate-gate-1.json",
+      "sha256": "a5087a036ce719ea929f9ca01cf87d7e658e3af28c5c299ee640252e90e94ffb"
+    },
+    {
+      "root": "candidate-11-contract1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 46,
+      "groups": {
+        "latest18": {
+          "attempts": 19,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "controlled26": {
+          "attempts": 27,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/candidate-11-contract1/candidate-preflight-1.json",
+      "sha256": "c00e7ce448404373817a9fbfb5416a32c252bb04d469cdd815a34b3695d8f85e"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-coverage-regression-1",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-coverage-regression-1.json",
+      "sha256": "d4dc23ac4668bca2d476d26e9d0b2d65dc11e3d70ff456e5230b84c18d0d3266"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-coverage-regression-2",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-coverage-regression-2.json",
+      "sha256": "dd7ecb405e363ee5b2b7c507461aeee03e5c0501fa08992cea86cb23f00fe3ee"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-coverage-regression-3",
+      "main_attempts": 6,
+      "groups": {
+        "extra6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-coverage-regression-3.json",
+      "sha256": "07cf3aa170b9220fcd556908b367efd5c3ca2a01b306082c823aea9228c4b0fd"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-diagnostic-1",
+      "main_attempts": 150,
+      "groups": {
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "personal120": {
+          "attempts": 120,
+          "wrong_allow_signals": 6,
+          "wrong_block_signals": 33,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D049",
+            "D075",
+            "D095",
+            "D108",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D004",
+            "D015",
+            "D024",
+            "D044",
+            "D058",
+            "D064",
+            "D065",
+            "D066",
+            "D067",
+            "D085",
+            "D086",
+            "D088",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D136",
+            "D142"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-diagnostic-1.json",
+      "sha256": "82cce6cde43547f3956ad410f1aeb8614da14fb85d30dc6b9be6e13c1c9dd1c8"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-diagnostic-2",
+      "main_attempts": 151,
+      "groups": {
+        "personal120": {
+          "attempts": 121,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 37,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D025",
+            "D075",
+            "D095",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D004",
+            "D007",
+            "D015",
+            "D024",
+            "D044",
+            "D058",
+            "D064",
+            "D065",
+            "D067",
+            "D082",
+            "D085",
+            "D086",
+            "D088",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D124",
+            "D136",
+            "D145"
+          ]
+        },
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-diagnostic-2.json",
+      "sha256": "474a30ba23ff63719c7b6d21f5e83260b32d7156810db528d11e1cce4bf039d2"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-diagnostic-3",
+      "main_attempts": 150,
+      "groups": {
+        "real_consensus6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        },
+        "personal120": {
+          "attempts": 120,
+          "wrong_allow_signals": 7,
+          "wrong_block_signals": 34,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D049",
+            "D075",
+            "D095",
+            "D108",
+            "D128"
+          ],
+          "pairs_with_wrong_block": [
+            "D001",
+            "D003",
+            "D007",
+            "D015",
+            "D021",
+            "D024",
+            "D042",
+            "D044",
+            "D058",
+            "D064",
+            "D065",
+            "D067",
+            "D085",
+            "D086",
+            "D088",
+            "D109",
+            "D113",
+            "D116",
+            "D123",
+            "D124",
+            "D136"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-diagnostic-3.json",
+      "sha256": "4dfbc26df82d546f946f02e6c5f03c2678bf70c1affd791f76b9849f4797e284"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-gate-1",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-gate-1.json",
+      "sha256": "196d30e2653cf9de9205c5ad55da32f008522866ff40ebaedc530642a7882176"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-gate-2",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-gate-2.json",
+      "sha256": "03e7fc4311bbbf1438495aeff0224d3570360a9ea5307164b1b30f5f08e5b777"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-gate-3",
+      "main_attempts": 36,
+      "groups": {
+        "original36": {
+          "attempts": 36,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-gate-3.json",
+      "sha256": "98ab59ee3c208710cf0f26c4057489421aa44b50c7857fd8ebf122c8ba5f832e"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-holdout-1",
+      "main_attempts": 100,
+      "groups": {
+        "development97_strict": {
+          "attempts": 97,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 99,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H029",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 99,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 5,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-holdout-1.json",
+      "sha256": "f0a54ce792ac2f1be822340c1ebc76290c8407aca874d885d70bd34fa3e17c52"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-holdout-2",
+      "main_attempts": 100,
+      "groups": {
+        "development97_strict": {
+          "attempts": 97,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 99,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 9,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H029",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 99,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H066"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-holdout-2.json",
+      "sha256": "5898de7f75e25ca122eace19480a3cc1502f24b8698a6105be68feefd4d89a68"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-holdout-3",
+      "main_attempts": 101,
+      "groups": {
+        "development97_strict": {
+          "attempts": 98,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_original": {
+          "attempts": 100,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 9,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026",
+            "H052"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H029",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        },
+        "development99_reviewed": {
+          "attempts": 100,
+          "wrong_allow_signals": 1,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "H026"
+          ],
+          "pairs_with_wrong_block": [
+            "H012",
+            "H034",
+            "H058",
+            "H070"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-holdout-3.json",
+      "sha256": "409815b9ae01155cc60b5e9d493736658195ddec86cc6bd68f8e4ff2663c0d64"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-preflight-1",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 4,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 4,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot",
+            "T_marketing_slot-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-preflight-1.json",
+      "sha256": "ad0a032dacc2b543e832644cd1d039dc0b1433d810d7eceb8edf8bc63c3f090a"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-preflight-2",
+      "main_attempts": 44,
+      "groups": {
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 7,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "D011-swapped"
+          ],
+          "pairs_with_wrong_block": [
+            "D058",
+            "R18",
+            "R18-swapped",
+            "R33-swapped"
+          ]
+        },
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-preflight-2.json",
+      "sha256": "8915c384c69178e64c84c93857ad5e22cc2897d486cad497ae8ded77dc0e4b0a"
+    },
+    {
+      "root": "start-39714b47",
+      "run": "candidate-preflight-3",
+      "main_attempts": 44,
+      "groups": {
+        "controlled26": {
+          "attempts": 26,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 2,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "T_marketing_slot-swapped"
+          ]
+        },
+        "latest18": {
+          "attempts": 18,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 9,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": [
+            "D058",
+            "D058-swapped",
+            "R18-swapped",
+            "R33",
+            "R33-swapped"
+          ]
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/start-39714b47/candidate-preflight-3.json",
+      "sha256": "ae57a8ec5129b5c8a166fab257956b93d59a65241d0cc41bdc8f42d9bfd0a946"
+    },
+    {
+      "root": "supplemental-class-instance-candidate10-v2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 8,
+      "groups": {
+        "supplemental_class_instance6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-class-instance-candidate10-v2/candidate-preflight-1.json",
+      "sha256": "2f5b5b677dde8784b9b3eedd4d7a1157c71a72037428e117ed51843b780bf2b8"
+    },
+    {
+      "root": "supplemental-class-instance-candidate11-contract1-v2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 13,
+      "groups": {
+        "supplemental_class_instance6": {
+          "attempts": 11,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-class-instance-candidate11-contract1-v2/candidate-preflight-1.json",
+      "sha256": "fd0196c7cd865895c122c1ff19efe515d7b0db381c6ec7e309b74def3711650b"
+    },
+    {
+      "root": "supplemental-class-instance-candidate11-v2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 8,
+      "groups": {
+        "supplemental_class_instance6": {
+          "attempts": 6,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-class-instance-candidate11-v2/candidate-preflight-1.json",
+      "sha256": "27e92a198932757677e924ee880875fe702f4aab984105bb036b1f8763f3d3c4"
+    },
+    {
+      "root": "supplemental-cookie-scope-candidate10-v2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 8,
+      "groups": {
+        "supplemental_cookie_scope8": {
+          "attempts": 8,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-cookie-scope-candidate10-v2/candidate-preflight-1.json",
+      "sha256": "29ce401bc19281b4a4988581e42dc09698c4017705c3c33670b09c9e00ae53ee"
+    },
+    {
+      "root": "supplemental-cookie-scope-candidate11-contract1-v2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 10,
+      "groups": {
+        "supplemental_cookie_scope8": {
+          "attempts": 10,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-cookie-scope-candidate11-contract1-v2/candidate-preflight-1.json",
+      "sha256": "f072e1487ba319f12001a029eadaba95cad33246b93b0f02e47494b13c7c8c2f"
+    },
+    {
+      "root": "supplemental-cookie-scope-candidate11-v2",
+      "run": "candidate-preflight-1",
+      "main_attempts": 9,
+      "groups": {
+        "supplemental_cookie_scope8": {
+          "attempts": 9,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-cookie-scope-candidate11-v2/candidate-preflight-1.json",
+      "sha256": "c7a235883f97bb28e3229b344138ee30dfaf14dc610ed32aa24e8cfd79250b03"
+    },
+    {
+      "root": "supplemental-ui-baseline-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 22,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 16,
+          "wrong_allow_signals": 4,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "SUI004",
+            "SUI004-swapped"
+          ],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-baseline-v1/candidate-preflight-1.json",
+      "sha256": "d5279a9f22416a4262e54db922ac7ed8d47cc28d8d7d28cf2ee7595de2f0562b"
+    },
+    {
+      "root": "supplemental-ui-candidate07-format2-readview2-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 23,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 16,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate07-format2-readview2-v1/candidate-preflight-1.json",
+      "sha256": "29f3bf2dfebea35cb9a026f21b5047de9ab858961b8b6bfbe2c06bdec4552859"
+    },
+    {
+      "root": "supplemental-ui-candidate07-format2-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 22,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 16,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "SUI004"
+          ],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate07-format2-v1/candidate-preflight-1.json",
+      "sha256": "0d769ed68f6f49672e356826ed15632cea94e636df7ce91c095f15705fd4371b"
+    },
+    {
+      "root": "supplemental-ui-candidate07-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 22,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 16,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "SUI004"
+          ],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate07-v1/candidate-preflight-1.json",
+      "sha256": "280281a15a4148cd203d2dbbd3f7434f960e182c36e741b3f0db0f9e2d21fab9"
+    },
+    {
+      "root": "supplemental-ui-candidate08-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 22,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 16,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "SUI004"
+          ],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate08-v1/candidate-preflight-1.json",
+      "sha256": "9ddc73779f4cd9ba0677022a2d17773b4747d81f3019bd4c8a56858639bb7a71"
+    },
+    {
+      "root": "supplemental-ui-candidate09-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 23,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 17,
+          "wrong_allow_signals": 2,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [
+            "SUI004"
+          ],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate09-v1/candidate-preflight-1.json",
+      "sha256": "861be13bc7df6c21fa7e83464f820461c2d903c6ed6f1bd48aa19a1c577cde8c"
+    },
+    {
+      "root": "supplemental-ui-candidate10-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 22,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 16,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate10-v1/candidate-preflight-1.json",
+      "sha256": "636829f098231109c552d321a834cc306af31ae770a7a93e3502edd388bedae5"
+    },
+    {
+      "root": "supplemental-ui-candidate10-xref2-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 22,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 16,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate10-xref2-v1/candidate-preflight-1.json",
+      "sha256": "6ffd92a4e2e1f5ca21564d46737bc449484e033ef6feb6971609dc759dc4f4e6"
+    },
+    {
+      "root": "supplemental-ui-candidate11-contract1-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 36,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 28,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate11-contract1-v1/candidate-preflight-1.json",
+      "sha256": "12ad08f3d30add7d61fb56fca7f8c80fee0b67fb508304cfd4bf0cda645f8dcb"
+    },
+    {
+      "root": "supplemental-ui-candidate11-v1",
+      "run": "candidate-preflight-1",
+      "main_attempts": 22,
+      "groups": {
+        "supplemental_ui16": {
+          "attempts": 16,
+          "wrong_allow_signals": 0,
+          "wrong_block_signals": 0,
+          "nonvalid_attempt_wrong_allow_signals": 0,
+          "nonvalid_attempt_wrong_block_signals": 0,
+          "unknown_direction_values": 0,
+          "pairs_with_wrong_allow": [],
+          "pairs_with_wrong_block": []
+        }
+      },
+      "output": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/raw-attempt-signals-v1/supplemental-ui-candidate11-v1/candidate-preflight-1.json",
+      "sha256": "ca4b08fb4da483ee4cef08b094e2d35be96afac5df5bbc2095cb562368da2b94"
+    }
+  ]
+}
