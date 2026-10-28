@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "sections": 9,
+  "table_ids": [
+    "headline",
+    "repeats",
+    "requirements",
+    "hard",
+    "technical",
+    "observations",
+    "discussion",
+    "truncated",
+    "deltas",
+    "lifecycles",
+    "snapshots",
+    "candidates",
+    "resources",
+    "verification"
+  ],
+  "numeric_sequences_equal": true,
+  "shared_data_tables": true,
+  "outcome_en": "Evaluation is in progress; acceptance is not confirmed.",
+  "outcome_zh": "评测进行中，尚未确认验收通过。",
+  "comparison_sha256": "fd1f75ee68494036b72e3fb0a25e23d47fc8c9bd91400d7029bd426b1d040a65"
+}

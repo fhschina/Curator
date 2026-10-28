@@ -1,0 +1,78 @@
+{
+  "saved": 1793176783.4516883,
+  "candidate": "candidate-06-languagefirst1",
+  "status": "confirmed_three_run_mean",
+  "metric": {
+    "correct_directions": 612,
+    "directions": 720,
+    "correct_pairs": 288,
+    "pairs": 360,
+    "repeats": 3
+  },
+  "per_run_final": [
+    [
+      205,
+      240,
+      96,
+      120
+    ],
+    [
+      206,
+      240,
+      97,
+      120
+    ],
+    [
+      201,
+      240,
+      95,
+      120
+    ]
+  ],
+  "all_fifteen_original_declared_slots_complete": true,
+  "requirement_status": {
+    "milestone_85_80": "PASS",
+    "target_90_85": "FAIL",
+    "hard_regressions": {
+      "original36": "PASS",
+      "extra6": "PASS",
+      "latest18": "FAIL",
+      "controlled26": "FAIL",
+      "real_consensus6": "PASS"
+    },
+    "technical_validity": "FAIL",
+    "development_nonregression_mean": {
+      "development99_original": "PASS",
+      "development99_reviewed": "PASS",
+      "development97_strict": "PASS"
+    }
+  },
+  "acceptance_passed": false,
+  "gpu_checks": {
+    "passed": 4,
+    "skipped": 0
+  },
+  "source_snapshot": {
+    "path": "snapshots/1793176498595615452-milestone_85_80-candidate-06-languagefirst1-confirmed-three-run-full-cohort.json",
+    "sha256": "cf4128d6efa6bc7690fc5bbaf65c86a28669e67fa1d7fde66f1e666fd0b78b07",
+    "signature": [
+      "candidate-06-languagefirst1",
+      "confirmed_three_run_mean",
+      612,
+      288,
+      3,
+      "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    ],
+    "candidate": "candidate-06-languagefirst1",
+    "status": "confirmed_three_run_mean",
+    "metric": {
+      "correct_directions": 612,
+      "directions": 720,
+      "correct_pairs": 288,
+      "pairs": 360,
+      "repeats": 3
+    },
+    "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+  },
+  "raw_sources_and_http_in_git": false
+}

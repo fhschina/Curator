@@ -11,13 +11,17 @@ runs. The intermediate milestone is 612/720 and 288/360. Hard regressions,
 technical validity, and all three development nonregression views are separate
 requirements. These exposed references measure development agreement.
 
-The 06:43 UTC checkpoint contains the complete same-condition baseline,
-starting-version and candidate-02 comparison. Candidate-02 has 588/720 correct
-directions and 279/360 complete pairs. Its development directional totals are
-564/594 original, 570/594 reviewed and 558/582 strict; all exceed the fixed
-baseline totals. Its personal milestone, target, latest-review and controlled
-hard groups, and technical validity fail. No candidate is accepted.
+The confirmed 08:35 UTC checkpoint contains the complete same-condition
+baseline, starting-version and candidate-06-languagefirst1 comparison. This
+frozen candidate confirms the **85% / 80% milestone**, with 612/720 directions
+and 288/360 pairs across its original three runs. The final 90% / 85% target,
+latest-review and controlled hard groups, and technical validity fail. All
+three 100-pair nonregression views pass. No candidate is accepted.
 
+- `milestones/85_80-languagefirst1-confirmed-0822Z/`: confirmed snapshot,
+  immutable evidence, exact counts, and bilingual qualification summary.
+- `checkpoints/0835Z-confirmed-stage/`: complete comparison, bilingual reports,
+  shared tables, translation validation and current pointers.
 - `checkpoints/0643Z/`: complete machine comparison, CSV, bilingual readable
   reports, shared tables, translation validation, and saved current pointers.
 - `frozen-candidates/`: immutable prompt/config snapshots and provenance.

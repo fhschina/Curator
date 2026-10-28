@@ -1,0 +1,8 @@
+{
+  "source": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/formal-languagefirst1-complete-engineering04/comparison.json",
+  "source_sha256": "fd1f75ee68494036b72e3fb0a25e23d47fc8c9bd91400d7029bd426b1d040a65",
+  "minified_full_sha256": "600b9b32249ad2fa7361d5961fb1971af07469b8562bb1de5fcf4ac2e7bdccb3",
+  "full_gzip": "comparison.json.gz",
+  "summary": "comparison-summary.json",
+  "all_runs_preserved": true
+}

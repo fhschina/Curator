@@ -1,0 +1,198 @@
+{
+  "input_pairs": 100,
+  "output_pairs": 100,
+  "labels": 100,
+  "label_sources": {
+    "agent_assisted_blind": 100
+  },
+  "unsafe_allow_definition": "Raw yes in a reference-no direction, including judgments with invalid schema or evidence; validity is reported separately.",
+  "unscored_labels": 1,
+  "truncated_pairs": 0,
+  "issues": {},
+  "integrity_failures": {},
+  "failure_counts": {},
+  "skip_reasons": {
+    "coverage": {
+      "PRESERVE_MAIN_NEGATIVE_OR_UNRESOLVED": 59,
+      "PRESERVE_COMPLETE_EXACT_INPUT": 26
+    },
+    "subject": {
+      "PRESERVE_MAIN_NEGATIVE_OR_UNRESOLVED": 60,
+      "PRESERVE_COMPLETE_EXACT_INPUT": 26,
+      "PRESERVE_WITHOUT_BILATERAL_UNIQUE_SUBJECTS": 6
+    }
+  },
+  "layers": {
+    "main": {
+      "scored_pairs": 99,
+      "direction_accuracy": 0.9646464646464646,
+      "pair_accuracy": 0.9494949494949495,
+      "unsafe_allows": 2,
+      "unresolved_pair_rate": 0.0,
+      "invalid_pair_rate": 0.0
+    },
+    "coverage": {
+      "scored_pairs": 99,
+      "direction_accuracy": 0.9595959595959596,
+      "pair_accuracy": 0.9494949494949495,
+      "unsafe_allows": 1,
+      "unresolved_pair_rate": 0.010101010101010102,
+      "invalid_pair_rate": 0.0
+    },
+    "final": {
+      "scored_pairs": 99,
+      "direction_accuracy": 0.9595959595959596,
+      "pair_accuracy": 0.9494949494949495,
+      "unsafe_allows": 1,
+      "unresolved_pair_rate": 0.010101010101010102,
+      "invalid_pair_rate": 0.0
+    }
+  },
+  "gate_passed": false,
+  "holdout_passed": false,
+  "attempt_status_counts": {
+    "valid": 123
+  },
+  "attempt_retries": 0,
+  "unmapped_attempts": 0,
+  "variant": "candidate",
+  "panel": "holdout",
+  "repeat": 2,
+  "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+  "diagnostic_signals": {
+    "keeper_direction_no": 13,
+    "cross_group_no": 49,
+    "keeper_direction_yes": 37,
+    "cross_group_unresolved": 1
+  },
+  "language_distribution": {
+    "unknown": 200
+  },
+  "raw_document_length_chars": {
+    "documents": 200,
+    "missing_documents": 0,
+    "min": 10,
+    "max": 5933,
+    "visible_window_chars": 6000,
+    "over_window_documents": 0
+  },
+  "reference_agreement_by_source": {
+    "agent_assisted_blind": {
+      "main": {
+        "eligible_pairs": 99,
+        "agreeing_pairs": 94
+      },
+      "coverage": {
+        "eligible_pairs": 99,
+        "agreeing_pairs": 94
+      },
+      "final": {
+        "eligible_pairs": 99,
+        "agreeing_pairs": 94
+      }
+    }
+  },
+  "stage_direction_changes": {
+    "main_to_coverage": 2,
+    "coverage_to_final": 0
+  },
+  "truncated_ids": [],
+  "execution_manifest_sha256": "dd95251f6009b0a42951b7595334320b83fe909500891b8f94e879e6f7ef2d1f",
+  "audit_code_sha256": "0d69f64b88ab1f963016069fc58add24413ef0d6ebf10b50aeb214fe4838e294",
+  "experiment_manifest_sha256": "7e3a45c935c8cdcf9be271a11c6dd1176b50f6e86fa7a13b3ab9b999e354c0b0",
+  "output_files": {
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1/runs/candidate-holdout-2/critics/8c747f6ce6f2.jsonl": "1b661250ff4a57c5a7514de07e3ea337e0cb6356830bbeec4049fd98737959c1"
+  },
+  "purpose": "diagnostic",
+  "missing_source_pairs": 0,
+  "layer_answer_counts": {
+    "main": {
+      "raw_yes_directions": 75,
+      "validated_yes_directions": 75
+    },
+    "coverage": {
+      "raw_yes_directions": 74,
+      "validated_yes_directions": 74
+    },
+    "final": {
+      "raw_yes_directions": 74,
+      "validated_yes_directions": 74
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 100
+    },
+    "coverage": {
+      "valid": 99,
+      "unresolved": 1
+    },
+    "final": {
+      "valid": 99,
+      "unresolved": 1
+    }
+  },
+  "adjudicated_view": {
+    "reference": "post_result_adjudicated_agent_reference",
+    "independent_human_accuracy": false,
+    "excluded_ambiguous_ids": [
+      "H029",
+      "H052"
+    ],
+    "accepted_answers": {
+      "H029": [
+        {
+          "a_can_replace_b": "yes",
+          "b_can_replace_a": "yes"
+        },
+        {
+          "a_can_replace_b": "no",
+          "b_can_replace_a": "no"
+        }
+      ],
+      "H052": [
+        {
+          "a_can_replace_b": "yes",
+          "b_can_replace_a": "no"
+        },
+        {
+          "a_can_replace_b": "no",
+          "b_can_replace_a": "no"
+        }
+      ]
+    },
+    "adjudicated_at": "2026-10-27T01:16:59.585548+00:00",
+    "layers": {
+      "main": {
+        "scored_pairs": 97,
+        "direction_accuracy": 0.9639175257731959,
+        "pair_accuracy": 0.9484536082474226,
+        "unsafe_allows": 2,
+        "unresolved_pair_rate": 0.0,
+        "invalid_pair_rate": 0.0
+      },
+      "coverage": {
+        "scored_pairs": 97,
+        "direction_accuracy": 0.9587628865979382,
+        "pair_accuracy": 0.9484536082474226,
+        "unsafe_allows": 1,
+        "unresolved_pair_rate": 0.010309278350515464,
+        "invalid_pair_rate": 0.0
+      },
+      "final": {
+        "scored_pairs": 97,
+        "direction_accuracy": 0.9587628865979382,
+        "pair_accuracy": 0.9484536082474226,
+        "unsafe_allows": 1,
+        "unresolved_pair_rate": 0.010309278350515464,
+        "invalid_pair_rate": 0.0
+      }
+    },
+    "all_input_failure_counts": {}
+  },
+  "replica_requests": {
+    "http://127.0.0.1:18823/v1": 123
+  },
+  "replica_peak_concurrency": 8,
+  "interpretation": "Purpose-selected diagnostics and automated judgments; not corpus-wide error rates."
+}

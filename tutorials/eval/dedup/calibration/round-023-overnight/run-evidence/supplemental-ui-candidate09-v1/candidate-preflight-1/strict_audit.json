@@ -1,0 +1,130 @@
+{
+  "run": "candidate-preflight-1",
+  "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/supplemental-ui-candidate09-v1",
+  "panel": "preflight",
+  "groups": {
+    "supplemental_ui16": {
+      "main": {
+        "pairs": 16,
+        "directions": 32,
+        "correct_directions": 28,
+        "correct_pairs": 14,
+        "direction_agreement": 0.875,
+        "pair_agreement": 0.875,
+        "reference_wrong_allows": 2,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 1,
+        "unresolved_pairs": 0,
+        "valid_pairs": 15,
+        "valid_judgment_coverage": 0.9375
+      },
+      "coverage": {
+        "pairs": 16,
+        "directions": 32,
+        "correct_directions": 30,
+        "correct_pairs": 15,
+        "direction_agreement": 0.9375,
+        "pair_agreement": 0.9375,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 1,
+        "unresolved_pairs": 0,
+        "valid_pairs": 15,
+        "valid_judgment_coverage": 0.9375
+      },
+      "final": {
+        "pairs": 16,
+        "directions": 32,
+        "correct_directions": 30,
+        "correct_pairs": 15,
+        "direction_agreement": 0.9375,
+        "pair_agreement": 0.9375,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 1,
+        "unresolved_pairs": 0,
+        "valid_pairs": 15,
+        "valid_judgment_coverage": 0.9375
+      }
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 21,
+      "invalid": 1
+    },
+    "coverage": {
+      "valid": 21,
+      "invalid": 1
+    },
+    "final": {
+      "valid": 21,
+      "invalid": 1
+    }
+  },
+  "failure_counts": {
+    "MAIN_ATTEMPT_PARSE_ERROR": 1
+  },
+  "attempt_status_counts": {
+    "valid": 43,
+    "parse_error": 1
+  },
+  "attempt_retries": 1,
+  "stage_direction_changes": {
+    "main_to_coverage": 2,
+    "coverage_to_final": 0
+  },
+  "issues": {
+    "SUI006": [
+      "MAIN_ATTEMPT_PARSE_ERROR"
+    ]
+  },
+  "integrity_failures": {},
+  "unmapped_attempts": 0,
+  "native_report_sha256": "6876d49fcba127f691862abc582c034acf2b98d6e1612f0eac02def6c2defb2b",
+  "evaluation_sha256": "f0759accc1f43b77544da28244ce4fd2a3d14eeaf8b0016835ce2485ae21ff74",
+  "audit_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "execution": {
+    "started": 1793175000.964383,
+    "completed": 1793175108.943998,
+    "duration_seconds": 107.97961521148682,
+    "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "judge_config_sha256": "01bd9442e85c0d9af0c6c95c553f060abed2072522f8ecc74c3007116e40edcb",
+    "replica_peak_concurrency": 8
+  },
+  "swap_mismatches": {
+    "main": [
+      "SUI004",
+      "SUI006"
+    ],
+    "coverage": [
+      "SUI006"
+    ],
+    "final": [
+      "SUI006"
+    ]
+  },
+  "native_all_input_validation": {
+    "main": {
+      "valid": 21,
+      "invalid": 1
+    },
+    "coverage": {
+      "valid": 21,
+      "invalid": 1
+    },
+    "final": {
+      "valid": 21,
+      "invalid": 1
+    }
+  },
+  "native_failure_counts": {
+    "MAIN_ATTEMPT_PARSE_ERROR": 1
+  },
+  "ledger_issues": {},
+  "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "strict_artifacts": {
+    "json": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/supplemental-ui-candidate09-v1/runs/candidate-preflight-1/audits/engineering04-ledger-coherence/strict_audit.json",
+    "csv": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/supplemental-ui-candidate09-v1/runs/candidate-preflight-1/audits/engineering04-ledger-coherence/strict_audit.csv"
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "input_pairs": 150,
+  "output_pairs": 150,
+  "labels": 150,
+  "label_sources": {
+    "provisional": 123,
+    "consensus": 6,
+    "needs_discussion": 21
+  },
+  "unsafe_allow_definition": "Raw yes in a reference-no direction, including judgments with invalid schema or evidence; validity is reported separately.",
+  "unscored_labels": 144,
+  "truncated_pairs": 5,
+  "issues": {
+    "D146": [
+      "CONCLUSIVE_INCOMPLETE_EVIDENCE",
+      "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage",
+      "CONCLUSIVE_INCOMPLETE_EVIDENCE:main"
+    ]
+  },
+  "integrity_failures": {},
+  "failure_counts": {
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE": 1,
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage": 1,
+    "CONCLUSIVE_INCOMPLETE_EVIDENCE:main": 1
+  },
+  "skip_reasons": {
+    "coverage": {
+      "PRESERVE_MAIN_NEGATIVE_OR_UNRESOLVED": 45
+    },
+    "subject": {
+      "PRESERVE_MAIN_NEGATIVE_OR_UNRESOLVED": 47,
+      "PRESERVE_WITHOUT_BILATERAL_UNIQUE_SUBJECTS": 49
+    }
+  },
+  "layers": {
+    "main": {
+      "scored_pairs": 6,
+      "direction_accuracy": 1.0,
+      "pair_accuracy": 1.0,
+      "unsafe_allows": 0,
+      "unresolved_pair_rate": 0.0,
+      "invalid_pair_rate": 0.0
+    },
+    "coverage": {
+      "scored_pairs": 6,
+      "direction_accuracy": 1.0,
+      "pair_accuracy": 1.0,
+      "unsafe_allows": 0,
+      "unresolved_pair_rate": 0.0,
+      "invalid_pair_rate": 0.0
+    },
+    "final": {
+      "scored_pairs": 6,
+      "direction_accuracy": 1.0,
+      "pair_accuracy": 1.0,
+      "unsafe_allows": 0,
+      "unresolved_pair_rate": 0.0,
+      "invalid_pair_rate": 0.0
+    }
+  },
+  "gate_passed": false,
+  "holdout_passed": false,
+  "attempt_status_counts": {
+    "valid": 310
+  },
+  "attempt_retries": 0,
+  "unmapped_attempts": 0,
+  "variant": "candidate",
+  "panel": "diagnostic",
+  "repeat": 1,
+  "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+  "diagnostic_signals": {},
+  "language_distribution": {},
+  "raw_document_length_chars": {
+    "documents": 300,
+    "missing_documents": 0,
+    "min": 217,
+    "max": 23439,
+    "visible_window_chars": 6000,
+    "over_window_documents": 10
+  },
+  "reference_agreement_by_source": {
+    "consensus": {
+      "main": {
+        "eligible_pairs": 6,
+        "agreeing_pairs": 6
+      },
+      "coverage": {
+        "eligible_pairs": 6,
+        "agreeing_pairs": 6
+      },
+      "final": {
+        "eligible_pairs": 6,
+        "agreeing_pairs": 6
+      }
+    },
+    "needs_discussion": {
+      "main": {
+        "eligible_pairs": 18,
+        "agreeing_pairs": 7
+      },
+      "coverage": {
+        "eligible_pairs": 18,
+        "agreeing_pairs": 8
+      },
+      "final": {
+        "eligible_pairs": 18,
+        "agreeing_pairs": 8
+      }
+    },
+    "provisional": {
+      "main": {
+        "eligible_pairs": 121,
+        "agreeing_pairs": 95
+      },
+      "coverage": {
+        "eligible_pairs": 121,
+        "agreeing_pairs": 96
+      },
+      "final": {
+        "eligible_pairs": 121,
+        "agreeing_pairs": 96
+      }
+    }
+  },
+  "stage_direction_changes": {
+    "main_to_coverage": 5,
+    "coverage_to_final": 0
+  },
+  "truncated_ids": [
+    "D146",
+    "D147",
+    "D148",
+    "D149",
+    "D150"
+  ],
+  "execution_manifest_sha256": "5b4609275bf49360994a30f7b5aad6d01dcedebf4f63d89514bf61d01fd9b001",
+  "audit_code_sha256": "0d69f64b88ab1f963016069fc58add24413ef0d6ebf10b50aeb214fe4838e294",
+  "experiment_manifest_sha256": "7e3a45c935c8cdcf9be271a11c6dd1176b50f6e86fa7a13b3ab9b999e354c0b0",
+  "output_files": {
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1/runs/candidate-diagnostic-1/critics/357c908033b7.jsonl": "1d6c28a2ac94322bb19d5631cdcfdfe9055da5f5cb1c4844d2b984cea03bbaa2"
+  },
+  "purpose": "diagnostic",
+  "missing_source_pairs": 0,
+  "layer_answer_counts": {
+    "main": {
+      "raw_yes_directions": 166,
+      "validated_yes_directions": 166
+    },
+    "coverage": {
+      "raw_yes_directions": 161,
+      "validated_yes_directions": 161
+    },
+    "final": {
+      "raw_yes_directions": 161,
+      "validated_yes_directions": 161
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 145,
+      "invalid": 1,
+      "unresolved": 4
+    },
+    "coverage": {
+      "valid": 145,
+      "invalid": 1,
+      "unresolved": 4
+    },
+    "final": {
+      "valid": 145,
+      "invalid": 1,
+      "unresolved": 4
+    }
+  },
+  "replica_requests": {
+    "http://127.0.0.1:18823/v1": 310
+  },
+  "replica_peak_concurrency": 8,
+  "interpretation": "Purpose-selected diagnostics and automated judgments; not corpus-wide error rates."
+}

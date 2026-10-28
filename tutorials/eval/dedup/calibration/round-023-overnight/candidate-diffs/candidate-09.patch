@@ -1,0 +1,360 @@
+--- candidate-07-format2-readview2/critics/coverage_pair.jinja
++++ candidate-09/critics/coverage_pair.jinja
+@@ -166,0 +167,40 @@
++PERMITTED TEMPLATE NAMES AND SCOPED LIST TOTALS
++Use each condition only within its stated scope, before assigning a retained
++identity, conflict or loss. Keep every original name truthful.
++
++PERMITTED NAME SLOTS: In otherwise equivalent generic marketing copy without
++concrete item specifications, the approved category/location label is harmless.
++In the same complete short generic cookie/services/advertising/visits message,
++a provider or recipient name alone is harmless when all described behavior is
++preserved. This includes named versus unnamed provider wording: naming the
++provider does not by itself add another processing practice. A bare menu/terms
++heading without actual terms supplies no unshown obligation. Note the actual
++name difference without converting this permitted slot into retained material.
++The exception does not cover actual named items with their record facts, changed
++purposes/processing restrictions, actual liable/controller parties, or literal
++submission/payment/account-action routes. A complete equivalent message remains
++a verified basis after its permitted slots are classified; reusable wording
++does not make that basis absent. This branch concerns these naming differences,
++not form localization or cookie-category repetition; retain their existing rules.
++
++SCOPED LIST TOTALS: First compare the actual displayed item records. If one
++catalog/result view preserves every item and its real price, stock and conditions
++from a filtered subset, the subset's filter and resulting displayed total do
++not create an independent loss. The totals describe different displayed sets;
++they are not conflicting quantities of the same object. Do not invent a cart,
++order, purchase state or global inventory assertion from a generic Products,
++Filter or Total label. An extra real item is useful only on the side containing
++it, so only that broader view covers the subset. If the item facts themselves
++conflict, inclusion is not demonstrated, or an actual cart/order/inventory state
++is stated, preserve that real difference under the existing policy.
++
++NATIVE COVERAGE DERIVATION FOR THESE CONDITIONS
++Permitted name slots and bare terms/menu labels alone leave both loss IDs empty;
++keep real nonempty context IDs and a truthful complete-message overlap basis.
++Do not select a name merely because it is present in only one document.
++For demonstrated list inclusion, select a loss only for the actual extra item.
++The fully covered subset has no loss from its filter or displayed total, and
++the different scoped totals do not support MEMBERSHIP_CONFLICT or STATE_CONFLICT.
++Real changed item facts, actual transaction states and new processing/terms
++remain eligible losses or conflicts with their required evidence.
++
+--- candidate-07-format2-readview2/critics/coverage_system.jinja
++++ candidate-09/critics/coverage_system.jinja
+@@ -274,0 +275,40 @@
++PERMITTED TEMPLATE NAMES AND SCOPED LIST TOTALS
++Use each condition only within its stated scope, before assigning a retained
++identity, conflict or loss. Keep every original name truthful.
++
++PERMITTED NAME SLOTS: In otherwise equivalent generic marketing copy without
++concrete item specifications, the approved category/location label is harmless.
++In the same complete short generic cookie/services/advertising/visits message,
++a provider or recipient name alone is harmless when all described behavior is
++preserved. This includes named versus unnamed provider wording: naming the
++provider does not by itself add another processing practice. A bare menu/terms
++heading without actual terms supplies no unshown obligation. Note the actual
++name difference without converting this permitted slot into retained material.
++The exception does not cover actual named items with their record facts, changed
++purposes/processing restrictions, actual liable/controller parties, or literal
++submission/payment/account-action routes. A complete equivalent message remains
++a verified basis after its permitted slots are classified; reusable wording
++does not make that basis absent. This branch concerns these naming differences,
++not form localization or cookie-category repetition; retain their existing rules.
++
++SCOPED LIST TOTALS: First compare the actual displayed item records. If one
++catalog/result view preserves every item and its real price, stock and conditions
++from a filtered subset, the subset's filter and resulting displayed total do
++not create an independent loss. The totals describe different displayed sets;
++they are not conflicting quantities of the same object. Do not invent a cart,
++order, purchase state or global inventory assertion from a generic Products,
++Filter or Total label. An extra real item is useful only on the side containing
++it, so only that broader view covers the subset. If the item facts themselves
++conflict, inclusion is not demonstrated, or an actual cart/order/inventory state
++is stated, preserve that real difference under the existing policy.
++
++NATIVE COVERAGE DERIVATION FOR THESE CONDITIONS
++Permitted name slots and bare terms/menu labels alone leave both loss IDs empty;
++keep real nonempty context IDs and a truthful complete-message overlap basis.
++Do not select a name merely because it is present in only one document.
++For demonstrated list inclusion, select a loss only for the actual extra item.
++The fully covered subset has no loss from its filter or displayed total, and
++the different scoped totals do not support MEMBERSHIP_CONFLICT or STATE_CONFLICT.
++Real changed item facts, actual transaction states and new processing/terms
++remain eligible losses or conflicts with their required evidence.
++
+--- candidate-07-format2-readview2/critics/subject_pair.jinja
++++ candidate-09/critics/subject_pair.jinja
+@@ -141,0 +142,39 @@
++PERMITTED TEMPLATE NAMES AND SCOPED LIST TOTALS
++Use each condition only within its stated scope, before assigning a retained
++identity, conflict or loss. Keep every original name truthful.
++
++PERMITTED NAME SLOTS: In otherwise equivalent generic marketing copy without
++concrete item specifications, the approved category/location label is harmless.
++In the same complete short generic cookie/services/advertising/visits message,
++a provider or recipient name alone is harmless when all described behavior is
++preserved. This includes named versus unnamed provider wording: naming the
++provider does not by itself add another processing practice. A bare menu/terms
++heading without actual terms supplies no unshown obligation. Note the actual
++name difference without converting this permitted slot into retained material.
++The exception does not cover actual named items with their record facts, changed
++purposes/processing restrictions, actual liable/controller parties, or literal
++submission/payment/account-action routes. A complete equivalent message remains
++a verified basis after its permitted slots are classified; reusable wording
++does not make that basis absent. This branch concerns these naming differences,
++not form localization or cookie-category repetition; retain their existing rules.
++
++SCOPED LIST TOTALS: First compare the actual displayed item records. If one
++catalog/result view preserves every item and its real price, stock and conditions
++from a filtered subset, the subset's filter and resulting displayed total do
++not create an independent loss. The totals describe different displayed sets;
++they are not conflicting quantities of the same object. Do not invent a cart,
++order, purchase state or global inventory assertion from a generic Products,
++Filter or Total label. An extra real item is useful only on the side containing
++it, so only that broader view covers the subset. If the item facts themselves
++conflict, inclusion is not demonstrated, or an actual cart/order/inventory state
++is stated, preserve that real difference under the existing policy.
++
++NATIVE SUBJECT DERIVATION FOR THESE CONDITIONS
++Only the permitted template-name slot, a bare menu/terms label or a different
++filtered-view total is not an authorized changed binding. Use binding_type=NONE
++and target_relation=NOT_APPLICABLE when there is no actual scoped claim to compare.
++Do not infer unprovided legal terms, cart state or liability from those strings.
++Actual failed-object, liability and policy-service claims retain their existing
++authority and evidence requirements; a new independent list item is not a
++conflicting value in the already preserved shared item.
++
+--- candidate-07-format2-readview2/critics/subject_system.jinja
++++ candidate-09/critics/subject_system.jinja
+@@ -208,0 +209,39 @@
++PERMITTED TEMPLATE NAMES AND SCOPED LIST TOTALS
++Use each condition only within its stated scope, before assigning a retained
++identity, conflict or loss. Keep every original name truthful.
++
++PERMITTED NAME SLOTS: In otherwise equivalent generic marketing copy without
++concrete item specifications, the approved category/location label is harmless.
++In the same complete short generic cookie/services/advertising/visits message,
++a provider or recipient name alone is harmless when all described behavior is
++preserved. This includes named versus unnamed provider wording: naming the
++provider does not by itself add another processing practice. A bare menu/terms
++heading without actual terms supplies no unshown obligation. Note the actual
++name difference without converting this permitted slot into retained material.
++The exception does not cover actual named items with their record facts, changed
++purposes/processing restrictions, actual liable/controller parties, or literal
++submission/payment/account-action routes. A complete equivalent message remains
++a verified basis after its permitted slots are classified; reusable wording
++does not make that basis absent. This branch concerns these naming differences,
++not form localization or cookie-category repetition; retain their existing rules.
++
++SCOPED LIST TOTALS: First compare the actual displayed item records. If one
++catalog/result view preserves every item and its real price, stock and conditions
++from a filtered subset, the subset's filter and resulting displayed total do
++not create an independent loss. The totals describe different displayed sets;
++they are not conflicting quantities of the same object. Do not invent a cart,
++order, purchase state or global inventory assertion from a generic Products,
++Filter or Total label. An extra real item is useful only on the side containing
++it, so only that broader view covers the subset. If the item facts themselves
++conflict, inclusion is not demonstrated, or an actual cart/order/inventory state
++is stated, preserve that real difference under the existing policy.
++
++NATIVE SUBJECT DERIVATION FOR THESE CONDITIONS
++Only the permitted template-name slot, a bare menu/terms label or a different
++filtered-view total is not an authorized changed binding. Use binding_type=NONE
++and target_relation=NOT_APPLICABLE when there is no actual scoped claim to compare.
++Do not infer unprovided legal terms, cart state or liability from those strings.
++Actual failed-object, liability and policy-service claims retain their existing
++authority and evidence requirements; a new independent list item is not a
++conflicting value in the already preserved shared item.
++
+--- candidate-07-format2-readview2/critics/subject_verifier_pair.jinja
++++ candidate-09/critics/subject_verifier_pair.jinja
+@@ -122,0 +123,36 @@
++PERMITTED TEMPLATE NAMES AND SCOPED LIST TOTALS
++Use each condition only within its stated scope, before assigning a retained
++identity, conflict or loss. Keep every original name truthful.
++
++PERMITTED NAME SLOTS: In otherwise equivalent generic marketing copy without
++concrete item specifications, the approved category/location label is harmless.
++In the same complete short generic cookie/services/advertising/visits message,
++a provider or recipient name alone is harmless when all described behavior is
++preserved. This includes named versus unnamed provider wording: naming the
++provider does not by itself add another processing practice. A bare menu/terms
++heading without actual terms supplies no unshown obligation. Note the actual
++name difference without converting this permitted slot into retained material.
++The exception does not cover actual named items with their record facts, changed
++purposes/processing restrictions, actual liable/controller parties, or literal
++submission/payment/account-action routes. A complete equivalent message remains
++a verified basis after its permitted slots are classified; reusable wording
++does not make that basis absent. This branch concerns these naming differences,
++not form localization or cookie-category repetition; retain their existing rules.
++
++SCOPED LIST TOTALS: First compare the actual displayed item records. If one
++catalog/result view preserves every item and its real price, stock and conditions
++from a filtered subset, the subset's filter and resulting displayed total do
++not create an independent loss. The totals describe different displayed sets;
++they are not conflicting quantities of the same object. Do not invent a cart,
++order, purchase state or global inventory assertion from a generic Products,
++Filter or Total label. An extra real item is useful only on the side containing
++it, so only that broader view covers the subset. If the item facts themselves
++conflict, inclusion is not demonstrated, or an actual cart/order/inventory state
++is stated, preserve that real difference under the existing policy.
++
++NATIVE VERIFIER DERIVATION FOR THESE CONDITIONS
++A proposed binding resting only on these permitted template-name slots, bare
++terms/menu labels or scoped displayed totals is UNSUPPORTED_COMPARISON. Keep
++the actual selected target kinds truthful. Genuine different named subjects of
++authorized retained claims still require the existing verified evidence.
++
+--- candidate-07-format2-readview2/critics/subject_verifier_system.jinja
++++ candidate-09/critics/subject_verifier_system.jinja
+@@ -186,0 +187,36 @@
++PERMITTED TEMPLATE NAMES AND SCOPED LIST TOTALS
++Use each condition only within its stated scope, before assigning a retained
++identity, conflict or loss. Keep every original name truthful.
++
++PERMITTED NAME SLOTS: In otherwise equivalent generic marketing copy without
++concrete item specifications, the approved category/location label is harmless.
++In the same complete short generic cookie/services/advertising/visits message,
++a provider or recipient name alone is harmless when all described behavior is
++preserved. This includes named versus unnamed provider wording: naming the
++provider does not by itself add another processing practice. A bare menu/terms
++heading without actual terms supplies no unshown obligation. Note the actual
++name difference without converting this permitted slot into retained material.
++The exception does not cover actual named items with their record facts, changed
++purposes/processing restrictions, actual liable/controller parties, or literal
++submission/payment/account-action routes. A complete equivalent message remains
++a verified basis after its permitted slots are classified; reusable wording
++does not make that basis absent. This branch concerns these naming differences,
++not form localization or cookie-category repetition; retain their existing rules.
++
++SCOPED LIST TOTALS: First compare the actual displayed item records. If one
++catalog/result view preserves every item and its real price, stock and conditions
++from a filtered subset, the subset's filter and resulting displayed total do
++not create an independent loss. The totals describe different displayed sets;
++they are not conflicting quantities of the same object. Do not invent a cart,
++order, purchase state or global inventory assertion from a generic Products,
++Filter or Total label. An extra real item is useful only on the side containing
++it, so only that broader view covers the subset. If the item facts themselves
++conflict, inclusion is not demonstrated, or an actual cart/order/inventory state
++is stated, preserve that real difference under the existing policy.
++
++NATIVE VERIFIER DERIVATION FOR THESE CONDITIONS
++A proposed binding resting only on these permitted template-name slots, bare
++terms/menu labels or scoped displayed totals is UNSUPPORTED_COMPARISON. Keep
++the actual selected target kinds truthful. Genuine different named subjects of
++authorized retained claims still require the existing verified evidence.
++
+--- candidate-07-format2-readview2/judge_config/fuzzy_pair_judge.yaml
++++ candidate-09/judge_config/fuzzy_pair_judge.yaml
+@@ -91 +91 @@
+-              description: Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed service-location labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots. A complete equivalent routine form message qualifies as verified_equivalent_non_main_message after its mechanism and body-language conditions match; it is not none merely because it is form UI.
++              description: "Cite S### or bilateral A### and B### IDs for the same retained content under this policy. An otherwise identical service description qualifies despite changed service-location labels, including titles. Apply that exception before deciding the basis is only a template. Complete shared cookie definitions or an otherwise equivalent permitted generic template remain a verified basis after harmless introductory framing, repetition and allowed name/category slots. A complete equivalent routine form message qualifies as verified_equivalent_non_main_message after its mechanism and body-language conditions match; it is not none merely because it is form UI. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions."
+@@ -98 +98 @@
+-              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: "Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions."
+@@ -109 +109 @@
+-              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: "Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions."
+@@ -120 +120 @@
+-              description: Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases.
++              description: "Cite incompatible A### and B### claims. Generic module/program/software wording in the same notice with unchanged maintainer and terms does not identify distinct products without a stated scope or functional difference. Absence or an independent extra section alone is not a conflict; check whether the retained record or complete message is preserved. Classify visible controls separately from actual assertions. Query/facet/sort/archive/version selectors do not assert unseen content when actual results and substantive text are covered. Populated record facts, failed-object/status/permission identities, API behavior and literal submission/payment/account routes remain material. A service-location label exception never covers a changed action route, even when its spelling contains the city name. Harmless cookie framing, an already covered repeated stock paragraph and permitted generic template slots are not incompatible claims; new concrete conditions or actual operational destinations are different cases. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions."
+@@ -131 +131 @@
+-              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: "When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions."
+@@ -137 +137 @@
+-              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss.
++              description: "When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must themselves be covered, including city-bearing addresses; the service-location-label exception never exempts these literal routes. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful. Apply the mechanism-qualified form branch only when actual actions, channel, sequence, capabilities and conditions match; a shared goal alone is insufficient. Qualified form localization and covered same-language body paraphrases require coherent harmless/covered deltas and positive directions, not a protected body-language loss. For permitted generic marketing category/location or short cookie-provider naming differences, apply their qualified name-slot condition before materiality and basis; named versus unnamed generic provider wording alone is not a new practice. For demonstrated filtered-list inclusion, totals describe displayed sets rather than a conflicting same-object quantity; retain actual extra items and their facts. Derive the ledger and directional fields from that same comparison, preserving literal action routes, real bound subjects and changed substantive conditions."
+--- candidate-07-format2-readview2/judge_config/pair.jinja
++++ candidate-09/judge_config/pair.jinja
+@@ -240,0 +241,43 @@
++PERMITTED TEMPLATE NAMES AND SCOPED LIST TOTALS
++Use each condition only within its stated scope, before assigning a retained
++identity, conflict or loss. Keep every original name truthful.
++
++PERMITTED NAME SLOTS: In otherwise equivalent generic marketing copy without
++concrete item specifications, the approved category/location label is harmless.
++In the same complete short generic cookie/services/advertising/visits message,
++a provider or recipient name alone is harmless when all described behavior is
++preserved. This includes named versus unnamed provider wording: naming the
++provider does not by itself add another processing practice. A bare menu/terms
++heading without actual terms supplies no unshown obligation. Note the actual
++name difference without converting this permitted slot into retained material.
++The exception does not cover actual named items with their record facts, changed
++purposes/processing restrictions, actual liable/controller parties, or literal
++submission/payment/account-action routes. A complete equivalent message remains
++a verified basis after its permitted slots are classified; reusable wording
++does not make that basis absent. This branch concerns these naming differences,
++not form localization or cookie-category repetition; retain their existing rules.
++
++SCOPED LIST TOTALS: First compare the actual displayed item records. If one
++catalog/result view preserves every item and its real price, stock and conditions
++from a filtered subset, the subset's filter and resulting displayed total do
++not create an independent loss. The totals describe different displayed sets;
++they are not conflicting quantities of the same object. Do not invent a cart,
++order, purchase state or global inventory assertion from a generic Products,
++Filter or Total label. An extra real item is useful only on the side containing
++it, so only that broader view covers the subset. If the item facts themselves
++conflict, inclusion is not demonstrated, or an actual cart/order/inventory state
++is stated, preserve that real difference under the existing policy.
++
++NATIVE FIELD DERIVATION FOR THESE CONDITIONS
++For only permitted name slots, use truthful profiles, a verified retained
++record/complete-message basis, harmless own-side deltas and no hard conflict;
++derive both Yes scores, near_surface, material_difference=none,
++primary_material_difference=none and medium confidence. Do not retain a material
++slot delta or absent basis while giving the permitted positive directions.
++For a demonstrated item-list superset, preserve the shared item basis. The
++subset's filter/result count is harmless or covered; the side with the extra
++actual item has a content extension. Use no hard conflict from the scoped count,
++one covering Yes and one No for the actual extra item, containment, major,
++main_content_addition_deletion and medium confidence. Explain the actual lost
++item, not an invented loss of the subset's display count.
++
+--- candidate-07-format2-readview2/judge_config/system.jinja
++++ candidate-09/judge_config/system.jinja
+@@ -235,0 +236,43 @@
++PERMITTED TEMPLATE NAMES AND SCOPED LIST TOTALS
++Use each condition only within its stated scope, before assigning a retained
++identity, conflict or loss. Keep every original name truthful.
++
++PERMITTED NAME SLOTS: In otherwise equivalent generic marketing copy without
++concrete item specifications, the approved category/location label is harmless.
++In the same complete short generic cookie/services/advertising/visits message,
++a provider or recipient name alone is harmless when all described behavior is
++preserved. This includes named versus unnamed provider wording: naming the
++provider does not by itself add another processing practice. A bare menu/terms
++heading without actual terms supplies no unshown obligation. Note the actual
++name difference without converting this permitted slot into retained material.
++The exception does not cover actual named items with their record facts, changed
++purposes/processing restrictions, actual liable/controller parties, or literal
++submission/payment/account-action routes. A complete equivalent message remains
++a verified basis after its permitted slots are classified; reusable wording
++does not make that basis absent. This branch concerns these naming differences,
++not form localization or cookie-category repetition; retain their existing rules.
++
++SCOPED LIST TOTALS: First compare the actual displayed item records. If one
++catalog/result view preserves every item and its real price, stock and conditions
++from a filtered subset, the subset's filter and resulting displayed total do
++not create an independent loss. The totals describe different displayed sets;
++they are not conflicting quantities of the same object. Do not invent a cart,
++order, purchase state or global inventory assertion from a generic Products,
++Filter or Total label. An extra real item is useful only on the side containing
++it, so only that broader view covers the subset. If the item facts themselves
++conflict, inclusion is not demonstrated, or an actual cart/order/inventory state
++is stated, preserve that real difference under the existing policy.
++
++NATIVE FIELD DERIVATION FOR THESE CONDITIONS
++For only permitted name slots, use truthful profiles, a verified retained
++record/complete-message basis, harmless own-side deltas and no hard conflict;
++derive both Yes scores, near_surface, material_difference=none,
++primary_material_difference=none and medium confidence. Do not retain a material
++slot delta or absent basis while giving the permitted positive directions.
++For a demonstrated item-list superset, preserve the shared item basis. The
++subset's filter/result count is harmless or covered; the side with the extra
++actual item has a content extension. Use no hard conflict from the scoped count,
++one covering Yes and one No for the actual extra item, containment, major,
++main_content_addition_deletion and medium confidence. Explain the actual lost
++item, not an invented loss of the subset's display count.
++
