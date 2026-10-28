@@ -533,8 +533,192 @@
     "new_human_labels": false,
     "excluded_failed_intervention": "C4 provider/recipient predicate paragraph",
     "evidence": "C4 state8 all-layer PASS; C4 D011 wrong allows; C3 first150 D108 broad-purpose inference",
-    "status": "frozen_awaiting_serial_hard_screen",
-    "acceptance_passed": false
+    "status": "FIRST_HARD_SCREEN_FAIL_RAW_WRONG_ALLOWS_NO_LONG_ADMITTED",
+    "acceptance_passed": false,
+    "observed_runs": {
+      "candidate-coverage-regression-1": {
+        "extra6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "candidate-gate-1": {
+        "original36": {
+          "main": {
+            "pairs": 36,
+            "directions": 72,
+            "correct_directions": 72,
+            "correct_pairs": 36,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 36,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 36,
+            "directions": 72,
+            "correct_directions": 72,
+            "correct_pairs": 36,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 36,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 36,
+            "directions": 72,
+            "correct_directions": 72,
+            "correct_pairs": 36,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 36,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "candidate-preflight-1": {
+        "latest18": {
+          "main": {
+            "pairs": 18,
+            "directions": 36,
+            "correct_directions": 34,
+            "correct_pairs": 17,
+            "direction_agreement": 0.9444444444444444,
+            "pair_agreement": 0.9444444444444444,
+            "reference_wrong_allows": 2,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 18,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 18,
+            "directions": 36,
+            "correct_directions": 30,
+            "correct_pairs": 14,
+            "direction_agreement": 0.8333333333333334,
+            "pair_agreement": 0.7777777777777778,
+            "reference_wrong_allows": 2,
+            "reference_wrong_blocks": 4,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 18,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 18,
+            "directions": 36,
+            "correct_directions": 30,
+            "correct_pairs": 14,
+            "direction_agreement": 0.8333333333333334,
+            "pair_agreement": 0.7777777777777778,
+            "reference_wrong_allows": 2,
+            "reference_wrong_blocks": 4,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 18,
+            "valid_judgment_coverage": 1.0
+          }
+        },
+        "controlled26": {
+          "main": {
+            "pairs": 26,
+            "directions": 52,
+            "correct_directions": 48,
+            "correct_pairs": 24,
+            "direction_agreement": 0.9230769230769231,
+            "pair_agreement": 0.9230769230769231,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 4,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 26,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 26,
+            "directions": 52,
+            "correct_directions": 48,
+            "correct_pairs": 24,
+            "direction_agreement": 0.9230769230769231,
+            "pair_agreement": 0.9230769230769231,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 4,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 26,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 26,
+            "directions": 52,
+            "correct_directions": 48,
+            "correct_pairs": 24,
+            "direction_agreement": 0.9230769230769231,
+            "pair_agreement": 0.9230769230769231,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 4,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 26,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      }
+    }
   },
   "candidate-03-policyonce1": {
     "parent": "candidate-03",
@@ -544,6 +728,17 @@
     "new_human_labels": false,
     "engineering_revision": "policyonce1",
     "proof": "proposals/candidate03-policyonce1-lossless-proof.json",
+    "status": "frozen_awaiting_serial_hard_screen",
+    "acceptance_passed": false
+  },
+  "candidate-06": {
+    "parent": "candidate-03",
+    "hypothesis_en": "Two coverage-expression refinements with unchanged main/YAML/subject policy. C4 actually removes both provider coverage false vetoes but introduces a main operational-address error; causality among its simultaneous additions is not established. Isolate only its qualified provider-predicate paragraph in coverage_system/pair, leaving all other seven files exactly C3. Additionally illustrate the existing stock-copy scope boundary with symbolic P/H/V: a generic paragraph P already retained elsewhere copied under a heading H is not an independently assigned category condition, whereas a separate actual H/value assertion is protected. C3 and C4 coverage still reactivate the copied generic paragraph as a category obligation, so this changes its representation rather than appending the same abstract precedence sentence. No actual case text/IDs/answers enter prompts; no new exception family, schema/fields/order/enums, critic authority, evidence/window, executor, model, sampling or validator changes. Preserve all C4/C5 failures and test original86 plus every separate boundary group before considering any long diagnostic.",
+    "hypothesis_zh": "只澄清coverage的两项表达，main、YAML及subject政策不变。C4实际消除了两个服务商coverage误否决，却出现main操作地址错误；其同时增加的内容之间尚不能认定因果。仅将其中已满足条件的服务商谓词段落移至coverage_system及pair，其余七文件与C3完全一致。另用符号P/H/V说明已有复制作用域边界：别处已保留的通用段落P复制到标题H下，不等于独立赋予类别条件；单独的真实H及状态值断言则继续保护。C3和C4的coverage仍把复制通用段落重新当成类别义务，因此本轮改换表示方式，而非重复追加同一抽象优先级句子。实际案例文字、编号及答案不进入prompt；不新增例外类别，不改schema、字段顺序枚举、critic权限、证据窗口、执行器、模型采样或校验器。保留C4/C5全部失败，先测原86及每个单独边界组，再考虑长诊断。",
+    "scope": "coverage-only qualified provider predicate and symbolic stock-copy versus independent assignment",
+    "new_human_labels": false,
+    "unchanged_seven_files_equal_parent": true,
+    "evidence": "C3 coverage R33/R33-swapped/R14-swapped vetoes; C4 coverage only R14-swapped and main-origin D011 failures",
     "status": "frozen_awaiting_serial_hard_screen",
     "acceptance_passed": false
   }

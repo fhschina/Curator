@@ -1,0 +1,13 @@
+{
+  "observed": 1793221687.0700862,
+  "goal_status": "blocked",
+  "goal_updatedAt": 1793216366,
+  "tokensUsed": 322385,
+  "remainingTokens": null,
+  "reason": "NOT_PROVIDED_BY_GET_GOAL",
+  "quota_exhaustion_proven": false,
+  "local_baseline_original3_still_executing": true,
+  "authorized_task_and_absolute_deadline_unchanged": true,
+  "no_goal_resume_api_available": true,
+  "independent_deadline_delivery_controller": 1221992
+}

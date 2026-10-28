@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "verified": 1793221443.7799213,
+  "extracted_tar_gz": "/raid/hfang/retention_policy_eval/v1/experiments/round024-bundle-fixture-84d229c3/bundle.tar.gz",
+  "actual_independent_restore": {
+    "status": "PASS",
+    "verified_unique_blobs": 2,
+    "indexed_files": 3,
+    "restored_files": 3,
+    "preserved_symlinks": 1,
+    "model_calls": 0,
+    "hardlinks_used": false
+  },
+  "source_lock_and_symlink_preserved": true,
+  "model_calls": 0
+}

@@ -1,0 +1,6 @@
+{
+  "number": 6,
+  "hypothesis": "Two coverage-expression refinements with unchanged main/YAML/subject policy. C4 actually removes both provider coverage false vetoes but introduces a main operational-address error; causality among its simultaneous additions is not established. Isolate only its qualified provider-predicate paragraph in coverage_system/pair, leaving all other seven files exactly C3. Additionally illustrate the existing stock-copy scope boundary with symbolic P/H/V: a generic paragraph P already retained elsewhere copied under a heading H is not an independently assigned category condition, whereas a separate actual H/value assertion is protected. C3 and C4 coverage still reactivate the copied generic paragraph as a category obligation, so this changes its representation rather than appending the same abstract precedence sentence. No actual case text/IDs/answers enter prompts; no new exception family, schema/fields/order/enums, critic authority, evidence/window, executor, model, sampling or validator changes. Preserve all C4/C5 failures and test original86 plus every separate boundary group before considering any long diagnostic.",
+  "created": 1793221993.568332,
+  "diff_sha256": "dc078b8932adc8e654f28accd2a1bdd2b3ef31becbcc396e6a245ebab1e24e8f"
+}

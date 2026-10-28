@@ -1,0 +1,38 @@
+{
+  "status": "PASS_PREPARATION_ONLY",
+  "created": 1793220843.0906475,
+  "commit": "f3002d93646ad06f95e7f64ab71fc1bf34ff03e8",
+  "independent_checkout": "/raid/hfang/retention_policy_eval/v1/experiments/round024-independent-source-proof-f3002d93/Curator",
+  "no_origin_or_alternates": true,
+  "native_python_and_policyonce1_top_nine_verified": true,
+  "actual_replay_roles": [
+    "baseline",
+    "candidate-00-start85",
+    "candidate-00-start85"
+  ],
+  "actual_unique_version_roots": 2,
+  "original_slots_declared": 30,
+  "identical_start_and_best_not_duplicated": true,
+  "new_model_calls": 0,
+  "inference_status": "NOT_COMPLETED",
+  "replay_deadline_not_current_task_extension": true,
+  "command": [
+    "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+    "/raid/hfang/retention_policy_eval/v1/experiments/round024-independent-source-proof-f3002d93/Curator/tutorials/eval/dedup/calibration/round-024-resume-8h/replay_frozen_v4.py",
+    "--source-session",
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z",
+    "--destination",
+    "/raid/hfang/retention_policy_eval/v1/experiments/round024-independent-source-proof-f3002d93/prepared-replay",
+    "--checkout",
+    "/raid/hfang/retention_policy_eval/v1/experiments/round024-independent-source-proof-f3002d93/Curator",
+    "--endpoint",
+    "http://127.0.0.1:18824/v1",
+    "--container",
+    "retention-policy-v4-8h-20261028-gpu0",
+    "--deadline-utc",
+    "2026-10-29T02:11:18Z",
+    "--best-root",
+    "candidate-00-start85",
+    "--prepare-only"
+  ]
+}

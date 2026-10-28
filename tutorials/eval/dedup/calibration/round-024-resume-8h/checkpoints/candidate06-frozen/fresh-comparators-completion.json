@@ -1,0 +1,60 @@
+{
+  "created": 1793222111.96985,
+  "all_declared_slots_complete": true,
+  "baseline_personal_final": {
+    "directions": [
+      546,
+      720
+    ],
+    "pairs": [
+      258,
+      360
+    ]
+  },
+  "start85_personal_final": {
+    "directions": [
+      608,
+      720
+    ],
+    "pairs": [
+      287,
+      360
+    ]
+  },
+  "start85_minus_baseline_correct_directions": 62,
+  "start85_minus_baseline_correct_pairs": 29,
+  "development_original99_final_correct_directions": {
+    "baseline": [
+      556,
+      594
+    ],
+    "start85": [
+      570,
+      594
+    ]
+  },
+  "development_reviewed99_final_correct_directions": {
+    "baseline": [
+      562,
+      594
+    ],
+    "start85": [
+      576,
+      594
+    ]
+  },
+  "development_strict97_final_correct_directions": {
+    "baseline": [
+      552,
+      582
+    ],
+    "start85": [
+      566,
+      582
+    ]
+  },
+  "historical612_288_not_spliced": true,
+  "start85_stage_three_run": "FAIL",
+  "start85_target_three_run": "FAIL",
+  "acceptance_passed": false
+}
