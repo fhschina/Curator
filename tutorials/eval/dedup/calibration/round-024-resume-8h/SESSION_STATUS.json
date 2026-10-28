@@ -197,7 +197,7 @@
   "previous_session": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z",
   "next_action": "C8firstpreflight18+26mainALLPASS0unsafe, oldcoverage3vetoesremain; fullhard+5supplementsfinish. Slotlast1frozenparentwholeview1movesSAMEfullfinite-slotblock2totheendof2coveragefiles, inverseproofbeforeinference; queued744visibility->998budget->hard86+fivegroups36. No newlongadmitted; reserve23:30formalbestoriginal3.",
   "phase": "BASELINE_ORIGINAL_THREE_RUNS_AND_ENGINEERING_SCREEN_QUEUE",
-  "last_pushed_commit": "46197ce64c6c5d50d45d3ac085780c6fd9682a0f",
+  "last_pushed_commit": "ec109dc20688b26e51d83b4afb18ab1e9df57449",
   "active_queue": {
     "start85_controller_pid": 407363,
     "baseline_controller_pid": 407368,

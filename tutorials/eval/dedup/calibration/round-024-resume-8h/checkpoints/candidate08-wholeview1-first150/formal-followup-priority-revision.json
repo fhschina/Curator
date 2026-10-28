@@ -1,0 +1,16 @@
+{
+  "time": 1793231177.9543822,
+  "status": "WITHDRAWN_BEFORE_ANY_CHILD_OR_EVALUATION",
+  "exact_identity": {
+    "name": "formal-fallback-and-controls",
+    "pid": 2244379,
+    "create_time": 1793229853.8,
+    "command": [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_declared_plan_serially.py",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/formal-best-followup-plan.json"
+    ]
+  },
+  "plan_sha256": "d4400628d9d2c8e771da701fec9e52ebcdd0a84ee79df98b6cba3c916407c0ae",
+  "reason": "Prioritize complete primary candidate original3, all fixed supplemental3 and registered GPU4 before optional complete fallback comparison; all frozen run identities remain unchanged."
+}

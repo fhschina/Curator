@@ -1,0 +1,86 @@
+{
+  "declared_before_first_continuation_job": 1793230787.951709,
+  "candidate": "candidate-08-wholeview1",
+  "parent_verification_plan_sha256": "29fb4d9964bc9261d9428279825277fc60542ab6648916ad45d591a5c7a9e0a2",
+  "manifest_sha256": "745e02ac71b39757345504438608c598211fe25c19c64983052ef077b03e01a1",
+  "reason": "Complete the original three-run formal comparison for the strongest smaller main-policy plus verified reading-presentation combination. C8 first main86 and independent-state8 passed; C3-wholeview1 reduced two stock-copy critic vetoes with identical visible characters. C8 equivalent-state failures remain retained and prevent any assumed eligibility. This one complete group measures whole-dataset benefit, technical validity, all hard layers and three development nonregressions; no provisional milestone is claimed, no failed original slot is replaced, and no parent score transfers.",
+  "failed_run_replacement": false,
+  "jobs": [
+    {
+      "panel": "diagnostic",
+      "repeat": 1,
+      "run": "candidate-diagnostic-1",
+      "status": "COMPLETE",
+      "started": 1793230787.9591424,
+      "completed": 1793231220.0035698,
+      "returncode": 0
+    },
+    {
+      "panel": "holdout",
+      "repeat": 1,
+      "run": "candidate-holdout-1",
+      "status": "RUNNING",
+      "started": 1793231220.0112047
+    },
+    {
+      "panel": "preflight",
+      "repeat": 2,
+      "run": "candidate-preflight-2",
+      "status": "PENDING"
+    },
+    {
+      "panel": "gate",
+      "repeat": 2,
+      "run": "candidate-gate-2",
+      "status": "PENDING"
+    },
+    {
+      "panel": "coverage-regression",
+      "repeat": 2,
+      "run": "candidate-coverage-regression-2",
+      "status": "PENDING"
+    },
+    {
+      "panel": "diagnostic",
+      "repeat": 2,
+      "run": "candidate-diagnostic-2",
+      "status": "PENDING"
+    },
+    {
+      "panel": "holdout",
+      "repeat": 2,
+      "run": "candidate-holdout-2",
+      "status": "PENDING"
+    },
+    {
+      "panel": "preflight",
+      "repeat": 3,
+      "run": "candidate-preflight-3",
+      "status": "PENDING"
+    },
+    {
+      "panel": "gate",
+      "repeat": 3,
+      "run": "candidate-gate-3",
+      "status": "PENDING"
+    },
+    {
+      "panel": "coverage-regression",
+      "repeat": 3,
+      "run": "candidate-coverage-regression-3",
+      "status": "PENDING"
+    },
+    {
+      "panel": "diagnostic",
+      "repeat": 3,
+      "run": "candidate-diagnostic-3",
+      "status": "PENDING"
+    },
+    {
+      "panel": "holdout",
+      "repeat": 3,
+      "run": "candidate-holdout-3",
+      "status": "PENDING"
+    }
+  ]
+}

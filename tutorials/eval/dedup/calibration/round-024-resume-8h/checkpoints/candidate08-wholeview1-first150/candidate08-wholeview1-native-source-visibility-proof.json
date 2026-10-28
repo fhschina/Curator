@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "tested": 1793230363.8009546,
+  "model_calls": 0,
+  "actual_inputs": 372,
+  "direct_arrow_records_checked": 744,
+  "eligible_views_checked": 734,
+  "new_nonspace_source_characters": 0,
+  "scope": "source visibility only; original context inverse proof and separate template-placement inverse proof remain distinct"
+}

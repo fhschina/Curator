@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "time": 1793230365.2057388,
+  "actual_changed_files_vs_C8": [
+    "critics/coverage_pair.jinja"
+  ],
+  "coverage_pair_byte_equal_frozen_C3_wholeview1": true,
+  "all_other_eight_files_byte_equal_C8": true,
+  "native_adapter_changes": []
+}

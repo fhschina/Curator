@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "candidate": "candidate-08-wholeview1",
+  "completed": 1793230199.9349744,
+  "counts": {
+    "tests": 74,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "frozen_manifest_sha256": "745e02ac71b39757345504438608c598211fe25c19c64983052ef077b03e01a1",
+  "native_python_and_nine_verified_after_check": true,
+  "log": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate08-wholeview1-cpu.log",
+  "xml": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate08-wholeview1-cpu.xml",
+  "same_74_unique_cpu_tests_repeated_for_this_frozen_candidate": true
+}

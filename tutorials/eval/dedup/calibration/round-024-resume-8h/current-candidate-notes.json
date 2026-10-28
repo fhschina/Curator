@@ -2234,8 +2234,59 @@
     ],
     "all_eight_jinja_equal_parent": true,
     "evidence": "C8 SCEQ001 false block and SCEQ002-swapped positive-versus-material ledger contradiction; C3 D025/D117 inverse role contradictions",
-    "status": "frozen_awaiting_serial_hard_screen",
-    "acceptance_passed": false
+    "status": "first_hard_and_five_supplemental_groups_complete_not_admitted_long",
+    "acceptance_passed": false,
+    "main_first_original86_correct_pairs": 84,
+    "main_first_original86_invalid_pairs": 0,
+    "main_first_original86_raw_wrong_allows": 0,
+    "final_first_original86_correct_pairs": 82,
+    "final_first_original86_invalid_pairs": 1,
+    "state_equivalence_first": {
+      "supplemental_state_equivalence4": {
+        "main": {
+          "pairs": 4,
+          "directions": 8,
+          "correct_directions": 8,
+          "correct_pairs": 4,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 4,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 4,
+          "directions": 8,
+          "correct_directions": 8,
+          "correct_pairs": 4,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 4,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 4,
+          "directions": 8,
+          "correct_directions": 8,
+          "correct_pairs": 4,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 4,
+          "valid_judgment_coverage": 1.0
+        }
+      }
+    }
   },
   "candidate-08-wholeview1": {
     "parent": "candidate-08",
@@ -2244,7 +2295,39 @@
     "hypothesis_zh": "仅把此前已核验可见性的原文顺序阅读上下文移植到这个冻结main政策上。C3上的wholeview1答对了此前碎片阅读有时误否决的两种通用cookie重复呈现，没有增加原文字符，首次硬回归没有格式失败；其剩余main营销及服务商名称失败继续保留。所选父版本main规则及其余八文件逐字不变。唯一coverage pair模板直接取自C3-wholeview1，coverage system不变，不继承两个已失败的slotlast移动版本。推理前核验全部原始及补充输入的直接与Arrow呈现及token预算。这个独立组合版本使用自己原定三次组，不从任一父版本移植分数或验收资格。不改政策含义、schema、解析器、原文窗口、模型采样或原生执行器。",
     "scope": "one coverage pair presentation template only",
     "new_human_labels": false,
-    "status": "frozen_awaiting_serial_hard_screen",
-    "acceptance_passed": false
+    "status": "original_hard_first_complete_original15_continuation_active",
+    "acceptance_passed": false,
+    "first_original_hard": {
+      "main_correct_pairs": 86,
+      "coverage_correct_pairs": 84,
+      "final_correct_pairs": 84,
+      "pairs": 86,
+      "coverage_final_invalid_pairs": 1,
+      "all_layers_raw_wrong_allows": 0
+    },
+    "first_personal120_strict": {
+      "main": {
+        "correct_directions": 197,
+        "directions": 240,
+        "correct_pairs": 93,
+        "pairs": 120,
+        "invalid_pairs": 4
+      },
+      "coverage": {
+        "correct_directions": 191,
+        "directions": 240,
+        "correct_pairs": 90,
+        "pairs": 120,
+        "invalid_pairs": 8
+      },
+      "final": {
+        "correct_directions": 190,
+        "directions": 240,
+        "correct_pairs": 89,
+        "pairs": 120,
+        "invalid_pairs": 8
+      }
+    },
+    "first150_status": "completed_original1_not_promoted_metric_below_start_first_run"
   }
 }
