@@ -1,0 +1,46 @@
+{
+  "id": "engineering-03-ledger-coherence",
+  "frozen_at": 1793161437.8691523,
+  "kind": "Read-only audit correction of already-forbidden field contradictions",
+  "sources": {
+    "ledger_audit_core.py": "08dc8d88e72cb75d3417d40b6f0d6c78bf58d3b67a8479bb1e22b32c19c34dd5",
+    "compare_strict.py": "96635e4b0106aba036cf9fda7641bd084c80e17bada07bd30af20bfc11aae8fe",
+    "test_ledger_audit_core.py": "384538aabb1f9d5fe0cd9148ef7054b62be7fcb36a33d1059d10cd6368bd0c24"
+  },
+  "rules": [
+    "A positive replacement cannot assert useful uncovered material in the removed-side delta",
+    "A positive replacement cannot coexist with an explicitly material hard conflict",
+    "A positive replacement requires a verified retained-content basis"
+  ],
+  "all_versions_receive_identical_check": true,
+  "native_generation_code_prompt_input_model_parameters_unchanged": true,
+  "new_model_calls": 0,
+  "reference_lists_and_denominators_unchanged": true,
+  "arithmetic_reused": "policy_tuning.agreement/aggregate/target_status/nonregression_status",
+  "legacy_reports_preserved": true,
+  "initial_real_flags_evidence": "ledger-coherence-diagnostic-initial.json",
+  "test_log": "ledger-audit-tests-final.log",
+  "ruff": "0.14.10 full project rules and formatting PASS",
+  "packaging": {
+    "precommit_normalization": {
+      "ledger_audit_core.py": {
+        "audited_source_sha256": "08dc8d88e72cb75d3417d40b6f0d6c78bf58d3b67a8479bb1e22b32c19c34dd5",
+        "packaged_source_sha256": "1d34ca5e14e6331122202495dadc2ce46bbc430ed817d1bb26234269ddb4304c",
+        "change": "Remove only repository-unneeded INP001 lint suppression; executable statements identical"
+      },
+      "compare_strict.py": {
+        "audited_source_sha256": "96635e4b0106aba036cf9fda7641bd084c80e17bada07bd30af20bfc11aae8fe",
+        "packaged_source_sha256": "2472e284bfa1de96d063142b90382d2916e02f288d6d3fb19e983fc95c3cb4dc",
+        "change": "Remove only repository-unneeded INP001 lint suppression; executable statements identical"
+      },
+      "test_ledger_audit_core.py": {
+        "audited_source_sha256": "384538aabb1f9d5fe0cd9148ef7054b62be7fcb36a33d1059d10cd6368bd0c24",
+        "packaged_source_sha256": "14b0ab25294b5bcc927e82e6995bba9ad9b91522944b0512a2d7de8c8cfa5b10",
+        "change": "Remove only repository-unneeded INP001 lint suppression; executable statements identical"
+      }
+    },
+    "evaluated_external_sources_retained": true,
+    "model_calls": 0,
+    "executable_statements_unchanged": true
+  }
+}
