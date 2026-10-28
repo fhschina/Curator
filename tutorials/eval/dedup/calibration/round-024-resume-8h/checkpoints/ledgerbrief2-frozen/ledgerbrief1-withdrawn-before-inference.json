@@ -1,0 +1,19 @@
+{
+  "status": "WITHDRAWN_BEFORE_ANY_INFERENCE",
+  "withdrawn": 1793222836.2628243,
+  "exact_controller_identity": {
+    "name": "ledgerbrief1-hard-and-controls",
+    "pid": 1469677,
+    "create_time": 1793222608.57,
+    "command": [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_declared_plan_serially.py",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/ledgerbrief1-screen-plan.json"
+    ]
+  },
+  "controller_terminated": true,
+  "original_declared15_retained_not_replaced": true,
+  "model_runs": 0,
+  "reason_en": "Pre-inference policy review found that the settled-output wording needs an explicit substantive-body-language exception; equivalent facts in a different protected body language still require retention. Compiler success alone did not validate policy consistency. Preserve this frozen version and declare a distinct corrected engineering revision.",
+  "reason_zh": "推理前政策复核发现，已定输出措辞需要明确的实质正文语言例外；不同受保护正文语言中的等价事实仍须保留。编译成功本身没有验证政策一致性。保留此冻结版本，另声明独立修正版。"
+}

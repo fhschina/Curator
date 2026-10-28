@@ -1,0 +1,8 @@
+{
+  "status": "PASS_READ_ONLY_IDENTITY_CHECK",
+  "verified": 1793222336.424194,
+  "container_id": "e4bbc2be6518bc42954ae226bb94584e8a7c392227b498da931ac17b90cf09bd",
+  "task_owner": "retention-policy-v4-8h-20261028",
+  "currently_running": true,
+  "shutdown_not_claimed": true
+}

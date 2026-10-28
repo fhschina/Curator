@@ -1,0 +1,13 @@
+{
+  "parent": "candidate-03",
+  "hypothesis_en": "Engineering-only settled field-output instruction in the main system template. Actual first150 has an initial risk-factor option emitted in dominant_overlap_source despite a successful retained retry, and two literal negative-versus-covered-ledger contradictions. Replies also expose self-directed re-evaluation after earlier ledger fields were already emitted. Request concise settled evidence sentences, each field own enum set, and one coherent ledger for both summaries; preserve required citations, uncertainty and every existing policy/schema/field/order/enum/validator. This is distinct from the rejected old response-contract prefix: no Markdown contract relocation, fence change, new key example, parser repair or all-system prefix. Only one Jinja changes; the other eight files are byte-identical to C3. Do not inherit untested policyonce1 or failed C4/C5 rules. No failed original run is replaced.",
+  "hypothesis_zh": "只在main system模板增加工程性的已定字段输出指令。首次150实际出现把风险选项写入dominant_overlap_source的初次失败，之后成功重试仍保留；还出现两项否定方向与已覆盖差异的字面矛盾。回复在前部证据字段已经输出后仍进行自我重新评估。要求以简洁已定的证据句表述、每字段使用自身枚举、两个汇总共用一致证据；保留引用、不确定路径和全部既有政策、schema、字段顺序枚举及校验。与未通过的旧回复契约前缀不同：不移动Markdown要求、不改围栏、不新增键示例、不修补解析器，也不在所有system前置内容。仅改一个Jinja，其余八文件与C3逐字相同。不继承尚未评测的policyonce1或失败C4/C5规则。不替换任何失败原运行。",
+  "engineering_revision": "ledgerbrief1",
+  "scope": "main system settled response expression only",
+  "new_human_labels": false,
+  "evidence": "C3 original first150 D006 native enum attempt failure; D025/D117 strict literal ledger contradictions",
+  "status": "WITHDRAWN_BEFORE_ANY_INFERENCE",
+  "acceptance_passed": false,
+  "withdrawal_receipt": "ledgerbrief1-withdrawn-before-inference.json",
+  "model_runs": 0
+}

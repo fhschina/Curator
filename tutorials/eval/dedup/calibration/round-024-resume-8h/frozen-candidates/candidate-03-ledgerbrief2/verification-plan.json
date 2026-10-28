@@ -1,0 +1,32 @@
+{
+  "declared": 1793222862.7445107,
+  "manifest_sha256": "faf9c982a403c06e4167f643d83117682a4767b67723b9aa1b266de1d61437e5",
+  "runs": {
+    "gate": [
+      "candidate-gate-1",
+      "candidate-gate-2",
+      "candidate-gate-3"
+    ],
+    "coverage-regression": [
+      "candidate-coverage-regression-1",
+      "candidate-coverage-regression-2",
+      "candidate-coverage-regression-3"
+    ],
+    "preflight": [
+      "candidate-preflight-1",
+      "candidate-preflight-2",
+      "candidate-preflight-3"
+    ],
+    "diagnostic": [
+      "candidate-diagnostic-1",
+      "candidate-diagnostic-2",
+      "candidate-diagnostic-3"
+    ],
+    "holdout": [
+      "candidate-holdout-1",
+      "candidate-holdout-2",
+      "candidate-holdout-3"
+    ]
+  },
+  "replacement_failed_repeats_allowed": false
+}

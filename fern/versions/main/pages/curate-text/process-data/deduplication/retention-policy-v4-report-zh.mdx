@@ -178,7 +178,7 @@ title: "Qwen 保留规则校准 v4 — 八小时进展"
 
 | 版本 | 运行 | 状态 | 预期输入 | 实际 main 行数 | HTTP 尝试 |
 | --- | --- | --- | --- | --- | --- |
-| candidate-03-policyonce1 | candidate-preflight-1 | running | 44 | 0 | 23 |
+| candidate-03-ledgerbrief2 | candidate-preflight-1 | running | 44 | 0 | 44 |
 
 </details>
 
@@ -276,10 +276,12 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | candidate-01-coverreasonfirst1 | 仅对coverage回复顺序进行工程实验：要求先生成既有explanation段落并完成全篇比较，再选择损失ID，之后输出不变的其余字段。既往真实coverage回复先给损失ID再解释比较，尽管存在例外仍推断类别义务或服务商损失；此前顺序诊断提出但未实际实施过这一实验。新的语义筛查再次出现main判断正确后被coverage误否决。全部保留政策段落、main提示词与rubric、字段名类型枚举、schema、校验器、引用证据、critic只能否决的权限、原文呈现、模型及采样均不变。该观察不证明因果：须核验实际输出顺序及原生有效性，再比较硬回归与单独cookie反例。若顺序未生效或技术有效性退步则淘汰，不重复失败组以挑选幸运样本。 | 0 | REJECTED_AFTER_ORIGINAL_HARD_SCREEN_NO_LONG_RUN | 观察到的全部61次coverage回复均先生成explanation。原硬回归main85/86、final82/86，未优于父版本main85/86、final83/86；仍存在认证误否决及一个无效gate判断。未准入长评测。 | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01-coverreasonfirst1 |
 | candidate-02 | 仅澄清已批准的有限通用营销例外与共享依据的一致性。前一main失败明确把已保留的营销文字视为仅有模板而选择无依据，尽管类别及地点标签本身已被允许。明确完整且满足条件的相同营销文字即使简短或可复用，仍构成经核验的保留依据；排除不同真实记录周围的共享导航及版式，继续保护独立产品事实或销售条件差异。不新增槽位例外类别、不改内容角色定义、输出字段及顺序枚举、原文、模型、采样、schema、执行器或校验器。父版本其余政策及任何已单独核验的coverage顺序工程干预均保持不变。该实验针对实际无依据路径，不重复已测试的身份措辞。 | 0 | FIRST_HARD86_FAIL_LEDGER_AND_POLICY_NO_LONG_RUN | 首次硬回归main84/86、final83/86；1个无效R33-swapped字段矛盾，另有D058同语言措辞保留及R14-swapped的coverage误否决。受控26/26通过。未准入150/100。 | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-02 |
 | candidate-03 | 针对观察到的决策位置澄清两项一致性，不扩大政策范围。第一，后部一般性的主体绑定、数据流及标题作用域条款必须服从已满足条件的有限服务商名称及已覆盖通用cookie复制例外；方向汇总应与已核验依据及已归为无害的被移除侧证据一致。前一main回复把双方服务商差异均判为无害，却仅因同一名称否认替换；coverage则把已覆盖复制文字重新当成类别义务。第二，等价的同语言表单及隐私措辞，不因风格不同就成为独立实质正文语言版本；必须存在实际意义或条件变化。前一认证回复明确为预训练保留语义等价的越南语近义措辞。真实操作去向、责任主体、明确类别及状态同意条款、实际流程变化和不同语言实质正文继续保护。不改字段、顺序、枚举、schema、原文及窗口、模型采样、原生执行器、校验器、权限或回复外层格式。继续排除未成功的先解释工程干预。 | 1 | FIRST150_DIAGNOSTIC_COMPLETE_NOT_QUALIFIED |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03 |
-| candidate-03-policyonce1 | 仅做工程性去重：从各pair模板移除一段完全重复的规则，system中逐字相同的完整副本保留。C3首次main86表现最好，但之后追加式澄清使实际操作地址及营销判断退步，C3长评测回复也出现规则混淆及字面证据矛盾。目前每个请求在system和pair中重复同一段约七十行的有条件模板规则。本实验把重复呈现作为可能因素测试，并非认定因果。仅改四个pair文件；四个system、YAML、独有任务指令、机制分支、文档证据以及原生字段枚举顺序、校验、critic权限、模型采样均不变。推理前冻结逆替换还原与system逐字包含证明。不删除或遮盖原文。保留C3及之后全部失败，不替换任何已失败原运行。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-policyonce1 |
+| candidate-03-ledgerbrief1 | 只在main system模板增加工程性的已定字段输出指令。首次150实际出现把风险选项写入dominant_overlap_source的初次失败，之后成功重试仍保留；还出现两项否定方向与已覆盖差异的字面矛盾。回复在前部证据字段已经输出后仍进行自我重新评估。要求以简洁已定的证据句表述、每字段使用自身枚举、两个汇总共用一致证据；保留引用、不确定路径和全部既有政策、schema、字段顺序枚举及校验。与未通过的旧回复契约前缀不同：不移动Markdown要求、不改围栏、不新增键示例、不修补解析器，也不在所有system前置内容。仅改一个Jinja，其余八文件与C3逐字相同。不继承尚未评测的policyonce1或失败C4/C5规则。不替换任何失败原运行。 | 0 | WITHDRAWN_BEFORE_ANY_INFERENCE |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-ledgerbrief1 |
+| candidate-03-ledgerbrief2 | 只在main system模板增加工程性的已定字段输出指令。首次150实际出现把风险选项写入dominant_overlap_source的初次失败，之后成功重试仍保留；还出现两项否定方向与已覆盖差异的字面矛盾。回复在前部证据字段已经输出后仍进行自我重新评估。要求以简洁已定的证据句表述、每字段使用自身枚举、两个汇总共用一致证据；保留引用、不确定路径和全部既有政策、schema、字段顺序枚举及校验。与未通过的旧回复契约前缀不同：不移动Markdown要求、不改围栏、不新增键示例、不修补解析器，也不在所有system前置内容。仅改一个Jinja，其余八文件与C3逐字相同。不继承尚未评测的policyonce1或失败C4/C5规则。不替换任何失败原运行。 推理前复核撤下了已冻结但完全未执行的ledgerbrief1：其中否定方向与覆盖差异的句子缺少明确的实质正文语言保护条件。Ledgerbrief2把该句限定为有已验证依据、无冲突且无受保护的不同语言正文，并明确保留事实等价的正文语言版本及单独的合格表单界面例外，使输出指令与未改动的strict字段审计一致。保留全部原未执行槽位及撤下凭据；没有替换失败模型输出。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-ledgerbrief2 |
+| candidate-03-policyonce1 | 仅做工程性去重：从各pair模板移除一段完全重复的规则，system中逐字相同的完整副本保留。C3首次main86表现最好，但之后追加式澄清使实际操作地址及营销判断退步，C3长评测回复也出现规则混淆及字面证据矛盾。目前每个请求在system和pair中重复同一段约七十行的有条件模板规则。本实验把重复呈现作为可能因素测试，并非认定因果。仅改四个pair文件；四个system、YAML、独有任务指令、机制分支、文档证据以及原生字段枚举顺序、校验、critic权限、模型采样均不变。推理前冻结逆替换还原与system逐字包含证明。不删除或遮盖原文。保留C3及之后全部失败，不替换任何已失败原运行。 | 0 | REJECTED_FIRST_HARD_SCREEN_TECHNICAL_AND_AGREEMENT_REGRESSION_NO_LONG |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-03-policyonce1 |
 | candidate-04 | 根据保留的实际回复澄清两项有限功能角色。Main在两个镜像受控呈现中把明确类别状态当成无害界面，critic则正确保护。区分独立赋予的强制或可选状态值与已覆盖通用段落；缺失是一侧新增而非虚构冲突。Coverage还把未变的通用cookie传递谓词中的接收方宾语当成新增处理，甚至引用空导航标题。选损失前按谓词应用已有有限服务商及接收方槽位例外。不新增例外类别，不放宽真实责任主体或操作去向，不改标签、字段顺序枚举、模型采样、证据窗口、原生代码、schema或校验器。保留此前所有失败，只评测新预声明运行。 | 0 | HARD_SCREEN_WRONG_ALLOWS_NO_LONG_ADMITTED |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-04 |
 | candidate-05 | 把有用的明确状态澄清与未通过的C4接收方谓词段落分离。C4修好了全部状态受控项，却把新增服务商措辞泛化到实际投稿邮箱，使D011退步，并仍在复制段落上与自身证据分类矛盾。C5继承C3，只保留C4状态功能角色措辞及已有差异选项对齐，不继承C4接收方措辞。新增一项前提澄清：只有实际保留完整类别定义时，通用cookie引言才适用无害例外；在不完整通知中，宽泛目的不能蕴含独立识别、跟踪或使用条件。C3首次150的D108实际回复明确在缺少前提时用宽泛目的推导覆盖。普通等价近义表达仍受覆盖。这是已有cookie边界的两项有限澄清，不新增人工标签或放宽操作去向。字段顺序枚举、证据窗口、原生链、校验器和模型采样全部固定。 | 0 | FIRST_HARD_SCREEN_FAIL_RAW_WRONG_ALLOWS_NO_LONG_ADMITTED |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-05 |
-| candidate-06 | 只澄清coverage的两项表达，main、YAML及subject政策不变。C4实际消除了两个服务商coverage误否决，却出现main操作地址错误；其同时增加的内容之间尚不能认定因果。仅将其中已满足条件的服务商谓词段落移至coverage_system及pair，其余七文件与C3完全一致。另用符号P/H/V说明已有复制作用域边界：别处已保留的通用段落P复制到标题H下，不等于独立赋予类别条件；单独的真实H及状态值断言则继续保护。C3和C4的coverage仍把复制通用段落重新当成类别义务，因此本轮改换表示方式，而非重复追加同一抽象优先级句子。实际案例文字、编号及答案不进入prompt；不新增例外类别，不改schema、字段顺序枚举、critic权限、证据窗口、执行器、模型采样或校验器。保留C4/C5全部失败，先测原86及每个单独边界组，再考虑长诊断。 | 0 | frozen_awaiting_serial_hard_screen |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-06 |
+| candidate-06 | 只澄清coverage的两项表达，main、YAML及subject政策不变。C4实际消除了两个服务商coverage误否决，却出现main操作地址错误；其同时增加的内容之间尚不能认定因果。仅将其中已满足条件的服务商谓词段落移至coverage_system及pair，其余七文件与C3完全一致。另用符号P/H/V说明已有复制作用域边界：别处已保留的通用段落P复制到标题H下，不等于独立赋予类别条件；单独的真实H及状态值断言则继续保护。C3和C4的coverage仍把复制通用段落重新当成类别义务，因此本轮改换表示方式，而非重复追加同一抽象优先级句子。实际案例文字、编号及答案不进入prompt；不新增例外类别，不改schema、字段顺序枚举、critic权限、证据窗口、执行器、模型采样或校验器。保留C4/C5全部失败，先测原86及每个单独边界组，再考虑长诊断。 | 0 | FIRST_HARD_SCREEN_FAIL_NO_LONG_ADMITTED |  | /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-06 |
 
 </details>
 
@@ -314,8 +316,8 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 | deadline_utc | 2026-10-29T02:11:18Z |
 | semantic_stop_utc | 2026-10-29T00:41:18Z |
 | gpu_stop_utc | 2026-10-29T01:56:18Z |
-| wall_hours_at_render | 3.074 |
-| allocated_gpu_hours_including_idle | 2.968 |
+| wall_hours_at_render | 3.490 |
+| allocated_gpu_hours_including_idle | 3.384 |
 | GPU | 1 × NVIDIA B200; TP=1 |
 | model_revision | 017b9c7af6b5689d5dd426a76e0bc077eb5ca20a |
 | context/max_tokens/temperature/concurrency/timeout/window | 32768 / 6144 / 0.2 / 8 / 600 / 6000 |
@@ -329,4 +331,4 @@ D121 没有验收标签。D074 保留历史非法 state_or_version 枚举尝试�
 
 `/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z`
 
-`/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/formal-progress-211512Z/comparison.json`
+`/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/formal-progress-214004Z/comparison.json`

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "tested": 1793222745.1610594,
+  "actual_bug": "pytest creates an absolute current symlink inside this session",
+  "build": {
+    "status": "PASS",
+    "bundle": "/raid/hfang/retention_policy_eval/v1/experiments/round024-bundle-fixture-84d229c3/bundle-portable-links",
+    "indexed_files": 3,
+    "preserved_symlinks": 2,
+    "relocated_internal_absolute_symlinks": 1,
+    "unique_blobs": 2,
+    "logical_bytes": 54,
+    "unique_bytes": 40,
+    "critical_frozen_manifest_references_verified": 0,
+    "model_calls": 0,
+    "archive": "/raid/hfang/retention_policy_eval/v1/experiments/round024-bundle-fixture-84d229c3/bundle-portable-links.tar.gz",
+    "archive_sha256": "a71b9298e3c53e16f7d997e17fc5dddb5c4b4c61e901d3f976ec9585db151c0e",
+    "archive_bytes": 2329
+  },
+  "restored_from_actual_tar_archive": {
+    "status": "PASS",
+    "verified_unique_blobs": 2,
+    "indexed_files": 3,
+    "restored_files": 3,
+    "preserved_symlinks": 2,
+    "model_calls": 0,
+    "hardlinks_used": false
+  },
+  "internal_absolute_link_relocated_equivalently": true,
+  "source_relative_symlink_and_lock_preserved": true,
+  "model_calls": 0
+}

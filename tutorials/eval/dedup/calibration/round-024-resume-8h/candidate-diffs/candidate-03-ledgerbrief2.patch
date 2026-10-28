@@ -1,0 +1,20 @@
+--- candidate-03/judge_config/system.jinja
++++ candidate-03-ledgerbrief2/judge_config/system.jinja
+@@ -246,0 +247,17 @@
++
++SETTLED FIELD OUTPUT
++Give each reasoning value as one or two concise, settled evidence sentences,
++including every required real span ID and lost phrase. Omit self-directed debate
++and abandoned alternatives. Each score must match its own settled reasoning and
++belong to that field's own option list. The overlap-source field describes the
++visible overlap; the risk-factor field describes a risk. Their option sets are
++different. Derive both directions from the same settled ledger. When a verified
++basis exists, no material conflict exists, and no protected distinct-language
++substantive body remains, a covered/harmless removed-side delta cannot itself
++justify denying replacement. An uncovered useful loss cannot justify permitting
++its removal. Protected substantive body-language versions retain priority even
++when their factual meanings are equivalent; qualified form UI remains governed
++by its existing separate localization exception. Use the explicit
++uncertainty path when evidence cannot settle the classification; never invent a
++different ledger fact solely to make an answer consistent. Retain the required
++native Markdown JSON response format and all existing evidence requirements.

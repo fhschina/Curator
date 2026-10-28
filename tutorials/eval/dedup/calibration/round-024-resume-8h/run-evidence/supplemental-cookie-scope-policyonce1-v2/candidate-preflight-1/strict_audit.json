@@ -1,0 +1,129 @@
+{
+  "run": "candidate-preflight-1",
+  "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-cookie-scope-policyonce1-v2",
+  "panel": "preflight",
+  "groups": {
+    "supplemental_cookie_scope8": {
+      "main": {
+        "pairs": 8,
+        "directions": 16,
+        "correct_directions": 14,
+        "correct_pairs": 7,
+        "direction_agreement": 0.875,
+        "pair_agreement": 0.875,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 1,
+        "unresolved_pairs": 0,
+        "valid_pairs": 7,
+        "valid_judgment_coverage": 0.875
+      },
+      "coverage": {
+        "pairs": 8,
+        "directions": 16,
+        "correct_directions": 14,
+        "correct_pairs": 7,
+        "direction_agreement": 0.875,
+        "pair_agreement": 0.875,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 1,
+        "unresolved_pairs": 0,
+        "valid_pairs": 7,
+        "valid_judgment_coverage": 0.875
+      },
+      "final": {
+        "pairs": 8,
+        "directions": 16,
+        "correct_directions": 14,
+        "correct_pairs": 7,
+        "direction_agreement": 0.875,
+        "pair_agreement": 0.875,
+        "reference_wrong_allows": 0,
+        "reference_wrong_blocks": 0,
+        "invalid_pairs": 1,
+        "unresolved_pairs": 0,
+        "valid_pairs": 7,
+        "valid_judgment_coverage": 0.875
+      }
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 7,
+      "invalid": 1
+    },
+    "coverage": {
+      "valid": 7,
+      "invalid": 1
+    },
+    "final": {
+      "valid": 7,
+      "invalid": 1
+    }
+  },
+  "failure_counts": {
+    "MAIN_ATTEMPT_PARSE_ERROR": 1
+  },
+  "attempt_status_counts": {
+    "valid": 14,
+    "parse_error": 1
+  },
+  "attempt_retries": 1,
+  "stage_direction_changes": {
+    "main_to_coverage": 0,
+    "coverage_to_final": 0
+  },
+  "issues": {
+    "SCS004-swapped": [
+      "MAIN_ATTEMPT_PARSE_ERROR"
+    ]
+  },
+  "integrity_failures": {},
+  "unmapped_attempts": 0,
+  "native_report_sha256": "6cbb1cb3a4542354e434c77a06488deee5910ff35af985296972e4595c1e506c",
+  "evaluation_sha256": "4ccaf2c55a1ba51bb670dd7165aadffb30cec2c90091680dde9754fcfd2df7fe",
+  "audit_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "execution": {
+    "started": 1793222466.0927024,
+    "completed": 1793222547.572604,
+    "duration_seconds": 81.47990155220032,
+    "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "judge_config_sha256": "7c3266b7f3edb76195440e4da8c41c641bbfdc64e65cc7dc5113797c9f770309",
+    "replica_peak_concurrency": 8
+  },
+  "swap_mismatches": {
+    "main": [
+      "SCS004"
+    ],
+    "coverage": [
+      "SCS004"
+    ],
+    "final": [
+      "SCS004"
+    ]
+  },
+  "native_all_input_validation": {
+    "main": {
+      "valid": 7,
+      "invalid": 1
+    },
+    "coverage": {
+      "valid": 7,
+      "invalid": 1
+    },
+    "final": {
+      "valid": 7,
+      "invalid": 1
+    }
+  },
+  "native_failure_counts": {
+    "MAIN_ATTEMPT_PARSE_ERROR": 1
+  },
+  "ledger_issues": {},
+  "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "strict_artifacts": {
+    "json": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-cookie-scope-policyonce1-v2/runs/candidate-preflight-1/audits/engineering04-ledger-coherence/strict_audit.json",
+    "csv": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/supplemental-cookie-scope-policyonce1-v2/runs/candidate-preflight-1/audits/engineering04-ledger-coherence/strict_audit.csv"
+  }
+}
