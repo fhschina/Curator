@@ -1,0 +1,31 @@
+--- start-39714b47/judge_config/fuzzy_pair_judge.yaml
++++ candidate-01/judge_config/fuzzy_pair_judge.yaml
+@@ -96,4 +96,4 @@
+-                same_record_content_extension: A alone adds retained content to the verified same substantive record.
+-                record_identity_role_or_state_change: A-only identity, target, title, SKU, date, count, list, state or role changes a useful contribution. A harmless city/destination label in an unchanged service is excluded, even in a title.
+-                material_non_main_message_change: A-only cookie, legal, auth, error, paywall, or platform meaning changes the complete message.
+-                other_substantive_content: A has another uncovered retained proposition.
++                same_record_content_extension: A adds a useful uncovered proposition to the shared record after applying the conditional exceptions. An approved category/provider slot, stock cookie introduction over complete shared definitions, or already-covered repeated paragraph is excluded from this material class.
++                record_identity_role_or_state_change: A changes a useful retained record, state, role or actual operational destination. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider name in the specified short generic cookie notice is harmless even when repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
++                material_non_main_message_change: A changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition; concrete additional processing restrictions remain material.
++                other_substantive_content: A adds another useful uncovered proposition after the conditional exceptions. Cite the additional assertion beyond any permitted slot or already-covered stock wording.
+@@ -107,4 +107,4 @@
+-                same_record_content_extension: B alone adds retained content to the verified same substantive record.
+-                record_identity_role_or_state_change: B-only identity, target, title, SKU, date, count, list, state or role changes a useful contribution. A harmless city/destination label in an unchanged service is excluded, even in a title.
+-                material_non_main_message_change: B-only cookie, legal, auth, error, paywall, or platform meaning changes the complete message.
+-                other_substantive_content: B has another uncovered retained proposition.
++                same_record_content_extension: B adds a useful uncovered proposition to the shared record after applying the conditional exceptions. An approved category/provider slot, stock cookie introduction over complete shared definitions, or already-covered repeated paragraph is excluded from this material class.
++                record_identity_role_or_state_change: B changes a useful retained record, state, role or actual operational destination. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider name in the specified short generic cookie notice is harmless even when repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
++                material_non_main_message_change: B changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition; concrete additional processing restrictions remain material.
++                other_substantive_content: B adds another useful uncovered proposition after the conditional exceptions. Cite the additional assertion beyond any permitted slot or already-covered stock wording.
+@@ -116 +116 @@
+-                identity_or_slot: Material record identity or defining claim conflicts; confirmed harmless service slots do not conflict.
++                identity_or_slot: Useful retained record identity or a defining claim conflicts after applying all conditional exceptions. Category/location labels in the permitted generic marketing, citation-site slots and the permitted generic cookie provider names are harmless; actual operational destinations and liable parties remain material.
+@@ -120 +120 @@
+-                legal_context: Controller, obligation, jurisdiction, permission, or legal meaning conflicts.
++                legal_context: An actual obligation, jurisdiction, permission or liable party conflicts. A provider-name slot in the specified short generic cookie notice with equivalent behavior is excluded; concrete changed processing restrictions remain protected.
+@@ -165,2 +165,2 @@
+-                entity_slot_change: A retained person, organization, product, service, site, brand, controller or location conflicts after conditional exceptions; harmless service-location slots are excluded.
+-                document_identity_change: A title, SKU, record, page, image, profile, target, or category identity conflicts.
++                entity_slot_change: A useful retained person, organization, product, service, controller or location conflicts after all conditional exceptions. The permitted generic marketing category/location, citation-site and generic cookie provider slots alone cannot select this value. Actual action destinations and liability parties remain protected.
++                document_identity_change: An actual retained record, product, role or target conflicts beyond the approved template slots. The title position or repeated occurrence of a permitted marketing category/location label alone does not make it a product record.

@@ -1,0 +1,30 @@
+{
+  "hypothesis_en": "Two boundary clarifications on candidate02, restoring its original evidence presentation after isolated CORE rendering wrongly allowed an actual submission destination and did not resolve localization: (1) same-language body paraphrases are covered, and a localized authentication UI sentence cannot turn neighboring body clauses into different body languages; meaningful substantive body translations remain protected. (2) the approved generic-template exception includes named versus unnamed provider slots in the same short cookie notice, and stock paragraphs already covered elsewhere do not acquire a new category-specific rule from a standard heading alone. Preserve real action destinations, named liability parties, new purposes/conditions and concrete deployment details. No UI-control refinement, output-format change, executor, schema, window or model change is combined into this semantic candidate.",
+  "hypothesis_zh": "在candidate02基础上澄清两项边界，并恢复其原有证据呈现；独立CORE呈现曾错误允许实际投稿入口且未解决本地化问题：（一）同语言正文改写已被覆盖，本地化认证界面句子不能把邻近正文变成不同正文语言；有实质贡献的不同语言正文继续保护。（二）既有通用模板例外包括同一简短cookie通知中服务商有名与无名的槽位差异；已在其他位置覆盖的通用段落不能仅凭标准标题位置衍生另一项分类规则。保留真实操作入口、明确责任方、新增目的或条件及具体部署细节。本语义候选不混入界面控件修订、输出格式改动、执行器、结构、窗口或模型变化。",
+  "parent": "candidate-02",
+  "status": "hard_screen_complete_failed_no_full150",
+  "acceptance_passed": false,
+  "hard_eligible": false,
+  "hard_first": {
+    "main": {
+      "correct_pairs": 83,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    },
+    "coverage": {
+      "correct_pairs": 82,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    },
+    "final": {
+      "correct_pairs": 82,
+      "pairs": 86,
+      "raw_wrong_allows": 0,
+      "invalid_pairs": 0
+    }
+  },
+  "reason_en": "The same-language and named/unnamed clarifications did not improve the full86hard screen. No raw wrong allows or technical invalidity, but required-Yes errors remain in authentication localization, a generic marketing slot and cookie repetition. Preserve all evidence; do not run long scoring merely to sample a better result.",
+  "reason_zh": "同语言及服务商有名/无名的澄清未改善完整86项硬回归。无原始错误允许或技术无效，但认证本地化、通用营销槽位和cookie重复中仍有必须为Yes的错误。保留全部证据，不为抽取更好的随机结果而运行长评分。"
+}

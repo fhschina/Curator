@@ -1,0 +1,371 @@
+--- candidate-02/critics/coverage_pair.jinja
++++ candidate-03/critics/coverage_pair.jinja
+@@ -60,8 +60,14 @@
+-Classify the actual changed clause by both language and function. Equivalent
+-localized headings and routine authentication-form instructions are harmless
+-when actual steps, channel, trigger and conditions match. A full sentence about
+-an emailed password-setting link is still form UI. Check the cited phrase itself;
+-a nearby English UI sentence does not turn same-language privacy paraphrases
+-into different-language body versions. Preserve changed procedures, capabilities,
+-privacy purposes/conditions and independent factual body prose in each language,
+-including short real notices. Meaningful body translations remain protected.
++Determine the language of each actual body clause separately from the language
++of neighboring form UI. If both body clauses are in the SAME language and state
++the same purposes and conditions, their synonyms and paraphrases are covered.
++Different wording within one language is not two body-language versions and is
++not an independent linguistic loss. Use semantically_covered, not substantive
++language retention, for those same-language paraphrases.
++
++Then compare the changed form instruction by function. Equivalent localized
++headings and routine password-setting-link instructions are harmless when the
++actual steps, channel, trigger and conditions match, even as full sentences.
++One localized form sentence does not change the language of the body beside it.
++Changed actual procedures, account capabilities, privacy purposes or conditions
++remain useful. Coherent substantive body prose in DIFFERENT languages remains
++protected even when faithfully translated, including short real factual notices.
+@@ -83,2 +89,5 @@
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++category heading. Under this repetition exception, do not derive another
++category-specific processing rule from the copied stock wording's position
++alone: the paragraph is already covered in the keeper, even under another
++standard heading. An independent concrete deployment claim still matters.
++Compare complete propositions across the whole keeper, not section names.
+@@ -98,0 +108,6 @@
++A permitted slot can be omitted on one side: naming a provider/recipient in
++that same short generic notice, versus leaving it unnamed, does not by itself
++add a different processing practice. The concrete behavior beyond the name
++must change to leave this exception. Generic terms/menu headings and consent
++button labels do not supply unshown legal terms. This exception does not extend
++to an explicitly responsible liability party or an actual action destination.
+--- candidate-02/critics/coverage_system.jinja
++++ candidate-03/critics/coverage_system.jinja
+@@ -18,14 +18,14 @@
+-- Identify the actual changed clause's language and function separately.
+-  A translated heading over the same substantive body, or an equivalent routine
+-  authentication-form message, is harmless interface localization. An instruction
+-  about receiving an emailed password-setting link remains routine form UI even
+-  as a complete grammatical sentence. A form containing that localized clause
+-  beside same-language privacy paraphrases does not thereby contain two different
+-  substantive body-language versions. Classify the quoted clause itself; nearby
+-  English UI does not make a neighboring non-English privacy paragraph English.
+-  Equivalence requires the same actual steps, channel, trigger and conditions.
+-  Added account capabilities, a different password procedure or a new privacy
+-  purpose/condition remain useful contributions. Preserve coherent substantive
+-  factual body versions in different languages, including faithful translations
+-  and short independent factual notices. Functional role, rather than sentence
+-  length or a mixed-language page label, distinguishes these cases.
++- Determine the language of each actual body clause separately from the language
++  of neighboring form UI. If both body clauses are in the SAME language and state
++  the same purposes and conditions, their synonyms and paraphrases are covered.
++  Different wording within one language is not two body-language versions and is
++  not an independent linguistic loss. Use semantically_covered, not substantive
++  language retention, for those same-language paraphrases.
++
++  Then compare the changed form instruction by function. Equivalent localized
++  headings and routine password-setting-link instructions are harmless when the
++  actual steps, channel, trigger and conditions match, even as full sentences.
++  One localized form sentence does not change the language of the body beside it.
++  Changed actual procedures, account capabilities, privacy purposes or conditions
++  remain useful. Coherent substantive body prose in DIFFERENT languages remains
++  protected even when faithfully translated, including short real factual notices.
+@@ -65,2 +65,5 @@
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++category heading. Under this repetition exception, do not derive another
++category-specific processing rule from the copied stock wording's position
++alone: the paragraph is already covered in the keeper, even under another
++standard heading. An independent concrete deployment claim still matters.
++Compare complete propositions across the whole keeper, not section names.
+@@ -80,0 +84,6 @@
++A permitted slot can be omitted on one side: naming a provider/recipient in
++that same short generic notice, versus leaving it unnamed, does not by itself
++add a different processing practice. The concrete behavior beyond the name
++must change to leave this exception. Generic terms/menu headings and consent
++button labels do not supply unshown legal terms. This exception does not extend
++to an explicitly responsible liability party or an actual action destination.
+--- candidate-02/critics/subject_pair.jinja
++++ candidate-03/critics/subject_pair.jinja
+@@ -35,8 +35,14 @@
+-Classify the actual changed clause by both language and function. Equivalent
+-localized headings and routine authentication-form instructions are harmless
+-when actual steps, channel, trigger and conditions match. A full sentence about
+-an emailed password-setting link is still form UI. Check the cited phrase itself;
+-a nearby English UI sentence does not turn same-language privacy paraphrases
+-into different-language body versions. Preserve changed procedures, capabilities,
+-privacy purposes/conditions and independent factual body prose in each language,
+-including short real notices. Meaningful body translations remain protected.
++Determine the language of each actual body clause separately from the language
++of neighboring form UI. If both body clauses are in the SAME language and state
++the same purposes and conditions, their synonyms and paraphrases are covered.
++Different wording within one language is not two body-language versions and is
++not an independent linguistic loss. Use semantically_covered, not substantive
++language retention, for those same-language paraphrases.
++
++Then compare the changed form instruction by function. Equivalent localized
++headings and routine password-setting-link instructions are harmless when the
++actual steps, channel, trigger and conditions match, even as full sentences.
++One localized form sentence does not change the language of the body beside it.
++Changed actual procedures, account capabilities, privacy purposes or conditions
++remain useful. Coherent substantive body prose in DIFFERENT languages remains
++protected even when faithfully translated, including short real factual notices.
+@@ -58,2 +64,5 @@
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++category heading. Under this repetition exception, do not derive another
++category-specific processing rule from the copied stock wording's position
++alone: the paragraph is already covered in the keeper, even under another
++standard heading. An independent concrete deployment claim still matters.
++Compare complete propositions across the whole keeper, not section names.
+@@ -73,0 +83,6 @@
++A permitted slot can be omitted on one side: naming a provider/recipient in
++that same short generic notice, versus leaving it unnamed, does not by itself
++add a different processing practice. The concrete behavior beyond the name
++must change to leave this exception. Generic terms/menu headings and consent
++button labels do not supply unshown legal terms. This exception does not extend
++to an explicitly responsible liability party or an actual action destination.
+--- candidate-02/critics/subject_system.jinja
++++ candidate-03/critics/subject_system.jinja
+@@ -18,14 +18,14 @@
+-- Identify the actual changed clause's language and function separately.
+-  A translated heading over the same substantive body, or an equivalent routine
+-  authentication-form message, is harmless interface localization. An instruction
+-  about receiving an emailed password-setting link remains routine form UI even
+-  as a complete grammatical sentence. A form containing that localized clause
+-  beside same-language privacy paraphrases does not thereby contain two different
+-  substantive body-language versions. Classify the quoted clause itself; nearby
+-  English UI does not make a neighboring non-English privacy paragraph English.
+-  Equivalence requires the same actual steps, channel, trigger and conditions.
+-  Added account capabilities, a different password procedure or a new privacy
+-  purpose/condition remain useful contributions. Preserve coherent substantive
+-  factual body versions in different languages, including faithful translations
+-  and short independent factual notices. Functional role, rather than sentence
+-  length or a mixed-language page label, distinguishes these cases.
++- Determine the language of each actual body clause separately from the language
++  of neighboring form UI. If both body clauses are in the SAME language and state
++  the same purposes and conditions, their synonyms and paraphrases are covered.
++  Different wording within one language is not two body-language versions and is
++  not an independent linguistic loss. Use semantically_covered, not substantive
++  language retention, for those same-language paraphrases.
++
++  Then compare the changed form instruction by function. Equivalent localized
++  headings and routine password-setting-link instructions are harmless when the
++  actual steps, channel, trigger and conditions match, even as full sentences.
++  One localized form sentence does not change the language of the body beside it.
++  Changed actual procedures, account capabilities, privacy purposes or conditions
++  remain useful. Coherent substantive body prose in DIFFERENT languages remains
++  protected even when faithfully translated, including short real factual notices.
+@@ -65,2 +65,5 @@
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++category heading. Under this repetition exception, do not derive another
++category-specific processing rule from the copied stock wording's position
++alone: the paragraph is already covered in the keeper, even under another
++standard heading. An independent concrete deployment claim still matters.
++Compare complete propositions across the whole keeper, not section names.
+@@ -80,0 +84,6 @@
++A permitted slot can be omitted on one side: naming a provider/recipient in
++that same short generic notice, versus leaving it unnamed, does not by itself
++add a different processing practice. The concrete behavior beyond the name
++must change to leave this exception. Generic terms/menu headings and consent
++button labels do not supply unshown legal terms. This exception does not extend
++to an explicitly responsible liability party or an actual action destination.
+--- candidate-02/critics/subject_verifier_pair.jinja
++++ candidate-03/critics/subject_verifier_pair.jinja
+@@ -29,8 +29,14 @@
+-Classify the actual changed clause by both language and function. Equivalent
+-localized headings and routine authentication-form instructions are harmless
+-when actual steps, channel, trigger and conditions match. A full sentence about
+-an emailed password-setting link is still form UI. Check the cited phrase itself;
+-a nearby English UI sentence does not turn same-language privacy paraphrases
+-into different-language body versions. Preserve changed procedures, capabilities,
+-privacy purposes/conditions and independent factual body prose in each language,
+-including short real notices. Meaningful body translations remain protected.
++Determine the language of each actual body clause separately from the language
++of neighboring form UI. If both body clauses are in the SAME language and state
++the same purposes and conditions, their synonyms and paraphrases are covered.
++Different wording within one language is not two body-language versions and is
++not an independent linguistic loss. Use semantically_covered, not substantive
++language retention, for those same-language paraphrases.
++
++Then compare the changed form instruction by function. Equivalent localized
++headings and routine password-setting-link instructions are harmless when the
++actual steps, channel, trigger and conditions match, even as full sentences.
++One localized form sentence does not change the language of the body beside it.
++Changed actual procedures, account capabilities, privacy purposes or conditions
++remain useful. Coherent substantive body prose in DIFFERENT languages remains
++protected even when faithfully translated, including short real factual notices.
+@@ -52,2 +58,5 @@
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++category heading. Under this repetition exception, do not derive another
++category-specific processing rule from the copied stock wording's position
++alone: the paragraph is already covered in the keeper, even under another
++standard heading. An independent concrete deployment claim still matters.
++Compare complete propositions across the whole keeper, not section names.
+@@ -67,0 +77,6 @@
++A permitted slot can be omitted on one side: naming a provider/recipient in
++that same short generic notice, versus leaving it unnamed, does not by itself
++add a different processing practice. The concrete behavior beyond the name
++must change to leave this exception. Generic terms/menu headings and consent
++button labels do not supply unshown legal terms. This exception does not extend
++to an explicitly responsible liability party or an actual action destination.
+--- candidate-02/critics/subject_verifier_system.jinja
++++ candidate-03/critics/subject_verifier_system.jinja
+@@ -18,14 +18,14 @@
+-- Identify the actual changed clause's language and function separately.
+-  A translated heading over the same substantive body, or an equivalent routine
+-  authentication-form message, is harmless interface localization. An instruction
+-  about receiving an emailed password-setting link remains routine form UI even
+-  as a complete grammatical sentence. A form containing that localized clause
+-  beside same-language privacy paraphrases does not thereby contain two different
+-  substantive body-language versions. Classify the quoted clause itself; nearby
+-  English UI does not make a neighboring non-English privacy paragraph English.
+-  Equivalence requires the same actual steps, channel, trigger and conditions.
+-  Added account capabilities, a different password procedure or a new privacy
+-  purpose/condition remain useful contributions. Preserve coherent substantive
+-  factual body versions in different languages, including faithful translations
+-  and short independent factual notices. Functional role, rather than sentence
+-  length or a mixed-language page label, distinguishes these cases.
++- Determine the language of each actual body clause separately from the language
++  of neighboring form UI. If both body clauses are in the SAME language and state
++  the same purposes and conditions, their synonyms and paraphrases are covered.
++  Different wording within one language is not two body-language versions and is
++  not an independent linguistic loss. Use semantically_covered, not substantive
++  language retention, for those same-language paraphrases.
++
++  Then compare the changed form instruction by function. Equivalent localized
++  headings and routine password-setting-link instructions are harmless when the
++  actual steps, channel, trigger and conditions match, even as full sentences.
++  One localized form sentence does not change the language of the body beside it.
++  Changed actual procedures, account capabilities, privacy purposes or conditions
++  remain useful. Coherent substantive body prose in DIFFERENT languages remains
++  protected even when faithfully translated, including short real factual notices.
+@@ -65,2 +65,5 @@
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++category heading. Under this repetition exception, do not derive another
++category-specific processing rule from the copied stock wording's position
++alone: the paragraph is already covered in the keeper, even under another
++standard heading. An independent concrete deployment claim still matters.
++Compare complete propositions across the whole keeper, not section names.
+@@ -80,0 +84,6 @@
++A permitted slot can be omitted on one side: naming a provider/recipient in
++that same short generic notice, versus leaving it unnamed, does not by itself
++add a different processing practice. The concrete behavior beyond the name
++must change to leave this exception. Generic terms/menu headings and consent
++button labels do not supply unshown legal terms. This exception does not extend
++to an explicitly responsible liability party or an actual action destination.
+--- candidate-02/judge_config/fuzzy_pair_judge.yaml
++++ candidate-03/judge_config/fuzzy_pair_judge.yaml
+@@ -91 +91 @@
+-              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
++              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
+@@ -97,2 +97,2 @@
+-                record_identity_role_or_state_change: A changes a useful retained record, state, role or actual operational destination. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider name in the specified short generic cookie notice is harmless even when repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
+-                material_non_main_message_change: A changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition; concrete additional processing restrictions remain material.
++                record_identity_role_or_state_change: A changes a useful retained record, state, role or actual operational destination. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider/recipient name in the specified short generic cookie notice is harmless even when named on only one side, repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
++                material_non_main_message_change: A changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider/recipient-name slot, including named versus unnamed, alone does not change the described processing behavior of the same short notice. A stock paragraph covered elsewhere is repetition even beneath another standard heading; its position alone does not create another category-specific rule. Concrete additional processing restrictions remain material.
+@@ -102 +102 @@
+-              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
++              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
+@@ -108,2 +108,2 @@
+-                record_identity_role_or_state_change: B changes a useful retained record, state, role or actual operational destination. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider name in the specified short generic cookie notice is harmless even when repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
+-                material_non_main_message_change: B changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider-name slot alone does not change the described processing behavior. A stock paragraph covered elsewhere is repetition; concrete additional processing restrictions remain material.
++                record_identity_role_or_state_change: B changes a useful retained record, state, role or actual operational destination. An approved category/location label in otherwise equivalent generic marketing, citation-site slot, or provider/recipient name in the specified short generic cookie notice is harmless even when named on only one side, repeated or placed in the title. Actual product records, submission/payment/account destinations and named liability parties remain protected.
++                material_non_main_message_change: B changes an actual purpose, procedure, permission, condition or obligation beyond the conditional exceptions. A permitted generic provider/recipient-name slot, including named versus unnamed, alone does not change the described processing behavior of the same short notice. A stock paragraph covered elsewhere is repetition even beneath another standard heading; its position alone does not create another category-specific rule. Concrete additional processing restrictions remain material.
+@@ -124 +124 @@
+-              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
++              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
+@@ -131 +131 @@
+-              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
++              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
+@@ -137 +137 @@
+-              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
++              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
+--- candidate-02/judge_config/pair.jinja
++++ candidate-03/judge_config/pair.jinja
+@@ -76,8 +76,14 @@
+-Classify the actual changed clause by both language and function. Equivalent
+-localized headings and routine authentication-form instructions are harmless
+-when actual steps, channel, trigger and conditions match. A full sentence about
+-an emailed password-setting link is still form UI. Check the cited phrase itself;
+-a nearby English UI sentence does not turn same-language privacy paraphrases
+-into different-language body versions. Preserve changed procedures, capabilities,
+-privacy purposes/conditions and independent factual body prose in each language,
+-including short real notices. Meaningful body translations remain protected.
++Determine the language of each actual body clause separately from the language
++of neighboring form UI. If both body clauses are in the SAME language and state
++the same purposes and conditions, their synonyms and paraphrases are covered.
++Different wording within one language is not two body-language versions and is
++not an independent linguistic loss. Use semantically_covered, not substantive
++language retention, for those same-language paraphrases.
++
++Then compare the changed form instruction by function. Equivalent localized
++headings and routine password-setting-link instructions are harmless when the
++actual steps, channel, trigger and conditions match, even as full sentences.
++One localized form sentence does not change the language of the body beside it.
++Changed actual procedures, account capabilities, privacy purposes or conditions
++remain useful. Coherent substantive body prose in DIFFERENT languages remains
++protected even when faithfully translated, including short real factual notices.
+@@ -105,2 +111,5 @@
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++category heading. Under this repetition exception, do not derive another
++category-specific processing rule from the copied stock wording's position
++alone: the paragraph is already covered in the keeper, even under another
++standard heading. An independent concrete deployment claim still matters.
++Compare complete propositions across the whole keeper, not section names.
+@@ -120,0 +130,6 @@
++A permitted slot can be omitted on one side: naming a provider/recipient in
++that same short generic notice, versus leaving it unnamed, does not by itself
++add a different processing practice. The concrete behavior beyond the name
++must change to leave this exception. Generic terms/menu headings and consent
++button labels do not supply unshown legal terms. This exception does not extend
++to an explicitly responsible liability party or an actual action destination.
+--- candidate-02/judge_config/system.jinja
++++ candidate-03/judge_config/system.jinja
+@@ -21,14 +21,14 @@
+-- Identify the actual changed clause's language and function separately.
+-  A translated heading over the same substantive body, or an equivalent routine
+-  authentication-form message, is harmless interface localization. An instruction
+-  about receiving an emailed password-setting link remains routine form UI even
+-  as a complete grammatical sentence. A form containing that localized clause
+-  beside same-language privacy paraphrases does not thereby contain two different
+-  substantive body-language versions. Classify the quoted clause itself; nearby
+-  English UI does not make a neighboring non-English privacy paragraph English.
+-  Equivalence requires the same actual steps, channel, trigger and conditions.
+-  Added account capabilities, a different password procedure or a new privacy
+-  purpose/condition remain useful contributions. Preserve coherent substantive
+-  factual body versions in different languages, including faithful translations
+-  and short independent factual notices. Functional role, rather than sentence
+-  length or a mixed-language page label, distinguishes these cases.
++- Determine the language of each actual body clause separately from the language
++  of neighboring form UI. If both body clauses are in the SAME language and state
++  the same purposes and conditions, their synonyms and paraphrases are covered.
++  Different wording within one language is not two body-language versions and is
++  not an independent linguistic loss. Use semantically_covered, not substantive
++  language retention, for those same-language paraphrases.
++
++  Then compare the changed form instruction by function. Equivalent localized
++  headings and routine password-setting-link instructions are harmless when the
++  actual steps, channel, trigger and conditions match, even as full sentences.
++  One localized form sentence does not change the language of the body beside it.
++  Changed actual procedures, account capabilities, privacy purposes or conditions
++  remain useful. Coherent substantive body prose in DIFFERENT languages remains
++  protected even when faithfully translated, including short real factual notices.
+@@ -68,2 +68,5 @@
+-category heading; the heading alone does not turn that copied paragraph into a
+-new processing rule. Compare the complete propositions across the whole keeper.
++category heading. Under this repetition exception, do not derive another
++category-specific processing rule from the copied stock wording's position
++alone: the paragraph is already covered in the keeper, even under another
++standard heading. An independent concrete deployment claim still matters.
++Compare complete propositions across the whole keeper, not section names.
+@@ -83,0 +87,6 @@
++A permitted slot can be omitted on one side: naming a provider/recipient in
++that same short generic notice, versus leaving it unnamed, does not by itself
++add a different processing practice. The concrete behavior beyond the name
++must change to leave this exception. Generic terms/menu headings and consent
++button labels do not supply unshown legal terms. This exception does not extend
++to an explicitly responsible liability party or an actual action destination.

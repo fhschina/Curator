@@ -1,0 +1,181 @@
+--- candidate-01/critics/coverage_pair.jinja
++++ candidate-02/critics/coverage_pair.jinja
+@@ -60,4 +60,8 @@
+-Equivalent localized headings over the same body and short authentication UI
+-instructions do not by themselves add a retained language version. Preserve
+-substantive factual body prose in each language, including short real notices.
+-Changed capabilities or actual login/password procedures remain useful changes.
++Classify the actual changed clause by both language and function. Equivalent
++localized headings and routine authentication-form instructions are harmless
++when actual steps, channel, trigger and conditions match. A full sentence about
++an emailed password-setting link is still form UI. Check the cited phrase itself;
++a nearby English UI sentence does not turn same-language privacy paraphrases
++into different-language body versions. Preserve changed procedures, capabilities,
++privacy purposes/conditions and independent factual body prose in each language,
++including short real notices. Meaningful body translations remain protected.
+--- candidate-01/critics/coverage_system.jinja
++++ candidate-02/critics/coverage_system.jinja
+@@ -18,9 +18,14 @@
+-- Preserve coherent substantive body versions in different languages, even a
+-  faithful translation: each provides distinct linguistic learning material.
+-  Distinguish this from interface localization: translated headings over an
+-  unchanged body and short equivalent authentication instructions (such as an
+-  emailed password-setting link) are harmless when the actual action, privacy
+-  meaning and conditions are equivalent. Length alone does not decide: a short
+-  factual notice or independent explanation remains protected body prose.
+-  Added account capabilities, a changed authentication procedure, or changed
+-  conditions are retained contributions, not harmless localization.
++- Identify the actual changed clause's language and function separately.
++  A translated heading over the same substantive body, or an equivalent routine
++  authentication-form message, is harmless interface localization. An instruction
++  about receiving an emailed password-setting link remains routine form UI even
++  as a complete grammatical sentence. A form containing that localized clause
++  beside same-language privacy paraphrases does not thereby contain two different
++  substantive body-language versions. Classify the quoted clause itself; nearby
++  English UI does not make a neighboring non-English privacy paragraph English.
++  Equivalence requires the same actual steps, channel, trigger and conditions.
++  Added account capabilities, a different password procedure or a new privacy
++  purpose/condition remain useful contributions. Preserve coherent substantive
++  factual body versions in different languages, including faithful translations
++  and short independent factual notices. Functional role, rather than sentence
++  length or a mixed-language page label, distinguishes these cases.
+--- candidate-01/critics/subject_pair.jinja
++++ candidate-02/critics/subject_pair.jinja
+@@ -35,4 +35,8 @@
+-Equivalent localized headings over the same body and short authentication UI
+-instructions do not by themselves add a retained language version. Preserve
+-substantive factual body prose in each language, including short real notices.
+-Changed capabilities or actual login/password procedures remain useful changes.
++Classify the actual changed clause by both language and function. Equivalent
++localized headings and routine authentication-form instructions are harmless
++when actual steps, channel, trigger and conditions match. A full sentence about
++an emailed password-setting link is still form UI. Check the cited phrase itself;
++a nearby English UI sentence does not turn same-language privacy paraphrases
++into different-language body versions. Preserve changed procedures, capabilities,
++privacy purposes/conditions and independent factual body prose in each language,
++including short real notices. Meaningful body translations remain protected.
+--- candidate-01/critics/subject_system.jinja
++++ candidate-02/critics/subject_system.jinja
+@@ -18,9 +18,14 @@
+-- Preserve coherent substantive body versions in different languages, even a
+-  faithful translation: each provides distinct linguistic learning material.
+-  Distinguish this from interface localization: translated headings over an
+-  unchanged body and short equivalent authentication instructions (such as an
+-  emailed password-setting link) are harmless when the actual action, privacy
+-  meaning and conditions are equivalent. Length alone does not decide: a short
+-  factual notice or independent explanation remains protected body prose.
+-  Added account capabilities, a changed authentication procedure, or changed
+-  conditions are retained contributions, not harmless localization.
++- Identify the actual changed clause's language and function separately.
++  A translated heading over the same substantive body, or an equivalent routine
++  authentication-form message, is harmless interface localization. An instruction
++  about receiving an emailed password-setting link remains routine form UI even
++  as a complete grammatical sentence. A form containing that localized clause
++  beside same-language privacy paraphrases does not thereby contain two different
++  substantive body-language versions. Classify the quoted clause itself; nearby
++  English UI does not make a neighboring non-English privacy paragraph English.
++  Equivalence requires the same actual steps, channel, trigger and conditions.
++  Added account capabilities, a different password procedure or a new privacy
++  purpose/condition remain useful contributions. Preserve coherent substantive
++  factual body versions in different languages, including faithful translations
++  and short independent factual notices. Functional role, rather than sentence
++  length or a mixed-language page label, distinguishes these cases.
+--- candidate-01/critics/subject_verifier_pair.jinja
++++ candidate-02/critics/subject_verifier_pair.jinja
+@@ -29,4 +29,8 @@
+-Equivalent localized headings over the same body and short authentication UI
+-instructions do not by themselves add a retained language version. Preserve
+-substantive factual body prose in each language, including short real notices.
+-Changed capabilities or actual login/password procedures remain useful changes.
++Classify the actual changed clause by both language and function. Equivalent
++localized headings and routine authentication-form instructions are harmless
++when actual steps, channel, trigger and conditions match. A full sentence about
++an emailed password-setting link is still form UI. Check the cited phrase itself;
++a nearby English UI sentence does not turn same-language privacy paraphrases
++into different-language body versions. Preserve changed procedures, capabilities,
++privacy purposes/conditions and independent factual body prose in each language,
++including short real notices. Meaningful body translations remain protected.
+--- candidate-01/critics/subject_verifier_system.jinja
++++ candidate-02/critics/subject_verifier_system.jinja
+@@ -18,9 +18,14 @@
+-- Preserve coherent substantive body versions in different languages, even a
+-  faithful translation: each provides distinct linguistic learning material.
+-  Distinguish this from interface localization: translated headings over an
+-  unchanged body and short equivalent authentication instructions (such as an
+-  emailed password-setting link) are harmless when the actual action, privacy
+-  meaning and conditions are equivalent. Length alone does not decide: a short
+-  factual notice or independent explanation remains protected body prose.
+-  Added account capabilities, a changed authentication procedure, or changed
+-  conditions are retained contributions, not harmless localization.
++- Identify the actual changed clause's language and function separately.
++  A translated heading over the same substantive body, or an equivalent routine
++  authentication-form message, is harmless interface localization. An instruction
++  about receiving an emailed password-setting link remains routine form UI even
++  as a complete grammatical sentence. A form containing that localized clause
++  beside same-language privacy paraphrases does not thereby contain two different
++  substantive body-language versions. Classify the quoted clause itself; nearby
++  English UI does not make a neighboring non-English privacy paragraph English.
++  Equivalence requires the same actual steps, channel, trigger and conditions.
++  Added account capabilities, a different password procedure or a new privacy
++  purpose/condition remain useful contributions. Preserve coherent substantive
++  factual body versions in different languages, including faithful translations
++  and short independent factual notices. Functional role, rather than sentence
++  length or a mixed-language page label, distinguishes these cases.
+--- candidate-01/judge_config/fuzzy_pair_judge.yaml
++++ candidate-02/judge_config/fuzzy_pair_judge.yaml
+@@ -91 +91 @@
+-              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material.
++              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
+@@ -102 +102 @@
+-              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material.
++              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
+@@ -124 +124 @@
+-              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict.
++              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
+@@ -131 +131 @@
+-              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage.
++              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
+@@ -137 +137 @@
+-              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage.
++              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Equivalent routine password-link form UI and same-language privacy paraphrases do not establish different-language substantive body versions; changed actual steps, account capabilities or privacy conditions remain useful.
+--- candidate-01/judge_config/pair.jinja
++++ candidate-02/judge_config/pair.jinja
+@@ -76,4 +76,8 @@
+-Equivalent localized headings over the same body and short authentication UI
+-instructions do not by themselves add a retained language version. Preserve
+-substantive factual body prose in each language, including short real notices.
+-Changed capabilities or actual login/password procedures remain useful changes.
++Classify the actual changed clause by both language and function. Equivalent
++localized headings and routine authentication-form instructions are harmless
++when actual steps, channel, trigger and conditions match. A full sentence about
++an emailed password-setting link is still form UI. Check the cited phrase itself;
++a nearby English UI sentence does not turn same-language privacy paraphrases
++into different-language body versions. Preserve changed procedures, capabilities,
++privacy purposes/conditions and independent factual body prose in each language,
++including short real notices. Meaningful body translations remain protected.
+--- candidate-01/judge_config/system.jinja
++++ candidate-02/judge_config/system.jinja
+@@ -21,9 +21,14 @@
+-- Preserve coherent substantive body versions in different languages, even a
+-  faithful translation: each provides distinct linguistic learning material.
+-  Distinguish this from interface localization: translated headings over an
+-  unchanged body and short equivalent authentication instructions (such as an
+-  emailed password-setting link) are harmless when the actual action, privacy
+-  meaning and conditions are equivalent. Length alone does not decide: a short
+-  factual notice or independent explanation remains protected body prose.
+-  Added account capabilities, a changed authentication procedure, or changed
+-  conditions are retained contributions, not harmless localization.
++- Identify the actual changed clause's language and function separately.
++  A translated heading over the same substantive body, or an equivalent routine
++  authentication-form message, is harmless interface localization. An instruction
++  about receiving an emailed password-setting link remains routine form UI even
++  as a complete grammatical sentence. A form containing that localized clause
++  beside same-language privacy paraphrases does not thereby contain two different
++  substantive body-language versions. Classify the quoted clause itself; nearby
++  English UI does not make a neighboring non-English privacy paragraph English.
++  Equivalence requires the same actual steps, channel, trigger and conditions.
++  Added account capabilities, a different password procedure or a new privacy
++  purpose/condition remain useful contributions. Preserve coherent substantive
++  factual body versions in different languages, including faithful translations
++  and short independent factual notices. Functional role, rather than sentence
++  length or a mixed-language page label, distinguishes these cases.

@@ -1,0 +1,150 @@
+Audit record: {{ pair_id }}
+The record identifier is for tracing only, not evidence for classification.
+
+Compare both replacement directions under retention policy v1. Use only this
+blind span packet. For every NO identify a concrete useful contribution that
+the other document does not cover. Faithful translations of substantive body
+prose still provide different linguistic material for multilingual pretraining.
+Harmless service slots, empty-cart currency, incidental publication metadata,
+and same-terms reference links follow their conditional exceptions.
+
+Apply exceptions before the same-record/identity tests. If a service description
+differs only by city or calling-destination labels and has the same procedure,
+actual prices/rates and conditions, the label alone is not a useful lost fact
+or a destination-specific explanation, even when it is the title or subject.
+Use verified_substantive_record, harmless deltas, no hard conflict, yes/yes,
+near_surface, material_difference=none, primary_material_difference=none and
+confidence_tier=medium. A No needs concrete extra content beyond that label.
+Changed actual prices, procedures or conditions do not satisfy this exception.
+Non-main policy content is still useful when it explains purposes, consent,
+conditions or obligations. If the other document fully preserves it and adds
+useful content, evaluate one-way coverage; a different content profile alone
+does not force No/No. For every No, cite a real span on the side being removed,
+including a body span when the loss is a different-language version.
+
+<semantic_diff status="{{ semantic_diff.status }}" truncated="{{ semantic_diff.truncated }}">
+counts: {{ semantic_diff.span_counts }}
+{% for span in semantic_diff.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED]
+A: {{ span.a_text }}
+B: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% endif %}
+{% endfor %}
+</semantic_diff>
+{% if semantic_diff.truncated or not semantic_diff.status == "COMPLETE" %}
+<truncation_notice>
+{% if semantic_diff.truncated_a %}Document A evidence is missing or cut off; unseen content is unknown.
+{% endif %}{% if semantic_diff.truncated_b %}Document B evidence is missing or cut off; unseen content is unknown.
+{% endif %}This is not a valid full-document comparison, even if a difference is visible.
+All eight summary scores MUST be: a_can_replace_b=unresolved,
+b_can_replace_a=unresolved, relation_type=unresolved, material_difference=unresolved,
+primary_material_difference=unresolved, dominant_overlap_source=unresolved,
+primary_risk_factor=extraction_or_payload_limit, confidence_tier=low.
+Explain the missing/truncated evidence. Do not return a conclusive Yes or No.
+</truncation_notice>
+{% endif %}
+
+For the same licensing notice with the same maintainer and terms, generic
+"this module" versus "this program" is compatible wording, not two identified
+products. Do not invent a product identity conflict from those nouns alone.
+Check for an actual different named product, functional scope or license term;
+those substantive changes would be outside this paraphrase exception.
+
+Before returning the final object, check the two replacement scores separately:
+- If a_can_replace_b is no, THAT score's reasoning must start with one existing
+  B### (or S### explicitly for B), quote its actual lost phrase, and explain the
+  contribution A lacks. A language name alone is not a citation.
+- If b_can_replace_a is no, THAT score's reasoning must start with one existing
+  A### (or S### explicitly for A), quote its actual lost phrase, and explain the
+  contribution B lacks. Cite body prose for language retention.
+IDs mentioned only in content-profile, delta or translation fields do not satisfy
+these two score-specific evidence requirements. Do not omit them for translations.
+
+LIST CONTAINMENT
+Compare the retained product facts before page identity. A broader list can
+replace a filtered subset when it preserves every product and its actual
+price, availability and conditions. A narrower breadcrumb/filter and the
+resulting smaller displayed count alone do not add an uncovered product fact
+or create a conflict. Mark those presentation deltas harmless and allow only
+the covering direction when the broader list adds a useful product. Actual
+conflicting product facts, prices, stock or conditions remain material.
+
+FUNCTIONAL LOCALIZATION
+Apply the interface-role exception BEFORE testing for a linguistic body loss.
+A routine form heading, label or message about dispatching a password-setting
+link is form UI when the actual steps, channel, trigger and conditions match.
+This remains true for a complete grammatical sentence; localization into another
+language does not by itself make the form instruction a substantive body version.
+Do not use its different-language wording as a retained loss under this policy.
+
+For the remaining substantive body clauses, determine their actual languages.
+Same-language wording with the same purposes and conditions is covered paraphrase.
+Only genuinely different-language BODY material outside the interface exception
+receives linguistic retention. A neighboring form sentence does not change the
+body's language. Preserve coherent factual body translations, including short
+real notices. Changed procedures, capabilities, privacy purposes or conditions
+remain useful even when displayed in an interface. An actual submission, payment
+or account-action address must itself be covered; a different real destination
+is never a harmless city slot.
+
+ENUM CHECK
+Use each field's own configured option values. In particular, state_or_version
+belongs only to span_hard_conflict. For primary_material_difference, choose the
+appropriate configured category such as product_version_change, number_change
+or document_identity_change; never copy state_or_version into that field.
+
+
+CONDITIONAL TEMPLATE COVERAGE
+Apply these boundaries before treating a string, heading or named slot as a loss.
+
+1. Complete cookie-category definitions shared by both sides preserve the notice's
+retained basis. Generic introductory framing about optimizing the site, improving
+experience, cookies/device storage, browsing behavior or IDs, and general effects
+of consenting or withdrawing is harmless when those full definitions are already
+retained. Decorative opening questions, synonyms, repeated headings and rewordings
+do not add a separate purpose. A stock category paragraph already present elsewhere
+in the same notice is repetition even when repeated beneath another generic
+category heading. Under this repetition exception, do not derive another
+category-specific processing rule from the copied stock wording's position
+alone: the paragraph is already covered in the keeper, even under another
+standard heading. An independent concrete deployment claim still matters.
+Compare complete propositions across the whole keeper, not section names.
+Retain genuinely additional, concrete deployment details, data flows, storage or
+transfer restrictions, specific uses, retention periods, consent mechanisms,
+prices or obligations. A concrete analytics deployment explanation can add useful
+content while still fully covering a shorter notice that repeats a stock paragraph.
+One-way coverage then follows the actual extra contribution; the repetition does
+not create a conflict. This boundary requires the shared complete definitions or
+an already covered repeated paragraph, not merely a common cookie-related topic.
+
+2. A name/category slot in an otherwise equivalent generic template is not by
+itself a retained difference. This covers city-site/source names in the same
+citation notice with unchanged linking, permission and attribution terms;
+category/location labels in the same generic marketing copy with no concrete
+product specifications; and provider/recipient names in the same short generic
+cookies/services/advertising/visits notice with unchanged described behavior.
+A permitted slot can be omitted on one side: naming a provider/recipient in
+that same short generic notice, versus leaving it unnamed, does not by itself
+add a different processing practice. The concrete behavior beyond the name
+must change to leave this exception. Generic terms/menu headings and consent
+button labels do not supply unshown legal terms. This exception does not extend
+to an explicitly responsible liability party or an actual action destination.
+Do not invent a new product specification, legal condition or processing practice
+from the slot alone. These exceptions do not cover actual submission, payment or
+account-action destinations, named liability parties, concrete product records
+and specifications, changed terms, or additional concrete data-processing claims.
+For a specialist comparison, name inequality within these permitted slots is
+outside veto scope. Keep the actual names truthful; do not fabricate sameness.
+
+For each direction, first classify the claimed difference under these conditions,
+then check whether all remaining useful meaning survives in the whole keeper.
+Harmless framing or permitted template slots alone cannot support a loss or
+conflict. Useful independent additions still require directional retention.
+
+RESPONSE FORMAT
+Return exactly one completed answer object inside a ```json Markdown code fence.
+Return actual field values, never the response schema or its properties.
+The first response line must be ```json and the last must be ```. Do not return bare JSON.

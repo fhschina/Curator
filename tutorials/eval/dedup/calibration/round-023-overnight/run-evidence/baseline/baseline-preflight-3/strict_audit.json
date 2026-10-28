@@ -1,0 +1,204 @@
+{
+  "run": "baseline-preflight-3",
+  "root": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/baseline",
+  "panel": "preflight",
+  "groups": {
+    "latest18": {
+      "main": {
+        "pairs": 18,
+        "directions": 36,
+        "correct_directions": 12,
+        "correct_pairs": 6,
+        "direction_agreement": 0.3333333333333333,
+        "pair_agreement": 0.3333333333333333,
+        "reference_wrong_allows": 4,
+        "reference_wrong_blocks": 18,
+        "invalid_pairs": 2,
+        "unresolved_pairs": 0,
+        "valid_pairs": 16,
+        "valid_judgment_coverage": 0.8888888888888888
+      },
+      "coverage": {
+        "pairs": 18,
+        "directions": 36,
+        "correct_directions": 11,
+        "correct_pairs": 5,
+        "direction_agreement": 0.3055555555555556,
+        "pair_agreement": 0.2777777777777778,
+        "reference_wrong_allows": 4,
+        "reference_wrong_blocks": 19,
+        "invalid_pairs": 2,
+        "unresolved_pairs": 0,
+        "valid_pairs": 16,
+        "valid_judgment_coverage": 0.8888888888888888
+      },
+      "final": {
+        "pairs": 18,
+        "directions": 36,
+        "correct_directions": 11,
+        "correct_pairs": 5,
+        "direction_agreement": 0.3055555555555556,
+        "pair_agreement": 0.2777777777777778,
+        "reference_wrong_allows": 4,
+        "reference_wrong_blocks": 19,
+        "invalid_pairs": 2,
+        "unresolved_pairs": 0,
+        "valid_pairs": 16,
+        "valid_judgment_coverage": 0.8888888888888888
+      }
+    },
+    "controlled26": {
+      "main": {
+        "pairs": 26,
+        "directions": 52,
+        "correct_directions": 40,
+        "correct_pairs": 18,
+        "direction_agreement": 0.7692307692307693,
+        "pair_agreement": 0.6923076923076923,
+        "reference_wrong_allows": 4,
+        "reference_wrong_blocks": 8,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 26,
+        "valid_judgment_coverage": 1.0
+      },
+      "coverage": {
+        "pairs": 26,
+        "directions": 52,
+        "correct_directions": 39,
+        "correct_pairs": 18,
+        "direction_agreement": 0.75,
+        "pair_agreement": 0.6923076923076923,
+        "reference_wrong_allows": 4,
+        "reference_wrong_blocks": 9,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 26,
+        "valid_judgment_coverage": 1.0
+      },
+      "final": {
+        "pairs": 26,
+        "directions": 52,
+        "correct_directions": 39,
+        "correct_pairs": 18,
+        "direction_agreement": 0.75,
+        "pair_agreement": 0.6923076923076923,
+        "reference_wrong_allows": 4,
+        "reference_wrong_blocks": 9,
+        "invalid_pairs": 0,
+        "unresolved_pairs": 0,
+        "valid_pairs": 26,
+        "valid_judgment_coverage": 1.0
+      }
+    }
+  },
+  "all_input_validation": {
+    "main": {
+      "valid": 42,
+      "invalid": 2
+    },
+    "coverage": {
+      "valid": 42,
+      "invalid": 2
+    },
+    "final": {
+      "valid": 42,
+      "invalid": 2
+    }
+  },
+  "failure_counts": {
+    "INVALID_DECISION:coverage": 1,
+    "INVALID_DECISION:final": 1,
+    "INVALID_DECISION:main": 1,
+    "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side": 1,
+    "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1,
+    "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta": 1,
+    "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta": 1
+  },
+  "attempt_status_counts": {
+    "valid": 88
+  },
+  "attempt_retries": 0,
+  "stage_direction_changes": {
+    "main_to_coverage": 2,
+    "coverage_to_final": 0
+  },
+  "issues": {
+    "D058": [
+      "INVALID_DECISION:coverage",
+      "INVALID_DECISION:final",
+      "INVALID_DECISION:main",
+      "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side",
+      "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+    ],
+    "D059": [
+      "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta",
+      "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta"
+    ]
+  },
+  "integrity_failures": {},
+  "unmapped_attempts": 0,
+  "native_report_sha256": "341bdd9d4ec2f451773063cb725a60f1ae859f838cf740ae9ce10a15925df5df",
+  "evaluation_sha256": "b1b986f7583a7e5681455173adadcfd50f27852fbf39245fd30ff789abf6e218",
+  "audit_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "execution": {
+    "started": 1793164174.4623377,
+    "completed": 1793164320.977378,
+    "duration_seconds": 146.51504015922546,
+    "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "judge_config_sha256": "8e9faa5d08714e32590369e3a239dd85d9da9e4f9e941d0d925e24216bb938ff",
+    "replica_peak_concurrency": 8
+  },
+  "swap_mismatches": {
+    "main": [
+      "R18",
+      "D058"
+    ],
+    "coverage": [
+      "R18",
+      "R14",
+      "D058",
+      "T_cookie_intro"
+    ],
+    "final": [
+      "R18",
+      "R14",
+      "D058",
+      "T_cookie_intro"
+    ]
+  },
+  "native_all_input_validation": {
+    "main": {
+      "valid": 43,
+      "invalid": 1
+    },
+    "coverage": {
+      "valid": 43,
+      "invalid": 1
+    },
+    "final": {
+      "valid": 43,
+      "invalid": 1
+    }
+  },
+  "native_failure_counts": {
+    "INVALID_DECISION:coverage": 1,
+    "INVALID_DECISION:final": 1,
+    "INVALID_DECISION:main": 1
+  },
+  "ledger_issues": {
+    "D058": [
+      "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side",
+      "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side"
+    ],
+    "D059": [
+      "MAIN_LEDGER_CONTRADICTION:a_can_replace_b:span_b_delta",
+      "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:span_a_delta"
+    ]
+  },
+  "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "strict_artifacts": {
+    "json": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/baseline/runs/baseline-preflight-3/audits/engineering04-ledger-coherence/strict_audit.json",
+    "csv": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/baseline/runs/baseline-preflight-3/audits/engineering04-ledger-coherence/strict_audit.csv"
+  }
+}

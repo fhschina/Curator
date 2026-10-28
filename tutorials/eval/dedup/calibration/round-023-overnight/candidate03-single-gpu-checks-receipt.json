@@ -1,0 +1,37 @@
+{
+  "started": 1793164937.4397945,
+  "completed": 1793164954.0894916,
+  "returncode": 0,
+  "command": [
+    "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+    "-m",
+    "pytest",
+    "--confcutdir=tests/tutorials/eval/dedup",
+    "tests/tutorials/eval/dedup",
+    "-m",
+    "gpu",
+    "-k",
+    "not eight_replica",
+    "-q",
+    "--junitxml=/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate03-single-gpu-checks.xml"
+  ],
+  "candidate": "candidate-03",
+  "nine_prompt_hashes": {
+    "variants/candidate/judge_config/system.jinja": "91025051f28bac07f6023306d4019181db28a8c2993ca398f11ae70afda7e163",
+    "variants/candidate/judge_config/fuzzy_pair_judge.yaml": "076351693dfe5100247465e34bca6300983b00f97a19083e4ab1b66b4ea98488",
+    "variants/candidate/judge_config/pair.jinja": "4891bea5404c7dc1219c452591b236a774dd48a06a80fb3989c4defac5f5b280",
+    "variants/candidate/critics/coverage_system.jinja": "e484e9f936817ade53b8f9492a687b037b2cae6aec78675176a114d348b5a642",
+    "variants/candidate/critics/subject_verifier_pair.jinja": "ade5fe1e78240c547b4317cc9409a41e81d233ca9df6f152bee1aea64985fe17",
+    "variants/candidate/critics/subject_system.jinja": "3968e3bab3be7574a4cf371f6263deadedad0006fdf4cbd72ec9e89e2b9f6ac9",
+    "variants/candidate/critics/coverage_pair.jinja": "939a3603263b7040a283f488494dc90ee47291e4b2e761e7420e49afb942eb84",
+    "variants/candidate/critics/subject_pair.jinja": "13dc632dc8b5f75aeaa4ec48b15407c2efe1fa9fd0f65dfb1acbfcc41ee97468",
+    "variants/candidate/critics/subject_verifier_system.jinja": "9c7d417637da2444705636e3f9ffebb6acfc01c93fa34ec6a1a90fd4d1a23225"
+  },
+  "tests": 4,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "service": "retention-policy-v3-overnight-20261028-gpu0",
+  "separate_or_multigpu_service_started": false,
+  "status": "PASS"
+}

@@ -1,0 +1,103 @@
+Audit record: {{ pair_id }}
+The record identifier is for tracing only, not evidence for classification.
+
+Compare actual subjects using only the source evidence below. The main judgment,
+coverage result and pair labels are hidden.
+Packet status: {{ subject_packet.status }}; truncated: {{ subject_packet.truncated }}.
+{% for span in subject_packet.spans %}
+{% if span.kind == "SHARED" %}
+[{{ span.span_id }} SHARED: ALIGNED ON BOTH SIDES]
+A chars {{ span.a_start_char }}:{{ span.a_end_char }}: {{ span.a_text }}
+B chars {{ span.b_start_char }}:{{ span.b_end_char }}: {{ span.b_text }}
+{% else %}
+[{{ span.span_id }} {{ span.kind }} CORE chars {{ span.start_char }}:{{ span.end_char }}]
+{{ span.text }}
+[READING CONTEXT FOR {{ span.span_id }}; may include shared text]
+{{ span.context_text }}
+{% endif %}
+{% endfor %}
+Return the concrete seven-field subject comparison. Select own-unique subject
+IDs and own-side/shared predicate IDs. Do not generate quotes or offsets.
+First check whether the fixed policy permits the difference. Different city
+slots in an unchanged service are not a POLICY_SERVICE veto: choose NONE and
+NOT_APPLICABLE. Name inequality by itself never establishes retained loss.
+
+LIST CONTAINMENT
+Compare the retained product facts before page identity. A broader list can
+replace a filtered subset when it preserves every product and its actual
+price, availability and conditions. A narrower breadcrumb/filter and the
+resulting smaller displayed count alone do not add an uncovered product fact
+or create a conflict. Mark those presentation deltas harmless and allow only
+the covering direction when the broader list adds a useful product. Actual
+conflicting product facts, prices, stock or conditions remain material.
+
+FUNCTIONAL LOCALIZATION
+Apply the interface-role exception BEFORE testing for a linguistic body loss.
+A routine form heading, label or message about dispatching a password-setting
+link is form UI when the actual steps, channel, trigger and conditions match.
+This remains true for a complete grammatical sentence; localization into another
+language does not by itself make the form instruction a substantive body version.
+Do not use its different-language wording as a retained loss under this policy.
+
+For the remaining substantive body clauses, determine their actual languages.
+Same-language wording with the same purposes and conditions is covered paraphrase.
+Only genuinely different-language BODY material outside the interface exception
+receives linguistic retention. A neighboring form sentence does not change the
+body's language. Preserve coherent factual body translations, including short
+real notices. Changed procedures, capabilities, privacy purposes or conditions
+remain useful even when displayed in an interface. An actual submission, payment
+or account-action address must itself be covered; a different real destination
+is never a harmless city slot.
+
+
+CONDITIONAL TEMPLATE COVERAGE
+Apply these boundaries before treating a string, heading or named slot as a loss.
+
+1. Complete cookie-category definitions shared by both sides preserve the notice's
+retained basis. Generic introductory framing about optimizing the site, improving
+experience, cookies/device storage, browsing behavior or IDs, and general effects
+of consenting or withdrawing is harmless when those full definitions are already
+retained. Decorative opening questions, synonyms, repeated headings and rewordings
+do not add a separate purpose. A stock category paragraph already present elsewhere
+in the same notice is repetition even when repeated beneath another generic
+category heading. Under this repetition exception, do not derive another
+category-specific processing rule from the copied stock wording's position
+alone: the paragraph is already covered in the keeper, even under another
+standard heading. An independent concrete deployment claim still matters.
+Compare complete propositions across the whole keeper, not section names.
+Retain genuinely additional, concrete deployment details, data flows, storage or
+transfer restrictions, specific uses, retention periods, consent mechanisms,
+prices or obligations. A concrete analytics deployment explanation can add useful
+content while still fully covering a shorter notice that repeats a stock paragraph.
+One-way coverage then follows the actual extra contribution; the repetition does
+not create a conflict. This boundary requires the shared complete definitions or
+an already covered repeated paragraph, not merely a common cookie-related topic.
+
+2. A name/category slot in an otherwise equivalent generic template is not by
+itself a retained difference. This covers city-site/source names in the same
+citation notice with unchanged linking, permission and attribution terms;
+category/location labels in the same generic marketing copy with no concrete
+product specifications; and provider/recipient names in the same short generic
+cookies/services/advertising/visits notice with unchanged described behavior.
+A permitted slot can be omitted on one side: naming a provider/recipient in
+that same short generic notice, versus leaving it unnamed, does not by itself
+add a different processing practice. The concrete behavior beyond the name
+must change to leave this exception. Generic terms/menu headings and consent
+button labels do not supply unshown legal terms. This exception does not extend
+to an explicitly responsible liability party or an actual action destination.
+Do not invent a new product specification, legal condition or processing practice
+from the slot alone. These exceptions do not cover actual submission, payment or
+account-action destinations, named liability parties, concrete product records
+and specifications, changed terms, or additional concrete data-processing claims.
+For a specialist comparison, name inequality within these permitted slots is
+outside veto scope. Keep the actual names truthful; do not fabricate sameness.
+
+For each direction, first classify the claimed difference under these conditions,
+then check whether all remaining useful meaning survives in the whole keeper.
+Harmless framing or permitted template slots alone cannot support a loss or
+conflict. Useful independent additions still require directional retention.
+
+RESPONSE FORMAT
+Return exactly one completed answer object inside a ```json Markdown code fence.
+Return actual field values, never the response schema or its properties.
+The first response line must be ```json and the last must be ```. Do not return bare JSON.

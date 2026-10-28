@@ -1,0 +1,15 @@
+--- candidate-02/judge_config/pair.jinja
++++ candidate-02-core2/judge_config/pair.jinja
+@@ -24,0 +25,6 @@
++Only the marked CORE is one-sided. Read the unchanged padded context to recover
++the complete assertion, including an address that crosses a core boundary. A
++neighboring clause in the context is not itself unique to this span and does not
++determine the language of the core phrase. All source IDs and visible text come
++from the same frozen packet and the same character window.
++
+@@ -33 +39,4 @@
+-[{{ span.span_id }} {{ span.kind }}] {{ span.text }}
++[{{ span.span_id }} {{ span.kind }}] CORE DIFFERENCE chars {{ span.delta_start_char|int }}:{{ span.delta_end_char|int }}:
++{{ span.text[(span.delta_start_char|int)-(span.start_char|int):(span.delta_end_char|int)-(span.start_char|int)] }}
++[READING CONTEXT FOR {{ span.span_id }}; includes shared neighboring text]
++{{ span.text }}

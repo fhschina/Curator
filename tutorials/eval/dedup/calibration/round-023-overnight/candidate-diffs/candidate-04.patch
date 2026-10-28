@@ -1,0 +1,312 @@
+--- candidate-03/critics/coverage_pair.jinja
++++ candidate-04/critics/coverage_pair.jinja
+@@ -59,7 +59,7 @@
+-LOCALIZATION AND OPERATIONAL COVERAGE
+-Determine the language of each actual body clause separately from the language
+-of neighboring form UI. If both body clauses are in the SAME language and state
+-the same purposes and conditions, their synonyms and paraphrases are covered.
+-Different wording within one language is not two body-language versions and is
+-not an independent linguistic loss. Use semantically_covered, not substantive
+-language retention, for those same-language paraphrases.
++FUNCTIONAL LOCALIZATION
++Apply the interface-role exception BEFORE testing for a linguistic body loss.
++A routine form heading, label or message about dispatching a password-setting
++link is form UI when the actual steps, channel, trigger and conditions match.
++This remains true for a complete grammatical sentence; localization into another
++language does not by itself make the form instruction a substantive body version.
++Do not use its different-language wording as a retained loss under this policy.
+@@ -67,10 +67,9 @@
+-Then compare the changed form instruction by function. Equivalent localized
+-headings and routine password-setting-link instructions are harmless when the
+-actual steps, channel, trigger and conditions match, even as full sentences.
+-One localized form sentence does not change the language of the body beside it.
+-Changed actual procedures, account capabilities, privacy purposes or conditions
+-remain useful. Coherent substantive body prose in DIFFERENT languages remains
+-protected even when faithfully translated, including short real factual notices.
+-An email or endpoint used to submit, pay or perform an account action must itself
+-be covered: two city-specific submission addresses are different destinations,
+-not harmless location labels. Compare both whole texts in each direction.
++For the remaining substantive body clauses, determine their actual languages.
++Same-language wording with the same purposes and conditions is covered paraphrase.
++Only genuinely different-language BODY material outside the interface exception
++receives linguistic retention. A neighboring form sentence does not change the
++body's language. Preserve coherent factual body translations, including short
++real notices. Changed procedures, capabilities, privacy purposes or conditions
++remain useful even when displayed in an interface. An actual submission, payment
++or account-action address must itself be covered; a different real destination
++is never a harmless city slot.
+--- candidate-03/critics/coverage_system.jinja
++++ candidate-04/critics/coverage_system.jinja
+@@ -18,14 +18,16 @@
+-- Determine the language of each actual body clause separately from the language
+-  of neighboring form UI. If both body clauses are in the SAME language and state
+-  the same purposes and conditions, their synonyms and paraphrases are covered.
+-  Different wording within one language is not two body-language versions and is
+-  not an independent linguistic loss. Use semantically_covered, not substantive
+-  language retention, for those same-language paraphrases.
+-
+-  Then compare the changed form instruction by function. Equivalent localized
+-  headings and routine password-setting-link instructions are harmless when the
+-  actual steps, channel, trigger and conditions match, even as full sentences.
+-  One localized form sentence does not change the language of the body beside it.
+-  Changed actual procedures, account capabilities, privacy purposes or conditions
+-  remain useful. Coherent substantive body prose in DIFFERENT languages remains
+-  protected even when faithfully translated, including short real factual notices.
++- Apply the interface-role exception BEFORE testing for a linguistic body loss.
++  A routine form heading, label or message about dispatching a password-setting
++  link is form UI when the actual steps, channel, trigger and conditions match.
++  This remains true for a complete grammatical sentence; localization into another
++  language does not by itself make the form instruction a substantive body version.
++  Do not use its different-language wording as a retained loss under this policy.
++
++  For the remaining substantive body clauses, determine their actual languages.
++  Same-language wording with the same purposes and conditions is covered paraphrase.
++  Only genuinely different-language BODY material outside the interface exception
++  receives linguistic retention. A neighboring form sentence does not change the
++  body's language. Preserve coherent factual body translations, including short
++  real notices. Changed procedures, capabilities, privacy purposes or conditions
++  remain useful even when displayed in an interface. An actual submission, payment
++  or account-action address must itself be covered; a different real destination
++  is never a harmless city slot.
+@@ -179,2 +181 @@
+-   prose loss ID on EACH side for linguistic material; conflict=NONE. An equivalent localized heading or short authentication
+-   instruction alone is harmless; substantive body prose remains protected.
++   prose loss ID on EACH side for linguistic material; conflict=NONE. An equivalent localized heading or routine authentication-form instructions alone is harmless; substantive body prose remains protected.
+--- candidate-03/critics/subject_pair.jinja
++++ candidate-04/critics/subject_pair.jinja
+@@ -34,7 +34,7 @@
+-LOCALIZATION AND OPERATIONAL COVERAGE
+-Determine the language of each actual body clause separately from the language
+-of neighboring form UI. If both body clauses are in the SAME language and state
+-the same purposes and conditions, their synonyms and paraphrases are covered.
+-Different wording within one language is not two body-language versions and is
+-not an independent linguistic loss. Use semantically_covered, not substantive
+-language retention, for those same-language paraphrases.
++FUNCTIONAL LOCALIZATION
++Apply the interface-role exception BEFORE testing for a linguistic body loss.
++A routine form heading, label or message about dispatching a password-setting
++link is form UI when the actual steps, channel, trigger and conditions match.
++This remains true for a complete grammatical sentence; localization into another
++language does not by itself make the form instruction a substantive body version.
++Do not use its different-language wording as a retained loss under this policy.
+@@ -42,10 +42,9 @@
+-Then compare the changed form instruction by function. Equivalent localized
+-headings and routine password-setting-link instructions are harmless when the
+-actual steps, channel, trigger and conditions match, even as full sentences.
+-One localized form sentence does not change the language of the body beside it.
+-Changed actual procedures, account capabilities, privacy purposes or conditions
+-remain useful. Coherent substantive body prose in DIFFERENT languages remains
+-protected even when faithfully translated, including short real factual notices.
+-An email or endpoint used to submit, pay or perform an account action must itself
+-be covered: two city-specific submission addresses are different destinations,
+-not harmless location labels. Compare both whole texts in each direction.
++For the remaining substantive body clauses, determine their actual languages.
++Same-language wording with the same purposes and conditions is covered paraphrase.
++Only genuinely different-language BODY material outside the interface exception
++receives linguistic retention. A neighboring form sentence does not change the
++body's language. Preserve coherent factual body translations, including short
++real notices. Changed procedures, capabilities, privacy purposes or conditions
++remain useful even when displayed in an interface. An actual submission, payment
++or account-action address must itself be covered; a different real destination
++is never a harmless city slot.
+--- candidate-03/critics/subject_system.jinja
++++ candidate-04/critics/subject_system.jinja
+@@ -18,6 +18,6 @@
+-- Determine the language of each actual body clause separately from the language
+-  of neighboring form UI. If both body clauses are in the SAME language and state
+-  the same purposes and conditions, their synonyms and paraphrases are covered.
+-  Different wording within one language is not two body-language versions and is
+-  not an independent linguistic loss. Use semantically_covered, not substantive
+-  language retention, for those same-language paraphrases.
++- Apply the interface-role exception BEFORE testing for a linguistic body loss.
++  A routine form heading, label or message about dispatching a password-setting
++  link is form UI when the actual steps, channel, trigger and conditions match.
++  This remains true for a complete grammatical sentence; localization into another
++  language does not by itself make the form instruction a substantive body version.
++  Do not use its different-language wording as a retained loss under this policy.
+@@ -25,7 +25,9 @@
+-  Then compare the changed form instruction by function. Equivalent localized
+-  headings and routine password-setting-link instructions are harmless when the
+-  actual steps, channel, trigger and conditions match, even as full sentences.
+-  One localized form sentence does not change the language of the body beside it.
+-  Changed actual procedures, account capabilities, privacy purposes or conditions
+-  remain useful. Coherent substantive body prose in DIFFERENT languages remains
+-  protected even when faithfully translated, including short real factual notices.
++  For the remaining substantive body clauses, determine their actual languages.
++  Same-language wording with the same purposes and conditions is covered paraphrase.
++  Only genuinely different-language BODY material outside the interface exception
++  receives linguistic retention. A neighboring form sentence does not change the
++  body's language. Preserve coherent factual body translations, including short
++  real notices. Changed procedures, capabilities, privacy purposes or conditions
++  remain useful even when displayed in an interface. An actual submission, payment
++  or account-action address must itself be covered; a different real destination
++  is never a harmless city slot.
+--- candidate-03/critics/subject_verifier_pair.jinja
++++ candidate-04/critics/subject_verifier_pair.jinja
+@@ -28,7 +28,7 @@
+-LOCALIZATION AND OPERATIONAL COVERAGE
+-Determine the language of each actual body clause separately from the language
+-of neighboring form UI. If both body clauses are in the SAME language and state
+-the same purposes and conditions, their synonyms and paraphrases are covered.
+-Different wording within one language is not two body-language versions and is
+-not an independent linguistic loss. Use semantically_covered, not substantive
+-language retention, for those same-language paraphrases.
++FUNCTIONAL LOCALIZATION
++Apply the interface-role exception BEFORE testing for a linguistic body loss.
++A routine form heading, label or message about dispatching a password-setting
++link is form UI when the actual steps, channel, trigger and conditions match.
++This remains true for a complete grammatical sentence; localization into another
++language does not by itself make the form instruction a substantive body version.
++Do not use its different-language wording as a retained loss under this policy.
+@@ -36,10 +36,9 @@
+-Then compare the changed form instruction by function. Equivalent localized
+-headings and routine password-setting-link instructions are harmless when the
+-actual steps, channel, trigger and conditions match, even as full sentences.
+-One localized form sentence does not change the language of the body beside it.
+-Changed actual procedures, account capabilities, privacy purposes or conditions
+-remain useful. Coherent substantive body prose in DIFFERENT languages remains
+-protected even when faithfully translated, including short real factual notices.
+-An email or endpoint used to submit, pay or perform an account action must itself
+-be covered: two city-specific submission addresses are different destinations,
+-not harmless location labels. Compare both whole texts in each direction.
++For the remaining substantive body clauses, determine their actual languages.
++Same-language wording with the same purposes and conditions is covered paraphrase.
++Only genuinely different-language BODY material outside the interface exception
++receives linguistic retention. A neighboring form sentence does not change the
++body's language. Preserve coherent factual body translations, including short
++real notices. Changed procedures, capabilities, privacy purposes or conditions
++remain useful even when displayed in an interface. An actual submission, payment
++or account-action address must itself be covered; a different real destination
++is never a harmless city slot.
+--- candidate-03/critics/subject_verifier_system.jinja
++++ candidate-04/critics/subject_verifier_system.jinja
+@@ -18,6 +18,6 @@
+-- Determine the language of each actual body clause separately from the language
+-  of neighboring form UI. If both body clauses are in the SAME language and state
+-  the same purposes and conditions, their synonyms and paraphrases are covered.
+-  Different wording within one language is not two body-language versions and is
+-  not an independent linguistic loss. Use semantically_covered, not substantive
+-  language retention, for those same-language paraphrases.
++- Apply the interface-role exception BEFORE testing for a linguistic body loss.
++  A routine form heading, label or message about dispatching a password-setting
++  link is form UI when the actual steps, channel, trigger and conditions match.
++  This remains true for a complete grammatical sentence; localization into another
++  language does not by itself make the form instruction a substantive body version.
++  Do not use its different-language wording as a retained loss under this policy.
+@@ -25,7 +25,9 @@
+-  Then compare the changed form instruction by function. Equivalent localized
+-  headings and routine password-setting-link instructions are harmless when the
+-  actual steps, channel, trigger and conditions match, even as full sentences.
+-  One localized form sentence does not change the language of the body beside it.
+-  Changed actual procedures, account capabilities, privacy purposes or conditions
+-  remain useful. Coherent substantive body prose in DIFFERENT languages remains
+-  protected even when faithfully translated, including short real factual notices.
++  For the remaining substantive body clauses, determine their actual languages.
++  Same-language wording with the same purposes and conditions is covered paraphrase.
++  Only genuinely different-language BODY material outside the interface exception
++  receives linguistic retention. A neighboring form sentence does not change the
++  body's language. Preserve coherent factual body translations, including short
++  real notices. Changed procedures, capabilities, privacy purposes or conditions
++  remain useful even when displayed in an interface. An actual submission, payment
++  or account-action address must itself be covered; a different real destination
++  is never a harmless city slot.
+--- candidate-03/judge_config/fuzzy_pair_judge.yaml
++++ candidate-04/judge_config/fuzzy_pair_judge.yaml
+@@ -91 +91 @@
+-              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
++              description: Classify all A### spans together and cite decisive A### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained A-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Exclude equivalent routine authentication-form messages before testing linguistic body loss; a complete sentence about the same password-link dispatch remains form UI. Then compare actual body clauses. Same-language paraphrases with identical purposes and conditions are covered. Protect different-language substantive body prose outside this interface exception, and actual changes to procedures, capabilities, purposes or conditions.
+@@ -94 +94 @@
+-                semantically_covered: A-only factual meaning is covered by B through paraphrase or translation; substantive different-language body material still requires retention, while equivalent localized headings and short authentication-interface instructions are harmless.
++                semantically_covered: A-only factual meaning is covered by B through paraphrase or translation; substantive different-language body material still requires retention, while equivalent localized headings and routine authentication-form instructions are harmless.
+@@ -102 +102 @@
+-              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
++              description: Classify all B### spans together and cite decisive B### IDs. Choose the most material uncovered class. Filtered subset paths and their resulting counts alone do not defeat complete product-fact coverage; actual price, stock and condition conflicts remain material. Apply conditional generic-cookie framing/repetition and permitted template-slot boundaries before assigning a retained B-only contribution. Actual operational destinations and concrete additional processing details remain material. Identify the actual cited clause language and functional role. Exclude equivalent routine authentication-form messages before testing linguistic body loss; a complete sentence about the same password-link dispatch remains form UI. Then compare actual body clauses. Same-language paraphrases with identical purposes and conditions are covered. Protect different-language substantive body prose outside this interface exception, and actual changes to procedures, capabilities, purposes or conditions.
+@@ -105 +105 @@
+-                semantically_covered: B-only factual meaning is covered by A through paraphrase or translation; substantive different-language body material still requires retention, while equivalent localized headings and short authentication-interface instructions are harmless.
++                semantically_covered: B-only factual meaning is covered by A through paraphrase or translation; substantive different-language body material still requires retention, while equivalent localized headings and routine authentication-form instructions are harmless.
+@@ -124,3 +124,3 @@
+-              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
+-              options:
+-                complete_faithful: Both sides express the same complete factual content in different languages. This does not remove the contribution of distinct-language substantive body prose; equivalent localized headings and short authentication instructions alone are harmless.
++              description: Cite bilateral IDs for complete faithful translation of the same substantive record or equivalent complete non-main message. Equivalent facts do not imply replaceability of distinct-language body prose; language is not an identity conflict. Identify the actual cited clause language and functional role. Exclude equivalent routine authentication-form messages before testing linguistic body loss; a complete sentence about the same password-link dispatch remains form UI. Then compare actual body clauses. Same-language paraphrases with identical purposes and conditions are covered. Protect different-language substantive body prose outside this interface exception, and actual changes to procedures, capabilities, purposes or conditions.
++              options:
++                complete_faithful: Both sides express the same complete factual content in different languages. This does not remove the contribution of distinct-language substantive body prose; equivalent localized headings and routine authentication-form instructions alone are harmless.
+@@ -131 +131 @@
+-              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
++              description: When no, this score's own reasoning MUST start with an existing B### span ID (or bilateral S### explicitly identifying B), followed by its real lost phrase and why A fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs a B substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. A is yes when B loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful B meaning for coverage. Identify the actual cited clause language and functional role. Exclude equivalent routine authentication-form messages before testing linguistic body loss; a complete sentence about the same password-link dispatch remains form UI. Then compare actual body clauses. Same-language paraphrases with identical purposes and conditions are covered. Protect different-language substantive body prose outside this interface exception, and actual changes to procedures, capabilities, purposes or conditions.
+@@ -137 +137 @@
+-              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Same-language privacy/body paraphrases with identical purposes and conditions are semantically covered, not independent linguistic versions. A localized password-link form sentence does not change the language of the neighboring body. Substantive body prose in different languages and changed actual steps, capabilities or privacy conditions remain useful.
++              description: When no, this score's own reasoning MUST start with an existing A### span ID (or bilateral S### explicitly identifying A), followed by its real lost phrase and why B fails to cover it. Evidence only in other ledger fields is insufficient. Language retention also needs an A substantive body span, beyond equivalent localized headings or short authentication UI instructions. Actual submission emails and action destinations must be covered. B is yes when A loses no useful contribution; unchanged service procedure/prices/conditions permit harmless location slots. Truncated/incomplete evidence always requires unresolved. Generic cookie introductions over shared full definitions, covered repetition and permitted template names alone do not justify No; inspect all remaining useful A meaning for coverage. Identify the actual cited clause language and functional role. Exclude equivalent routine authentication-form messages before testing linguistic body loss; a complete sentence about the same password-link dispatch remains form UI. Then compare actual body clauses. Same-language paraphrases with identical purposes and conditions are covered. Protect different-language substantive body prose outside this interface exception, and actual changes to procedures, capabilities, purposes or conditions.
+--- candidate-03/judge_config/pair.jinja
++++ candidate-04/judge_config/pair.jinja
+@@ -75,7 +75,7 @@
+-LOCALIZATION AND OPERATIONAL COVERAGE
+-Determine the language of each actual body clause separately from the language
+-of neighboring form UI. If both body clauses are in the SAME language and state
+-the same purposes and conditions, their synonyms and paraphrases are covered.
+-Different wording within one language is not two body-language versions and is
+-not an independent linguistic loss. Use semantically_covered, not substantive
+-language retention, for those same-language paraphrases.
++FUNCTIONAL LOCALIZATION
++Apply the interface-role exception BEFORE testing for a linguistic body loss.
++A routine form heading, label or message about dispatching a password-setting
++link is form UI when the actual steps, channel, trigger and conditions match.
++This remains true for a complete grammatical sentence; localization into another
++language does not by itself make the form instruction a substantive body version.
++Do not use its different-language wording as a retained loss under this policy.
+@@ -83,10 +83,9 @@
+-Then compare the changed form instruction by function. Equivalent localized
+-headings and routine password-setting-link instructions are harmless when the
+-actual steps, channel, trigger and conditions match, even as full sentences.
+-One localized form sentence does not change the language of the body beside it.
+-Changed actual procedures, account capabilities, privacy purposes or conditions
+-remain useful. Coherent substantive body prose in DIFFERENT languages remains
+-protected even when faithfully translated, including short real factual notices.
+-An email or endpoint used to submit, pay or perform an account action must itself
+-be covered: two city-specific submission addresses are different destinations,
+-not harmless location labels. Compare both whole texts in each direction.
++For the remaining substantive body clauses, determine their actual languages.
++Same-language wording with the same purposes and conditions is covered paraphrase.
++Only genuinely different-language BODY material outside the interface exception
++receives linguistic retention. A neighboring form sentence does not change the
++body's language. Preserve coherent factual body translations, including short
++real notices. Changed procedures, capabilities, privacy purposes or conditions
++remain useful even when displayed in an interface. An actual submission, payment
++or account-action address must itself be covered; a different real destination
++is never a harmless city slot.
+--- candidate-03/judge_config/system.jinja
++++ candidate-04/judge_config/system.jinja
+@@ -21,14 +21,16 @@
+-- Determine the language of each actual body clause separately from the language
+-  of neighboring form UI. If both body clauses are in the SAME language and state
+-  the same purposes and conditions, their synonyms and paraphrases are covered.
+-  Different wording within one language is not two body-language versions and is
+-  not an independent linguistic loss. Use semantically_covered, not substantive
+-  language retention, for those same-language paraphrases.
+-
+-  Then compare the changed form instruction by function. Equivalent localized
+-  headings and routine password-setting-link instructions are harmless when the
+-  actual steps, channel, trigger and conditions match, even as full sentences.
+-  One localized form sentence does not change the language of the body beside it.
+-  Changed actual procedures, account capabilities, privacy purposes or conditions
+-  remain useful. Coherent substantive body prose in DIFFERENT languages remains
+-  protected even when faithfully translated, including short real factual notices.
++- Apply the interface-role exception BEFORE testing for a linguistic body loss.
++  A routine form heading, label or message about dispatching a password-setting
++  link is form UI when the actual steps, channel, trigger and conditions match.
++  This remains true for a complete grammatical sentence; localization into another
++  language does not by itself make the form instruction a substantive body version.
++  Do not use its different-language wording as a retained loss under this policy.
++
++  For the remaining substantive body clauses, determine their actual languages.
++  Same-language wording with the same purposes and conditions is covered paraphrase.
++  Only genuinely different-language BODY material outside the interface exception
++  receives linguistic retention. A neighboring form sentence does not change the
++  body's language. Preserve coherent factual body translations, including short
++  real notices. Changed procedures, capabilities, privacy purposes or conditions
++  remain useful even when displayed in an interface. An actual submission, payment
++  or account-action address must itself be covered; a different real destination
++  is never a harmless city slot.
+@@ -168 +170 @@
+-  localized headings and short authentication-interface instructions: no/no,
++  localized headings and routine authentication-form instructions: no/no,
