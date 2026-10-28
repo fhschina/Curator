@@ -270,6 +270,7 @@ def test_actual_main_judge_treats_embedded_instructions_as_document_data():
     config_path = Path(__file__).parents[4] / "tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml"
     config = yaml.safe_load(config_path.read_text())
     config["models"][0]["served_model_name"] = "Qwen/Qwen3.8-27B-FP8"
+    config["models"][0]["inference_parameters"]["max_parallel_requests"] = 8
     builder, providers = build_config_builder(
         config_path,
         endpoint=endpoint,

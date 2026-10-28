@@ -237,7 +237,19 @@ def test_live_native_structured_generation_and_skip(tmp_path: Path):
     try:
         builder = dd.DataDesignerConfigBuilder(
             model_configs=[
-                dd.ModelConfig(alias="judge", model="Qwen/Qwen3.8-27B-FP8", provider="local", skip_health_check=True)
+                dd.ModelConfig(
+                    alias="judge",
+                    model="Qwen/Qwen3.8-27B-FP8",
+                    provider="local",
+                    skip_health_check=True,
+                    inference_parameters=dd.ChatCompletionInferenceParams(
+                        temperature=0.2,
+                        max_tokens=6144,
+                        timeout=600,
+                        max_parallel_requests=8,
+                        extra_body={"chat_template_kwargs": {"enable_thinking": False}},
+                    ),
+                )
             ]
         )
         builder.add_column(

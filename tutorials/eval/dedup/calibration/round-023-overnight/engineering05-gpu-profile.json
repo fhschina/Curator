@@ -1,0 +1,14 @@
+{
+  "created": 1793164182.6792326,
+  "change": "Pin registered single-GPU boundary checks to fixed6144tokens,temp0.2,timeout600,maxparallel8,thinkingdisabled; do not start a test-owned model service",
+  "test_source_sha256": {
+    "tests/tutorials/eval/dedup/test_policy_runtime.py": "8dbbc34f56363e62bc3ff3e864ff11e8ae682e834055df478afaf4c2fab8aad5",
+    "tests/tutorials/eval/dedup/test_policy_eval.py": "55a328107510cf8b77cac812ec4d72f5f6cee26579614d14e1f9f621d10c342f",
+    "tests/tutorials/eval/dedup/critics/test_subject.py": "824b76e7d3759ccdc177c7932fe24ebb4fe3a14a079b6d584f7aeeb08ab5244d"
+  },
+  "excluded": "eight_replica",
+  "scope": "Existing caller-owned single B200 service. confcutdir avoids the unrelated root autouse Ray fixture that can declare2GPUs. These direct native DataDesigner checks do not require Ray.",
+  "gpu_status": "QUEUED_NOT_COMPLETED",
+  "gpu_receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate03-single-gpu-checks-receipt.json",
+  "formal_evaluation_model_parameters_unchanged": true
+}
