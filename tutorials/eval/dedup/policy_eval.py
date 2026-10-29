@@ -819,7 +819,8 @@ def run_config(root: Path, variant: str, run_dir: Path, replicas: int) -> Path:
     model["dynamo_model"]["engine_kwargs"].update(
         tensor_parallel_size=1, max_model_len=32768, max_num_seqs=8, gpu_memory_utilization=0.8
     )
-    model["inference_parameters"].update(temperature=0.2, max_tokens=6144, timeout=600, max_parallel_requests=8)
+    model["inference_parameters"].setdefault("max_tokens", 6144)
+    model["inference_parameters"].update(temperature=0.2, timeout=600, max_parallel_requests=8)
     config["execution"]["stages"][0]["num_workers"] = replicas
     for stage in config["execution"]["stages"]:
         for judge in stage["judges"]:

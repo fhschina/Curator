@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 import copy
 import os
+import shutil
 from pathlib import Path
 
 import pytest
@@ -15,6 +16,7 @@ from policy_eval import (
     exact_index,
     metrics,
     review_page,
+    run_config,
     stage_effects,
     verify_files,
     write_json,
@@ -50,6 +52,26 @@ def test_duplicate_or_missing_output_ids_are_fatal():
         exact_index([{"pair_id": "a"}, {"pair_id": "a"}])
     with pytest.raises(ValueError, match="mismatch"):
         exact_index([{"pair_id": "a"}], {"a", "b"})
+
+
+@pytest.mark.parametrize("output_budget", [6144, 12288])
+def test_native_run_config_preserves_frozen_output_budget(tmp_path: Path, output_budget: int):
+    source = Path(__file__).parents[4] / "tutorials/eval/dedup/judge_config"
+    frozen = tmp_path / "variants/candidate/judge_config"
+    shutil.copytree(source, frozen)
+    config_file = frozen / "fuzzy_pair_judge.yaml"
+    config = yaml.safe_load(config_file.read_text())
+    config["models"][0]["inference_parameters"]["max_tokens"] = output_budget
+    config_file.write_text(yaml.safe_dump(config, sort_keys=False))
+    original = config_file.read_bytes()
+    run_dir = tmp_path / "runs/test"
+    run_dir.mkdir(parents=True)
+
+    generated = yaml.safe_load(run_config(tmp_path, "candidate", run_dir, 1).read_text())
+
+    assert generated["models"][0]["inference_parameters"]["max_tokens"] == output_budget
+    assert config_file.read_bytes() == original
+    assert Path(generated["execution"]["stages"][0]["judges"][0]["prompt_path"]).is_file()
 
 
 def test_invalid_critic_cannot_count_as_a_passing_case():
