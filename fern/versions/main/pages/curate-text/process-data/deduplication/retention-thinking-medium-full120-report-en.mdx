@@ -1,0 +1,135 @@
+---
+title: "Qwen medium thinking — full personal120 comparison"
+---
+
+## Conclusion
+
+Medium thinking produced 413/480 (86.04%) correct directions and 195/240 (81.25%) correct whole pairs. The fresh OFF control produced 402/480 (83.75%) and 190/240 (79.17%). All invalid and unresolved judgments stay in the fixed denominators with zero credit.
+
+Medium had 3 invalid personal-reference judgments and 0 length-limited calls. It used 3.12 times the native run time and 4.15 times the completion tokens of OFF.
+
+Medium improves both final metrics in both paired repetitions, and aggregate invalid judgments fall from 5 to 3. The first repetition adds 1 invalid judgment, so the frozen per-repeat advance rule is not met; the 90/85 target is also unmet. This diagnostic ends here; retain medium as an unaccepted candidate and report it alongside the OFF baseline. This is a two-repeat development diagnostic, not the original three-repeat acceptance or independent human accuracy. The policy and default OFF setting remain unchanged.
+
+In the primary ON arm, main produced 419/480 correct directions and final produced 413/480. Raw wrong blocks changed from 42 to 56; invalid pairs changed from 2 to 3. These layer snapshots separate the main judgment from changes introduced by later checks.
+
+## Frozen method
+
+| Setting / 设置 | Value / 值 |
+| --- | --- |
+| Model / 模型 | Qwen/Qwen3.8-27B-FP8 |
+| Policy / 政策 | Unchanged best C0; 8 Jinja files / 最佳C0的8个Jinja文件未改 |
+| Inputs and score / 输入与计分 | 150 native inputs; fixed personal120 = 120 pairs / 150原生输入，固定120对个人参考 |
+| Primary repeats / 主要重复 | 2 per arm / 每组2轮 |
+| Order / 顺序 | off1 → on1 → on2 → off2 |
+| Fixed primary denominator per arm / 每组主要固定分母 | 480 directions, 240 pairs / 480方向、240整对 |
+| Completion budget / 输出预算 | 12288 including reasoning / 含推理 |
+| Context / 上下文 | 32768 |
+| Temperature / 温度 | 0.2 |
+| Concurrency / 并发 | 8 |
+| Timeout seconds / 超时秒 | 600 |
+| Native thinking effort / 原生推理强度 | explicit medium when enabled / 开启时显式medium |
+| Common reasoning parser / 共同推理解析器 | qwen3 |
+| GPU / 显卡 | 1 B200, TP1 |
+| Allocated GPU hours, entire task / 全任务含启动空闲GPU小时 | 0.9916 |
+| Actual CPU checks / 实际CPU检查 | 37 passed / 37项通过 |
+| Actual native tokenizations / 实际原生分词检查 | 1996 |
+| Excluded activation calls / 不计分激活调用 | 2 |
+| Native execution commit / 原生执行提交 | db00d1f6669270a39df4faad7b20c06c3fdd3489 |
+
+## Full reference quality and stability
+
+| Arm / 模式 | Layer / 层 | Correct D / 方向 | D agreement / 方向一致率 | Correct P / 整对 | P agreement / 整对一致率 | Valid / 有效 | Invalid / 无效 | Unresolved / 未决 | Raw wrong allows / 原始错误允许 | Raw wrong blocks / 原始误阻止 | Repeat changes / 重复变化 | Worst D / 最差方向 | Worst P / 最差整对 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| thinking-off | main | 407/480 | 84.79% | 194/240 | 80.83% | 235 | 5 | 0 | 14 | 51 | 15 | 84.58% | 80.83% |
+| thinking-off | coverage | 402/480 | 83.75% | 190/240 | 79.17% | 235 | 5 | 0 | 11 | 59 | 14 | 83.75% | 79.17% |
+| thinking-off | final | 402/480 | 83.75% | 190/240 | 79.17% | 235 | 5 | 0 | 11 | 59 | 14 | 83.75% | 79.17% |
+| thinking-on | main | 419/480 | 87.29% | 198/240 | 82.50% | 238 | 2 | 0 | 16 | 42 | 11 | 86.67% | 81.67% |
+| thinking-on | coverage | 413/480 | 86.04% | 195/240 | 81.25% | 237 | 3 | 0 | 9 | 56 | 10 | 85.00% | 80.00% |
+| thinking-on | final | 413/480 | 86.04% | 195/240 | 81.25% | 237 | 3 | 0 | 9 | 56 | 10 | 85.00% | 80.00% |
+
+| Arm / 模式 | Repeat / 轮次 | Final D / 最终方向 | D agreement / 方向一致率 | Final P / 最终整对 | P agreement / 整对一致率 | Invalid / 无效 | Unresolved / 未决 | All-input final / 全输入最终状态 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| thinking-off | 1 | 201/240 | 83.75% | 95/120 | 79.17% | 1 | 0 | invalid=2; unresolved=4; valid=144 |
+| thinking-off | 2 | 201/240 | 83.75% | 95/120 | 79.17% | 4 | 0 | invalid=4; unresolved=5; valid=141 |
+| thinking-on | 1 | 209/240 | 87.08% | 99/120 | 82.50% | 2 | 0 | invalid=3; unresolved=4; valid=143 |
+| thinking-on | 2 | 204/240 | 85.00% | 96/120 | 80.00% | 1 | 0 | invalid=2; unresolved=4; valid=144 |
+
+| Layer / 层 | D gained / 修复方向 | D lost / 退步方向 | P fixed / 修复整对 | P regressed / 退步整对 |
+| --- | --- | --- | --- | --- |
+| main | 36 | 24 | 21 | 17 |
+| coverage | 31 | 20 | 18 | 13 |
+| final | 31 | 20 | 18 | 13 |
+
+| Arm / 模式 | Layer / 层 | Consensus D / 共识方向 | Consensus P / 共识整对 | Invalid / 无效 | Raw wrong allows / 原始错误允许 |
+| --- | --- | --- | --- | --- | --- |
+| thinking-off | main | 24/24 | 12/12 | 0 | 0 |
+| thinking-off | coverage | 24/24 | 12/12 | 0 | 0 |
+| thinking-off | final | 24/24 | 12/12 | 0 | 0 |
+| thinking-on | main | 24/24 | 12/12 | 0 | 0 |
+| thinking-on | coverage | 24/24 | 12/12 | 0 | 0 |
+| thinking-on | final | 24/24 | 12/12 | 0 | 0 |
+
+## Validity and conditional acceptance
+
+| Arm / 模式 | Frozen stratum / 冻结分层 | Observations / 观察数 | Final validation / 最终有效性 |
+| --- | --- | --- | --- |
+| thinking-off | personal120 | 240 | invalid=5; valid=235 |
+| thinking-off | real_consensus6 | 12 | valid=12 |
+| thinking-off | discussion18 | 36 | valid=36 |
+| thinking-off | truncated5 | 10 | invalid=1; unresolved=9 |
+| thinking-off | pending_D121 | 2 | valid=2 |
+| thinking-on | personal120 | 240 | invalid=3; valid=237 |
+| thinking-on | real_consensus6 | 12 | valid=12 |
+| thinking-on | discussion18 | 36 | valid=36 |
+| thinking-on | truncated5 | 10 | invalid=2; unresolved=8 |
+| thinking-on | pending_D121 | 2 | valid=2 |
+
+| Arm / 模式 | All-input validation issue / 全输入校验问题 | Occurrences / 次数 |
+| --- | --- | --- |
+| thinking-off | CONCLUSIVE_INCOMPLETE_EVIDENCE | 1 |
+| thinking-off | CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage | 1 |
+| thinking-off | CONCLUSIVE_INCOMPLETE_EVIDENCE:main | 1 |
+| thinking-off | MAIN_ATTEMPT_PARSE_ERROR | 2 |
+| thinking-off | MAIN_LEDGER_CONTRADICTION:a_can_replace_b:covered_removed_side | 2 |
+| thinking-off | MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side | 2 |
+| thinking-on | COVERAGE_UNVALIDATED | 1 |
+| thinking-on | INVALID_DECISION:coverage | 1 |
+| thinking-on | INVALID_DECISION:final | 1 |
+| thinking-on | INVALID_DECISION:main | 1 |
+| thinking-on | MAIN_ATTEMPT_PARSE_ERROR | 3 |
+
+| Requirement / 条件 | Status / 状态 |
+| --- | --- |
+| Two-repeat target, provisional / 两轮目标，仅初步 | FAIL |
+| original_three_repeat_personal120_target | NOT_COMPLETED |
+| hard86_all_layers_all_three_repeats | NOT_COMPLETED |
+| full150_fixed_baseline_and_start_three_repeats | NOT_COMPLETED |
+| all_three_policies_full100_three_repeats | NOT_COMPLETED |
+| candidate_all150_and100_technical_validity | NOT_COMPLETED |
+| development99_original_nonregression | NOT_COMPLETED |
+| development99_reviewed_nonregression | NOT_COMPLETED |
+| development97_strict_nonregression | NOT_COMPLETED |
+| Original development acceptance / 原冻结开发验收 | ACCEPTANCE_NOT_COMPLETED |
+| Independent human acceptance / 独立人工验收 | NOT_AVAILABLE_NO_NEW_INDEPENDENT_LABELS |
+
+| Profile / 配置 | Panel / 材料 | Repeat / 轮次 | Status / 状态 | Role / 用途 |
+| --- | --- | --- | --- | --- |
+
+## Actual cost and limitations
+
+| Arm / 模式 | Requests / 请求 | Additional attempts / 额外尝试 | Run seconds / 运行秒 | Median latency / 中位秒 | P90 latency / P90延迟秒 | Completion tokens / 输出token | Reasoning calls / 推理请求 | Empty final / 最终为空 | Finish reasons / 结束原因 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| thinking-off | 622 | 3 | 813.49 | 5.24 | 15.35 | 372136 | 0 | 0 | stop=622 |
+| thinking-on | 633 | 7 | 2538.52 | 26.49 | 52.17 | 1545515 | 633 | 0 | stop=633 |
+
+| Cost scope / 开销范围 | Value / 值 |
+| --- | --- |
+| requests | 1255 |
+| primary_requests | 1255 |
+| conditional_requests | 0 |
+| completion_tokens | 1917651 |
+| finish_reasons | stop=1255 |
+| activation_probes_excluded | 2 |
+| tokenizations_excluded | True |
+
+These are exposed development references, including previously reviewed cases. Agreement does not establish independent human accuracy or corpus deletion risk. The earlier small diagnostic used selected reviewed cases and controls with swapped presentations; it was not a representative sample of this full reference set. Repetitions share the same cases; observations are dependent and no statistical significance is claimed. The primary comparison uses every original repetition with fixed denominators; invalid and unresolved judgments receive zero credit. Under the frozen native audit, incomplete original attempts remain validation issues even when an automatic restart later returns content. Raw direction errors may overlap invalid observations and must not be added to invalid counts. This bounded medium diagnostic schedules no conditional formal jobs and does not promote the default. The prior xhigh result is historical context, not a fresh third control arm. Discussion, truncated and pending strata have validity counts, without invented reference accuracy. Additional attempts are requests after the first per original repetition, pair, stage and judge system prompt; coverage and subject judges are distinct. Native run wall time includes pipeline overhead; allocated GPU time covers the entire owned service lifecycle. Activation and tokenization checks are excluded from scored-flow inference costs. The unchanged native Data Designer execution, strict validators, evidence window and critic permissions apply to both arms. Raw source text, full HTTP records and private reasoning remain in the external evidence session. The owned model and task workers have been released.

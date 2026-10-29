@@ -294,6 +294,12 @@ navigation:
                   - page: Qwen Thinking 完整Personal120对照
                     path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-full120-report-zh.mdx
                     slug: retention-thinking-full120-report-zh
+                  - page: Qwen Medium Thinking Full Personal120 Comparison
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-medium-full120-report-en.mdx
+                    slug: retention-thinking-medium-full120-report
+                  - page: Qwen Medium推理 完整Personal120对照
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-medium-full120-report-zh.mdx
+                    slug: retention-thinking-medium-full120-report-zh
               - section: Language Management
                 slug: language-management
                 contents:

@@ -1,0 +1,15 @@
+{
+  "status": "TWO_REPEAT_85_80_NOT_ORIGINAL_THREE_REPEAT_CONFIRMATION",
+  "recorded": 1793296002.8777103,
+  "correct_directions": 413,
+  "directions": 480,
+  "correct_pairs": 195,
+  "pairs": 240,
+  "target90_85_met": false,
+  "original_three_repeat_confirmed": false,
+  "formal_acceptance_passed": false,
+  "actual_original_medium_slots": [
+    1,
+    2
+  ]
+}

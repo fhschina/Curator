@@ -1,0 +1,169 @@
+{
+  "run_id": "eb27f68591dc4c2f868f6cc43a8c7c3f",
+  "variant": "candidate",
+  "panel": "diagnostic",
+  "repeat": 1,
+  "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+  "environment": {
+    "curator_source": "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/nemo_curator/__init__.py",
+    "data_designer": "0.9.1",
+    "data_designer_source": "/raid/hfang/llm_judge_env_pr2324_latest/lib/python3.11/site-packages/data_designer/config/__init__.py",
+    "pid": 507014
+  },
+  "experiment_manifest_sha256": "ad03387c541631bca06965320317bcf6e83ee084268cf5bccefee49dbea51494",
+  "judge_config_sha256": "3c71ca3efd9b47d1fe411aca108422c06eb1e8c0a3e3f7fca0de618ced21008f",
+  "code_files": {
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/5_run_llm_judge.py": "4631374d6bddadb1b061366436847a4166bdf879de9bf8a2b039c9beaffdf7eb",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/2_run_fuzzy_dedup.py": "2871dd763829e9984f334b05c95b6a81c5211738472d7259100d5ea1b3b42bfb",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/policy_tuning.py": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/policy_cases.py": "4b3f3f34d5b706f9bb59c2fac991ea78ecc5ca60cde049c85f2d159e36e47ee2",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/policy_sampling.py": "a3e8e3903867ce14bda92c887bcea7c9c37a82ded09d1cffafb0fae0badb048c",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/1_data_prep.py": "e4e28bff3e97cc905b64127072de081c9ce9411419aac6aa22abfb5eea7bd922",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/policy_runtime.py": "708e0675dfdeb42c5bcd05c4bc9987225961a0f4fd9cf6b7843f30d8f3b34f03",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/policy_deciffusion.py": "85dce9cfc5527ebd656bee3191063ed9c0b8add98ae780f95c7dc63ce9a9dff5",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/6_run_critics.py": "749e2091013aef3205f457dba2beb27a978eb9be0bc6dded7b0af838c1b834ec",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/7_analyze_results.py": "0683c9f6c2cd44c5d6c7ce7a6452b286edbafb6b397c204d51c7d94f40ab6a03",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/3_build_pair_dataset.py": "df00c55a3602e4e2ad6eecb713fbcfa8630ca032f398f32861083ba91514460f",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/policy_eval.py": "b5be73d59d43ed1df3506fdbfaff4b892b9635e0bad9f7cdd0562bc76b386bbf",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/4_span_alignment.py": "fb40c12b1fe97e9419341ec605c5cc7f27eaeaa94113b69f439ff7c3f2e459fc",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/build_pairs/keeper_removed.py": "efd29144d1f5286ac998ed47d5a06dcbb094053e9b1cc1b530e47739f0950071",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/build_pairs/all_pairwise.py": "eb15e8f97080e3d3dcf31adf81b8065f253ae9257190abdf50ffd8187031dd2d",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/build_pairs/utils.py": "2248026fdc93e0d67041bbca87280ae6957baa58ad4f1a03a04627ed5f4e04bb",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/build_pairs/cross_group_sample.py": "965e28b1def2909ba1e396d692b63c4f8a669b8df3d0150166f243dbfc467b60",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/build_pairs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/critics/models.py": "4e85e2a6e201f97f36d185bd227014b18ab398ebd66b1425899ff69140d47fdb",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/critics/stage_utils.py": "9ac12e652a7784d385ab4755232a16548473aa36bb63ef67b289d235da2a4d3f",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/critics/coverage.py": "07086bdebac9ff1ce106b83c5690159075c5ff35b83e7f6ec68c2acc756b086e",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/critics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/critics/subject.py": "678de526378810a939155971bd14f127f88ab2a1321f2337a7f5153daf9935b2",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/critics/spans.py": "ea13bbd89a494f0d99e703185c44f4c186a9b9c8afac4f1028d82bf227cc4135",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/replay_frozen_v3.py": "e97ae761e5eaae1f937debc4f6a9ccba6e797f4965fc7b2db0183cfc86c16d1b",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-04-ledger-completeness/ledger_audit_core.py": "faaf03a016d3ae7467da76e7359c2d49b50c14bf3c0d335151b1829befddb4c7",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-04-ledger-completeness/test_ledger_audit_core.py": "15efdc4e08fb80f2cfd22f3f614fcf84f5dbb11894a7625daaaf37f658c037f1",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-04-ledger-completeness/compare_strict.py": "d63c5f3c029d2ec0c211b69d6c8e4cbf5509bceda9ce784bea27d4ed19b63fb6",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-03-ledger-audit/ledger_audit_core.py": "1d34ca5e14e6331122202495dadc2ce46bbc430ed817d1bb26234269ddb4304c",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-03-ledger-audit/test_ledger_audit_core.py": "14b0ab25294b5bcc927e82e6995bba9ad9b91522944b0512a2d7de8c8cfa5b10",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-03-ledger-audit/compare_strict.py": "2472e284bfa1de96d063142b90382d2916e02f288d6d3fb19e983fc95c3cb4dc",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/replay_frozen_v4.py": "c8f0ac25bafe725d9c19c98ec9a36485237a73cedfb61b82845debab8ae39b69",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/replay_supplemental_outputs.py": "f143df74b0b1a38a62b0fc0bba13e6ae7359e2cf1e6786affde61d7954daa621",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/replay_restored_evidence.py": "75515126ccc54723baeeb8daf37ed35a4cec3f3dcc3e647fc596742ec960e957",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/replay_location_guard/sitecustomize.py": "7a4e0e09c9b00706c98aeff664dff1f04de319fbd0e131bcb694a85cdf0882c5",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/nemo_curator/eval/llm_judge/workflow.py": "4ed62cd76b51537fdb3d6f8ae153f388b32a792ec0d7f4de71455e5c31c34048",
+    "/raid/hfang/workspaces/Curator-qwen-thinking-medium-full120-12k-20261029/nemo_curator/stages/synthetic/nemo_data_designer/data_designer.py": "4af91f6e4490266f99c7136cc4fde4696a83a368dcc5b8915be23aa982fc8227"
+  },
+  "started": 1793292994.391506,
+  "status": "complete",
+  "git_commit": "db00d1f6669270a39df4faad7b20c06c3fdd3489",
+  "ray_temp_dirs": {
+    "main": "/tmp/rp-b4dd0737",
+    "critics": "/tmp/rp-c01677ea"
+  },
+  "label_source": "human",
+  "labels_sha256": null,
+  "inference_endpoint": "http://127.0.0.1:18828/v1",
+  "serving_container": {
+    "container_id": "6922008aa3f17187257268407f3619559d62916944cbe58110acab5fcd351312",
+    "image_id": "sha256:3d8ebe07d1b64ceab33030e09a9076e77754d3ed70a19fb0c36b0168d6b94d6f",
+    "image": "ghcr.io/pst2154/nemotron-deciffusion@sha256:494aac2d7af43b7a70234792623a510bf29045a45b3aa893bc3170108ded9cea",
+    "entrypoint": [
+      "vllm"
+    ],
+    "command": [
+      "serve",
+      "/qwen",
+      "--served-model-name",
+      "Qwen/Qwen3.8-27B-FP8",
+      "--tensor-parallel-size",
+      "1",
+      "--dtype",
+      "auto",
+      "--quantization",
+      "fp8",
+      "--max-model-len",
+      "32768",
+      "--max-num-seqs",
+      "8",
+      "--gpu-memory-utilization",
+      "0.8",
+      "--enable-prefix-caching",
+      "--reasoning-parser",
+      "qwen3",
+      "--host",
+      "0.0.0.0",
+      "--port",
+      "8000",
+      "--trust-remote-code"
+    ],
+    "mounts": [
+      {
+        "Type": "bind",
+        "Source": "/raid/hfang/retention_policy_eval/v1/experiments/round-028-thinking-medium-full120-12k-20261029T165239Z/service-cache",
+        "Destination": "/cache",
+        "Mode": "",
+        "RW": true,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/raid/hfang/hf_cache/Qwen3.8-27B-FP8",
+        "Destination": "/qwen",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "devices": [
+      {
+        "Driver": "",
+        "Count": 0,
+        "DeviceIDs": [
+          "0"
+        ],
+        "Capabilities": [
+          [
+            "gpu"
+          ]
+        ],
+        "Options": {}
+      }
+    ],
+    "ports": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "18828"
+      }
+    ],
+    "endpoint": "http://127.0.0.1:18828/v1",
+    "models": [
+      {
+        "id": "Qwen/Qwen3.8-27B-FP8",
+        "object": "model",
+        "created": 1793292994,
+        "owned_by": "vllm",
+        "root": "/qwen",
+        "parent": null,
+        "max_model_len": 32768,
+        "permission": [
+          {
+            "id": "modelperm-92cd8c2b8abc054e",
+            "object": "model_permission",
+            "created": 1793292994,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "input_dispatch_files": {
+    "/raid/hfang/retention_policy_eval/v1/experiments/round-028-thinking-medium-full120-12k-20261029T165239Z/thinking-off/panels/diagnostic/input.jsonl": "3e961946ccfe463423626a488e2356c0232d3ac6981239e098cda2d2f02dfe05"
+  },
+  "completed": 1793293394.9642591
+}

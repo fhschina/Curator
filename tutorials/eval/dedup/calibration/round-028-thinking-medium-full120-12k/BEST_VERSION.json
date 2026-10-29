@@ -1,0 +1,16 @@
+{
+  "policy": "Unchanged C0, eight Jinja files",
+  "delivered_default": "thinking-off",
+  "metric_best_current_arm": "thinking-on",
+  "formal_acceptance_passed": false,
+  "historical_best_artifacts_preserved": true,
+  "two_repeat_milestone_85_80": "PASS_PROVISIONAL_NOT_THREE_REPEAT_CONFIRMATION",
+  "two_repeat_target_90_85": "FAIL",
+  "medium_counts": {
+    "correct_directions": 413,
+    "directions": 480,
+    "correct_pairs": 195,
+    "pairs": 240
+  },
+  "default_promoted": false
+}

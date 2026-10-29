@@ -1,0 +1,360 @@
+{
+  "recorded": 1793292812.913167,
+  "revision_marker": {
+    "model_id": "Qwen/Qwen3.8-27B-FP8",
+    "provisioned_at_utc": "2026-08-27T22:09:44.205071+00:00",
+    "resolved_path": "/raid/hfang/hf_cache/Qwen3.8-27B-FP8",
+    "revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+    "schema_version": "hosting-model-provision-v1"
+  },
+  "small_file_hashes": {
+    "merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+    "README.md": "a247d876f5398eed9ae898f32a984083552de57237b5e20714657e1675e26d2e",
+    "tokenizer.json": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+    ".hosting-benchmark-revision.json": "e805d6d7cf4b77411e2f1716aed3887c4413dcf7118d7e9510ada4d1e0fb8ea7",
+    "chat_template.jinja": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+    "safetensors-md5sum.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "crc32.txt": "5ccb0f7436ae756484561fe915780509845f903ea1780dbe9b0a3a7a0dd095ac",
+    "generation_config.json": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e",
+    "tokenizer_config.json": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27",
+    "model.safetensors.index.json": "f0838c766951bdfe76d6afbdb2771a8f67aaa2231dedb3d33cebd817729843a2",
+    "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "config.json": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc",
+    "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+    "LICENSE": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+    ".gitattributes": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+    "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+  },
+  "weight_files": {
+    "layers-17.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868561684830743,
+      "inode": 256872311
+    },
+    "layers-25.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868564692600558,
+      "inode": 256872338
+    },
+    "mtp.safetensors": {
+      "size": 477202224,
+      "mtime_ns": 1787868581065347553,
+      "inode": 256872484
+    },
+    "layers-11.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868560379930607,
+      "inode": 256872300
+    },
+    "layers-9.safetensors": {
+      "size": 383865448,
+      "mtime_ns": 1787868579615458513,
+      "inode": 256872473
+    },
+    "layers-16.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868561876816050,
+      "inode": 256872310
+    },
+    "layers-62.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868578231564422,
+      "inode": 256872461
+    },
+    "layers-30.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868566605454168,
+      "inode": 256872356
+    },
+    "layers-33.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868567835360043,
+      "inode": 256872365
+    },
+    "layers-48.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868573995888578,
+      "inode": 256872413
+    },
+    "layers-55.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868576031732775,
+      "inode": 256872437
+    },
+    "layers-34.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868568479310762,
+      "inode": 256872371
+    },
+    "layers-60.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868578001582023,
+      "inode": 256872455
+    },
+    "layers-8.safetensors": {
+      "size": 383865448,
+      "mtime_ns": 1787868579610458896,
+      "inode": 256872470
+    },
+    "layers-63.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868578865515906,
+      "inode": 256872466
+    },
+    "layers-19.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868562203791027,
+      "inode": 256872317
+    },
+    "layers-2.safetensors": {
+      "size": 383865448,
+      "mtime_ns": 1787868562297783834,
+      "inode": 256872320
+    },
+    "layers-45.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868572263021195,
+      "inode": 256872404
+    },
+    "outside.safetensors": {
+      "size": 6007102112,
+      "mtime_ns": 1787868584174109640,
+      "inode": 256872485
+    },
+    "layers-10.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868560087952952,
+      "inode": 256872298
+    },
+    "layers-52.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868574658837843,
+      "inode": 256872430
+    },
+    "layers-24.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868564256633923,
+      "inode": 256872335
+    },
+    "layers-14.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868559418004223,
+      "inode": 256872301
+    },
+    "layers-44.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868571978043004,
+      "inode": 256872403
+    },
+    "layers-49.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868573407933575,
+      "inode": 256872416
+    },
+    "layers-61.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868578731526160,
+      "inode": 256872460
+    },
+    "layers-56.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868576435701860,
+      "inode": 256872440
+    },
+    "layers-51.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868574369859958,
+      "inode": 256872425
+    },
+    "layers-38.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868569382241661,
+      "inode": 256872380
+    },
+    "layers-39.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868569511231789,
+      "inode": 256872383
+    },
+    "layers-5.safetensors": {
+      "size": 383865448,
+      "mtime_ns": 1787868574246869371,
+      "inode": 256872421
+    },
+    "layers-43.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868571467082108,
+      "inode": 256872398
+    },
+    "layers-12.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868559225018992,
+      "inode": 256872297
+    },
+    "layers-42.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868571407086699,
+      "inode": 256872395
+    },
+    "layers-23.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868563577685883,
+      "inode": 256872332
+    },
+    "layers-57.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868576474698875,
+      "inode": 256872443
+    },
+    "layers-36.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868568750290024,
+      "inode": 256872376
+    },
+    "layers-35.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868568837283366,
+      "inode": 256872370
+    },
+    "layers-18.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868562334781002,
+      "inode": 256872316
+    },
+    "layers-15.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868560384930224,
+      "inode": 256872305
+    },
+    "layers-6.safetensors": {
+      "size": 383865448,
+      "mtime_ns": 1787868577729602837,
+      "inode": 256872452
+    },
+    "layers-7.safetensors": {
+      "size": 372313744,
+      "mtime_ns": 1787868578746525012,
+      "inode": 256872467
+    },
+    "layers-27.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868565900508117,
+      "inode": 256872344
+    },
+    "layers-13.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868559674984556,
+      "inode": 256872299
+    },
+    "layers-0.safetensors": {
+      "size": 383865448,
+      "mtime_ns": 1787868559203020676,
+      "inode": 256872281
+    },
+    "layers-47.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868572326016374,
+      "inode": 256872410
+    },
+    "layers-59.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868577113649976,
+      "inode": 256872449
+    },
+    "layers-28.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868565889508959,
+      "inode": 256872347
+    },
+    "layers-26.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868564927582575,
+      "inode": 256872343
+    },
+    "layers-22.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868563443696137,
+      "inode": 256872329
+    },
+    "layers-41.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868570985118992,
+      "inode": 256872392
+    },
+    "layers-3.safetensors": {
+      "size": 372313744,
+      "mtime_ns": 1787868566298477661,
+      "inode": 256872355
+    },
+    "layers-4.safetensors": {
+      "size": 383865448,
+      "mtime_ns": 1787868569687218321,
+      "inode": 256872386
+    },
+    "layers-20.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868563579685730,
+      "inode": 256872323
+    },
+    "layers-32.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868567470387974,
+      "inode": 256872362
+    },
+    "layers-37.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868569318246558,
+      "inode": 256872377
+    },
+    "layers-31.safetensors": {
+      "size": 372313760,
+      "mtime_ns": 1787868566938428685,
+      "inode": 256872359
+    },
+    "layers-40.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868570098186869,
+      "inode": 256872389
+    },
+    "layers-53.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868575951738897,
+      "inode": 256872431
+    },
+    "layers-29.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868566230482864,
+      "inode": 256872354
+    },
+    "layers-46.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868572404010405,
+      "inode": 256872407
+    },
+    "layers-54.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868574515848786,
+      "inode": 256872434
+    },
+    "layers-50.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868574114879472,
+      "inode": 256872422
+    },
+    "layers-1.safetensors": {
+      "size": 383865448,
+      "mtime_ns": 1787868559394006059,
+      "inode": 256872296
+    },
+    "layers-21.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868563225712819,
+      "inode": 256872328
+    },
+    "layers-58.safetensors": {
+      "size": 383865472,
+      "mtime_ns": 1787868576684682805,
+      "inode": 256872446
+    }
+  }
+}

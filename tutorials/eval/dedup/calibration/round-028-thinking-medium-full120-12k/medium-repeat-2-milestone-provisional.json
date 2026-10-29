@@ -1,0 +1,102 @@
+{
+  "status": "SINGLE_REPEAT_85_80_NOT_CONFIRMED",
+  "slot": {
+    "arm": "thinking-on",
+    "panel": "diagnostic",
+    "repeat": 2,
+    "status": "COMPLETE",
+    "started": 1793294706.0404963,
+    "completed": 1793295961.1454213,
+    "groups": {
+      "personal120": {
+        "main": {
+          "pairs": 120,
+          "directions": 240,
+          "correct_directions": 208,
+          "correct_pairs": 98,
+          "direction_agreement": 0.8666666666666667,
+          "pair_agreement": 0.8166666666666667,
+          "reference_wrong_allows": 8,
+          "reference_wrong_blocks": 23,
+          "invalid_pairs": 1,
+          "unresolved_pairs": 0,
+          "valid_pairs": 119,
+          "valid_judgment_coverage": 0.9916666666666667
+        },
+        "coverage": {
+          "pairs": 120,
+          "directions": 240,
+          "correct_directions": 204,
+          "correct_pairs": 96,
+          "direction_agreement": 0.85,
+          "pair_agreement": 0.8,
+          "reference_wrong_allows": 6,
+          "reference_wrong_blocks": 29,
+          "invalid_pairs": 1,
+          "unresolved_pairs": 0,
+          "valid_pairs": 119,
+          "valid_judgment_coverage": 0.9916666666666667
+        },
+        "final": {
+          "pairs": 120,
+          "directions": 240,
+          "correct_directions": 204,
+          "correct_pairs": 96,
+          "direction_agreement": 0.85,
+          "pair_agreement": 0.8,
+          "reference_wrong_allows": 6,
+          "reference_wrong_blocks": 29,
+          "invalid_pairs": 1,
+          "unresolved_pairs": 0,
+          "valid_pairs": 119,
+          "valid_judgment_coverage": 0.9916666666666667
+        }
+      },
+      "real_consensus6": {
+        "main": {
+          "pairs": 6,
+          "directions": 12,
+          "correct_directions": 12,
+          "correct_pairs": 6,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 6,
+          "valid_judgment_coverage": 1.0
+        },
+        "coverage": {
+          "pairs": 6,
+          "directions": 12,
+          "correct_directions": 12,
+          "correct_pairs": 6,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 6,
+          "valid_judgment_coverage": 1.0
+        },
+        "final": {
+          "pairs": 6,
+          "directions": 12,
+          "correct_directions": 12,
+          "correct_pairs": 6,
+          "direction_agreement": 1.0,
+          "pair_agreement": 1.0,
+          "reference_wrong_allows": 0,
+          "reference_wrong_blocks": 0,
+          "invalid_pairs": 0,
+          "unresolved_pairs": 0,
+          "valid_pairs": 6,
+          "valid_judgment_coverage": 1.0
+        }
+      }
+    }
+  },
+  "formal_acceptance_passed": false
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "sections_per_language": 5,
+  "shared_numeric_sequences": true,
+  "navigation_yaml_valid": true,
+  "mdx_table_columns_valid": true,
+  "published_csv_parsed_rows_unchanged": true,
+  "final_interpretation_reviewed": true,
+  "quality_gains_reported_without_overriding_frozen_advancement_failure": true,
+  "unchanged_fixed_counts": true
+}

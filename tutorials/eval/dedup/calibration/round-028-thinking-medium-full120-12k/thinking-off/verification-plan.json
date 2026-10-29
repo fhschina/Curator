@@ -1,0 +1,13 @@
+{
+  "declared": 1793292767.0276377,
+  "manifest_sha256": "ad03387c541631bca06965320317bcf6e83ee084268cf5bccefee49dbea51494",
+  "runs": {
+    "diagnostic": [
+      "candidate-diagnostic-1",
+      "candidate-diagnostic-2"
+    ]
+  },
+  "replacement_failed_repeats_allowed": false,
+  "first_two_diagnostic_runs_are_primary_AB": true,
+  "remaining_runs_are_conditional_formal_checks": false
+}

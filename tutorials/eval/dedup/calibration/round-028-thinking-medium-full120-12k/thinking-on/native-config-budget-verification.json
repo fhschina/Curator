@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "max_tokens": 12288,
+  "thinking": true,
+  "config_sha256": "6ba323c26a2d3ed3221d8ada8b1e20cdee4dd5570805cf7a1058ffe33b2d1df8",
+  "model_calls": 0,
+  "actual_chat_template_kwargs": {
+    "enable_thinking": true,
+    "reasoning_effort": "medium"
+  },
+  "reasoning_effort_verified": true
+}

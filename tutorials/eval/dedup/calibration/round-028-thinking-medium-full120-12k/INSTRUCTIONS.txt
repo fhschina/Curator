@@ -1,0 +1,6 @@
+User authorized bounded medium validation after the full xhigh comparison.
+Run OFF1, MEDIUM1, MEDIUM2, OFF2 using unchanged best C0 policy, full150 input, fixed personal120 score,12288 output budget and all native validators.
+Keep all original slots, failures and invalid judgments in fixed denominators. No failed-slot replacement, voting, prompt changes, model changes, or post-hoc scoring changes.
+Report each run, worst run, all layers, wrong allows/blocks, invalidity, completion caps, wall time and token cost.
+This is a two-repeat development diagnostic, not the original three-repeat acceptance. No extra semantic search, conditional formal inference or default promotion.
+Save bilingual Fern reports, verify evidence, run repository hooks, commit and push on the isolated codex branch. Preserve old evidence and release all owned compute.

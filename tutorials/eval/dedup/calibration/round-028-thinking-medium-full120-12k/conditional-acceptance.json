@@ -1,0 +1,7 @@
+{
+  "status": "NOT_SCHEDULED_BOUNDED_MEDIUM_DIAGNOSTIC",
+  "acceptance_passed": false,
+  "gates": {
+    "original_formal_acceptance": "NOT_COMPLETED"
+  }
+}

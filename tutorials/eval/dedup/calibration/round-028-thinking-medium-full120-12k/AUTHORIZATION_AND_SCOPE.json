@@ -1,0 +1,9 @@
+{
+  "recorded": 1793292759.699719,
+  "old_overnight_deadline_not_reactivated": true,
+  "user_requested": "Run medium validation",
+  "frozen_scope": "OFF1, MEDIUM1, MEDIUM2, OFF2; complete150 each; same fixed120; two repeats; no semantic tuning or formal acceptance",
+  "historical_xhigh_is_not_a_fresh_control": true,
+  "resource_max_gpu": 1,
+  "absolute_gpu_stop_utc": "2026-10-29T20:32:39.178510+00:00"
+}

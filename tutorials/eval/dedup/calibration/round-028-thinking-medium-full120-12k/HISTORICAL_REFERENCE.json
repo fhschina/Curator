@@ -1,0 +1,49 @@
+{
+  "source_session": "/raid/hfang/retention_policy_eval/v1/experiments/round-027-thinking-full120-12k-20261029T070247Z",
+  "source_summary_sha256": "67f9deb01f88f1a1a05378b16de5fa3c71e3327e95f7f4e73d85270f65a494a9",
+  "source_commit": "e4ae599f2bfc22295a82b8a5579db4dff79f2677",
+  "role": "Historical xhigh context only, not fresh same-session control",
+  "arms": {
+    "thinking-off": {
+      "final": {
+        "pairs": 240,
+        "directions": 480,
+        "correct_pairs": 187,
+        "correct_directions": 398,
+        "valid_pairs": 235,
+        "invalid_pairs": 5,
+        "unresolved_pairs": 0,
+        "reference_wrong_allows": 10,
+        "reference_wrong_blocks": 62,
+        "direction_agreement": 0.8291666666666667,
+        "whole_pair_agreement": 0.7791666666666667
+      },
+      "finish_reasons": {
+        "stop": 616
+      },
+      "completion_tokens": 377965,
+      "wall_seconds": 825.5892798900604
+    },
+    "thinking-on": {
+      "final": {
+        "pairs": 240,
+        "directions": 480,
+        "correct_pairs": 186,
+        "correct_directions": 393,
+        "valid_pairs": 225,
+        "invalid_pairs": 15,
+        "unresolved_pairs": 0,
+        "reference_wrong_allows": 3,
+        "reference_wrong_blocks": 61,
+        "direction_agreement": 0.81875,
+        "whole_pair_agreement": 0.775
+      },
+      "finish_reasons": {
+        "stop": 613,
+        "length": 27
+      },
+      "completion_tokens": 2736495,
+      "wall_seconds": 4847.155923843384
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "recorded": 1793296394.8651907,
+  "rule_frozen_before_inference": true,
+  "per_repeat": [
+    {
+      "repeat": 1,
+      "direction_delta": 8,
+      "pair_delta": 4,
+      "invalid_delta": 1,
+      "raw_wrong_allow_delta": -2
+    },
+    {
+      "repeat": 2,
+      "direction_delta": 3,
+      "pair_delta": 1,
+      "invalid_delta": -3,
+      "raw_wrong_allow_delta": 0
+    }
+  ],
+  "aggregate_direction_delta": 11,
+  "aggregate_pair_delta": 5,
+  "medium_native_time_ratio_vs_fresh_off": 3.120541245902404,
+  "medium_completion_token_ratio_vs_fresh_off": 4.153091880387815,
+  "exploratory_advance_rule_met": false,
+  "recommendation": "Close the current thinking branch and report the existing policy baseline.",
+  "default_promoted": false,
+  "no_additional_inference_scheduled": true,
+  "historical_xhigh_not_a_fresh_control": true
+}
