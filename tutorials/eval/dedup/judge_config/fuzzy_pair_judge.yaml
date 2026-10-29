@@ -47,7 +47,7 @@ models:
         chat_template_kwargs:
           enable_thinking: false
       # 15 scores + reasoning per call needs more room than a single-score rubric.
-      max_tokens: 6144
+      max_tokens: 12288
       timeout: 600
       max_parallel_requests: 64
 

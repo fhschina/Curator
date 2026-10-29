@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "nav_yaml_valid": true,
+  "paired_reports_sections": 4,
+  "shared_numeric_sequences": true,
+  "tables_per_report": 6,
+  "table_columns_consistent": true,
+  "no_mdx_expressions": true,
+  "published_files": 28,
+  "evidence_copies_match_source": true
+}

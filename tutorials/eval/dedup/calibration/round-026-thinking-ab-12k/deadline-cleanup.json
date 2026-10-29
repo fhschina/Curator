@@ -1,0 +1,29 @@
+{
+  "mode": "normal_completion_before_original_cutoff",
+  "triggered": 1793255951.7023277,
+  "gpu_stop_at": 1793259863.0,
+  "deadline": 1793260763.0,
+  "container_id": "5bd73d47208b2e2a0849eeff24da6ef17653c27dfa549e183f256bb6c02ccc64",
+  "docker_finished_at": "2026-10-29T06:39:07.658222076Z",
+  "processes": [
+    {
+      "pid": 3392915,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3396933,
+      "status": "already_exited"
+    }
+  ],
+  "containers": [
+    {
+      "name": "retention-thinking-ab-12k-20261029-gpu0",
+      "status": "stopped",
+      "host_pid": 0
+    }
+  ],
+  "released_scope": "Owned GPU model service, registered evaluation workers and task Ray runtimes",
+  "cpu_delivery_continues": true,
+  "finished": 1793255952.958142,
+  "all_selected_native_processes_stopped": true
+}

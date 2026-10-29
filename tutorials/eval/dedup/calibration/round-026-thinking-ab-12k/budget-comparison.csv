@@ -1,0 +1,5 @@
+output_budget,arm,pairs,directions,correct_pairs,correct_directions,valid_pairs,invalid_pairs,unresolved_pairs,reference_wrong_allows,reference_wrong_blocks,direction_agreement,whole_pair_agreement,run_seconds,requests,length_limited_requests,completion_tokens,requests_with_empty_final_content,summary_sha256
+6144,thinking-off,64,128,51,108,63,1,0,3,15,0.84375,0.796875,269.94783997535706,140,0,81761,0,da15a40edae5d1130a665e6b30aa23348704b0108935297ca3bedf0538e9fd1d
+6144,thinking-on,64,128,50,100,50,14,0,0,0,0.78125,0.78125,1522.4460427761078,191,60,737876,44,da15a40edae5d1130a665e6b30aa23348704b0108935297ca3bedf0538e9fd1d
+12288,thinking-off,64,128,52,111,64,0,0,6,11,0.8671875,0.8125,254.37571263313293,147,0,83465,0,6a1c9946fccbba52e8da2f70fb18558d886b40db3e439206e91c382c82830cb0
+12288,thinking-on,64,128,62,125,63,1,0,0,1,0.9765625,0.96875,946.6556987762451,153,1,496665,0,6a1c9946fccbba52e8da2f70fb18558d886b40db3e439206e91c382c82830cb0

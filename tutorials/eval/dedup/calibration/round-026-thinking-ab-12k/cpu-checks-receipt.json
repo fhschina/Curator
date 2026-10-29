@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "actual_cpu_tests": 37,
+  "gpu_tests_deselected": 1,
+  "xml": "native-cpu.xml",
+  "test_scope": "tests/tutorials/eval/dedup/test_policy_eval.py + test_policy_tuning.py, local standalone conftest, existing environment",
+  "initial_setup_error_preserved": "native-cpu-first-attempt-setup-error.xml",
+  "initial_setup_issue": "Global unrelated shared Ray fixture could not find Ray executable on PATH; isolated tutorial unit-test scope rerun matches existing project usage. No source test was evaluated in the failed setup.",
+  "final_default_config_verification": "PASS",
+  "final_verification_xml": "native-cpu-final.xml",
+  "final_xml_sha256": "9d545bcb2c7fb2410f36df0dba72c094799f885762aad123e2c76c5f83cf6aa7",
+  "final_tests_passed": 37,
+  "unique_test_count": 37,
+  "repeat_is_not_additional_unique_tests": true
+}

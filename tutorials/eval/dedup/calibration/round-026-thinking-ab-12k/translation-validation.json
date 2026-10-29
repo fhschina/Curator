@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "sections": 4,
+  "numeric_sequences_equal": true,
+  "shared_tables": true
+}

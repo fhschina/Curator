@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "completed": 1793255952.9582598,
+  "released_scope": "Owned GPU model service, registered evaluation workers and task Ray runtimes",
+  "container_id": "5bd73d47208b2e2a0849eeff24da6ef17653c27dfa549e183f256bb6c02ccc64",
+  "docker_host_pid": 0,
+  "cleanup_receipt": "deadline-cleanup.json",
+  "cpu_delivery_processes_continue_without_GPU": true
+}

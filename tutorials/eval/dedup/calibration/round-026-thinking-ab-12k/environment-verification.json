@@ -1,0 +1,17 @@
+{
+  "recorded": 1793254644.242006,
+  "python": "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+  "data_designer": "0.9.1",
+  "model_revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a",
+  "model_files": {
+    "config.json": "74227dd615bf1ea975aa676bdf355a0379858c12f394b5365cd9dfa5fc2c70bc",
+    "tokenizer_config.json": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27",
+    "chat_template.jinja": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041"
+  },
+  "thinking_supported_in_local_template": true,
+  "new_environment_created": false,
+  "model_weights_unchanged": true,
+  "common_reasoning_parser": "qwen3",
+  "native_engineering_commit": "14cded686750cf07440fd8f6d01097d91a532251",
+  "max_tokens": 12288
+}

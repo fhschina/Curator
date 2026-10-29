@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "recorded": 1793256033.673625,
+  "all_four_original_slots_complete": true,
+  "fixed_per_arm_denominators": {
+    "directions": 128,
+    "pairs": 64
+  },
+  "all_manifests_and_native_code_hashes_match": true,
+  "inputs_labels_and_eight_jinja_unchanged_from_6144": true,
+  "delivered_nine_files_match_measured_off_12288_profile": true,
+  "default_thinking_enabled": false,
+  "default_max_tokens": 12288,
+  "all_paired_changes_reconcile_with_integer_totals": true,
+  "actual_scored_flow_requests_including_retries_verified": 300,
+  "activation_probe_requests_excluded": 2,
+  "native_tokenizations_excluded": 192,
+  "paired_rows": 192,
+  "budget_paired_rows": 384,
+  "old_6144_summary_unchanged": true,
+  "no_scored_failure_replaced": true,
+  "postprocessing_model_calls": 0,
+  "effective_runtime": {
+    "thinking-off": {
+      "max_tokens": 12288,
+      "enable_thinking": false,
+      "verified_actual_scored_flow_requests_including_retries": 147,
+      "config_sha256": "219595c5915a273be1da4f569b658bb89b510b564a22364bd9d1772186c10144",
+      "inherited_frozen_code_model_metadata_max_tokens": 6144,
+      "metadata_note": "The inherited model block in frozen-code.json describes the historical baseline, not the effective runtime. The frozen YAML, generated configuration, comparison plan and all actual HTTP requests establish the current settings. The inherited snapshot has not been rewritten after inference."
+    },
+    "thinking-on": {
+      "max_tokens": 12288,
+      "enable_thinking": true,
+      "verified_actual_scored_flow_requests_including_retries": 153,
+      "config_sha256": "26450fa0a3d6ef37cbba82ae4907492ae0c4d5559e6184bce520938cacc365fe",
+      "inherited_frozen_code_model_metadata_max_tokens": 6144,
+      "metadata_note": "The inherited model block in frozen-code.json describes the historical baseline, not the effective runtime. The frozen YAML, generated configuration, comparison plan and all actual HTTP requests establish the current settings. The inherited snapshot has not been rewritten after inference."
+    }
+  },
+  "actual_unique_cpu_tests": 37,
+  "resource_release": "PASS",
+  "container_id": "5bd73d47208b2e2a0849eeff24da6ef17653c27dfa549e183f256bb6c02ccc64",
+  "docker_running": false,
+  "docker_host_pid": 0
+}

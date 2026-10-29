@@ -282,6 +282,12 @@ navigation:
                   - page: Qwen Thinking 开关诊断
                     path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-zh.mdx
                     slug: retention-thinking-ab-report-zh
+                  - page: Qwen Thinking On-Off Diagnostic (12288)
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-12k-report-en.mdx
+                    slug: retention-thinking-ab-12k-report
+                  - page: Qwen Thinking 开关诊断 (12288)
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-12k-report-zh.mdx
+                    slug: retention-thinking-ab-12k-report-zh
               - section: Language Management
                 slug: language-management
                 contents:
