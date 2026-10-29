@@ -2295,7 +2295,7 @@
     "hypothesis_zh": "仅把此前已核验可见性的原文顺序阅读上下文移植到这个冻结main政策上。C3上的wholeview1答对了此前碎片阅读有时误否决的两种通用cookie重复呈现，没有增加原文字符，首次硬回归没有格式失败；其剩余main营销及服务商名称失败继续保留。所选父版本main规则及其余八文件逐字不变。唯一coverage pair模板直接取自C3-wholeview1，coverage system不变，不继承两个已失败的slotlast移动版本。推理前核验全部原始及补充输入的直接与Arrow呈现及token预算。这个独立组合版本使用自己原定三次组，不从任一父版本移植分数或验收资格。不改政策含义、schema、解析器、原文窗口、模型采样或原生执行器。",
     "scope": "one coverage pair presentation template only",
     "new_human_labels": false,
-    "status": "original_hard_first_complete_original15_continuation_active",
+    "status": "complete_original15_not_selected_hard_technical_failure",
     "acceptance_passed": false,
     "first_original_hard": {
       "main_correct_pairs": 86,
@@ -2351,6 +2351,44 @@
         "pairs": 120,
         "invalid_pairs": 2
       }
-    }
+    },
+    "original15": "COMPLETE",
+    "personal_original3_strict": {
+      "candidate": "candidate-08-wholeview1",
+      "created": 1793233442.0804133,
+      "original_runs": [
+        [
+          190,
+          240,
+          89,
+          120,
+          8
+        ],
+        [
+          209,
+          240,
+          100,
+          120,
+          2
+        ],
+        [
+          200,
+          240,
+          93,
+          120,
+          3
+        ]
+      ],
+      "correct_directions": 599,
+      "directions": 720,
+      "correct_pairs": 282,
+      "pairs": 360,
+      "stage85_80": false,
+      "target90_85": false,
+      "no_cross_run_replacement": true,
+      "core_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    },
+    "reason_en": "All original15 completed. First hard parse invalids prevent this profile from outranking the complete C0 with technically valid, zero-unsafe original hard groups. The single85/80 milestone was not confirmed by original three-run mean599/720D282/360P. Additional-control original3 and GPU4 were not executed for this unselected profile; no pass is inferred.",
+    "reason_zh": "原始15个运行已全部完成。首次硬回归解析无效使该版本无法超过原始硬回归技术有效且零原始错误允许的完整C0。单次85/80阶段未获原三次均值599/720方向、282/360整对确认。这个未选版本的额外受控原定3次及GPU4未执行，不推定通过。"
   }
 }

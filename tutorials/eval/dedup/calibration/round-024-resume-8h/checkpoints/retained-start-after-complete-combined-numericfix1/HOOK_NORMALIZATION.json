@@ -1,0 +1,17 @@
+{
+  "recorded": 1793234607.349855,
+  "status": "REQUIRED_HOOK_NEWLINE_NORMALIZATION_ONLY",
+  "scope": "Copied JUnit XML files lacked terminal newline; repository hook added it. Original external XML, test counts, all policy/config files and evaluation outputs unchanged.",
+  "files": [
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined/initial-cpu.xml",
+      "original_sha256": "a196d893bb5adad29b49ce6e76f0fa9f9946429a66db0ca93a5b42096f04f165",
+      "normalized_sha256": "e7bb32d3742a80201e8695574fce330cc9c26d11f4db65b961f79d0ed939658a"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined-numericfix1/initial-cpu.xml",
+      "original_sha256": "a196d893bb5adad29b49ce6e76f0fa9f9946429a66db0ca93a5b42096f04f165",
+      "normalized_sha256": "e7bb32d3742a80201e8695574fce330cc9c26d11f4db65b961f79d0ed939658a"
+    }
+  ]
+}

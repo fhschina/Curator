@@ -1,0 +1,19 @@
+{
+  "after_file": "candidate08-wholeview1-ORIGINAL15_COMPLETE.json",
+  "commands": [
+    [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/complete_metric_cohort.py",
+      "--root",
+      "candidate-03",
+      "--prefix",
+      "candidate03-formal15",
+      "--after-file",
+      "candidate08-wholeview1-ORIGINAL15_COMPLETE.json",
+      "--reason",
+      "Complete the originally declared three-run group for the smaller C3 fallback, which passed first main86 and has one retained original150 result. Compare it fairly against C0 and the new combined candidate under the frozen validity-first ranking; the known critic false vetoes, state-control failures and first150 invalids are retained without replacement. This is a bounded formal best-version comparison, not a claim of a provisional milestone."
+    ]
+  ],
+  "receipt": "formal-best-original-cohorts-COMPLETE.json",
+  "reason": "Actual read-only C0 ranking reproduction confirms all original three hard groups technically valid and zero raw wrong allows (1627/1656 correct hard directions across layers, including consensus). New combined profile already has hard parse invalids, so cannot outrank completed C0 under the frozen selection hierarchy, regardless of its final mean. Preserve its original15 for metric comparison, prioritize the potentially stronger C3 complete group next, and execute original3 supplemental/GPU checks for the actually selected profile. Unselected combined supplemental3/GPU4 are not claimed or substituted."
+}

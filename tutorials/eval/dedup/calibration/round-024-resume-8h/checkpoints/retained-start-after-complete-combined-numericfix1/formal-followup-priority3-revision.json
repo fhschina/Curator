@@ -1,0 +1,17 @@
+{
+  "time": 1793233202.137381,
+  "status": "WITHDRAWN_BEFORE_ANY_CHILD_OR_EVALUATION",
+  "exact_identity": {
+    "name": "formal-controls-gpu-before-fallback",
+    "pid": 2384561,
+    "create_time": 1793231177.68,
+    "command": [
+      "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/run_declared_plan_serially.py",
+      "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/formal-best-followup-priority2-plan.json"
+    ]
+  },
+  "plan_sha256": "6dcfef5af3bbd448e730ea333f5975922a55c8a8ffec2720bb3612787a8b02df",
+  "reason": "Actual read-only C0 ranking reproduction confirms all original three hard groups technically valid and zero raw wrong allows (1627/1656 correct hard directions across layers, including consensus). New combined profile already has hard parse invalids, so cannot outrank completed C0 under the frozen selection hierarchy, regardless of its final mean. Preserve its original15 for metric comparison, prioritize the potentially stronger C3 complete group next, and execute original3 supplemental/GPU checks for the actually selected profile. Unselected combined supplemental3/GPU4 are not claimed or substituted.",
+  "no_frozen_candidate_or_original_run_identity_changes": true
+}

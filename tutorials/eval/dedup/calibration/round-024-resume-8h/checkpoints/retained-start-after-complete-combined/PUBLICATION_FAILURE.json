@@ -1,0 +1,10 @@
+{
+  "status": "FAILED_BEFORE_COMMIT_AND_PUSH",
+  "recorded": 1793234370.6681197,
+  "phase": "retained-start-after-complete-combined",
+  "error": "Direct translation numeric mismatch",
+  "cause": "English reason used original3 while its direct Chinese translation used 三次 rather than digit3.",
+  "resolution": "Chinese now uses 原定3次; all paired candidate hypothesis/reason numeric sequences equal. Validator unchanged; no policy/score/denominator changes.",
+  "before_notes_sha256": "beab1da3e5ea2ac750958b9b90d9950b9974f815874493b451e9dd44ccd464a8",
+  "after_notes_sha256": "a98127112c7b5483e6c69fd05c4dff47a26939cef4629f63e831f3b1981f925a"
+}

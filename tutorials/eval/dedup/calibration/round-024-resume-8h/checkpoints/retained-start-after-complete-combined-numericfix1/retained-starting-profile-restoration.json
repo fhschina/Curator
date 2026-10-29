@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "time": 1793234017.6355484,
+  "selected": "candidate-00-start85",
+  "source_frozen_nine_verified": 9,
+  "native_python_unchanged": true,
+  "backup": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/best-policy-restoration-backups/1793234017633555695",
+  "ongoing_C3_uses_its_immutable_root_profiles": true
+}

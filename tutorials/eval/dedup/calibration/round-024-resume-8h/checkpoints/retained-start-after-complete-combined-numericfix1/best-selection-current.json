@@ -1,0 +1,26 @@
+{
+  "best_candidate": "candidate-00-start85",
+  "verified_at": 1793234017.633417,
+  "last_agent_verified": 1793234017.633417,
+  "selection_status": "VERIFIED_AMONG_CURRENT_COMPLETE_ORIGINAL_COHORTS",
+  "selection_protocol_sha256": "76b05d8bd7724b098ca5ebe3e0274b2f308a6d550acc58d90f806741533a6f5f",
+  "frozen_manifest_sha256": "8cc4afb5a8c501e2b26d786df675a70ab9e1e30fe2bab594d85f5cbe5d99d80b",
+  "comparison_review": "completed-combined-review-001-selection-review.json",
+  "complete_candidates_considered": [
+    "candidate-00-start85",
+    "candidate-08-wholeview1"
+  ],
+  "best_metric_candidate": "candidate-00-start85",
+  "best_eligible_candidate": null,
+  "fresh_personal_final": {
+    "correct_directions": 608,
+    "directions": 720,
+    "correct_pairs": 287,
+    "pairs": 360
+  },
+  "fresh_stage": "FAIL",
+  "fresh_target": "FAIL",
+  "acceptance_passed": false,
+  "basis": "The starting profile has technically valid and zero-raw-unsafe original hard groups in all three runs. The completed combined descendant has hard parse invalids and lower personal agreement, so it cannot replace C0 under the unchanged predeclared hierarchy. C3 original cohort is still being completed and is not promoted from partial evidence.",
+  "historical_start_stage_provenance": "inherited-milestone.json; previous-round612/720D288/360P remains separate"
+}

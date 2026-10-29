@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "started": 1793222040.1664093,
+  "completed": 1793222057.2770526,
+  "candidate": "candidate-00-start85",
+  "checkout": "/raid/hfang/workspaces/Curator-retention-policy-v4-gpu-checks",
+  "counts": {
+    "tests": 4,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "returncode": 0,
+  "command": [
+    "/raid/hfang/llm_judge_env_pr2324_latest/bin/python",
+    "-m",
+    "pytest",
+    "--confcutdir=tests/tutorials/eval/dedup",
+    "tests/tutorials/eval/dedup",
+    "-m",
+    "gpu",
+    "-k",
+    "not eight_replica",
+    "-q",
+    "--basetemp=/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/start85-single-gpu-test-artifacts",
+    "--junitxml=/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/start85-single-gpu-checks.xml"
+  ],
+  "native_python_and_frozen_nine_verified": true,
+  "endpoint": "http://127.0.0.1:18824/v1",
+  "one_owned_gpu_service_only": true,
+  "eight_replica_check_excluded": true
+}
