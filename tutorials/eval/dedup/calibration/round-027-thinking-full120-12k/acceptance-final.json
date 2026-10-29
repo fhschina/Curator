@@ -1,0 +1,39 @@
+{
+  "recorded": 1793263402.6288245,
+  "acceptance_passed": false,
+  "primary_two_repeat_full120_target": "FAIL",
+  "primary_two_repeat_counts": {
+    "correct_directions": 393,
+    "directions": 480,
+    "correct_pairs": 186,
+    "pairs": 240
+  },
+  "requirements": {
+    "original_three_repeat_personal120_target": "NOT_COMPLETED",
+    "hard86_all_layers_all_three_repeats": "NOT_COMPLETED",
+    "full150_fixed_baseline_and_start_three_repeats": "NOT_COMPLETED",
+    "all_three_policies_full100_three_repeats": "NOT_COMPLETED",
+    "candidate_all150_and100_technical_validity": "NOT_COMPLETED",
+    "development99_original_nonregression": "NOT_COMPLETED",
+    "development99_reviewed_nonregression": "NOT_COMPLETED",
+    "development97_strict_nonregression": "NOT_COMPLETED"
+  },
+  "exact_development100_regression": {
+    "development99_original": {
+      "status": "NOT_COMPLETED"
+    },
+    "development99_reviewed": {
+      "status": "NOT_COMPLETED"
+    },
+    "development97_strict": {
+      "status": "NOT_COMPLETED"
+    }
+  },
+  "observed_candidate_technical_failures": true,
+  "required_candidate_full150_and100_technical_group_complete": false,
+  "independent_human_acceptance": "NOT_AVAILABLE_NO_NEW_INDEPENDENT_LABELS",
+  "development_reference_only": true,
+  "default_thinking_promotable": false,
+  "no_missing_or_failed_requirement_treated_as_pass": true,
+  "status": "ACCEPTANCE_NOT_COMPLETED"
+}

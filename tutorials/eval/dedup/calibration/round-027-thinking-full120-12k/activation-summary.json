@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "excluded_from_scores": true,
+  "probes": [
+    {
+      "thinking": false,
+      "elapsed_seconds": 0.15834403038024902,
+      "reasoning_characters": 0,
+      "content_characters": 22
+    },
+    {
+      "thinking": true,
+      "elapsed_seconds": 0.5414774417877197,
+      "reasoning_characters": 151,
+      "content_characters": 16
+    }
+  ]
+}

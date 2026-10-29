@@ -1,0 +1,34 @@
+{
+  "mode": "normal_completion_before_original_cutoff",
+  "triggered": 1793263389.7983546,
+  "gpu_stop_at": 1793278967.0,
+  "deadline": 1793280767.0,
+  "container_id": "456431f4c0b1216fa427d024900f9496f53577357d5a67ba749fc590e01b0fde",
+  "docker_finished_at": "2026-10-29T08:43:20.676607139Z",
+  "processes": [
+    {
+      "pid": 3516616,
+      "status": "already_exited"
+    },
+    {
+      "pid": 3522731,
+      "status": "already_exited"
+    }
+  ],
+  "containers": [
+    {
+      "name": "retention-thinking-full120-12k-20261029-gpu0",
+      "status": "stopped",
+      "host_pid": 0
+    }
+  ],
+  "released_scope": "Owned GPU model service, registered evaluation workers and task Ray runtimes",
+  "cpu_delivery_continues": true,
+  "native_execution_status_at_shutdown": {
+    "thinking-on/execution_status.json": null,
+    "thinking-off/execution_status.json": null
+  },
+  "stale_failed_current_markers_preserved": false,
+  "finished": 1793263402.2708268,
+  "all_selected_native_processes_stopped": true
+}

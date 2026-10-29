@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "actual_cpu_tests": 37,
+  "gpu_tests_deselected": 1,
+  "xml": "native-cpu.xml",
+  "xml_sha256": "fa81b9b1cf68518ad7e94eeb5eb98d089ee555a3838cb51ca982dca0f8b14837",
+  "existing_environment": true,
+  "native_source_changes": 0
+}

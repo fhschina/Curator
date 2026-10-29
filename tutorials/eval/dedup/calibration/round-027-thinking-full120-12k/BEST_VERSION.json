@@ -1,0 +1,11 @@
+{
+  "scope": "Current frozen full comparison only; older best artifacts remain untouched.",
+  "metric_best_profile": "thinking-off",
+  "eligible_best_profile": null,
+  "delivered_profile": "thinking-off",
+  "retention_policy": "Unchanged C0 eight Jinja files",
+  "two_repeat_milestone_85_80": false,
+  "two_repeat_target_90_85_provisional": false,
+  "original_three_repeat_target": "NOT_COMPLETED",
+  "acceptance_passed": false
+}

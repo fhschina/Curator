@@ -1,0 +1,8015 @@
+{
+  "started": 1793257629.0492444,
+  "completed": 1793257650.4103959,
+  "status": "PASS",
+  "arrow_pandas_roundtrip": true,
+  "model_calls": 0,
+  "tokenization_requests": 998,
+  "max_parallel_tokenization": 1,
+  "fixed_context": 32768,
+  "fixed_output": 12288,
+  "stage_summary": {
+    "main": {
+      "inputs": 336,
+      "maximum_prompt_tokens": 19012,
+      "minimum_headroom": 1468
+    },
+    "coverage": {
+      "inputs": 331,
+      "maximum_prompt_tokens": 13602,
+      "minimum_headroom": 6878
+    },
+    "subject": {
+      "inputs": 331,
+      "maximum_prompt_tokens": 13631,
+      "minimum_headroom": 6849
+    }
+  },
+  "violations": [],
+  "results": [
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D001",
+      "prompt_tokens": 11472,
+      "output_tokens_reserved": 12288,
+      "headroom": 9008
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D002",
+      "prompt_tokens": 11332,
+      "output_tokens_reserved": 12288,
+      "headroom": 9148
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D003",
+      "prompt_tokens": 12370,
+      "output_tokens_reserved": 12288,
+      "headroom": 8110
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D004",
+      "prompt_tokens": 11653,
+      "output_tokens_reserved": 12288,
+      "headroom": 8827
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D005",
+      "prompt_tokens": 12146,
+      "output_tokens_reserved": 12288,
+      "headroom": 8334
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D006",
+      "prompt_tokens": 14932,
+      "output_tokens_reserved": 12288,
+      "headroom": 5548
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D007",
+      "prompt_tokens": 11766,
+      "output_tokens_reserved": 12288,
+      "headroom": 8714
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D008",
+      "prompt_tokens": 11416,
+      "output_tokens_reserved": 12288,
+      "headroom": 9064
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D009",
+      "prompt_tokens": 11965,
+      "output_tokens_reserved": 12288,
+      "headroom": 8515
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D010",
+      "prompt_tokens": 11738,
+      "output_tokens_reserved": 12288,
+      "headroom": 8742
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D011",
+      "prompt_tokens": 11632,
+      "output_tokens_reserved": 12288,
+      "headroom": 8848
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D012",
+      "prompt_tokens": 11507,
+      "output_tokens_reserved": 12288,
+      "headroom": 8973
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D013",
+      "prompt_tokens": 11888,
+      "output_tokens_reserved": 12288,
+      "headroom": 8592
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D014",
+      "prompt_tokens": 11632,
+      "output_tokens_reserved": 12288,
+      "headroom": 8848
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D015",
+      "prompt_tokens": 11615,
+      "output_tokens_reserved": 12288,
+      "headroom": 8865
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D016",
+      "prompt_tokens": 11609,
+      "output_tokens_reserved": 12288,
+      "headroom": 8871
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D017",
+      "prompt_tokens": 11662,
+      "output_tokens_reserved": 12288,
+      "headroom": 8818
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D018",
+      "prompt_tokens": 11743,
+      "output_tokens_reserved": 12288,
+      "headroom": 8737
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D019",
+      "prompt_tokens": 11814,
+      "output_tokens_reserved": 12288,
+      "headroom": 8666
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D020",
+      "prompt_tokens": 11533,
+      "output_tokens_reserved": 12288,
+      "headroom": 8947
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D021",
+      "prompt_tokens": 11740,
+      "output_tokens_reserved": 12288,
+      "headroom": 8740
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D022",
+      "prompt_tokens": 11745,
+      "output_tokens_reserved": 12288,
+      "headroom": 8735
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D023",
+      "prompt_tokens": 11843,
+      "output_tokens_reserved": 12288,
+      "headroom": 8637
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D024",
+      "prompt_tokens": 11539,
+      "output_tokens_reserved": 12288,
+      "headroom": 8941
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D025",
+      "prompt_tokens": 11659,
+      "output_tokens_reserved": 12288,
+      "headroom": 8821
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D026",
+      "prompt_tokens": 11669,
+      "output_tokens_reserved": 12288,
+      "headroom": 8811
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D027",
+      "prompt_tokens": 11582,
+      "output_tokens_reserved": 12288,
+      "headroom": 8898
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D028",
+      "prompt_tokens": 11602,
+      "output_tokens_reserved": 12288,
+      "headroom": 8878
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D029",
+      "prompt_tokens": 11553,
+      "output_tokens_reserved": 12288,
+      "headroom": 8927
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D030",
+      "prompt_tokens": 11682,
+      "output_tokens_reserved": 12288,
+      "headroom": 8798
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D031",
+      "prompt_tokens": 11614,
+      "output_tokens_reserved": 12288,
+      "headroom": 8866
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D032",
+      "prompt_tokens": 11357,
+      "output_tokens_reserved": 12288,
+      "headroom": 9123
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D033",
+      "prompt_tokens": 11653,
+      "output_tokens_reserved": 12288,
+      "headroom": 8827
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D034",
+      "prompt_tokens": 11687,
+      "output_tokens_reserved": 12288,
+      "headroom": 8793
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D035",
+      "prompt_tokens": 11556,
+      "output_tokens_reserved": 12288,
+      "headroom": 8924
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D036",
+      "prompt_tokens": 11558,
+      "output_tokens_reserved": 12288,
+      "headroom": 8922
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D037",
+      "prompt_tokens": 11647,
+      "output_tokens_reserved": 12288,
+      "headroom": 8833
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D038",
+      "prompt_tokens": 11455,
+      "output_tokens_reserved": 12288,
+      "headroom": 9025
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D039",
+      "prompt_tokens": 11458,
+      "output_tokens_reserved": 12288,
+      "headroom": 9022
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D040",
+      "prompt_tokens": 11908,
+      "output_tokens_reserved": 12288,
+      "headroom": 8572
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D041",
+      "prompt_tokens": 11617,
+      "output_tokens_reserved": 12288,
+      "headroom": 8863
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D042",
+      "prompt_tokens": 11564,
+      "output_tokens_reserved": 12288,
+      "headroom": 8916
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D043",
+      "prompt_tokens": 11616,
+      "output_tokens_reserved": 12288,
+      "headroom": 8864
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D044",
+      "prompt_tokens": 11506,
+      "output_tokens_reserved": 12288,
+      "headroom": 8974
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D045",
+      "prompt_tokens": 11487,
+      "output_tokens_reserved": 12288,
+      "headroom": 8993
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D046",
+      "prompt_tokens": 11571,
+      "output_tokens_reserved": 12288,
+      "headroom": 8909
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D047",
+      "prompt_tokens": 11528,
+      "output_tokens_reserved": 12288,
+      "headroom": 8952
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D048",
+      "prompt_tokens": 11540,
+      "output_tokens_reserved": 12288,
+      "headroom": 8940
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D049",
+      "prompt_tokens": 12014,
+      "output_tokens_reserved": 12288,
+      "headroom": 8466
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D050",
+      "prompt_tokens": 12697,
+      "output_tokens_reserved": 12288,
+      "headroom": 7783
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D051",
+      "prompt_tokens": 12551,
+      "output_tokens_reserved": 12288,
+      "headroom": 7929
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D052",
+      "prompt_tokens": 12349,
+      "output_tokens_reserved": 12288,
+      "headroom": 8131
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D053",
+      "prompt_tokens": 11707,
+      "output_tokens_reserved": 12288,
+      "headroom": 8773
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D054",
+      "prompt_tokens": 15028,
+      "output_tokens_reserved": 12288,
+      "headroom": 5452
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D055",
+      "prompt_tokens": 12279,
+      "output_tokens_reserved": 12288,
+      "headroom": 8201
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D056",
+      "prompt_tokens": 12019,
+      "output_tokens_reserved": 12288,
+      "headroom": 8461
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D057",
+      "prompt_tokens": 11565,
+      "output_tokens_reserved": 12288,
+      "headroom": 8915
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D058",
+      "prompt_tokens": 11828,
+      "output_tokens_reserved": 12288,
+      "headroom": 8652
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D059",
+      "prompt_tokens": 12096,
+      "output_tokens_reserved": 12288,
+      "headroom": 8384
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D060",
+      "prompt_tokens": 12170,
+      "output_tokens_reserved": 12288,
+      "headroom": 8310
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D061",
+      "prompt_tokens": 13007,
+      "output_tokens_reserved": 12288,
+      "headroom": 7473
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D062",
+      "prompt_tokens": 11564,
+      "output_tokens_reserved": 12288,
+      "headroom": 8916
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D063",
+      "prompt_tokens": 11808,
+      "output_tokens_reserved": 12288,
+      "headroom": 8672
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D064",
+      "prompt_tokens": 11589,
+      "output_tokens_reserved": 12288,
+      "headroom": 8891
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D065",
+      "prompt_tokens": 13122,
+      "output_tokens_reserved": 12288,
+      "headroom": 7358
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D066",
+      "prompt_tokens": 11898,
+      "output_tokens_reserved": 12288,
+      "headroom": 8582
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D067",
+      "prompt_tokens": 11532,
+      "output_tokens_reserved": 12288,
+      "headroom": 8948
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D068",
+      "prompt_tokens": 11700,
+      "output_tokens_reserved": 12288,
+      "headroom": 8780
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D069",
+      "prompt_tokens": 11536,
+      "output_tokens_reserved": 12288,
+      "headroom": 8944
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D070",
+      "prompt_tokens": 11573,
+      "output_tokens_reserved": 12288,
+      "headroom": 8907
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D071",
+      "prompt_tokens": 11868,
+      "output_tokens_reserved": 12288,
+      "headroom": 8612
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D072",
+      "prompt_tokens": 12070,
+      "output_tokens_reserved": 12288,
+      "headroom": 8410
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D073",
+      "prompt_tokens": 11663,
+      "output_tokens_reserved": 12288,
+      "headroom": 8817
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D074",
+      "prompt_tokens": 11945,
+      "output_tokens_reserved": 12288,
+      "headroom": 8535
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D075",
+      "prompt_tokens": 11538,
+      "output_tokens_reserved": 12288,
+      "headroom": 8942
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D076",
+      "prompt_tokens": 11536,
+      "output_tokens_reserved": 12288,
+      "headroom": 8944
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D077",
+      "prompt_tokens": 11472,
+      "output_tokens_reserved": 12288,
+      "headroom": 9008
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D078",
+      "prompt_tokens": 11629,
+      "output_tokens_reserved": 12288,
+      "headroom": 8851
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D079",
+      "prompt_tokens": 11547,
+      "output_tokens_reserved": 12288,
+      "headroom": 8933
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D080",
+      "prompt_tokens": 12596,
+      "output_tokens_reserved": 12288,
+      "headroom": 7884
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D081",
+      "prompt_tokens": 11663,
+      "output_tokens_reserved": 12288,
+      "headroom": 8817
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D082",
+      "prompt_tokens": 11812,
+      "output_tokens_reserved": 12288,
+      "headroom": 8668
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D083",
+      "prompt_tokens": 11646,
+      "output_tokens_reserved": 12288,
+      "headroom": 8834
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D084",
+      "prompt_tokens": 11531,
+      "output_tokens_reserved": 12288,
+      "headroom": 8949
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D085",
+      "prompt_tokens": 12236,
+      "output_tokens_reserved": 12288,
+      "headroom": 8244
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D086",
+      "prompt_tokens": 11598,
+      "output_tokens_reserved": 12288,
+      "headroom": 8882
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D087",
+      "prompt_tokens": 12332,
+      "output_tokens_reserved": 12288,
+      "headroom": 8148
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D088",
+      "prompt_tokens": 11666,
+      "output_tokens_reserved": 12288,
+      "headroom": 8814
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D089",
+      "prompt_tokens": 11549,
+      "output_tokens_reserved": 12288,
+      "headroom": 8931
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D090",
+      "prompt_tokens": 11442,
+      "output_tokens_reserved": 12288,
+      "headroom": 9038
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D091",
+      "prompt_tokens": 11527,
+      "output_tokens_reserved": 12288,
+      "headroom": 8953
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D092",
+      "prompt_tokens": 11491,
+      "output_tokens_reserved": 12288,
+      "headroom": 8989
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D093",
+      "prompt_tokens": 12395,
+      "output_tokens_reserved": 12288,
+      "headroom": 8085
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D094",
+      "prompt_tokens": 11814,
+      "output_tokens_reserved": 12288,
+      "headroom": 8666
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D095",
+      "prompt_tokens": 11585,
+      "output_tokens_reserved": 12288,
+      "headroom": 8895
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D096",
+      "prompt_tokens": 11645,
+      "output_tokens_reserved": 12288,
+      "headroom": 8835
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D097",
+      "prompt_tokens": 11375,
+      "output_tokens_reserved": 12288,
+      "headroom": 9105
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D098",
+      "prompt_tokens": 11737,
+      "output_tokens_reserved": 12288,
+      "headroom": 8743
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D099",
+      "prompt_tokens": 11564,
+      "output_tokens_reserved": 12288,
+      "headroom": 8916
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D100",
+      "prompt_tokens": 11365,
+      "output_tokens_reserved": 12288,
+      "headroom": 9115
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D101",
+      "prompt_tokens": 11304,
+      "output_tokens_reserved": 12288,
+      "headroom": 9176
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D102",
+      "prompt_tokens": 11299,
+      "output_tokens_reserved": 12288,
+      "headroom": 9181
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D103",
+      "prompt_tokens": 11289,
+      "output_tokens_reserved": 12288,
+      "headroom": 9191
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D104",
+      "prompt_tokens": 11460,
+      "output_tokens_reserved": 12288,
+      "headroom": 9020
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D105",
+      "prompt_tokens": 11886,
+      "output_tokens_reserved": 12288,
+      "headroom": 8594
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D106",
+      "prompt_tokens": 11362,
+      "output_tokens_reserved": 12288,
+      "headroom": 9118
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D107",
+      "prompt_tokens": 11766,
+      "output_tokens_reserved": 12288,
+      "headroom": 8714
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D108",
+      "prompt_tokens": 11709,
+      "output_tokens_reserved": 12288,
+      "headroom": 8771
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D109",
+      "prompt_tokens": 11378,
+      "output_tokens_reserved": 12288,
+      "headroom": 9102
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D110",
+      "prompt_tokens": 11372,
+      "output_tokens_reserved": 12288,
+      "headroom": 9108
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D111",
+      "prompt_tokens": 11418,
+      "output_tokens_reserved": 12288,
+      "headroom": 9062
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D112",
+      "prompt_tokens": 11395,
+      "output_tokens_reserved": 12288,
+      "headroom": 9085
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D113",
+      "prompt_tokens": 11425,
+      "output_tokens_reserved": 12288,
+      "headroom": 9055
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D114",
+      "prompt_tokens": 11696,
+      "output_tokens_reserved": 12288,
+      "headroom": 8784
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D115",
+      "prompt_tokens": 11483,
+      "output_tokens_reserved": 12288,
+      "headroom": 8997
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D116",
+      "prompt_tokens": 11491,
+      "output_tokens_reserved": 12288,
+      "headroom": 8989
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D117",
+      "prompt_tokens": 11464,
+      "output_tokens_reserved": 12288,
+      "headroom": 9016
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D118",
+      "prompt_tokens": 11534,
+      "output_tokens_reserved": 12288,
+      "headroom": 8946
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D119",
+      "prompt_tokens": 11475,
+      "output_tokens_reserved": 12288,
+      "headroom": 9005
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D120",
+      "prompt_tokens": 11641,
+      "output_tokens_reserved": 12288,
+      "headroom": 8839
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D121",
+      "prompt_tokens": 11667,
+      "output_tokens_reserved": 12288,
+      "headroom": 8813
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D122",
+      "prompt_tokens": 11561,
+      "output_tokens_reserved": 12288,
+      "headroom": 8919
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D123",
+      "prompt_tokens": 12621,
+      "output_tokens_reserved": 12288,
+      "headroom": 7859
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D124",
+      "prompt_tokens": 12224,
+      "output_tokens_reserved": 12288,
+      "headroom": 8256
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D125",
+      "prompt_tokens": 11873,
+      "output_tokens_reserved": 12288,
+      "headroom": 8607
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D126",
+      "prompt_tokens": 11675,
+      "output_tokens_reserved": 12288,
+      "headroom": 8805
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D127",
+      "prompt_tokens": 11774,
+      "output_tokens_reserved": 12288,
+      "headroom": 8706
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D128",
+      "prompt_tokens": 11742,
+      "output_tokens_reserved": 12288,
+      "headroom": 8738
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D129",
+      "prompt_tokens": 11779,
+      "output_tokens_reserved": 12288,
+      "headroom": 8701
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D130",
+      "prompt_tokens": 11745,
+      "output_tokens_reserved": 12288,
+      "headroom": 8735
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D131",
+      "prompt_tokens": 12024,
+      "output_tokens_reserved": 12288,
+      "headroom": 8456
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D132",
+      "prompt_tokens": 12704,
+      "output_tokens_reserved": 12288,
+      "headroom": 7776
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D133",
+      "prompt_tokens": 12339,
+      "output_tokens_reserved": 12288,
+      "headroom": 8141
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D134",
+      "prompt_tokens": 12082,
+      "output_tokens_reserved": 12288,
+      "headroom": 8398
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D135",
+      "prompt_tokens": 12429,
+      "output_tokens_reserved": 12288,
+      "headroom": 8051
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D136",
+      "prompt_tokens": 12118,
+      "output_tokens_reserved": 12288,
+      "headroom": 8362
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D137",
+      "prompt_tokens": 12007,
+      "output_tokens_reserved": 12288,
+      "headroom": 8473
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D138",
+      "prompt_tokens": 12101,
+      "output_tokens_reserved": 12288,
+      "headroom": 8379
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D139",
+      "prompt_tokens": 12007,
+      "output_tokens_reserved": 12288,
+      "headroom": 8473
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D140",
+      "prompt_tokens": 12226,
+      "output_tokens_reserved": 12288,
+      "headroom": 8254
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D141",
+      "prompt_tokens": 12217,
+      "output_tokens_reserved": 12288,
+      "headroom": 8263
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D142",
+      "prompt_tokens": 13888,
+      "output_tokens_reserved": 12288,
+      "headroom": 6592
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D143",
+      "prompt_tokens": 12889,
+      "output_tokens_reserved": 12288,
+      "headroom": 7591
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D144",
+      "prompt_tokens": 16340,
+      "output_tokens_reserved": 12288,
+      "headroom": 4140
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D145",
+      "prompt_tokens": 13728,
+      "output_tokens_reserved": 12288,
+      "headroom": 6752
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D146",
+      "prompt_tokens": 19012,
+      "output_tokens_reserved": 12288,
+      "headroom": 1468
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D147",
+      "prompt_tokens": 15425,
+      "output_tokens_reserved": 12288,
+      "headroom": 5055
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D148",
+      "prompt_tokens": 14051,
+      "output_tokens_reserved": 12288,
+      "headroom": 6429
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D149",
+      "prompt_tokens": 16453,
+      "output_tokens_reserved": 12288,
+      "headroom": 4027
+    },
+    {
+      "stage": "main",
+      "panel": "diagnostic",
+      "pair_id": "D150",
+      "prompt_tokens": 14477,
+      "output_tokens_reserved": 12288,
+      "headroom": 6003
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D005",
+      "prompt_tokens": 12146,
+      "output_tokens_reserved": 12288,
+      "headroom": 8334
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D005-swapped",
+      "prompt_tokens": 12148,
+      "output_tokens_reserved": 12288,
+      "headroom": 8332
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D017",
+      "prompt_tokens": 11662,
+      "output_tokens_reserved": 12288,
+      "headroom": 8818
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D017-swapped",
+      "prompt_tokens": 11664,
+      "output_tokens_reserved": 12288,
+      "headroom": 8816
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D043",
+      "prompt_tokens": 11616,
+      "output_tokens_reserved": 12288,
+      "headroom": 8864
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D043-swapped",
+      "prompt_tokens": 11618,
+      "output_tokens_reserved": 12288,
+      "headroom": 8862
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D051",
+      "prompt_tokens": 12551,
+      "output_tokens_reserved": 12288,
+      "headroom": 7929
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D051-swapped",
+      "prompt_tokens": 12553,
+      "output_tokens_reserved": 12288,
+      "headroom": 7927
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D068",
+      "prompt_tokens": 11700,
+      "output_tokens_reserved": 12288,
+      "headroom": 8780
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D068-swapped",
+      "prompt_tokens": 11702,
+      "output_tokens_reserved": 12288,
+      "headroom": 8778
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D115",
+      "prompt_tokens": 11483,
+      "output_tokens_reserved": 12288,
+      "headroom": 8997
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "D115-swapped",
+      "prompt_tokens": 11485,
+      "output_tokens_reserved": 12288,
+      "headroom": 8995
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-service_slot",
+      "prompt_tokens": 11245,
+      "output_tokens_reserved": 12288,
+      "headroom": 9235
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-service_slot-swapped",
+      "prompt_tokens": 11247,
+      "output_tokens_reserved": 12288,
+      "headroom": 9233
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-service_price",
+      "prompt_tokens": 11245,
+      "output_tokens_reserved": 12288,
+      "headroom": 9235
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-service_price-swapped",
+      "prompt_tokens": 11247,
+      "output_tokens_reserved": 12288,
+      "headroom": 9233
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-body_translation",
+      "prompt_tokens": 11299,
+      "output_tokens_reserved": 12288,
+      "headroom": 9181
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-body_translation-swapped",
+      "prompt_tokens": 11301,
+      "output_tokens_reserved": 12288,
+      "headroom": 9179
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-menu_translation",
+      "prompt_tokens": 11245,
+      "output_tokens_reserved": 12288,
+      "headroom": 9235
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-menu_translation-swapped",
+      "prompt_tokens": 11247,
+      "output_tokens_reserved": 12288,
+      "headroom": 9233
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-empty_currency",
+      "prompt_tokens": 11351,
+      "output_tokens_reserved": 12288,
+      "headroom": 9129
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-empty_currency-swapped",
+      "prompt_tokens": 11353,
+      "output_tokens_reserved": 12288,
+      "headroom": 9127
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-actual_price",
+      "prompt_tokens": 11228,
+      "output_tokens_reserved": 12288,
+      "headroom": 9252
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-actual_price-swapped",
+      "prompt_tokens": 11230,
+      "output_tokens_reserved": 12288,
+      "headroom": 9250
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-publication_metadata",
+      "prompt_tokens": 11240,
+      "output_tokens_reserved": 12288,
+      "headroom": 9240
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-publication_metadata-swapped",
+      "prompt_tokens": 11242,
+      "output_tokens_reserved": 12288,
+      "headroom": 9238
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-event_date",
+      "prompt_tokens": 11265,
+      "output_tokens_reserved": 12288,
+      "headroom": 9215
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-event_date-swapped",
+      "prompt_tokens": 11267,
+      "output_tokens_reserved": 12288,
+      "headroom": 9213
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-license_reference",
+      "prompt_tokens": 11213,
+      "output_tokens_reserved": 12288,
+      "headroom": 9267
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-license_reference-swapped",
+      "prompt_tokens": 11215,
+      "output_tokens_reserved": 12288,
+      "headroom": 9265
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-license_restriction",
+      "prompt_tokens": 11306,
+      "output_tokens_reserved": 12288,
+      "headroom": 9174
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-license_restriction-swapped",
+      "prompt_tokens": 11308,
+      "output_tokens_reserved": 12288,
+      "headroom": 9172
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-one_extension",
+      "prompt_tokens": 11219,
+      "output_tokens_reserved": 12288,
+      "headroom": 9261
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-one_extension-swapped",
+      "prompt_tokens": 11221,
+      "output_tokens_reserved": 12288,
+      "headroom": 9259
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-two_extensions",
+      "prompt_tokens": 11347,
+      "output_tokens_reserved": 12288,
+      "headroom": 9133
+    },
+    {
+      "stage": "main",
+      "panel": "gate",
+      "pair_id": "control-two_extensions-swapped",
+      "prompt_tokens": 11349,
+      "output_tokens_reserved": 12288,
+      "headroom": 9131
+    },
+    {
+      "stage": "main",
+      "panel": "coverage-regression",
+      "pair_id": "H049",
+      "prompt_tokens": 12346,
+      "output_tokens_reserved": 12288,
+      "headroom": 8134
+    },
+    {
+      "stage": "main",
+      "panel": "coverage-regression",
+      "pair_id": "H049-swapped",
+      "prompt_tokens": 12348,
+      "output_tokens_reserved": 12288,
+      "headroom": 8132
+    },
+    {
+      "stage": "main",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_COVERAGE",
+      "prompt_tokens": 11347,
+      "output_tokens_reserved": 12288,
+      "headroom": 9133
+    },
+    {
+      "stage": "main",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_COVERAGE-swapped",
+      "prompt_tokens": 11349,
+      "output_tokens_reserved": 12288,
+      "headroom": 9131
+    },
+    {
+      "stage": "main",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_PRICE_CONFLICT",
+      "prompt_tokens": 11424,
+      "output_tokens_reserved": 12288,
+      "headroom": 9056
+    },
+    {
+      "stage": "main",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_PRICE_CONFLICT-swapped",
+      "prompt_tokens": 11426,
+      "output_tokens_reserved": 12288,
+      "headroom": 9054
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R11",
+      "prompt_tokens": 11595,
+      "output_tokens_reserved": 12288,
+      "headroom": 8885
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R11-swapped",
+      "prompt_tokens": 11597,
+      "output_tokens_reserved": 12288,
+      "headroom": 8883
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R18",
+      "prompt_tokens": 12622,
+      "output_tokens_reserved": 12288,
+      "headroom": 7858
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R18-swapped",
+      "prompt_tokens": 12624,
+      "output_tokens_reserved": 12288,
+      "headroom": 7856
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R14",
+      "prompt_tokens": 12298,
+      "output_tokens_reserved": 12288,
+      "headroom": 8182
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R14-swapped",
+      "prompt_tokens": 12178,
+      "output_tokens_reserved": 12288,
+      "headroom": 8302
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R33",
+      "prompt_tokens": 11585,
+      "output_tokens_reserved": 12288,
+      "headroom": 8895
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R33-swapped",
+      "prompt_tokens": 11587,
+      "output_tokens_reserved": 12288,
+      "headroom": 8893
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D011",
+      "prompt_tokens": 11632,
+      "output_tokens_reserved": 12288,
+      "headroom": 8848
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D011-swapped",
+      "prompt_tokens": 11634,
+      "output_tokens_reserved": 12288,
+      "headroom": 8846
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D058",
+      "prompt_tokens": 11828,
+      "output_tokens_reserved": 12288,
+      "headroom": 8652
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D058-swapped",
+      "prompt_tokens": 11830,
+      "output_tokens_reserved": 12288,
+      "headroom": 8650
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D059",
+      "prompt_tokens": 12096,
+      "output_tokens_reserved": 12288,
+      "headroom": 8384
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D059-swapped",
+      "prompt_tokens": 12098,
+      "output_tokens_reserved": 12288,
+      "headroom": 8382
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D134",
+      "prompt_tokens": 12082,
+      "output_tokens_reserved": 12288,
+      "headroom": 8398
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D134-swapped",
+      "prompt_tokens": 12106,
+      "output_tokens_reserved": 12288,
+      "headroom": 8374
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D135",
+      "prompt_tokens": 12429,
+      "output_tokens_reserved": 12288,
+      "headroom": 8051
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D135-swapped",
+      "prompt_tokens": 12256,
+      "output_tokens_reserved": 12288,
+      "headroom": 8224
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_citation_slot",
+      "prompt_tokens": 11258,
+      "output_tokens_reserved": 12288,
+      "headroom": 9222
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_citation_slot-swapped",
+      "prompt_tokens": 11260,
+      "output_tokens_reserved": 12288,
+      "headroom": 9220
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_marketing_slot",
+      "prompt_tokens": 11284,
+      "output_tokens_reserved": 12288,
+      "headroom": 9196
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_marketing_slot-swapped",
+      "prompt_tokens": 11286,
+      "output_tokens_reserved": 12288,
+      "headroom": 9194
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_actual_product",
+      "prompt_tokens": 11441,
+      "output_tokens_reserved": 12288,
+      "headroom": 9039
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_actual_product-swapped",
+      "prompt_tokens": 11443,
+      "output_tokens_reserved": 12288,
+      "headroom": 9037
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_submission_endpoint",
+      "prompt_tokens": 11250,
+      "output_tokens_reserved": 12288,
+      "headroom": 9230
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_submission_endpoint-swapped",
+      "prompt_tokens": 11252,
+      "output_tokens_reserved": 12288,
+      "headroom": 9228
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_localized_title",
+      "prompt_tokens": 11244,
+      "output_tokens_reserved": 12288,
+      "headroom": 9236
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_localized_title-swapped",
+      "prompt_tokens": 11246,
+      "output_tokens_reserved": 12288,
+      "headroom": 9234
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_localized_auth",
+      "prompt_tokens": 11266,
+      "output_tokens_reserved": 12288,
+      "headroom": 9214
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_localized_auth-swapped",
+      "prompt_tokens": 11268,
+      "output_tokens_reserved": 12288,
+      "headroom": 9212
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_body_language",
+      "prompt_tokens": 11293,
+      "output_tokens_reserved": 12288,
+      "headroom": 9187
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_body_language-swapped",
+      "prompt_tokens": 11295,
+      "output_tokens_reserved": 12288,
+      "headroom": 9185
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_auth_procedure",
+      "prompt_tokens": 11270,
+      "output_tokens_reserved": 12288,
+      "headroom": 9210
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_auth_procedure-swapped",
+      "prompt_tokens": 11272,
+      "output_tokens_reserved": 12288,
+      "headroom": 9208
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_intro",
+      "prompt_tokens": 11337,
+      "output_tokens_reserved": 12288,
+      "headroom": 9143
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_intro-swapped",
+      "prompt_tokens": 11339,
+      "output_tokens_reserved": 12288,
+      "headroom": 9141
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_name",
+      "prompt_tokens": 11265,
+      "output_tokens_reserved": 12288,
+      "headroom": 9215
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_name-swapped",
+      "prompt_tokens": 11267,
+      "output_tokens_reserved": 12288,
+      "headroom": 9213
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_repetition",
+      "prompt_tokens": 11268,
+      "output_tokens_reserved": 12288,
+      "headroom": 9212
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_repetition-swapped",
+      "prompt_tokens": 11270,
+      "output_tokens_reserved": 12288,
+      "headroom": 9210
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_specific_use",
+      "prompt_tokens": 11230,
+      "output_tokens_reserved": 12288,
+      "headroom": 9250
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_specific_use-swapped",
+      "prompt_tokens": 11232,
+      "output_tokens_reserved": 12288,
+      "headroom": 9248
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_restriction",
+      "prompt_tokens": 11268,
+      "output_tokens_reserved": 12288,
+      "headroom": 9212
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_cookie_restriction-swapped",
+      "prompt_tokens": 11270,
+      "output_tokens_reserved": 12288,
+      "headroom": 9210
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H001",
+      "prompt_tokens": 12752,
+      "output_tokens_reserved": 12288,
+      "headroom": 7728
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H002",
+      "prompt_tokens": 12112,
+      "output_tokens_reserved": 12288,
+      "headroom": 8368
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H003",
+      "prompt_tokens": 12880,
+      "output_tokens_reserved": 12288,
+      "headroom": 7600
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H004",
+      "prompt_tokens": 12755,
+      "output_tokens_reserved": 12288,
+      "headroom": 7725
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H005",
+      "prompt_tokens": 12262,
+      "output_tokens_reserved": 12288,
+      "headroom": 8218
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H006",
+      "prompt_tokens": 11498,
+      "output_tokens_reserved": 12288,
+      "headroom": 8982
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H007",
+      "prompt_tokens": 12563,
+      "output_tokens_reserved": 12288,
+      "headroom": 7917
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H008",
+      "prompt_tokens": 11202,
+      "output_tokens_reserved": 12288,
+      "headroom": 9278
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H009",
+      "prompt_tokens": 12252,
+      "output_tokens_reserved": 12288,
+      "headroom": 8228
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H010",
+      "prompt_tokens": 11928,
+      "output_tokens_reserved": 12288,
+      "headroom": 8552
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H011",
+      "prompt_tokens": 11651,
+      "output_tokens_reserved": 12288,
+      "headroom": 8829
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H012",
+      "prompt_tokens": 12860,
+      "output_tokens_reserved": 12288,
+      "headroom": 7620
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H013",
+      "prompt_tokens": 14042,
+      "output_tokens_reserved": 12288,
+      "headroom": 6438
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H014",
+      "prompt_tokens": 11312,
+      "output_tokens_reserved": 12288,
+      "headroom": 9168
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H015",
+      "prompt_tokens": 12689,
+      "output_tokens_reserved": 12288,
+      "headroom": 7791
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H016",
+      "prompt_tokens": 14596,
+      "output_tokens_reserved": 12288,
+      "headroom": 5884
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H017",
+      "prompt_tokens": 12576,
+      "output_tokens_reserved": 12288,
+      "headroom": 7904
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H018",
+      "prompt_tokens": 14012,
+      "output_tokens_reserved": 12288,
+      "headroom": 6468
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H019",
+      "prompt_tokens": 11635,
+      "output_tokens_reserved": 12288,
+      "headroom": 8845
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H020",
+      "prompt_tokens": 13489,
+      "output_tokens_reserved": 12288,
+      "headroom": 6991
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H021",
+      "prompt_tokens": 11624,
+      "output_tokens_reserved": 12288,
+      "headroom": 8856
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H022",
+      "prompt_tokens": 11323,
+      "output_tokens_reserved": 12288,
+      "headroom": 9157
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H023",
+      "prompt_tokens": 15767,
+      "output_tokens_reserved": 12288,
+      "headroom": 4713
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H024",
+      "prompt_tokens": 11658,
+      "output_tokens_reserved": 12288,
+      "headroom": 8822
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H025",
+      "prompt_tokens": 11763,
+      "output_tokens_reserved": 12288,
+      "headroom": 8717
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H026",
+      "prompt_tokens": 13594,
+      "output_tokens_reserved": 12288,
+      "headroom": 6886
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H027",
+      "prompt_tokens": 12781,
+      "output_tokens_reserved": 12288,
+      "headroom": 7699
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H028",
+      "prompt_tokens": 12775,
+      "output_tokens_reserved": 12288,
+      "headroom": 7705
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H029",
+      "prompt_tokens": 12022,
+      "output_tokens_reserved": 12288,
+      "headroom": 8458
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H030",
+      "prompt_tokens": 11544,
+      "output_tokens_reserved": 12288,
+      "headroom": 8936
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H031",
+      "prompt_tokens": 11876,
+      "output_tokens_reserved": 12288,
+      "headroom": 8604
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H032",
+      "prompt_tokens": 14841,
+      "output_tokens_reserved": 12288,
+      "headroom": 5639
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H033",
+      "prompt_tokens": 11286,
+      "output_tokens_reserved": 12288,
+      "headroom": 9194
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H034",
+      "prompt_tokens": 11318,
+      "output_tokens_reserved": 12288,
+      "headroom": 9162
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H035",
+      "prompt_tokens": 13903,
+      "output_tokens_reserved": 12288,
+      "headroom": 6577
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H036",
+      "prompt_tokens": 12574,
+      "output_tokens_reserved": 12288,
+      "headroom": 7906
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H037",
+      "prompt_tokens": 14041,
+      "output_tokens_reserved": 12288,
+      "headroom": 6439
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H038",
+      "prompt_tokens": 13362,
+      "output_tokens_reserved": 12288,
+      "headroom": 7118
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H039",
+      "prompt_tokens": 11499,
+      "output_tokens_reserved": 12288,
+      "headroom": 8981
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H040",
+      "prompt_tokens": 13553,
+      "output_tokens_reserved": 12288,
+      "headroom": 6927
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H041",
+      "prompt_tokens": 12802,
+      "output_tokens_reserved": 12288,
+      "headroom": 7678
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H042",
+      "prompt_tokens": 13745,
+      "output_tokens_reserved": 12288,
+      "headroom": 6735
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H043",
+      "prompt_tokens": 11576,
+      "output_tokens_reserved": 12288,
+      "headroom": 8904
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H044",
+      "prompt_tokens": 12922,
+      "output_tokens_reserved": 12288,
+      "headroom": 7558
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H045",
+      "prompt_tokens": 11282,
+      "output_tokens_reserved": 12288,
+      "headroom": 9198
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H046",
+      "prompt_tokens": 15491,
+      "output_tokens_reserved": 12288,
+      "headroom": 4989
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H047",
+      "prompt_tokens": 11290,
+      "output_tokens_reserved": 12288,
+      "headroom": 9190
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H048",
+      "prompt_tokens": 12787,
+      "output_tokens_reserved": 12288,
+      "headroom": 7693
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H049",
+      "prompt_tokens": 12346,
+      "output_tokens_reserved": 12288,
+      "headroom": 8134
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H050",
+      "prompt_tokens": 11676,
+      "output_tokens_reserved": 12288,
+      "headroom": 8804
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H051",
+      "prompt_tokens": 14982,
+      "output_tokens_reserved": 12288,
+      "headroom": 5498
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H052",
+      "prompt_tokens": 12183,
+      "output_tokens_reserved": 12288,
+      "headroom": 8297
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H053",
+      "prompt_tokens": 11778,
+      "output_tokens_reserved": 12288,
+      "headroom": 8702
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H054",
+      "prompt_tokens": 12132,
+      "output_tokens_reserved": 12288,
+      "headroom": 8348
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H055",
+      "prompt_tokens": 14797,
+      "output_tokens_reserved": 12288,
+      "headroom": 5683
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H056",
+      "prompt_tokens": 11984,
+      "output_tokens_reserved": 12288,
+      "headroom": 8496
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H057",
+      "prompt_tokens": 11740,
+      "output_tokens_reserved": 12288,
+      "headroom": 8740
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H058",
+      "prompt_tokens": 11758,
+      "output_tokens_reserved": 12288,
+      "headroom": 8722
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H059",
+      "prompt_tokens": 14380,
+      "output_tokens_reserved": 12288,
+      "headroom": 6100
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H060",
+      "prompt_tokens": 12254,
+      "output_tokens_reserved": 12288,
+      "headroom": 8226
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H061",
+      "prompt_tokens": 12306,
+      "output_tokens_reserved": 12288,
+      "headroom": 8174
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H062",
+      "prompt_tokens": 12560,
+      "output_tokens_reserved": 12288,
+      "headroom": 7920
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H063",
+      "prompt_tokens": 11428,
+      "output_tokens_reserved": 12288,
+      "headroom": 9052
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H064",
+      "prompt_tokens": 11280,
+      "output_tokens_reserved": 12288,
+      "headroom": 9200
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H065",
+      "prompt_tokens": 11672,
+      "output_tokens_reserved": 12288,
+      "headroom": 8808
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H066",
+      "prompt_tokens": 12234,
+      "output_tokens_reserved": 12288,
+      "headroom": 8246
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H067",
+      "prompt_tokens": 13688,
+      "output_tokens_reserved": 12288,
+      "headroom": 6792
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H068",
+      "prompt_tokens": 11402,
+      "output_tokens_reserved": 12288,
+      "headroom": 9078
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H069",
+      "prompt_tokens": 11952,
+      "output_tokens_reserved": 12288,
+      "headroom": 8528
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H070",
+      "prompt_tokens": 11496,
+      "output_tokens_reserved": 12288,
+      "headroom": 8984
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H071",
+      "prompt_tokens": 11356,
+      "output_tokens_reserved": 12288,
+      "headroom": 9124
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H072",
+      "prompt_tokens": 11338,
+      "output_tokens_reserved": 12288,
+      "headroom": 9142
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H073",
+      "prompt_tokens": 11170,
+      "output_tokens_reserved": 12288,
+      "headroom": 9310
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H074",
+      "prompt_tokens": 12647,
+      "output_tokens_reserved": 12288,
+      "headroom": 7833
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H075",
+      "prompt_tokens": 11452,
+      "output_tokens_reserved": 12288,
+      "headroom": 9028
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H076",
+      "prompt_tokens": 12830,
+      "output_tokens_reserved": 12288,
+      "headroom": 7650
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H077",
+      "prompt_tokens": 14263,
+      "output_tokens_reserved": 12288,
+      "headroom": 6217
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H078",
+      "prompt_tokens": 13025,
+      "output_tokens_reserved": 12288,
+      "headroom": 7455
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H079",
+      "prompt_tokens": 11708,
+      "output_tokens_reserved": 12288,
+      "headroom": 8772
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H080",
+      "prompt_tokens": 13241,
+      "output_tokens_reserved": 12288,
+      "headroom": 7239
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H081",
+      "prompt_tokens": 11532,
+      "output_tokens_reserved": 12288,
+      "headroom": 8948
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H082",
+      "prompt_tokens": 13284,
+      "output_tokens_reserved": 12288,
+      "headroom": 7196
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H083",
+      "prompt_tokens": 14804,
+      "output_tokens_reserved": 12288,
+      "headroom": 5676
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H084",
+      "prompt_tokens": 11610,
+      "output_tokens_reserved": 12288,
+      "headroom": 8870
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H085",
+      "prompt_tokens": 13411,
+      "output_tokens_reserved": 12288,
+      "headroom": 7069
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H086",
+      "prompt_tokens": 11328,
+      "output_tokens_reserved": 12288,
+      "headroom": 9152
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H087",
+      "prompt_tokens": 13393,
+      "output_tokens_reserved": 12288,
+      "headroom": 7087
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H088",
+      "prompt_tokens": 14514,
+      "output_tokens_reserved": 12288,
+      "headroom": 5966
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H089",
+      "prompt_tokens": 12530,
+      "output_tokens_reserved": 12288,
+      "headroom": 7950
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H090",
+      "prompt_tokens": 11729,
+      "output_tokens_reserved": 12288,
+      "headroom": 8751
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H091",
+      "prompt_tokens": 12404,
+      "output_tokens_reserved": 12288,
+      "headroom": 8076
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H092",
+      "prompt_tokens": 12526,
+      "output_tokens_reserved": 12288,
+      "headroom": 7954
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H093",
+      "prompt_tokens": 13586,
+      "output_tokens_reserved": 12288,
+      "headroom": 6894
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H094",
+      "prompt_tokens": 11424,
+      "output_tokens_reserved": 12288,
+      "headroom": 9056
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H095",
+      "prompt_tokens": 12719,
+      "output_tokens_reserved": 12288,
+      "headroom": 7761
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H096",
+      "prompt_tokens": 13647,
+      "output_tokens_reserved": 12288,
+      "headroom": 6833
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H097",
+      "prompt_tokens": 13116,
+      "output_tokens_reserved": 12288,
+      "headroom": 7364
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H098",
+      "prompt_tokens": 11482,
+      "output_tokens_reserved": 12288,
+      "headroom": 8998
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H099",
+      "prompt_tokens": 13484,
+      "output_tokens_reserved": 12288,
+      "headroom": 6996
+    },
+    {
+      "stage": "main",
+      "panel": "holdout",
+      "pair_id": "H100",
+      "prompt_tokens": 13946,
+      "output_tokens_reserved": 12288,
+      "headroom": 6534
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D001",
+      "prompt_tokens": 5836,
+      "output_tokens_reserved": 12288,
+      "headroom": 14644
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D002",
+      "prompt_tokens": 5597,
+      "output_tokens_reserved": 12288,
+      "headroom": 14883
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D003",
+      "prompt_tokens": 6793,
+      "output_tokens_reserved": 12288,
+      "headroom": 13687
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D004",
+      "prompt_tokens": 5994,
+      "output_tokens_reserved": 12288,
+      "headroom": 14486
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D005",
+      "prompt_tokens": 6618,
+      "output_tokens_reserved": 12288,
+      "headroom": 13862
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D006",
+      "prompt_tokens": 10092,
+      "output_tokens_reserved": 12288,
+      "headroom": 10388
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D007",
+      "prompt_tokens": 6140,
+      "output_tokens_reserved": 12288,
+      "headroom": 14340
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D008",
+      "prompt_tokens": 5635,
+      "output_tokens_reserved": 12288,
+      "headroom": 14845
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D009",
+      "prompt_tokens": 6352,
+      "output_tokens_reserved": 12288,
+      "headroom": 14128
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D010",
+      "prompt_tokens": 6100,
+      "output_tokens_reserved": 12288,
+      "headroom": 14380
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D011",
+      "prompt_tokens": 5942,
+      "output_tokens_reserved": 12288,
+      "headroom": 14538
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D012",
+      "prompt_tokens": 5765,
+      "output_tokens_reserved": 12288,
+      "headroom": 14715
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D013",
+      "prompt_tokens": 6401,
+      "output_tokens_reserved": 12288,
+      "headroom": 14079
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D014",
+      "prompt_tokens": 5949,
+      "output_tokens_reserved": 12288,
+      "headroom": 14531
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D015",
+      "prompt_tokens": 5936,
+      "output_tokens_reserved": 12288,
+      "headroom": 14544
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D016",
+      "prompt_tokens": 5887,
+      "output_tokens_reserved": 12288,
+      "headroom": 14593
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D017",
+      "prompt_tokens": 5974,
+      "output_tokens_reserved": 12288,
+      "headroom": 14506
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D018",
+      "prompt_tokens": 6068,
+      "output_tokens_reserved": 12288,
+      "headroom": 14412
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D019",
+      "prompt_tokens": 6243,
+      "output_tokens_reserved": 12288,
+      "headroom": 14237
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D020",
+      "prompt_tokens": 5798,
+      "output_tokens_reserved": 12288,
+      "headroom": 14682
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D021",
+      "prompt_tokens": 6079,
+      "output_tokens_reserved": 12288,
+      "headroom": 14401
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D022",
+      "prompt_tokens": 6104,
+      "output_tokens_reserved": 12288,
+      "headroom": 14376
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D023",
+      "prompt_tokens": 6270,
+      "output_tokens_reserved": 12288,
+      "headroom": 14210
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D024",
+      "prompt_tokens": 5809,
+      "output_tokens_reserved": 12288,
+      "headroom": 14671
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D025",
+      "prompt_tokens": 6151,
+      "output_tokens_reserved": 12288,
+      "headroom": 14329
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D026",
+      "prompt_tokens": 5977,
+      "output_tokens_reserved": 12288,
+      "headroom": 14503
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D027",
+      "prompt_tokens": 5893,
+      "output_tokens_reserved": 12288,
+      "headroom": 14587
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D028",
+      "prompt_tokens": 5924,
+      "output_tokens_reserved": 12288,
+      "headroom": 14556
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D029",
+      "prompt_tokens": 5954,
+      "output_tokens_reserved": 12288,
+      "headroom": 14526
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D030",
+      "prompt_tokens": 6153,
+      "output_tokens_reserved": 12288,
+      "headroom": 14327
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D031",
+      "prompt_tokens": 5941,
+      "output_tokens_reserved": 12288,
+      "headroom": 14539
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D032",
+      "prompt_tokens": 5609,
+      "output_tokens_reserved": 12288,
+      "headroom": 14871
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D033",
+      "prompt_tokens": 5902,
+      "output_tokens_reserved": 12288,
+      "headroom": 14578
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D034",
+      "prompt_tokens": 6049,
+      "output_tokens_reserved": 12288,
+      "headroom": 14431
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D035",
+      "prompt_tokens": 5923,
+      "output_tokens_reserved": 12288,
+      "headroom": 14557
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D036",
+      "prompt_tokens": 5813,
+      "output_tokens_reserved": 12288,
+      "headroom": 14667
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D037",
+      "prompt_tokens": 6022,
+      "output_tokens_reserved": 12288,
+      "headroom": 14458
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D038",
+      "prompt_tokens": 5818,
+      "output_tokens_reserved": 12288,
+      "headroom": 14662
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D039",
+      "prompt_tokens": 5712,
+      "output_tokens_reserved": 12288,
+      "headroom": 14768
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D040",
+      "prompt_tokens": 6303,
+      "output_tokens_reserved": 12288,
+      "headroom": 14177
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D041",
+      "prompt_tokens": 5853,
+      "output_tokens_reserved": 12288,
+      "headroom": 14627
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D042",
+      "prompt_tokens": 5840,
+      "output_tokens_reserved": 12288,
+      "headroom": 14640
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D043",
+      "prompt_tokens": 5893,
+      "output_tokens_reserved": 12288,
+      "headroom": 14587
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D044",
+      "prompt_tokens": 5760,
+      "output_tokens_reserved": 12288,
+      "headroom": 14720
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D045",
+      "prompt_tokens": 5837,
+      "output_tokens_reserved": 12288,
+      "headroom": 14643
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D046",
+      "prompt_tokens": 6076,
+      "output_tokens_reserved": 12288,
+      "headroom": 14404
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D047",
+      "prompt_tokens": 5826,
+      "output_tokens_reserved": 12288,
+      "headroom": 14654
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D048",
+      "prompt_tokens": 5965,
+      "output_tokens_reserved": 12288,
+      "headroom": 14515
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D049",
+      "prompt_tokens": 6381,
+      "output_tokens_reserved": 12288,
+      "headroom": 14099
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D050",
+      "prompt_tokens": 7966,
+      "output_tokens_reserved": 12288,
+      "headroom": 12514
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D051",
+      "prompt_tokens": 7523,
+      "output_tokens_reserved": 12288,
+      "headroom": 12957
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D052",
+      "prompt_tokens": 7353,
+      "output_tokens_reserved": 12288,
+      "headroom": 13127
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D053",
+      "prompt_tokens": 6351,
+      "output_tokens_reserved": 12288,
+      "headroom": 14129
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D054",
+      "prompt_tokens": 11866,
+      "output_tokens_reserved": 12288,
+      "headroom": 8614
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D055",
+      "prompt_tokens": 7278,
+      "output_tokens_reserved": 12288,
+      "headroom": 13202
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D056",
+      "prompt_tokens": 6542,
+      "output_tokens_reserved": 12288,
+      "headroom": 13938
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D057",
+      "prompt_tokens": 6010,
+      "output_tokens_reserved": 12288,
+      "headroom": 14470
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D058",
+      "prompt_tokens": 6431,
+      "output_tokens_reserved": 12288,
+      "headroom": 14049
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D059",
+      "prompt_tokens": 6449,
+      "output_tokens_reserved": 12288,
+      "headroom": 14031
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D060",
+      "prompt_tokens": 7095,
+      "output_tokens_reserved": 12288,
+      "headroom": 13385
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D061",
+      "prompt_tokens": 8554,
+      "output_tokens_reserved": 12288,
+      "headroom": 11926
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D062",
+      "prompt_tokens": 5827,
+      "output_tokens_reserved": 12288,
+      "headroom": 14653
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D063",
+      "prompt_tokens": 6114,
+      "output_tokens_reserved": 12288,
+      "headroom": 14366
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D064",
+      "prompt_tokens": 5864,
+      "output_tokens_reserved": 12288,
+      "headroom": 14616
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D065",
+      "prompt_tokens": 7779,
+      "output_tokens_reserved": 12288,
+      "headroom": 12701
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D066",
+      "prompt_tokens": 6160,
+      "output_tokens_reserved": 12288,
+      "headroom": 14320
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D067",
+      "prompt_tokens": 5882,
+      "output_tokens_reserved": 12288,
+      "headroom": 14598
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D068",
+      "prompt_tokens": 6017,
+      "output_tokens_reserved": 12288,
+      "headroom": 14463
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D069",
+      "prompt_tokens": 5826,
+      "output_tokens_reserved": 12288,
+      "headroom": 14654
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D070",
+      "prompt_tokens": 5879,
+      "output_tokens_reserved": 12288,
+      "headroom": 14601
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D071",
+      "prompt_tokens": 6176,
+      "output_tokens_reserved": 12288,
+      "headroom": 14304
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D072",
+      "prompt_tokens": 6389,
+      "output_tokens_reserved": 12288,
+      "headroom": 14091
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D073",
+      "prompt_tokens": 5977,
+      "output_tokens_reserved": 12288,
+      "headroom": 14503
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D074",
+      "prompt_tokens": 6314,
+      "output_tokens_reserved": 12288,
+      "headroom": 14166
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D075",
+      "prompt_tokens": 5773,
+      "output_tokens_reserved": 12288,
+      "headroom": 14707
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D076",
+      "prompt_tokens": 5808,
+      "output_tokens_reserved": 12288,
+      "headroom": 14672
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D077",
+      "prompt_tokens": 5712,
+      "output_tokens_reserved": 12288,
+      "headroom": 14768
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D078",
+      "prompt_tokens": 5891,
+      "output_tokens_reserved": 12288,
+      "headroom": 14589
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D079",
+      "prompt_tokens": 5790,
+      "output_tokens_reserved": 12288,
+      "headroom": 14690
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D080",
+      "prompt_tokens": 6993,
+      "output_tokens_reserved": 12288,
+      "headroom": 13487
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D081",
+      "prompt_tokens": 5927,
+      "output_tokens_reserved": 12288,
+      "headroom": 14553
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D082",
+      "prompt_tokens": 6204,
+      "output_tokens_reserved": 12288,
+      "headroom": 14276
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D083",
+      "prompt_tokens": 5901,
+      "output_tokens_reserved": 12288,
+      "headroom": 14579
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D084",
+      "prompt_tokens": 6012,
+      "output_tokens_reserved": 12288,
+      "headroom": 14468
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D085",
+      "prompt_tokens": 6521,
+      "output_tokens_reserved": 12288,
+      "headroom": 13959
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D086",
+      "prompt_tokens": 5862,
+      "output_tokens_reserved": 12288,
+      "headroom": 14618
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D087",
+      "prompt_tokens": 6642,
+      "output_tokens_reserved": 12288,
+      "headroom": 13838
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D088",
+      "prompt_tokens": 5969,
+      "output_tokens_reserved": 12288,
+      "headroom": 14511
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D089",
+      "prompt_tokens": 5824,
+      "output_tokens_reserved": 12288,
+      "headroom": 14656
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D090",
+      "prompt_tokens": 5859,
+      "output_tokens_reserved": 12288,
+      "headroom": 14621
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D091",
+      "prompt_tokens": 5990,
+      "output_tokens_reserved": 12288,
+      "headroom": 14490
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D092",
+      "prompt_tokens": 5882,
+      "output_tokens_reserved": 12288,
+      "headroom": 14598
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D093",
+      "prompt_tokens": 6897,
+      "output_tokens_reserved": 12288,
+      "headroom": 13583
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D094",
+      "prompt_tokens": 6347,
+      "output_tokens_reserved": 12288,
+      "headroom": 14133
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D095",
+      "prompt_tokens": 5980,
+      "output_tokens_reserved": 12288,
+      "headroom": 14500
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D096",
+      "prompt_tokens": 5910,
+      "output_tokens_reserved": 12288,
+      "headroom": 14570
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D097",
+      "prompt_tokens": 5686,
+      "output_tokens_reserved": 12288,
+      "headroom": 14794
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D098",
+      "prompt_tokens": 6337,
+      "output_tokens_reserved": 12288,
+      "headroom": 14143
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D099",
+      "prompt_tokens": 6085,
+      "output_tokens_reserved": 12288,
+      "headroom": 14395
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D100",
+      "prompt_tokens": 5672,
+      "output_tokens_reserved": 12288,
+      "headroom": 14808
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D101",
+      "prompt_tokens": 5549,
+      "output_tokens_reserved": 12288,
+      "headroom": 14931
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D102",
+      "prompt_tokens": 5545,
+      "output_tokens_reserved": 12288,
+      "headroom": 14935
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D103",
+      "prompt_tokens": 5522,
+      "output_tokens_reserved": 12288,
+      "headroom": 14958
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D104",
+      "prompt_tokens": 5840,
+      "output_tokens_reserved": 12288,
+      "headroom": 14640
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D105",
+      "prompt_tokens": 6567,
+      "output_tokens_reserved": 12288,
+      "headroom": 13913
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D106",
+      "prompt_tokens": 5603,
+      "output_tokens_reserved": 12288,
+      "headroom": 14877
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D107",
+      "prompt_tokens": 6363,
+      "output_tokens_reserved": 12288,
+      "headroom": 14117
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D108",
+      "prompt_tokens": 6361,
+      "output_tokens_reserved": 12288,
+      "headroom": 14119
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D109",
+      "prompt_tokens": 5601,
+      "output_tokens_reserved": 12288,
+      "headroom": 14879
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D110",
+      "prompt_tokens": 5659,
+      "output_tokens_reserved": 12288,
+      "headroom": 14821
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D111",
+      "prompt_tokens": 5763,
+      "output_tokens_reserved": 12288,
+      "headroom": 14717
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D112",
+      "prompt_tokens": 5646,
+      "output_tokens_reserved": 12288,
+      "headroom": 14834
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D113",
+      "prompt_tokens": 5658,
+      "output_tokens_reserved": 12288,
+      "headroom": 14822
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D114",
+      "prompt_tokens": 6357,
+      "output_tokens_reserved": 12288,
+      "headroom": 14123
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D115",
+      "prompt_tokens": 5766,
+      "output_tokens_reserved": 12288,
+      "headroom": 14714
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D116",
+      "prompt_tokens": 5734,
+      "output_tokens_reserved": 12288,
+      "headroom": 14746
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D117",
+      "prompt_tokens": 5831,
+      "output_tokens_reserved": 12288,
+      "headroom": 14649
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D118",
+      "prompt_tokens": 5809,
+      "output_tokens_reserved": 12288,
+      "headroom": 14671
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D119",
+      "prompt_tokens": 5742,
+      "output_tokens_reserved": 12288,
+      "headroom": 14738
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D120",
+      "prompt_tokens": 6109,
+      "output_tokens_reserved": 12288,
+      "headroom": 14371
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D121",
+      "prompt_tokens": 6004,
+      "output_tokens_reserved": 12288,
+      "headroom": 14476
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D122",
+      "prompt_tokens": 5805,
+      "output_tokens_reserved": 12288,
+      "headroom": 14675
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D123",
+      "prompt_tokens": 7031,
+      "output_tokens_reserved": 12288,
+      "headroom": 13449
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D124",
+      "prompt_tokens": 6708,
+      "output_tokens_reserved": 12288,
+      "headroom": 13772
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D125",
+      "prompt_tokens": 6415,
+      "output_tokens_reserved": 12288,
+      "headroom": 14065
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D126",
+      "prompt_tokens": 5952,
+      "output_tokens_reserved": 12288,
+      "headroom": 14528
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D127",
+      "prompt_tokens": 6201,
+      "output_tokens_reserved": 12288,
+      "headroom": 14279
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D128",
+      "prompt_tokens": 6063,
+      "output_tokens_reserved": 12288,
+      "headroom": 14417
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D129",
+      "prompt_tokens": 6027,
+      "output_tokens_reserved": 12288,
+      "headroom": 14453
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D130",
+      "prompt_tokens": 6009,
+      "output_tokens_reserved": 12288,
+      "headroom": 14471
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D131",
+      "prompt_tokens": 6552,
+      "output_tokens_reserved": 12288,
+      "headroom": 13928
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D132",
+      "prompt_tokens": 8208,
+      "output_tokens_reserved": 12288,
+      "headroom": 12272
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D133",
+      "prompt_tokens": 7485,
+      "output_tokens_reserved": 12288,
+      "headroom": 12995
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D134",
+      "prompt_tokens": 6621,
+      "output_tokens_reserved": 12288,
+      "headroom": 13859
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D135",
+      "prompt_tokens": 7164,
+      "output_tokens_reserved": 12288,
+      "headroom": 13316
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D136",
+      "prompt_tokens": 6486,
+      "output_tokens_reserved": 12288,
+      "headroom": 13994
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D137",
+      "prompt_tokens": 6318,
+      "output_tokens_reserved": 12288,
+      "headroom": 14162
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D138",
+      "prompt_tokens": 7104,
+      "output_tokens_reserved": 12288,
+      "headroom": 13376
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D139",
+      "prompt_tokens": 6364,
+      "output_tokens_reserved": 12288,
+      "headroom": 14116
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D140",
+      "prompt_tokens": 6751,
+      "output_tokens_reserved": 12288,
+      "headroom": 13729
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D141",
+      "prompt_tokens": 6653,
+      "output_tokens_reserved": 12288,
+      "headroom": 13827
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D142",
+      "prompt_tokens": 8369,
+      "output_tokens_reserved": 12288,
+      "headroom": 12111
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D143",
+      "prompt_tokens": 8132,
+      "output_tokens_reserved": 12288,
+      "headroom": 12348
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D144",
+      "prompt_tokens": 11296,
+      "output_tokens_reserved": 12288,
+      "headroom": 9184
+    },
+    {
+      "stage": "coverage",
+      "panel": "diagnostic",
+      "pair_id": "D145",
+      "prompt_tokens": 8290,
+      "output_tokens_reserved": 12288,
+      "headroom": 12190
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D005",
+      "prompt_tokens": 6618,
+      "output_tokens_reserved": 12288,
+      "headroom": 13862
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D005-swapped",
+      "prompt_tokens": 6620,
+      "output_tokens_reserved": 12288,
+      "headroom": 13860
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D017",
+      "prompt_tokens": 5974,
+      "output_tokens_reserved": 12288,
+      "headroom": 14506
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D017-swapped",
+      "prompt_tokens": 5976,
+      "output_tokens_reserved": 12288,
+      "headroom": 14504
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D043",
+      "prompt_tokens": 5893,
+      "output_tokens_reserved": 12288,
+      "headroom": 14587
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D043-swapped",
+      "prompt_tokens": 5895,
+      "output_tokens_reserved": 12288,
+      "headroom": 14585
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D051",
+      "prompt_tokens": 7523,
+      "output_tokens_reserved": 12288,
+      "headroom": 12957
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D051-swapped",
+      "prompt_tokens": 7525,
+      "output_tokens_reserved": 12288,
+      "headroom": 12955
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D068",
+      "prompt_tokens": 6017,
+      "output_tokens_reserved": 12288,
+      "headroom": 14463
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D068-swapped",
+      "prompt_tokens": 6019,
+      "output_tokens_reserved": 12288,
+      "headroom": 14461
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D115",
+      "prompt_tokens": 5766,
+      "output_tokens_reserved": 12288,
+      "headroom": 14714
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "D115-swapped",
+      "prompt_tokens": 5768,
+      "output_tokens_reserved": 12288,
+      "headroom": 14712
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-service_slot",
+      "prompt_tokens": 5487,
+      "output_tokens_reserved": 12288,
+      "headroom": 14993
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-service_slot-swapped",
+      "prompt_tokens": 5489,
+      "output_tokens_reserved": 12288,
+      "headroom": 14991
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-service_price",
+      "prompt_tokens": 5486,
+      "output_tokens_reserved": 12288,
+      "headroom": 14994
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-service_price-swapped",
+      "prompt_tokens": 5488,
+      "output_tokens_reserved": 12288,
+      "headroom": 14992
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-body_translation",
+      "prompt_tokens": 5609,
+      "output_tokens_reserved": 12288,
+      "headroom": 14871
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-body_translation-swapped",
+      "prompt_tokens": 5611,
+      "output_tokens_reserved": 12288,
+      "headroom": 14869
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-menu_translation",
+      "prompt_tokens": 5479,
+      "output_tokens_reserved": 12288,
+      "headroom": 15001
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-menu_translation-swapped",
+      "prompt_tokens": 5481,
+      "output_tokens_reserved": 12288,
+      "headroom": 14999
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-empty_currency",
+      "prompt_tokens": 5645,
+      "output_tokens_reserved": 12288,
+      "headroom": 14835
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-empty_currency-swapped",
+      "prompt_tokens": 5647,
+      "output_tokens_reserved": 12288,
+      "headroom": 14833
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-actual_price",
+      "prompt_tokens": 5471,
+      "output_tokens_reserved": 12288,
+      "headroom": 15009
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-actual_price-swapped",
+      "prompt_tokens": 5473,
+      "output_tokens_reserved": 12288,
+      "headroom": 15007
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-publication_metadata",
+      "prompt_tokens": 5468,
+      "output_tokens_reserved": 12288,
+      "headroom": 15012
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-publication_metadata-swapped",
+      "prompt_tokens": 5470,
+      "output_tokens_reserved": 12288,
+      "headroom": 15010
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-event_date",
+      "prompt_tokens": 5506,
+      "output_tokens_reserved": 12288,
+      "headroom": 14974
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-event_date-swapped",
+      "prompt_tokens": 5508,
+      "output_tokens_reserved": 12288,
+      "headroom": 14972
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-license_reference",
+      "prompt_tokens": 5431,
+      "output_tokens_reserved": 12288,
+      "headroom": 15049
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-license_reference-swapped",
+      "prompt_tokens": 5433,
+      "output_tokens_reserved": 12288,
+      "headroom": 15047
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-license_restriction",
+      "prompt_tokens": 5652,
+      "output_tokens_reserved": 12288,
+      "headroom": 14828
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-license_restriction-swapped",
+      "prompt_tokens": 5654,
+      "output_tokens_reserved": 12288,
+      "headroom": 14826
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-one_extension",
+      "prompt_tokens": 5437,
+      "output_tokens_reserved": 12288,
+      "headroom": 15043
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-one_extension-swapped",
+      "prompt_tokens": 5439,
+      "output_tokens_reserved": 12288,
+      "headroom": 15041
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-two_extensions",
+      "prompt_tokens": 5675,
+      "output_tokens_reserved": 12288,
+      "headroom": 14805
+    },
+    {
+      "stage": "coverage",
+      "panel": "gate",
+      "pair_id": "control-two_extensions-swapped",
+      "prompt_tokens": 5677,
+      "output_tokens_reserved": 12288,
+      "headroom": 14803
+    },
+    {
+      "stage": "coverage",
+      "panel": "coverage-regression",
+      "pair_id": "H049",
+      "prompt_tokens": 6658,
+      "output_tokens_reserved": 12288,
+      "headroom": 13822
+    },
+    {
+      "stage": "coverage",
+      "panel": "coverage-regression",
+      "pair_id": "H049-swapped",
+      "prompt_tokens": 6660,
+      "output_tokens_reserved": 12288,
+      "headroom": 13820
+    },
+    {
+      "stage": "coverage",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_COVERAGE",
+      "prompt_tokens": 5652,
+      "output_tokens_reserved": 12288,
+      "headroom": 14828
+    },
+    {
+      "stage": "coverage",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_COVERAGE-swapped",
+      "prompt_tokens": 5654,
+      "output_tokens_reserved": 12288,
+      "headroom": 14826
+    },
+    {
+      "stage": "coverage",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_PRICE_CONFLICT",
+      "prompt_tokens": 5782,
+      "output_tokens_reserved": 12288,
+      "headroom": 14698
+    },
+    {
+      "stage": "coverage",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_PRICE_CONFLICT-swapped",
+      "prompt_tokens": 5784,
+      "output_tokens_reserved": 12288,
+      "headroom": 14696
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R11",
+      "prompt_tokens": 5915,
+      "output_tokens_reserved": 12288,
+      "headroom": 14565
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R11-swapped",
+      "prompt_tokens": 5917,
+      "output_tokens_reserved": 12288,
+      "headroom": 14563
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R18",
+      "prompt_tokens": 7254,
+      "output_tokens_reserved": 12288,
+      "headroom": 13226
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R18-swapped",
+      "prompt_tokens": 7256,
+      "output_tokens_reserved": 12288,
+      "headroom": 13224
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R14",
+      "prompt_tokens": 7016,
+      "output_tokens_reserved": 12288,
+      "headroom": 13464
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R14-swapped",
+      "prompt_tokens": 6821,
+      "output_tokens_reserved": 12288,
+      "headroom": 13659
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R33",
+      "prompt_tokens": 6071,
+      "output_tokens_reserved": 12288,
+      "headroom": 14409
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R33-swapped",
+      "prompt_tokens": 6073,
+      "output_tokens_reserved": 12288,
+      "headroom": 14407
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D011",
+      "prompt_tokens": 5942,
+      "output_tokens_reserved": 12288,
+      "headroom": 14538
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D011-swapped",
+      "prompt_tokens": 5944,
+      "output_tokens_reserved": 12288,
+      "headroom": 14536
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D058",
+      "prompt_tokens": 6431,
+      "output_tokens_reserved": 12288,
+      "headroom": 14049
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D058-swapped",
+      "prompt_tokens": 6433,
+      "output_tokens_reserved": 12288,
+      "headroom": 14047
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D059",
+      "prompt_tokens": 6449,
+      "output_tokens_reserved": 12288,
+      "headroom": 14031
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D059-swapped",
+      "prompt_tokens": 6451,
+      "output_tokens_reserved": 12288,
+      "headroom": 14029
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D134",
+      "prompt_tokens": 6621,
+      "output_tokens_reserved": 12288,
+      "headroom": 13859
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D134-swapped",
+      "prompt_tokens": 6649,
+      "output_tokens_reserved": 12288,
+      "headroom": 13831
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D135",
+      "prompt_tokens": 7164,
+      "output_tokens_reserved": 12288,
+      "headroom": 13316
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D135-swapped",
+      "prompt_tokens": 6892,
+      "output_tokens_reserved": 12288,
+      "headroom": 13588
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_citation_slot",
+      "prompt_tokens": 5500,
+      "output_tokens_reserved": 12288,
+      "headroom": 14980
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_citation_slot-swapped",
+      "prompt_tokens": 5502,
+      "output_tokens_reserved": 12288,
+      "headroom": 14978
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_marketing_slot",
+      "prompt_tokens": 5573,
+      "output_tokens_reserved": 12288,
+      "headroom": 14907
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_marketing_slot-swapped",
+      "prompt_tokens": 5575,
+      "output_tokens_reserved": 12288,
+      "headroom": 14905
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_actual_product",
+      "prompt_tokens": 5838,
+      "output_tokens_reserved": 12288,
+      "headroom": 14642
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_actual_product-swapped",
+      "prompt_tokens": 5840,
+      "output_tokens_reserved": 12288,
+      "headroom": 14640
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_submission_endpoint",
+      "prompt_tokens": 5491,
+      "output_tokens_reserved": 12288,
+      "headroom": 14989
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_submission_endpoint-swapped",
+      "prompt_tokens": 5493,
+      "output_tokens_reserved": 12288,
+      "headroom": 14987
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_localized_title",
+      "prompt_tokens": 5480,
+      "output_tokens_reserved": 12288,
+      "headroom": 15000
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_localized_title-swapped",
+      "prompt_tokens": 5482,
+      "output_tokens_reserved": 12288,
+      "headroom": 14998
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_localized_auth",
+      "prompt_tokens": 5575,
+      "output_tokens_reserved": 12288,
+      "headroom": 14905
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_localized_auth-swapped",
+      "prompt_tokens": 5577,
+      "output_tokens_reserved": 12288,
+      "headroom": 14903
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_body_language",
+      "prompt_tokens": 5602,
+      "output_tokens_reserved": 12288,
+      "headroom": 14878
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_body_language-swapped",
+      "prompt_tokens": 5604,
+      "output_tokens_reserved": 12288,
+      "headroom": 14876
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_auth_procedure",
+      "prompt_tokens": 5562,
+      "output_tokens_reserved": 12288,
+      "headroom": 14918
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_auth_procedure-swapped",
+      "prompt_tokens": 5564,
+      "output_tokens_reserved": 12288,
+      "headroom": 14916
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_intro",
+      "prompt_tokens": 5643,
+      "output_tokens_reserved": 12288,
+      "headroom": 14837
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_intro-swapped",
+      "prompt_tokens": 5645,
+      "output_tokens_reserved": 12288,
+      "headroom": 14835
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_name",
+      "prompt_tokens": 5515,
+      "output_tokens_reserved": 12288,
+      "headroom": 14965
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_name-swapped",
+      "prompt_tokens": 5517,
+      "output_tokens_reserved": 12288,
+      "headroom": 14963
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_repetition",
+      "prompt_tokens": 5521,
+      "output_tokens_reserved": 12288,
+      "headroom": 14959
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_repetition-swapped",
+      "prompt_tokens": 5523,
+      "output_tokens_reserved": 12288,
+      "headroom": 14957
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_specific_use",
+      "prompt_tokens": 5451,
+      "output_tokens_reserved": 12288,
+      "headroom": 15029
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_specific_use-swapped",
+      "prompt_tokens": 5453,
+      "output_tokens_reserved": 12288,
+      "headroom": 15027
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_restriction",
+      "prompt_tokens": 5513,
+      "output_tokens_reserved": 12288,
+      "headroom": 14967
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_cookie_restriction-swapped",
+      "prompt_tokens": 5515,
+      "output_tokens_reserved": 12288,
+      "headroom": 14965
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H001",
+      "prompt_tokens": 7396,
+      "output_tokens_reserved": 12288,
+      "headroom": 13084
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H002",
+      "prompt_tokens": 7460,
+      "output_tokens_reserved": 12288,
+      "headroom": 13020
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H003",
+      "prompt_tokens": 7510,
+      "output_tokens_reserved": 12288,
+      "headroom": 12970
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H004",
+      "prompt_tokens": 8533,
+      "output_tokens_reserved": 12288,
+      "headroom": 11947
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H005",
+      "prompt_tokens": 6793,
+      "output_tokens_reserved": 12288,
+      "headroom": 13687
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H006",
+      "prompt_tokens": 5707,
+      "output_tokens_reserved": 12288,
+      "headroom": 14773
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H007",
+      "prompt_tokens": 7875,
+      "output_tokens_reserved": 12288,
+      "headroom": 12605
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H008",
+      "prompt_tokens": 5390,
+      "output_tokens_reserved": 12288,
+      "headroom": 15090
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H009",
+      "prompt_tokens": 7499,
+      "output_tokens_reserved": 12288,
+      "headroom": 12981
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H010",
+      "prompt_tokens": 6158,
+      "output_tokens_reserved": 12288,
+      "headroom": 14322
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H011",
+      "prompt_tokens": 5914,
+      "output_tokens_reserved": 12288,
+      "headroom": 14566
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H012",
+      "prompt_tokens": 7190,
+      "output_tokens_reserved": 12288,
+      "headroom": 13290
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H013",
+      "prompt_tokens": 11360,
+      "output_tokens_reserved": 12288,
+      "headroom": 9120
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H014",
+      "prompt_tokens": 5507,
+      "output_tokens_reserved": 12288,
+      "headroom": 14973
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H015",
+      "prompt_tokens": 8356,
+      "output_tokens_reserved": 12288,
+      "headroom": 12124
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H016",
+      "prompt_tokens": 11896,
+      "output_tokens_reserved": 12288,
+      "headroom": 8584
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H017",
+      "prompt_tokens": 7249,
+      "output_tokens_reserved": 12288,
+      "headroom": 13231
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H018",
+      "prompt_tokens": 10649,
+      "output_tokens_reserved": 12288,
+      "headroom": 9831
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H019",
+      "prompt_tokens": 6042,
+      "output_tokens_reserved": 12288,
+      "headroom": 14438
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H020",
+      "prompt_tokens": 9657,
+      "output_tokens_reserved": 12288,
+      "headroom": 10823
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H021",
+      "prompt_tokens": 6194,
+      "output_tokens_reserved": 12288,
+      "headroom": 14286
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H022",
+      "prompt_tokens": 5575,
+      "output_tokens_reserved": 12288,
+      "headroom": 14905
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H023",
+      "prompt_tokens": 11410,
+      "output_tokens_reserved": 12288,
+      "headroom": 9070
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H024",
+      "prompt_tokens": 5867,
+      "output_tokens_reserved": 12288,
+      "headroom": 14613
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H025",
+      "prompt_tokens": 6025,
+      "output_tokens_reserved": 12288,
+      "headroom": 14455
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H026",
+      "prompt_tokens": 8987,
+      "output_tokens_reserved": 12288,
+      "headroom": 11493
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H027",
+      "prompt_tokens": 8670,
+      "output_tokens_reserved": 12288,
+      "headroom": 11810
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H028",
+      "prompt_tokens": 8514,
+      "output_tokens_reserved": 12288,
+      "headroom": 11966
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H029",
+      "prompt_tokens": 6405,
+      "output_tokens_reserved": 12288,
+      "headroom": 14075
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H030",
+      "prompt_tokens": 5753,
+      "output_tokens_reserved": 12288,
+      "headroom": 14727
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H031",
+      "prompt_tokens": 6836,
+      "output_tokens_reserved": 12288,
+      "headroom": 13644
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H032",
+      "prompt_tokens": 10073,
+      "output_tokens_reserved": 12288,
+      "headroom": 10407
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H033",
+      "prompt_tokens": 5481,
+      "output_tokens_reserved": 12288,
+      "headroom": 14999
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H034",
+      "prompt_tokens": 5560,
+      "output_tokens_reserved": 12288,
+      "headroom": 14920
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H035",
+      "prompt_tokens": 8266,
+      "output_tokens_reserved": 12288,
+      "headroom": 12214
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H036",
+      "prompt_tokens": 6790,
+      "output_tokens_reserved": 12288,
+      "headroom": 13690
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H037",
+      "prompt_tokens": 11150,
+      "output_tokens_reserved": 12288,
+      "headroom": 9330
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H038",
+      "prompt_tokens": 7983,
+      "output_tokens_reserved": 12288,
+      "headroom": 12497
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H039",
+      "prompt_tokens": 5770,
+      "output_tokens_reserved": 12288,
+      "headroom": 14710
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H040",
+      "prompt_tokens": 9988,
+      "output_tokens_reserved": 12288,
+      "headroom": 10492
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H041",
+      "prompt_tokens": 7452,
+      "output_tokens_reserved": 12288,
+      "headroom": 13028
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H042",
+      "prompt_tokens": 10438,
+      "output_tokens_reserved": 12288,
+      "headroom": 10042
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H043",
+      "prompt_tokens": 5792,
+      "output_tokens_reserved": 12288,
+      "headroom": 14688
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H044",
+      "prompt_tokens": 8672,
+      "output_tokens_reserved": 12288,
+      "headroom": 11808
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H045",
+      "prompt_tokens": 5477,
+      "output_tokens_reserved": 12288,
+      "headroom": 15003
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H046",
+      "prompt_tokens": 13602,
+      "output_tokens_reserved": 12288,
+      "headroom": 6878
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H047",
+      "prompt_tokens": 5485,
+      "output_tokens_reserved": 12288,
+      "headroom": 14995
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H048",
+      "prompt_tokens": 8316,
+      "output_tokens_reserved": 12288,
+      "headroom": 12164
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H049",
+      "prompt_tokens": 6658,
+      "output_tokens_reserved": 12288,
+      "headroom": 13822
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H050",
+      "prompt_tokens": 6475,
+      "output_tokens_reserved": 12288,
+      "headroom": 14005
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H051",
+      "prompt_tokens": 11846,
+      "output_tokens_reserved": 12288,
+      "headroom": 8634
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H052",
+      "prompt_tokens": 7345,
+      "output_tokens_reserved": 12288,
+      "headroom": 13135
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H053",
+      "prompt_tokens": 5987,
+      "output_tokens_reserved": 12288,
+      "headroom": 14493
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H054",
+      "prompt_tokens": 6523,
+      "output_tokens_reserved": 12288,
+      "headroom": 13957
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H055",
+      "prompt_tokens": 12304,
+      "output_tokens_reserved": 12288,
+      "headroom": 8176
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H056",
+      "prompt_tokens": 6200,
+      "output_tokens_reserved": 12288,
+      "headroom": 14280
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H057",
+      "prompt_tokens": 5949,
+      "output_tokens_reserved": 12288,
+      "headroom": 14531
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H058",
+      "prompt_tokens": 6020,
+      "output_tokens_reserved": 12288,
+      "headroom": 14460
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H059",
+      "prompt_tokens": 11589,
+      "output_tokens_reserved": 12288,
+      "headroom": 8891
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H060",
+      "prompt_tokens": 7661,
+      "output_tokens_reserved": 12288,
+      "headroom": 12819
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H061",
+      "prompt_tokens": 7735,
+      "output_tokens_reserved": 12288,
+      "headroom": 12745
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H062",
+      "prompt_tokens": 7998,
+      "output_tokens_reserved": 12288,
+      "headroom": 12482
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H063",
+      "prompt_tokens": 5630,
+      "output_tokens_reserved": 12288,
+      "headroom": 14850
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H064",
+      "prompt_tokens": 5475,
+      "output_tokens_reserved": 12288,
+      "headroom": 15005
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H065",
+      "prompt_tokens": 5888,
+      "output_tokens_reserved": 12288,
+      "headroom": 14592
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H066",
+      "prompt_tokens": 7665,
+      "output_tokens_reserved": 12288,
+      "headroom": 12815
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H067",
+      "prompt_tokens": 10386,
+      "output_tokens_reserved": 12288,
+      "headroom": 10094
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H068",
+      "prompt_tokens": 5597,
+      "output_tokens_reserved": 12288,
+      "headroom": 14883
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H069",
+      "prompt_tokens": 6890,
+      "output_tokens_reserved": 12288,
+      "headroom": 13590
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H070",
+      "prompt_tokens": 5754,
+      "output_tokens_reserved": 12288,
+      "headroom": 14726
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H071",
+      "prompt_tokens": 5551,
+      "output_tokens_reserved": 12288,
+      "headroom": 14929
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H072",
+      "prompt_tokens": 5533,
+      "output_tokens_reserved": 12288,
+      "headroom": 14947
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H073",
+      "prompt_tokens": 5358,
+      "output_tokens_reserved": 12288,
+      "headroom": 15122
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H074",
+      "prompt_tokens": 8397,
+      "output_tokens_reserved": 12288,
+      "headroom": 12083
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H075",
+      "prompt_tokens": 5654,
+      "output_tokens_reserved": 12288,
+      "headroom": 14826
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H076",
+      "prompt_tokens": 7046,
+      "output_tokens_reserved": 12288,
+      "headroom": 13434
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H077",
+      "prompt_tokens": 11650,
+      "output_tokens_reserved": 12288,
+      "headroom": 8830
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H078",
+      "prompt_tokens": 9077,
+      "output_tokens_reserved": 12288,
+      "headroom": 11403
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H079",
+      "prompt_tokens": 6062,
+      "output_tokens_reserved": 12288,
+      "headroom": 14418
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H080",
+      "prompt_tokens": 7612,
+      "output_tokens_reserved": 12288,
+      "headroom": 12868
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H081",
+      "prompt_tokens": 5741,
+      "output_tokens_reserved": 12288,
+      "headroom": 14739
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H082",
+      "prompt_tokens": 9274,
+      "output_tokens_reserved": 12288,
+      "headroom": 11206
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H083",
+      "prompt_tokens": 12703,
+      "output_tokens_reserved": 12288,
+      "headroom": 7777
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H084",
+      "prompt_tokens": 5826,
+      "output_tokens_reserved": 12288,
+      "headroom": 14654
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H085",
+      "prompt_tokens": 9955,
+      "output_tokens_reserved": 12288,
+      "headroom": 10525
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H086",
+      "prompt_tokens": 5523,
+      "output_tokens_reserved": 12288,
+      "headroom": 14957
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H087",
+      "prompt_tokens": 9489,
+      "output_tokens_reserved": 12288,
+      "headroom": 10991
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H088",
+      "prompt_tokens": 11686,
+      "output_tokens_reserved": 12288,
+      "headroom": 8794
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H089",
+      "prompt_tokens": 8185,
+      "output_tokens_reserved": 12288,
+      "headroom": 12295
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H090",
+      "prompt_tokens": 6495,
+      "output_tokens_reserved": 12288,
+      "headroom": 13985
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H091",
+      "prompt_tokens": 7861,
+      "output_tokens_reserved": 12288,
+      "headroom": 12619
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H092",
+      "prompt_tokens": 8254,
+      "output_tokens_reserved": 12288,
+      "headroom": 12226
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H093",
+      "prompt_tokens": 9692,
+      "output_tokens_reserved": 12288,
+      "headroom": 10788
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H094",
+      "prompt_tokens": 5909,
+      "output_tokens_reserved": 12288,
+      "headroom": 14571
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H095",
+      "prompt_tokens": 8054,
+      "output_tokens_reserved": 12288,
+      "headroom": 12426
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H096",
+      "prompt_tokens": 9909,
+      "output_tokens_reserved": 12288,
+      "headroom": 10571
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H097",
+      "prompt_tokens": 9148,
+      "output_tokens_reserved": 12288,
+      "headroom": 11332
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H098",
+      "prompt_tokens": 5959,
+      "output_tokens_reserved": 12288,
+      "headroom": 14521
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H099",
+      "prompt_tokens": 10009,
+      "output_tokens_reserved": 12288,
+      "headroom": 10471
+    },
+    {
+      "stage": "coverage",
+      "panel": "holdout",
+      "pair_id": "H100",
+      "prompt_tokens": 10657,
+      "output_tokens_reserved": 12288,
+      "headroom": 9823
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D001",
+      "prompt_tokens": 4520,
+      "output_tokens_reserved": 12288,
+      "headroom": 15960
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D002",
+      "prompt_tokens": 4249,
+      "output_tokens_reserved": 12288,
+      "headroom": 16231
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D003",
+      "prompt_tokens": 5694,
+      "output_tokens_reserved": 12288,
+      "headroom": 14786
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D004",
+      "prompt_tokens": 4716,
+      "output_tokens_reserved": 12288,
+      "headroom": 15764
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D005",
+      "prompt_tokens": 5438,
+      "output_tokens_reserved": 12288,
+      "headroom": 15042
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D006",
+      "prompt_tokens": 9619,
+      "output_tokens_reserved": 12288,
+      "headroom": 10861
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D007",
+      "prompt_tokens": 4892,
+      "output_tokens_reserved": 12288,
+      "headroom": 15588
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D008",
+      "prompt_tokens": 4281,
+      "output_tokens_reserved": 12288,
+      "headroom": 16199
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D009",
+      "prompt_tokens": 5175,
+      "output_tokens_reserved": 12288,
+      "headroom": 15305
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D010",
+      "prompt_tokens": 4850,
+      "output_tokens_reserved": 12288,
+      "headroom": 15630
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D011",
+      "prompt_tokens": 4654,
+      "output_tokens_reserved": 12288,
+      "headroom": 15826
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D012",
+      "prompt_tokens": 4447,
+      "output_tokens_reserved": 12288,
+      "headroom": 16033
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D013",
+      "prompt_tokens": 5223,
+      "output_tokens_reserved": 12288,
+      "headroom": 15257
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D014",
+      "prompt_tokens": 4651,
+      "output_tokens_reserved": 12288,
+      "headroom": 15829
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D015",
+      "prompt_tokens": 4627,
+      "output_tokens_reserved": 12288,
+      "headroom": 15853
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D016",
+      "prompt_tokens": 4577,
+      "output_tokens_reserved": 12288,
+      "headroom": 15903
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D017",
+      "prompt_tokens": 4694,
+      "output_tokens_reserved": 12288,
+      "headroom": 15786
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D018",
+      "prompt_tokens": 4806,
+      "output_tokens_reserved": 12288,
+      "headroom": 15674
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D019",
+      "prompt_tokens": 5005,
+      "output_tokens_reserved": 12288,
+      "headroom": 15475
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D020",
+      "prompt_tokens": 4498,
+      "output_tokens_reserved": 12288,
+      "headroom": 15982
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D021",
+      "prompt_tokens": 4813,
+      "output_tokens_reserved": 12288,
+      "headroom": 15667
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D022",
+      "prompt_tokens": 4828,
+      "output_tokens_reserved": 12288,
+      "headroom": 15652
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D023",
+      "prompt_tokens": 5068,
+      "output_tokens_reserved": 12288,
+      "headroom": 15412
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D024",
+      "prompt_tokens": 4493,
+      "output_tokens_reserved": 12288,
+      "headroom": 15987
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D025",
+      "prompt_tokens": 4874,
+      "output_tokens_reserved": 12288,
+      "headroom": 15606
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D026",
+      "prompt_tokens": 4727,
+      "output_tokens_reserved": 12288,
+      "headroom": 15753
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D027",
+      "prompt_tokens": 4589,
+      "output_tokens_reserved": 12288,
+      "headroom": 15891
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D028",
+      "prompt_tokens": 4617,
+      "output_tokens_reserved": 12288,
+      "headroom": 15863
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D029",
+      "prompt_tokens": 4662,
+      "output_tokens_reserved": 12288,
+      "headroom": 15818
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D030",
+      "prompt_tokens": 4869,
+      "output_tokens_reserved": 12288,
+      "headroom": 15611
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D031",
+      "prompt_tokens": 4639,
+      "output_tokens_reserved": 12288,
+      "headroom": 15841
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D032",
+      "prompt_tokens": 4257,
+      "output_tokens_reserved": 12288,
+      "headroom": 16223
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D033",
+      "prompt_tokens": 4568,
+      "output_tokens_reserved": 12288,
+      "headroom": 15912
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D034",
+      "prompt_tokens": 4739,
+      "output_tokens_reserved": 12288,
+      "headroom": 15741
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D035",
+      "prompt_tokens": 4601,
+      "output_tokens_reserved": 12288,
+      "headroom": 15879
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D036",
+      "prompt_tokens": 4497,
+      "output_tokens_reserved": 12288,
+      "headroom": 15983
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D037",
+      "prompt_tokens": 4712,
+      "output_tokens_reserved": 12288,
+      "headroom": 15768
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D038",
+      "prompt_tokens": 4478,
+      "output_tokens_reserved": 12288,
+      "headroom": 16002
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D039",
+      "prompt_tokens": 4378,
+      "output_tokens_reserved": 12288,
+      "headroom": 16102
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D040",
+      "prompt_tokens": 5019,
+      "output_tokens_reserved": 12288,
+      "headroom": 15461
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D041",
+      "prompt_tokens": 4535,
+      "output_tokens_reserved": 12288,
+      "headroom": 15945
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D042",
+      "prompt_tokens": 4554,
+      "output_tokens_reserved": 12288,
+      "headroom": 15926
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D043",
+      "prompt_tokens": 4591,
+      "output_tokens_reserved": 12288,
+      "headroom": 15889
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D044",
+      "prompt_tokens": 4426,
+      "output_tokens_reserved": 12288,
+      "headroom": 16054
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D045",
+      "prompt_tokens": 4515,
+      "output_tokens_reserved": 12288,
+      "headroom": 15965
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D046",
+      "prompt_tokens": 4753,
+      "output_tokens_reserved": 12288,
+      "headroom": 15727
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D047",
+      "prompt_tokens": 4494,
+      "output_tokens_reserved": 12288,
+      "headroom": 15986
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D048",
+      "prompt_tokens": 4625,
+      "output_tokens_reserved": 12288,
+      "headroom": 15855
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D049",
+      "prompt_tokens": 5167,
+      "output_tokens_reserved": 12288,
+      "headroom": 15313
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D050",
+      "prompt_tokens": 7121,
+      "output_tokens_reserved": 12288,
+      "headroom": 13359
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D051",
+      "prompt_tokens": 6502,
+      "output_tokens_reserved": 12288,
+      "headroom": 13978
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D052",
+      "prompt_tokens": 6264,
+      "output_tokens_reserved": 12288,
+      "headroom": 14216
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D053",
+      "prompt_tokens": 5137,
+      "output_tokens_reserved": 12288,
+      "headroom": 15343
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D054",
+      "prompt_tokens": 11757,
+      "output_tokens_reserved": 12288,
+      "headroom": 8723
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D055",
+      "prompt_tokens": 6215,
+      "output_tokens_reserved": 12288,
+      "headroom": 14265
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D056",
+      "prompt_tokens": 5382,
+      "output_tokens_reserved": 12288,
+      "headroom": 15098
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D057",
+      "prompt_tokens": 4677,
+      "output_tokens_reserved": 12288,
+      "headroom": 15803
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D058",
+      "prompt_tokens": 5289,
+      "output_tokens_reserved": 12288,
+      "headroom": 15191
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D059",
+      "prompt_tokens": 5286,
+      "output_tokens_reserved": 12288,
+      "headroom": 15194
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D060",
+      "prompt_tokens": 6068,
+      "output_tokens_reserved": 12288,
+      "headroom": 14412
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D061",
+      "prompt_tokens": 7825,
+      "output_tokens_reserved": 12288,
+      "headroom": 12655
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D062",
+      "prompt_tokens": 4509,
+      "output_tokens_reserved": 12288,
+      "headroom": 15971
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D063",
+      "prompt_tokens": 4834,
+      "output_tokens_reserved": 12288,
+      "headroom": 15646
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D064",
+      "prompt_tokens": 4564,
+      "output_tokens_reserved": 12288,
+      "headroom": 15916
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D065",
+      "prompt_tokens": 6680,
+      "output_tokens_reserved": 12288,
+      "headroom": 13800
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D066",
+      "prompt_tokens": 4868,
+      "output_tokens_reserved": 12288,
+      "headroom": 15612
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D067",
+      "prompt_tokens": 4572,
+      "output_tokens_reserved": 12288,
+      "headroom": 15908
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D068",
+      "prompt_tokens": 4739,
+      "output_tokens_reserved": 12288,
+      "headroom": 15741
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D069",
+      "prompt_tokens": 4512,
+      "output_tokens_reserved": 12288,
+      "headroom": 15968
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D070",
+      "prompt_tokens": 4577,
+      "output_tokens_reserved": 12288,
+      "headroom": 15903
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D071",
+      "prompt_tokens": 4896,
+      "output_tokens_reserved": 12288,
+      "headroom": 15584
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D072",
+      "prompt_tokens": 5093,
+      "output_tokens_reserved": 12288,
+      "headroom": 15387
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D073",
+      "prompt_tokens": 4707,
+      "output_tokens_reserved": 12288,
+      "headroom": 15773
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D074",
+      "prompt_tokens": 5090,
+      "output_tokens_reserved": 12288,
+      "headroom": 15390
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D075",
+      "prompt_tokens": 4455,
+      "output_tokens_reserved": 12288,
+      "headroom": 16025
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D076",
+      "prompt_tokens": 4474,
+      "output_tokens_reserved": 12288,
+      "headroom": 16006
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D077",
+      "prompt_tokens": 4376,
+      "output_tokens_reserved": 12288,
+      "headroom": 16104
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D078",
+      "prompt_tokens": 4591,
+      "output_tokens_reserved": 12288,
+      "headroom": 15889
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D079",
+      "prompt_tokens": 4472,
+      "output_tokens_reserved": 12288,
+      "headroom": 16008
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D080",
+      "prompt_tokens": 5737,
+      "output_tokens_reserved": 12288,
+      "headroom": 14743
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D081",
+      "prompt_tokens": 4613,
+      "output_tokens_reserved": 12288,
+      "headroom": 15867
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D082",
+      "prompt_tokens": 4960,
+      "output_tokens_reserved": 12288,
+      "headroom": 15520
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D083",
+      "prompt_tokens": 4591,
+      "output_tokens_reserved": 12288,
+      "headroom": 15889
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D084",
+      "prompt_tokens": 4687,
+      "output_tokens_reserved": 12288,
+      "headroom": 15793
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D085",
+      "prompt_tokens": 5211,
+      "output_tokens_reserved": 12288,
+      "headroom": 15269
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D086",
+      "prompt_tokens": 4556,
+      "output_tokens_reserved": 12288,
+      "headroom": 15924
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D087",
+      "prompt_tokens": 5362,
+      "output_tokens_reserved": 12288,
+      "headroom": 15118
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D088",
+      "prompt_tokens": 4667,
+      "output_tokens_reserved": 12288,
+      "headroom": 15813
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D089",
+      "prompt_tokens": 4491,
+      "output_tokens_reserved": 12288,
+      "headroom": 15989
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D090",
+      "prompt_tokens": 4528,
+      "output_tokens_reserved": 12288,
+      "headroom": 15952
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D091",
+      "prompt_tokens": 4659,
+      "output_tokens_reserved": 12288,
+      "headroom": 15821
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D092",
+      "prompt_tokens": 4542,
+      "output_tokens_reserved": 12288,
+      "headroom": 15938
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D093",
+      "prompt_tokens": 5642,
+      "output_tokens_reserved": 12288,
+      "headroom": 14838
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D094",
+      "prompt_tokens": 5042,
+      "output_tokens_reserved": 12288,
+      "headroom": 15438
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D095",
+      "prompt_tokens": 4678,
+      "output_tokens_reserved": 12288,
+      "headroom": 15802
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D096",
+      "prompt_tokens": 4618,
+      "output_tokens_reserved": 12288,
+      "headroom": 15862
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D097",
+      "prompt_tokens": 4340,
+      "output_tokens_reserved": 12288,
+      "headroom": 16140
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D098",
+      "prompt_tokens": 5153,
+      "output_tokens_reserved": 12288,
+      "headroom": 15327
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D099",
+      "prompt_tokens": 4762,
+      "output_tokens_reserved": 12288,
+      "headroom": 15718
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D100",
+      "prompt_tokens": 4326,
+      "output_tokens_reserved": 12288,
+      "headroom": 16154
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D101",
+      "prompt_tokens": 4199,
+      "output_tokens_reserved": 12288,
+      "headroom": 16281
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D102",
+      "prompt_tokens": 4193,
+      "output_tokens_reserved": 12288,
+      "headroom": 16287
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D103",
+      "prompt_tokens": 4168,
+      "output_tokens_reserved": 12288,
+      "headroom": 16312
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D104",
+      "prompt_tokens": 4537,
+      "output_tokens_reserved": 12288,
+      "headroom": 15943
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D105",
+      "prompt_tokens": 5420,
+      "output_tokens_reserved": 12288,
+      "headroom": 15060
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D106",
+      "prompt_tokens": 4251,
+      "output_tokens_reserved": 12288,
+      "headroom": 16229
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D107",
+      "prompt_tokens": 5197,
+      "output_tokens_reserved": 12288,
+      "headroom": 15283
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D108",
+      "prompt_tokens": 5129,
+      "output_tokens_reserved": 12288,
+      "headroom": 15351
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D109",
+      "prompt_tokens": 4247,
+      "output_tokens_reserved": 12288,
+      "headroom": 16233
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D110",
+      "prompt_tokens": 4311,
+      "output_tokens_reserved": 12288,
+      "headroom": 16169
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D111",
+      "prompt_tokens": 4421,
+      "output_tokens_reserved": 12288,
+      "headroom": 16059
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D112",
+      "prompt_tokens": 4313,
+      "output_tokens_reserved": 12288,
+      "headroom": 16167
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D113",
+      "prompt_tokens": 4322,
+      "output_tokens_reserved": 12288,
+      "headroom": 16158
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D114",
+      "prompt_tokens": 5129,
+      "output_tokens_reserved": 12288,
+      "headroom": 15351
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D115",
+      "prompt_tokens": 4450,
+      "output_tokens_reserved": 12288,
+      "headroom": 16030
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D116",
+      "prompt_tokens": 4418,
+      "output_tokens_reserved": 12288,
+      "headroom": 16062
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D117",
+      "prompt_tokens": 4491,
+      "output_tokens_reserved": 12288,
+      "headroom": 15989
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D118",
+      "prompt_tokens": 4475,
+      "output_tokens_reserved": 12288,
+      "headroom": 16005
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D119",
+      "prompt_tokens": 4408,
+      "output_tokens_reserved": 12288,
+      "headroom": 16072
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D120",
+      "prompt_tokens": 4776,
+      "output_tokens_reserved": 12288,
+      "headroom": 15704
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D121",
+      "prompt_tokens": 4740,
+      "output_tokens_reserved": 12288,
+      "headroom": 15740
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D122",
+      "prompt_tokens": 4487,
+      "output_tokens_reserved": 12288,
+      "headroom": 15993
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D123",
+      "prompt_tokens": 5795,
+      "output_tokens_reserved": 12288,
+      "headroom": 14685
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D124",
+      "prompt_tokens": 5531,
+      "output_tokens_reserved": 12288,
+      "headroom": 14949
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D125",
+      "prompt_tokens": 5221,
+      "output_tokens_reserved": 12288,
+      "headroom": 15259
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D126",
+      "prompt_tokens": 4680,
+      "output_tokens_reserved": 12288,
+      "headroom": 15800
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D127",
+      "prompt_tokens": 4959,
+      "output_tokens_reserved": 12288,
+      "headroom": 15521
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D128",
+      "prompt_tokens": 4797,
+      "output_tokens_reserved": 12288,
+      "headroom": 15683
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D129",
+      "prompt_tokens": 4751,
+      "output_tokens_reserved": 12288,
+      "headroom": 15729
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D130",
+      "prompt_tokens": 4733,
+      "output_tokens_reserved": 12288,
+      "headroom": 15747
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D131",
+      "prompt_tokens": 5404,
+      "output_tokens_reserved": 12288,
+      "headroom": 15076
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D132",
+      "prompt_tokens": 7203,
+      "output_tokens_reserved": 12288,
+      "headroom": 13277
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D133",
+      "prompt_tokens": 6219,
+      "output_tokens_reserved": 12288,
+      "headroom": 14261
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D134",
+      "prompt_tokens": 5457,
+      "output_tokens_reserved": 12288,
+      "headroom": 15023
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D135",
+      "prompt_tokens": 6140,
+      "output_tokens_reserved": 12288,
+      "headroom": 14340
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D136",
+      "prompt_tokens": 5244,
+      "output_tokens_reserved": 12288,
+      "headroom": 15236
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D137",
+      "prompt_tokens": 5098,
+      "output_tokens_reserved": 12288,
+      "headroom": 15382
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D138",
+      "prompt_tokens": 5848,
+      "output_tokens_reserved": 12288,
+      "headroom": 14632
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D139",
+      "prompt_tokens": 5120,
+      "output_tokens_reserved": 12288,
+      "headroom": 15360
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D140",
+      "prompt_tokens": 5660,
+      "output_tokens_reserved": 12288,
+      "headroom": 14820
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D141",
+      "prompt_tokens": 5544,
+      "output_tokens_reserved": 12288,
+      "headroom": 14936
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D142",
+      "prompt_tokens": 7226,
+      "output_tokens_reserved": 12288,
+      "headroom": 13254
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D143",
+      "prompt_tokens": 7257,
+      "output_tokens_reserved": 12288,
+      "headroom": 13223
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D144",
+      "prompt_tokens": 10721,
+      "output_tokens_reserved": 12288,
+      "headroom": 9759
+    },
+    {
+      "stage": "subject",
+      "panel": "diagnostic",
+      "pair_id": "D145",
+      "prompt_tokens": 7391,
+      "output_tokens_reserved": 12288,
+      "headroom": 13089
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D005",
+      "prompt_tokens": 5438,
+      "output_tokens_reserved": 12288,
+      "headroom": 15042
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D005-swapped",
+      "prompt_tokens": 5440,
+      "output_tokens_reserved": 12288,
+      "headroom": 15040
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D017",
+      "prompt_tokens": 4694,
+      "output_tokens_reserved": 12288,
+      "headroom": 15786
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D017-swapped",
+      "prompt_tokens": 4696,
+      "output_tokens_reserved": 12288,
+      "headroom": 15784
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D043",
+      "prompt_tokens": 4591,
+      "output_tokens_reserved": 12288,
+      "headroom": 15889
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D043-swapped",
+      "prompt_tokens": 4593,
+      "output_tokens_reserved": 12288,
+      "headroom": 15887
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D051",
+      "prompt_tokens": 6502,
+      "output_tokens_reserved": 12288,
+      "headroom": 13978
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D051-swapped",
+      "prompt_tokens": 6504,
+      "output_tokens_reserved": 12288,
+      "headroom": 13976
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D068",
+      "prompt_tokens": 4739,
+      "output_tokens_reserved": 12288,
+      "headroom": 15741
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D068-swapped",
+      "prompt_tokens": 4741,
+      "output_tokens_reserved": 12288,
+      "headroom": 15739
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D115",
+      "prompt_tokens": 4450,
+      "output_tokens_reserved": 12288,
+      "headroom": 16030
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "D115-swapped",
+      "prompt_tokens": 4452,
+      "output_tokens_reserved": 12288,
+      "headroom": 16028
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-service_slot",
+      "prompt_tokens": 4131,
+      "output_tokens_reserved": 12288,
+      "headroom": 16349
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-service_slot-swapped",
+      "prompt_tokens": 4133,
+      "output_tokens_reserved": 12288,
+      "headroom": 16347
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-service_price",
+      "prompt_tokens": 4130,
+      "output_tokens_reserved": 12288,
+      "headroom": 16350
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-service_price-swapped",
+      "prompt_tokens": 4132,
+      "output_tokens_reserved": 12288,
+      "headroom": 16348
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-body_translation",
+      "prompt_tokens": 4261,
+      "output_tokens_reserved": 12288,
+      "headroom": 16219
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-body_translation-swapped",
+      "prompt_tokens": 4263,
+      "output_tokens_reserved": 12288,
+      "headroom": 16217
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-menu_translation",
+      "prompt_tokens": 4105,
+      "output_tokens_reserved": 12288,
+      "headroom": 16375
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-menu_translation-swapped",
+      "prompt_tokens": 4107,
+      "output_tokens_reserved": 12288,
+      "headroom": 16373
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-empty_currency",
+      "prompt_tokens": 4311,
+      "output_tokens_reserved": 12288,
+      "headroom": 16169
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-empty_currency-swapped",
+      "prompt_tokens": 4313,
+      "output_tokens_reserved": 12288,
+      "headroom": 16167
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-actual_price",
+      "prompt_tokens": 4115,
+      "output_tokens_reserved": 12288,
+      "headroom": 16365
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-actual_price-swapped",
+      "prompt_tokens": 4117,
+      "output_tokens_reserved": 12288,
+      "headroom": 16363
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-publication_metadata",
+      "prompt_tokens": 4095,
+      "output_tokens_reserved": 12288,
+      "headroom": 16385
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-publication_metadata-swapped",
+      "prompt_tokens": 4097,
+      "output_tokens_reserved": 12288,
+      "headroom": 16383
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-event_date",
+      "prompt_tokens": 4150,
+      "output_tokens_reserved": 12288,
+      "headroom": 16330
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-event_date-swapped",
+      "prompt_tokens": 4152,
+      "output_tokens_reserved": 12288,
+      "headroom": 16328
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-license_reference",
+      "prompt_tokens": 4058,
+      "output_tokens_reserved": 12288,
+      "headroom": 16422
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-license_reference-swapped",
+      "prompt_tokens": 4060,
+      "output_tokens_reserved": 12288,
+      "headroom": 16420
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-license_restriction",
+      "prompt_tokens": 4326,
+      "output_tokens_reserved": 12288,
+      "headroom": 16154
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-license_restriction-swapped",
+      "prompt_tokens": 4328,
+      "output_tokens_reserved": 12288,
+      "headroom": 16152
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-one_extension",
+      "prompt_tokens": 4064,
+      "output_tokens_reserved": 12288,
+      "headroom": 16416
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-one_extension-swapped",
+      "prompt_tokens": 4066,
+      "output_tokens_reserved": 12288,
+      "headroom": 16414
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-two_extensions",
+      "prompt_tokens": 4379,
+      "output_tokens_reserved": 12288,
+      "headroom": 16101
+    },
+    {
+      "stage": "subject",
+      "panel": "gate",
+      "pair_id": "control-two_extensions-swapped",
+      "prompt_tokens": 4381,
+      "output_tokens_reserved": 12288,
+      "headroom": 16099
+    },
+    {
+      "stage": "subject",
+      "panel": "coverage-regression",
+      "pair_id": "H049",
+      "prompt_tokens": 5391,
+      "output_tokens_reserved": 12288,
+      "headroom": 15089
+    },
+    {
+      "stage": "subject",
+      "panel": "coverage-regression",
+      "pair_id": "H049-swapped",
+      "prompt_tokens": 5393,
+      "output_tokens_reserved": 12288,
+      "headroom": 15087
+    },
+    {
+      "stage": "subject",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_COVERAGE",
+      "prompt_tokens": 4318,
+      "output_tokens_reserved": 12288,
+      "headroom": 16162
+    },
+    {
+      "stage": "subject",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_COVERAGE-swapped",
+      "prompt_tokens": 4320,
+      "output_tokens_reserved": 12288,
+      "headroom": 16160
+    },
+    {
+      "stage": "subject",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_PRICE_CONFLICT",
+      "prompt_tokens": 4470,
+      "output_tokens_reserved": 12288,
+      "headroom": 16010
+    },
+    {
+      "stage": "subject",
+      "panel": "coverage-regression",
+      "pair_id": "LIST_PRICE_CONFLICT-swapped",
+      "prompt_tokens": 4472,
+      "output_tokens_reserved": 12288,
+      "headroom": 16008
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R11",
+      "prompt_tokens": 4629,
+      "output_tokens_reserved": 12288,
+      "headroom": 15851
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R11-swapped",
+      "prompt_tokens": 4631,
+      "output_tokens_reserved": 12288,
+      "headroom": 15849
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R18",
+      "prompt_tokens": 6215,
+      "output_tokens_reserved": 12288,
+      "headroom": 14265
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R18-swapped",
+      "prompt_tokens": 6217,
+      "output_tokens_reserved": 12288,
+      "headroom": 14263
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R14",
+      "prompt_tokens": 5983,
+      "output_tokens_reserved": 12288,
+      "headroom": 14497
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R14-swapped",
+      "prompt_tokens": 5724,
+      "output_tokens_reserved": 12288,
+      "headroom": 14756
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R33",
+      "prompt_tokens": 4841,
+      "output_tokens_reserved": 12288,
+      "headroom": 15639
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R33-swapped",
+      "prompt_tokens": 4843,
+      "output_tokens_reserved": 12288,
+      "headroom": 15637
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D011",
+      "prompt_tokens": 4654,
+      "output_tokens_reserved": 12288,
+      "headroom": 15826
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D011-swapped",
+      "prompt_tokens": 4656,
+      "output_tokens_reserved": 12288,
+      "headroom": 15824
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D058",
+      "prompt_tokens": 5289,
+      "output_tokens_reserved": 12288,
+      "headroom": 15191
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D058-swapped",
+      "prompt_tokens": 5291,
+      "output_tokens_reserved": 12288,
+      "headroom": 15189
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D059",
+      "prompt_tokens": 5286,
+      "output_tokens_reserved": 12288,
+      "headroom": 15194
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D059-swapped",
+      "prompt_tokens": 5288,
+      "output_tokens_reserved": 12288,
+      "headroom": 15192
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D134",
+      "prompt_tokens": 5457,
+      "output_tokens_reserved": 12288,
+      "headroom": 15023
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D134-swapped",
+      "prompt_tokens": 5498,
+      "output_tokens_reserved": 12288,
+      "headroom": 14982
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D135",
+      "prompt_tokens": 6140,
+      "output_tokens_reserved": 12288,
+      "headroom": 14340
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D135-swapped",
+      "prompt_tokens": 5799,
+      "output_tokens_reserved": 12288,
+      "headroom": 14681
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_citation_slot",
+      "prompt_tokens": 4144,
+      "output_tokens_reserved": 12288,
+      "headroom": 16336
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_citation_slot-swapped",
+      "prompt_tokens": 4146,
+      "output_tokens_reserved": 12288,
+      "headroom": 16334
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_marketing_slot",
+      "prompt_tokens": 4224,
+      "output_tokens_reserved": 12288,
+      "headroom": 16256
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_marketing_slot-swapped",
+      "prompt_tokens": 4226,
+      "output_tokens_reserved": 12288,
+      "headroom": 16254
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_actual_product",
+      "prompt_tokens": 4548,
+      "output_tokens_reserved": 12288,
+      "headroom": 15932
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_actual_product-swapped",
+      "prompt_tokens": 4550,
+      "output_tokens_reserved": 12288,
+      "headroom": 15930
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_submission_endpoint",
+      "prompt_tokens": 4135,
+      "output_tokens_reserved": 12288,
+      "headroom": 16345
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_submission_endpoint-swapped",
+      "prompt_tokens": 4137,
+      "output_tokens_reserved": 12288,
+      "headroom": 16343
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_localized_title",
+      "prompt_tokens": 4110,
+      "output_tokens_reserved": 12288,
+      "headroom": 16370
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_localized_title-swapped",
+      "prompt_tokens": 4112,
+      "output_tokens_reserved": 12288,
+      "headroom": 16368
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_localized_auth",
+      "prompt_tokens": 4227,
+      "output_tokens_reserved": 12288,
+      "headroom": 16253
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_localized_auth-swapped",
+      "prompt_tokens": 4229,
+      "output_tokens_reserved": 12288,
+      "headroom": 16251
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_body_language",
+      "prompt_tokens": 4254,
+      "output_tokens_reserved": 12288,
+      "headroom": 16226
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_body_language-swapped",
+      "prompt_tokens": 4256,
+      "output_tokens_reserved": 12288,
+      "headroom": 16224
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_auth_procedure",
+      "prompt_tokens": 4212,
+      "output_tokens_reserved": 12288,
+      "headroom": 16268
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_auth_procedure-swapped",
+      "prompt_tokens": 4214,
+      "output_tokens_reserved": 12288,
+      "headroom": 16266
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_intro",
+      "prompt_tokens": 4309,
+      "output_tokens_reserved": 12288,
+      "headroom": 16171
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_intro-swapped",
+      "prompt_tokens": 4311,
+      "output_tokens_reserved": 12288,
+      "headroom": 16169
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_name",
+      "prompt_tokens": 4181,
+      "output_tokens_reserved": 12288,
+      "headroom": 16299
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_name-swapped",
+      "prompt_tokens": 4183,
+      "output_tokens_reserved": 12288,
+      "headroom": 16297
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_repetition",
+      "prompt_tokens": 4175,
+      "output_tokens_reserved": 12288,
+      "headroom": 16305
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_repetition-swapped",
+      "prompt_tokens": 4177,
+      "output_tokens_reserved": 12288,
+      "headroom": 16303
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_specific_use",
+      "prompt_tokens": 4081,
+      "output_tokens_reserved": 12288,
+      "headroom": 16399
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_specific_use-swapped",
+      "prompt_tokens": 4083,
+      "output_tokens_reserved": 12288,
+      "headroom": 16397
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_restriction",
+      "prompt_tokens": 4167,
+      "output_tokens_reserved": 12288,
+      "headroom": 16313
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_cookie_restriction-swapped",
+      "prompt_tokens": 4169,
+      "output_tokens_reserved": 12288,
+      "headroom": 16311
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H001",
+      "prompt_tokens": 6365,
+      "output_tokens_reserved": 12288,
+      "headroom": 14115
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H002",
+      "prompt_tokens": 6212,
+      "output_tokens_reserved": 12288,
+      "headroom": 14268
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H003",
+      "prompt_tokens": 6483,
+      "output_tokens_reserved": 12288,
+      "headroom": 13997
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H004",
+      "prompt_tokens": 7419,
+      "output_tokens_reserved": 12288,
+      "headroom": 13061
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H005",
+      "prompt_tokens": 5644,
+      "output_tokens_reserved": 12288,
+      "headroom": 14836
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H006",
+      "prompt_tokens": 4385,
+      "output_tokens_reserved": 12288,
+      "headroom": 16095
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H007",
+      "prompt_tokens": 6945,
+      "output_tokens_reserved": 12288,
+      "headroom": 13535
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H008",
+      "prompt_tokens": 4012,
+      "output_tokens_reserved": 12288,
+      "headroom": 16468
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H009",
+      "prompt_tokens": 6287,
+      "output_tokens_reserved": 12288,
+      "headroom": 14193
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H010",
+      "prompt_tokens": 4900,
+      "output_tokens_reserved": 12288,
+      "headroom": 15580
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H011",
+      "prompt_tokens": 4622,
+      "output_tokens_reserved": 12288,
+      "headroom": 15858
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H012",
+      "prompt_tokens": 6155,
+      "output_tokens_reserved": 12288,
+      "headroom": 14325
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H013",
+      "prompt_tokens": 10282,
+      "output_tokens_reserved": 12288,
+      "headroom": 10198
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H014",
+      "prompt_tokens": 4149,
+      "output_tokens_reserved": 12288,
+      "headroom": 16331
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H015",
+      "prompt_tokens": 7268,
+      "output_tokens_reserved": 12288,
+      "headroom": 13212
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H016",
+      "prompt_tokens": 11341,
+      "output_tokens_reserved": 12288,
+      "headroom": 9139
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H017",
+      "prompt_tokens": 6216,
+      "output_tokens_reserved": 12288,
+      "headroom": 14264
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H018",
+      "prompt_tokens": 10068,
+      "output_tokens_reserved": 12288,
+      "headroom": 10412
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H019",
+      "prompt_tokens": 4788,
+      "output_tokens_reserved": 12288,
+      "headroom": 15692
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H020",
+      "prompt_tokens": 8794,
+      "output_tokens_reserved": 12288,
+      "headroom": 11686
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H021",
+      "prompt_tokens": 4902,
+      "output_tokens_reserved": 12288,
+      "headroom": 15578
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H022",
+      "prompt_tokens": 4225,
+      "output_tokens_reserved": 12288,
+      "headroom": 16255
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H023",
+      "prompt_tokens": 11022,
+      "output_tokens_reserved": 12288,
+      "headroom": 9458
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H024",
+      "prompt_tokens": 4545,
+      "output_tokens_reserved": 12288,
+      "headroom": 15935
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H025",
+      "prompt_tokens": 4725,
+      "output_tokens_reserved": 12288,
+      "headroom": 15755
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H026",
+      "prompt_tokens": 8069,
+      "output_tokens_reserved": 12288,
+      "headroom": 12411
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H027",
+      "prompt_tokens": 7634,
+      "output_tokens_reserved": 12288,
+      "headroom": 12846
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H028",
+      "prompt_tokens": 7313,
+      "output_tokens_reserved": 12288,
+      "headroom": 13167
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H029",
+      "prompt_tokens": 5137,
+      "output_tokens_reserved": 12288,
+      "headroom": 15343
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H030",
+      "prompt_tokens": 4431,
+      "output_tokens_reserved": 12288,
+      "headroom": 16049
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H031",
+      "prompt_tokens": 5574,
+      "output_tokens_reserved": 12288,
+      "headroom": 14906
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H032",
+      "prompt_tokens": 9367,
+      "output_tokens_reserved": 12288,
+      "headroom": 11113
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H033",
+      "prompt_tokens": 4123,
+      "output_tokens_reserved": 12288,
+      "headroom": 16357
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H034",
+      "prompt_tokens": 4206,
+      "output_tokens_reserved": 12288,
+      "headroom": 16274
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H035",
+      "prompt_tokens": 7425,
+      "output_tokens_reserved": 12288,
+      "headroom": 13055
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H036",
+      "prompt_tokens": 5488,
+      "output_tokens_reserved": 12288,
+      "headroom": 14992
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H037",
+      "prompt_tokens": 10274,
+      "output_tokens_reserved": 12288,
+      "headroom": 10206
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H038",
+      "prompt_tokens": 6952,
+      "output_tokens_reserved": 12288,
+      "headroom": 13528
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H039",
+      "prompt_tokens": 4438,
+      "output_tokens_reserved": 12288,
+      "headroom": 16042
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H040",
+      "prompt_tokens": 8922,
+      "output_tokens_reserved": 12288,
+      "headroom": 11558
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H041",
+      "prompt_tokens": 6391,
+      "output_tokens_reserved": 12288,
+      "headroom": 14089
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H042",
+      "prompt_tokens": 9523,
+      "output_tokens_reserved": 12288,
+      "headroom": 10957
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H043",
+      "prompt_tokens": 4488,
+      "output_tokens_reserved": 12288,
+      "headroom": 15992
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H044",
+      "prompt_tokens": 7504,
+      "output_tokens_reserved": 12288,
+      "headroom": 12976
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H045",
+      "prompt_tokens": 4119,
+      "output_tokens_reserved": 12288,
+      "headroom": 16361
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H046",
+      "prompt_tokens": 13631,
+      "output_tokens_reserved": 12288,
+      "headroom": 6849
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H047",
+      "prompt_tokens": 4127,
+      "output_tokens_reserved": 12288,
+      "headroom": 16353
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H048",
+      "prompt_tokens": 7302,
+      "output_tokens_reserved": 12288,
+      "headroom": 13178
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H049",
+      "prompt_tokens": 5391,
+      "output_tokens_reserved": 12288,
+      "headroom": 15089
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H050",
+      "prompt_tokens": 5174,
+      "output_tokens_reserved": 12288,
+      "headroom": 15306
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H051",
+      "prompt_tokens": 11109,
+      "output_tokens_reserved": 12288,
+      "headroom": 9371
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H052",
+      "prompt_tokens": 6076,
+      "output_tokens_reserved": 12288,
+      "headroom": 14404
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H053",
+      "prompt_tokens": 4665,
+      "output_tokens_reserved": 12288,
+      "headroom": 15815
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H054",
+      "prompt_tokens": 5350,
+      "output_tokens_reserved": 12288,
+      "headroom": 15130
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H055",
+      "prompt_tokens": 11461,
+      "output_tokens_reserved": 12288,
+      "headroom": 9019
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H056",
+      "prompt_tokens": 4898,
+      "output_tokens_reserved": 12288,
+      "headroom": 15582
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H057",
+      "prompt_tokens": 4627,
+      "output_tokens_reserved": 12288,
+      "headroom": 15853
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H058",
+      "prompt_tokens": 4682,
+      "output_tokens_reserved": 12288,
+      "headroom": 15798
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H059",
+      "prompt_tokens": 10974,
+      "output_tokens_reserved": 12288,
+      "headroom": 9506
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H060",
+      "prompt_tokens": 6391,
+      "output_tokens_reserved": 12288,
+      "headroom": 14089
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H061",
+      "prompt_tokens": 6623,
+      "output_tokens_reserved": 12288,
+      "headroom": 13857
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H062",
+      "prompt_tokens": 6962,
+      "output_tokens_reserved": 12288,
+      "headroom": 13518
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H063",
+      "prompt_tokens": 4290,
+      "output_tokens_reserved": 12288,
+      "headroom": 16190
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H064",
+      "prompt_tokens": 4117,
+      "output_tokens_reserved": 12288,
+      "headroom": 16363
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H065",
+      "prompt_tokens": 4586,
+      "output_tokens_reserved": 12288,
+      "headroom": 15894
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H066",
+      "prompt_tokens": 6422,
+      "output_tokens_reserved": 12288,
+      "headroom": 14058
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H067",
+      "prompt_tokens": 9501,
+      "output_tokens_reserved": 12288,
+      "headroom": 10979
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H068",
+      "prompt_tokens": 4239,
+      "output_tokens_reserved": 12288,
+      "headroom": 16241
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H069",
+      "prompt_tokens": 5602,
+      "output_tokens_reserved": 12288,
+      "headroom": 14878
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H070",
+      "prompt_tokens": 4422,
+      "output_tokens_reserved": 12288,
+      "headroom": 16058
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H071",
+      "prompt_tokens": 4193,
+      "output_tokens_reserved": 12288,
+      "headroom": 16287
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H072",
+      "prompt_tokens": 4175,
+      "output_tokens_reserved": 12288,
+      "headroom": 16305
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H073",
+      "prompt_tokens": 3980,
+      "output_tokens_reserved": 12288,
+      "headroom": 16500
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H074",
+      "prompt_tokens": 7323,
+      "output_tokens_reserved": 12288,
+      "headroom": 13157
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H075",
+      "prompt_tokens": 4314,
+      "output_tokens_reserved": 12288,
+      "headroom": 16166
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H076",
+      "prompt_tokens": 5742,
+      "output_tokens_reserved": 12288,
+      "headroom": 14738
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H077",
+      "prompt_tokens": 10967,
+      "output_tokens_reserved": 12288,
+      "headroom": 9513
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H078",
+      "prompt_tokens": 8154,
+      "output_tokens_reserved": 12288,
+      "headroom": 12326
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H079",
+      "prompt_tokens": 4755,
+      "output_tokens_reserved": 12288,
+      "headroom": 15725
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H080",
+      "prompt_tokens": 6485,
+      "output_tokens_reserved": 12288,
+      "headroom": 13995
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H081",
+      "prompt_tokens": 4419,
+      "output_tokens_reserved": 12288,
+      "headroom": 16061
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H082",
+      "prompt_tokens": 8177,
+      "output_tokens_reserved": 12288,
+      "headroom": 12303
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H083",
+      "prompt_tokens": 11591,
+      "output_tokens_reserved": 12288,
+      "headroom": 8889
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H084",
+      "prompt_tokens": 4522,
+      "output_tokens_reserved": 12288,
+      "headroom": 15958
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H085",
+      "prompt_tokens": 8942,
+      "output_tokens_reserved": 12288,
+      "headroom": 11538
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H086",
+      "prompt_tokens": 4165,
+      "output_tokens_reserved": 12288,
+      "headroom": 16315
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H087",
+      "prompt_tokens": 8588,
+      "output_tokens_reserved": 12288,
+      "headroom": 11892
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H088",
+      "prompt_tokens": 11362,
+      "output_tokens_reserved": 12288,
+      "headroom": 9118
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H089",
+      "prompt_tokens": 7097,
+      "output_tokens_reserved": 12288,
+      "headroom": 13383
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H090",
+      "prompt_tokens": 5245,
+      "output_tokens_reserved": 12288,
+      "headroom": 15235
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H091",
+      "prompt_tokens": 6725,
+      "output_tokens_reserved": 12288,
+      "headroom": 13755
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H092",
+      "prompt_tokens": 7144,
+      "output_tokens_reserved": 12288,
+      "headroom": 13336
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H093",
+      "prompt_tokens": 8945,
+      "output_tokens_reserved": 12288,
+      "headroom": 11535
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H094",
+      "prompt_tokens": 4563,
+      "output_tokens_reserved": 12288,
+      "headroom": 15917
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H095",
+      "prompt_tokens": 7004,
+      "output_tokens_reserved": 12288,
+      "headroom": 13476
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H096",
+      "prompt_tokens": 8869,
+      "output_tokens_reserved": 12288,
+      "headroom": 11611
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H097",
+      "prompt_tokens": 8192,
+      "output_tokens_reserved": 12288,
+      "headroom": 12288
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H098",
+      "prompt_tokens": 4653,
+      "output_tokens_reserved": 12288,
+      "headroom": 15827
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H099",
+      "prompt_tokens": 9140,
+      "output_tokens_reserved": 12288,
+      "headroom": 11340
+    },
+    {
+      "stage": "subject",
+      "panel": "holdout",
+      "pair_id": "H100",
+      "prompt_tokens": 10012,
+      "output_tokens_reserved": 12288,
+      "headroom": 10468
+    }
+  ]
+}

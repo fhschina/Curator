@@ -1,0 +1,1025 @@
+{
+  "slots": [
+    {
+      "arm": "thinking-off",
+      "panel": "diagnostic",
+      "repeat": 1,
+      "role": "primary_AB",
+      "started": 1793257677.4938478,
+      "completed": 1793258102.5285556,
+      "returncode": 0,
+      "status": "COMPLETE",
+      "groups": {
+        "personal120": {
+          "main": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 196,
+            "correct_pairs": 92,
+            "direction_agreement": 0.8166666666666667,
+            "pair_agreement": 0.7666666666666667,
+            "reference_wrong_allows": 7,
+            "reference_wrong_blocks": 29,
+            "invalid_pairs": 4,
+            "unresolved_pairs": 0,
+            "valid_pairs": 116,
+            "valid_judgment_coverage": 0.9666666666666667
+          },
+          "coverage": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 197,
+            "correct_pairs": 92,
+            "direction_agreement": 0.8208333333333333,
+            "pair_agreement": 0.7666666666666667,
+            "reference_wrong_allows": 5,
+            "reference_wrong_blocks": 30,
+            "invalid_pairs": 4,
+            "unresolved_pairs": 0,
+            "valid_pairs": 116,
+            "valid_judgment_coverage": 0.9666666666666667
+          },
+          "final": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 197,
+            "correct_pairs": 92,
+            "direction_agreement": 0.8208333333333333,
+            "pair_agreement": 0.7666666666666667,
+            "reference_wrong_allows": 5,
+            "reference_wrong_blocks": 30,
+            "invalid_pairs": 4,
+            "unresolved_pairs": 0,
+            "valid_pairs": 116,
+            "valid_judgment_coverage": 0.9666666666666667
+          }
+        },
+        "real_consensus6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "all_input_validation": {
+        "main": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        }
+      },
+      "failure_counts": {
+        "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 4
+      },
+      "attempt_status_counts": {
+        "valid": 309
+      },
+      "attempt_retries": 0,
+      "swap_mismatches": {}
+    },
+    {
+      "arm": "thinking-on",
+      "panel": "diagnostic",
+      "repeat": 1,
+      "role": "primary_AB",
+      "started": 1793258102.9280002,
+      "completed": 1793260593.1080215,
+      "returncode": 0,
+      "status": "COMPLETE",
+      "groups": {
+        "personal120": {
+          "main": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 205,
+            "correct_pairs": 98,
+            "direction_agreement": 0.8541666666666666,
+            "pair_agreement": 0.8166666666666667,
+            "reference_wrong_allows": 3,
+            "reference_wrong_blocks": 23,
+            "invalid_pairs": 6,
+            "unresolved_pairs": 0,
+            "valid_pairs": 114,
+            "valid_judgment_coverage": 0.95
+          },
+          "coverage": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 196,
+            "correct_pairs": 93,
+            "direction_agreement": 0.8166666666666667,
+            "pair_agreement": 0.775,
+            "reference_wrong_allows": 1,
+            "reference_wrong_blocks": 32,
+            "invalid_pairs": 8,
+            "unresolved_pairs": 0,
+            "valid_pairs": 112,
+            "valid_judgment_coverage": 0.9333333333333333
+          },
+          "final": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 196,
+            "correct_pairs": 93,
+            "direction_agreement": 0.8166666666666667,
+            "pair_agreement": 0.775,
+            "reference_wrong_allows": 1,
+            "reference_wrong_blocks": 32,
+            "invalid_pairs": 8,
+            "unresolved_pairs": 0,
+            "valid_pairs": 112,
+            "valid_judgment_coverage": 0.9333333333333333
+          }
+        },
+        "real_consensus6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "all_input_validation": {
+        "main": {
+          "invalid": 7,
+          "valid": 138,
+          "unresolved": 5
+        },
+        "coverage": {
+          "invalid": 9,
+          "valid": 136,
+          "unresolved": 5
+        },
+        "final": {
+          "invalid": 9,
+          "valid": 136,
+          "unresolved": 5
+        }
+      },
+      "failure_counts": {
+        "COVERAGE_ATTEMPT_OUTPUT_INCOMPLETE": 2,
+        "MAIN_ATTEMPT_OUTPUT_INCOMPLETE": 7
+      },
+      "attempt_status_counts": {
+        "valid": 305,
+        "output_incomplete": 15
+      },
+      "attempt_retries": 15,
+      "swap_mismatches": {}
+    },
+    {
+      "arm": "thinking-on",
+      "panel": "diagnostic",
+      "repeat": 2,
+      "role": "primary_AB",
+      "started": 1793260593.5767267,
+      "completed": 1793262968.7485497,
+      "returncode": 0,
+      "status": "COMPLETE",
+      "groups": {
+        "personal120": {
+          "main": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 201,
+            "correct_pairs": 95,
+            "direction_agreement": 0.8375,
+            "pair_agreement": 0.7916666666666666,
+            "reference_wrong_allows": 3,
+            "reference_wrong_blocks": 24,
+            "invalid_pairs": 6,
+            "unresolved_pairs": 0,
+            "valid_pairs": 114,
+            "valid_judgment_coverage": 0.95
+          },
+          "coverage": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 199,
+            "correct_pairs": 94,
+            "direction_agreement": 0.8291666666666667,
+            "pair_agreement": 0.7833333333333333,
+            "reference_wrong_allows": 2,
+            "reference_wrong_blocks": 29,
+            "invalid_pairs": 6,
+            "unresolved_pairs": 0,
+            "valid_pairs": 114,
+            "valid_judgment_coverage": 0.95
+          },
+          "final": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 197,
+            "correct_pairs": 93,
+            "direction_agreement": 0.8208333333333333,
+            "pair_agreement": 0.775,
+            "reference_wrong_allows": 2,
+            "reference_wrong_blocks": 29,
+            "invalid_pairs": 7,
+            "unresolved_pairs": 0,
+            "valid_pairs": 113,
+            "valid_judgment_coverage": 0.9416666666666667
+          }
+        },
+        "real_consensus6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "all_input_validation": {
+        "main": {
+          "valid": 139,
+          "invalid": 7,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 139,
+          "invalid": 7,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 138,
+          "invalid": 8,
+          "unresolved": 4
+        }
+      },
+      "failure_counts": {
+        "SUBJECT_ATTEMPT_OUTPUT_INCOMPLETE": 1,
+        "MAIN_ATTEMPT_PARSE_ERROR": 1,
+        "MAIN_ATTEMPT_OUTPUT_INCOMPLETE": 6
+      },
+      "attempt_status_counts": {
+        "valid": 306,
+        "output_incomplete": 12,
+        "parse_error": 2
+      },
+      "attempt_retries": 14,
+      "swap_mismatches": {}
+    },
+    {
+      "arm": "thinking-off",
+      "panel": "diagnostic",
+      "repeat": 2,
+      "role": "primary_AB",
+      "started": 1793262969.1870196,
+      "completed": 1793263389.21818,
+      "returncode": 0,
+      "status": "COMPLETE",
+      "groups": {
+        "personal120": {
+          "main": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 199,
+            "correct_pairs": 94,
+            "direction_agreement": 0.8291666666666667,
+            "pair_agreement": 0.7833333333333333,
+            "reference_wrong_allows": 8,
+            "reference_wrong_blocks": 31,
+            "invalid_pairs": 1,
+            "unresolved_pairs": 0,
+            "valid_pairs": 119,
+            "valid_judgment_coverage": 0.9916666666666667
+          },
+          "coverage": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 201,
+            "correct_pairs": 95,
+            "direction_agreement": 0.8375,
+            "pair_agreement": 0.7916666666666666,
+            "reference_wrong_allows": 5,
+            "reference_wrong_blocks": 32,
+            "invalid_pairs": 1,
+            "unresolved_pairs": 0,
+            "valid_pairs": 119,
+            "valid_judgment_coverage": 0.9916666666666667
+          },
+          "final": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 201,
+            "correct_pairs": 95,
+            "direction_agreement": 0.8375,
+            "pair_agreement": 0.7916666666666666,
+            "reference_wrong_allows": 5,
+            "reference_wrong_blocks": 32,
+            "invalid_pairs": 1,
+            "unresolved_pairs": 0,
+            "valid_pairs": 119,
+            "valid_judgment_coverage": 0.9916666666666667
+          }
+        },
+        "real_consensus6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "all_input_validation": {
+        "main": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        }
+      },
+      "failure_counts": {
+        "CONCLUSIVE_INCOMPLETE_EVIDENCE": 1,
+        "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage": 1,
+        "CONCLUSIVE_INCOMPLETE_EVIDENCE:main": 1,
+        "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1
+      },
+      "attempt_status_counts": {
+        "valid": 307
+      },
+      "attempt_retries": 0,
+      "swap_mismatches": {}
+    }
+  ],
+  "primary_slots": [
+    {
+      "arm": "thinking-off",
+      "panel": "diagnostic",
+      "repeat": 1,
+      "role": "primary_AB",
+      "started": 1793257677.4938478,
+      "completed": 1793258102.5285556,
+      "returncode": 0,
+      "status": "COMPLETE",
+      "groups": {
+        "personal120": {
+          "main": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 196,
+            "correct_pairs": 92,
+            "direction_agreement": 0.8166666666666667,
+            "pair_agreement": 0.7666666666666667,
+            "reference_wrong_allows": 7,
+            "reference_wrong_blocks": 29,
+            "invalid_pairs": 4,
+            "unresolved_pairs": 0,
+            "valid_pairs": 116,
+            "valid_judgment_coverage": 0.9666666666666667
+          },
+          "coverage": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 197,
+            "correct_pairs": 92,
+            "direction_agreement": 0.8208333333333333,
+            "pair_agreement": 0.7666666666666667,
+            "reference_wrong_allows": 5,
+            "reference_wrong_blocks": 30,
+            "invalid_pairs": 4,
+            "unresolved_pairs": 0,
+            "valid_pairs": 116,
+            "valid_judgment_coverage": 0.9666666666666667
+          },
+          "final": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 197,
+            "correct_pairs": 92,
+            "direction_agreement": 0.8208333333333333,
+            "pair_agreement": 0.7666666666666667,
+            "reference_wrong_allows": 5,
+            "reference_wrong_blocks": 30,
+            "invalid_pairs": 4,
+            "unresolved_pairs": 0,
+            "valid_pairs": 116,
+            "valid_judgment_coverage": 0.9666666666666667
+          }
+        },
+        "real_consensus6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "all_input_validation": {
+        "main": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        },
+        "coverage": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        },
+        "final": {
+          "valid": 141,
+          "invalid": 4,
+          "unresolved": 5
+        }
+      },
+      "failure_counts": {
+        "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 4
+      },
+      "attempt_status_counts": {
+        "valid": 309
+      },
+      "attempt_retries": 0,
+      "swap_mismatches": {}
+    },
+    {
+      "arm": "thinking-on",
+      "panel": "diagnostic",
+      "repeat": 1,
+      "role": "primary_AB",
+      "started": 1793258102.9280002,
+      "completed": 1793260593.1080215,
+      "returncode": 0,
+      "status": "COMPLETE",
+      "groups": {
+        "personal120": {
+          "main": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 205,
+            "correct_pairs": 98,
+            "direction_agreement": 0.8541666666666666,
+            "pair_agreement": 0.8166666666666667,
+            "reference_wrong_allows": 3,
+            "reference_wrong_blocks": 23,
+            "invalid_pairs": 6,
+            "unresolved_pairs": 0,
+            "valid_pairs": 114,
+            "valid_judgment_coverage": 0.95
+          },
+          "coverage": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 196,
+            "correct_pairs": 93,
+            "direction_agreement": 0.8166666666666667,
+            "pair_agreement": 0.775,
+            "reference_wrong_allows": 1,
+            "reference_wrong_blocks": 32,
+            "invalid_pairs": 8,
+            "unresolved_pairs": 0,
+            "valid_pairs": 112,
+            "valid_judgment_coverage": 0.9333333333333333
+          },
+          "final": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 196,
+            "correct_pairs": 93,
+            "direction_agreement": 0.8166666666666667,
+            "pair_agreement": 0.775,
+            "reference_wrong_allows": 1,
+            "reference_wrong_blocks": 32,
+            "invalid_pairs": 8,
+            "unresolved_pairs": 0,
+            "valid_pairs": 112,
+            "valid_judgment_coverage": 0.9333333333333333
+          }
+        },
+        "real_consensus6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "all_input_validation": {
+        "main": {
+          "invalid": 7,
+          "valid": 138,
+          "unresolved": 5
+        },
+        "coverage": {
+          "invalid": 9,
+          "valid": 136,
+          "unresolved": 5
+        },
+        "final": {
+          "invalid": 9,
+          "valid": 136,
+          "unresolved": 5
+        }
+      },
+      "failure_counts": {
+        "COVERAGE_ATTEMPT_OUTPUT_INCOMPLETE": 2,
+        "MAIN_ATTEMPT_OUTPUT_INCOMPLETE": 7
+      },
+      "attempt_status_counts": {
+        "valid": 305,
+        "output_incomplete": 15
+      },
+      "attempt_retries": 15,
+      "swap_mismatches": {}
+    },
+    {
+      "arm": "thinking-on",
+      "panel": "diagnostic",
+      "repeat": 2,
+      "role": "primary_AB",
+      "started": 1793260593.5767267,
+      "completed": 1793262968.7485497,
+      "returncode": 0,
+      "status": "COMPLETE",
+      "groups": {
+        "personal120": {
+          "main": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 201,
+            "correct_pairs": 95,
+            "direction_agreement": 0.8375,
+            "pair_agreement": 0.7916666666666666,
+            "reference_wrong_allows": 3,
+            "reference_wrong_blocks": 24,
+            "invalid_pairs": 6,
+            "unresolved_pairs": 0,
+            "valid_pairs": 114,
+            "valid_judgment_coverage": 0.95
+          },
+          "coverage": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 199,
+            "correct_pairs": 94,
+            "direction_agreement": 0.8291666666666667,
+            "pair_agreement": 0.7833333333333333,
+            "reference_wrong_allows": 2,
+            "reference_wrong_blocks": 29,
+            "invalid_pairs": 6,
+            "unresolved_pairs": 0,
+            "valid_pairs": 114,
+            "valid_judgment_coverage": 0.95
+          },
+          "final": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 197,
+            "correct_pairs": 93,
+            "direction_agreement": 0.8208333333333333,
+            "pair_agreement": 0.775,
+            "reference_wrong_allows": 2,
+            "reference_wrong_blocks": 29,
+            "invalid_pairs": 7,
+            "unresolved_pairs": 0,
+            "valid_pairs": 113,
+            "valid_judgment_coverage": 0.9416666666666667
+          }
+        },
+        "real_consensus6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "all_input_validation": {
+        "main": {
+          "valid": 139,
+          "invalid": 7,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 139,
+          "invalid": 7,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 138,
+          "invalid": 8,
+          "unresolved": 4
+        }
+      },
+      "failure_counts": {
+        "SUBJECT_ATTEMPT_OUTPUT_INCOMPLETE": 1,
+        "MAIN_ATTEMPT_PARSE_ERROR": 1,
+        "MAIN_ATTEMPT_OUTPUT_INCOMPLETE": 6
+      },
+      "attempt_status_counts": {
+        "valid": 306,
+        "output_incomplete": 12,
+        "parse_error": 2
+      },
+      "attempt_retries": 14,
+      "swap_mismatches": {}
+    },
+    {
+      "arm": "thinking-off",
+      "panel": "diagnostic",
+      "repeat": 2,
+      "role": "primary_AB",
+      "started": 1793262969.1870196,
+      "completed": 1793263389.21818,
+      "returncode": 0,
+      "status": "COMPLETE",
+      "groups": {
+        "personal120": {
+          "main": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 199,
+            "correct_pairs": 94,
+            "direction_agreement": 0.8291666666666667,
+            "pair_agreement": 0.7833333333333333,
+            "reference_wrong_allows": 8,
+            "reference_wrong_blocks": 31,
+            "invalid_pairs": 1,
+            "unresolved_pairs": 0,
+            "valid_pairs": 119,
+            "valid_judgment_coverage": 0.9916666666666667
+          },
+          "coverage": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 201,
+            "correct_pairs": 95,
+            "direction_agreement": 0.8375,
+            "pair_agreement": 0.7916666666666666,
+            "reference_wrong_allows": 5,
+            "reference_wrong_blocks": 32,
+            "invalid_pairs": 1,
+            "unresolved_pairs": 0,
+            "valid_pairs": 119,
+            "valid_judgment_coverage": 0.9916666666666667
+          },
+          "final": {
+            "pairs": 120,
+            "directions": 240,
+            "correct_directions": 201,
+            "correct_pairs": 95,
+            "direction_agreement": 0.8375,
+            "pair_agreement": 0.7916666666666666,
+            "reference_wrong_allows": 5,
+            "reference_wrong_blocks": 32,
+            "invalid_pairs": 1,
+            "unresolved_pairs": 0,
+            "valid_pairs": 119,
+            "valid_judgment_coverage": 0.9916666666666667
+          }
+        },
+        "real_consensus6": {
+          "main": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "coverage": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          },
+          "final": {
+            "pairs": 6,
+            "directions": 12,
+            "correct_directions": 12,
+            "correct_pairs": 6,
+            "direction_agreement": 1.0,
+            "pair_agreement": 1.0,
+            "reference_wrong_allows": 0,
+            "reference_wrong_blocks": 0,
+            "invalid_pairs": 0,
+            "unresolved_pairs": 0,
+            "valid_pairs": 6,
+            "valid_judgment_coverage": 1.0
+          }
+        }
+      },
+      "all_input_validation": {
+        "main": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        },
+        "coverage": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        },
+        "final": {
+          "valid": 144,
+          "invalid": 2,
+          "unresolved": 4
+        }
+      },
+      "failure_counts": {
+        "CONCLUSIVE_INCOMPLETE_EVIDENCE": 1,
+        "CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage": 1,
+        "CONCLUSIVE_INCOMPLETE_EVIDENCE:main": 1,
+        "MAIN_LEDGER_CONTRADICTION:b_can_replace_a:covered_removed_side": 1
+      },
+      "attempt_status_counts": {
+        "valid": 307
+      },
+      "attempt_retries": 0,
+      "swap_mismatches": {}
+    }
+  ],
+  "all_four_complete": true
+}

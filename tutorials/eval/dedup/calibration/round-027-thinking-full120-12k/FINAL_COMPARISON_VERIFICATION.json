@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "recorded": 1793263403.4676654,
+  "all_four_primary_original_slots_complete": true,
+  "primary_per_arm_denominators": {
+    "directions": 480,
+    "pairs": 240
+  },
+  "all_frozen_input_reference_native_code_and_prompt_hashes_match": true,
+  "only_primary_AB_setting_difference_is_thinking": true,
+  "output_budget": 12288,
+  "all_actual_scored_requests_checked_including_conditionals": 1256,
+  "paired_personal120_rows": 720,
+  "all_input_layer_rows": 1800,
+  "paired_changes_reconcile": true,
+  "source_policy_eight_jinja_unchanged": true,
+  "delivered_profile_matches_measured": "thinking-off",
+  "default_thinking_enabled": false,
+  "no_failed_original_replaced": true,
+  "two_repeat_results_not_renamed_three_repeat_confirmation": true,
+  "postprocessing_model_calls": 0,
+  "actual_unique_cpu_tests": 37,
+  "actual_native_tokenizations": 1996,
+  "resource_release": "PASS",
+  "docker_running": false,
+  "docker_host_pid": 0,
+  "original_frozen_development_acceptance_passed": false,
+  "independent_human_acceptance_claimed": false
+}

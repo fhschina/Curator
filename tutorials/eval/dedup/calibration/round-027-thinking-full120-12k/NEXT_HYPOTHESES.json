@@ -1,0 +1,35 @@
+{
+  "status": "UNSCHEDULED_FUTURE_HYPOTHESES_ONLY",
+  "current_frozen_comparison_unchanged": true,
+  "first_ON_run": {
+    "main_direction_correct": [
+      205,
+      240
+    ],
+    "final_direction_correct": [
+      196,
+      240
+    ],
+    "personal_invalid_pairs": 8,
+    "all_scored_flow_length_calls": 15,
+    "native_seconds": 2483.2
+  },
+  "template_verified": {
+    "path": "/raid/hfang/hf_cache/Qwen3.8-27B-FP8/chat_template.jinja",
+    "sha256": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+    "supported_reasoning_effort": [
+      "xhigh",
+      "medium",
+      "low"
+    ],
+    "default": "xhigh",
+    "setting_location": "chat_template_kwargs.reasoning_effort"
+  },
+  "possible_next_controlled_tests": [
+    "Same C0 and12288 with thinking enabled at medium instead of native defaultxhigh; a single config setting and no policy change.",
+    "If stage losses repeat, separately test main thinkingON and critics thinkingOFF under the unchanged native chain; requires a minimal shared stage config adapter, not a new arbiter."
+  ],
+  "no_new_model_calls_for_this_analysis": true,
+  "must_finish_current_two_repeat_full_AB_before_any_new_test": true,
+  "recorded": 1793260881.530057
+}

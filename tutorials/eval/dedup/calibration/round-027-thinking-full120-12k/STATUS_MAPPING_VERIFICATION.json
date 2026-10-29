@@ -1,0 +1,8 @@
+{
+  "status": "VERIFIED_AGAINST_UNCHANGED_NATIVE_PROTOCOL",
+  "recorded": 1793262647.18825,
+  "native_policy_tuning_sha256": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+  "technical_rule": "Original native compare requires complete verification plus all attempts valid, no invalid judgments, no integrity/unmapped errors. Observed technical failures remain reported; incomplete original groups are NOT_COMPLETED, not PASS.",
+  "scope": "Reporting-state mapping only; no inputs, labels, native scoring, thresholds, prompts, requests or queue changed.",
+  "model_calls": 0
+}

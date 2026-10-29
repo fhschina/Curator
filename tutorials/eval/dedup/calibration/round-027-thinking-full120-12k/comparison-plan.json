@@ -1,0 +1,139 @@
+{
+  "status": "FROZEN_BEFORE_SCORED_INFERENCE",
+  "declared": 1793257554.721523,
+  "session": "/raid/hfang/retention_policy_eval/v1/experiments/round-027-thinking-full120-12k-20261029T070247Z",
+  "source_commit": "e4ae599f2bfc22295a82b8a5579db4dff79f2677",
+  "model": {
+    "id": "Qwen/Qwen3.8-27B-FP8",
+    "revision": "017b9c7af6b5689d5dd426a76e0bc077eb5ca20a"
+  },
+  "source_policy_root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-00-start85",
+  "source_manifest_sha256": "8cc4afb5a8c501e2b26d786df675a70ab9e1e30fe2bab594d85f5cbe5d99d80b",
+  "primary_run_order": [
+    [
+      "thinking-off",
+      "diagnostic",
+      1
+    ],
+    [
+      "thinking-on",
+      "diagnostic",
+      1
+    ],
+    [
+      "thinking-on",
+      "diagnostic",
+      2
+    ],
+    [
+      "thinking-off",
+      "diagnostic",
+      2
+    ]
+  ],
+  "primary_repeats_per_arm": 2,
+  "all_input_pairs_per_run": 150,
+  "personal_reference_pairs_per_run": 120,
+  "personal_reference_directions_per_run": 240,
+  "fixed_per_arm_primary_denominators": {
+    "pairs": 240,
+    "directions": 480
+  },
+  "fixed": {
+    "temperature": 0.2,
+    "max_tokens_including_reasoning": 12288,
+    "context": 32768,
+    "concurrency": 8,
+    "timeout": 600,
+    "input_window_characters": 6000,
+    "gpu_count": 1,
+    "tp": 1
+  },
+  "only_AB_request_difference": "chat_template_kwargs.enable_thinking false/true; native default xhigh when enabled",
+  "common_reasoning_parser": "qwen3",
+  "native_python_sha256": {
+    "tutorials/eval/dedup/1_data_prep.py": "e4e28bff3e97cc905b64127072de081c9ce9411419aac6aa22abfb5eea7bd922",
+    "tutorials/eval/dedup/2_run_fuzzy_dedup.py": "2871dd763829e9984f334b05c95b6a81c5211738472d7259100d5ea1b3b42bfb",
+    "tutorials/eval/dedup/3_build_pair_dataset.py": "df00c55a3602e4e2ad6eecb713fbcfa8630ca032f398f32861083ba91514460f",
+    "tutorials/eval/dedup/4_span_alignment.py": "fb40c12b1fe97e9419341ec605c5cc7f27eaeaa94113b69f439ff7c3f2e459fc",
+    "tutorials/eval/dedup/5_run_llm_judge.py": "4631374d6bddadb1b061366436847a4166bdf879de9bf8a2b039c9beaffdf7eb",
+    "tutorials/eval/dedup/6_run_critics.py": "749e2091013aef3205f457dba2beb27a978eb9be0bc6dded7b0af838c1b834ec",
+    "tutorials/eval/dedup/7_analyze_results.py": "0683c9f6c2cd44c5d6c7ce7a6452b286edbafb6b397c204d51c7d94f40ab6a03",
+    "tutorials/eval/dedup/build_pairs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tutorials/eval/dedup/build_pairs/all_pairwise.py": "eb15e8f97080e3d3dcf31adf81b8065f253ae9257190abdf50ffd8187031dd2d",
+    "tutorials/eval/dedup/build_pairs/cross_group_sample.py": "965e28b1def2909ba1e396d692b63c4f8a669b8df3d0150166f243dbfc467b60",
+    "tutorials/eval/dedup/build_pairs/keeper_removed.py": "efd29144d1f5286ac998ed47d5a06dcbb094053e9b1cc1b530e47739f0950071",
+    "tutorials/eval/dedup/build_pairs/utils.py": "2248026fdc93e0d67041bbca87280ae6957baa58ad4f1a03a04627ed5f4e04bb",
+    "tutorials/eval/dedup/critics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tutorials/eval/dedup/critics/coverage.py": "07086bdebac9ff1ce106b83c5690159075c5ff35b83e7f6ec68c2acc756b086e",
+    "tutorials/eval/dedup/critics/models.py": "4e85e2a6e201f97f36d185bd227014b18ab398ebd66b1425899ff69140d47fdb",
+    "tutorials/eval/dedup/critics/spans.py": "ea13bbd89a494f0d99e703185c44f4c186a9b9c8afac4f1028d82bf227cc4135",
+    "tutorials/eval/dedup/critics/stage_utils.py": "9ac12e652a7784d385ab4755232a16548473aa36bb63ef67b289d235da2a4d3f",
+    "tutorials/eval/dedup/critics/subject.py": "678de526378810a939155971bd14f127f88ab2a1321f2337a7f5153daf9935b2",
+    "tutorials/eval/dedup/policy_cases.py": "4b3f3f34d5b706f9bb59c2fac991ea78ecc5ca60cde049c85f2d159e36e47ee2",
+    "tutorials/eval/dedup/policy_deciffusion.py": "85dce9cfc5527ebd656bee3191063ed9c0b8add98ae780f95c7dc63ce9a9dff5",
+    "tutorials/eval/dedup/policy_eval.py": "b5be73d59d43ed1df3506fdbfaff4b892b9635e0bad9f7cdd0562bc76b386bbf",
+    "tutorials/eval/dedup/policy_runtime.py": "708e0675dfdeb42c5bcd05c4bc9987225961a0f4fd9cf6b7843f30d8f3b34f03",
+    "tutorials/eval/dedup/policy_sampling.py": "a3e8e3903867ce14bda92c887bcea7c9c37a82ded09d1cffafb0fae0badb048c",
+    "tutorials/eval/dedup/policy_tuning.py": "06168085ea9f86a7df329f9cfcb4c77b4d371180ad2f17bf293850c13cecc915",
+    "nemo_curator/eval/llm_judge/workflow.py": "4ed62cd76b51537fdb3d6f8ae153f388b32a792ec0d7f4de71455e5c31c34048",
+    "nemo_curator/stages/synthetic/nemo_data_designer/data_designer.py": "4af91f6e4490266f99c7136cc4fde4696a83a368dcc5b8915be23aa982fc8227"
+  },
+  "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "input_label_and_reference_hashes": {
+    "panels/coverage-regression/input.jsonl": "8ff5b5de4aa9274975ac953ef3c577d84d973e28ff85326929dc1f4475075bee",
+    "panels/diagnostic/input.jsonl": "3e961946ccfe463423626a488e2356c0232d3ac6981239e098cda2d2f02dfe05",
+    "panels/gate/input.jsonl": "1dec0642b971b6b13f09275268d6c1d3a0e62eed23ebeacf78fdbaa40a118a8e",
+    "panels/holdout/input.jsonl": "7d96848d2911e20d61b6dc08f26a972591da079607c81b6cbacf55dad7cde23a",
+    "panels/preflight/input.jsonl": "46b4e2785ab99c01f4fd2f3f189f3d7724a190623afec239172632152312cf9f",
+    "labels/coverage-regression.json": "24d064d2b45123ccf210654a0d2a3125db9f944beb48b67ccd85f6ae601d5bc0",
+    "labels/diagnostic.json": "f03221c0769f868e0c31680b70fb42456b9603a57e23a8e4966f8a4bee6eaaa3",
+    "labels/gate.json": "ea0674d1f828f3a82ae44e036007a6e8ce073b805e9baaa3cae1f23fe9717412",
+    "labels/holdout.json": "d02944c8143f84aeecd5b7d60e7c651360955015910c0487fd5fe20ddd63ea4f",
+    "labels/preflight.json": "ff92c3fe1f622be71a37ad1a7a0f0c8cfaf6121672801d1ba0a4a3167b1a8579",
+    "input_indexes/coverage-regression.jsonl": "e86cd5ea3dd932cbff7944faf2953566307cf7be740ecfdd4b08c2aa9f69ca41",
+    "input_indexes/diagnostic.jsonl": "02854fd9fcc630e269b1899cc63e0946db7be1c7a6ba48b27857d2e058ba90d0",
+    "input_indexes/gate.jsonl": "7637ea40ac1f818ff6cc9be9ba85d6b118aafc31d55d7e9af02a9de318bfa8e8",
+    "input_indexes/holdout.jsonl": "751c6a05cdac6e07b1b442e4f5caecc7a4933ee5d1a6f468ce4e32544a5e3846",
+    "input_indexes/preflight.jsonl": "1a5c0bb242c1fb33e298b4eda01c8a422e8a917d16d1bbef0a5b9cbe0c1f72db",
+    "evaluation.json": "b1b986f7583a7e5681455173adadcfd50f27852fbf39245fd30ff789abf6e218",
+    "adjudications.json": "137890bc40d3f9254cc6c293d040f46cffe462204e5213a95681a2bf50d29ec7",
+    "agent_votes.json": "2dd028a1891131aea42e8840b02055c06a3a8d6b4e171755285a470756b3ad15",
+    "engineering_checks.json": "b632fdafc036610a919e877f5d35d64b8b2e092290144bc98683d284aa476093"
+  },
+  "targets": {
+    "primary_two_repeat_provisional": {
+      "directions": [
+        432,
+        480
+      ],
+      "pairs": [
+        204,
+        240
+      ]
+    },
+    "original_three_repeat_confirmed": {
+      "directions": [
+        648,
+        720
+      ],
+      "pairs": [
+        306,
+        360
+      ]
+    }
+  },
+  "conditional_formal_sequence": [
+    "If thinking-on primary counts reach both provisional thresholds, complete the first gate36, coverage6 and preflight44 group. Any failed direction/layer blocks acceptance and stops later conditional groups.",
+    "If the first hard86 group passes, run its predeclared second and third groups; stop formal progression on any failure.",
+    "If all hard86 repeats pass, run thinking-on diagnostic3 to complete the predeclared three-run group; if its exact mean misses either target, stop formal progression.",
+    "If confirmed target and hard checks pass, run fixed-baseline and start-39714b47 diagnostic1/2/3, and all three policies holdout1/2/3 under the common budget; compare original99/reviewed99/strict97 using exact fractions."
+  ],
+  "formal_acceptance_requires_all_original_conditions": true,
+  "failure_run_replacement_allowed": false,
+  "model_failures_unresolved_incomplete_score_zero": true,
+  "historical_outputs_used_as_fresh_controls": false,
+  "holdout100_role": "Exposed development regression; not independent human acceptance.",
+  "no_new_independent_human_labels": true,
+  "source_semantics_unchanged": true
+}

@@ -1,0 +1,7 @@
+{
+  "status": "BLOCKED_BY_PRIMARY_TARGET",
+  "acceptance_passed": false,
+  "gates": {
+    "primary_two_repeat_target_provisional": "FAIL"
+  }
+}

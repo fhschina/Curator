@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "max_tokens": 12288,
+  "thinking": false,
+  "config_sha256": "8346bc72c0d87ffd484642ecab0eb9353b1cd9fc9b97e59dd5b5e36b96bcc821",
+  "model_calls": 0
+}
