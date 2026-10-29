@@ -276,6 +276,12 @@ navigation:
                   - page: Qwen 保留规则校准 v4（八小时）
                     path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v4-report-zh.mdx
                     slug: retention-policy-v4-report-zh
+                  - page: Qwen Thinking On-Off Diagnostic
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-en.mdx
+                    slug: retention-thinking-ab-report
+                  - page: Qwen Thinking 开关诊断
+                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-zh.mdx
+                    slug: retention-thinking-ab-report-zh
               - section: Language Management
                 slug: language-management
                 contents:

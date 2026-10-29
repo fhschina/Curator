@@ -1,0 +1,64 @@
+---
+title: "Qwen thinking 开关 — 最小配对诊断"
+---
+
+## 结论
+
+默认thinking改善了状态类对照，在这一选定样本中，其有效的最终判断均符合冻结预期。但在既有总输出预算下，它产生的有效正确结果总体较少，截断尝试较多，开销明显增加。当前交付配置继续保留。下一步应先进行有界的推理强度或输出预算测试，再扩大到完整参考集。本结果不能证明模型能力上限。
+
+## 冻结方法
+
+| Setting / 设置 | Value / 值 |
+| --- | --- |
+| Model / 模型 | Qwen/Qwen3.8-27B-FP8 |
+| Policy / 政策 | Unchanged best C0; eight Jinja files / 最佳C0的八个Jinja文件未改 |
+| Presentations / 输入呈现 | 32 = latest18 + body_language2 + cookie_state8 + state_equivalence4 |
+| Repeats / 重复 | 2 per arm / 每臂2次 |
+| Order / 顺序 | off1 → on1 → on2 → off2 |
+| Temperature / 温度 | 0.2 |
+| Context / 上下文 | 32768 |
+| Completion budget / 输出预算 | 6144 including reasoning / 含推理 |
+| Native thinking effort / 原生推理强度 | xhigh default when enabled / 开启时原生默认xhigh |
+| Common reasoning parser / 共同推理解析器 | qwen3 |
+| Concurrent requests / 并发 | 8 |
+| Timeout seconds / 超时秒 | 600 |
+| GPU / 显卡 | 1 B200, TP1 |
+| Allocated GPU hours / 含启动与空闲的GPU小时 | 0.5437 |
+| Source commit / 来源提交 | d963a5d97aa7133e6fba6f9c455a406b169acd41 |
+
+## 实际质量与配对变化
+
+| Arm / 模式 | Layer / 层 | Correct D / 方向 | Agreement / 一致率 | Correct P / 整对 | Valid / 有效 | Invalid / 无效 | Unresolved / 未决 | Raw wrong allows / 原始错误允许 | Raw wrong blocks / 原始误阻止 | Repeat changes / 重复变化 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| thinking-off | main | 114/128 | 89.06% | 55/64 | 63 | 1 | 0 | 4 | 8 | 3 |
+| thinking-off | coverage | 108/128 | 84.38% | 51/64 | 63 | 1 | 0 | 3 | 15 | 6 |
+| thinking-off | final | 108/128 | 84.38% | 51/64 | 63 | 1 | 0 | 3 | 15 | 6 |
+| thinking-on | main | 102/128 | 79.69% | 51/64 | 51 | 13 | 0 | 0 | 0 | 5 |
+| thinking-on | coverage | 100/128 | 78.12% | 50/64 | 50 | 14 | 0 | 0 | 0 | 4 |
+| thinking-on | final | 100/128 | 78.12% | 50/64 | 50 | 14 | 0 | 0 | 0 | 4 |
+
+| Layer / 层 | D gained / 修复方向 | D lost / 退步方向 | P fixed / 修复整对 | P regressed / 退步整对 |
+| --- | --- | --- | --- | --- |
+| main | 14 | 26 | 9 | 13 |
+| coverage | 14 | 22 | 9 | 10 |
+| final | 14 | 22 | 9 | 10 |
+
+| Arm / 模式 | Group / 组 | Final D / 最终方向 | Final P / 最终整对 | Invalid / 无效 | Raw wrong allows / 原始错误允许 |
+| --- | --- | --- | --- | --- | --- |
+| thinking-off | latest18 | 59/72 | 28/36 | 0 | 0 |
+| thinking-off | body_language2 | 8/8 | 4/4 | 0 | 0 |
+| thinking-off | cookie_state8 | 29/32 | 13/16 | 0 | 3 |
+| thinking-off | state_equivalence4 | 12/16 | 6/8 | 1 | 0 |
+| thinking-on | latest18 | 46/72 | 23/36 | 13 | 0 |
+| thinking-on | body_language2 | 6/8 | 3/4 | 1 | 0 |
+| thinking-on | cookie_state8 | 32/32 | 16/16 | 0 | 0 |
+| thinking-on | state_equivalence4 | 16/16 | 8/8 | 0 | 0 |
+
+## 实际开销与限制
+
+| Arm / 模式 | Requests / 请求 | Run seconds / 运行秒 | Median latency / 中位秒 | P90 latency / P90延迟秒 | Completion tokens / 输出token | Reasoning calls / 推理请求 | Empty final / 最终为空 | Finish reasons / 结束原因 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| thinking-off | 140 | 269.95 | 5.12 | 16.08 | 81761 | 0 | 0 | stop=140 |
+| thinking-on | 191 | 1522.45 | 44.50 | 68.17 | 737876 | 191 | 44 | length=60; stop=131 |
+
+这是已暴露、经过选择的诊断子集，一致率不能视为完整个人参考准确率或正式验收。重复及交换观察相互依赖，不声明统计显著性。Thinking使用既有总输出预算，推理回复截断不能证明模型能力上限。两臂共同使用服务端推理解析器，分开私有推理和最终内容。所有原始尝试，包括失败和重试，均保留统计。原文和完整HTTP记录保留在外部证据目录。激活探测和分词检查不计入推理开销合计。运行墙钟时间包括原生流程开销，请求延迟统计包含失败尝试和重试。本诊断没有修改当前交付的最佳政策。任务拥有的模型服务和原生工作进程已释放。

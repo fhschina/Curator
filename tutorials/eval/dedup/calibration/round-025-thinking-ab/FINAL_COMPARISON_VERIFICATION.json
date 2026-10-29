@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "recorded": 1793253194.564169,
+  "all_four_original_slots_complete": true,
+  "fixed_per_arm_denominators": {
+    "directions": 128,
+    "pairs": 64
+  },
+  "all_manifests_and_native_code_hashes_match": true,
+  "deployed_best_nine_files_unchanged": true,
+  "all_paired_changes_reconcile_with_integer_totals": true,
+  "all_331_scored_flow_requests_completed_and_flags_verified": true,
+  "activation_probe_requests_excluded": 2,
+  "paired_rows": 192,
+  "no_scored_failure_replaced": true,
+  "postprocessing_model_calls": 0,
+  "resource_release": "PASS"
+}

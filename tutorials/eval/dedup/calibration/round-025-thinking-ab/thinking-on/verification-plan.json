@@ -1,0 +1,11 @@
+{
+  "declared": 1793251204.5034974,
+  "manifest_sha256": "a6a535e4f53a7fb3a843f09f0fe4db88b15384a1b7906ff585d47aa676c53851",
+  "runs": {
+    "preflight": [
+      "candidate-preflight-1",
+      "candidate-preflight-2"
+    ]
+  },
+  "replacement_failed_repeats_allowed": false
+}

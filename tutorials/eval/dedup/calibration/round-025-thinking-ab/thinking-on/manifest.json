@@ -1,0 +1,29 @@
+{
+  "policy_version": "best-C0-thinking-ab-minimal",
+  "purpose": "diagnostic",
+  "baseline_commit": "d963a5d97aa7133e6fba6f9c455a406b169acd41",
+  "panels": {
+    "preflight": 32
+  },
+  "created_at": 1793251204.5028145,
+  "thinking_enabled": true,
+  "source_root": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-00-start85",
+  "files": {
+    "panels/preflight/input.jsonl": "23c86956d49c5aa2f3f800c47cc29c559364d106d86fb8902475730f67d68133",
+    "labels/preflight.json": "e3a36a72875070207d9afe56c006f630abf61b2acb25978e8e9d56bef7146a1c",
+    "input_indexes/preflight.jsonl": "451391eb1e5a60f526a5abf49c305de88d6c05d6d2d1e2746d18a7356cbb4d6b",
+    "variants/candidate/critics/coverage_pair.jinja": "4b5037a1882af3f699ff21f9b73991fe910696a8486f58258e52a4c19dc265b0",
+    "variants/candidate/critics/coverage_system.jinja": "a9c8121270288abbc692fd849bd3becd31ccae0b6152d46f8f45c139243ac904",
+    "variants/candidate/critics/subject_pair.jinja": "424d1472db35ee18987281f43b81ad42b8626e5ac7aabf556287d07dbef2c419",
+    "variants/candidate/critics/subject_system.jinja": "c55f4418c04affb3334eac922f3947f532008df6f9d6aef9e1ef64eb056ae62c",
+    "variants/candidate/critics/subject_verifier_pair.jinja": "548138c71a2f4a8ccf0540b3685e8346254534d4e6f3e6dbc5b11804ce33545c",
+    "variants/candidate/critics/subject_verifier_system.jinja": "0bbcc96078900239ec8fdfbc142c3a9d900f1bf0ea25b8ce5c65885b309bd9ae",
+    "variants/candidate/judge_config/fuzzy_pair_judge.yaml": "1b1df4e7a1b6b869709f70f2b27baa14ba091ec2321bf2b6d27f9e47bf7c5a9d",
+    "variants/candidate/judge_config/pair.jinja": "06562a24a39d44b0c48368c21acad4cf667bd8567b7daec19b204d7181806a71",
+    "variants/candidate/judge_config/system.jinja": "e1c66d5275d9367637c27d4bb7d9af8c02394db91c6834adc26c6a5ca71d0caf",
+    "evaluation.json": "8dfbda9d2b4f197caa6406b3a8f2b6336cdd4946da8d6208c61c96792dd4e9a9",
+    "adjudications.json": "364b37738032a28a72829f4d2192b70bd9353c9ee8dddfc5b70c2785f995d6ac",
+    "agent_votes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "engineering_checks.json": "b632fdafc036610a919e877f5d35d64b8b2e092290144bc98683d284aa476093"
+  }
+}

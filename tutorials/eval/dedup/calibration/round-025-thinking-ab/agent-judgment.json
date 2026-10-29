@@ -1,0 +1,4 @@
+{
+  "en": "Default thinking improves the state controls, and its valid final judgments match the frozen expectations in this selected set. Under the existing total completion budget it yields fewer valid correct results overall, many truncated attempts and a substantial cost increase. Keep the current delivered configuration. The next useful step is a bounded test of thinking effort or output budget before expanding to the full reference set. This result does not establish a model capability ceiling.",
+  "zh": "默认thinking改善了状态类对照，在这一选定样本中，其有效的最终判断均符合冻结预期。但在既有总输出预算下，它产生的有效正确结果总体较少，截断尝试较多，开销明显增加。当前交付配置继续保留。下一步应先进行有界的推理强度或输出预算测试，再扩大到完整参考集。本结果不能证明模型能力上限。"
+}

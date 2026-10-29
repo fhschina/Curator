@@ -1,0 +1,799 @@
+{
+  "started": 1793251287.132866,
+  "completed": 1793251289.001821,
+  "status": "PASS",
+  "arrow_pandas_roundtrip": true,
+  "model_calls": 0,
+  "tokenization_requests": 96,
+  "max_parallel_tokenization": 1,
+  "fixed_context": 32768,
+  "fixed_output": 6144,
+  "stage_summary": {
+    "main": {
+      "inputs": 32,
+      "maximum_prompt_tokens": 12660,
+      "minimum_headroom": 13964
+    },
+    "coverage": {
+      "inputs": 32,
+      "maximum_prompt_tokens": 7292,
+      "minimum_headroom": 19332
+    },
+    "subject": {
+      "inputs": 32,
+      "maximum_prompt_tokens": 6253,
+      "minimum_headroom": 20371
+    }
+  },
+  "violations": [],
+  "results": [
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R11",
+      "prompt_tokens": 11631,
+      "output_tokens_reserved": 6144,
+      "headroom": 14993
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R11-swapped",
+      "prompt_tokens": 11633,
+      "output_tokens_reserved": 6144,
+      "headroom": 14991
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R18",
+      "prompt_tokens": 12658,
+      "output_tokens_reserved": 6144,
+      "headroom": 13966
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R18-swapped",
+      "prompt_tokens": 12660,
+      "output_tokens_reserved": 6144,
+      "headroom": 13964
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R14",
+      "prompt_tokens": 12334,
+      "output_tokens_reserved": 6144,
+      "headroom": 14290
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R14-swapped",
+      "prompt_tokens": 12214,
+      "output_tokens_reserved": 6144,
+      "headroom": 14410
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R33",
+      "prompt_tokens": 11621,
+      "output_tokens_reserved": 6144,
+      "headroom": 15003
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "R33-swapped",
+      "prompt_tokens": 11623,
+      "output_tokens_reserved": 6144,
+      "headroom": 15001
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D011",
+      "prompt_tokens": 11668,
+      "output_tokens_reserved": 6144,
+      "headroom": 14956
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D011-swapped",
+      "prompt_tokens": 11670,
+      "output_tokens_reserved": 6144,
+      "headroom": 14954
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D058",
+      "prompt_tokens": 11864,
+      "output_tokens_reserved": 6144,
+      "headroom": 14760
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D058-swapped",
+      "prompt_tokens": 11866,
+      "output_tokens_reserved": 6144,
+      "headroom": 14758
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D059",
+      "prompt_tokens": 12132,
+      "output_tokens_reserved": 6144,
+      "headroom": 14492
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D059-swapped",
+      "prompt_tokens": 12134,
+      "output_tokens_reserved": 6144,
+      "headroom": 14490
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D134",
+      "prompt_tokens": 12118,
+      "output_tokens_reserved": 6144,
+      "headroom": 14506
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D134-swapped",
+      "prompt_tokens": 12142,
+      "output_tokens_reserved": 6144,
+      "headroom": 14482
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D135",
+      "prompt_tokens": 12465,
+      "output_tokens_reserved": 6144,
+      "headroom": 14159
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "D135-swapped",
+      "prompt_tokens": 12292,
+      "output_tokens_reserved": 6144,
+      "headroom": 14332
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_body_language",
+      "prompt_tokens": 11329,
+      "output_tokens_reserved": 6144,
+      "headroom": 15295
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "T_body_language-swapped",
+      "prompt_tokens": 11331,
+      "output_tokens_reserved": 6144,
+      "headroom": 15293
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCST001",
+      "prompt_tokens": 11355,
+      "output_tokens_reserved": 6144,
+      "headroom": 15269
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCST001-swapped",
+      "prompt_tokens": 11357,
+      "output_tokens_reserved": 6144,
+      "headroom": 15267
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCST002",
+      "prompt_tokens": 11400,
+      "output_tokens_reserved": 6144,
+      "headroom": 15224
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCST002-swapped",
+      "prompt_tokens": 11402,
+      "output_tokens_reserved": 6144,
+      "headroom": 15222
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCST003",
+      "prompt_tokens": 11368,
+      "output_tokens_reserved": 6144,
+      "headroom": 15256
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCST003-swapped",
+      "prompt_tokens": 11370,
+      "output_tokens_reserved": 6144,
+      "headroom": 15254
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCST004",
+      "prompt_tokens": 11375,
+      "output_tokens_reserved": 6144,
+      "headroom": 15249
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCST004-swapped",
+      "prompt_tokens": 11377,
+      "output_tokens_reserved": 6144,
+      "headroom": 15247
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCEQ001",
+      "prompt_tokens": 11260,
+      "output_tokens_reserved": 6144,
+      "headroom": 15364
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCEQ001-swapped",
+      "prompt_tokens": 11262,
+      "output_tokens_reserved": 6144,
+      "headroom": 15362
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCEQ002",
+      "prompt_tokens": 11301,
+      "output_tokens_reserved": 6144,
+      "headroom": 15323
+    },
+    {
+      "stage": "main",
+      "panel": "preflight",
+      "pair_id": "SCEQ002-swapped",
+      "prompt_tokens": 11303,
+      "output_tokens_reserved": 6144,
+      "headroom": 15321
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R11",
+      "prompt_tokens": 5951,
+      "output_tokens_reserved": 6144,
+      "headroom": 20673
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R11-swapped",
+      "prompt_tokens": 5953,
+      "output_tokens_reserved": 6144,
+      "headroom": 20671
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R18",
+      "prompt_tokens": 7290,
+      "output_tokens_reserved": 6144,
+      "headroom": 19334
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R18-swapped",
+      "prompt_tokens": 7292,
+      "output_tokens_reserved": 6144,
+      "headroom": 19332
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R14",
+      "prompt_tokens": 7052,
+      "output_tokens_reserved": 6144,
+      "headroom": 19572
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R14-swapped",
+      "prompt_tokens": 6857,
+      "output_tokens_reserved": 6144,
+      "headroom": 19767
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R33",
+      "prompt_tokens": 6107,
+      "output_tokens_reserved": 6144,
+      "headroom": 20517
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "R33-swapped",
+      "prompt_tokens": 6109,
+      "output_tokens_reserved": 6144,
+      "headroom": 20515
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D011",
+      "prompt_tokens": 5978,
+      "output_tokens_reserved": 6144,
+      "headroom": 20646
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D011-swapped",
+      "prompt_tokens": 5980,
+      "output_tokens_reserved": 6144,
+      "headroom": 20644
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D058",
+      "prompt_tokens": 6467,
+      "output_tokens_reserved": 6144,
+      "headroom": 20157
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D058-swapped",
+      "prompt_tokens": 6469,
+      "output_tokens_reserved": 6144,
+      "headroom": 20155
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D059",
+      "prompt_tokens": 6485,
+      "output_tokens_reserved": 6144,
+      "headroom": 20139
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D059-swapped",
+      "prompt_tokens": 6487,
+      "output_tokens_reserved": 6144,
+      "headroom": 20137
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D134",
+      "prompt_tokens": 6657,
+      "output_tokens_reserved": 6144,
+      "headroom": 19967
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D134-swapped",
+      "prompt_tokens": 6685,
+      "output_tokens_reserved": 6144,
+      "headroom": 19939
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D135",
+      "prompt_tokens": 7200,
+      "output_tokens_reserved": 6144,
+      "headroom": 19424
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "D135-swapped",
+      "prompt_tokens": 6928,
+      "output_tokens_reserved": 6144,
+      "headroom": 19696
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_body_language",
+      "prompt_tokens": 5638,
+      "output_tokens_reserved": 6144,
+      "headroom": 20986
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "T_body_language-swapped",
+      "prompt_tokens": 5640,
+      "output_tokens_reserved": 6144,
+      "headroom": 20984
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCST001",
+      "prompt_tokens": 5576,
+      "output_tokens_reserved": 6144,
+      "headroom": 21048
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCST001-swapped",
+      "prompt_tokens": 5578,
+      "output_tokens_reserved": 6144,
+      "headroom": 21046
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCST002",
+      "prompt_tokens": 5653,
+      "output_tokens_reserved": 6144,
+      "headroom": 20971
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCST002-swapped",
+      "prompt_tokens": 5655,
+      "output_tokens_reserved": 6144,
+      "headroom": 20969
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCST003",
+      "prompt_tokens": 5602,
+      "output_tokens_reserved": 6144,
+      "headroom": 21022
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCST003-swapped",
+      "prompt_tokens": 5604,
+      "output_tokens_reserved": 6144,
+      "headroom": 21020
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCST004",
+      "prompt_tokens": 5616,
+      "output_tokens_reserved": 6144,
+      "headroom": 21008
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCST004-swapped",
+      "prompt_tokens": 5618,
+      "output_tokens_reserved": 6144,
+      "headroom": 21006
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCEQ001",
+      "prompt_tokens": 5475,
+      "output_tokens_reserved": 6144,
+      "headroom": 21149
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCEQ001-swapped",
+      "prompt_tokens": 5477,
+      "output_tokens_reserved": 6144,
+      "headroom": 21147
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCEQ002",
+      "prompt_tokens": 5542,
+      "output_tokens_reserved": 6144,
+      "headroom": 21082
+    },
+    {
+      "stage": "coverage",
+      "panel": "preflight",
+      "pair_id": "SCEQ002-swapped",
+      "prompt_tokens": 5544,
+      "output_tokens_reserved": 6144,
+      "headroom": 21080
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R11",
+      "prompt_tokens": 4665,
+      "output_tokens_reserved": 6144,
+      "headroom": 21959
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R11-swapped",
+      "prompt_tokens": 4667,
+      "output_tokens_reserved": 6144,
+      "headroom": 21957
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R18",
+      "prompt_tokens": 6251,
+      "output_tokens_reserved": 6144,
+      "headroom": 20373
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R18-swapped",
+      "prompt_tokens": 6253,
+      "output_tokens_reserved": 6144,
+      "headroom": 20371
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R14",
+      "prompt_tokens": 6019,
+      "output_tokens_reserved": 6144,
+      "headroom": 20605
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R14-swapped",
+      "prompt_tokens": 5760,
+      "output_tokens_reserved": 6144,
+      "headroom": 20864
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R33",
+      "prompt_tokens": 4877,
+      "output_tokens_reserved": 6144,
+      "headroom": 21747
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "R33-swapped",
+      "prompt_tokens": 4879,
+      "output_tokens_reserved": 6144,
+      "headroom": 21745
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D011",
+      "prompt_tokens": 4690,
+      "output_tokens_reserved": 6144,
+      "headroom": 21934
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D011-swapped",
+      "prompt_tokens": 4692,
+      "output_tokens_reserved": 6144,
+      "headroom": 21932
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D058",
+      "prompt_tokens": 5325,
+      "output_tokens_reserved": 6144,
+      "headroom": 21299
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D058-swapped",
+      "prompt_tokens": 5327,
+      "output_tokens_reserved": 6144,
+      "headroom": 21297
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D059",
+      "prompt_tokens": 5322,
+      "output_tokens_reserved": 6144,
+      "headroom": 21302
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D059-swapped",
+      "prompt_tokens": 5324,
+      "output_tokens_reserved": 6144,
+      "headroom": 21300
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D134",
+      "prompt_tokens": 5493,
+      "output_tokens_reserved": 6144,
+      "headroom": 21131
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D134-swapped",
+      "prompt_tokens": 5534,
+      "output_tokens_reserved": 6144,
+      "headroom": 21090
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D135",
+      "prompt_tokens": 6176,
+      "output_tokens_reserved": 6144,
+      "headroom": 20448
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "D135-swapped",
+      "prompt_tokens": 5835,
+      "output_tokens_reserved": 6144,
+      "headroom": 20789
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_body_language",
+      "prompt_tokens": 4290,
+      "output_tokens_reserved": 6144,
+      "headroom": 22334
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "T_body_language-swapped",
+      "prompt_tokens": 4292,
+      "output_tokens_reserved": 6144,
+      "headroom": 22332
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCST001",
+      "prompt_tokens": 4224,
+      "output_tokens_reserved": 6144,
+      "headroom": 22400
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCST001-swapped",
+      "prompt_tokens": 4226,
+      "output_tokens_reserved": 6144,
+      "headroom": 22398
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCST002",
+      "prompt_tokens": 4325,
+      "output_tokens_reserved": 6144,
+      "headroom": 22299
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCST002-swapped",
+      "prompt_tokens": 4327,
+      "output_tokens_reserved": 6144,
+      "headroom": 22297
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCST003",
+      "prompt_tokens": 4250,
+      "output_tokens_reserved": 6144,
+      "headroom": 22374
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCST003-swapped",
+      "prompt_tokens": 4252,
+      "output_tokens_reserved": 6144,
+      "headroom": 22372
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCST004",
+      "prompt_tokens": 4264,
+      "output_tokens_reserved": 6144,
+      "headroom": 22360
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCST004-swapped",
+      "prompt_tokens": 4266,
+      "output_tokens_reserved": 6144,
+      "headroom": 22358
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCEQ001",
+      "prompt_tokens": 4105,
+      "output_tokens_reserved": 6144,
+      "headroom": 22519
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCEQ001-swapped",
+      "prompt_tokens": 4107,
+      "output_tokens_reserved": 6144,
+      "headroom": 22517
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCEQ002",
+      "prompt_tokens": 4196,
+      "output_tokens_reserved": 6144,
+      "headroom": 22428
+    },
+    {
+      "stage": "subject",
+      "panel": "preflight",
+      "pair_id": "SCEQ002-swapped",
+      "prompt_tokens": 4198,
+      "output_tokens_reserved": 6144,
+      "headroom": 22426
+    }
+  ]
+}
