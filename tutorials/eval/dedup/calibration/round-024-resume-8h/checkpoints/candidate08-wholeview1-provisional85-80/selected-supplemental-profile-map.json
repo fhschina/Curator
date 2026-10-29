@@ -1,0 +1,101 @@
+{
+  "created": 1793231641.582923,
+  "mapping": {
+    "candidate-00-start85": [
+      {
+        "root": "supplemental-cookie-scope-start85-v2",
+        "groups": [
+          "supplemental_cookie_scope8"
+        ],
+        "original_runs_complete": [
+          "candidate-preflight-1"
+        ]
+      }
+    ],
+    "candidate-03": [
+      {
+        "root": "supplemental-cookie-prerequisite-parent03-v1",
+        "groups": [
+          "supplemental_cookie_prerequisite8"
+        ],
+        "original_runs_complete": [
+          "candidate-preflight-1"
+        ]
+      },
+      {
+        "root": "supplemental-cookie-scope-candidate03-v2",
+        "groups": [
+          "supplemental_cookie_scope8"
+        ],
+        "original_runs_complete": [
+          "candidate-preflight-1"
+        ]
+      },
+      {
+        "root": "supplemental-cookie-state-candidate03-v1",
+        "groups": [
+          "supplemental_cookie_state8"
+        ],
+        "original_runs_complete": [
+          "candidate-preflight-1"
+        ]
+      },
+      {
+        "root": "supplemental-nonmain-paraphrase-candidate03-v1",
+        "groups": [
+          "supplemental_nonmain_paraphrase8"
+        ],
+        "original_runs_complete": [
+          "candidate-preflight-1"
+        ]
+      },
+      {
+        "root": "supplemental-state-equivalence-parent03-v1",
+        "groups": [
+          "supplemental_state_equivalence4"
+        ],
+        "original_runs_complete": [
+          "candidate-preflight-1"
+        ]
+      }
+    ],
+    "candidate-08-wholeview1": [
+      {
+        "root": "supplemental-cookie-prerequisite-candidate08-wholeview1-v1",
+        "groups": [
+          "supplemental_cookie_prerequisite8"
+        ],
+        "original_runs_complete": []
+      },
+      {
+        "root": "supplemental-cookie-scope-candidate08-wholeview1-v2",
+        "groups": [
+          "supplemental_cookie_scope8"
+        ],
+        "original_runs_complete": []
+      },
+      {
+        "root": "supplemental-cookie-state-candidate08-wholeview1-v1",
+        "groups": [
+          "supplemental_cookie_state8"
+        ],
+        "original_runs_complete": []
+      },
+      {
+        "root": "supplemental-nonmain-paraphrase-candidate08-wholeview1-v1",
+        "groups": [
+          "supplemental_nonmain_paraphrase8"
+        ],
+        "original_runs_complete": []
+      },
+      {
+        "root": "supplemental-state-equivalence-candidate08-wholeview1-v1",
+        "groups": [
+          "supplemental_state_equivalence4"
+        ],
+        "original_runs_complete": []
+      }
+    ]
+  },
+  "comparison": "exact nine frozen file hashes; no model call or label changes"
+}

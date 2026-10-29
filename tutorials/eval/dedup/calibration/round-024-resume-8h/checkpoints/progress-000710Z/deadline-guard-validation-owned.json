@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "verified_at": 1793212291.4432673,
+  "real_process_termination_exact_owned_identity": true,
+  "wrong_creation_time_untouched": true,
+  "wrong_full_command_untouched": true,
+  "test_created_decoys_cleaned_by_test_owner_after_assertions": true,
+  "no_gpu_or_unrelated_resources_touched": true,
+  "receipt": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/guard-validation-owned/deadline-cleanup.json"
+}

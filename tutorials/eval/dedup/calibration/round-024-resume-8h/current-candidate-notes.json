@@ -2328,6 +2328,29 @@
         "invalid_pairs": 8
       }
     },
-    "first150_status": "completed_original1_not_promoted_metric_below_start_first_run"
+    "first150_status": "completed_original1_not_promoted_metric_below_start_first_run",
+    "second_personal120_strict": {
+      "main": {
+        "correct_directions": 213,
+        "directions": 240,
+        "correct_pairs": 102,
+        "pairs": 120,
+        "invalid_pairs": 0
+      },
+      "coverage": {
+        "correct_directions": 209,
+        "directions": 240,
+        "correct_pairs": 100,
+        "pairs": 120,
+        "invalid_pairs": 2
+      },
+      "final": {
+        "correct_directions": 209,
+        "directions": 240,
+        "correct_pairs": 100,
+        "pairs": 120,
+        "invalid_pairs": 2
+      }
+    }
   }
 }

@@ -1,0 +1,8 @@
+{
+  "recorded": 1793231413.280241,
+  "scope": "Final shared EN/ZH requirements table distinguishes an actual completed FAIL receipt from NOT_COMPLETED; no scoring, evaluation gate, label, acceptance Boolean or model call changes",
+  "before_sha256": "53fc7d58f95caf08e698bf034b99010f8ad64ca66611fbfbc1f4e5708052508b",
+  "after_sha256": "af43865c153af7ad01a956108a9abfbcfb83dc5ee1d6ead8e9532a92e7d75e01",
+  "status": "COMPILED_AWAITING_ACTUAL_FINAL_REPORT_VALIDATION",
+  "failed_boolean_never_renders_PASS": true
+}
