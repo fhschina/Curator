@@ -1,0 +1,11 @@
+{
+  "status": "CLOSED",
+  "fixed_semantic_stop": 1793234478,
+  "recorded": 1793234543.0807686,
+  "last_new_candidate_freeze_receipt": "candidate08-wholeview1-freeze-receipt.json",
+  "current_policy": "candidate-00-start85 restored as verified best; C3 validation still pending",
+  "remaining_work": "Finish existing original3 validation, exact selected additional controls and actual checks, paired reports, owned resource release, source commit/push and actual archive/restore replay",
+  "original_delivery_deadline": 1793239878,
+  "original_gpu_stop": 1793238978,
+  "no_clock_reset": true
+}

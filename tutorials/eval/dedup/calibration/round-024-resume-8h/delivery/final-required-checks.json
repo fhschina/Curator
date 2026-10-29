@@ -1,0 +1,35 @@
+{
+  "status": "FAIL",
+  "required_checks_passed": false,
+  "recorded": 1793237087.8637967,
+  "selected_candidate": "candidate-00-start85",
+  "frozen_manifest_sha256": "8cc4afb5a8c501e2b26d786df675a70ab9e1e30fe2bab594d85f5cbe5d99d80b",
+  "actual_selected_cpu_checks": {
+    "status": "PASS",
+    "tests": 74,
+    "counts": {
+      "tests": 74,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "xml": "initial-cpu.xml",
+    "task_local_timestamp": "2026-10-28T18:18:13.175584+00:00",
+    "same_exact_starting_policy_and_unchanged_native_and_test_source": true
+  },
+  "actual_selected_registered_single_gpu_checks": {
+    "status": "PASS",
+    "tests": 4,
+    "receipt": "start85-single-gpu-checks-receipt.json",
+    "same_exact_frozen_policy_and_native_source": true
+  },
+  "actual_additional_controls": {
+    "status": "FAIL",
+    "original_three_groups_complete": true,
+    "receipt": "selected-C0-additional-controls-original3-summary.json"
+  },
+  "unique_cpu_test_count": 74,
+  "unique_single_gpu_test_count": 4,
+  "implementation_checks_reused_only_from_actual_same_task_identical_profile_execution": true,
+  "does_not_claim_formal_acceptance": true
+}

@@ -1,0 +1,48 @@
+{
+  "milestone_85_80": {
+    "path": "snapshots/1793233395751011849-milestone_85_80-candidate-08-wholeview1-not_confirmed_three_run_mean.json",
+    "sha256": "b377c78aa8cf7a42472e0a6877d747fe2a0ddc2b9f027ad695b2d6ea1497dc0d",
+    "signature": [
+      "candidate-08-wholeview1",
+      "not_confirmed_three_run_mean",
+      599,
+      282,
+      3,
+      "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    ],
+    "candidate": "candidate-08-wholeview1",
+    "status": "not_confirmed_three_run_mean",
+    "metric": {
+      "correct_directions": 599,
+      "directions": 720,
+      "correct_pairs": 282,
+      "pairs": 360,
+      "repeats": 3
+    },
+    "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+  },
+  "target_90_85": null,
+  "best_metric": {
+    "path": "snapshots/1793217993043851756-best_metric-candidate-00-start85-confirmed_three_run_mean.json",
+    "sha256": "4fe3ae6e58a9d54b759e4fda28c453bd4d30f9fc6cb4f001b49a3653b1151882",
+    "signature": [
+      "candidate-00-start85",
+      "confirmed_three_run_mean",
+      608,
+      287,
+      3,
+      "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+    ],
+    "candidate": "candidate-00-start85",
+    "status": "confirmed_three_run_mean",
+    "metric": {
+      "correct_directions": 608,
+      "directions": 720,
+      "correct_pairs": 287,
+      "pairs": 360,
+      "repeats": 3
+    },
+    "strict_audit_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44"
+  },
+  "best_eligible": null
+}

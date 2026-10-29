@@ -1,0 +1,133 @@
+{
+  "mode": "normal_completion_before_original_cutoff",
+  "triggered": 1793237784.1648622,
+  "gpu_stop_at": 1793238978,
+  "deadline": 1793239878,
+  "container_id": "e4bbc2be6518bc42954ae226bb94584e8a7c392227b498da931ac17b90cf09bd",
+  "docker_finished_at": "2026-10-29T01:36:27.766051307Z",
+  "processes": [
+    {
+      "pid": 399436,
+      "status": "already_exited"
+    },
+    {
+      "pid": 407360,
+      "status": "already_exited"
+    },
+    {
+      "pid": 407363,
+      "status": "already_exited"
+    },
+    {
+      "pid": 407368,
+      "status": "already_exited"
+    },
+    {
+      "pid": 407370,
+      "status": "exact_owned_identity_selected"
+    },
+    {
+      "pid": 463428,
+      "status": "already_exited"
+    },
+    {
+      "pid": 503197,
+      "status": "already_exited"
+    },
+    {
+      "pid": 550614,
+      "status": "already_exited"
+    },
+    {
+      "pid": 627262,
+      "status": "already_exited"
+    },
+    {
+      "pid": 731361,
+      "status": "already_exited"
+    },
+    {
+      "pid": 848637,
+      "status": "already_exited"
+    },
+    {
+      "pid": 879282,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1205679,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1267258,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1402510,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1469677,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1505656,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1651259,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1773269,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1879163,
+      "status": "already_exited"
+    },
+    {
+      "pid": 1991838,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2114920,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2123830,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2244378,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2244379,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2384561,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2535754,
+      "status": "already_exited"
+    },
+    {
+      "pid": 2715285,
+      "status": "already_exited"
+    }
+  ],
+  "containers": [
+    {
+      "name": "retention-policy-v4-8h-20261028-gpu0",
+      "status": "stopped",
+      "host_pid": 0
+    }
+  ],
+  "released_scope": "Owned GPU model service, registered evaluation workers and task Ray runtimes",
+  "cpu_delivery_continues": true,
+  "finished": 1793237789.593674,
+  "all_selected_native_processes_stopped": true
+}

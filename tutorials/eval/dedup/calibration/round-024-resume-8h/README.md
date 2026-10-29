@@ -27,8 +27,13 @@ new-round evidence. Per-layer raw failures and incomplete rows remain visible.
 
 Only the existing environment, pinned Qwen/model/image profile, original
 Data Designer chain and one B200 are used. New actual CPU checks report
-74 passed and five GPU tests deselected. Registered single-GPU checks and
-new score confirmations remain incomplete until their actual receipts exist.
+74 passed and five GPU tests deselected; the exact selected starting profile also
+passed the registered single-GPU group with four actual tests. Supplemental
+original repetitions completed, but their policy gate failed. Fresh-round
+starting results are 608/720 directions and 287/360 pairs; neither target nor
+full acceptance passed. Complete descendants scored 602/720 and 285/360, and
+599/720 and 282/360. The retained best policy and metric-best policy are both
+the starting profile. Historical 612/720 and 288/360 remain separate.
 
 Raw inputs and HTTP bodies remain outside Git in
 `/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z`.
@@ -44,7 +49,20 @@ calls; it is preparation evidence, never a claim of completed replay. The fixed
 strict audit sources are loaded byte-for-byte from the source session included
 in the external evidence bundle, or an explicitly supplied `--audit-tools` path.
 
-Current candidate selection remains provisional. Supplemental controls have
+Final selection follows the frozen validity-first ranking. Supplemental controls have
 separate fixed expectations and denominators; critic corrections do not excuse
 main errors. All failed candidates and the unsuccessful coverage response-order
 experiment remain in the frozen archives and per-layer row evidence.
+
+For existing-output verification after restoring the external evidence bundle,
+use `replay_restored_evidence.py --session RESTORED_SESSION --checkout RESTORED_SESSION/delivery-source/Curator --best-root candidate-00-start85 --output offline-replay`.
+Run it with the existing pinned Python environment. The restored session supplies
+the frozen audit sources. This entry checks source hashes, redirects recorded
+absolute checksum paths to restored files, and blocks original-session/source
+checkout reads and network connections in the native child processes. It also
+recomputes the selected supplemental groups when their recorded summary exists.
+It makes no new model call and preserves failed outcomes. The post-source-commit
+`archive-and-restore-receipt.json` records the actual final TAR extraction,
+independent source restoration and row-for-row replay outcome.
+
+Final existing-evidence delivery is indexed in `delivery/final-selection.json` and the paired reports. The external session `DELIVERY_RECEIPT.json` records the actual commit, remote verification and cleanup. No unrecorded check is treated as passed.

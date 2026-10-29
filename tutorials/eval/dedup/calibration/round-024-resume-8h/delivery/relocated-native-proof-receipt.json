@@ -1,0 +1,29 @@
+{
+  "status": "PASS_ACTUAL_INDEPENDENT_COPIED_DATA_REPLAY",
+  "completed": 1793237521.2806213,
+  "independent_session": "/raid/hfang/retention_policy_eval/v1/experiments/round024-relocated-native-proof-20261029T0125Z/restored-session",
+  "actual_unique_complete_original_cohorts": 2,
+  "actual_original_runs": 30,
+  "all_baseline_and_C0_csv_rows_equal": true,
+  "requirement_status_equal": true,
+  "location_guard": {
+    "status": "PASS",
+    "started": 1793237496.4802165,
+    "completed": 1793237521.259305,
+    "original_session": "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z",
+    "restored_session": "/raid/hfang/retention_policy_eval/v1/experiments/round024-relocated-native-proof-20261029T0125Z/restored-session",
+    "restored_checkout": "/raid/hfang/retention_policy_eval/v1/experiments/round024-independent-source-proof-f3002d93/Curator",
+    "output": "relocated-score-proof-v2",
+    "guarded_python_processes": 2,
+    "native_absolute_checksum_reads_relocated": 30,
+    "original_session_and_source_checkout_reads_blocked": true,
+    "network_connections_blocked": true,
+    "raw_native_outputs_frozen_inputs_and_native_source_not_rewritten": true,
+    "selected_additional_control_replay": null,
+    "new_model_calls": 0,
+    "access_log_directory": "/raid/hfang/retention_policy_eval/v1/experiments/round024-relocated-native-proof-20261029T0125Z/access-logs-v2",
+    "guard_sha256": "7a4e0e09c9b00706c98aeff664dff1f04de319fbd0e131bcb694a85cdf0882c5"
+  },
+  "archive_round_trip": "NOT_THIS_PROOF; final full TAR restore still required",
+  "model_calls": 0
+}

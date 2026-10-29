@@ -1,0 +1,15 @@
+{
+  "status": "PROVED_FINAL_POLICY_CHOICE",
+  "created": 1793235390.9458828,
+  "selected": "candidate-00-start85",
+  "selection_protocol_sha256": "76b05d8bd7724b098ca5ebe3e0274b2f308a6d550acc58d90f806741533a6f5f",
+  "C0_complete_original_hard_technical_validity_and_zero_raw_wrong_allows": true,
+  "C3_irreversible_original_main_wrong_allows": 2,
+  "C3_observed_run": "candidate-preflight-3",
+  "C3_group": "latest18",
+  "C3_original_first_hard_failures_already_prevent_eligibility": true,
+  "C8_original_hard_invalids_already_prevent_eligibility_and_second_key": true,
+  "future_personal_metrics_cannot_override_higher_priority_original_hard_condition": true,
+  "all_observed_failures_retained_no_replacement": true,
+  "C3_original15_still_to_finish_for_complete_metric_comparison": true
+}

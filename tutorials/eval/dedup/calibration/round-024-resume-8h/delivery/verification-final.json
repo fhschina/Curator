@@ -1,0 +1,103 @@
+{
+  "phase": "SELECTED_C0_ADDITIONAL_ORIGINAL3_COMPLETE",
+  "actual_new_cpu_tests": {
+    "status": "PASS",
+    "tests": 74,
+    "gpu_deselected": 5,
+    "log": "initial-cpu.log"
+  },
+  "new_candidate01_native_compile_window_checks": {
+    "status": "PASS",
+    "tests": 2,
+    "log": "candidate01-repair1-native-tests.log"
+  },
+  "registered_single_gpu_checks": {
+    "status": "PASS",
+    "candidate": "candidate-00-start85",
+    "tests": 4,
+    "failures": 0,
+    "skipped": 0,
+    "receipt": "start85-single-gpu-checks-receipt.json",
+    "source_checkout": "/raid/hfang/workspaces/Curator-retention-policy-v4-gpu-checks",
+    "does_not_claim_other_policy_variants_tested": true
+  },
+  "fixed_baseline_and_start85_original3": "COMPLETE_ORIGINAL15_EACH",
+  "inherited_stage85_80": "HISTORICAL_CONFIRMED_NOT_NEW_ROUND_RESULT",
+  "new_model_service": "ONE_OWNED_B200_TP1_PINNED_PROFILE",
+  "final_verification": "NOT_COMPLETED",
+  "independent_source_replay_preparation": {
+    "status": "PASS_PREPARATION_ONLY",
+    "receipt": "independent-source-replay-preparation-proof.json",
+    "model_calls": 0,
+    "inference_status": "NOT_COMPLETED"
+  },
+  "bundle_tar_roundtrip_fixture": {
+    "status": "PASS_FIXTURE_ONLY",
+    "receipt": "bundle-v2-tar-roundtrip-validation.json",
+    "full_final_archive": "NOT_COMPLETED"
+  },
+  "candidate08_wholeview1_actual_cpu_tests": {
+    "status": "PASS",
+    "candidate": "candidate-08-wholeview1",
+    "tests": 74,
+    "failures": 0,
+    "gpu_deselected": 5,
+    "receipt": "candidate08-wholeview1-cpu-receipt.json",
+    "unique_cpu_test_count_remains": 74
+  },
+  "selected_frozen_candidate": "candidate-00-start85",
+  "selected_required_checks_receipt": "final-required-checks.json",
+  "selected_additional_controls": {
+    "status": "FAIL",
+    "original_three_groups_complete": true,
+    "receipt": "selected-C0-additional-controls-original3-summary.json"
+  },
+  "status": "FAIL",
+  "required_checks_passed": false,
+  "recorded": 1793237087.8637967,
+  "selected_candidate": "candidate-00-start85",
+  "frozen_manifest_sha256": "8cc4afb5a8c501e2b26d786df675a70ab9e1e30fe2bab594d85f5cbe5d99d80b",
+  "actual_selected_cpu_checks": {
+    "status": "PASS",
+    "tests": 74,
+    "counts": {
+      "tests": 74,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "xml": "initial-cpu.xml",
+    "task_local_timestamp": "2026-10-28T18:18:13.175584+00:00",
+    "same_exact_starting_policy_and_unchanged_native_and_test_source": true
+  },
+  "actual_selected_registered_single_gpu_checks": {
+    "status": "PASS",
+    "tests": 4,
+    "receipt": "start85-single-gpu-checks-receipt.json",
+    "same_exact_frozen_policy_and_native_source": true
+  },
+  "actual_additional_controls": {
+    "status": "FAIL",
+    "original_three_groups_complete": true,
+    "receipt": "selected-C0-additional-controls-original3-summary.json"
+  },
+  "unique_cpu_test_count": 74,
+  "unique_single_gpu_test_count": 4,
+  "implementation_checks_reused_only_from_actual_same_task_identical_profile_execution": true,
+  "does_not_claim_formal_acceptance": true,
+  "delivered_nine_prompt_hashes": {
+    "tutorials/eval/dedup/judge_config/system.jinja": "e1c66d5275d9367637c27d4bb7d9af8c02394db91c6834adc26c6a5ca71d0caf",
+    "tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml": "77d14b44d188a96008b7786cd7a59fbdf47518bb7403d1d567bf3230638c7d3e",
+    "tutorials/eval/dedup/judge_config/pair.jinja": "06562a24a39d44b0c48368c21acad4cf667bd8567b7daec19b204d7181806a71",
+    "tutorials/eval/dedup/critics/prompts/coverage_system.jinja": "a9c8121270288abbc692fd849bd3becd31ccae0b6152d46f8f45c139243ac904",
+    "tutorials/eval/dedup/critics/prompts/subject_verifier_pair.jinja": "548138c71a2f4a8ccf0540b3685e8346254534d4e6f3e6dbc5b11804ce33545c",
+    "tutorials/eval/dedup/critics/prompts/subject_system.jinja": "c55f4418c04affb3334eac922f3947f532008df6f9d6aef9e1ef64eb056ae62c",
+    "tutorials/eval/dedup/critics/prompts/coverage_pair.jinja": "4b5037a1882af3f699ff21f9b73991fe910696a8486f58258e52a4c19dc265b0",
+    "tutorials/eval/dedup/critics/prompts/subject_pair.jinja": "424d1472db35ee18987281f43b81ad42b8626e5ac7aabf556287d07dbef2c419",
+    "tutorials/eval/dedup/critics/prompts/subject_verifier_system.jinja": "0bbcc96078900239ec8fdfbc142c3a9d900f1bf0ea25b8ce5c65885b309bd9ae"
+  },
+  "resource_release": "PASS",
+  "final_source_python_hashes_verified": true,
+  "no_new_model_calls": true,
+  "selection_mode": "last_agent_verified_frozen_selection"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS_FIXTURE",
+  "completed": 1793236803.7857633,
+  "actual_rebased_pathlib_builtin_io_reads": 3,
+  "actual_forbidden_direct_original_and_symlink_reads_blocked": 2,
+  "actual_original_checkout_read_blocked": 1,
+  "actual_socket_connection_blocked": 1,
+  "original_data_unchanged": true,
+  "guard_sha256": "7a4e0e09c9b00706c98aeff664dff1f04de319fbd0e131bcb694a85cdf0882c5",
+  "model_calls": 0
+}

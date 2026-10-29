@@ -1,0 +1,11 @@
+{
+  "recorded": 1793237496.430054,
+  "status": "ORIGINAL_REAL_DATA_PROOF_FAILED_CLOSED_RETRY_PENDING",
+  "failure": "Native comparison child reset PYTHONPATH, losing the required location guard; the parent correctly refused an independence PASS because no native checksum reads were rebased.",
+  "fix": "Only explicitly guarded restored replay now preserves its child Python path. Native evaluator, strict ledger core, model outputs, labels, deadlines and arithmetic unchanged. Ordinary evaluation path unchanged.",
+  "before_sha256": "1764bc82f3edeef234075294a520a648ee02929c7cf0717bf927c103c0f3517d",
+  "after_sha256": "f58b13eab556af9a2a4baa8606da1e55b6dfc45b86142fb90bb5e17ce5c4e670",
+  "strict_core_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "failed_log": "relocated-native-proof.log",
+  "model_calls": 0
+}

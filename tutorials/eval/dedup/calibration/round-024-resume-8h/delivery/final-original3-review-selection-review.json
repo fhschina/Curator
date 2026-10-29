@@ -1,0 +1,118 @@
+{
+  "created": 1793237156.3774219,
+  "status": "READ_ONLY_REVIEW_COMPLETE",
+  "new_model_calls": 0,
+  "selection_protocol_sha256": "76b05d8bd7724b098ca5ebe3e0274b2f308a6d550acc58d90f806741533a6f5f",
+  "strict_core_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "best_candidate": "candidate-00-start85",
+  "best_metric_candidate": "candidate-00-start85",
+  "best_eligible_candidate": null,
+  "original_complete_candidates": [
+    {
+      "candidate": "candidate-00-start85",
+      "comparison": "final-original3-review-candidate-00-start85/comparison.json",
+      "comparison_sha256": "1f60406a37fb1e5b258942a993d99f712e1f6d2e3dc0bc407e9355ec79a9f51e",
+      "frozen_manifest_sha256": "8cc4afb5a8c501e2b26d786df675a70ab9e1e30fe2bab594d85f5cbe5d99d80b",
+      "eligible_under_original_protocol": false,
+      "hard_three_run_valid_and_zero_raw_wrong_allows": true,
+      "hard_correct_directions_all_layers_and_repeats": 1627,
+      "hard_invalid_layer_rows": 0,
+      "hard_raw_wrong_allow_directions": 0,
+      "joint_target_milestone_tier": 0,
+      "personal_correct_directions": 608,
+      "personal_direction_denominator": 720,
+      "personal_correct_pairs": 287,
+      "personal_pair_denominator": 360,
+      "requirement_status": {
+        "milestone_85_80": "FAIL",
+        "target_90_85": "FAIL",
+        "hard_regressions": {
+          "original36": "PASS",
+          "extra6": "PASS",
+          "latest18": "FAIL",
+          "controlled26": "FAIL",
+          "real_consensus6": "PASS"
+        },
+        "technical_validity": "FAIL",
+        "development_nonregression_mean": {
+          "development99_original": "PASS",
+          "development99_reviewed": "PASS",
+          "development97_strict": "PASS"
+        }
+      },
+      "formal_acceptance_passed": false
+    },
+    {
+      "candidate": "candidate-03",
+      "comparison": "final-original3-review-candidate-03/comparison.json",
+      "comparison_sha256": "bf5dd4132fb69261f8ede870d0b6852b5f2c520b882ab2a455c975a0f7f9728d",
+      "frozen_manifest_sha256": "bbd62323c48abb4e9a99e46cef15dcdf9b97a636f77be0a2488745f1380bdd6a",
+      "eligible_under_original_protocol": false,
+      "hard_three_run_valid_and_zero_raw_wrong_allows": false,
+      "hard_correct_directions_all_layers_and_repeats": 1621,
+      "hard_invalid_layer_rows": 0,
+      "hard_raw_wrong_allow_directions": 2,
+      "joint_target_milestone_tier": 0,
+      "personal_correct_directions": 602,
+      "personal_direction_denominator": 720,
+      "personal_correct_pairs": 285,
+      "personal_pair_denominator": 360,
+      "requirement_status": {
+        "milestone_85_80": "FAIL",
+        "target_90_85": "FAIL",
+        "hard_regressions": {
+          "original36": "PASS",
+          "extra6": "PASS",
+          "latest18": "FAIL",
+          "controlled26": "FAIL",
+          "real_consensus6": "PASS"
+        },
+        "technical_validity": "FAIL",
+        "development_nonregression_mean": {
+          "development99_original": "PASS",
+          "development99_reviewed": "PASS",
+          "development97_strict": "PASS"
+        }
+      },
+      "formal_acceptance_passed": false
+    },
+    {
+      "candidate": "candidate-08-wholeview1",
+      "comparison": "final-original3-review-candidate-08-wholeview1/comparison.json",
+      "comparison_sha256": "15b2a596ad1a70ba7c1b10a42796d529f8c63893aac2802d40e7e3b688eb0d93",
+      "frozen_manifest_sha256": "745e02ac71b39757345504438608c598211fe25c19c64983052ef077b03e01a1",
+      "eligible_under_original_protocol": false,
+      "hard_three_run_valid_and_zero_raw_wrong_allows": false,
+      "hard_correct_directions_all_layers_and_repeats": 1629,
+      "hard_invalid_layer_rows": 6,
+      "hard_raw_wrong_allow_directions": 0,
+      "joint_target_milestone_tier": 0,
+      "personal_correct_directions": 599,
+      "personal_direction_denominator": 720,
+      "personal_correct_pairs": 282,
+      "personal_pair_denominator": 360,
+      "requirement_status": {
+        "milestone_85_80": "FAIL",
+        "target_90_85": "FAIL",
+        "hard_regressions": {
+          "original36": "PASS",
+          "extra6": "FAIL",
+          "latest18": "FAIL",
+          "controlled26": "FAIL",
+          "real_consensus6": "PASS"
+        },
+        "technical_validity": "FAIL",
+        "development_nonregression_mean": {
+          "development99_original": "PASS",
+          "development99_reviewed": "PASS",
+          "development97_strict": "PASS"
+        }
+      },
+      "formal_acceptance_passed": false
+    }
+  ],
+  "incomplete_candidates": [],
+  "tie_policy": "Keep the currently verified candidate for an exact predeclared-rank tie.",
+  "selection_pointer_changed": false,
+  "additional_controls_and_implementation_checks_require_their_own_exact_profile_receipt": true
+}

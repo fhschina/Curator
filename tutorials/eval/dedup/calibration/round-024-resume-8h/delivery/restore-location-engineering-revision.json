@@ -1,0 +1,10 @@
+{
+  "recorded": 1793237286.7267454,
+  "status": "FIXTURE_PASS_ACTUAL_FULL_ARCHIVE_NOT_EXECUTED",
+  "scope": "Native audit validates absolute original output paths. Restore replay now redirects only checksum reads to restored files, rejects original session/source-checkout reads and network connections, verifies native module locations and reproduces selected supplemental groups. Native code, frozen records, scoring and deadlines remain unchanged.",
+  "before_helper_sha256": "d8070f60f57240ef748ac2cc1c9e3c07d61568c07100331ebb1e27964ffcf87c",
+  "after_helper_sha256": "7e66e50c7c89c27c52018755fe606e33b466828ea01c9c6c8dda32a99e72607a",
+  "strict_core_sha256": "900699c1ef55ca695b23014cb07abc6cc0fe097f645215355e820062207e8e44",
+  "fixture_receipt": "replay-location-guard-fixture-receipt.json",
+  "actual_full_archive": "NOT_COMPLETED"
+}

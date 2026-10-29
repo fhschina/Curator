@@ -1,0 +1,61 @@
+{
+  "best_candidate": "candidate-00-start85",
+  "verified_at": 1793238039.224104,
+  "last_agent_verified": 1793238039.224104,
+  "selection_status": "FINAL_AGENT_REVIEWED_ORIGINAL_COMPLETE_COHORTS",
+  "selection_protocol_sha256": "76b05d8bd7724b098ca5ebe3e0274b2f308a6d550acc58d90f806741533a6f5f",
+  "frozen_manifest_sha256": "8cc4afb5a8c501e2b26d786df675a70ab9e1e30fe2bab594d85f5cbe5d99d80b",
+  "comparison_review": "final-original3-review-selection-review.json",
+  "complete_candidates_considered": [
+    "candidate-00-start85",
+    "candidate-03",
+    "candidate-08-wholeview1"
+  ],
+  "best_metric_candidate": "candidate-00-start85",
+  "best_eligible_candidate": null,
+  "fresh_personal_final": {
+    "correct_directions": 608,
+    "directions": 720,
+    "correct_pairs": 287,
+    "pairs": 360
+  },
+  "fresh_stage": "FAIL",
+  "fresh_target": "FAIL",
+  "acceptance_passed": false,
+  "basis": "C0 original three-run hard judgments are technically valid and have zero raw wrong allows. C3 now has observed original main wrong allows and C8 has observed original hard invalids. Both descendants already have irreversible original hard failures preventing eligibility, so neither can outrank C0 at the next fixed selection key. Their complete metrics and all failed observations remain separate.",
+  "historical_start_stage_provenance": "inherited-milestone.json; previous-round612/720D288/360P remains separate",
+  "final_policy_lock_proof": "C0-final-policy-lock-proof.json",
+  "best_metric_review": "final-original3-review-selection-review.json",
+  "created": 1793238221.253022,
+  "comparison": "delivery-final-20261029T014236Z/comparison.json",
+  "formal_evaluation_gates_passed": false,
+  "requirement_status": {
+    "milestone_85_80": "FAIL",
+    "target_90_85": "FAIL",
+    "hard_regressions": {
+      "original36": "PASS",
+      "extra6": "PASS",
+      "latest18": "FAIL",
+      "controlled26": "FAIL",
+      "real_consensus6": "PASS"
+    },
+    "technical_validity": "FAIL",
+    "development_nonregression_mean": {
+      "development99_original": "PASS",
+      "development99_reviewed": "PASS",
+      "development97_strict": "PASS"
+    }
+  },
+  "delivered_nine_prompt_hashes": {
+    "tutorials/eval/dedup/judge_config/system.jinja": "e1c66d5275d9367637c27d4bb7d9af8c02394db91c6834adc26c6a5ca71d0caf",
+    "tutorials/eval/dedup/judge_config/fuzzy_pair_judge.yaml": "77d14b44d188a96008b7786cd7a59fbdf47518bb7403d1d567bf3230638c7d3e",
+    "tutorials/eval/dedup/judge_config/pair.jinja": "06562a24a39d44b0c48368c21acad4cf667bd8567b7daec19b204d7181806a71",
+    "tutorials/eval/dedup/critics/prompts/coverage_system.jinja": "a9c8121270288abbc692fd849bd3becd31ccae0b6152d46f8f45c139243ac904",
+    "tutorials/eval/dedup/critics/prompts/subject_verifier_pair.jinja": "548138c71a2f4a8ccf0540b3685e8346254534d4e6f3e6dbc5b11804ce33545c",
+    "tutorials/eval/dedup/critics/prompts/subject_system.jinja": "c55f4418c04affb3334eac922f3947f532008df6f9d6aef9e1ef64eb056ae62c",
+    "tutorials/eval/dedup/critics/prompts/coverage_pair.jinja": "4b5037a1882af3f699ff21f9b73991fe910696a8486f58258e52a4c19dc265b0",
+    "tutorials/eval/dedup/critics/prompts/subject_pair.jinja": "424d1472db35ee18987281f43b81ad42b8626e5ac7aabf556287d07dbef2c419",
+    "tutorials/eval/dedup/critics/prompts/subject_verifier_system.jinja": "0bbcc96078900239ec8fdfbc142c3a9d900f1bf0ea25b8ce5c65885b309bd9ae"
+  },
+  "selection_is_not_a_claim_about_unreviewed_later_outputs": true
+}

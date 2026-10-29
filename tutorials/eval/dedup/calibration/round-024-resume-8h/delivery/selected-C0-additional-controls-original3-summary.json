@@ -1,0 +1,894 @@
+{
+  "status": "COMPLETE",
+  "control_gate": "FAIL",
+  "completed": 1793237087.863111,
+  "selected_candidate": "candidate-00-start85",
+  "frozen_manifest_sha256": "8cc4afb5a8c501e2b26d786df675a70ab9e1e30fe2bab594d85f5cbe5d99d80b",
+  "all_five_original_three_groups_complete": true,
+  "all_controls_passed": false,
+  "source_nine_equal_selected_frozen_profile": true,
+  "fixed_reference_denominators_unchanged": true,
+  "new_model_calls_by_summarizer": 0,
+  "groups": [
+    {
+      "root": "supplemental-cookie-scope-start85-v2",
+      "manifest_sha256": "e4561cedfc2ed56c5f50d4683607c8d23898d08864376c96a7446038ca40c6fa",
+      "definition_sha256": "f5153f3ab79f6d5991e84c8037f187f858f8051c3d6c44b587fe5124e6c8c79d",
+      "original_three_runs": [
+        {
+          "run": "candidate-preflight-1",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_scope8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 14
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-2",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_scope8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 14
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-3",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_scope8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 14
+          },
+          "issues": {},
+          "ledger_issues": {}
+        }
+      ]
+    },
+    {
+      "root": "supplemental-cookie-state-start85-v1",
+      "manifest_sha256": "ae1c84d77e435e6887ba31c73e6c341c4e519532afd84511ac1367ca5c3a0757",
+      "definition_sha256": "1436bdd3927e8d851a3144c833d37d87bf85bcef7a8c057fd1ebf9aa29faf764",
+      "original_three_runs": [
+        {
+          "run": "candidate-preflight-1",
+          "all_layers_passed": false,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_state8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 14,
+                "correct_pairs": 6,
+                "direction_agreement": 0.875,
+                "pair_agreement": 0.75,
+                "reference_wrong_allows": 2,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 15,
+                "correct_pairs": 7,
+                "direction_agreement": 0.9375,
+                "pair_agreement": 0.875,
+                "reference_wrong_allows": 1,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 15,
+                "correct_pairs": 7,
+                "direction_agreement": 0.9375,
+                "pair_agreement": 0.875,
+                "reference_wrong_allows": 1,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 14
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-2",
+          "all_layers_passed": false,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_state8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 14,
+                "correct_pairs": 6,
+                "direction_agreement": 0.875,
+                "pair_agreement": 0.75,
+                "reference_wrong_allows": 2,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 14,
+                "correct_pairs": 6,
+                "direction_agreement": 0.875,
+                "pair_agreement": 0.75,
+                "reference_wrong_allows": 2,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 14,
+                "correct_pairs": 6,
+                "direction_agreement": 0.875,
+                "pair_agreement": 0.75,
+                "reference_wrong_allows": 2,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 14
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-3",
+          "all_layers_passed": false,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_state8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 14,
+                "correct_pairs": 6,
+                "direction_agreement": 0.875,
+                "pair_agreement": 0.75,
+                "reference_wrong_allows": 2,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 15,
+                "correct_pairs": 7,
+                "direction_agreement": 0.9375,
+                "pair_agreement": 0.875,
+                "reference_wrong_allows": 1,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 15,
+                "correct_pairs": 7,
+                "direction_agreement": 0.9375,
+                "pair_agreement": 0.875,
+                "reference_wrong_allows": 1,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 14
+          },
+          "issues": {},
+          "ledger_issues": {}
+        }
+      ]
+    },
+    {
+      "root": "supplemental-nonmain-paraphrase-start85-v1",
+      "manifest_sha256": "c1e8299cf58cb9348cbab349e6e110db0b7042852e33eaa08049558507ab709c",
+      "definition_sha256": "3ac87919bf40733ca10aa365b5451e9c59615f9f30a3cadfce6441ae08c2001d",
+      "original_three_runs": [
+        {
+          "run": "candidate-preflight-1",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_nonmain_paraphrase8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 12
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-2",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_nonmain_paraphrase8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 12
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-3",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_nonmain_paraphrase8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 12
+          },
+          "issues": {},
+          "ledger_issues": {}
+        }
+      ]
+    },
+    {
+      "root": "supplemental-cookie-prerequisite-start85-v1",
+      "manifest_sha256": "8620db49c9237a10bb6837f1b6f0c41bcbcddf4a525476659a5b7c0674c8fc7a",
+      "definition_sha256": "f31a8d6d6a55e39245de2c9df341eee197607795f21c0497180ce0f1b3218086",
+      "original_three_runs": [
+        {
+          "run": "candidate-preflight-1",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_prerequisite8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 16
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-2",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_prerequisite8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 16
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-3",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_cookie_prerequisite8": {
+              "main": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 8,
+                "directions": 16,
+                "correct_directions": 16,
+                "correct_pairs": 8,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 8,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 16
+          },
+          "issues": {},
+          "ledger_issues": {}
+        }
+      ]
+    },
+    {
+      "root": "supplemental-state-equivalence-start85-v1",
+      "manifest_sha256": "7cb7400431f5fb3bfb0be4eb46c49d23fea12dc932f8f3c5131217f78b25a78a",
+      "definition_sha256": "6f3de18874c229ea2fe81bbf25a686babb258927d88ea14952231055dfa79fa5",
+      "original_three_runs": [
+        {
+          "run": "candidate-preflight-1",
+          "all_layers_passed": false,
+          "technical_passed": false,
+          "groups": {
+            "supplemental_state_equivalence4": {
+              "main": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 6,
+                "correct_pairs": 3,
+                "direction_agreement": 0.75,
+                "pair_agreement": 0.75,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 1,
+                "unresolved_pairs": 0,
+                "valid_pairs": 3,
+                "valid_judgment_coverage": 0.75
+              },
+              "coverage": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 6,
+                "correct_pairs": 3,
+                "direction_agreement": 0.75,
+                "pair_agreement": 0.75,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 1,
+                "unresolved_pairs": 0,
+                "valid_pairs": 3,
+                "valid_judgment_coverage": 0.75
+              },
+              "final": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 6,
+                "correct_pairs": 3,
+                "direction_agreement": 0.75,
+                "pair_agreement": 0.75,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 1,
+                "unresolved_pairs": 0,
+                "valid_pairs": 3,
+                "valid_judgment_coverage": 0.75
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 10,
+            "parse_error": 1
+          },
+          "issues": {
+            "SCEQ002-swapped": [
+              "MAIN_ATTEMPT_PARSE_ERROR"
+            ]
+          },
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-2",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_state_equivalence4": {
+              "main": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 8,
+                "correct_pairs": 4,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 4,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 8,
+                "correct_pairs": 4,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 4,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 8,
+                "correct_pairs": 4,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 4,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 10
+          },
+          "issues": {},
+          "ledger_issues": {}
+        },
+        {
+          "run": "candidate-preflight-3",
+          "all_layers_passed": true,
+          "technical_passed": true,
+          "groups": {
+            "supplemental_state_equivalence4": {
+              "main": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 8,
+                "correct_pairs": 4,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 4,
+                "valid_judgment_coverage": 1.0
+              },
+              "coverage": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 8,
+                "correct_pairs": 4,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 4,
+                "valid_judgment_coverage": 1.0
+              },
+              "final": {
+                "pairs": 4,
+                "directions": 8,
+                "correct_directions": 8,
+                "correct_pairs": 4,
+                "direction_agreement": 1.0,
+                "pair_agreement": 1.0,
+                "reference_wrong_allows": 0,
+                "reference_wrong_blocks": 0,
+                "invalid_pairs": 0,
+                "unresolved_pairs": 0,
+                "valid_pairs": 4,
+                "valid_judgment_coverage": 1.0
+              }
+            }
+          },
+          "attempt_status_counts": {
+            "valid": 10
+          },
+          "issues": {},
+          "ledger_issues": {}
+        }
+      ]
+    }
+  ]
+}

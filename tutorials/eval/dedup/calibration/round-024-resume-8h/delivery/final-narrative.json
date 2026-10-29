@@ -1,0 +1,41 @@
+{
+  "selected_frozen_candidate": "candidate-00-start85",
+  "frozen_manifest_sha256": "8cc4afb5a8c501e2b26d786df675a70ab9e1e30fe2bab594d85f5cbe5d99d80b",
+  "sections": [
+    {
+      "id": "retained-policy",
+      "title_en": "Retained policy and selection",
+      "title_zh": "保留政策与选择",
+      "text_en": "The delivered policy is the unchanged starting frozen profile, selected by the predeclared validity-first order. Its original hard judgments were technically valid with zero raw wrong allows across the original repeats. Both fully compared descendants failed a higher-priority original hard condition and had lower personal-reference agreement. The historical milestone remains separate from this fresh round.",
+      "text_zh": "交付政策是未改动的起点冻结版本，按预先声明的有效性优先顺序选择。其原定重复中的原始硬回归判断技术有效，原始错误允许为零。两个完成完整对照的后继版本均未满足更高优先级的原始硬条件，且个人参考一致率更低。历史阶段成绩与本轮新结果分别保留。"
+    },
+    {
+      "id": "experiments",
+      "title_en": "Experiment scope and retained failures",
+      "title_zh": "试验范围与保留失败",
+      "text_en": "The experiments clarified finite template-name and cookie exceptions, real action destinations, explicit settings and semantic coverage. Separate presentation trials tested original-order reading without adding source characters. Each variant was frozen before inference. Failed variants, the variant withdrawn before inference, and incomplete original groups remain visible. Deduplication algorithms and keeper selection were not changed.",
+      "text_zh": "试验澄清了有限模板名称与cookie例外、实际操作去向、明确设置及语义覆盖。独立的呈现试验验证了按原文顺序阅读，未增加原文字符。每个版本均在推理前冻结。失败版本、推理前撤回版本及未完成的原定组均保留可见。未改动去重算法和keeper选择。"
+    },
+    {
+      "id": "unmet",
+      "title_en": "Observed unmet requirements",
+      "title_zh": "实际未达项",
+      "text_en": "The direction and pair targets were not reached in the original complete groups. A descendant single-run stage result was saved as provisional and explicitly not confirmed by its original group mean. The retained policy still has original hard false blocks, invalid judgments in the full datasets, and failed independently fixed supplemental controls. Cookie-setting controls contain main and final wrong allows; an equivalent-state control also contains an invalid response. All fixed denominators and failed original run identities remain intact.",
+      "text_zh": "原定完整重复组未达到方向及整对目标。后继版本的单次阶段结果已保存为暂定快照，并按原定组均值明确标记为未确认。保留政策仍有原始硬回归错误阻止、完整数据集中的无效判断，以及独立固定的补充受控验证失败。Cookie设置受控样本在main及final层仍有错误允许；一个状态等价受控样本也存在无效回复。全部固定分母及失败原运行编号均保持不变。"
+    },
+    {
+      "id": "actual-checks",
+      "title_en": "Actual implementation and supplemental checks",
+      "title_zh": "实际实现与补充检查",
+      "text_en": "Only checks actually executed during this task are counted. The selected policy reuses its actual same-task implementation checks because its prompt files, native code and test sources are unchanged. Supplemental controls retain their original declared repetitions and separate per-layer tables. Implementation-test passes do not establish policy acceptance.",
+      "text_zh": "仅统计本轮实际执行的检查。所选政策沿用其本轮真实实现检查，因为提示词文件、原生代码及测试源码均未变化。补充受控样本保留原先声明的重复及单独逐层表格。实现测试通过不代表政策验收通过。"
+    },
+    {
+      "id": "offline-delivery",
+      "title_en": "Independent offline reproduction and archival receipt",
+      "title_zh": "独立离线复现与归档凭据",
+      "text_en": "The source commit includes an offline replay entry. It redirects recorded checksum locations to independently restored data, rejects reads from original data and source checkouts, and blocks network connections. Frozen records and native scoring code remain unchanged. Final archive extraction, source restoration and exact replay are recorded after this source commit in archive-and-restore-receipt.json; only that actual receipt establishes archival success.",
+      "text_zh": "源代码提交包含离线复算入口。它将已记录的校验位置指向独立恢复的数据，拒绝读取原数据及原代码工作区，并阻断网络连接。冻结记录及原生评分代码保持不变。最终归档提取、源码恢复及精确复算在该源码提交之后记录于archive-and-restore-receipt.json；只有该实际凭据才能证明归档成功。"
+    }
+  ]
+}
