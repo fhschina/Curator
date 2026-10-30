@@ -13,9 +13,10 @@ All three 100-input reference views meet their fixed baseline. Original36,
 extra6 and real consensus6 pass; latest18, controlled26 and full-input technical
 validity fail. No candidate is eligible or accepted.
 
-`report_en.html` and `report_zh.html` contain the readable final reports.
-`report_tables.json` is shared, and `translation_validation.json` verifies the
-numeric sequences and section structure. `strict/` contains the formal checked
+`report_en.html` contains the readable English final report.
+`report_tables.json` contains its English tables. The original Chinese report,
+bilingual tables and historical translation verification are preserved in the
+local archive identified by `../../english-publication.json`. `strict/` contains the formal checked
 comparison; `native/` preserves the original comparison. Both have complete
 compressed JSON/HTML, CSV, per-version run/summary JSON and provenance hashes.
 `../run-evidence/` contains the per-layer row audits, including failures.

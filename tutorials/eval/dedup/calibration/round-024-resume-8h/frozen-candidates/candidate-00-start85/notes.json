@@ -1,7 +1,6 @@
 {
   "parent": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1",
   "hypothesis_en": "Unmodified C6-languagefirst1 starting comparator; prior85/80 is historical, and the new original3 group is unrun.",
-  "hypothesis_zh": "原样C6-languagefirst1起点对照；既往85/80为历史成绩，本轮新的原定3次尚未运行。",
   "status": "FROZEN_STARTING_COMPARATOR_NOT_NEW_SEMANTIC_CANDIDATE",
   "acceptance_passed": false
 }
