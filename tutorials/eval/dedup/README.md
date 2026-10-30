@@ -108,8 +108,7 @@ they do not satisfy the separate independent-human acceptance requirements.
 The [round-022 v2 delivery](calibration/round-022-v2/README.md) contains the frozen
 run manifest, per-version results and reproduction commands. The
 [English report](../../../fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-en.mdx)
-and [Chinese translation](../../../fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx)
-share the same tables and conclusions. Development improvements do not override
+contains the results and conclusions. Development improvements do not override
 failed hard regressions.
 
 ```bash

@@ -12,33 +12,43 @@ Medium improves both final metrics in both paired repetitions, and aggregate inv
 
 In the primary ON arm, main produced 419/480 correct directions and final produced 413/480. Raw wrong blocks changed from 42 to 56; invalid pairs changed from 2 to 3. These layer snapshots separate the main judgment from changes introduced by later checks.
 
+## Historical milestone and fresh control
+
+The best historical thinking-OFF milestone used this same C0 prompt policy and
+completed three original runs: 612/720 directions (85.00%) and 288/360 whole
+pairs (80.00%). It is preserved in the [v3 report](retention-policy-v3-report-en.mdx).
+The 83.75% / 79.17% OFF result above is a fresh two-run control, not a revision
+of that historical score. The historical output budget was 6144; both arms
+of the current comparison use 12288. Medium's 86.04% / 81.25% is a two-run
+development result and does not establish full production acceptance.
+
 ## Frozen method
 
-| Setting / 设置 | Value / 值 |
+| Setting | Value |
 | --- | --- |
-| Model / 模型 | Qwen/Qwen3.8-27B-FP8 |
-| Policy / 政策 | Unchanged best C0; 8 Jinja files / 最佳C0的8个Jinja文件未改 |
-| Inputs and score / 输入与计分 | 150 native inputs; fixed personal120 = 120 pairs / 150原生输入，固定120对个人参考 |
-| Primary repeats / 主要重复 | 2 per arm / 每组2轮 |
-| Order / 顺序 | off1 → on1 → on2 → off2 |
-| Fixed primary denominator per arm / 每组主要固定分母 | 480 directions, 240 pairs / 480方向、240整对 |
-| Completion budget / 输出预算 | 12288 including reasoning / 含推理 |
-| Context / 上下文 | 32768 |
-| Temperature / 温度 | 0.2 |
-| Concurrency / 并发 | 8 |
-| Timeout seconds / 超时秒 | 600 |
-| Native thinking effort / 原生推理强度 | explicit medium when enabled / 开启时显式medium |
-| Common reasoning parser / 共同推理解析器 | qwen3 |
-| GPU / 显卡 | 1 B200, TP1 |
-| Allocated GPU hours, entire task / 全任务含启动空闲GPU小时 | 0.9916 |
-| Actual CPU checks / 实际CPU检查 | 37 passed / 37项通过 |
-| Actual native tokenizations / 实际原生分词检查 | 1996 |
-| Excluded activation calls / 不计分激活调用 | 2 |
-| Native execution commit / 原生执行提交 | db00d1f6669270a39df4faad7b20c06c3fdd3489 |
+| Model | Qwen/Qwen3.8-27B-FP8 |
+| Policy | Unchanged best C0; 8 Jinja files |
+| Inputs and score | 150 native inputs; fixed personal120 = 120 pairs |
+| Primary repeats | 2 per arm |
+| Order | off1 → on1 → on2 → off2 |
+| Fixed primary denominator per arm | 480 directions, 240 pairs |
+| Completion budget | 12288 including reasoning |
+| Context | 32768 |
+| Temperature | 0.2 |
+| Concurrency | 8 |
+| Timeout seconds | 600 |
+| Native thinking effort | explicit medium when enabled |
+| Common reasoning parser | qwen3 |
+| GPU | 1 B200, TP1 |
+| Allocated GPU hours, entire task | 0.9916 |
+| Actual CPU checks | 37 passed |
+| Actual native tokenizations | 1996 |
+| Excluded activation calls | 2 |
+| Native execution commit | db00d1f6669270a39df4faad7b20c06c3fdd3489 |
 
 ## Full reference quality and stability
 
-| Arm / 模式 | Layer / 层 | Correct D / 方向 | D agreement / 方向一致率 | Correct P / 整对 | P agreement / 整对一致率 | Valid / 有效 | Invalid / 无效 | Unresolved / 未决 | Raw wrong allows / 原始错误允许 | Raw wrong blocks / 原始误阻止 | Repeat changes / 重复变化 | Worst D / 最差方向 | Worst P / 最差整对 |
+| Arm | Layer | Correct D | D agreement | Correct P | P agreement | Valid | Invalid | Unresolved | Raw wrong allows | Raw wrong blocks | Repeat changes | Worst D | Worst P |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | thinking-off | main | 407/480 | 84.79% | 194/240 | 80.83% | 235 | 5 | 0 | 14 | 51 | 15 | 84.58% | 80.83% |
 | thinking-off | coverage | 402/480 | 83.75% | 190/240 | 79.17% | 235 | 5 | 0 | 11 | 59 | 14 | 83.75% | 79.17% |
@@ -47,20 +57,20 @@ In the primary ON arm, main produced 419/480 correct directions and final produc
 | thinking-on | coverage | 413/480 | 86.04% | 195/240 | 81.25% | 237 | 3 | 0 | 9 | 56 | 10 | 85.00% | 80.00% |
 | thinking-on | final | 413/480 | 86.04% | 195/240 | 81.25% | 237 | 3 | 0 | 9 | 56 | 10 | 85.00% | 80.00% |
 
-| Arm / 模式 | Repeat / 轮次 | Final D / 最终方向 | D agreement / 方向一致率 | Final P / 最终整对 | P agreement / 整对一致率 | Invalid / 无效 | Unresolved / 未决 | All-input final / 全输入最终状态 |
+| Arm | Repeat | Final D | D agreement | Final P | P agreement | Invalid | Unresolved | All-input final |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | thinking-off | 1 | 201/240 | 83.75% | 95/120 | 79.17% | 1 | 0 | invalid=2; unresolved=4; valid=144 |
 | thinking-off | 2 | 201/240 | 83.75% | 95/120 | 79.17% | 4 | 0 | invalid=4; unresolved=5; valid=141 |
 | thinking-on | 1 | 209/240 | 87.08% | 99/120 | 82.50% | 2 | 0 | invalid=3; unresolved=4; valid=143 |
 | thinking-on | 2 | 204/240 | 85.00% | 96/120 | 80.00% | 1 | 0 | invalid=2; unresolved=4; valid=144 |
 
-| Layer / 层 | D gained / 修复方向 | D lost / 退步方向 | P fixed / 修复整对 | P regressed / 退步整对 |
+| Layer | D gained | D lost | P fixed | P regressed |
 | --- | --- | --- | --- | --- |
 | main | 36 | 24 | 21 | 17 |
 | coverage | 31 | 20 | 18 | 13 |
 | final | 31 | 20 | 18 | 13 |
 
-| Arm / 模式 | Layer / 层 | Consensus D / 共识方向 | Consensus P / 共识整对 | Invalid / 无效 | Raw wrong allows / 原始错误允许 |
+| Arm | Layer | Consensus D | Consensus P | Invalid | Raw wrong allows |
 | --- | --- | --- | --- | --- | --- |
 | thinking-off | main | 24/24 | 12/12 | 0 | 0 |
 | thinking-off | coverage | 24/24 | 12/12 | 0 | 0 |
@@ -71,7 +81,7 @@ In the primary ON arm, main produced 419/480 correct directions and final produc
 
 ## Validity and conditional acceptance
 
-| Arm / 模式 | Frozen stratum / 冻结分层 | Observations / 观察数 | Final validation / 最终有效性 |
+| Arm | Frozen stratum | Observations | Final validation |
 | --- | --- | --- | --- |
 | thinking-off | personal120 | 240 | invalid=5; valid=235 |
 | thinking-off | real_consensus6 | 12 | valid=12 |
@@ -84,7 +94,7 @@ In the primary ON arm, main produced 419/480 correct directions and final produc
 | thinking-on | truncated5 | 10 | invalid=2; unresolved=8 |
 | thinking-on | pending_D121 | 2 | valid=2 |
 
-| Arm / 模式 | All-input validation issue / 全输入校验问题 | Occurrences / 次数 |
+| Arm | All-input validation issue | Occurrences |
 | --- | --- | --- |
 | thinking-off | CONCLUSIVE_INCOMPLETE_EVIDENCE | 1 |
 | thinking-off | CONCLUSIVE_INCOMPLETE_EVIDENCE:coverage | 1 |
@@ -98,9 +108,9 @@ In the primary ON arm, main produced 419/480 correct directions and final produc
 | thinking-on | INVALID_DECISION:main | 1 |
 | thinking-on | MAIN_ATTEMPT_PARSE_ERROR | 3 |
 
-| Requirement / 条件 | Status / 状态 |
+| Requirement | Status |
 | --- | --- |
-| Two-repeat target, provisional / 两轮目标，仅初步 | FAIL |
+| Two-repeat target, provisional | FAIL |
 | original_three_repeat_personal120_target | NOT_COMPLETED |
 | hard86_all_layers_all_three_repeats | NOT_COMPLETED |
 | full150_fixed_baseline_and_start_three_repeats | NOT_COMPLETED |
@@ -109,20 +119,20 @@ In the primary ON arm, main produced 419/480 correct directions and final produc
 | development99_original_nonregression | NOT_COMPLETED |
 | development99_reviewed_nonregression | NOT_COMPLETED |
 | development97_strict_nonregression | NOT_COMPLETED |
-| Original development acceptance / 原冻结开发验收 | ACCEPTANCE_NOT_COMPLETED |
-| Independent human acceptance / 独立人工验收 | NOT_AVAILABLE_NO_NEW_INDEPENDENT_LABELS |
+| Original development acceptance | ACCEPTANCE_NOT_COMPLETED |
+| Independent human acceptance | NOT_AVAILABLE_NO_NEW_INDEPENDENT_LABELS |
 
-| Profile / 配置 | Panel / 材料 | Repeat / 轮次 | Status / 状态 | Role / 用途 |
+| Profile | Panel | Repeat | Status | Role |
 | --- | --- | --- | --- | --- |
 
 ## Actual cost and limitations
 
-| Arm / 模式 | Requests / 请求 | Additional attempts / 额外尝试 | Run seconds / 运行秒 | Median latency / 中位秒 | P90 latency / P90延迟秒 | Completion tokens / 输出token | Reasoning calls / 推理请求 | Empty final / 最终为空 | Finish reasons / 结束原因 |
+| Arm | Requests | Additional attempts | Run seconds | Median latency | P90 latency | Completion tokens | Reasoning calls | Empty final | Finish reasons |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | thinking-off | 622 | 3 | 813.49 | 5.24 | 15.35 | 372136 | 0 | 0 | stop=622 |
 | thinking-on | 633 | 7 | 2538.52 | 26.49 | 52.17 | 1545515 | 633 | 0 | stop=633 |
 
-| Cost scope / 开销范围 | Value / 值 |
+| Cost scope | Value |
 | --- | --- |
 | requests | 1255 |
 | primary_requests | 1255 |

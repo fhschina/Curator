@@ -1,7 +1,6 @@
 {
   "parent": "candidate-03",
   "hypothesis_en": "Two narrow functional-role clarifications based on actual retained replies. Main treats an explicit category setting as harmless UI in both mirrored supplemental presentations, although the critic correctly preserves it. Distinguish independently assigned mandatory/optional values from an already covered stock paragraph; absence is a one-sided addition rather than a fabricated conflict. Coverage separately treats the recipient object in an unchanged generic cookie-transfer predicate as new processing and even cites a bare navigation heading. Apply the existing finite provider/recipient-slot exception to the predicate before choosing a loss. No new exception family, actual liability/action destination relaxation, labels, fields/order/enums, model/sampling, evidence/window, native code, schema or validator changes. All prior failures remain; only new predeclared slots are tested.",
-  "hypothesis_zh": "根据保留的实际回复澄清两项有限功能角色。Main在两个镜像受控呈现中把明确类别状态当成无害界面，critic则正确保护。区分独立赋予的强制或可选状态值与已覆盖通用段落；缺失是一侧新增而非虚构冲突。Coverage还把未变的通用cookie传递谓词中的接收方宾语当成新增处理，甚至引用空导航标题。选损失前按谓词应用已有有限服务商及接收方槽位例外。不新增例外类别，不放宽真实责任主体或操作去向，不改标签、字段顺序枚举、模型采样、证据窗口、原生代码、schema或校验器。保留此前所有失败，只评测新预声明运行。",
   "scope": "independent state versus copied stock paragraph; qualified generic recipient predicate",
   "new_human_labels": false,
   "evidence": "C3 supplemental state main6/8 with2 raw wrong allows and final8/8; C3 coverage R14-swapped copied scope, R33/R33-swapped provider object and bare heading false vetoes",

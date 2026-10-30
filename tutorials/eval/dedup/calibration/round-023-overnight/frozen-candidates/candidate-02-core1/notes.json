@@ -1,6 +1,5 @@
 {
   "hypothesis_en": "Engineering-only prompt presentation revision of candidate02: show the existing exact unique CORE separately from its unchanged padded reading context in the main pair template. No semantic retention rule, raw source text,6000character window,model,parameters,fields,enums,validation or executor change. This isolates the remaining clause-language attribution failure after functional-role clarification; earlier round022candidate03 combined CORE,full contiguous windows and semantic priorities. Complete address assertions remain visible in unchanged context; actual endpoint/body-language regressions remain mandatory. Baseline and starting original prompts, immutable inputs and execution settings remain fixed; the sole intended experimental difference is the candidate pair presentation.",
-  "hypothesis_zh": "candidate02的纯工程提示词呈现修订：在主pair模板中分别展示既有精确差异CORE及未改变的填充阅读上下文。不改变语义保留规则、原文、6000字符窗口、模型、参数、字段、枚举、校验或执行器。该修订独立检查功能角色澄清后仍存在的句子语言归属错误；此前round022candidate03同时改变了CORE、完整连续窗口及语义优先级。完整操作地址仍在未改变的上下文中可见，实际入口和正文语言回归仍须通过。固定基线及起点提示词、不可变输入和执行设置保持冻结；唯一有意改变的实验因素为候选pair呈现。",
   "parent": "candidate-02",
   "status": "REJECTED_BEFORE_INFERENCE_test_marker_compatibility",
   "acceptance_passed": false
