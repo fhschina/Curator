@@ -2,14 +2,12 @@
   "candidate-00-start85": {
     "parent": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1",
     "hypothesis_en": "Unmodified C6-languagefirst1 starting comparator; prior85/80 is historical, and the new original3 group is unrun.",
-    "hypothesis_zh": "原样C6-languagefirst1起点对照；既往85/80为历史成绩，本轮新的原定3次尚未运行。",
     "status": "FROZEN_STARTING_COMPARATOR_NOT_NEW_SEMANTIC_CANDIDATE",
     "acceptance_passed": false
   },
   "candidate-01": {
     "parent": "candidate-00-start85",
     "hypothesis_en": "Two narrow exception-priority clarifications on the unchanged confirmed-stage policy: a repeated category/location label in otherwise equivalent generic marketing is not a concrete product record without an independent product-specific fact or changed offer term; and a covered stock-cookie paragraph does not acquire an additional category-specific necessity obligation from its new heading alone. Align existing delta and primary-difference options with those finite exceptions. Actual products/specifications, transaction destinations, named liability, explicit category terms, concrete deployment restrictions and substantive body languages remain protected. Previous broad descendants mixed UI/failed-target/class-instance rules and had format failures; this isolates their approved cookie-scope clarification on the original stable stage parent, without transplanting those other rules. Actual prior main replies explicitly bypassed allowed provider exceptions by labeling them content additions, and a coverage reply acknowledged shared copy yet invented a new category obligation. Preserve all native fields/order/enums, response contract, evidence, model, sampling, executor and strict validator. First screen original hard presentations plus separately frozen cookie-scope positive/negative controls; no long inference solely to retry a failure.",
-    "hypothesis_zh": "在原样确认阶段政策上澄清两项窄范围例外的优先级：等价通用营销中的重复类别或地点标签，如无独立产品事实或变化的销售条件，不构成具体产品记录；已覆盖的通用cookie段落也不因新的标题单独产生额外类别专属的必需义务。同步既有差异及主差异选项与这些有限例外。真实产品及规格、交易去向、责任主体名称、明确类别条款、具体部署限制及实质正文语言继续受保护。既往宽泛后继版本混合了界面、失败目标及类别实例规则，并存在格式失败；本次只把其中已批准的cookie范围澄清置于原有稳定阶段父版本，不移植其他规则。真实既往main回复明确把允许的服务商槽位称为内容新增而绕过例外；coverage回复也曾承认复制共享文字却推断新的类别义务。保留全部原生字段、顺序、枚举、回复格式、证据、模型、采样、执行器及严格校验。先运行原硬呈现及单独冻结的cookie范围正反例；不为重试失败而直接增加长推理。",
     "scope": "approved marketing category/provider slots and covered cookie-copy scope only",
     "prior_failure_basis": [
       "round023/C6 preflight1 R18 main identity inference from repeated generic category",
@@ -21,36 +19,30 @@
     "status": "FIRST_HARD_SCREEN_FAIL_NO_LONG_RUN_ADMITTED",
     "acceptance_passed": false,
     "reason_en": "First original hard screen: main85/86, coverage/final83/86, zero invalid and raw wrong allows. Latest18 main passes, but R14/R33 swapped coverage falsely vetoes; T_marketing_slot main still rejects. No original150/100 started; separate cookie-scope control outcome retained.",
-    "reason_zh": "首次原定硬回归：main85/86，coverage/final83/86，无效及原始错误允许均为零。最新18的main通过，但R14/R33交换方向被coverage误否决；T_marketing_slot的main仍错误拒绝。未启动原定150/100；单独cookie范围受控结果保留。",
     "cookie_scope_first": "8/8 each layer;0invalid;0wrongallows"
   },
   "candidate-01-coverreasonfirst1": {
     "parent": "candidate-01",
     "hypothesis_en": "Engineering-only coverage response-order experiment: ask the existing explanation paragraph and whole-notice comparison before choosing loss IDs, then emit the unchanged remaining fields. Previous actual coverage replies emit loss IDs before explaining the comparison and invent a category obligation or provider loss despite the existing exception; a prior order diagnostic proposed but never applied this experiment. The new semantic screen again has correct main decisions followed by those false coverage vetoes. All retention-policy paragraphs, main prompts/rubric, field names/types/enums, schema, validator, quoted evidence, critic veto authority, source presentation, model and sampling stay unchanged. This observation is not proof of causality: verify actual emitted order and native validity, then compare hard screens and separate cookie controls. Reject if order is ignored or technical validity worsens; do not repeat failed groups to select a lucky sample.",
-    "hypothesis_zh": "仅对coverage回复顺序进行工程实验：要求先生成既有explanation段落并完成全篇比较，再选择损失ID，之后输出不变的其余字段。既往真实coverage回复先给损失ID再解释比较，尽管存在例外仍推断类别义务或服务商损失；此前顺序诊断提出但未实际实施过这一实验。新的语义筛查再次出现main判断正确后被coverage误否决。全部保留政策段落、main提示词与rubric、字段名类型枚举、schema、校验器、引用证据、critic只能否决的权限、原文呈现、模型及采样均不变。该观察不证明因果：须核验实际输出顺序及原生有效性，再比较硬回归与单独cookie反例。若顺序未生效或技术有效性退步则淘汰，不重复失败组以挑选幸运样本。",
     "engineering_only": true,
     "prior_proposed_not_executed_evidence": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/decision-order-diagnostic-plan.json",
     "no_retention_policy_schema_validator_authority_changes": true,
     "status": "REJECTED_AFTER_ORIGINAL_HARD_SCREEN_NO_LONG_RUN",
     "acceptance_passed": false,
-    "reason_en": "All61 observed coverage replies emit explanation first. Original hard main85/86 and final82/86 do not improve on parent main85/86 and final83/86; an authentication false veto and one invalid gate judgment remain. No long scoring admitted.",
-    "reason_zh": "观察到的全部61次coverage回复均先生成explanation。原硬回归main85/86、final82/86，未优于父版本main85/86、final83/86；仍存在认证误否决及一个无效gate判断。未准入长评测。"
+    "reason_en": "All61 observed coverage replies emit explanation first. Original hard main85/86 and final82/86 do not improve on parent main85/86 and final83/86; an authentication false veto and one invalid gate judgment remain. No long scoring admitted."
   },
   "candidate-02": {
     "parent": "candidate-01",
     "hypothesis_en": "One shared-basis consistency clarification for the already approved finite generic-marketing exception. The preceding main failure explicitly classifies the otherwise preserved promotional message as template-only and chooses no basis, although category/location labels alone are permitted. State that this complete qualified message remains a verified retained basis even when brief or reusable; exclude shared navigation/layout around different actual records and preserve independent product facts or offer differences. No new family of slot exceptions, profile definition, output field/order/enum, source, model, sampling, schema, executor or validator change. Keep every other parent policy and any separately verified coverage-order engineering intervention unchanged. This addresses the observed basis-none path rather than repeating the already tested identity wording.",
-    "hypothesis_zh": "仅澄清已批准的有限通用营销例外与共享依据的一致性。前一main失败明确把已保留的营销文字视为仅有模板而选择无依据，尽管类别及地点标签本身已被允许。明确完整且满足条件的相同营销文字即使简短或可复用，仍构成经核验的保留依据；排除不同真实记录周围的共享导航及版式，继续保护独立产品事实或销售条件差异。不新增槽位例外类别、不改内容角色定义、输出字段及顺序枚举、原文、模型、采样、schema、执行器或校验器。父版本其余政策及任何已单独核验的coverage顺序工程干预均保持不变。该实验针对实际无依据路径，不重复已测试的身份措辞。",
     "single_rule_change": "qualified complete generic-marketing shared-basis exception",
     "new_human_labels": false,
     "status": "FIRST_HARD86_FAIL_LEDGER_AND_POLICY_NO_LONG_RUN",
     "acceptance_passed": false,
-    "reason_en": "First hard screen main84/86,final83/86;1 invalid R33-swapped ledger contradiction, plus D058 same-language wording retention and R14-swapped coverage false veto. Controlled26/26 passes. No150/100 admitted.",
-    "reason_zh": "首次硬回归main84/86、final83/86；1个无效R33-swapped字段矛盾，另有D058同语言措辞保留及R14-swapped的coverage误否决。受控26/26通过。未准入150/100。"
+    "reason_en": "First hard screen main84/86,final83/86;1 invalid R33-swapped ledger contradiction, plus D058 same-language wording retention and R14-swapped coverage false veto. Controlled26/26 passes. No150/100 admitted."
   },
   "candidate-03": {
     "parent": "candidate-02",
     "hypothesis_en": "Two consistency refinements at the observed decision points, without expanding policy scope. First, late general bound-subject, data-flow and heading-scope clauses must defer to the already qualified finite provider-name and covered-stock-cookie exceptions; directional summaries must remain consistent with a verified basis and a harmless removed-side ledger. The preceding main reply calls both provider deltas harmless and then denies replacement solely for that same name, while coverage reactivates the covered copy as a category obligation. Second, equivalent same-language form/privacy phrasing is not a separate substantive body-language version solely because its style differs; require an actual changed meaning or condition. The preceding authentication reply explicitly retains synonymous Vietnamese wording for pretraining despite equivalent meaning. Preserve real action destinations, liable parties, explicit category/status/consent terms, actual changed procedures, and substantive body prose in different languages. No fields/order/enums/schema, source/window, model/sampling, native executor, validator, authority or response-envelope changes. Keep the unsuccessful explanation-first engineering intervention excluded.",
-    "hypothesis_zh": "针对观察到的决策位置澄清两项一致性，不扩大政策范围。第一，后部一般性的主体绑定、数据流及标题作用域条款必须服从已满足条件的有限服务商名称及已覆盖通用cookie复制例外；方向汇总应与已核验依据及已归为无害的被移除侧证据一致。前一main回复把双方服务商差异均判为无害，却仅因同一名称否认替换；coverage则把已覆盖复制文字重新当成类别义务。第二，等价的同语言表单及隐私措辞，不因风格不同就成为独立实质正文语言版本；必须存在实际意义或条件变化。前一认证回复明确为预训练保留语义等价的越南语近义措辞。真实操作去向、责任主体、明确类别及状态同意条款、实际流程变化和不同语言实质正文继续保护。不改字段、顺序、枚举、schema、原文及窗口、模型采样、原生执行器、校验器、权限或回复外层格式。继续排除未成功的先解释工程干预。",
     "scope": "finite-exception decision consistency and same-language non-main paraphrase only",
     "new_human_labels": false,
     "evidence": "candidate02 preflight R33-swapped literal ledger contradiction, D058 same-language style retention, R14-swapped coverage scope reactivation",
@@ -334,7 +326,6 @@
   "candidate-04": {
     "parent": "candidate-03",
     "hypothesis_en": "Two narrow functional-role clarifications based on actual retained replies. Main treats an explicit category setting as harmless UI in both mirrored supplemental presentations, although the critic correctly preserves it. Distinguish independently assigned mandatory/optional values from an already covered stock paragraph; absence is a one-sided addition rather than a fabricated conflict. Coverage separately treats the recipient object in an unchanged generic cookie-transfer predicate as new processing and even cites a bare navigation heading. Apply the existing finite provider/recipient-slot exception to the predicate before choosing a loss. No new exception family, actual liability/action destination relaxation, labels, fields/order/enums, model/sampling, evidence/window, native code, schema or validator changes. All prior failures remain; only new predeclared slots are tested.",
-    "hypothesis_zh": "根据保留的实际回复澄清两项有限功能角色。Main在两个镜像受控呈现中把明确类别状态当成无害界面，critic则正确保护。区分独立赋予的强制或可选状态值与已覆盖通用段落；缺失是一侧新增而非虚构冲突。Coverage还把未变的通用cookie传递谓词中的接收方宾语当成新增处理，甚至引用空导航标题。选损失前按谓词应用已有有限服务商及接收方槽位例外。不新增例外类别，不放宽真实责任主体或操作去向，不改标签、字段顺序枚举、模型采样、证据窗口、原生代码、schema或校验器。保留此前所有失败，只评测新预声明运行。",
     "scope": "independent state versus copied stock paragraph; qualified generic recipient predicate",
     "new_human_labels": false,
     "evidence": "C3 supplemental state main6/8 with2 raw wrong allows and final8/8; C3 coverage R14-swapped copied scope, R33/R33-swapped provider object and bare heading false vetoes",
@@ -528,7 +519,6 @@
   "candidate-05": {
     "parent": "candidate-03",
     "hypothesis_en": "Isolate the useful explicit-state clarification from the rejected C4 recipient-predicate paragraph. C4 fixed every state control but generalized its new provider wording to actual submission emails, regressing D011, and still contradicted its copied-paragraph ledger. C5 inherits C3, retains only C4 state-role wording and existing delta-option alignment, and does not inherit C4 recipient wording. Add one prerequisite clarification: generic cookie framing is harmless only over actually retained complete category definitions; a broad purpose cannot entail a distinct recognition/tracking/use condition in a partial notice. C3 actual first150 D108 explicitly inferred coverage from a broad umbrella purpose despite this missing prerequisite. Ordinary equivalent synonyms remain covered. These are two finite existing-cookie-boundary clarifications, not new human labels or relaxed destinations. All fields/order/enums, evidence/window, native chain, validator, model and sampling remain fixed.",
-    "hypothesis_zh": "把有用的明确状态澄清与未通过的C4接收方谓词段落分离。C4修好了全部状态受控项，却把新增服务商措辞泛化到实际投稿邮箱，使D011退步，并仍在复制段落上与自身证据分类矛盾。C5继承C3，只保留C4状态功能角色措辞及已有差异选项对齐，不继承C4接收方措辞。新增一项前提澄清：只有实际保留完整类别定义时，通用cookie引言才适用无害例外；在不完整通知中，宽泛目的不能蕴含独立识别、跟踪或使用条件。C3首次150的D108实际回复明确在缺少前提时用宽泛目的推导覆盖。普通等价近义表达仍受覆盖。这是已有cookie边界的两项有限澄清，不新增人工标签或放宽操作去向。字段顺序枚举、证据窗口、原生链、校验器和模型采样全部固定。",
     "scope": "explicit independent state; complete-definition prerequisite for cookie framing",
     "new_human_labels": false,
     "excluded_failed_intervention": "C4 provider/recipient predicate paragraph",
@@ -723,7 +713,6 @@
   "candidate-03-policyonce1": {
     "parent": "candidate-03",
     "hypothesis_en": "Engineering-only removal of an exact duplicate policy block from each pair template while preserving its byte-identical complete system copy. C3 has the strongest first main86 result, but later append-only clarifications regressed operational-address and marketing decisions, and C3 long replies show rule confusion and literal ledger contradictions. Each current request repeats the same roughly seventy-line conditional-template block in both system and pair. This experiment tests redundant presentation as a possible contributor, not a proven cause. Only four pair files change; all four system files, YAML, unique task instructions, mechanism branch, document evidence and native field/enumeration/order/validator/critic authority/model/sampling remain unchanged. An inverse-replacement and exact-system-containment proof is frozen before inference. No source text is removed or masked. Keep C3 and every intervening failure; no failed original run is replaced.",
-    "hypothesis_zh": "仅做工程性去重：从各pair模板移除一段完全重复的规则，system中逐字相同的完整副本保留。C3首次main86表现最好，但之后追加式澄清使实际操作地址及营销判断退步，C3长评测回复也出现规则混淆及字面证据矛盾。目前每个请求在system和pair中重复同一段约七十行的有条件模板规则。本实验把重复呈现作为可能因素测试，并非认定因果。仅改四个pair文件；四个system、YAML、独有任务指令、机制分支、文档证据以及原生字段枚举顺序、校验、critic权限、模型采样均不变。推理前冻结逆替换还原与system逐字包含证明。不删除或遮盖原文。保留C3及之后全部失败，不替换任何已失败原运行。",
     "scope": "lossless policy-block deduplication only; four pair files",
     "new_human_labels": false,
     "engineering_revision": "policyonce1",
@@ -734,7 +723,6 @@
   "candidate-06": {
     "parent": "candidate-03",
     "hypothesis_en": "Two coverage-expression refinements with unchanged main/YAML/subject policy. C4 actually removes both provider coverage false vetoes but introduces a main operational-address error; causality among its simultaneous additions is not established. Isolate only its qualified provider-predicate paragraph in coverage_system/pair, leaving all other seven files exactly C3. Additionally illustrate the existing stock-copy scope boundary with symbolic P/H/V: a generic paragraph P already retained elsewhere copied under a heading H is not an independently assigned category condition, whereas a separate actual H/value assertion is protected. C3 and C4 coverage still reactivate the copied generic paragraph as a category obligation, so this changes its representation rather than appending the same abstract precedence sentence. No actual case text/IDs/answers enter prompts; no new exception family, schema/fields/order/enums, critic authority, evidence/window, executor, model, sampling or validator changes. Preserve all C4/C5 failures and test original86 plus every separate boundary group before considering any long diagnostic.",
-    "hypothesis_zh": "只澄清coverage的两项表达，main、YAML及subject政策不变。C4实际消除了两个服务商coverage误否决，却出现main操作地址错误；其同时增加的内容之间尚不能认定因果。仅将其中已满足条件的服务商谓词段落移至coverage_system及pair，其余七文件与C3完全一致。另用符号P/H/V说明已有复制作用域边界：别处已保留的通用段落P复制到标题H下，不等于独立赋予类别条件；单独的真实H及状态值断言则继续保护。C3和C4的coverage仍把复制通用段落重新当成类别义务，因此本轮改换表示方式，而非重复追加同一抽象优先级句子。实际案例文字、编号及答案不进入prompt；不新增例外类别，不改schema、字段顺序枚举、critic权限、证据窗口、执行器、模型采样或校验器。保留C4/C5全部失败，先测原86及每个单独边界组，再考虑长诊断。",
     "scope": "coverage-only qualified provider predicate and symbolic stock-copy versus independent assignment",
     "new_human_labels": false,
     "unchanged_seven_files_equal_parent": true,

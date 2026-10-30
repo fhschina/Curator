@@ -11,17 +11,6 @@
       "P mean",
       "P worst"
     ],
-    "headers_zh": [
-      "版本",
-      "参考口径",
-      "完成重复数",
-      "Final 方向合计",
-      "方向均值",
-      "方向最差",
-      "Final 整对合计",
-      "整对均值",
-      "整对最差"
-    ],
     "rows": [
       [
         "baseline",
@@ -122,14 +111,6 @@
       "Coverage D; P",
       "Final D; P"
     ],
-    "headers_zh": [
-      "版本",
-      "参考口径",
-      "运行",
-      "Main 方向；整对",
-      "Coverage 方向；整对",
-      "Final 方向；整对"
-    ],
     "rows": [
       [
         "candidate-00-start85",
@@ -145,10 +126,6 @@
     "headers_en": [
       "Requirement",
       "Status"
-    ],
-    "headers_zh": [
-      "要求",
-      "状态"
     ],
     "rows": [
       [
@@ -211,15 +188,6 @@
       "Final P",
       "Swap mismatches"
     ],
-    "headers_zh": [
-      "版本",
-      "组",
-      "运行",
-      "Main 整对",
-      "Coverage 整对",
-      "Final 整对",
-      "交换不一致"
-    ],
     "rows": [
       [
         "candidate-00-start85",
@@ -280,18 +248,6 @@
       "Layer changes",
       "Failures",
       "HTTP attempt status"
-    ],
-    "headers_zh": [
-      "版本",
-      "运行",
-      "Main 有效/无效/待定",
-      "Coverage 有效/无效/待定",
-      "Final 有效/无效/待定",
-      "错误允许 M/C/F",
-      "错误阻止 M/C/F",
-      "层间变化",
-      "失败",
-      "HTTP 尝试状态"
     ],
     "rows": [
       [
@@ -354,15 +310,6 @@
       "Final raw → validated",
       "Issues"
     ],
-    "headers_zh": [
-      "版本",
-      "运行",
-      "案例",
-      "Main 原始 → 经验证",
-      "Coverage 原始 → 经验证",
-      "Final 原始 → 经验证",
-      "问题"
-    ],
     "rows": [
       [
         "candidate-00-start85",
@@ -392,13 +339,6 @@
       "Coverage V/I/U",
       "Final V/I/U"
     ],
-    "headers_zh": [
-      "版本",
-      "运行",
-      "Main 有效/无效/待定",
-      "Coverage 有效/无效/待定",
-      "Final 有效/无效/待定"
-    ],
     "rows": [
       [
         "candidate-00-start85",
@@ -417,13 +357,6 @@
       "Coverage V/I/U",
       "Final V/I/U"
     ],
-    "headers_zh": [
-      "版本",
-      "运行",
-      "Main 有效/无效/待定",
-      "Coverage 有效/无效/待定",
-      "Final 有效/无效/待定"
-    ],
     "rows": [
       [
         "candidate-00-start85",
@@ -440,12 +373,6 @@
       "Reference",
       "Final D change, percentage points",
       "Final P change, percentage points"
-    ],
-    "headers_zh": [
-      "对照",
-      "参考口径",
-      "Final 方向变化，百分点",
-      "Final 整对变化，百分点"
     ],
     "rows": [
       [
@@ -507,14 +434,6 @@
       "Observed main rows",
       "HTTP attempts"
     ],
-    "headers_zh": [
-      "版本",
-      "运行",
-      "状态",
-      "预期输入",
-      "实际 main 行数",
-      "HTTP 尝试"
-    ],
     "rows": [
       [
         "candidate-01",
@@ -535,15 +454,6 @@
       "Observed P",
       "Observed repeats",
       "Immutable snapshot"
-    ],
-    "headers_zh": [
-      "指针",
-      "候选",
-      "状态",
-      "已观察方向",
-      "已观察整对",
-      "已观察重复数",
-      "不可变快照"
     ],
     "rows": [
       [
@@ -593,40 +503,28 @@
       "Selection reason",
       "Evidence root"
     ],
-    "headers_zh": [
-      "候选",
-      "假设",
-      "完成的个人参考重复数",
-      "状态",
-      "选择理由",
-      "证据目录"
-    ],
     "rows": [
       [
         "candidate-00-start85",
         {
-          "en": "Unmodified C6-languagefirst1 starting comparator; prior85/80 is historical, and the new original3 group is unrun.",
-          "zh": "原样C6-languagefirst1起点对照；既往85/80为历史成绩，本轮新的原定3次尚未运行。"
+          "en": "Unmodified C6-languagefirst1 starting comparator; prior85/80 is historical, and the new original3 group is unrun."
         },
         "1",
         "FROZEN_STARTING_COMPARATOR_NOT_NEW_SEMANTIC_CANDIDATE",
         {
-          "en": "",
-          "zh": ""
+          "en": ""
         },
         "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-00-start85"
       ],
       [
         "candidate-01",
         {
-          "en": "Two narrow exception-priority clarifications on the unchanged confirmed-stage policy: a repeated category/location label in otherwise equivalent generic marketing is not a concrete product record without an independent product-specific fact or changed offer term; and a covered stock-cookie paragraph does not acquire an additional category-specific necessity obligation from its new heading alone. Align existing delta and primary-difference options with those finite exceptions. Actual products/specifications, transaction destinations, named liability, explicit category terms, concrete deployment restrictions and substantive body languages remain protected. Previous broad descendants mixed UI/failed-target/class-instance rules and had format failures; this isolates their approved cookie-scope clarification on the original stable stage parent, without transplanting those other rules. Actual prior main replies explicitly bypassed allowed provider exceptions by labeling them content additions, and a coverage reply acknowledged shared copy yet invented a new category obligation. Preserve all native fields/order/enums, response contract, evidence, model, sampling, executor and strict validator. First screen original hard presentations plus separately frozen cookie-scope positive/negative controls; no long inference solely to retry a failure.",
-          "zh": "在原样确认阶段政策上澄清两项窄范围例外的优先级：等价通用营销中的重复类别或地点标签，如无独立产品事实或变化的销售条件，不构成具体产品记录；已覆盖的通用cookie段落也不因新的标题单独产生额外类别专属的必需义务。同步既有差异及主差异选项与这些有限例外。真实产品及规格、交易去向、责任主体名称、明确类别条款、具体部署限制及实质正文语言继续受保护。既往宽泛后继版本混合了界面、失败目标及类别实例规则，并存在格式失败；本次只把其中已批准的cookie范围澄清置于原有稳定阶段父版本，不移植其他规则。真实既往main回复明确把允许的服务商槽位称为内容新增而绕过例外；coverage回复也曾承认复制共享文字却推断新的类别义务。保留全部原生字段、顺序、枚举、回复格式、证据、模型、采样、执行器及严格校验。先运行原硬呈现及单独冻结的cookie范围正反例；不为重试失败而直接增加长推理。"
+          "en": "Two narrow exception-priority clarifications on the unchanged confirmed-stage policy: a repeated category/location label in otherwise equivalent generic marketing is not a concrete product record without an independent product-specific fact or changed offer term; and a covered stock-cookie paragraph does not acquire an additional category-specific necessity obligation from its new heading alone. Align existing delta and primary-difference options with those finite exceptions. Actual products/specifications, transaction destinations, named liability, explicit category terms, concrete deployment restrictions and substantive body languages remain protected. Previous broad descendants mixed UI/failed-target/class-instance rules and had format failures; this isolates their approved cookie-scope clarification on the original stable stage parent, without transplanting those other rules. Actual prior main replies explicitly bypassed allowed provider exceptions by labeling them content additions, and a coverage reply acknowledged shared copy yet invented a new category obligation. Preserve all native fields/order/enums, response contract, evidence, model, sampling, executor and strict validator. First screen original hard presentations plus separately frozen cookie-scope positive/negative controls; no long inference solely to retry a failure."
         },
         "0",
         "frozen_awaiting_serial_hard_screen",
         {
-          "en": "",
-          "zh": ""
+          "en": ""
         },
         "/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z/candidate-01"
       ]
@@ -636,10 +534,6 @@
     "headers_en": [
       "Trace item",
       "Observed value"
-    ],
-    "headers_zh": [
-      "尝试追踪项目",
-      "实际值"
     ],
     "rows": []
   },
@@ -654,26 +548,12 @@
       "Nonvalid-attempt block signals",
       "Unknown/unresolved values"
     ],
-    "headers_zh": [
-      "版本",
-      "参考分组",
-      "Main尝试数",
-      "错误允许信号",
-      "错误阻止信号",
-      "无效尝试错误允许信号",
-      "无效尝试错误阻止信号",
-      "未知或未决值"
-    ],
     "rows": []
   },
   "resources": {
     "headers_en": [
       "Item",
       "Value"
-    ],
-    "headers_zh": [
-      "项目",
-      "值"
     ],
     "rows": [
       [
@@ -722,10 +602,6 @@
     "headers_en": [
       "Check",
       "Observed evidence"
-    ],
-    "headers_zh": [
-      "检查",
-      "实际证据"
     ],
     "rows": [
       [

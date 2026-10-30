@@ -23,6 +23,5 @@
   "numeric_sequences_equal": true,
   "shared_data_tables": true,
   "outcome_en": "The final metric target was not reached.",
-  "outcome_zh": "最终指标未达。",
   "comparison_sha256": "b21c7a75d9777bb8ed66c9d763cef9293ee5ad942b71cbb6bd82e089bf2a11e3"
 }

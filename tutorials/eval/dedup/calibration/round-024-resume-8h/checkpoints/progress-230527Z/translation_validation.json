@@ -22,6 +22,5 @@
   "numeric_sequences_equal": true,
   "shared_data_tables": true,
   "outcome_en": "Evaluation is in progress; acceptance is not confirmed.",
-  "outcome_zh": "评测进行中，尚未确认验收通过。",
   "comparison_sha256": "a141c4863d4b2ec3324fbcb2e80bdb0784f0c47e8896d55265108781af26d96b"
 }

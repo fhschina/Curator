@@ -1,6 +1,5 @@
 {
   "hypothesis_en": "Engineering presentation revision of candidate02: separately expose each existing exact unique CORE from its unchanged padded reading context in the main pair template, preserving native marker syntax. Isolate observed clause-language attribution errors without changing retention rules, raw sources,6000character windows,model,parameters,fields,enums,validation or native executor. Preserve complete operational addresses in context and protect actual endpoint and substantive body-language boundaries. Core1 failed marker compatibility before inference; core2 fixes only that marker separator and passes native template/window tests plus3302CORE excerpt equivalence checks. Baseline and start original prompts remain frozen; presentation is the sole intended candidate intervention.",
-  "hypothesis_zh": "candidate02的工程呈现修订：在主pair模板中分别展示既有精确差异CORE和未改变的填充阅读上下文，并保留原生标记语法。独立检查已观察到的句子语言归属错误，不改变保留规则、原文、6000字符窗口、模型、参数、字段、枚举、校验或原生执行器。上下文继续呈现完整操作地址，并保护实际入口与实质正文语言边界。core1在推理前未通过标记兼容性检查；core2仅修正该标记分隔，已通过原生模板及窗口测试和3302个CORE摘录一致性检查。固定基线及起点提示词保持冻结；呈现方式是唯一有意改变的候选因素。",
   "parent": "candidate-02",
   "status": "frozen_awaiting_serial_hard_screen",
   "acceptance_passed": false
