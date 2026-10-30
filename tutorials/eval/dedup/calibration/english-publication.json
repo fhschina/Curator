@@ -1,0 +1,135 @@
+{
+  "publication_language": "en",
+  "source_commit": "39714b476de7dcabceb387714ad0c15e6cc34437",
+  "branch": "codex/dedup-retention-policy-v2",
+  "local_original_archive": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2",
+  "historical_integrity": "Frozen hashes and old receipts describe the original source artifacts. English JSON projections omit Chinese translation fields; remaining Chinese annotations are translated into English. Original files, Chinese reports and multilingual evidence bundles are preserved byte-for-byte locally. No prompt, model configuration, reference label, metric or acceptance result is changed. Git history is preserved.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "operation": "document_english_publication_preference",
+      "original_sha256": "3f27518a4ec7d639270ca46fd96ec4a61ff37d7aa9623d77b5bf57a0adcaed0c",
+      "published_sha256": "5222fa0027c8cf269e1b870f74383f2326e69419b8a233073b918be48cfcce3f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/AGENTS.md"
+    },
+    {
+      "path": "fern/versions/main.yml",
+      "operation": "remove_chinese_navigation",
+      "original_sha256": "7634e6e4e602cb74a0c4743662074b246efa5e40c348e0042be728f03cbeddb1",
+      "published_sha256": "af9f9697be9bb2db0657b7da5bcd9ab6e7e90adb7d08b46bb0b550bef46d18b6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/fern/versions/main.yml"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "6933df7fac3a2e75482854dae9186fea715cb6d5eed0a45eb3b2317c70816d83",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy.mdx",
+      "operation": "english_only_publication_links",
+      "original_sha256": "02f29437e9a3566eedc55b4b5448ec5d1f89bf5df660c6a7a4233db8c2794a96",
+      "published_sha256": "795c3032073689dc49831fe612bf1ed7473faa420e9f2b70f0c995d29b841c30",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/README.md",
+      "operation": "english_only_publication_links",
+      "original_sha256": "5c865b835558d1abf53f6e86b0709e2c0a3d0e4b33d35eebe2a6b2afeb567d70",
+      "published_sha256": "df3d60b257557e95a6e745aa79f648296209796655d9f1811c61d2b2f89f8425",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/README.md",
+      "operation": "english_only_publication_links",
+      "original_sha256": "191664639c87996175980a15252be07d70c5cadafa59a3beea1d282f6c632467",
+      "published_sha256": "0e7a5d41d8b230af9f72e033854de245a7e5529b060964d59a118fb799e9040f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-baseline.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "7ef95b4d88012f57b4983f63c292d7aa43af5bce0c85e46ba3ab8bb85a195a04",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-baseline.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-01.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "1ec6b27bdb2da77968f6b31928913b878326f2de801096729342d927503aabf0",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-01.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-02.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "d5a48f240fe2d7c2edfab66916ea61925370917769066167c146232c4b2864ab",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-02.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-03.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "131d4c7a0d5a9a7bcfb08c19b74894820103284017afd9323589b7c8ff3024bb",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-03.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-04.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "45b6ddc3398e1d2ceb0d49ce692a2873c4990610cde7a761594d8ba1ddd7566e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-04.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05-format1.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "cd3a3c6d9368219741afaefaa28b14b1e630272dd06e16f0ca84be40554bb0c8",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05-format1.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "87d17c0a58ce676b13c1873b8f1857d7eb764b2c133c1f04cf2fadd5b913d3fb",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-06.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "37b0b3fd32ceffee81aa6fc316cedf954bbf79aab6df983ca764045f9f7da040",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-06.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-reproduction.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "7b7b16509a736af6c1e79247f36438fc44c0ab615d6e04735beed497acd717a3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/evidence-reproduction.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/final-selection.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "edeccca7218a8a880669c1934fe95e675d9d4353fcd6e4cac88bb70c3052b36f",
+      "published_sha256": "f901484ec0c40b3b5aa86f12fe44bbd1f23e11aa71d066311082262224ccc31c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/final-selection.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "fbbe5384f24baa16ead028d873ec825d6fc56e7dcd17c03abeff409a3f0cd634",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/review-provenance.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "7b74aedca9d9ed58d36059976d5ac3e1d700ed1e85b65a8cd5be42749341a9aa",
+      "published_sha256": "ab1b77a5e25ba37aec4a32e673f402fbd81940b4b1476d492e5792e2e3bf96e6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v2/tutorials/eval/dedup/calibration/round-022-v2/review-provenance.json"
+    }
+  ]
+}
