@@ -3,7 +3,6 @@
   "parent": "candidate-11",
   "engineering_revision": "contract1",
   "hypothesis_en": "Engineering-only priority placement of the already required native response contract. Candidate11 passes the first original86 in all three layers and UI22, but the separate cookie-scope negative control has a real main schema parse failure: the fenced JSON uses risk_factor instead of the required nested score key in primary_risk_factor. The object finishes normally at936tokens, so this is a schema-key cross-wire, not missing Markdown or output truncation. Earlier candidate10/xref2 separately has seven valid-bare-JSON fence omissions. Prepend a short complete-response contract to four system templates: distinguish the schema-defined inner answer from required outer Markdown framing, include all required keys/nested properties, and in the main rubric use its existing reasoning/score keys regardless of field name. No example scores or reference answers. Removing only the prefix restores all four original system bodies byte-for-byte; other five files, all retention policy,15fields/order/enums, evidence, model/sampling/window, native recipe/executor and strict parsing remain unchanged. This is a candidate prompt-format intervention under the existing common native contract, not a runtime/parser change or baseline-policy alteration. Preserve parent failures and use a distinct frozen original3 group. First screen original86,UI22,cookie8,and6supported class-instance controls plus2unlabeled diagnostics; only actual outputs can establish improvement.",
-  "hypothesis_zh": "仅前置原生链路已要求的完整输出格式。candidate11首轮原始86项每层全部通过，UI22也有效；但单独cookie作用域反例真实发生main schema解析失败：带正确围栏的JSON在primary_risk_factor对象内使用risk_factor而非规定的score键。回复正常结束且仅936token，因此是嵌套键串用，不是缺围栏或输出截断。此前candidate10/xref2另有七次合法裸JSON遗漏围栏。在四个system模板前增加简短格式要求，区分schema规定的内部答案和外部Markdown围栏、要求全部必填键与嵌套属性，并在main rubric中使用既有reasoning/score键，不因字段名称而替换键。没有示例分数或参考答案。只移除前缀即可逐字节恢复四个system正文；其余五个文件、全部保留政策、15字段顺序枚举、证据、模型采样窗口、原生recipe执行器和严格解析不变。这是在既有共同格式要求下的候选提示格式实验，不改变运行时解析器或基线政策。保留父版本失败，冻结独立原组3次运行。先检查原始86项、UI22、cookie8，以及6项有依据的类别实例受控和2项未标注诊断，仅由真实输出判断改善。",
   "semantic_factors": 0,
   "model_calls": 0,
   "changed_system_prefixes": {
@@ -49,6 +48,5 @@
     "pairs": 86
   },
   "original_first150_status": "NOT_STARTED_CANCELLED_BEFORE_NATIVE",
-  "reason_en": "Original86 correct main/coverage/final:81/81/81; invalid:5/5/5. Format-priority intervention rejected; no full150.",
-  "reason_zh": "原始86项main/coverage/final正确数：81/81/81；无效数：5/5/5。格式前置实验被拒绝，未运行完整150对。"
+  "reason_en": "Original86 correct main/coverage/final:81/81/81; invalid:5/5/5. Format-priority intervention rejected; no full150."
 }

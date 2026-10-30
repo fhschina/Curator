@@ -1,12 +1,10 @@
 {
   "hypothesis_en": "One isolated rule-expression refinement: apply the already approved conditional template exceptions consistently inside every material delta/conflict/identity option in the main YAML rubric. Preserve the delivered candidate02 system/pair/critic prompts, structured fields and enums, source presentation and operational-destination protections. This isolates rubric-option shadowing from prior full-prompt/window rewrites that improved some slots but introduced format and operational regressions. Expect improved generic marketing/category/provider classification; localization and critic-only false vetoes remain separate diagnostics.",
-  "hypothesis_zh": "仅隔离一项规则表达修订：在主 YAML rubric 的所有实质 delta、冲突和身份选项中一致应用已经允许的有条件模板例外。保留已交付 candidate02 的 system、pair 和 critic 提示词、结构化字段及枚举、证据呈现和操作入口保护。该实验隔离分类选项遮蔽问题，区别于上一轮同时改变完整提示词及窗口呈现、虽改善部分槽位却带来格式和操作回归的尝试。预期改善通用营销类别和服务商分类；本地化及仅由 critic 引起的误否决继续作为独立诊断。",
   "status": "screen_complete_hard_failed",
   "acceptance_passed": false,
   "parent": "start-39714b47",
   "changes": "Only12 option descriptions in main YAML; eight prompt files unchanged.",
   "hard_eligible": false,
   "screen_total_presentations": 86,
-  "reason_en": "No raw wrong allows or technical failures in the first86hard presentations; confirmed required-Yes errors remain. Keep evidence and refine the observed localization cause before long development scoring.",
-  "reason_zh": "首轮86个硬性呈现样本中无原始错误允许或技术失败，仍存在已确认必须为Yes的错误。保留证据，并在进行长开发评分前修正已观察到的本地化原因。"
+  "reason_en": "No raw wrong allows or technical failures in the first86hard presentations; confirmed required-Yes errors remain. Keep evidence and refine the observed localization cause before long development scoring."
 }

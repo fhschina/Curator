@@ -1,0 +1,590 @@
+{
+  "publication_language": "en",
+  "source_commit": "8831f46fb233b86df6a056394217b8eb3e2c0667",
+  "branch": "codex/dedup-retention-policy-v3-overnight",
+  "local_original_archive": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight",
+  "historical_integrity": "Frozen hashes and old receipts describe the original source artifacts. English JSON projections omit Chinese translation fields; remaining Chinese annotations are translated into English. Original files, Chinese reports and multilingual evidence bundles are preserved byte-for-byte locally. No prompt, model configuration, reference label, metric or acceptance result is changed. Git history is preserved.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "operation": "document_english_publication_preference",
+      "original_sha256": "3f27518a4ec7d639270ca46fd96ec4a61ff37d7aa9623d77b5bf57a0adcaed0c",
+      "published_sha256": "5222fa0027c8cf269e1b870f74383f2326e69419b8a233073b918be48cfcce3f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/AGENTS.md"
+    },
+    {
+      "path": "fern/versions/main.yml",
+      "operation": "remove_chinese_navigation",
+      "original_sha256": "1240a0180ff2238ee607f222acd2e386831ed731419731b72123c1f88392708c",
+      "published_sha256": "10833e62c9e1bf6a0fd7a18ca675c3fe4f291a4d1e09aeaeb5d7e8f478f47d8a",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/fern/versions/main.yml"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "6933df7fac3a2e75482854dae9186fea715cb6d5eed0a45eb3b2317c70816d83",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v3-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "0f269506c8e65b428b3abd4b3988de8f6b1caa59098e288f75daa462b31496e3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v3-report-zh.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy.mdx",
+      "operation": "english_only_publication_links",
+      "original_sha256": "02f29437e9a3566eedc55b4b5448ec5d1f89bf5df660c6a7a4233db8c2794a96",
+      "published_sha256": "795c3032073689dc49831fe612bf1ed7473faa420e9f2b70f0c995d29b841c30",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/README.md",
+      "operation": "english_only_publication_links",
+      "original_sha256": "5c865b835558d1abf53f6e86b0709e2c0a3d0e4b33d35eebe2a6b2afeb567d70",
+      "published_sha256": "df3d60b257557e95a6e745aa79f648296209796655d9f1811c61d2b2f89f8425",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/README.md",
+      "operation": "english_only_publication_links",
+      "original_sha256": "191664639c87996175980a15252be07d70c5cadafa59a3beea1d282f6c632467",
+      "published_sha256": "0e7a5d41d8b230af9f72e033854de245a7e5529b060964d59a118fb799e9040f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-baseline.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "7ef95b4d88012f57b4983f63c292d7aa43af5bce0c85e46ba3ab8bb85a195a04",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-baseline.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-01.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "1ec6b27bdb2da77968f6b31928913b878326f2de801096729342d927503aabf0",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-01.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-02.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "d5a48f240fe2d7c2edfab66916ea61925370917769066167c146232c4b2864ab",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-02.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-03.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "131d4c7a0d5a9a7bcfb08c19b74894820103284017afd9323589b7c8ff3024bb",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-03.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-04.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "45b6ddc3398e1d2ceb0d49ce692a2873c4990610cde7a761594d8ba1ddd7566e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-04.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05-format1.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "cd3a3c6d9368219741afaefaa28b14b1e630272dd06e16f0ca84be40554bb0c8",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05-format1.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "87d17c0a58ce676b13c1873b8f1857d7eb764b2c133c1f04cf2fadd5b913d3fb",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-06.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "37b0b3fd32ceffee81aa6fc316cedf954bbf79aab6df983ca764045f9f7da040",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-06.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-reproduction.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "7b7b16509a736af6c1e79247f36438fc44c0ab615d6e04735beed497acd717a3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/evidence-reproduction.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/final-selection.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "edeccca7218a8a880669c1934fe95e675d9d4353fcd6e4cac88bb70c3052b36f",
+      "published_sha256": "f901484ec0c40b3b5aa86f12fe44bbd1f23e11aa71d066311082262224ccc31c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/final-selection.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "fbbe5384f24baa16ead028d873ec825d6fc56e7dcd17c03abeff409a3f0cd634",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/review-provenance.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "7b74aedca9d9ed58d36059976d5ac3e1d700ed1e85b65a8cd5be42749341a9aa",
+      "published_sha256": "ab1b77a5e25ba37aec4a32e673f402fbd81940b4b1476d492e5792e2e3bf96e6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-022-v2/review-provenance.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "cabfbf5b24917704f30db6d10277bdd69c789cd1a319e712c59b0752c46d4c7c",
+      "published_sha256": "e22dca038a2aed56b5590033ea0a4b7033570ca743a74e8af53371a6807a6f36",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "7fae15f92dac771aad6b3e4a4a0fc8cc6c762931ef78f926a181c4144cfe6794",
+      "published_sha256": "e4ae3fd71272fa38749be69a93e0e51c30b224802cbb4656fb5d2b97a40b8aaf",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "0ab8e9b1822480cfc045a374a9fcde4639854d59733899aaa4c50c153cce9086",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "cda25407280c30e24afb8644e8df4a4eca5a2dbb38f411bd0fdb49bc324c7bdc",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f8ef23d1dafc29ae2a02687ace4b9fb4239ed158362542584c2bec58143080c0",
+      "published_sha256": "0f9ae6ed345945e50da860627e60ef75a363e10167f6483e4b448dfbc2545f8b",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "fc9cb83a1963fd5492cce2d820de5654554121be94565fc42edebe7189a6f60f",
+      "published_sha256": "eb9eb21e39fcc57d4e34eb47eff35c8ad2044eadf9e0d2d01db28771a284794c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "140efce65da77878f6b743e51c1e66852ae26fec70eead14a4bd6b2fb23fd8a0",
+      "published_sha256": "590875005db83548539c55cc3efe04e8eeeaede992b9b9b58b5c2fb93e7fc6a1",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "c3570fac246405c78baae0ee45440579aa496cb4584568b32413582609fd6095",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "6ba26bcf8219475731bf72e3f1a181c36b16f6e35d467f10f44516beabb4ab6e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "44705bfca221209d96819f2a9539720e4055bb4fb2353610e582a37a1bb4dd6d",
+      "published_sha256": "6ce0c177fcf2ee20922c0db89ab5f207735eccfb5d1fbda0b94b6cca5fb9d5d0",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0745Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a3a2063aafa95bb0a9e35d20042d9b53c73160bcf95b6151ec91fe2de51abe1f",
+      "published_sha256": "d94a9b052d1e9d75fbaa69d41d275e2c3aae70e1c4763371eb2ed47b1a06f66f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0745Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "1a6184957a7b57ab89b04a037db656d3c12f1131f0aad6acbc7e0ef4d95f75e9",
+      "published_sha256": "a7a1c0c0a83c358f85c6826a9413fa00146adcdbe47aeff35fba407ad7cde88d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d4ed3dcd92e8d8bed09937c6719b89ddbd874d3ba256ce5237a317bf7890c587",
+      "published_sha256": "29591f510b857f0e14b99c17ebb604d412af591da973d73ff5148235ce255774",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "1f655c3410c1415bc150a2b7ed1745b6793a2e0478cc31906986df20c3f0c66c",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "e0feb4aa397172fc64f251fa518b6cc05bdb07dc2e70a544e1cd073092172488",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "fe976f104615a008c23e3d792ebd43ba667aba17845b0b525753baafb7aae752",
+      "published_sha256": "f251e929756f5d53a0b7fef241bd9536c4d1bf8907187108e88b22d595e2cd1f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "afa313f8db63d2b4418b0fb707d051c79aeebf39b3acd0391d100986720d186a",
+      "published_sha256": "0c569639fef64b891d488f3bc2059d0a199462720ea649992405d66dfca517fb",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/candidate12-first150-diagnostic-ADMIT.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "3fd53ac37fd35de4ce6fae0dab5c6b5046ef8474e47a520333323228e2a373f9",
+      "published_sha256": "1fcd93da4bd88640c3aa1902e36abd95428d38edb27045208a2bc1cb0a4ba082",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/candidate12-first150-diagnostic-ADMIT.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "ab1981482aa6edfc892537040de6a98b45373e185b5f7da5efe0ed2d6a14fef9",
+      "published_sha256": "b38cd19511813131a85f4959277c99849202845405abdda30fdac2ce3fb0c183",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "0066e5f08eabada5a3e05e7445d87feea8ed96ad6b7b861238e2ce8a6795c515",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "66b1e9b899ad1ebc8280c9e9254f0799396c27c0efdf05f8ec11105874ca989b",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c7deaeca90cd5a85f62181f8af9f428ff37469fe2081f23990e001d7ad137c24",
+      "published_sha256": "d11230f943f8f564026f69add405c97d06a85a39ca0b9ad51401dde69aad2133",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/README.md",
+      "operation": "english_only_publication_links",
+      "original_sha256": "996bc4949537bf7779ecc99efa7fc184e46d052e57f34c68ec5b4992163b2265",
+      "published_sha256": "bd3431fcd27b165a168050b854e2bddf938f6302b105ff6b80aa5e0e04346f7d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "020b2e330bb34b8a5578e04ed9ac43cd8f0b856cf8558bdfd70a02cba685de93",
+      "published_sha256": "bd74b63cfc661f745e8c716595c2d04f7f13f57f13366ab0d173d5cf690ad8a2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/candidate12-first150-diagnostic-ADMIT.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "3fd53ac37fd35de4ce6fae0dab5c6b5046ef8474e47a520333323228e2a373f9",
+      "published_sha256": "1fcd93da4bd88640c3aa1902e36abd95428d38edb27045208a2bc1cb0a4ba082",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/candidate12-first150-diagnostic-ADMIT.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/final-hash-and-hooks-receipt.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "65f1befa9a9f914079eafa56bb3c90cae5be778b9472eb8d91e41e5d3dc6dd82",
+      "published_sha256": "46b5b0129d416a7ab2fc9c4bc5caae1510786dfeaef8520477a1fe84b6a35a0b",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/final-hash-and-hooks-receipt.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/final-narrative.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "6b1e26ad3f263ce260e53280887bcc35d6688606273c11a39759b8026f350bcd",
+      "published_sha256": "5fd5e6bdfc968521c6dc6a55bc3e52d8887357997593fcd88c93bb4e2e96bd56",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/final-narrative.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "60573038f9600a4174f04536ed047b3170eb1edc9536cb6f7eb82c9c8d0a3202",
+      "published_sha256": "4f77cdf367dd658fe7e143082c55c1fbaa0b00d44e230680027207f38afd87dd",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "9699831c968183ceab50a0d82b6ccaed6148fea47b376256936a5d90f6a407dd",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "0f269506c8e65b428b3abd4b3988de8f6b1caa59098e288f75daa462b31496e3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c925ec7e3c579c8532c241f09bd4b04778ca9808f9d8cb8e5a8f8958a6d734f7",
+      "published_sha256": "403c0c3c0ed21223ecac5580cd06c2fd54574a6dffcf6cef38d9721bcf11b691",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/delivery/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-06-pointer-refresh/rolling_watch.py.txt",
+      "operation": "archive_original_bilingual_script_snapshot_locally",
+      "original_sha256": "896da35bdff9a7e588b403c5d909b2df8c3c49176192cbd2b47888070fafd5ed",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/engineering-06-pointer-refresh/rolling_watch.py.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-09-arrow-offset-boundary/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "4b0eb458efd875c17deee0b44ce52e534c3e1e31a151a950db51fe69538d426d",
+      "published_sha256": "5884d4197d29eb0aaefe4735c0b09e3cf948b250514e99bb03cdaddb540efb22",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/engineering-09-arrow-offset-boundary/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-09-arrow-offset-boundary/candidate10-first150-diagnostic-declaration.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "830888254993dc3f0e2227de3eb436c480e9cf80c84f3c3164f34a8b2560685f",
+      "published_sha256": "fe22215ab146e826f1724ce0d6a06d4441858e65e966dc22f93ab09379afffc9",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/engineering-09-arrow-offset-boundary/candidate10-first150-diagnostic-declaration.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-10-native-contract-priority/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "e98eb602eca97f9ab9b2850157e79da614276ad1d0d20063d40d2de6840593fb",
+      "published_sha256": "132bcda1092c80929082615876011f58d192c01b2759d7dac2094faa7e8a9227",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/engineering-10-native-contract-priority/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "52daabd7195a595614be2f377e8db72bf49f7763203eec281d91ad50dfeb4989",
+      "published_sha256": "b00866b25c0d840bdc07ca6d093772a6ef57fdbbcffef8c474e3fd3ba1a9432e",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/render_bilingual-after.py.txt",
+      "operation": "archive_original_bilingual_script_snapshot_locally",
+      "original_sha256": "527a48884ef3b66931b4216836b0157ce7d501ba8a0e0e098c66a88c686ff76e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/render_bilingual-after.py.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/render_bilingual-before.py.txt",
+      "operation": "archive_original_bilingual_script_snapshot_locally",
+      "original_sha256": "358fc898ae89f2a20454026763bb4f304f309feed1be825c802897d61f8db53f",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/render_bilingual-before.py.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-01/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d1f1400da6a7ef693aa8ede3aa082309eb0a4a3b44cc0e48a62ea518d1fab749",
+      "published_sha256": "2b37a643a6a9bdcd0b5bd1ad14b25a17158116dca3f5b6133d622ed021183368",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-01/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02-core1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a5b2deb2f907e6aef51a2d4176f8806d0c245d6b3e655cdb362b06e895d319a1",
+      "published_sha256": "19fb7ceb9049abe364f84cccddc567c5bc6c1a242e4c4ce8e27485a0a8f83aaf",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02-core1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02-core2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "6315d915eca3510eada0e22c587f9716ff0cbe50923514f53009dc2d7ff2eb7f",
+      "published_sha256": "64f5b1361ee2636bfa36ba4f772b698102bcf09ceb58ddcb69e82109d358980c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02-core2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "521d748b5831100bbd7afb520f5a6743b1d60c8ff06e701aeaf6dd668fe90029",
+      "published_sha256": "3be7aa9666f7fb32dbb40bcbfa5db866197a8bf9c04b0df0e10b7bee5e5fd4e8",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-03/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "b3290550254e957e3fd2e97f77af176f8c678c63fc0da80045ea35e4de75cb8b",
+      "published_sha256": "9ea5e000f0d414d66811d2976ec5cfc47c8e4f433bba957529b5f759f75eec2f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-03/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-04/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "9a5793f0e4a9ea868a29d12010ce24719d64934f08614fc69155c402582fd166",
+      "published_sha256": "7b8e09b2b5551969680c7dc94d31dc61b8a4831cba3bf9112766aadb4c75342d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-04/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-05/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c5f7ae66b68993bd39f3cdbae3f74ecfc905f005d66cce6fc57ea0d970c0ca29",
+      "published_sha256": "c7059bea872adf7471e8eed41fc06dd2e9ffefd9cc9163533c229cb544283b4c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-05/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06-languagefirst1-shortview1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "1f537bf1e524b93a29d33fca06970362a897ad130473050c359c4dc4fc940fcd",
+      "published_sha256": "8f11368b24aec708dc8bb2c1661a6992db2c9055917400faac19b48ce1433912",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06-languagefirst1-shortview1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06-languagefirst1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a5a46d9a5a6c3660c17de16050e04a27c093c6e5365263af660b571f32a84ca1",
+      "published_sha256": "191e73dff7e373ebb707683465b6d7a0cb67d98ea63117ac77411830d803df66",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06-languagefirst1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "88147007cec8324e5edd08b79c682b99ca0055a32c8f30bc3061b504f8503893",
+      "published_sha256": "7973ce42c374fda1be2a58e1a15124211fe03f49320d51b6af892d20751467c6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07-format2-readview2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "4afc6c2bb06c9b17448b776f88795de9aa0ea58c45c522e8b9a3715c0d52ef0f",
+      "published_sha256": "a5b9738272c87567f46a2d799d99673855cabfa3ad0e6bf1c004b1d0a508ec50",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07-format2-readview2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07-format2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f0be586ee92c64473c243ecd8e88302023ce4a04db898bc4a1845a255d760e6b",
+      "published_sha256": "b9c3dff22371acf37d906bc85ff95fdabb9829f2a7b7ef67bc5e05f6b5829567",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07-format2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a546bf9817ed50a541c290e532bcc3f0aa8ba57c58dfe1558e397ab3c4ff6230",
+      "published_sha256": "7552eaee94543510c706fe94aae502a19d4ea910b708a69efeb1f4017cd7f875",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-08/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "0f1b7dad92a549e2fa958df4e503e5a605744b57732a7aae14476da33464a500",
+      "published_sha256": "6cfcfe1b7b57f520c74cc19ed7cd6d7ba2e8896a4cc431ead61cdb0a75b61724",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-08/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-09/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "92c53383fedea38b8ea707b95ce52b40b1eb26e56412da0b1326de433d7e091d",
+      "published_sha256": "b8f868d45cbcd9a40907894beaa3ca341b24f244bb946c195cf163bf4b239359",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-09/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10-xref1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "2501f91df326fa3a0cfe4ca0ebcf549b69312127955df16cc0f5ae65ea33956e",
+      "published_sha256": "eb8d60f25ff1775614a1732914a3f6d85e4dbb62d28ea6c77ccf07e6a5290aba",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10-xref1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10-xref2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "dc2b64a7ca3709c6e4086ddec2f13ca67da6716ce1dec14dad468823088008e5",
+      "published_sha256": "d12dbdd662ea3ac3fcdf18facd7d97c5f9f019777ca2473909179c3f7c08d3af",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10-xref2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "29f1ad65c4ea797d2c004c0fac8964906113b65bdc57f94cd1510e35750e2b2c",
+      "published_sha256": "8ec034746af223f1d44827fb9a551f5ae9d5fa1e6d024080568011bf1ffa5ba6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-11-contract1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "2c0b2fc0ece72867a2a05b07c1fae95ad6ec343e3fc186276bf9abaa29c1a157",
+      "published_sha256": "064b7909b02242b774924f49e34c97dfe3864419dc802dbacc7acf014e035ff7",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-11-contract1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-11/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "50c405fde5551a4f837f85ab089b64ad7aafe0437f4d40bbbc7a372c929bf28f",
+      "published_sha256": "78eccf4381f984ea594e4a86b01dac54fc646a6f1520495bdff18326f12ae1cc",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-11/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-12/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "98a66d08dea60c4ef34c7c6da0928041777c1c81db2f39bdd3cb2d6e85f2ddd9",
+      "published_sha256": "edd95e009e354fa0cec36f0c58fb05eaf7b0fcb08483bcb80602bc770d1ae359",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-12/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-13/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "fdc6c3fe24ad007c68b9503e4031125f828da493cdb75a7a5208775d079af0c7",
+      "published_sha256": "03602257da0380e0718c6461db7d2666fa923fb3b7733af90bbbddf5e182a483",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-13/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-candidate10-single-0907Z/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "ea48c9b4902c8a9b8cd708fbe3a28172f3a7b1014d20bf258895d2289c69c29a",
+      "published_sha256": "9abe8404676769b5050c57166c45d991327d4804c92cc1abc8b624c4bea76f80",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-candidate10-single-0907Z/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-confirmed-0822Z/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "2d68831da2c21accdc485ffd09f25e9b1b44f2f65366f501ab2d827ec4198b62",
+      "published_sha256": "e641ce76bd62750a5bf6ed85585c2644524d321d401ae4aaa1a3b8679b71a860",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-confirmed-0822Z/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-single-0648Z/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "94902622b6a89f7b6d8cefa2739678fa205ef481c2706ed36a78e3599388a99c",
+      "published_sha256": "d587645f5cdfd1aefe30fa3fd32483b015ef1f4f3489c681d7add3a64074d558",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-single-0648Z/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-single-0648Z/snapshot.txt",
+      "operation": "english_only_snapshot_labels",
+      "original_sha256": "fc0aba65eeed641a037c7736c29ed42872bc2f8e556b1d8f8232b1201f7f394d",
+      "published_sha256": "294c0a8bbac49b657046af593bd63d8cb9c78dba543af5ac509dd13f9bb246ab",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v3-overnight/tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-single-0648Z/snapshot.txt"
+    }
+  ]
+}
