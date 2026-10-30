@@ -2,14 +2,12 @@
   "candidate-00-start85": {
     "parent": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-06-languagefirst1",
     "hypothesis_en": "Unmodified C6-languagefirst1 starting comparator; prior85/80 is historical, and the new original3 group is unrun.",
-    "hypothesis_zh": "原样C6-languagefirst1起点对照；既往85/80为历史成绩，本轮新的原定3次尚未运行。",
     "status": "FROZEN_STARTING_COMPARATOR_NOT_NEW_SEMANTIC_CANDIDATE",
     "acceptance_passed": false
   },
   "candidate-01": {
     "parent": "candidate-00-start85",
     "hypothesis_en": "Two narrow exception-priority clarifications on the unchanged confirmed-stage policy: a repeated category/location label in otherwise equivalent generic marketing is not a concrete product record without an independent product-specific fact or changed offer term; and a covered stock-cookie paragraph does not acquire an additional category-specific necessity obligation from its new heading alone. Align existing delta and primary-difference options with those finite exceptions. Actual products/specifications, transaction destinations, named liability, explicit category terms, concrete deployment restrictions and substantive body languages remain protected. Previous broad descendants mixed UI/failed-target/class-instance rules and had format failures; this isolates their approved cookie-scope clarification on the original stable stage parent, without transplanting those other rules. Actual prior main replies explicitly bypassed allowed provider exceptions by labeling them content additions, and a coverage reply acknowledged shared copy yet invented a new category obligation. Preserve all native fields/order/enums, response contract, evidence, model, sampling, executor and strict validator. First screen original hard presentations plus separately frozen cookie-scope positive/negative controls; no long inference solely to retry a failure.",
-    "hypothesis_zh": "在原样确认阶段政策上澄清两项窄范围例外的优先级：等价通用营销中的重复类别或地点标签，如无独立产品事实或变化的销售条件，不构成具体产品记录；已覆盖的通用cookie段落也不因新的标题单独产生额外类别专属的必需义务。同步既有差异及主差异选项与这些有限例外。真实产品及规格、交易去向、责任主体名称、明确类别条款、具体部署限制及实质正文语言继续受保护。既往宽泛后继版本混合了界面、失败目标及类别实例规则，并存在格式失败；本次只把其中已批准的cookie范围澄清置于原有稳定阶段父版本，不移植其他规则。真实既往main回复明确把允许的服务商槽位称为内容新增而绕过例外；coverage回复也曾承认复制共享文字却推断新的类别义务。保留全部原生字段、顺序、枚举、回复格式、证据、模型、采样、执行器及严格校验。先运行原硬呈现及单独冻结的cookie范围正反例；不为重试失败而直接增加长推理。",
     "scope": "approved marketing category/provider slots and covered cookie-copy scope only",
     "prior_failure_basis": [
       "round023/C6 preflight1 R18 main identity inference from repeated generic category",
@@ -21,25 +19,21 @@
     "status": "FIRST_HARD_SCREEN_FAIL_NO_LONG_RUN_ADMITTED",
     "acceptance_passed": false,
     "reason_en": "First original hard screen: main85/86, coverage/final83/86, zero invalid and raw wrong allows. Latest18 main passes, but R14/R33 swapped coverage falsely vetoes; T_marketing_slot main still rejects. No original150/100 started; separate cookie-scope control outcome retained.",
-    "reason_zh": "首次原定硬回归：main85/86，coverage/final83/86，无效及原始错误允许均为零。最新18的main通过，但R14/R33交换方向被coverage误否决；T_marketing_slot的main仍错误拒绝。未启动原定150/100；单独cookie范围受控结果保留。",
     "cookie_scope_first": "8/8 each layer;0invalid;0wrongallows"
   },
   "candidate-01-coverreasonfirst1": {
     "parent": "candidate-01",
     "hypothesis_en": "Engineering-only coverage response-order experiment: ask the existing explanation paragraph and whole-notice comparison before choosing loss IDs, then emit the unchanged remaining fields. Previous actual coverage replies emit loss IDs before explaining the comparison and invent a category obligation or provider loss despite the existing exception; a prior order diagnostic proposed but never applied this experiment. The new semantic screen again has correct main decisions followed by those false coverage vetoes. All retention-policy paragraphs, main prompts/rubric, field names/types/enums, schema, validator, quoted evidence, critic veto authority, source presentation, model and sampling stay unchanged. This observation is not proof of causality: verify actual emitted order and native validity, then compare hard screens and separate cookie controls. Reject if order is ignored or technical validity worsens; do not repeat failed groups to select a lucky sample.",
-    "hypothesis_zh": "仅对coverage回复顺序进行工程实验：要求先生成既有explanation段落并完成全篇比较，再选择损失ID，之后输出不变的其余字段。既往真实coverage回复先给损失ID再解释比较，尽管存在例外仍推断类别义务或服务商损失；此前顺序诊断提出但未实际实施过这一实验。新的语义筛查再次出现main判断正确后被coverage误否决。全部保留政策段落、main提示词与rubric、字段名类型枚举、schema、校验器、引用证据、critic只能否决的权限、原文呈现、模型及采样均不变。该观察不证明因果：须核验实际输出顺序及原生有效性，再比较硬回归与单独cookie反例。若顺序未生效或技术有效性退步则淘汰，不重复失败组以挑选幸运样本。",
     "engineering_only": true,
     "prior_proposed_not_executed_evidence": "/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/decision-order-diagnostic-plan.json",
     "no_retention_policy_schema_validator_authority_changes": true,
     "status": "REJECTED_AFTER_ORIGINAL_HARD_SCREEN_NO_LONG_RUN",
     "acceptance_passed": false,
-    "reason_en": "All61 observed coverage replies emit explanation first. Original hard main85/86 and final82/86 do not improve on parent main85/86 and final83/86; an authentication false veto and one invalid gate judgment remain. No long scoring admitted.",
-    "reason_zh": "观察到的全部61次coverage回复均先生成explanation。原硬回归main85/86、final82/86，未优于父版本main85/86、final83/86；仍存在认证误否决及一个无效gate判断。未准入长评测。"
+    "reason_en": "All61 observed coverage replies emit explanation first. Original hard main85/86 and final82/86 do not improve on parent main85/86 and final83/86; an authentication false veto and one invalid gate judgment remain. No long scoring admitted."
   },
   "candidate-02": {
     "parent": "candidate-01",
     "hypothesis_en": "One shared-basis consistency clarification for the already approved finite generic-marketing exception. The preceding main failure explicitly classifies the otherwise preserved promotional message as template-only and chooses no basis, although category/location labels alone are permitted. State that this complete qualified message remains a verified retained basis even when brief or reusable; exclude shared navigation/layout around different actual records and preserve independent product facts or offer differences. No new family of slot exceptions, profile definition, output field/order/enum, source, model, sampling, schema, executor or validator change. Keep every other parent policy and any separately verified coverage-order engineering intervention unchanged. This addresses the observed basis-none path rather than repeating the already tested identity wording.",
-    "hypothesis_zh": "仅澄清已批准的有限通用营销例外与共享依据的一致性。前一main失败明确把已保留的营销文字视为仅有模板而选择无依据，尽管类别及地点标签本身已被允许。明确完整且满足条件的相同营销文字即使简短或可复用，仍构成经核验的保留依据；排除不同真实记录周围的共享导航及版式，继续保护独立产品事实或销售条件差异。不新增槽位例外类别、不改内容角色定义、输出字段及顺序枚举、原文、模型、采样、schema、执行器或校验器。父版本其余政策及任何已单独核验的coverage顺序工程干预均保持不变。该实验针对实际无依据路径，不重复已测试的身份措辞。",
     "single_rule_change": "qualified complete generic-marketing shared-basis exception",
     "new_human_labels": false,
     "status": "frozen_awaiting_serial_hard_screen",

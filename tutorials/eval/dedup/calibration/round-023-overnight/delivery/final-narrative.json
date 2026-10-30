@@ -3,37 +3,27 @@
     {
       "id": "changes",
       "title_en": "Delivered changes",
-      "title_zh": "交付修改",
-      "text_en": "The delivered candidate clarifies covered same-language paraphrases, generic cookie/provider/category slots and mechanism-equivalent authentication localization while protecting actual destinations, changed procedures and substantive body languages. Its final isolated intervention moves the existing translation-status field before basis and delta assessment. All field definitions and native critic veto authority remain intact. The shared ledger audit retains literal contradictions as invalid. The delivered nine files come from the actually evaluated frozen snapshot.",
-      "text_zh": "交付候选明确同语言改写、通用cookie及服务商和类别槽位的覆盖边界，以及实际机制相同的认证界面本地化，同时保护真实操作去向、流程变化及不同语言的实质正文。最后一项独立干预把已有翻译状态字段移到覆盖依据和差异判断之前。所有字段定义及原生critic只能否决的权限保持不变。统一字段审计将直接矛盾保留为无效。交付的九个文件来自实际评测过的冻结快照。"
+      "text_en": "The delivered candidate clarifies covered same-language paraphrases, generic cookie/provider/category slots and mechanism-equivalent authentication localization while protecting actual destinations, changed procedures and substantive body languages. Its final isolated intervention moves the existing translation-status field before basis and delta assessment. All field definitions and native critic veto authority remain intact. The shared ledger audit retains literal contradictions as invalid. The delivered nine files come from the actually evaluated frozen snapshot."
     },
     {
       "id": "unmet",
       "title_en": "Remaining failures and selection",
-      "title_zh": "未达项与选优",
-      "text_en": "The final metric target is not reached:612/720 directions and288/360 pairs confirm85%/80%, below648/720 and306/360 by36 directions and18 pairs. Original36, extra6 and real consensus6 pass, but latest18 and controlled26 fail; full-input technical validity fails. All three development nonregression views pass. No eligible candidate exists. This version wins the frozen validity-first ranking among complete candidates: candidate10 has invalid hard judgments and its original three personal runs yield612/720 and287/360, missing the pair milestone by1. Candidate11 and candidate13 each pass their first86 hard presentations, but both retain a separate cookie-scope format failure and lack full confirmation. No results are spliced across versions.",
-      "text_zh": "最终指标未达：方向612/720、整对288/360确认85%/80%，距648/720和306/360还差36个方向及18个整对。原36、额外6及真实共识6通过，但最新18和受控26失败；全部输入的技术有效性失败。三个开发参考不退步口径均通过。没有符合资格的候选。交付版本在完成候选中按冻结的有效性优先顺序胜出：candidate10存在无效硬回归判断，原定三次个人参考合计612/720和287/360，整对距阶段门槛差1。Candidate11与candidate13各自首次86个硬呈现通过，但均保留单独cookie-scope格式失败，且缺少完整确认。没有跨版本拼接结果。"
+      "text_en": "The final metric target is not reached:612/720 directions and288/360 pairs confirm85%/80%, below648/720 and306/360 by36 directions and18 pairs. Original36, extra6 and real consensus6 pass, but latest18 and controlled26 fail; full-input technical validity fails. All three development nonregression views pass. No eligible candidate exists. This version wins the frozen validity-first ranking among complete candidates: candidate10 has invalid hard judgments and its original three personal runs yield612/720 and287/360, missing the pair milestone by1. Candidate11 and candidate13 each pass their first86 hard presentations, but both retain a separate cookie-scope format failure and lack full confirmation. No results are spliced across versions."
     },
     {
       "id": "errors",
       "title_en": "Error interpretation",
-      "title_zh": "错误解释",
-      "text_en": "Remaining errors include authentication localization treated as substantive translation, coverage inventing a category-specific obligation from covered stock copy, and native schema or evidence failures. Later role-based rules pass simple controls yet fail on complex populated facets and query pages; rejected diagnostic candidate12 scores198/240 directions and94/120 pairs. Lexical diagnostics never validate failed responses. Historical D074 illegal-enum failures and later responses are bundled together. D121 stays pending and unscored.",
-      "text_zh": "剩余错误包括把认证界面本地化当成实质正文翻译、coverage从已覆盖通用文字推断类别专属义务，以及原生结构或证据失败。后续功能角色规则通过简单受控例，却未能转移到复杂的已填充分面与查询页面；被淘汰的诊断候选candidate12为方向198/240、整对94/120。词法诊断不会使失败回复变为有效。历史D074非法枚举失败及其后回复一同打包。D121继续待定且不评分。"
+      "text_en": "Remaining errors include authentication localization treated as substantive translation, coverage inventing a category-specific obligation from covered stock copy, and native schema or evidence failures. Later role-based rules pass simple controls yet fail on complex populated facets and query pages; rejected diagnostic candidate12 scores198/240 directions and94/120 pairs. Lexical diagnostics never validate failed responses. Historical D074 illegal-enum failures and later responses are bundled together. D121 stays pending and unscored."
     },
     {
       "id": "timeliness",
       "title_en": "Deadline and delivery delay",
-      "title_zh": "截止与交付延误",
-      "text_en": "Delivery missed the fixed2026-10-28 09:00 PDT deadline. The last inference sequence completed at04:00 PDT; the owned guard stopped the service at08:44:47 PDT, before the08:45 cutoff. Post-deadline recovery began at10:39 PDT and only audits and packages existing evidence; no new evaluation job or model service is started. The cause of the observed execution gap is unverified. The deadline was never extended.",
-      "text_zh": "交付错过固定的2026-10-28 09:00 PDT截止。最后一组推理于04:00 PDT完成；本任务保护在08:44:47 PDT停止服务，早于08:45上限。截止后于10:39 PDT恢复处理，仅审计并打包已有证据；不启动新评测作业或模型服务。观察到的执行空档原因尚未核实。截止时间从未顺延。"
+      "text_en": "Delivery missed the fixed2026-10-28 09:00 PDT deadline. The last inference sequence completed at04:00 PDT; the owned guard stopped the service at08:44:47 PDT, before the08:45 cutoff. Post-deadline recovery began at10:39 PDT and only audits and packages existing evidence; no new evaluation job or model service is started. The cause of the observed execution gap is unverified. The deadline was never extended."
     },
     {
       "id": "replay-links",
       "title_en": "Evidence and replay",
-      "title_zh": "证据与复现",
-      "text_en": "The final evidence index is tutorials/eval/dedup/calibration/round-023-overnight/delivery/README.md. Use replay_frozen_v3.py with the restored external session, the existing environment, a separately owned pinned service and an explicit future deadline. The offline bundle includes frozen inputs, retained responses, manifests, failures and a copy of the final committed source. Model weights, the fixed image and existing environment remain external prerequisites. Bundle restoration and preparation checks make zero model calls and do not claim inference replay.",
-      "text_zh": "最终证据索引为tutorials/eval/dedup/calibration/round-023-overnight/delivery/README.md。以恢复的外部实验目录、已有环境、单独拥有且固定配置的服务及明确的未来截止时间运行replay_frozen_v3.py。离线包包含冻结输入、保留回复、清单、失败及最终已提交源码副本。模型权重、固定镜像与已有环境仍为外部前提。包恢复及准备检查不调用模型，也不声称完成推理重放。"
+      "text_en": "The final evidence index is tutorials/eval/dedup/calibration/round-023-overnight/delivery/README.md. Use replay_frozen_v3.py with the restored external session, the existing environment, a separately owned pinned service and an explicit future deadline. The offline bundle includes frozen inputs, retained responses, manifests, failures and a copy of the final committed source. Model weights, the fixed image and existing environment remain external prerequisites. Bundle restoration and preparation checks make zero model calls and do not claim inference replay."
     }
   ]
 }

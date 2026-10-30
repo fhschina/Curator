@@ -14,6 +14,5 @@
   "controller_terminated": true,
   "original_declared15_retained_not_replaced": true,
   "model_runs": 0,
-  "reason_en": "Pre-inference policy review found that the settled-output wording needs an explicit substantive-body-language exception; equivalent facts in a different protected body language still require retention. Compiler success alone did not validate policy consistency. Preserve this frozen version and declare a distinct corrected engineering revision.",
-  "reason_zh": "推理前政策复核发现，已定输出措辞需要明确的实质正文语言例外；不同受保护正文语言中的等价事实仍须保留。编译成功本身没有验证政策一致性。保留此冻结版本，另声明独立修正版。"
+  "reason_en": "Pre-inference policy review found that the settled-output wording needs an explicit substantive-body-language exception; equivalent facts in a different protected body language still require retention. Compiler success alone did not validate policy consistency. Preserve this frozen version and declare a distinct corrected engineering revision."
 }

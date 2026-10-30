@@ -1,5 +1,8 @@
-用户授权：两臂单次输出预算由6144调为12288，使用同一最佳C0政策和完全相同32条已冻结样本重新做thinking开关对照；各原定两次，off1/on1/on2/off2。
-只调整共同输出预算并修复原生入口尊重冻结YAML配置；默认thinking强度xhigh、32768上下文、温度0.2、并发8、timeout600、8个Jinja、模型权重、样本、标签、评分和critic权限均保留。实际请求必须核对12288，分词上下文检查通过后才开始评分。
-旧6144结果保留，原运行失败不替换；本轮不是完整120对评测，不声明90/85验收。固定每臂128方向/64整对分母，所有无效计零并保留重试。
-仅使用既有Python环境、已固定Qwen3.8-27B-FP8修订、同一固定vLLM镜像、一张B200/TP1，独立期限保护。GPU90分钟、全部交付105分钟为代理执行上限，完成即释放资源，不要求跑满。
-保存新旧对照、逐层结果、耗时/输出token/截断/无效和中英文报告；运行相关测试与提交前hooks，签署提交并推送新分支。原始正文和完整HTTP留在外部实验目录，不进Git。
+Historical instructions: rerun the small comparison with 12288 output tokens
+
+English publication translation; the exact original is preserved locally. This record does not authorize a new run.
+The user authorized raising both arms' per-call output budget from 6144 to 12288 and rerunning the same frozen 32 presentations with best C0. Run two original repeats per arm in off1/on1/on2/off2 order.
+Change only the shared output budget and repair the native entry to honor frozen YAML configuration. Retain default xhigh thinking effort, context32768, temperature0.2, concurrency8, timeout600, eight Jinja files, weights, samples, labels, scoring and critic permissions. Verify actual requests use 12288 and pass tokenizer context checks before scoring.
+Preserve old 6144 results; never replace failed original slots. This is not the full120 evaluation and establishes no 90/85 acceptance. Fix denominators at 128 directions/64 pairs per arm; score all invalids zero and retain retries.
+Use only the existing Python environment, pinned Qwen3.8-27B-FP8 revision, the same pinned vLLM image, one B200/TP1 and an independent deadline guard. Agent limits are 90 GPU minutes and 105 minutes through delivery; release resources upon completion rather than running to the limit.
+Save old/new comparisons, all layer results, duration/output tokens/truncation/invalids and reports. The historical requirement was bilingual reporting; the later publication preference keeps Chinese reports local. Run relevant tests and pre-commit hooks; sign commits and push the new branch. Raw source texts and complete HTTP exchanges remain outside Git.
