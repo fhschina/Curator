@@ -1,6 +1,5 @@
 {
   "hypothesis_en": "One mechanism-qualified authentication-localization branch on the earlier safer local candidate. Require equality of actual user action, channel, trigger, sequence, capabilities and conditions, plus covered same-language remaining body; a shared activation goal is insufficient. Couple that qualified branch explicitly to the native ledger, verified complete-message basis and directional summary, preventing a late positive correction from retaining earlier material deltas. Actual changed procedures, destinations, capabilities, purposes, conditions and different-language substantive bodies remain protected. This isolates the observed full-sentence UI misclassification, stale ledger and same-goal/different-mechanism errors. It does not repeat global repeated-slot normalization: no masking or general slot rewrite, no other-family policy change, source/window/order/model/code/schema or validator change. Preserve the earlier native prompts and packet presentation outside this single branch; full rewrites and broad UI-first precedence already failed and are not reused.",
-  "hypothesis_zh": "在此前较安全的局部候选基础上，仅增加一条经机制匹配确认的认证本地化分支。要求实际用户动作、渠道、触发、顺序、能力及条件相同，且其余同语言正文已被覆盖；共同的激活目标并不足够。将满足条件的分支明确映射到原生证据字段、完整消息依据及方向汇总，防止后续改为肯定判断却保留先前的实质差异字段。继续保留实际流程、入口、能力、目的或条件变化，以及不同语言实质正文。该实验隔离已观察到的完整句子界面误分类、过时字段及同目标而不同机制的错误。不重复通用槽位联合归一化；不遮蔽名称或通用改写槽位，不更改其他政策家族、来源、窗口、顺序、模型、代码、结构或校验。除这条分支外，保留此前原生提示与证据呈现；此前失败的完整改写和泛化界面优先级不再复用。",
   "parent": "candidate-02",
   "status": "hard_screen_complete_failed_auth_language_and_cookie_coherence",
   "acceptance_passed": false,
@@ -25,6 +24,5 @@
     }
   },
   "hard_eligible": false,
-  "reason_en": "Mechanism-qualified authentication wording preserved every controlled operational boundary but still failed actual clause-language attribution in one order and cookie ledger coherence. The complete hard screen has84/86pairs at each layer, with one invalid pair and zero raw wrong allows. Preserve this failed version; factual assessment order is tested separately.",
-  "reason_zh": "经机制匹配的认证措辞保留了全部受控操作边界，但仍在一个顺序中错误归属实际句子语言，并出现cookie证据字段矛盾。完整硬回归各层均为84/86对，其中一对无效、原始错误允许为零。保留此失败版本，事实判断顺序另作独立实验。"
+  "reason_en": "Mechanism-qualified authentication wording preserved every controlled operational boundary but still failed actual clause-language attribution in one order and cookie ledger coherence. The complete hard screen has84/86pairs at each layer, with one invalid pair and zero raw wrong allows. Preserve this failed version; factual assessment order is tested separately."
 }

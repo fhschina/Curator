@@ -261,39 +261,21 @@ navigation:
                   - page: Qwen Retention Calibration v2
                     path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-en.mdx
                     slug: retention-policy-v2-report
-                  - page: Qwen 保留规则校准 v2
-                    path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx
-                    slug: retention-policy-v2-report-zh
                   - page: Qwen Retention Calibration v3
                     path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v3-report-en.mdx
                     slug: retention-policy-v3-report
-                  - page: Qwen 保留规则校准 v3
-                    path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v3-report-zh.mdx
-                    slug: retention-policy-v3-report-zh
                   - page: Qwen Retention Calibration v4 (8h)
                     path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v4-report-en.mdx
                     slug: retention-policy-v4-report
-                  - page: Qwen 保留规则校准 v4（八小时）
-                    path: ./main/pages/curate-text/process-data/deduplication/retention-policy-v4-report-zh.mdx
-                    slug: retention-policy-v4-report-zh
                   - page: Qwen Thinking On-Off Diagnostic
                     path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-en.mdx
                     slug: retention-thinking-ab-report
-                  - page: Qwen Thinking 开关诊断
-                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-zh.mdx
-                    slug: retention-thinking-ab-report-zh
                   - page: Qwen Thinking On-Off Diagnostic (12288)
                     path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-12k-report-en.mdx
                     slug: retention-thinking-ab-12k-report
-                  - page: Qwen Thinking 开关诊断 (12288)
-                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-ab-12k-report-zh.mdx
-                    slug: retention-thinking-ab-12k-report-zh
                   - page: Qwen Thinking Full Personal120 Comparison
                     path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-full120-report-en.mdx
                     slug: retention-thinking-full120-report
-                  - page: Qwen Thinking 完整Personal120对照
-                    path: ./main/pages/curate-text/process-data/deduplication/retention-thinking-full120-report-zh.mdx
-                    slug: retention-thinking-full120-report-zh
               - section: Language Management
                 slug: language-management
                 contents:

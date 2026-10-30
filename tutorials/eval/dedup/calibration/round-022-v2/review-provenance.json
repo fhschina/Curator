@@ -8,7 +8,7 @@
     {
       "case_id": "R11",
       "pair_id": "cp1_acab7f80f8de48831bcb2f5af2b890994e7b2eb2815663d7d9053ddaa757279d",
-      "title": "引用模板中的站点目标",
+      "title": "Source-site targets in a citation template",
       "text_hashes": {
         "a": "96a992347f4434e1e7cc834855378fe73ee7606c054c3bebedbc0db13c21f9b7",
         "b": "9eab68f43c97b816f46cef43f742c9df1b80f4cefff1c3dd06043d40e586bf4b"
@@ -17,7 +17,7 @@
         "type": "prior_agent_proposal",
         "a_can_replace_b": "no",
         "b_can_replace_a": "no",
-        "reason": "正文要求引用者必须链接到特定来源。A明确要求04597.com.ua（伊尔平），B要求敖德萨城市网站；这改变了署名/链接义务的目标，不能按城市服务模板的无害地点替换放行。建议双向保留；这是candidate将例外扩大到许可条件的执行风险，尚非团队逐条确认标签。"
+        "reason": "The body requires citations to link to a specific source. A explicitly requires 04597.com.ua (Irpin), whereas B requires the Odesa city website. This changes the target of the attribution/link obligation and cannot be accepted as a harmless location substitution in a city-service template. Recommend retaining both. This is a risk that the candidate extends the exception to licensing conditions, not a case-by-case label confirmed by the team."
       },
       "assistant_proposal": {
         "a_can_replace_b": "no",
@@ -30,7 +30,7 @@
         "b_can_replace_a": "yes",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "Yes/Yes：视为可忽略的模板站点变化",
+        "user_statement": "Yes/Yes: treat this as an ignorable template-site variation",
         "scope": "This citation-template pair with unchanged citation terms and a changed city-site reference. No additional scope inferred.",
         "recorded_at_utc": "2026-10-27T20:51:48.777613+00:00"
       },
@@ -40,7 +40,7 @@
         "review_status": "reviewed",
         "proposed_a_can_replace_b": "no",
         "proposed_b_can_replace_a": "no",
-        "reason": "正文要求引用者必须链接到特定来源。A明确要求04597.com.ua（伊尔平），B要求敖德萨城市网站；这改变了署名/链接义务的目标，不能按城市服务模板的无害地点替换放行。建议双向保留；这是candidate将例外扩大到许可条件的执行风险，尚非团队逐条确认标签。",
+        "reason": "The body requires citations to link to a specific source. A explicitly requires 04597.com.ua (Irpin), whereas B requires the Odesa city website. This changes the target of the attribution/link obligation and cannot be accepted as a harmless location substitution in a city-service template. Recommend retaining both. This is a risk that the candidate extends the exception to licensing conditions, not a case-by-case label confirmed by the team.",
         "review_scope": "complete_frozen_text",
         "independent_human_validation": false
       },
@@ -49,7 +49,7 @@
     {
       "case_id": "R18",
       "pair_id": "cp1_230b143772066af635c4ec045865b5845a5496dadd4e3b874e308aff894ef598",
-      "title": "营销模板中的商品类别槽位",
+      "title": "Product-category slots in a marketing template",
       "text_hashes": {
         "a": "ffddf7da1f909fbb3e79bdb27905686a3df2c773d37f27cd2bb15100b835a11d",
         "b": "6535747187a877b43c4842e344f04a2f24e3f12bca1e569d118ea3be93d47970"
@@ -58,7 +58,7 @@
         "type": "prior_agent_proposal",
         "a_can_replace_b": "no",
         "b_can_replace_a": "no",
-        "reason": "除城市外，实际商品类别也从Handicraft Arch变为Wood Moulding。相同营销模板不能覆盖不同商品种类的供应声明。candidate明确用“by extension”扩大城市例外，coverage也重复该扩大解释；按本轮不得忽略实际商品差异的约束，建议双向保留。"
+        "reason": "Besides the city, the actual product category changes from Handicraft Arch to Wood Moulding. A shared marketing template does not cover supply claims for different product types. The candidate explicitly broadens the city exception 'by extension', and coverage repeats that interpretation. Under this round's constraint against ignoring actual product differences, recommend retaining both."
       },
       "assistant_proposal": {
         "a_can_replace_b": "no",
@@ -71,7 +71,7 @@
         "b_can_replace_a": "yes",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "Yes/Yes：没有具体商品说明差异，可忽略模板槽位",
+        "user_statement": "Yes/Yes: no concrete product-description difference; the template slot can be ignored",
         "scope": "The concrete pair and conditions stated in the review question. No broader exception inferred.",
         "recorded_at_utc": "2026-10-27T20:57:12.436341+00:00"
       },
@@ -81,7 +81,7 @@
         "review_status": "reviewed",
         "proposed_a_can_replace_b": "no",
         "proposed_b_can_replace_a": "no",
-        "reason": "除城市外，实际商品类别也从Handicraft Arch变为Wood Moulding。相同营销模板不能覆盖不同商品种类的供应声明。candidate明确用“by extension”扩大城市例外，coverage也重复该扩大解释；按本轮不得忽略实际商品差异的约束，建议双向保留。",
+        "reason": "Besides the city, the actual product category changes from Handicraft Arch to Wood Moulding. A shared marketing template does not cover supply claims for different product types. The candidate explicitly broadens the city exception 'by extension', and coverage repeats that interpretation. Under this round's constraint against ignoring actual product differences, recommend retaining both.",
         "review_scope": "complete_frozen_text",
         "independent_human_validation": false
       },
@@ -90,7 +90,7 @@
     {
       "case_id": "R14",
       "pair_id": "cp1_c9d5e4fbd310bfe8c34d34423db25f92be63e0e0dd46f2538ee6013d9d12a499",
-      "title": "统计分类里的重复必需条款",
+      "title": "Repeated essential-cookie terms under the statistics category",
       "text_hashes": {
         "a": "cab05529632795ea5f8b95f2976a1225940d4c0292aa83f2eb78799626380d5a",
         "b": "4e78b468e6ebd7c5def250831dfb1ad26cca1b05993c616903d2ef87b194c30e"
@@ -99,7 +99,7 @@
         "type": "prior_agent_proposal",
         "a_can_replace_b": "no",
         "b_can_replace_a": "no",
-        "reason": "两边差异具有分类语义：B把Statistics/Analysis写成必需、无法关闭，A则说明Matomo仅在IDS服务器运行并请求用户启用。即使B看似复制了Essential说明，也不能擅自当作无害重复或替其纠错。A独有技术与数据处理约束，B独有统计类不可关闭的条件，建议双向保留。"
+        "reason": "The difference carries category semantics: B describes Statistics/Analysis as essential and impossible to disable, while A states that Matomo runs only on IDS servers and asks users to enable it. Even if B appears to repeat Essential text, it must not be silently treated as harmless duplication or corrected. A has unique technical and data-processing constraints; B has the unique condition that the statistics category cannot be disabled. Recommend retaining both."
       },
       "assistant_proposal": {
         "a_can_replace_b": "no",
@@ -112,7 +112,7 @@
         "b_can_replace_a": "no",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "Yes/No：B是重复的通用模板，A已覆盖有用内容",
+        "user_statement": "Yes/No: B is repetitive generic template text; A already covers the useful content",
         "scope": "The concrete pair and conditions stated in the review question. No broader exception inferred.",
         "recorded_at_utc": "2026-10-27T20:57:12.436357+00:00"
       },
@@ -122,7 +122,7 @@
         "review_status": "reviewed",
         "proposed_a_can_replace_b": "no",
         "proposed_b_can_replace_a": "no",
-        "reason": "两边差异具有分类语义：B把Statistics/Analysis写成必需、无法关闭，A则说明Matomo仅在IDS服务器运行并请求用户启用。即使B看似复制了Essential说明，也不能擅自当作无害重复或替其纠错。A独有技术与数据处理约束，B独有统计类不可关闭的条件，建议双向保留。",
+        "reason": "The difference carries category semantics: B describes Statistics/Analysis as essential and impossible to disable, while A states that Matomo runs only on IDS servers and asks users to enable it. Even if B appears to repeat Essential text, it must not be silently treated as harmless duplication or corrected. A has unique technical and data-processing constraints; B has the unique condition that the statistics category cannot be disabled. Recommend retaining both.",
         "review_scope": "complete_frozen_text",
         "independent_human_validation": false
       },
@@ -131,7 +131,7 @@
     {
       "case_id": "R33",
       "pair_id": "cp1_775e6a1add8c110784e9f14a1f6d6b00088acc1f3a301a4764d869114322661e",
-      "title": "cookie提供方与数据接收方名称",
+      "title": "Names of cookie providers and data recipients",
       "text_hashes": {
         "a": "31ac3ef71b39cdc2e601161f9224cfbcd2a0300d7740c7ff389680c28816bd0f",
         "b": "f9e05c85f6256a033963dffbb18bc7e938def6a36a9a815cc2bd717f4ccb8782"
@@ -140,7 +140,7 @@
         "type": "prior_agent_proposal",
         "a_can_replace_b": "no",
         "b_can_replace_a": "yes",
-        "reason": "B明确命名Google为cookie来源及数据接收方，A只有未指明接收者的数据共享陈述。该主体是实际处理事实，不是普通按钮或导航。B更具体且覆盖A的泛化说明，A不能覆盖B；candidate及coverage忽略该事实存在放行风险。"
+        "reason": "B explicitly names Google as the cookie source and data recipient, whereas A only describes sharing with unspecified recipients. The entity is an actual processing fact, not an ordinary button or navigation element. B is more specific and covers A's general statement; A does not cover B. Ignoring this fact creates an unsafe-allow risk in the candidate and coverage judgments."
       },
       "assistant_proposal": {
         "a_can_replace_b": "no",
@@ -153,7 +153,7 @@
         "b_can_replace_a": "yes",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "Yes/Yes：名称属于可忽略的模板变量",
+        "user_statement": "Yes/Yes: the names are ignorable template variables",
         "scope": "The concrete pair and conditions stated in the review question. No broader exception inferred.",
         "recorded_at_utc": "2026-10-27T20:57:12.436359+00:00"
       },
@@ -163,7 +163,7 @@
         "review_status": "reviewed",
         "proposed_a_can_replace_b": "no",
         "proposed_b_can_replace_a": "yes",
-        "reason": "B明确命名Google为cookie来源及数据接收方，A只有未指明接收者的数据共享陈述。该主体是实际处理事实，不是普通按钮或导航。B更具体且覆盖A的泛化说明，A不能覆盖B；candidate及coverage忽略该事实存在放行风险。",
+        "reason": "B explicitly names Google as the cookie source and data recipient, whereas A only describes sharing with unspecified recipients. The entity is an actual processing fact, not an ordinary button or navigation element. B is more specific and covers A's general statement; A does not cover B. Ignoring this fact creates an unsafe-allow risk in the candidate and coverage judgments.",
         "review_scope": "complete_frozen_text",
         "independent_human_validation": false
       },
@@ -172,7 +172,7 @@
     {
       "case_id": "D011",
       "pair_id": "D011",
-      "title": "城市与实际投稿邮箱",
+      "title": "City names and actual submission email addresses",
       "text_hashes": {
         "a": "1c81ed27667f8ab2737364a9affe9ba553d30833ea0e354adb3bc7cde6d94fba",
         "b": "5ec5873b47f9bc9e118d1aa57bd07da6a9e62c220914b552f9b5d89129b64095"
@@ -193,7 +193,7 @@
         "b_can_replace_a": "no",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "No/No：实际投稿入口不同，应分别保留",
+        "user_statement": "No/No: the actual submission destinations differ and should both be retained",
         "scope": "The concrete posting-instruction pair: different actual destination email addresses must be retained.",
         "recorded_at_utc": "2026-10-27T20:59:06.482598+00:00"
       },
@@ -205,7 +205,7 @@
     {
       "case_id": "D058",
       "pair_id": "D058",
-      "title": "一句密码设置说明的语言变化",
+      "title": "Language variation in a single password-setting instruction",
       "text_hashes": {
         "a": "d3e8da7c8503b851fbee74ad0f80f1035603152fdedde99e8fa3616fd7ef9fbc",
         "b": "f5431574a69123cccb1072cc88ed2f063139f9e3b8aacbe59eabc3efd149ff2e"
@@ -226,7 +226,7 @@
         "b_can_replace_a": "yes",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "Yes/Yes：短认证指引属于可忽略的界面本地化",
+        "user_statement": "Yes/Yes: short authentication guidance is ignorable interface localization",
         "scope": "The reviewed short password-link instruction is harmless authentication-interface localization; the rest of the page is semantically equivalent.",
         "recorded_at_utc": "2026-10-27T21:20:08.961782+00:00"
       },
@@ -238,7 +238,7 @@
     {
       "case_id": "D059",
       "pair_id": "D059",
-      "title": "只有标题本地化，正文完全相同",
+      "title": "Only the title is localized; the body is identical",
       "text_hashes": {
         "a": "8e3b4dfc46d2bb888d3519381f5c1f1319f71bc1b71308427a03661b46d83ffd",
         "b": "ec2d1acf820a88038623da2fa3f656148795e3a1b5aaa9f2aa9dacaf6dd4dba8"
@@ -262,7 +262,7 @@
         "b_can_replace_a": "yes",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "Yes/Yes：正文相同，标题本地化可忽略",
+        "user_statement": "Yes/Yes: the body is identical; title localization can be ignored",
         "scope": "The substantive English body is identical; only the English/French heading differs.",
         "recorded_at_utc": "2026-10-27T21:20:08.961798+00:00"
       },
@@ -274,7 +274,7 @@
     {
       "case_id": "D074",
       "pair_id": "D074",
-      "title": "原始答案正确但一次输出未通过解析",
+      "title": "The raw answer was correct but one output failed parsing",
       "text_hashes": {
         "a": "4939b0105eac858461ccb19a050b627cfa86d09e1d8005933275c68009e6ca74",
         "b": "76573908d7a0b2b8b086781d296bd2a27cb89e866303b940df483fc19a7f9879"
@@ -299,7 +299,7 @@
     {
       "case_id": "D121",
       "pair_id": "D121",
-      "title": "空购物车上的通用cookie句子",
+      "title": "A generic cookie sentence on an empty shopping cart",
       "text_hashes": {
         "a": "3bfc0a0330e132301a9895ff4ae95c5d5c597d40edaf718ee6331b7152b57fac",
         "b": "0b58bdff130bf1142e548698964be5f2b6ebaf25beca320a6f3eb4e99ff818de"
@@ -321,7 +321,7 @@
     {
       "case_id": "D134",
       "pair_id": "D134",
-      "title": "装饰性问句与实质cookie说明",
+      "title": "A decorative question versus substantive cookie information",
       "text_hashes": {
         "a": "8eaf23434a3ee8c61a0f27f04f0aca692259bc4bc86f1810972fca3aa08ae7ab",
         "b": "977464d70e360029c8361335c45c67d0a9d24815c7c610fbe354e7b4ebf5ca21"
@@ -345,7 +345,7 @@
         "b_can_replace_a": "yes",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "Yes/Yes：引言都是可忽略的通用cookie文字",
+        "user_statement": "Yes/Yes: both introductions are ignorable generic cookie text",
         "scope": "In this concrete pair the shared cookie-category definitions are retained, and both introductory variants are accepted as generic cookie text.",
         "recorded_at_utc": "2026-10-27T21:20:08.961801+00:00"
       },
@@ -357,7 +357,7 @@
     {
       "case_id": "D135",
       "pair_id": "D135",
-      "title": "同义的优化目的与额外同意说明",
+      "title": "Equivalent optimization purposes and additional consent wording",
       "text_hashes": {
         "a": "f6303e65898d8b06553a104240a10c3caa51b49e2e2b3eefd43deb2248e4334b",
         "b": "adaffda489cffb7aa1ddb13c6fcd85e626ece4516171aef6c997ad583715df62"
@@ -381,7 +381,7 @@
         "b_can_replace_a": "yes",
         "status": "user_confirmed",
         "source": "Explicit user answer in this conversation",
-        "user_statement": "Yes/Yes：新增引言也只是通用cookie模板",
+        "user_statement": "Yes/Yes: the added introduction is also generic cookie-template text",
         "scope": "In this concrete pair the shared cookie-category definitions are retained, and the longer introductory variant is accepted as generic cookie text.",
         "recorded_at_utc": "2026-10-27T21:20:08.961803+00:00"
       },

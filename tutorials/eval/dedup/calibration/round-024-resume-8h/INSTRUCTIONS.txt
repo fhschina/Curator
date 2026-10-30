@@ -1,62 +1,52 @@
-Qwen policy/prompt 续跑：已确认85/80阶段，继续冲刺90/85；8小时Goal执行说明
+Qwen policy/prompt continuation: confirmed 85/80 stage; pursue 90/85 in a new 8-hour session
 
-本说明是用户在2026-10-28明确授权的新一轮8小时任务。上一轮已结束；本轮独立计时、目录、分支与资源保护，不改写上一轮截止和延误记录。直接执行修改、实际评测、验证、报告、提交和推送，不在每轮后要求用户确认。
+English publication translation. The exact original instructions are preserved in the local archive identified by english-publication.json. This is a historical execution record, not a new authorization to run jobs. The user's later publication preference supersedes its requirement to publish Chinese reports in Git.
 
-一、绝对时间（含全部收尾）
-实际启动：2026-10-28T18:11:18Z；美国西部2026-10-28 11:11:18 PDT。
-绝对交付截止：2026-10-29T02:11:18Z；美国西部2026-10-28 19:11:18 PDT，共8小时。
-语义搜索停止：2026-10-29T00:41:18Z；2026-10-28 17:41:18 PDT。
-GPU停止并释放：2026-10-29T01:56:18Z；2026-10-28 18:56:18 PDT；提前15秒启动保护清理。
-中断、压缩、自动续跑、服务重启或额度恢复都不重置计时。恢复时先读本说明、SESSION_STATUS.json、HANDOFF.md、ROLLING_STATUS.json和原定队列。若已过截止，不启动新评测，交付已有最佳版本及缺项。Goal持续执行不替代独立作业期限保护。
+Authorization and timing
+The user authorized a new 8-hour task on 2026-10-28. The previous round was complete. This round has separate timing, experiment directory, branch and resource protection. Preserve prior deadlines and late-delivery records. Execute changes, actual evaluations, verification, reporting, signed commits and pushes without seeking confirmation after every iteration.
+Start: 2026-10-28T18:11:18Z (2026-10-28 11:11:18 PDT).
+Absolute delivery deadline: 2026-10-29T02:11:18Z (2026-10-28 19:11:18 PDT).
+Semantic-search cutoff: 2026-10-29T00:41:18Z (2026-10-28 17:41:18 PDT).
+GPU stop/release cutoff: 2026-10-29T01:56:18Z (2026-10-28 18:56:18 PDT); start protective cleanup 15 seconds earlier.
+Interruptions, context compaction, automatic continuation, restarts and quota recovery do not reset time. On resume, read these instructions, SESSION_STATUS.json, HANDOFF.md, ROLLING_STATUS.json and the original queue. After the deadline, start no evaluation; deliver the best existing version and remaining gaps. Goal execution does not replace an independent deadline guard.
 
-二、起点与隔离
-从GitHub fhschina/Curator提交8831f46fb233b86df6a056394217b8eb3e2c0667继续；实际起点为round023的candidate-06-languagefirst1，九个文件必须与其冻结哈希完全一致。
-该版本原三次个人参考为205/240与96/120、206/240与97/120、201/240与95/120；合计612/720方向和288/360整对，85%/80%阶段已确认，但完整验收未通过。保留这个历史阶段及所有旧结果，不把新轮尚未运行的成绩预写成确认。
-新工作区：/raid/hfang/workspaces/Curator-retention-policy-v4-8h
-新分支：codex/dedup-retention-policy-v4-8h
-新实验目录：/raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z
-不得覆盖v1/v2/v3或原始工作区、未提交内容。每个候选、工程修复与重复组独立冻结；不在运行中修改同一冻结候选。
+Starting point and isolation
+Continue from fhschina/Curator commit 8831f46fb233b86df6a056394217b8eb3e2c0667. Use round023 candidate-06-languagefirst1; all nine files must match its frozen hashes. Its three original personal-reference results were 205/240 directions and 96/120 pairs, 206/240 and 97/120, and 201/240 and 95/120. Totals 612/720 and 288/360 confirm the 85%/80% stage, but full acceptance failed. Preserve that historical stage and every old result; do not predeclare unrun results as confirmed.
+Workspace: /raid/hfang/workspaces/Curator-retention-policy-v4-8h
+Branch: codex/dedup-retention-policy-v4-8h
+Experiment: /raid/hfang/retention_policy_eval/v1/experiments/round-024-resume-8h-20261028T181118Z
+Do not overwrite v1/v2/v3, the original workspace or uncommitted work. Freeze every candidate, engineering fix and repeat group separately; never modify an active frozen candidate.
 
-三、先读与失败复用
-读取适用AGENTS.md及旧完整协议：
-/raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/goal_prompt_tuning_overnight_90_85_2026-10-28_0900_PDT_instructions.txt
-其评分、政策、执行链、标签保护和交付要求沿用；本说明覆盖其旧时间表、工作区、起点和本轮比较安排。
-读取旧说明列出的round021冻结来源、cases.json、adjudications.json及round022交付。重点读取本轮起点的上一轮以下材料：
-/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/DELIVERY_RECEIPT.json
-/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/final-selection.json
-/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/verification-final.json
-/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/frozen-evaluation-protocol.json
-/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/selection-protocol.json
-/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/candidate-notes.json
-/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/delivery-final-engineering04/comparison.json
-/raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z/HANDOFF.md
-核对相关候选diff、失败原始回复、三层逐行结果、服务及重放工具。C10三次612/720、287/360未确认整对80%；C11/C13首次86硬回归通过，但独立cookie-scope仍有格式失败且无完整三次确认。C12复杂分面/查询诊断反而退步。不要无新依据重复已失败的全量重写、contract1格式前缀、重复索引呈现或选最好的三次刷分。
-首先定位C6的认证本地化、通用模板槽位和coverage误否决；区分政策表达、功能角色、原生schema/引用、字段矛盾与实际运行问题。每候选只改一到两项有依据的通用规则。优先保留8个Jinja加1个YAML的policy/config范围；直接影响本轮的最小呈现或审计工程修复须单独编号、验证并保持比较各方同条件。
+Read first and reuse prior failures
+Read applicable AGENTS.md and the complete earlier protocol at /raid/hfang/retention_policy_eval/v1/review_sessions/2026-10-27-retention-followup/goal_prompt_tuning_overnight_90_85_2026-10-28_0900_PDT_instructions.txt. Retain its scoring, policy, execution-chain, label-protection and delivery requirements. These instructions replace its timing, workspace, starting point and comparison arrangement. Read its listed round021 frozen sources, cases.json, adjudications.json and round022 delivery.
+From /raid/hfang/retention_policy_eval/v1/experiments/round-023-overnight-20261028T025929Z read DELIVERY_RECEIPT.json, final-selection.json, verification-final.json, frozen-evaluation-protocol.json, selection-protocol.json, candidate-notes.json, delivery-final-engineering04/comparison.json and HANDOFF.md. Inspect relevant candidate diffs, failed raw responses, all three row-level layers, serving and replay tools.
+C10 completed three runs with 612/720 directions and 287/360 pairs, missing 80% whole-pair confirmation. C11/C13 first passed the 86 hard cases but had separate cookie-scope format failures and no full three-repeat confirmation. C12's complex facet/query diagnostic regressed. Do not repeat failed full rewrites, contract1 format prefixes, repeated-index presentations or best-of-three sampling without new evidence.
+First diagnose C6 authentication localization, generic template slots and coverage false vetoes. Distinguish policy wording, functional role, native schema/citations, field contradictions and actual execution problems. Change only one or two evidence-based general rules per candidate. Prefer the eight-Jinja-plus-one-YAML policy/config scope. Number and verify any minimal presentation/audit engineering repair separately and apply identical conditions to comparators.
 
-四、固定目标和验收
-150对完整运行；personal120固定120对/240方向。最终同一冻结候选预先声明的三次完整运行合计至少648/720方向、306/360整对（均值90%/85%）；阶段612/720与288/360。没有额外“每次都达标”指标要求。无效、unresolved、未完成不得获得正确分数且保留固定分母。
-不能跨候选、跨prompt、跨运行拼成绩；不多数投票、不best-of、不用补抽替换失败原运行。单次达到阶段或目标立即保存provisional；原三次均值确认后另存confirmed，保留失败与未确认快照。
-硬回归仍为原36、额外6、最新复核18及原受控26，共86呈现；最终拟验收候选独立完整三次，main/coverage/final每层每次均正确、有效，零原始错误允许。真实共识6对另在150中报告。后续critic救回不豁免main错误。
-100对全部保留技术统计；original99、reviewed99、strict97三种final方向均值各自不得低于本轮重跑固定基线6715574e4e553f7b36f263d755f6cebe198e7b11；精确整数比较，不相互抵消。相对85/80起点的变化另列。正式新轮对照为固定历史基线、本轮起点C6和最终最佳候选的150/100各三次；旧39714b47对照作为历史来源另列，不冒充新轮运行。
-总体acceptance_passed需最终90/85、全部硬回归、技术有效性及三个100对不退步全部有完整证据共同通过。指标达标不等于验收。
+Fixed targets and acceptance
+Run all 150 inputs. Score fixed personal120: 120 pairs / 240 directions. One frozen candidate must complete its three predeclared full original runs: final target at least 648/720 directions and 306/360 pairs (90%/85% mean); stage thresholds 612/720 and 288/360. There is no additional each-repeat threshold. Invalid, unresolved and unfinished observations retain fixed denominators and receive zero credit.
+Do not combine candidates, prompts or runs; no majority vote, best-of selection or replacement sampling for failed original slots. Immediately save a provisional snapshot on a single-run stage/target hit; save confirmed separately only after the original three-run mean qualifies. Preserve failed and unconfirmed snapshots.
+Hard regressions: original36, extra6, latest reviewed18 and original controlled26, totaling 86 presentations. The final acceptance candidate needs three independent complete repeats, every main/coverage/final layer correct and valid, and zero raw wrong allows in each repeat. Report real consensus6 separately within the 150. Later critic recovery does not excuse a main-stage failure.
+All 100 development inputs remain in technical statistics. Final direction means for original99, reviewed99 and strict97 must each match or exceed this round's fresh fixed baseline 6715574e4e553f7b36f263d755f6cebe198e7b11, using exact integer comparisons with no compensation across views. Separately report changes from the 85/80 starting point. Fresh formal comparators are fixed historical baseline, unmodified C6 start and final best candidate, each with three 150-input and three 100-input runs. Keep old 39714b47 comparisons as historical sources, not fresh runs.
+acceptance_passed requires complete evidence jointly passing final 90/85, all hard regressions, technical validity and all three development nonregression views. A metric milestone alone does not establish acceptance.
 
-五、不可变政策与执行条件
-方向为A替代B/B替代A。九个最新用户复核、D051实质正文语言保护、D074历史非法枚举记录、D121待定不评分全部沿用。不得新增虚构人工标签或把案例ID、人工答案、keeper、人工理由写入prompt或证据。
-保留原生policy_tuning.py execute→policy_eval.py run→Data Designer执行链、字段及枚举、证据校验、specialist权限和三层快照；critic只可否决已有Yes，不可No→Yes。不得改变dedup算法、质量过滤、keeper选择或增加全局仲裁。
-只用已有/raid/hfang/llm_judge_env_pr2324_latest，Data Designer0.9.1；不创建/同步环境，不安装新模型或更换执行器。
-只用本地Qwen/Qwen3.8-27B-FP8，revision017b9c7af6b5689d5dd426a76e0bc077eb5ca20a，固定旧轮已验证镜像。最多一张B200、一个TP1服务，其他GPU不借用。上下文32768、输出6144、温度0.2、并发8、timeout600、thinking disabled、6000字符窗口不变。
-旧统一strict ledger审计同口径用于所有版本，原native结果也保留。词法提取失败回复只能诊断，不能把解析失败包装成正确答案或放宽validator。
+Immutable policy and execution conditions
+Directions are A replacing B and B replacing A. Retain the nine latest user reviews, D051 substantive body-language protection, D074 historical invalid-enum record and pending/unscored D121. Do not fabricate human labels or place case IDs, human answers, keeper choices or human rationales in prompts/evidence.
+Preserve policy_tuning.py execute -> policy_eval.py run -> native Data Designer, fields/enums, evidence validation, specialist permissions and three layer snapshots. Critics may veto an existing Yes, never change No to Yes. Do not alter deduplication algorithms, quality filtering or keeper selection; do not add a global arbiter.
+Use only /raid/hfang/llm_judge_env_pr2324_latest with Data Designer 0.9.1; create/sync no environment, install no model and replace no executor.
+Use local Qwen/Qwen3.8-27B-FP8 revision 017b9c7af6b5689d5dd426a76e0bc077eb5ca20a and the previously verified pinned image. At most one B200 and one TP1 service; do not borrow other GPUs. Keep context 32768, output 6144, temperature 0.2, concurrency 8, timeout 600, thinking disabled and the 6000-character window.
+Use the same strict-ledger audit for every version and preserve native results. Lexical extraction from failed replies is diagnostic only; do not grant correctness to parse failures or relax validators.
 
-六、执行、保存与中断
-先安装并验证本轮期限保护，再分配GPU。先重跑固定基线和原样85/80起点，同时只读分析旧失败。小型硬回归通过或有明确诊断收益后才做长评测；失败先分析，不机械采样占满预算。
-从启动维护机器状态、事件与运行索引、候选假设/差异/哈希、每层逐行证据、已完成/失败/未完成状态。维护milestone_85_80、target_90_85、best_metric、best_eligible及历史；历史阶段与新轮确认分开。
-每个阶段及时保存可读摘要、三次原定运行状态、指标分母、硬回归、技术错误和三种100对结果，并以Conventional Commits签署提交及推送本轮分支，运行适用pre-commit。不要把全部收尾留到最后。
-若出现中断，保存确切错误、时间、服务/模型、已运行任务和下一步；有明确quota/限流返回才归因额度，blocked本身不是证明。继续不依赖阻断的有用工作，不重复要求“继续”；未完成三次就列未完成，不猜测。
-持续检查剩余时间和任务真实时长；为最后90分钟复验/报告、最后15分钟纯交付留足时间。独立保护仅清理本任务精确身份的进程、Ray路径和容器，不触碰他人。记录GPU从启动到关闭的占用，包括空闲。
+Execution, checkpoints and interruptions
+Install and verify the independent deadline guard before allocating a GPU. First rerun the fixed baseline and unmodified 85/80 start while analyzing old failures read-only. Start long evaluations only after a small hard screen passes or a clear diagnostic benefit exists. Analyze failures instead of repeatedly sampling to fill the budget.
+Maintain machine status, events, run indexes, candidate hypotheses/diffs/hashes, row-level layer evidence and completed/failed/unfinished states from the start. Maintain milestone_85_80, target_90_85, best_metric, best_eligible and history, separating historical milestones from fresh confirmation.
+At each stage save readable summaries, original three-run statuses, metric denominators, hard regressions, technical errors and all three development views. Use signed Conventional Commits and push this round's branch after applicable pre-commit hooks; do not defer all delivery work until the end.
+On interruption preserve the exact error, time, service/model, executed jobs and next step. Attribute quota/rate limits only to explicit quota/rate-limit responses; blocked status alone is not proof. Continue independent useful work without repeatedly asking to resume. Report incomplete three-run groups as incomplete without guessing.
+Check remaining time against real job duration. Reserve the last 90 minutes for confirmation/reporting and last 15 minutes for delivery. Guards may clean up only this task's exact process identities, Ray paths and container, never others. Record GPU allocation from startup through shutdown, including idle time.
 
-七、最终交付
-交付最佳冻结policy/config、分支/最终提交/远端核验、全部候选JSON/CSV/HTML及失败/未完成证据、固定baseline/起点/best的三次同条件对照、硬分组/三层/三种100口径、资格与未达项。
-仅报告实际完成的CPU及单GPU测试；不得照抄旧轮测试数量作为新轮执行。Jinja+YAML九文件在hooks及提交后逐一匹配实测冻结哈希。
-中英文报告用同一数据表、中文直译英文并校验数字/表格/章节/结论一致；放fern，旧报告保留。原文和完整HTTP正文仅留外部实验目录，不进Git。
-提供自包含复现入口与证据索引、墙钟/GPU时间、期限保护和任务资源释放凭据。只推送本轮分支，不强推、不合并。
-到期交付：未达说“最终指标未达”；指标达而硬条件失败说“指标达到，验收未通过”；只有所有要求有完整证据才说“验收通过”。达到目标后先锁定，再用剩余预算作有依据的改进/稳定性分析，后续失败不覆盖已锁定结果。
+Final delivery
+Deliver the best frozen policy/config, branch/final commit/remote verification, candidate JSON/CSV/HTML and all failed/unfinished evidence, three-repeat same-condition baseline/start/best comparisons on 150/100, hard groups, all three layers/development views, eligibility and gaps.
+Report only actually completed CPU and single-GPU tests; never reuse old test totals as fresh execution. After hooks and commit, verify all nine Jinja/YAML hashes against the tested frozen version.
+The historical task required English and direct Chinese reports from shared tables, with matching numbers, tables, sections and conclusions in fern, while preserving old reports. Under the subsequent publication preference, publish English only and retain Chinese versions locally. Raw texts and complete HTTP bodies remain outside Git.
+Provide a self-contained reproduction entry and evidence index, wall-clock/GPU time, deadline-guard and resource-release receipts. Push only this task's branch; do not force-push or merge.
+At deadline say 'final metric target not reached' when metrics miss; 'metric target reached, acceptance failed' when hard conditions fail; say 'acceptance passed' only with full passing evidence. Lock an achieved target before evidence-based improvements/stability work; subsequent failures must not overwrite locked results.

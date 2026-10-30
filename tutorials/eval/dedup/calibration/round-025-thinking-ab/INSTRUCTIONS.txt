@@ -1,7 +1,9 @@
-用户授权：使用当前最佳Qwen模型和已保留最佳C0政策，立即做thinking开/关最小对照。
-本轮为独立的小规模诊断，不延长已交付的8小时任务，不修改历史85/80或本轮84.44/79.72记录。
-固定32条呈现（16对原例及A/B交换），两臂各原定2次，运行顺序off1/on1/on2/off2。全部样本、标签、8个Jinja、模型权重、评分、原生执行链与输出上限保持一致；仅YAML enable_thinking布尔值不同。共同使用qwen3服务端推理解析器分开私有推理和最终回答。
-样本为原复核18、正文语言保护2、cookie状态8和状态等价4；原始输入及人工理由不入Git。全部分母固定，错误或未完成原运行不替换、不选最好结果。报告main/coverage/final正确方向、整对、错误允许、误阻止、无效/未决、修复/退步、重复变化，以及实际耗时、token、截断和重试。
-开启使用本地模板默认xhigh；6144输出token包含推理开销。若截断只说明本固定预算下的表现，不视为模型能力上限。
-只用既有环境、已固定Qwen修订和镜像、一张B200/TP1。已安装任务独立期限保护，计算70分钟为执行上限，85分钟为交付上限（属于代理资源控制，不是用户要求跑满）；正常完成即释放GPU。
-只完成这一小组对照，不据此声明90/85达标或替换正式最佳政策。保存全部证据和结果后给出下一步建议。
+Historical instructions: minimal thinking ON/OFF comparison
+
+English publication translation; the exact original is preserved locally. This record does not authorize a new run.
+The user authorized an immediate minimal comparison using the current best Qwen model and retained best C0 policy. This separate small diagnostic does not extend the completed 8-hour task or alter historical 85/80 and fresh 84.44/79.72 results.
+Freeze 32 presentations (16 base pairs and A/B swaps), two original repeats per arm, in off1/on1/on2/off2 order. Keep samples, labels, eight Jinja files, weights, scoring, native execution chain and output budget identical. Only the YAML enable_thinking boolean differs. Both arms use the qwen3 server reasoning parser to separate private reasoning and final answers.
+The panel comprises latest reviewed18, body-language protection2, cookie-state8 and state-equivalence4. Do not publish source texts or human rationales in Git. Fix all denominators; never replace failed/unfinished original slots or select best outcomes. Report main/coverage/final correct directions/pairs, wrong allows/blocks, invalid/unresolved observations, fixes/regressions, repeat changes, real duration, tokens, truncation and retries.
+ON uses the local template's default xhigh effort. Its 6144 output tokens include reasoning. Truncation describes this fixed-budget result, not the model's maximum capability.
+Use the existing environment, pinned Qwen revision/image and one B200/TP1. An independent deadline guard is installed. Agent resource limits are 70 minutes for execution and 85 minutes for delivery, not user-requested minimum durations. Release the GPU as soon as complete.
+Complete only this comparison; do not claim 90/85 acceptance or replace the formal best policy. Save all evidence/results and recommend next steps.

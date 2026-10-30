@@ -1,7 +1,7 @@
 milestone_85_80: candidate-06-languagefirst1 — provisional_single_run
-Final direction / 方向: 205/240
-Final pair / 整对: 96/120
-Repeats / 重复数: 1
-Hard regressions / 硬回归: {"original36": {"status": "NOT_COMPLETED", "completed_repeats": 1, "runs": ["candidate-gate-1"]}, "extra6": {"status": "NOT_COMPLETED", "completed_repeats": 1, "runs": ["candidate-coverage-regression-1"]}, "latest18": {"status": "FAIL", "completed_repeats": 1, "runs": ["candidate-preflight-1"]}, "controlled26": {"status": "FAIL", "completed_repeats": 1, "runs": ["candidate-preflight-1"]}, "real_consensus6": {"status": "NOT_COMPLETED", "completed_repeats": 1, "runs": ["candidate-diagnostic-1"]}}
-Development nonregression / 开发集不退步: {"development99_original": {"status": "NOT_COMPLETED", "candidate_completed_repeats": 0, "baseline_completed_repeats": 3, "candidate_correct_directions": 0, "baseline_correct_directions": 556}, "development99_reviewed": {"status": "NOT_COMPLETED", "candidate_completed_repeats": 0, "baseline_completed_repeats": 3, "candidate_correct_directions": 0, "baseline_correct_directions": 562}, "development97_strict": {"status": "NOT_COMPLETED", "candidate_completed_repeats": 0, "baseline_completed_repeats": 3, "candidate_correct_directions": 0, "baseline_correct_directions": 550}}
-Acceptance is not confirmed. 尚未确认验收通过。
+Final direction: 205/240
+Final pair: 96/120
+Repeats: 1
+Hard regressions: {"original36": {"status": "NOT_COMPLETED", "completed_repeats": 1, "runs": ["candidate-gate-1"]}, "extra6": {"status": "NOT_COMPLETED", "completed_repeats": 1, "runs": ["candidate-coverage-regression-1"]}, "latest18": {"status": "FAIL", "completed_repeats": 1, "runs": ["candidate-preflight-1"]}, "controlled26": {"status": "FAIL", "completed_repeats": 1, "runs": ["candidate-preflight-1"]}, "real_consensus6": {"status": "NOT_COMPLETED", "completed_repeats": 1, "runs": ["candidate-diagnostic-1"]}}
+Development nonregression: {"development99_original": {"status": "NOT_COMPLETED", "candidate_completed_repeats": 0, "baseline_completed_repeats": 3, "candidate_correct_directions": 0, "baseline_correct_directions": 556}, "development99_reviewed": {"status": "NOT_COMPLETED", "candidate_completed_repeats": 0, "baseline_completed_repeats": 3, "candidate_correct_directions": 0, "baseline_correct_directions": 562}, "development97_strict": {"status": "NOT_COMPLETED", "candidate_completed_repeats": 0, "baseline_completed_repeats": 3, "candidate_correct_directions": 0, "baseline_correct_directions": 550}}
+Acceptance is not confirmed.

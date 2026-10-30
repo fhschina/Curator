@@ -1,0 +1,1640 @@
+{
+  "publication_language": "en",
+  "source_commit": "db00d1f6669270a39df4faad7b20c06c3fdd3489",
+  "branch": "codex/qwen-thinking-full120-12k-20261029",
+  "local_original_archive": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029",
+  "historical_integrity": "Frozen hashes and old receipts describe the original source artifacts. English JSON projections omit Chinese translation fields; remaining Chinese annotations are translated into English. Original files, Chinese reports and multilingual evidence bundles are preserved byte-for-byte locally. No prompt, model configuration, reference label, metric or acceptance result is changed. Git history is preserved.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "operation": "document_english_publication_preference",
+      "original_sha256": "3f27518a4ec7d639270ca46fd96ec4a61ff37d7aa9623d77b5bf57a0adcaed0c",
+      "published_sha256": "5222fa0027c8cf269e1b870f74383f2326e69419b8a233073b918be48cfcce3f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/AGENTS.md"
+    },
+    {
+      "path": "fern/versions/main.yml",
+      "operation": "remove_chinese_navigation",
+      "original_sha256": "ca2ce07e44f4ea32dd9991f44301acd983e4ab7490c8ba4a26e4eb90fc27a79e",
+      "published_sha256": "725c81f0dcd0e51fc17312f8db9262c689c0680ca3dbd62b20bd97efa49051f7",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main.yml"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "6933df7fac3a2e75482854dae9186fea715cb6d5eed0a45eb3b2317c70816d83",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v3-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "0f269506c8e65b428b3abd4b3988de8f6b1caa59098e288f75daa462b31496e3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v3-report-zh.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v4-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "07e67dad0f7d1e6d875b4d25c799d036c2acb665f91765325fc453177e4ea326",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v4-report-zh.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy.mdx",
+      "operation": "english_only_publication_links",
+      "original_sha256": "02f29437e9a3566eedc55b4b5448ec5d1f89bf5df660c6a7a4233db8c2794a96",
+      "published_sha256": "795c3032073689dc49831fe612bf1ed7473faa420e9f2b70f0c995d29b841c30",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-ab-12k-report-en.mdx",
+      "operation": "english_only_table_labels",
+      "original_sha256": "279e0bbe532f0ba14d3ad291f4f542ac0f7467e3aaba6a57de3175d7c36ccf73",
+      "published_sha256": "f4aacc6bdc4a5159453270764159aea3cda41e1ed2d628138536160eb1002ad5",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-ab-12k-report-en.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-ab-12k-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "052949010278036488653d27c2ccdb08c343c23eefdc60209b515230fbb5adf2",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-ab-12k-report-zh.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-en.mdx",
+      "operation": "english_only_table_labels",
+      "original_sha256": "4170866fa5f51fbc1ec8a6affa7b693e0edf35643d65acdcd9d83c4ce4ee9d48",
+      "published_sha256": "669a1551bb513f7f4911eb8a3df5a6ce3eb74dac927bd6b16883641638e7e631",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-en.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "31c35b8d552cd8ff57fbcd30bfd86950e28fceb82c1c34b4ce06fa867bf96ca3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-ab-report-zh.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-full120-report-en.mdx",
+      "operation": "english_only_table_labels",
+      "original_sha256": "32b0587277d7e1c9bfb2b2b3aa0cc523e0dea09ffccf5e67d7b8e9d2958de184",
+      "published_sha256": "4492931d708758892d8761f66762244c5c84b572336de37a97896cba65eae346",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-full120-report-en.mdx"
+    },
+    {
+      "path": "fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-full120-report-zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "c7dae7463b15a707c5736b86c6081984f209393ffbf231981a3c2bfb94c10187",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/fern/versions/main/pages/curate-text/process-data/deduplication/retention-thinking-full120-report-zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/README.md",
+      "operation": "english_only_publication_links",
+      "original_sha256": "5c865b835558d1abf53f6e86b0709e2c0a3d0e4b33d35eebe2a6b2afeb567d70",
+      "published_sha256": "df3d60b257557e95a6e745aa79f648296209796655d9f1811c61d2b2f89f8425",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/README.md",
+      "operation": "english_only_publication_links",
+      "original_sha256": "191664639c87996175980a15252be07d70c5cadafa59a3beea1d282f6c632467",
+      "published_sha256": "0e7a5d41d8b230af9f72e033854de245a7e5529b060964d59a118fb799e9040f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-baseline.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "7ef95b4d88012f57b4983f63c292d7aa43af5bce0c85e46ba3ab8bb85a195a04",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-baseline.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-01.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "1ec6b27bdb2da77968f6b31928913b878326f2de801096729342d927503aabf0",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-01.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-02.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "d5a48f240fe2d7c2edfab66916ea61925370917769066167c146232c4b2864ab",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-02.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-03.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "131d4c7a0d5a9a7bcfb08c19b74894820103284017afd9323589b7c8ff3024bb",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-03.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-04.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "45b6ddc3398e1d2ceb0d49ce692a2873c4990610cde7a761594d8ba1ddd7566e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-04.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05-format1.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "cd3a3c6d9368219741afaefaa28b14b1e630272dd06e16f0ca84be40554bb0c8",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05-format1.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "87d17c0a58ce676b13c1873b8f1857d7eb764b2c133c1f04cf2fadd5b913d3fb",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-05.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-06.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "37b0b3fd32ceffee81aa6fc316cedf954bbf79aab6df983ca764045f9f7da040",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-candidate-06.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/evidence-reproduction.zip",
+      "operation": "archive_original_multilingual_evidence_locally",
+      "original_sha256": "7b7b16509a736af6c1e79247f36438fc44c0ab615d6e04735beed497acd717a3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/evidence-reproduction.zip"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/final-selection.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "edeccca7218a8a880669c1934fe95e675d9d4353fcd6e4cac88bb70c3052b36f",
+      "published_sha256": "f901484ec0c40b3b5aa86f12fe44bbd1f23e11aa71d066311082262224ccc31c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/final-selection.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "fbbe5384f24baa16ead028d873ec825d6fc56e7dcd17c03abeff409a3f0cd634",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-022-v2/review-provenance.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "7b74aedca9d9ed58d36059976d5ac3e1d700ed1e85b65a8cd5be42749341a9aa",
+      "published_sha256": "ab1b77a5e25ba37aec4a32e673f402fbd81940b4b1476d492e5792e2e3bf96e6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-022-v2/review-provenance.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "cabfbf5b24917704f30db6d10277bdd69c789cd1a319e712c59b0752c46d4c7c",
+      "published_sha256": "e22dca038a2aed56b5590033ea0a4b7033570ca743a74e8af53371a6807a6f36",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "7fae15f92dac771aad6b3e4a4a0fc8cc6c762931ef78f926a181c4144cfe6794",
+      "published_sha256": "e4ae3fd71272fa38749be69a93e0e51c30b224802cbb4656fb5d2b97a40b8aaf",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "0ab8e9b1822480cfc045a374a9fcde4639854d59733899aaa4c50c153cce9086",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "cda25407280c30e24afb8644e8df4a4eca5a2dbb38f411bd0fdb49bc324c7bdc",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f8ef23d1dafc29ae2a02687ace4b9fb4239ed158362542584c2bec58143080c0",
+      "published_sha256": "0f9ae6ed345945e50da860627e60ef75a363e10167f6483e4b448dfbc2545f8b",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0643Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "fc9cb83a1963fd5492cce2d820de5654554121be94565fc42edebe7189a6f60f",
+      "published_sha256": "eb9eb21e39fcc57d4e34eb47eff35c8ad2044eadf9e0d2d01db28771a284794c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "140efce65da77878f6b743e51c1e66852ae26fec70eead14a4bd6b2fb23fd8a0",
+      "published_sha256": "590875005db83548539c55cc3efe04e8eeeaede992b9b9b58b5c2fb93e7fc6a1",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "c3570fac246405c78baae0ee45440579aa496cb4584568b32413582609fd6095",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "6ba26bcf8219475731bf72e3f1a181c36b16f6e35d467f10f44516beabb4ab6e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "44705bfca221209d96819f2a9539720e4055bb4fb2353610e582a37a1bb4dd6d",
+      "published_sha256": "6ce0c177fcf2ee20922c0db89ab5f207735eccfb5d1fbda0b94b6cca5fb9d5d0",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0716Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0745Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a3a2063aafa95bb0a9e35d20042d9b53c73160bcf95b6151ec91fe2de51abe1f",
+      "published_sha256": "d94a9b052d1e9d75fbaa69d41d275e2c3aae70e1c4763371eb2ed47b1a06f66f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0745Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "1a6184957a7b57ab89b04a037db656d3c12f1131f0aad6acbc7e0ef4d95f75e9",
+      "published_sha256": "a7a1c0c0a83c358f85c6826a9413fa00146adcdbe47aeff35fba407ad7cde88d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d4ed3dcd92e8d8bed09937c6719b89ddbd874d3ba256ce5237a317bf7890c587",
+      "published_sha256": "29591f510b857f0e14b99c17ebb604d412af591da973d73ff5148235ce255774",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "1f655c3410c1415bc150a2b7ed1745b6793a2e0478cc31906986df20c3f0c66c",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "e0feb4aa397172fc64f251fa518b6cc05bdb07dc2e70a544e1cd073092172488",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "fe976f104615a008c23e3d792ebd43ba667aba17845b0b525753baafb7aae752",
+      "published_sha256": "f251e929756f5d53a0b7fef241bd9536c4d1bf8907187108e88b22d595e2cd1f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/0835Z-confirmed-stage/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "afa313f8db63d2b4418b0fb707d051c79aeebf39b3acd0391d100986720d186a",
+      "published_sha256": "0c569639fef64b891d488f3bc2059d0a199462720ea649992405d66dfca517fb",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/candidate12-first150-diagnostic-ADMIT.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "3fd53ac37fd35de4ce6fae0dab5c6b5046ef8474e47a520333323228e2a373f9",
+      "published_sha256": "1fcd93da4bd88640c3aa1902e36abd95428d38edb27045208a2bc1cb0a4ba082",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/candidate12-first150-diagnostic-ADMIT.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "ab1981482aa6edfc892537040de6a98b45373e185b5f7da5efe0ed2d6a14fef9",
+      "published_sha256": "b38cd19511813131a85f4959277c99849202845405abdda30fdac2ce3fb0c183",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "0066e5f08eabada5a3e05e7445d87feea8ed96ad6b7b861238e2ce8a6795c515",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "66b1e9b899ad1ebc8280c9e9254f0799396c27c0efdf05f8ec11105874ca989b",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c7deaeca90cd5a85f62181f8af9f428ff37469fe2081f23990e001d7ad137c24",
+      "published_sha256": "d11230f943f8f564026f69add405c97d06a85a39ca0b9ad51401dde69aad2133",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/checkpoints/progress-101731Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/README.md",
+      "operation": "english_only_publication_links",
+      "original_sha256": "996bc4949537bf7779ecc99efa7fc184e46d052e57f34c68ec5b4992163b2265",
+      "published_sha256": "bd3431fcd27b165a168050b854e2bddf938f6302b105ff6b80aa5e0e04346f7d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "020b2e330bb34b8a5578e04ed9ac43cd8f0b856cf8558bdfd70a02cba685de93",
+      "published_sha256": "bd74b63cfc661f745e8c716595c2d04f7f13f57f13366ab0d173d5cf690ad8a2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/candidate12-first150-diagnostic-ADMIT.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "3fd53ac37fd35de4ce6fae0dab5c6b5046ef8474e47a520333323228e2a373f9",
+      "published_sha256": "1fcd93da4bd88640c3aa1902e36abd95428d38edb27045208a2bc1cb0a4ba082",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/candidate12-first150-diagnostic-ADMIT.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/final-hash-and-hooks-receipt.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "65f1befa9a9f914079eafa56bb3c90cae5be778b9472eb8d91e41e5d3dc6dd82",
+      "published_sha256": "46b5b0129d416a7ab2fc9c4bc5caae1510786dfeaef8520477a1fe84b6a35a0b",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/final-hash-and-hooks-receipt.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/final-narrative.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "6b1e26ad3f263ce260e53280887bcc35d6688606273c11a39759b8026f350bcd",
+      "published_sha256": "5fd5e6bdfc968521c6dc6a55bc3e52d8887357997593fcd88c93bb4e2e96bd56",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/final-narrative.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "60573038f9600a4174f04536ed047b3170eb1edc9536cb6f7eb82c9c8d0a3202",
+      "published_sha256": "4f77cdf367dd658fe7e143082c55c1fbaa0b00d44e230680027207f38afd87dd",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "9699831c968183ceab50a0d82b6ccaed6148fea47b376256936a5d90f6a407dd",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "0f269506c8e65b428b3abd4b3988de8f6b1caa59098e288f75daa462b31496e3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/delivery/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c925ec7e3c579c8532c241f09bd4b04778ca9808f9d8cb8e5a8f8958a6d734f7",
+      "published_sha256": "403c0c3c0ed21223ecac5580cd06c2fd54574a6dffcf6cef38d9721bcf11b691",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/delivery/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-06-pointer-refresh/rolling_watch.py.txt",
+      "operation": "archive_original_bilingual_script_snapshot_locally",
+      "original_sha256": "896da35bdff9a7e588b403c5d909b2df8c3c49176192cbd2b47888070fafd5ed",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-06-pointer-refresh/rolling_watch.py.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-09-arrow-offset-boundary/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "4b0eb458efd875c17deee0b44ce52e534c3e1e31a151a950db51fe69538d426d",
+      "published_sha256": "5884d4197d29eb0aaefe4735c0b09e3cf948b250514e99bb03cdaddb540efb22",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-09-arrow-offset-boundary/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-09-arrow-offset-boundary/candidate10-first150-diagnostic-declaration.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "830888254993dc3f0e2227de3eb436c480e9cf80c84f3c3164f34a8b2560685f",
+      "published_sha256": "fe22215ab146e826f1724ce0d6a06d4441858e65e966dc22f93ab09379afffc9",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-09-arrow-offset-boundary/candidate10-first150-diagnostic-declaration.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-10-native-contract-priority/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "e98eb602eca97f9ab9b2850157e79da614276ad1d0d20063d40d2de6840593fb",
+      "published_sha256": "132bcda1092c80929082615876011f58d192c01b2759d7dac2094faa7e8a9227",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-10-native-contract-priority/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "52daabd7195a595614be2f377e8db72bf49f7763203eec281d91ad50dfeb4989",
+      "published_sha256": "b00866b25c0d840bdc07ca6d093772a6ef57fdbbcffef8c474e3fd3ba1a9432e",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/render_bilingual-after.py.txt",
+      "operation": "archive_original_bilingual_script_snapshot_locally",
+      "original_sha256": "527a48884ef3b66931b4216836b0157ce7d501ba8a0e0e098c66a88c686ff76e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/render_bilingual-after.py.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/render_bilingual-before.py.txt",
+      "operation": "archive_original_bilingual_script_snapshot_locally",
+      "original_sha256": "358fc898ae89f2a20454026763bb4f304f309feed1be825c802897d61f8db53f",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/engineering-11-attempt-signal-trace/render_bilingual-before.py.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-01/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d1f1400da6a7ef693aa8ede3aa082309eb0a4a3b44cc0e48a62ea518d1fab749",
+      "published_sha256": "2b37a643a6a9bdcd0b5bd1ad14b25a17158116dca3f5b6133d622ed021183368",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-01/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02-core1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a5b2deb2f907e6aef51a2d4176f8806d0c245d6b3e655cdb362b06e895d319a1",
+      "published_sha256": "19fb7ceb9049abe364f84cccddc567c5bc6c1a242e4c4ce8e27485a0a8f83aaf",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02-core1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02-core2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "6315d915eca3510eada0e22c587f9716ff0cbe50923514f53009dc2d7ff2eb7f",
+      "published_sha256": "64f5b1361ee2636bfa36ba4f772b698102bcf09ceb58ddcb69e82109d358980c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02-core2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "521d748b5831100bbd7afb520f5a6743b1d60c8ff06e701aeaf6dd668fe90029",
+      "published_sha256": "3be7aa9666f7fb32dbb40bcbfa5db866197a8bf9c04b0df0e10b7bee5e5fd4e8",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-02/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-03/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "b3290550254e957e3fd2e97f77af176f8c678c63fc0da80045ea35e4de75cb8b",
+      "published_sha256": "9ea5e000f0d414d66811d2976ec5cfc47c8e4f433bba957529b5f759f75eec2f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-03/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-04/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "9a5793f0e4a9ea868a29d12010ce24719d64934f08614fc69155c402582fd166",
+      "published_sha256": "7b8e09b2b5551969680c7dc94d31dc61b8a4831cba3bf9112766aadb4c75342d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-04/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-05/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c5f7ae66b68993bd39f3cdbae3f74ecfc905f005d66cce6fc57ea0d970c0ca29",
+      "published_sha256": "c7059bea872adf7471e8eed41fc06dd2e9ffefd9cc9163533c229cb544283b4c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-05/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06-languagefirst1-shortview1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "1f537bf1e524b93a29d33fca06970362a897ad130473050c359c4dc4fc940fcd",
+      "published_sha256": "8f11368b24aec708dc8bb2c1661a6992db2c9055917400faac19b48ce1433912",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06-languagefirst1-shortview1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06-languagefirst1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a5a46d9a5a6c3660c17de16050e04a27c093c6e5365263af660b571f32a84ca1",
+      "published_sha256": "191e73dff7e373ebb707683465b6d7a0cb67d98ea63117ac77411830d803df66",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06-languagefirst1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "88147007cec8324e5edd08b79c682b99ca0055a32c8f30bc3061b504f8503893",
+      "published_sha256": "7973ce42c374fda1be2a58e1a15124211fe03f49320d51b6af892d20751467c6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-06/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07-format2-readview2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "4afc6c2bb06c9b17448b776f88795de9aa0ea58c45c522e8b9a3715c0d52ef0f",
+      "published_sha256": "a5b9738272c87567f46a2d799d99673855cabfa3ad0e6bf1c004b1d0a508ec50",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07-format2-readview2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07-format2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f0be586ee92c64473c243ecd8e88302023ce4a04db898bc4a1845a255d760e6b",
+      "published_sha256": "b9c3dff22371acf37d906bc85ff95fdabb9829f2a7b7ef67bc5e05f6b5829567",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07-format2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a546bf9817ed50a541c290e532bcc3f0aa8ba57c58dfe1558e397ab3c4ff6230",
+      "published_sha256": "7552eaee94543510c706fe94aae502a19d4ea910b708a69efeb1f4017cd7f875",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-07/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-08/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "0f1b7dad92a549e2fa958df4e503e5a605744b57732a7aae14476da33464a500",
+      "published_sha256": "6cfcfe1b7b57f520c74cc19ed7cd6d7ba2e8896a4cc431ead61cdb0a75b61724",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-08/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-09/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "92c53383fedea38b8ea707b95ce52b40b1eb26e56412da0b1326de433d7e091d",
+      "published_sha256": "b8f868d45cbcd9a40907894beaa3ca341b24f244bb946c195cf163bf4b239359",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-09/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10-xref1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "2501f91df326fa3a0cfe4ca0ebcf549b69312127955df16cc0f5ae65ea33956e",
+      "published_sha256": "eb8d60f25ff1775614a1732914a3f6d85e4dbb62d28ea6c77ccf07e6a5290aba",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10-xref1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10-xref2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "dc2b64a7ca3709c6e4086ddec2f13ca67da6716ce1dec14dad468823088008e5",
+      "published_sha256": "d12dbdd662ea3ac3fcdf18facd7d97c5f9f019777ca2473909179c3f7c08d3af",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10-xref2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "29f1ad65c4ea797d2c004c0fac8964906113b65bdc57f94cd1510e35750e2b2c",
+      "published_sha256": "8ec034746af223f1d44827fb9a551f5ae9d5fa1e6d024080568011bf1ffa5ba6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-10/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-11-contract1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "2c0b2fc0ece72867a2a05b07c1fae95ad6ec343e3fc186276bf9abaa29c1a157",
+      "published_sha256": "064b7909b02242b774924f49e34c97dfe3864419dc802dbacc7acf014e035ff7",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-11-contract1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-11/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "50c405fde5551a4f837f85ab089b64ad7aafe0437f4d40bbbc7a372c929bf28f",
+      "published_sha256": "78eccf4381f984ea594e4a86b01dac54fc646a6f1520495bdff18326f12ae1cc",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-11/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-12/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "98a66d08dea60c4ef34c7c6da0928041777c1c81db2f39bdd3cb2d6e85f2ddd9",
+      "published_sha256": "edd95e009e354fa0cec36f0c58fb05eaf7b0fcb08483bcb80602bc770d1ae359",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-12/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-13/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "fdc6c3fe24ad007c68b9503e4031125f828da493cdb75a7a5208775d079af0c7",
+      "published_sha256": "03602257da0380e0718c6461db7d2666fa923fb3b7733af90bbbddf5e182a483",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/frozen-candidates/candidate-13/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-candidate10-single-0907Z/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "ea48c9b4902c8a9b8cd708fbe3a28172f3a7b1014d20bf258895d2289c69c29a",
+      "published_sha256": "9abe8404676769b5050c57166c45d991327d4804c92cc1abc8b624c4bea76f80",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-candidate10-single-0907Z/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-confirmed-0822Z/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "2d68831da2c21accdc485ffd09f25e9b1b44f2f65366f501ab2d827ec4198b62",
+      "published_sha256": "e641ce76bd62750a5bf6ed85585c2644524d321d401ae4aaa1a3b8679b71a860",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-confirmed-0822Z/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-single-0648Z/README.md",
+      "operation": "retain_english_readme_original_archived_locally",
+      "original_sha256": "94902622b6a89f7b6d8cefa2739678fa205ef481c2706ed36a78e3599388a99c",
+      "published_sha256": "d587645f5cdfd1aefe30fa3fd32483b015ef1f4f3489c681d7add3a64074d558",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-single-0648Z/README.md"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-single-0648Z/snapshot.txt",
+      "operation": "english_only_snapshot_labels",
+      "original_sha256": "fc0aba65eeed641a037c7736c29ed42872bc2f8e556b1d8f8232b1201f7f394d",
+      "published_sha256": "294c0a8bbac49b657046af593bd63d8cb9c78dba543af5ac509dd13f9bb246ab",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-023-overnight/milestones/85_80-languagefirst1-single-0648Z/snapshot.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/INSTRUCTIONS.txt",
+      "operation": "english_translation_of_historical_instructions",
+      "original_sha256": "a8bbd1c808201dd7da9e5e7eca5714c857296032cd833d6ae760003f6a1c14d4",
+      "published_sha256": "6402af0e9f51ded7883453861696af6495de45a36b383ce662cd4cacf61186c6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/INSTRUCTIONS.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate01-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "45b11e765fdc3d9bae24d45e0ee59db6aa1f75c7934f3652cceb8908747f003e",
+      "published_sha256": "1fc5ebb27a411f315cf2e8aaad83f1f0ad8c9f4809d3bb95381cd215871a1848",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate01-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate02-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "593200e97ebfb3b939630072d9c10fecb49b88a40a87010b23c80b1f11e1500b",
+      "published_sha256": "295613a352cac8bffb2cf09e140c3aa9242cc4c77472a59dadec1c5e7dd895c9",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate02-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate03-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "b18bb1255cbb48ae22be8dce23891c0ff973ea85674ae95fad4a2049c7ac2d79",
+      "published_sha256": "abc97839a6dd5cee624a55c463f184686687980c8b3e63b24bd87eaaf9310625",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate03-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate04-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c1408438618b2ad0e7f98985322827e09d670935c8f8588d30e222f67f62bad1",
+      "published_sha256": "aad8033b9b4534775226b8760450ce1bf195c247839857a6c6a2b84edc2404e2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate04-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate04-frozen/candidate03-first150-diagnostic-ADMIT.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "dcba09ba2b839b4b4b3e3f71e157d55ef29900ba9ec17fd861cf8999cfa19b64",
+      "published_sha256": "75a1d5a5cf375a60d51ca04d78a9c3a62692f42a902688b71eb844d69afc5d73",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate04-frozen/candidate03-first150-diagnostic-ADMIT.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate05-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d9363e43c58dce18ed2c3d3e41dc3369205ddeddcad4b879518ad53850d6859e",
+      "published_sha256": "985d1ce1a836aa8b54b8be1692a8693e64e22415523d5b9e7ee6b0e2b9a3b428",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate05-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate06-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "573a3830ed2bc2fd98cbce0872717f1b6e51488ebc511042dedb863703218deb",
+      "published_sha256": "ae1ea17ead8fe27c2cc7afc3a9dd52c6d5bff605b63ae2c77468b9d7a15fe90c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate06-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate07-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "532e157bc4453f9647162a863c6710f9e722ff59cd56219c2e773c7726d0da92",
+      "published_sha256": "0c83760ab73db3d68169579daa7cea031e9cff82e3df06066533b355f72ab9c0",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate07-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "8ead2bea4623ff8d2c1c591ac005216f285646920bf71acd95f494e0989efdaf",
+      "published_sha256": "ccab1b2bf7eb7b06bcef2647f243fe16f4b4c537c21bfb120f1cd61431947b5a",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-wholeview1-first150/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a54217fb53180e1e41e679ca0cf492fc6c3563f102593725f6724fabb05e0cf1",
+      "published_sha256": "65b693d95e098e24b1e0f82a3023b2ad9cf83bb3085a5d5ceadcf65e6c870b8e",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-wholeview1-first150/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-wholeview1-formal-admission/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "5c0aa5b8a7e67784a588d3c29691a800b27eb0f5408685652f6ef78460249556",
+      "published_sha256": "ed86561023de368c526b66329babb8d1931c6a913b29604b1c7b981a3f39619b",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-wholeview1-formal-admission/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-wholeview1-provisional85-80/1793232303874174549-milestone_85_80-candidate-08-wholeview1-provisional_single_run.txt",
+      "operation": "english_only_snapshot_labels",
+      "original_sha256": "9f2e69dfa27282dd4c3d821d792ba56da632f600dff85a568edb96261b4991ee",
+      "published_sha256": "8effe00d8acbd0d7f05ba83332bbb1329d59c519afdef2e2886f329dd1ec5c53",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-wholeview1-provisional85-80/1793232303874174549-milestone_85_80-candidate-08-wholeview1-provisional_single_run.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-wholeview1-provisional85-80/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c102c912fb39f53a254bc4185691c59d33f43f8703483c959a3fe61a46899621",
+      "published_sha256": "cfef1abd2a99681188a82f25625652fa05d870ffad3358fc5cc47c84a663e89d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate08-wholeview1-provisional85-80/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate09-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "4a98694dc1197cf38728f4d064ba48918d6720759ada371983a1670c85ceb168",
+      "published_sha256": "5b8cb79c70fd127be172e81a459fc5402e8fb403741e4c32d8347fa146839136",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/candidate09-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/coverage-order-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "92d4a46f5ce64661b15504420d0846ab0bb3a4be07690ccf6d913b4e213a932b",
+      "published_sha256": "c517c6e0bb1992c530d9b9f6d8eed1f393f42cd208ebfcd4d1c82a39c7e51876",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/coverage-order-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/ledgerbrief2-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f577227d108831c60c1a90f19d1009537a14c1c9544b4baccc66e2771064cde8",
+      "published_sha256": "6f3456c30adc2abfceeac439695c4cbdb6d02a81defacda413704ad433035ba2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/ledgerbrief2-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/ledgerbrief2-frozen/ledgerbrief1-withdrawn-before-inference.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f2b8197ed5a2fcab710fae2854040344d5ae8f6be94ce2dca7e8d56dfa1d9d12",
+      "published_sha256": "92a4af009b2054595a75ef1472f23b7360ab91a5e16163a73c8ef07f5829438d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/ledgerbrief2-frozen/ledgerbrief1-withdrawn-before-inference.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/policyonce1-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "35263e1a8ef9d7e3dd91b2c8239543e9614315b883b712ea30e94ee19f08092d",
+      "published_sha256": "edb354ef034028d54506ed179442c964af8fc8037f72dd46cdb1d4649f102e90",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/policyonce1-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c102c912fb39f53a254bc4185691c59d33f43f8703483c959a3fe61a46899621",
+      "published_sha256": "cfef1abd2a99681188a82f25625652fa05d870ffad3358fc5cc47c84a663e89d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "05461281f37f9d704f1f4162f3cebc466dcc26e534d90b3ebccc6b01cac1108b",
+      "published_sha256": "ea883f21aff63e85f00d4b5145b1267202f1e0aa00cf77305b1469cf65b1419c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "19b0ee4c6dc0cbc02e84657932caebfc05aae6d824396a037afc8d491919d0a3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "04777a3ebc0075a93642a69849ced16ee76d053153c38309f910261db481684f",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "b544ffb2aeb819e95540c2a9c7711086971de7b1fecd27680e9cd457be3ce59b",
+      "published_sha256": "1b9a34b60c9999ccb2fddc1bd9f53ba661b0c8f919ab2b4a91e7b787bd123b2b",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-000710Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a98127112c7b5483e6c69fd05c4dff47a26939cef4629f63e831f3b1981f925a",
+      "published_sha256": "0cd98765875382ae835368c720f8af6eeb2af17a5cd958fc77770d9a073c96b7",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "320749b02e8131a9ff72b45280055705bad5b4b46503dd0e04aa2db13ce55861",
+      "published_sha256": "f321fbdb6a584e746e00397c3c63785cab441ff4a9dda38e6753576a325df414",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "d08061ceea8654784ecd2687de9e7edf23da79a6e44c50ed456af4ac6faf8bd6",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "2303324b8571a5d9367d6bd0ba94ffdacaef95f4cc5a998ff3d1eae19b6c4a9e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "370a1604bc1d99e11e2052cc455860851029c7dc79fb207edc06c1864be4bd70",
+      "published_sha256": "6b0ae7fc0a4944e64cd93cc1f644cc720befe5830bc044fa9fd1a6ab124780bb",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-004003Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "92d4a46f5ce64661b15504420d0846ab0bb3a4be07690ccf6d913b4e213a932b",
+      "published_sha256": "c517c6e0bb1992c530d9b9f6d8eed1f393f42cd208ebfcd4d1c82a39c7e51876",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f6310d72ef2401fc3b94eec1b88a705ae8cd82be884b67a9be4cc9136346dbec",
+      "published_sha256": "1843b6f88d14b6fba36495d7aecd149d6797a0137afdb440e117055ba49c9359",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "a400228a73226ce528066f8a67592b0cbd2dc81ac16f013d11890261b87718e3",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "cb04f0c48b35a2d1d99a09428ddf8dd81a3856c8e955382ecf2e7f355b7fef16",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "26bdd39b63faaf62dcbb9e6b0cb3167a379fb011ffcd98324e955221f093fc91",
+      "published_sha256": "693a0c5687e697e9312f87734197bce73c1ca6ba46a6cfdff2508540a11d46d3",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-183710Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c1408438618b2ad0e7f98985322827e09d670935c8f8588d30e222f67f62bad1",
+      "published_sha256": "aad8033b9b4534775226b8760450ce1bf195c247839857a6c6a2b84edc2404e2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "7c14d348f4c7da6767d3e8822ba2e58e8cb805c640ada49eabb7eee2a3597e24",
+      "published_sha256": "a1bca6f1d83f81f9fc930f7ec5bb88098982e18ba09af4c51ae5923becb377e3",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "d5251714fc829386ddd0191caa1a3097b0b3f30d9b616f553d5a9ecf3e70000e",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "491aafa787381efb8d27b4ca616d8041c4382db973474925e6d58bd71dee69b5",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "0d7cbb040c3bd63f5ffb5d9332d8b2683bd649387543a866bebe87424108b718",
+      "published_sha256": "9acfe663684f0ab8ee1e4837a514841b1d2a670a12ae9f361c0e14e3788c92a2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-193841Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d9363e43c58dce18ed2c3d3e41dc3369205ddeddcad4b879518ad53850d6859e",
+      "published_sha256": "985d1ce1a836aa8b54b8be1692a8693e64e22415523d5b9e7ee6b0e2b9a3b428",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "4c2acfe9c41a288af66ea42b41d90a7ab2a2b1f41a14e919eedf65d4c8310299",
+      "published_sha256": "6c3b0c1b1b83d97b4691d33210e67ca4de449eea783c205bbeb71b16c817a8a5",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "96e191a98c2bf71225f71d353e5e386adc8c11cfe222270dd35dfee6aaae3fcd",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "baaccc492411ede6dd3f12f74198b10d483e2a00b999580f906d20608cc675ad",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d383854beaee03eccafec8b0f2794bb5d140df1746b1a67344ff6782b8e4bed9",
+      "published_sha256": "332791f4e6abc12997126a2598969abafb25e7e9425978a02dd5cbf6f9ccdb0f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-204656Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "35263e1a8ef9d7e3dd91b2c8239543e9614315b883b712ea30e94ee19f08092d",
+      "published_sha256": "edb354ef034028d54506ed179442c964af8fc8037f72dd46cdb1d4649f102e90",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "6dc8618aa5cc2e430f7b69a192ccbadc02318d2b20900f5248aaf41a40fe9dd2",
+      "published_sha256": "eb9f65ce26259df7bcd3e5a14649332609ab622f6c4ac606f1c3e65a58851fa2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "10bb9398813d6b7bb7b6a389b356befd9f3429bcb17c35645b7253a4787b9d3f",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "7c6f4951602776a03edc1045b409c925a8979c77569d9993746976dc3da7f506",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a6a5fd3fe9b53da9c225e543b13d355d8c7c20202702ee26ae205650b725396c",
+      "published_sha256": "d604dd1b2de699abda5b357de699dd1a4594a447b52fa20159101f2a403583e2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-205217Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "573a3830ed2bc2fd98cbce0872717f1b6e51488ebc511042dedb863703218deb",
+      "published_sha256": "ae1ea17ead8fe27c2cc7afc3a9dd52c6d5bff605b63ae2c77468b9d7a15fe90c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "0a78a041d424a11586c75c4e6580e3162a5fd89a78d66c9bee5e01c3db444fe5",
+      "published_sha256": "7416be25957bae7584fa347fb69e818c921c1c97ed2a402ab219af9e4d4aa470",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "8c0a97aab3787906dfe88feafc8e1e002e21b7c65b4473c55746d4de6126df07",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "43409c1737a0f10c0f3b05bddc0371c99a168bc8e6f2a0a4d6d08588b8ad7427",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "424d2e70d33bf0e2a791553e5f96902d7fdb4276bd6b87390c1553220946538d",
+      "published_sha256": "7044b2547423d47d1f13fedaa96b2a997624c87e4c88c9ece16d7971a64e3ff6",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-211512Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f577227d108831c60c1a90f19d1009537a14c1c9544b4baccc66e2771064cde8",
+      "published_sha256": "6f3456c30adc2abfceeac439695c4cbdb6d02a81defacda413704ad433035ba2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "ae2935625f2d1f6eaa1b2aa440a464275e97a3406e03a3274368c6056c073e96",
+      "published_sha256": "e2038787ae4cd048959266e1b9e953774fffc3723e45fd679ac153b67329c38d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "059f821950cf69b2deff307835bf00aa4f78322d8d0ebb70080ee316188ba0d0",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "a267c1a54a137f68887c53f1f7eecdbe2f6a1ce6bfb8ee9538662b19d8d0a183",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "b9a5cb1e6fa44cb8a152af55c145765878ac27b47725c9b0e043d0f74e701df5",
+      "published_sha256": "061edb8b513dba2521c6559d9b5dbbb5737bbc64dabc01fe5735658009300148",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-214004Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "37bb86964499b551e63f0f5b89daa78c6de7a14d79322e59a54737255968e81e",
+      "published_sha256": "fb112e18c859dfce7edcfb063fa59d1221acd0c4af759405dafd916f5369b23a",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "ea5cc7fa7fec52c12da6f5ae6fea28352ac7a069e96f952ee767f0a327509028",
+      "published_sha256": "89aed1dcda7e6264bb1469be56ae7a912204581475f0c88b7f70443090eeff89",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "93f2fd67a3b0f4ab4bd121aa32923808bdc00092f398351fab47833c4a368872",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "4ae2be73b18ad60194b4c9637003f45b5988182fd25e6d1bbce225a7973bb410",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "bb8d28e0f6cbfa5fd3f5f01ede47cef140056cb9fd9a1f929e2354b3e6285ff2",
+      "published_sha256": "5ad2b40927af0ed640443908f83df4473bba5d2d13854ddd15c7173775017138",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-215624Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "532e157bc4453f9647162a863c6710f9e722ff59cd56219c2e773c7726d0da92",
+      "published_sha256": "0c83760ab73db3d68169579daa7cea031e9cff82e3df06066533b355f72ab9c0",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "7200facb334fdecd8bc5726c32dbeb10d8c8df01820ad237b87067edf6323a24",
+      "published_sha256": "f7f9ed58bb46b7625a38c71a5147952aba71a775b5018aefc02fa4c3eb0be7de",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "a3c8e07ce1d6e3ebdf03f0113d4149ac54db818c8cc535c344a64652ba297c29",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "da7cbd7f07700e8e26e26a6277345a1e00ee5e6b401ba2b57c2117de0715a0de",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "6c458782390688334f36f09def9e435e577e0c81cff1fc7d235adbf94e8e7856",
+      "published_sha256": "758d005dc72fbca5ed85a877c8329f3c292316d416e24f467b229ec8736e73f8",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-221522Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "8ead2bea4623ff8d2c1c591ac005216f285646920bf71acd95f494e0989efdaf",
+      "published_sha256": "ccab1b2bf7eb7b06bcef2647f243fe16f4b4c537c21bfb120f1cd61431947b5a",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "0cf033e609f0abdec27ce3f16f79124197bf977437b0f719d7a4ce0bde7df4a9",
+      "published_sha256": "3158d043f5c41dc203623f6dc59e231f1e5c0688ea6729ea973a21e6aa3dc788",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "9fcb52bb040475c6455fba6b1cd492cfb00ff00662e39b63bd7cf1432c1f3829",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "a2dcbfbc4f5befe68cfa4e7991fd7b610af534196fe335064f1825899de63888",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "5e25ada56946b920da681ba74cb0f070a8a95938b5b15fbea77ec6aece0d6245",
+      "published_sha256": "7b4a8132028086fc66212747e57b15c49b9959283a1eedd6c7d8ded4d0b0a886",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-222930Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "adb6d5893cbcbeb62b53faab84dd0811a0f0b38c04d6d281148f863c96140c86",
+      "published_sha256": "deaee3cc4104ebd3f21500a424e7ee0e4f1a3366759fa26939ef538fedc5abee",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "fb135cd5d4bc6f2f81c6ea91ba5823ba4c218c53990bda6c46a5384b7ecf5ee4",
+      "published_sha256": "b828c4e5502ac6ba06ca485ea5aad60d2f53e2a2027459e9fcd491d79b4cdac7",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "9a377143c36bd84c3ee1c03373fe33628b48fd6493866587f686806863bc9309",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "9a7308d269959c7f03c2f825e83e6692de609010ce42c7565653ab8d1794e13c",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "11aa2a91ffdca46655160251a86fa4e7a22989c88833b0de966d2c7eb14e7299",
+      "published_sha256": "bc77b9ddacb119838c8ea782f36932b9c13e55e81dcbe7773a79c089f53059e5",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230103Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f9773d35cdb8bd88420f70306246b22be9b42eab80bffe663ae0814e10398972",
+      "published_sha256": "578496e4880507dc6def0aac922ffd634cadfea6e21a1e4ff9b07d05e14f032d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "e2417df197cca6e6c94ce0d345bd57b8329da565add9e32dafe98634853a4097",
+      "published_sha256": "81aaddfcfd02ec5deddc331c4e14ecc8732014621f04859e407d6dc307830e84",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "2cc685ae678b311edccee49f90cc0f1759eaa70c218a876bf9ab7f560dda9425",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "e2a2942a53e280e5bea494b2c96b83f8bed59a6bbffeeaff55013dcb584a1301",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "93f303234cc71962f8799126ea0c586d20d47afe11e138eaec11d53bed931fe9",
+      "published_sha256": "afc0ee6ba18a7428739460d544268ee79446d805e41ace3272fce84e39305d46",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230527Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "4a98694dc1197cf38728f4d064ba48918d6720759ada371983a1670c85ceb168",
+      "published_sha256": "5b8cb79c70fd127be172e81a459fc5402e8fb403741e4c32d8347fa146839136",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "875992338882f66e201e17442e4e53ff4f26f203ebad9836f0c6b72da8b59995",
+      "published_sha256": "522f5af01be87085bd69063dafc6f7db6e6c33e13ae3d20c88b3d9caea1c39e0",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "04aa0a9f52ebc7966d435f943a3803ab29070d99eb468d7fb311860c4c281e45",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "8ddbdd1579c5b5539c47898f8b5baf9b94f6fab4fafbcfadfb4e35fbe95b711b",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f7e39452adf1072d3064dac2a3489c171011ca07895a23e5e1475ffb6f1d6a26",
+      "published_sha256": "865faeaa884dc8377ac0656d5e6770110946523f09f1829c7fa8af35a727fb16",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-230735Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "5c0aa5b8a7e67784a588d3c29691a800b27eb0f5408685652f6ef78460249556",
+      "published_sha256": "ed86561023de368c526b66329babb8d1931c6a913b29604b1c7b981a3f39619b",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "6cb7433c8f139f7ec0e5906a166d9df20ab6d41c24359e4a6445c0998cd9c8cb",
+      "published_sha256": "6fbce4a68b765d2c6aad15a7bf62689bd388fef5556a6054cbff7afc971addb2",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "f7a4c314a2ea920ea45b11f2ac8e89bd79d355c0ec3e19ba28a3e094422ecd90",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "d02956a0128116537cc0b4917d778ed7c77f466306ed488f2253cb83156cfdfe",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c8d37f03a72f5a0ede4d16743baea115c13af4510b5b4937212a39636a580c41",
+      "published_sha256": "bc2ab528675b9ed8749e0d8e73b1efe3aa8f2c3e838d37709ed9ccbfa443e75d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-232434Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a54217fb53180e1e41e679ca0cf492fc6c3563f102593725f6724fabb05e0cf1",
+      "published_sha256": "65b693d95e098e24b1e0f82a3023b2ad9cf83bb3085a5d5ceadcf65e6c870b8e",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "c66eede395a7e6b3da9022c62ca026bfb25697ff319aa40b11e0d6d1b1c4e993",
+      "published_sha256": "78e33d30eb7044f03358277025eee99a3151d742dc97f6038d30d5e30b598fdc",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "4a234cdec35295bda2082716161ff1fe0abfcbc4157d9d99c50d8441ccaad319",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "8bec9d61e2b8a90563887306466ecf9b9bba1f7f5fe9eef97cb8d045287fa478",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "74845ae0ad8a035da614399f6e1745652636e57564c8a8a59b9a0e92d302fe8d",
+      "published_sha256": "ef2d7bc3daad1b8dc378dab93d293dda4377b67e146028bad2a374ff207f94bc",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-234935Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "bae98435487a2d1cf46d3ac30e84ff6b3c70f5287dc2d85a956a3a3ca8540fd7",
+      "published_sha256": "c5788ab1f4ad595d581e118dec38d66fae8e99e33e46baa64dc1877c3d7a9497",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "4b7fd66f8a976e097112512776729af79e5907a8f01cce8ad34ab33c2e1fde91",
+      "published_sha256": "dac37e7b16c26fe42d906fe03995dee3a4d0372bfee6afae7ce23bae9e9ac021",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "ebf177cac5bfb29c8c0fa855e8e6e76cb9796c2fd24bb090215c380625ee626b",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "07e67dad0f7d1e6d875b4d25c799d036c2acb665f91765325fc453177e4ea326",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "abff486fce6b1efa0da7e0fc87224a2a2bad091bbcd453bef11bc2e4ae201ad4",
+      "published_sha256": "e6df31008c481b1593dfd0a43b726b2a2bfaf07051f46186a0a64ae485984983",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/progress-final-20261029T014236Z/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined-numericfix1/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a98127112c7b5483e6c69fd05c4dff47a26939cef4629f63e831f3b1981f925a",
+      "published_sha256": "0cd98765875382ae835368c720f8af6eeb2af17a5cd958fc77770d9a073c96b7",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined-numericfix1/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined-numericfix1/retained-start-publication-failure-and-translation-fix.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "691a76f795282162f0403b383e5145001adf7807e5a8b9f84c6e0da60dd84656",
+      "published_sha256": "a827b3c4777af42a215576a1b3398a5f0d4ce54b2eaf4a7f7f5d221d92c4d1d0",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined-numericfix1/retained-start-publication-failure-and-translation-fix.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined-numericfix1/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "59d628508cf096d4533a9feb017b2aa8b3969cdaa8b4999a92014fade530d31e",
+      "published_sha256": "e44c74452ab973a4b496106751cd1cb958ee12b5daa1502a8233b2cfe47ea151",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined-numericfix1/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined/PUBLICATION_FAILURE.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "691a76f795282162f0403b383e5145001adf7807e5a8b9f84c6e0da60dd84656",
+      "published_sha256": "a827b3c4777af42a215576a1b3398a5f0d4ce54b2eaf4a7f7f5d221d92c4d1d0",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined/PUBLICATION_FAILURE.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "beab1da3e5ea2ac750958b9b90d9950b9974f815874493b451e9dd44ccd464a8",
+      "published_sha256": "0cd98765875382ae835368c720f8af6eeb2af17a5cd958fc77770d9a073c96b7",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/retained-start-after-complete-combined/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/slotlast1-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "adb6d5893cbcbeb62b53faab84dd0811a0f0b38c04d6d281148f863c96140c86",
+      "published_sha256": "deaee3cc4104ebd3f21500a424e7ee0e4f1a3366759fa26939ef538fedc5abee",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/slotlast1-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/slotlast2-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f9773d35cdb8bd88420f70306246b22be9b42eab80bffe663ae0814e10398972",
+      "published_sha256": "578496e4880507dc6def0aac922ffd634cadfea6e21a1e4ff9b07d05e14f032d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/slotlast2-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/wholeview1-frozen/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "37bb86964499b551e63f0f5b89daa78c6de7a14d79322e59a54737255968e81e",
+      "published_sha256": "fb112e18c859dfce7edcfb063fa59d1221acd0c4af759405dafd916f5369b23a",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/checkpoints/wholeview1-frozen/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/current-candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a98127112c7b5483e6c69fd05c4dff47a26939cef4629f63e831f3b1981f925a",
+      "published_sha256": "0cd98765875382ae835368c720f8af6eeb2af17a5cd958fc77770d9a073c96b7",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/current-candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/candidate-notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "bae98435487a2d1cf46d3ac30e84ff6b3c70f5287dc2d85a956a3a3ca8540fd7",
+      "published_sha256": "c5788ab1f4ad595d581e118dec38d66fae8e99e33e46baa64dc1877c3d7a9497",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/candidate-notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/final-narrative.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "bdd2150fc23a4aa09fe591cabf56f3eda82a242dcc52ad42c8ec44f2f5ad16e4",
+      "published_sha256": "97f8010e20ef528ee36f54fbabd307241a4877c939390adbac1226bb1289dbb4",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/final-narrative.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/report_tables.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "4b7fd66f8a976e097112512776729af79e5907a8f01cce8ad34ab33c2e1fde91",
+      "published_sha256": "dac37e7b16c26fe42d906fe03995dee3a4d0372bfee6afae7ce23bae9e9ac021",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/report_tables.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/report_zh.html",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "ebf177cac5bfb29c8c0fa855e8e6e76cb9796c2fd24bb090215c380625ee626b",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/report_zh.html"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/report_zh.mdx",
+      "operation": "archive_chinese_report_locally",
+      "original_sha256": "07e67dad0f7d1e6d875b4d25c799d036c2acb665f91765325fc453177e4ea326",
+      "published_sha256": null,
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/report_zh.mdx"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/translation_validation.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "abff486fce6b1efa0da7e0fc87224a2a2bad091bbcd453bef11bc2e4ae201ad4",
+      "published_sha256": "e6df31008c481b1593dfd0a43b726b2a2bfaf07051f46186a0a64ae485984983",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/delivery/translation_validation.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-00-start85/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "ec1ed818f58dec2f2a9a2896b3ef4829a6df21fba7d2dded62b00ccc11c47789",
+      "published_sha256": "bfdcc462eafa39843fac2b7e09c42c70a1b85289c2d4faf20d88edac604c52b3",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-00-start85/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-01-coverreasonfirst1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "2c960989140819ec884223bda3d4502129d161d6c213d6bfbee5bdcf1caf8e51",
+      "published_sha256": "d91f5abc1182092571d516d7aada9718cb334534051851a4e49d05bb9d204d7d",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-01-coverreasonfirst1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-01/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "8865d7a55edd1a64ef78b6f67c24fba69edad97862ca818a78e6fc5825f8291c",
+      "published_sha256": "9731b06c26d8ff4573ed2e5cef99d704a2d69961a2d3ac69aea86b0ef7f98e97",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-01/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-02/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "89919fe9bad10f5a429b3846594d8be952338adfc297df204c7dd8cbd555dad2",
+      "published_sha256": "cd4b8aa09a9278dea050ecc4e9fefdbe682e48211307ce11b6e671c27e85a555",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-02/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-ledgerbrief1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a534352385244ae31d98a6918636a252b0b8e70e1c9dbd460fbf6c5eebc2d10e",
+      "published_sha256": "edb810250d5a6ff4819f66a03ba39c509969256d6f2a4a8daed611a3ff481eba",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-ledgerbrief1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-ledgerbrief2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "516c68648711c0d8ba637bbe8a150b8b2b427b43113413e85c27ac4c1161f7b2",
+      "published_sha256": "bc7e691ced5ac1905822590c7a4aa332234d5c67f2dfbeb0e29871291c049a83",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-ledgerbrief2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-policyonce1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d7bc83ed6a46c2b9188a46a4473ad712b25cbcabd387367496e4ed823d1118a6",
+      "published_sha256": "b8854c261466c0c0733e23460cdf140846ceb2bcc03f6576d955d942441d410b",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-policyonce1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-slotlast1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "a2362cdbf2bef46f83851e4f865a16a25ba87c0a4514c4d886cc4d3b9b5e3315",
+      "published_sha256": "b73c65117d557fb05399669028ef233493f66c48ce5c3420c33a939a11bca4f4",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-slotlast1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-slotlast2/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "4aa17e50c9b02472278d994c4e9c97a9f68e126fb403c46223003f0492a206ff",
+      "published_sha256": "13334792a1e85e30f729fbbbe37e2cf9eb7e2892187b2a6e4c25f9756f4ad541",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-slotlast2/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-wholeview1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "0b164547d0a9b5289340ebcacea778f30e9c5be8528ab34a7d133d4c9f02979e",
+      "published_sha256": "02be9de49fca4451ae563b2734992c49387f669827da8191171e3be4d3311cdb",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03-wholeview1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d38b95b99e0a304b56afdab63eede95d60f6d25ce53f62939fefe5f50f81141c",
+      "published_sha256": "ca8fb2ddf7531951e15cfae3deb2748aa729a5b4ec2409200a1a6e6cd2ab8166",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-03/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-04/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d62033c21e3e5acd9beecf72b7108fba56192575684ef45d4e5f5a379d47832b",
+      "published_sha256": "da786c8d125c28338430871497c8f3f8058b09e9a4c122205921e56cee9df81c",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-04/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-05/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "f69e4f00db45d685e4fe1c75970c8811954e20138b95baaca4eeebedef5c8287",
+      "published_sha256": "c9e83880a66d43de05701220b7af2136333446208fb186c7892fc74c5068f685",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-05/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-06/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "637d6f1be942412b7683ddb0dc7bf5038d5aa962302da1be5c73ca06bdc0a700",
+      "published_sha256": "9e11323233433ea47769c52fc08ba18f4c56d8ceb26cba919c2470ffc4c8e105",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-06/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-07/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "33b07e82e27e7c9f69df31f7cf2c84453d056bbe48e2f75ad21ec15b24d4d519",
+      "published_sha256": "f7f02598e4f83c06173ede97ec5510bb5568fcb63ca1d6ea7c6251c631d2d11e",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-07/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-08-wholeview1/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "9caeef3140c341cc1473c1c00b40543f75f62f09c96b9664bea464ab6c88a5a0",
+      "published_sha256": "59e294c76e3e131d7d6b9cde95bfda59628ef5ba386092bcf0995b519cb341aa",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-08-wholeview1/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-08/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "05663c16e100206d3cf75ac30031bd2ab713a5929a30242516530a91a1770aaa",
+      "published_sha256": "000f24e0df52ef10397ae546128c6f44f52278d0bc5061804994fac663480974",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-08/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-09/notes.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "7c4045529474006ee9e6a56cbd0d308233905a1c8034043013659648a988fe0f",
+      "published_sha256": "0540d071c10b7069bc866841d68b80d9ec98eb55d4dda2b7efcb9480ca729024",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-candidates/candidate-09/notes.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-025-thinking-ab/INSTRUCTIONS.txt",
+      "operation": "english_translation_of_historical_instructions",
+      "original_sha256": "9d2059de8babb9a560dd0a43131da796a701809447d7072a9abc1a9d3d6b5edb",
+      "published_sha256": "5f502463791da9f0ff8b417f1a172d5c54618e4c777657dcac37adcd285cb2db",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-025-thinking-ab/INSTRUCTIONS.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-025-thinking-ab/agent-judgment.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "d66a6d86b8bfca3dd7cde7bcad4bf296c4d7d3d6c2d6853089ebbdca28c75e26",
+      "published_sha256": "532b54f39abda750a9050f2ecca4383a5e5246977d63f69df425cfcd0e13df92",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-025-thinking-ab/agent-judgment.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-026-thinking-ab-12k/INSTRUCTIONS.txt",
+      "operation": "english_translation_of_historical_instructions",
+      "original_sha256": "5df8032a54d73fa008e2d95408316c010e8ecbc77bac5d6683cc4149b5194f68",
+      "published_sha256": "4ba66e849532bf9674f56693c70be331e1ac5cd6b1f8cc0d0efb9d5c74d7b551",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-026-thinking-ab-12k/INSTRUCTIONS.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-026-thinking-ab-12k/agent-judgment.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "cdd942b8a327ac1d1952714bf6213e2e0efaaa87e4c9f3e204f2d76eccd201df",
+      "published_sha256": "252de0bb5053079be03063f22644b54db735e81584681c84ee73181b6c6074c3",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-026-thinking-ab-12k/agent-judgment.json"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-027-thinking-full120-12k/INSTRUCTIONS.txt",
+      "operation": "english_translation_of_historical_instructions",
+      "original_sha256": "2ac3ebae2bc2716f40c519e305c50c97cbe7b542dd1c1305d50612dd4f684615",
+      "published_sha256": "aed4b28634500c6281976a089fb6b13da8d1bff87275cd5ea7a08e47d4c342e8",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-027-thinking-full120-12k/INSTRUCTIONS.txt"
+    },
+    {
+      "path": "tutorials/eval/dedup/calibration/round-027-thinking-full120-12k/agent-judgment.json",
+      "operation": "english_json_projection_original_archived_locally",
+      "original_sha256": "ce38abd763839ff01f18b5093b1e859d0dd388be93602ff9690440c60b315ae9",
+      "published_sha256": "5705d4f88100f0759ea5fec6914e08bf42484548bd7684fbfd3ac7a00530eab8",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__qwen-thinking-full120-12k-20261029/tutorials/eval/dedup/calibration/round-027-thinking-full120-12k/agent-judgment.json"
+    }
+  ]
+}

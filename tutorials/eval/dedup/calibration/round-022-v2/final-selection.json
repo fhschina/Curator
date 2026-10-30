@@ -4,7 +4,6 @@
   "created": 1793148388.145539,
   "based_on": "Repeated hard evidence only; development scores excluded from ranking",
   "reason_en": "candidate-02 was selected from the frozen alternatives because it preserved complete technical validity and zero observed reference-required wrong allows at every layer across all 258 hard presentations. Among variants meeting those two conditions, it had the greatest correct directional coverage. Other required-Yes mistakes still fail the hard gate; no version is promoted by majority vote. The ranking uses hard evidence only; development-reference improvement cannot excuse hard failures.",
-  "reason_zh": "选择冻结的 candidate-02，是因为它在全部 258 个硬性呈现样本的每层中保持技术有效，且相对明确应保留参考的错误允许为零。在满足这两个条件的版本中，它的正确方向覆盖最多。其余必须为 Yes 的判断仍有错误，因此硬性条件未通过；不以多数投票宣布通过。选优排序只使用硬性证据；开发参考分数改善不能免除硬性失败。",
   "selection_protocol_sha256": "bf1412e5c9dd294ebaa91422c06c36dfcac7736cdd8b8f616ed607d667ba1635",
   "metrics": {
     "candidate-02": {

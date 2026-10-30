@@ -8,27 +8,27 @@ Default thinking improves the state controls, and its valid final judgments matc
 
 ## Frozen method
 
-| Setting / 设置 | Value / 值 |
+| Setting | Value |
 | --- | --- |
-| Model / 模型 | Qwen/Qwen3.8-27B-FP8 |
-| Policy / 政策 | Unchanged best C0; eight Jinja files / 最佳C0的八个Jinja文件未改 |
-| Presentations / 输入呈现 | 32 = latest18 + body_language2 + cookie_state8 + state_equivalence4 |
-| Repeats / 重复 | 2 per arm / 每臂2次 |
-| Order / 顺序 | off1 → on1 → on2 → off2 |
-| Temperature / 温度 | 0.2 |
-| Context / 上下文 | 32768 |
-| Completion budget / 输出预算 | 6144 including reasoning / 含推理 |
-| Native thinking effort / 原生推理强度 | xhigh default when enabled / 开启时原生默认xhigh |
-| Common reasoning parser / 共同推理解析器 | qwen3 |
-| Concurrent requests / 并发 | 8 |
-| Timeout seconds / 超时秒 | 600 |
-| GPU / 显卡 | 1 B200, TP1 |
-| Allocated GPU hours / 含启动与空闲的GPU小时 | 0.5437 |
-| Source commit / 来源提交 | d963a5d97aa7133e6fba6f9c455a406b169acd41 |
+| Model | Qwen/Qwen3.8-27B-FP8 |
+| Policy | Unchanged best C0; eight Jinja files |
+| Presentations | 32 = latest18 + body_language2 + cookie_state8 + state_equivalence4 |
+| Repeats | 2 per arm |
+| Order | off1 → on1 → on2 → off2 |
+| Temperature | 0.2 |
+| Context | 32768 |
+| Completion budget | 6144 including reasoning |
+| Native thinking effort | xhigh default when enabled |
+| Common reasoning parser | qwen3 |
+| Concurrent requests | 8 |
+| Timeout seconds | 600 |
+| GPU | 1 B200, TP1 |
+| Allocated GPU hours | 0.5437 |
+| Source commit | d963a5d97aa7133e6fba6f9c455a406b169acd41 |
 
 ## Actual quality and paired changes
 
-| Arm / 模式 | Layer / 层 | Correct D / 方向 | Agreement / 一致率 | Correct P / 整对 | Valid / 有效 | Invalid / 无效 | Unresolved / 未决 | Raw wrong allows / 原始错误允许 | Raw wrong blocks / 原始误阻止 | Repeat changes / 重复变化 |
+| Arm | Layer | Correct D | Agreement | Correct P | Valid | Invalid | Unresolved | Raw wrong allows | Raw wrong blocks | Repeat changes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | thinking-off | main | 114/128 | 89.06% | 55/64 | 63 | 1 | 0 | 4 | 8 | 3 |
 | thinking-off | coverage | 108/128 | 84.38% | 51/64 | 63 | 1 | 0 | 3 | 15 | 6 |
@@ -37,13 +37,13 @@ Default thinking improves the state controls, and its valid final judgments matc
 | thinking-on | coverage | 100/128 | 78.12% | 50/64 | 50 | 14 | 0 | 0 | 0 | 4 |
 | thinking-on | final | 100/128 | 78.12% | 50/64 | 50 | 14 | 0 | 0 | 0 | 4 |
 
-| Layer / 层 | D gained / 修复方向 | D lost / 退步方向 | P fixed / 修复整对 | P regressed / 退步整对 |
+| Layer | D gained | D lost | P fixed | P regressed |
 | --- | --- | --- | --- | --- |
 | main | 14 | 26 | 9 | 13 |
 | coverage | 14 | 22 | 9 | 10 |
 | final | 14 | 22 | 9 | 10 |
 
-| Arm / 模式 | Group / 组 | Final D / 最终方向 | Final P / 最终整对 | Invalid / 无效 | Raw wrong allows / 原始错误允许 |
+| Arm | Group | Final D | Final P | Invalid | Raw wrong allows |
 | --- | --- | --- | --- | --- | --- |
 | thinking-off | latest18 | 59/72 | 28/36 | 0 | 0 |
 | thinking-off | body_language2 | 8/8 | 4/4 | 0 | 0 |
@@ -56,7 +56,7 @@ Default thinking improves the state controls, and its valid final judgments matc
 
 ## Actual cost and limitations
 
-| Arm / 模式 | Requests / 请求 | Run seconds / 运行秒 | Median latency / 中位秒 | P90 latency / P90延迟秒 | Completion tokens / 输出token | Reasoning calls / 推理请求 | Empty final / 最终为空 | Finish reasons / 结束原因 |
+| Arm | Requests | Run seconds | Median latency | P90 latency | Completion tokens | Reasoning calls | Empty final | Finish reasons |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | thinking-off | 140 | 269.95 | 5.12 | 16.08 | 81761 | 0 | 0 | stop=140 |
 | thinking-on | 191 | 1522.45 | 44.50 | 68.17 | 737876 | 191 | 44 | length=60; stop=131 |

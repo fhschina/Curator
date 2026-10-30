@@ -1,7 +1,6 @@
 {
   "parent": "candidate-06-languagefirst1",
   "hypothesis_en": "Two functional-boundary clarifications on the frozen language-first parent. Distinguish unpopulated query, facet, sort, archive and version controls from actual retained assertions; do not infer unseen results or API behavior from controls when actual displayed content remains covered. Also disambiguate named service-location wording from literal submission/payment/account routes: a city-bearing address still identifies the actual action destination and must itself be preserved. Actual populated records, failed-object/status/permission identities, API facts, conditions and substantive body languages remain protected. Raw failures explicitly treated selectors as record versions and let an ambiguous city/destination exception override acknowledged submission addresses. Preserve original padded evidence, native field order/content/enums, model, window, executor and validators; reject the unsafe short-record presentation as a parent. Separately frozen supplemental controls test these boundaries outside the original denominators.",
-  "hypothesis_zh": "在冻结的语言先判断父版本上澄清两项功能边界。区分未呈现实际数据的查询、筛选、排序、归档及版本控件与真实保留断言；在实际显示内容已被覆盖时，不得从控件推定未呈现结果或API行为。同时区分服务地点名称与字面上的投稿、付款或账户操作入口：包含城市名称的地址仍是实际操作去向，必须覆盖该地址本身。继续保护真实记录、失败对象或状态或权限断言中的身份、API事实、条件及实质正文语言。原始失败曾明确将选择器判为记录版本，并让含糊的城市或目的地例外覆盖已被承认的投稿地址。保留原有填充证据、原生字段顺序或内容或枚举、模型、窗口、执行器及校验；不采用不安全的短记录呈现作为父版本。独立冻结的补充受控例在原有分母之外检查这些边界。",
   "created": 1793170475.6461263,
   "status": "hard_screen_complete_template_vetoes_and_native_contract_failure",
   "supplemental_definition": "supplemental-ui-boundaries-v1.json",
@@ -28,6 +27,5 @@
     }
   },
   "hard_eligible": false,
-  "reason_en": "Functional clarification improved several required-Yes main decisions and preserved operational endpoints, but a generic marketing order still failed and coverage falsely vetoed cookie/provider equivalence. A correct raw list-containment decision failed the existing primary-difference/confidence contract. A separately declared failed-object control also had a main wrong allow, rescued later. Preserve all failures; isolate native output-contract reinforcement before long scoring.",
-  "reason_zh": "功能澄清改善了若干必须为Yes的主判断，并保留实际操作入口，但通用营销的一个顺序仍失败，coverage也错误否决cookie或服务商等价。一个原始方向正确的列表包含判断未满足既有主差异或置信度契约。另一个独立声明的失败对象受控例在main错误允许，之后被纠正。保留全部失败，长评分前先独立检验原生输出契约强化。"
+  "reason_en": "Functional clarification improved several required-Yes main decisions and preserved operational endpoints, but a generic marketing order still failed and coverage falsely vetoed cookie/provider equivalence. A correct raw list-containment decision failed the existing primary-difference/confidence contract. A separately declared failed-object control also had a main wrong allow, rescued later. Preserve all failures; isolate native output-contract reinforcement before long scoring."
 }

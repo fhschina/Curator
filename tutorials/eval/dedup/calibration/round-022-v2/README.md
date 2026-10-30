@@ -36,9 +36,8 @@ repetition must pass; no majority-vote acceptance is used.
 
 ## Reports and evidence
 
-- [English report](../../../../../fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-en.mdx)
-  and [direct Chinese translation](../../../../../fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-zh.mdx).
-- Standalone [English HTML](report_en.html) and [Chinese HTML](report_zh.html).
+- [English report](../../../../../fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v2-report-en.mdx).
+- Standalone [English HTML](report_en.html).
 - [Machine summary](summary.json), [per-run comparison CSV](comparison.csv),
   [machine HTML](comparison.html), and [shared report tables](report_tables.json).
 - [Frozen manifest and hashes](manifest.json), [run provenance](run-provenance.json),
@@ -46,10 +45,13 @@ repetition must pass; no majority-vote acceptance is used.
   [selection](final-selection.json), [engineering changes](engineering-changes.json),
   [verification](verification-final.json), and
   [translation verification](translation_validation.json).
-- The ZIP archive(s) in this directory contain all six frozen prompt versions,
-  the separate candidate-5 engineering repair, per-run JSON/CSV/HTML, original
-  run manifests, review provenance, input indexes, and reproduction tools.
-  The full comparison JSON is under `delivery/comparison.json` in the archive.
+- Complete original ZIP evidence bundles, including frozen prompt versions,
+  the candidate-5 engineering repair, labels and reproduction tools, are retained
+  in the local experiment archive. They include original multilingual review
+  annotations and are not part of the English publication. Their original hashes
+  remain in the historical manifests; see `../english-publication.json` for the
+  local archive and publication mapping. The full comparison JSON remains under
+  `delivery/comparison.json` inside those original bundles.
 
 Full immutable input texts, native Data Designer outputs, HTTP attempt traces,
 source snapshots and checkpoints remain at:
