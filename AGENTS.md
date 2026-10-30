@@ -20,6 +20,10 @@ are composed of `ProcessingStage` objects executed by a backend (Ray Data, Xenna
   Do not create or sync another environment unless explicitly requested.
 - **Optional extras**: feature families are behind extras in `pyproject.toml`.
   Do not make heavyweight dependencies unconditional.
+- **Publication language**: write repository reports, documentation, and explanatory
+  annotations in English. Keep Chinese translations and personal notes in local
+  storage outside the repository; do not commit or push them. Preserve original
+  multilingual source data and language-test fixtures without translation.
 - **Fern docs**: user-facing documentation lives in `fern/`, not `docs/`. Edit
   MDX files there; do not add docs to the `docs/` directory.
 - **Avoid local narration**: comments should explain only non-obvious, durable

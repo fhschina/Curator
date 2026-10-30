@@ -1,0 +1,16 @@
+{
+  "publication_language": "en",
+  "source_commit": "6715574e4e553f7b36f263d755f6cebe198e7b11",
+  "branch": "codex/dedup-retention-policy-v1",
+  "local_original_archive": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v1",
+  "historical_integrity": "Frozen hashes and old receipts describe the original source artifacts. English JSON projections omit Chinese translation fields; remaining Chinese annotations are translated into English. Original files, Chinese reports and multilingual evidence bundles are preserved byte-for-byte locally. No prompt, model configuration, reference label, metric or acceptance result is changed. Git history is preserved.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "operation": "document_english_publication_preference",
+      "original_sha256": "3f27518a4ec7d639270ca46fd96ec4a61ff37d7aa9623d77b5bf57a0adcaed0c",
+      "published_sha256": "5222fa0027c8cf269e1b870f74383f2326e69419b8a233073b918be48cfcce3f",
+      "original_local_path": "/raid/hfang/retention_policy_eval/v1/reports/local-only-chinese-archive-20261030/branches/codex__dedup-retention-policy-v1/AGENTS.md"
+    }
+  ]
+}
