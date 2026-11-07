@@ -76,6 +76,8 @@ def _loss_evidence_errors(raw: dict, packet: SpanPacket) -> list[str]:
             errors.append(f"{field}: missing or wrong-side loss citation")
             continue
         quotes = re.findall(r'"([^"\n]+)"|“([^”\n]+)”|`([^`\n]+)`', reasoning)
+        # Keep nested double quotes visible and avoid treating word apostrophes as delimiters.
+        quotes.extend(re.findall(r"(?<!\w)'([^\n]+?)'(?!\w)|\u2018([^\n]+?)\u2019(?!\w)", reasoning))
         phrases = [" ".join(next(part for part in quote if part).split()).casefold() for quote in quotes]
         source = " ".join(excerpt.text.split()).casefold()
         if not any(phrase and phrase in source for phrase in phrases):

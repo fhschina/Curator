@@ -71,6 +71,67 @@ def test_no_requires_existing_removed_side_citation_and_literal_quote(c0_record:
     assert main_errors(c0_record, "pair_semantic_judgment", 240)
 
 
+@pytest.mark.parametrize("delimiters", [('"', '"'), ("'", "'"), ("“", "”"), ("\u2018", "\u2019"), ("`", "`")])
+def test_literal_loss_quotes_accept_typography_without_rewriting(c0_record: dict, delimiters: tuple[str, str]) -> None:
+    _negative(c0_record)
+    opening, closing = delimiters
+    raw = c0_record["pair_semantic_judgment"]
+    raw["a_can_replace_b"]["reasoning"] = f"B001: B's lost phrase is {opening}City Beta{closing}."
+    raw["b_can_replace_a"]["reasoning"] = f"A001: A's lost phrase is {opening}City Alpha{closing}."
+    decision = Decision.from_judge(raw).model_dump()
+    c0_record.update(coverage_decision=decision, final_decision=decision, coverage_action="KEEP_MAIN")
+    table = pa.Table.from_pylist([c0_record])
+    output = C0AuditStage().process(DocumentBatch(dataset_name="audit", data=table)).to_pyarrow()
+    assert output.select(table.column_names).to_pylist() == table.to_pylist()
+    assert all(output.column(f"c0_{layer}_status").to_pylist() == ["valid"] for layer in ("main", "coverage", "final"))
+
+
+@pytest.mark.parametrize(
+    ("opening", "closing", "phrase"),
+    [("'", "'", "City Beta's office"), ("\u2018", "\u2019", "City Beta\u2019s office")],
+)
+def test_single_quoted_loss_can_contain_an_apostrophe(
+    c0_record: dict, opening: str, closing: str, phrase: str
+) -> None:
+    _negative(c0_record)
+    c0_record["text_b"] = c0_record["text_b"].replace("City Beta", phrase)
+    span = next(span for span in c0_record["semantic_diff"]["spans"] if span["span_id"] == "B001")
+    span.update(text=phrase, end_char=len(c0_record["text_b"]), delta_end_char=len(c0_record["text_b"]))
+    c0_record["pair_semantic_judgment"]["a_can_replace_b"]["reasoning"] = (
+        f"B001: B's lost phrase is {opening}{phrase}{closing}."
+    )
+    assert not main_errors(c0_record, "pair_semantic_judgment", 240)
+
+
+def test_nested_existing_quote_remains_valid(c0_record: dict) -> None:
+    _negative(c0_record)
+    c0_record["pair_semantic_judgment"]["a_can_replace_b"]["reasoning"] = (
+        "B001: 'The literal \"City Beta\" is absent from A.'"
+    )
+    assert not main_errors(c0_record, "pair_semantic_judgment", 240)
+
+
+@pytest.mark.parametrize(
+    "reasoning",
+    [
+        "B001: Beta's role isn't covered.",
+        "B001: Beta\u2019s role isn\u2019t covered.",
+        "B001: 'a fabricated obligation' is missing.",
+        "B001: \u2018a fabricated obligation\u2019 is missing.",
+        "B001: 'City Alpha' is missing.",
+        "B001: \u2018City Alpha\u2019 is missing.",
+        "B001: 'City Beta is missing.",
+        "B001: \u2018City Beta is missing.",
+        "B999: 'City Beta' is missing.",
+        "A001: 'City Alpha' is missing.",
+    ],
+)
+def test_single_quotes_still_require_a_literal_in_the_cited_removed_span(c0_record: dict, reasoning: str) -> None:
+    _negative(c0_record)
+    c0_record["pair_semantic_judgment"]["a_can_replace_b"]["reasoning"] = reasoning
+    assert main_errors(c0_record, "pair_semantic_judgment", 240)
+
+
 def test_complete_shared_quote_must_identify_removed_side(c0_record: dict) -> None:
     _negative(c0_record)
     c0_record["pair_semantic_judgment"]["a_can_replace_b"]["reasoning"] = 'S001 (B): "Service hours" is lost.'
