@@ -12,8 +12,9 @@ from critics.c0 import C0_CONFIG, C0_PROMPTS, C0_ROOT, C0AuditStage
 from critics.coverage import coverage_column
 from critics.spans import SpanPacket
 from critics.subject import subject_column, verifier_column
+from data_designer.engine.processing.ginja.environment import UserTemplateSandboxEnvironment
 from data_designer.engine.validation import ViolationLevel, validate_data_designer_config
-from jinja2 import Environment, StrictUndefined
+from jinja2 import StrictUndefined
 
 from nemo_curator.eval.llm_judge.workflow import build_config_builder
 
@@ -34,9 +35,9 @@ def test_c0_builds_with_native_data_designer_and_renders_main(c0_record: dict) -
         allowed_references=[column.name for column in config.columns] + list(c0_record),
     )
     assert not [violation for violation in violations if violation.level == ViolationLevel.ERROR]
-    environment = Environment(undefined=StrictUndefined)  # noqa: S701
+    environment = UserTemplateSandboxEnvironment(allowed_references=list(c0_record), undefined=StrictUndefined)
     for name in ("system.jinja", "pair.jinja"):
-        rendered = environment.from_string((C0_CONFIG.parent / name).read_text()).render(**c0_record)
+        rendered = environment.render_template((C0_CONFIG.parent / name).read_text(), c0_record)
         assert rendered
     manifest = json.loads((C0_ROOT / "provenance.json").read_text())
     for path, checksum in manifest["sha256"].items():
@@ -46,7 +47,7 @@ def test_c0_builds_with_native_data_designer_and_renders_main(c0_record: dict) -
 def test_native_critic_columns_load_and_render_the_same_c0_policy(c0_record: dict) -> None:
     packet = SpanPacket.from_record(c0_record).for_prompt()
     context = {**c0_record, "coverage_packet": packet, "subject_packet": packet, "subject_candidate": {}}
-    environment = Environment(undefined=StrictUndefined)  # noqa: S701
+    environment = UserTemplateSandboxEnvironment(allowed_references=list(context), undefined=StrictUndefined)
     for factory, name in (
         (coverage_column, "coverage"),
         (subject_column, "subject"),
@@ -57,8 +58,8 @@ def test_native_critic_columns_load_and_render_the_same_c0_policy(c0_record: dic
         assert column.prompt == (C0_PROMPTS / f"{name}_pair.jinja").read_text()
         assert column.skip is not None
         assert column.output_format
-        assert environment.from_string(column.prompt).render(**context)
-        assert environment.from_string(column.system_prompt).render(**context)
+        assert environment.render_template(column.prompt, context)
+        assert environment.render_template(column.system_prompt, context)
 
 
 def test_main_prompt_marks_core_inside_padded_float_offset_spans(c0_record: dict) -> None:
@@ -69,12 +70,12 @@ def test_main_prompt_marks_core_inside_padded_float_offset_spans(c0_record: dict
         span.update(start_char=0.0, end_char=float(len(text)), text=text)
         span["delta_start_char"] = float(span["delta_start_char"])
         span["delta_end_char"] = float(span["delta_end_char"])
-    environment = Environment(undefined=StrictUndefined)  # noqa: S701
-    rendered = environment.from_string((C0_CONFIG.parent / "pair.jinja").read_text()).render(**c0_record)
+    environment = UserTemplateSandboxEnvironment(allowed_references=list(c0_record), undefined=StrictUndefined)
+    rendered = environment.render_template((C0_CONFIG.parent / "pair.jinja").read_text(), c0_record)
     assert '<own_side_core span_id="A001">City Alpha</own_side_core>' in rendered
     assert '<own_side_core span_id="B001">City Beta</own_side_core>' in rendered
-    assert 'Literal citation opener: A001: "City Alpha"' in rendered
-    assert 'Literal citation opener: B001: "City Beta"' in rendered
+    assert "Literal citation opener: A001: `Service hours and prices are unchanged. City Alpha`" in rendered
+    assert "Literal citation opener: B001: `Service hours and prices are unchanged. City Beta`" in rendered
 
 
 def test_c0_workflow_adds_audit_after_critics_without_changing_legacy(

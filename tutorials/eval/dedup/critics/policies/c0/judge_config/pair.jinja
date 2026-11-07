@@ -32,7 +32,9 @@ B: {{ span.b_text }}
 {% else %}
 [{{ span.span_id }} {{ span.kind }}] {{ span.text }}
 <own_side_core span_id="{{ span.span_id }}">{{ span.text[((span.delta_start_char | int) - (span.start_char | int)):((span.delta_end_char | int) - (span.start_char | int))] }}</own_side_core>
-Literal citation opener: {{ span.span_id }}: {{ ((span.text[((span.delta_start_char | int) - (span.start_char | int)):((span.delta_end_char | int) - (span.start_char | int))])[:120].split()[:6] | join(' ')) | tojson }}
+{% if span.delta_start_char - span.start_char < 96 and '`' not in span.text[:96] %}
+Literal citation opener: {{ span.span_id }}: `{{ span.text[:96] | replace('\n', ' ') }}`
+{% endif %}
 {% endif %}
 {% endfor %}
 </semantic_diff>
