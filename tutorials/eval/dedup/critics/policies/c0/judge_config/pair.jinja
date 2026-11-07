@@ -31,9 +31,7 @@ A: {{ span.a_text }}
 B: {{ span.b_text }}
 {% else %}
 [{{ span.span_id }} {{ span.kind }}] {{ span.text }}
-{% set core_start = (span.delta_start_char | int) - (span.start_char | int) %}
-{% set core_end = (span.delta_end_char | int) - (span.start_char | int) %}
-<own_side_core span_id="{{ span.span_id }}">{{ span.text[core_start:core_end] }}</own_side_core>
+<own_side_core span_id="{{ span.span_id }}">{{ span.text[((span.delta_start_char | int) - (span.start_char | int)):((span.delta_end_char | int) - (span.start_char | int))] }}</own_side_core>
 {% endif %}
 {% endfor %}
 </semantic_diff>

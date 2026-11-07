@@ -12,6 +12,7 @@ from critics.c0 import C0_CONFIG, C0_PROMPTS, C0_ROOT, C0AuditStage
 from critics.coverage import coverage_column
 from critics.spans import SpanPacket
 from critics.subject import subject_column, verifier_column
+from data_designer.engine.validation import ViolationLevel, validate_data_designer_config
 from jinja2 import Environment, StrictUndefined
 
 from nemo_curator.eval.llm_judge.workflow import build_config_builder
@@ -27,6 +28,12 @@ def test_c0_builds_with_native_data_designer_and_renders_main(c0_record: dict) -
     )
     config = builder.build()
     assert config
+    violations = validate_data_designer_config(
+        columns=config.columns,
+        processor_configs=config.processors or [],
+        allowed_references=[column.name for column in config.columns] + list(c0_record),
+    )
+    assert not [violation for violation in violations if violation.level == ViolationLevel.ERROR]
     environment = Environment(undefined=StrictUndefined)  # noqa: S701
     for name in ("system.jinja", "pair.jinja"):
         rendered = environment.from_string((C0_CONFIG.parent / name).read_text()).render(**c0_record)
@@ -62,13 +69,8 @@ def test_main_prompt_marks_core_inside_padded_float_offset_spans(c0_record: dict
         span.update(start_char=0.0, end_char=float(len(text)), text=text)
         span["delta_start_char"] = float(span["delta_start_char"])
         span["delta_end_char"] = float(span["delta_end_char"])
-    rendered = (
-        Environment(undefined=StrictUndefined)
-        .from_string(  # noqa: S701
-            (C0_CONFIG.parent / "pair.jinja").read_text()
-        )
-        .render(**c0_record)
-    )
+    environment = Environment(undefined=StrictUndefined)  # noqa: S701
+    rendered = environment.from_string((C0_CONFIG.parent / "pair.jinja").read_text()).render(**c0_record)
     assert '<own_side_core span_id="A001">City Alpha</own_side_core>' in rendered
     assert '<own_side_core span_id="B001">City Beta</own_side_core>' in rendered
 
