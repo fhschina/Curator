@@ -73,6 +73,8 @@ def test_main_prompt_marks_core_inside_padded_float_offset_spans(c0_record: dict
     rendered = environment.from_string((C0_CONFIG.parent / "pair.jinja").read_text()).render(**c0_record)
     assert '<own_side_core span_id="A001">City Alpha</own_side_core>' in rendered
     assert '<own_side_core span_id="B001">City Beta</own_side_core>' in rendered
+    assert 'Literal citation opener: A001: "City Alpha"' in rendered
+    assert 'Literal citation opener: B001: "City Beta"' in rendered
 
 
 def test_c0_workflow_adds_audit_after_critics_without_changing_legacy(
