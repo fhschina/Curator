@@ -11,15 +11,15 @@
     "pairs": 360
   },
   "sha256": {
-    "critics/coverage_pair.jinja": "558ca7a5a719c6712319e1dcea76947d05a067d42fabf60124a0f8a38845a461",
-    "critics/coverage_system.jinja": "bf15ea329e59e5a5f361b31a940bb2d1f136dd27400ccbeba8d6aed6f1ace1c5",
-    "critics/subject_pair.jinja": "a05ba909642de25d33a2fc4259c72edcef7ea37878b7c6a002d9df4e105df4e7",
-    "critics/subject_system.jinja": "b32a17ebb8dfb9cf427cd80fe562915d350c1ac0812f7dbeae0af2b89d232ebe",
-    "critics/subject_verifier_pair.jinja": "d08de29e4365be8dcb2bb98756def72b5c0651a3684ef242e568a153f9d33296",
-    "critics/subject_verifier_system.jinja": "554a9771d54a90d1365ce13ebebd5a6b630f08aee671b58c1e066f7eba1f0b84",
+    "critics/coverage_pair.jinja": "a56c924bee0ed1ad7b822284799ed3cd84920338c3b3525aa06603057203c7d7",
+    "critics/coverage_system.jinja": "281ab03b2f5e47b36a8f3c2d7a845a1b4824530c3c5557e1ac18fe4c9322986f",
+    "critics/subject_pair.jinja": "7e3c2eeaee533da198b1937fc1d0f12848d2b52b898bc72c01a07855c7ace2c9",
+    "critics/subject_system.jinja": "3383b2a5bff09c8036244021b472de00bed8e2837579c26681f1635b79ccff18",
+    "critics/subject_verifier_pair.jinja": "645182a0fa78e23bc5885206cf9200fdc318ae415d7755caa2b6e8a1dc0598b3",
+    "critics/subject_verifier_system.jinja": "911917b2f7c60fd2aa8e0a1afcf6ba8f49cd32453fbe49c7117d805d40e9bce9",
     "judge_config/fuzzy_pair_judge.yaml": "77d14b44d188a96008b7786cd7a59fbdf47518bb7403d1d567bf3230638c7d3e",
-    "judge_config/pair.jinja": "e77f2189a08f94df1f9b010111a36b130e43bd79431c47b0ee94ce3e664ea94d",
-    "judge_config/system.jinja": "b4bb01e67082eb1efb1b2d10140255ebb883d09e18573f170c93f63c816c090b"
+    "judge_config/pair.jinja": "53aa87e8e5e285bec5378e28658def1e4bac68682f0b3e271a02ad292c1762ba",
+    "judge_config/system.jinja": "832d289b2820c84386747808211598b214e1d6610253b86d0720e2d87fb64486"
   },
   "revision": "boundary-v2",
   "baseline": {
@@ -41,5 +41,6 @@
     "Prioritize named liability parties and actual product/offer subjects before generic template slots.",
     "Require actual bilateral cookie-proposition coverage; retain unilateral conditions.",
     "Keep empty headings harmless and preserve existing directional, language and evidence rules."
-  ]
+  ],
+  "development_iteration": 2
 }
