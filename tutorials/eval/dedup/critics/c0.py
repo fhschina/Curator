@@ -63,7 +63,29 @@ def _ledger_issues(values: dict) -> list[str]:
     return errors
 
 
-def _loss_evidence_errors(raw: dict, packet: SpanPacket) -> list[str]:
+def _context_quote_covers_delta(phrase: str, displayed: dict) -> bool:
+    """A displayed context quote is evidence only if it overlaps the cited core difference."""
+    start = int(displayed["delta_start_char"]) - int(displayed["start_char"])
+    end = int(displayed["delta_end_char"]) - int(displayed["start_char"])
+    normalized, positions = [], []
+    for token in re.finditer(r"\S+", displayed["text"]):
+        if normalized:
+            normalized.append(" ")
+            positions.append(token.start())
+        for offset, char in enumerate(token.group()):
+            folded = char.casefold()
+            normalized.append(folded)
+            positions.extend([token.start() + offset] * len(folded))
+    source = "".join(normalized)
+    cursor = source.find(phrase)
+    while cursor >= 0:
+        if positions[cursor] < end and positions[cursor + len(phrase) - 1] >= start:
+            return True
+        cursor = source.find(phrase, cursor + 1)
+    return False
+
+
+def _loss_evidence_errors(raw: dict, packet: SpanPacket, displayed_spans: dict[str, dict]) -> list[str]:
     errors = []
     for field, side in _DIRECTIONS:
         if raw[field]["score"] != "no":
@@ -80,7 +102,14 @@ def _loss_evidence_errors(raw: dict, packet: SpanPacket) -> list[str]:
         quotes.extend(re.findall(r"(?<!\w)'([^\n]+?)'(?!\w)|\u2018([^\n]+?)\u2019(?!\w)", reasoning))
         phrases = [" ".join(next(part for part in quote if part).split()).casefold() for quote in quotes]
         source = " ".join(excerpt.text.split()).casefold()
-        if not any(phrase and phrase in source for phrase in phrases):
+        if not any(
+            phrase
+            and (
+                phrase in source
+                or (span.kind != "SHARED" and _context_quote_covers_delta(phrase, displayed_spans[span.span_id]))
+            )
+            for phrase in phrases
+        ):
             errors.append(f"{field}: missing literal loss quote in cited span")
     return errors
 
@@ -117,7 +146,9 @@ def main_errors(record: dict, source_judge: str, max_evidence_chars: int) -> lis
     missing = any(not record[key].strip() for key in ("text_a", "text_b"))
     if (not packet.complete or missing) and not unresolved:
         errors.append("incomplete or empty source requires fully unresolved summary")
-    errors.extend(_loss_evidence_errors(raw, packet))
+    errors.extend(
+        _loss_evidence_errors(raw, packet, {span["span_id"]: span for span in record["semantic_diff"]["spans"]})
+    )
     return errors
 
 

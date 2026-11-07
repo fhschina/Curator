@@ -111,6 +111,73 @@ def test_nested_existing_quote_remains_valid(c0_record: dict) -> None:
     assert not main_errors(c0_record, "pair_semantic_judgment", 240)
 
 
+def _display_with_context(record: dict) -> None:
+    for span in record["semantic_diff"]["spans"]:
+        if span["kind"] != "SHARED":
+            text = record["text_" + span["kind"][0].lower()]
+            span.update(start_char=0, end_char=len(text), text=text)
+
+
+@pytest.mark.parametrize(
+    "phrase", ["unchanged. City Beta", "unchanged. City", "Service hours and prices are unchanged. City Beta"]
+)
+def test_literal_quote_can_include_displayed_context_and_the_lost_delta(c0_record: dict, phrase: str) -> None:
+    _negative(c0_record)
+    _display_with_context(c0_record)
+    c0_record["pair_semantic_judgment"]["a_can_replace_b"]["reasoning"] = f"B001: '{phrase}' is missing."
+    assert not main_errors(c0_record, "pair_semantic_judgment", 240)
+
+
+@pytest.mark.parametrize(
+    ("core", "phrase"), [("Straße", "unchanged. STRASSE"), ("City\nBeta", "unchanged. City Beta")]
+)
+def test_displayed_quote_matching_preserves_unicode_and_whitespace_normalization(
+    c0_record: dict, core: str, phrase: str
+) -> None:
+    _negative(c0_record)
+    c0_record["text_b"] = c0_record["text_b"].replace("City Beta", core)
+    span = next(span for span in c0_record["semantic_diff"]["spans"] if span["span_id"] == "B001")
+    span.update(delta_end_char=len(c0_record["text_b"]))
+    _display_with_context(c0_record)
+    c0_record["pair_semantic_judgment"]["a_can_replace_b"]["reasoning"] = f"B001: '{phrase}' is missing."
+    assert not main_errors(c0_record, "pair_semantic_judgment", 240)
+
+
+@pytest.mark.parametrize(
+    "phrase",
+    ["Service hours and prices are unchanged.", "City Alpha", "unchanged. City Alpha", "a fabricated obligation"],
+)
+def test_displayed_padding_alone_and_other_side_quotes_remain_invalid(c0_record: dict, phrase: str) -> None:
+    _negative(c0_record)
+    _display_with_context(c0_record)
+    c0_record["pair_semantic_judgment"]["a_can_replace_b"]["reasoning"] = f"B001: '{phrase}' is missing."
+    assert main_errors(c0_record, "pair_semantic_judgment", 240)
+
+
+def test_shared_context_with_the_same_words_as_the_delta_does_not_prove_a_loss(c0_record: dict) -> None:
+    _negative(c0_record)
+    shared = "City Beta is a shared example. "
+    for side in ("A", "B"):
+        core = "City Alpha" if side == "A" else "City Beta"
+        c0_record["text_" + side.lower()] = shared + core
+        span = next(span for span in c0_record["semantic_diff"]["spans"] if span["span_id"] == side + "001")
+        span.update(
+            start_char=len(shared),
+            end_char=len(shared + core),
+            text=core,
+            delta_start_char=len(shared),
+            delta_end_char=len(shared + core),
+        )
+    c0_record["semantic_diff"]["spans"][0].update(
+        a_text=shared, b_text=shared, a_end_char=len(shared), b_end_char=len(shared)
+    )
+    _display_with_context(c0_record)
+    c0_record["pair_semantic_judgment"]["a_can_replace_b"]["reasoning"] = (
+        "B001: 'City Beta is a shared example.' is missing."
+    )
+    assert main_errors(c0_record, "pair_semantic_judgment", 240)
+
+
 @pytest.mark.parametrize(
     "reasoning",
     [
