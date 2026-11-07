@@ -31,6 +31,9 @@ A: {{ span.a_text }}
 B: {{ span.b_text }}
 {% else %}
 [{{ span.span_id }} {{ span.kind }}] {{ span.text }}
+{% set core_start = (span.delta_start_char | int) - (span.start_char | int) %}
+{% set core_end = (span.delta_end_char | int) - (span.start_char | int) %}
+<own_side_core span_id="{{ span.span_id }}">{{ span.text[core_start:core_end] }}</own_side_core>
 {% endif %}
 {% endfor %}
 </semantic_diff>
@@ -121,6 +124,12 @@ boilerplate. Specific analytics deployment, individual cookie controls, data
 flows, retention periods, storage/transfer limits and consent conditions matter.
 A contact form's explicit permission to send emails for a stated purpose is a
 condition, not just an email-field label. Preserve a one-sided useful condition.
+For example, "I agree to receive emails about my request" authorizes a channel
+and purpose. It is material_non_main_message_change even on a standard footer
+checkbox beside an otherwise unchanged article. Being boilerplate or a checkbox
+does not cancel this condition. A blank "Email / Phone / Message" field alone is
+UI; the actual authorization sentence is not. For A = article, B = same article
+plus that permission, A cannot replace B and B can replace A.
 When BOTH sides really retain the full category definitions, a generic opening
 about experience, device storage, browsing behavior, IDs or general withdrawal
 effects adds no separate purpose. Decorative questions and a stock paragraph
@@ -215,6 +224,9 @@ rewriting, or stitching together adjacent spans. A full sentence may cross the
 a shorter visible phrase touching the actual difference, then explain the full
 lost claim separately. Do not quote an entire category paragraph or rely on a
 second citation's quote to validate the first citation.
+The own_side_core block marks exactly which text belongs to that difference.
+Check the ID on the actual fragment, not the first chunk of its paragraph. A
+clause completed in the next chunk must cite that next chunk if quoted there.
 Before submitting, reconcile the delta ledger with the two direction scores:
 - a_can_replace_b=NO for B's useful addition requires a material span_b_delta.
 - b_can_replace_a=NO for A's useful addition requires a material span_a_delta.

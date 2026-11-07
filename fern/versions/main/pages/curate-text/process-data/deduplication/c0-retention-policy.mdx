@@ -103,6 +103,9 @@ Literal evidence accepts straight or curly single/double quotes and backticks.
 A quote may include displayed reading context when its original character range
 overlaps the cited span's core difference. Quoting only shared padding does not
 establish a lost contribution.
+The main prompt marks each difference's core separately from its reading context.
+Choose a short verbatim quote within the cited displayed chunk; a sentence that
+continues into another chunk does not become evidence for the first chunk's ID.
 
 Reconcile expected input IDs against every output stage before computing rates.
 Failed-row restoration cannot by itself guarantee completion after a failed job

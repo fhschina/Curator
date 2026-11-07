@@ -54,6 +54,25 @@ def test_native_critic_columns_load_and_render_the_same_c0_policy(c0_record: dic
         assert environment.from_string(column.system_prompt).render(**context)
 
 
+def test_main_prompt_marks_core_inside_padded_float_offset_spans(c0_record: dict) -> None:
+    for span in c0_record["semantic_diff"]["spans"]:
+        if span["kind"] == "SHARED":
+            continue
+        text = c0_record["text_" + span["kind"][0].lower()]
+        span.update(start_char=0.0, end_char=float(len(text)), text=text)
+        span["delta_start_char"] = float(span["delta_start_char"])
+        span["delta_end_char"] = float(span["delta_end_char"])
+    rendered = (
+        Environment(undefined=StrictUndefined)
+        .from_string(  # noqa: S701
+            (C0_CONFIG.parent / "pair.jinja").read_text()
+        )
+        .render(**c0_record)
+    )
+    assert '<own_side_core span_id="A001">City Alpha</own_side_core>' in rendered
+    assert '<own_side_core span_id="B001">City Beta</own_side_core>' in rendered
+
+
 def test_c0_workflow_adds_audit_after_critics_without_changing_legacy(
     critic_module: ModuleType, tmp_path: Path
 ) -> None:
