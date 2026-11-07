@@ -38,7 +38,7 @@ Use an existing Curator environment with the evaluation dependencies installed.
 Prepare the pairs and `semantic_diff` packets using steps 1–4 of #2426. Keep the
 original `pair_id`, `text_a`, `text_b`, and truncation fields in the records.
 
-The nine frozen files live under
+The nine versioned files live under
 `tutorials/eval/dedup/critics/policies/c0/`: three main-judge files in
 `judge_config/` and six critic templates in `critics/`. Copy the main config and its
 adjacent templates to a run directory:
@@ -112,10 +112,21 @@ not resolve the separate restoration issues discussed on #2484.
 
 ## Provenance and limits
 
-The bundled files are byte-identical to the C0 delivery at
+The current `boundary-v2` revision derives from the original C0 delivery at
 [`51ac9e37`](https://github.com/fhschina/Curator/tree/51ac9e375ee3c7bacc94ebd1c3b29f86336e50af/tutorials/eval/dedup/calibration/round-024-resume-8h/frozen-start85/variant).
-`provenance.json` records their SHA-256 values and the historical candidate
-`candidate-06-languagefirst1`.
+It makes the existing exceptions explicit: named liability parties and concrete
+product offers take precedence over generic template slots; cookie framing is
+covered only when the corresponding complete propositions actually survive;
+empty headings alone do not add records. All four judge/reviewer prompts use
+these checks. The output schema, sampling settings, audit, and veto-only critic
+authority are unchanged.
+
+`provenance.json` records the current SHA-256 values and the original candidate's
+hashes under `baseline`. Commit
+[`3a239782`](https://github.com/fhschina/Curator/tree/3a23978265a9681ac14ffbc855314caf5653f85e/tutorials/eval/dedup/critics/policies/c0)
+retains the original prompt bundle with the corrected literal-evidence audit.
+Acceptance of the revised candidate remains unestablished; development examples
+and assistant-assisted diagnostic reviews are not independent human validation.
 
 The [historical three-run report](https://github.com/fhschina/Curator/blob/51ac9e375ee3c7bacc94ebd1c3b29f86336e50af/fern/versions/main/pages/curate-text/process-data/deduplication/retention-policy-v3-report-en.mdx)
 records final-pipeline agreement of 612/720 directions (85.00%) and 288/360 whole
